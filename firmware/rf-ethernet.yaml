@@ -1,0 +1,17 @@
+# Standalone Ethernet RF node. For private migrations include the secret-free
+# packages/rf-ethernet-base.yaml and keep credentials beside the private wrapper.
+packages:
+  rf_ethernet: !include packages/rf-ethernet-base.yaml
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_username
+  password: !secret mqtt_password

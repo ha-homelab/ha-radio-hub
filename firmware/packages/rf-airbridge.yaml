@@ -1,0 +1,320 @@
+# Copyright (c) 2026 RF Airbridge contributors. SPDX-License-Identifier: MIT
+# Ethernet/RMT port of upstream c96777d0df65a7420e4883d79187f31eb1b98c9b.
+substitutions:
+  rf_airbridge_path: .
+  rf_source: rf
+  rf_received_topic: rf/received
+  rf_raw_topic: rf/received/raw
+  rf_transmit_result_topic: rf/transmit/result
+  # Override with this remote's learned 24-bit codes in private configuration.
+  # Values outside 24 bits disable a slot; default configuration matches none.
+  rm433_button_1_code: "0xffffffff"
+  rm433_button_2_code: "0xffffffff"
+  rm433_button_3_code: "0xffffffff"
+  rm433_button_4_code: "0xffffffff"
+  rm433_button_5_code: "0xffffffff"
+  rm433_button_6_code: "0xffffffff"
+  rm433_button_7_code: "0xffffffff"
+  rm433_button_8_code: "0xffffffff"
+
+esphome:
+  includes:
+    - ${rf_airbridge_path}/include/rm433_protocol.h
+    - ${rf_airbridge_path}/include/rf_receiver.h
+    - ${rf_airbridge_path}/include/rf_tx_validation.h
+
+external_components:
+  - source:
+      type: local
+      path: ${rf_airbridge_path}/components
+    components: [remote_receiver]
+
+mqtt:
+  id: rf_mqtt
+  reboot_timeout: 0s
+
+event:
+  - platform: template
+    id: rm433_button
+    name: RM433 Button
+    device_class: button
+    event_types: [button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8]
+    # ESPHome 2026.8.2 requires a nonempty mqtt_id. Keep the automatic MQTT
+    # wrapper undiscovered and non-retained; rf/received stays authoritative.
+    discovery: false
+    retain: false
+
+cc1101:
+  id: rf_radio
+  spi_id: cc1101_spi
+  cs_pin: GPIO15
+  frequency: 433.92MHz
+
+remote_receiver:
+  id: rf_receiver
+  pin: GPIO5
+  dump: [rc_switch, dooya]
+  tolerance: 30%
+  # ESP32 RMT filters individual pulses; RM433 short pulses are about 240us.
+  filter: 150us
+  idle: 4ms
+  on_raw:
+    then:
+      - lambda: |-
+          static rf_bridge::Receiver bridge("${rf_source}", "${rf_received_topic}", "${rf_raw_topic}");
+          bridge.on_receive(x, *id(rf_mqtt), id(rf_raw_learning).state, id(rf_tx_active), [](uint32_t code) {
+            static const uint32_t codes[] = {
+              ${rm433_button_1_code}, ${rm433_button_2_code}, ${rm433_button_3_code}, ${rm433_button_4_code},
+              ${rm433_button_5_code}, ${rm433_button_6_code}, ${rm433_button_7_code}, ${rm433_button_8_code}
+            };
+            if (const char *type = rf_bridge::rm433_button_type(code, codes))
+              id(rm433_button).trigger(type);
+          });
+
+globals:
+  - id: rf_tx_complete
+    type: bool
+    restore_value: false
+    initial_value: "false"
+  - id: rf_tx_error
+    type: bool
+    restore_value: false
+    initial_value: "false"
+  - id: rf_tx_fault
+    type: bool
+    restore_value: false
+    initial_value: "false"
+  - id: rf_tx_active
+    type: bool
+    restore_value: false
+    initial_value: 'false'
+
+switch:
+  - platform: template
+    id: rf_raw_learning
+    name: Raw RF learning
+    icon: mdi:radio-tower
+    entity_category: diagnostic
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+
+remote_transmitter:
+  id: rf_transmitter
+  # Released during RX; otherwise GDO0 and an ESP32 push-pull output contend.
+  pin:
+    number: GPIO4
+    mode:
+      output: true
+      open_drain: true
+      pullup: true
+  eot_level: false
+  carrier_duty_percent: 100%
+  non_blocking: true
+  on_transmit:
+    then:
+      - lambda: |-
+          id(rf_radio).set_idle();
+          id(rf_transmitter).digital_write(false);
+          id(rf_radio).begin_tx();
+  on_complete:
+    then:
+      - lambda: |-
+          // ESPHome calls this only after rmt_tx_wait_all_done, not after enqueue.
+          id(rf_tx_error) = id(rf_tx_error) || id(rf_transmitter).status_has_warning();
+          id(rf_radio).set_idle();
+          id(rf_transmitter).digital_write(true);
+          id(rf_tx_error) = id(rf_tx_error) || id(rf_transmitter).status_has_warning();
+          if (!id(rf_tx_fault)) {
+            id(rf_radio).begin_rx();
+            if (id(rf_receiver).resume()) {
+              id(rf_tx_active) = false;
+            } else {
+              id(rf_tx_error) = true;
+              id(rf_tx_fault) = true;
+            }
+          }
+          id(rf_tx_complete) = true;
+
+api:
+  actions:
+    - action: send_rf_code
+      variables:
+        code: string
+        protocol: int
+        repeats: int
+      then:
+        - if:
+            condition:
+              lambda: return rf_bridge::valid_tx_request(code, protocol, repeats);
+            then:
+              - if:
+                  condition:
+                    not:
+                      script.is_running: rf_send_job
+                  then:
+                    - script.execute:
+                        id: rf_send_job
+                        is_dooya: false
+                        code: !lambda return code;
+                        protocol: !lambda return protocol;
+                        remote_id: 0
+                        channel: 0
+                        button: 0
+                        check: 0
+                        repeats: !lambda return repeats;
+                  else:
+                    - mqtt.publish_json:
+                        topic: ${rf_transmit_result_topic}
+                        qos: 0
+                        retain: false
+                        payload: |-
+                          root["source"] = "${rf_source}";
+                          root["format"] = "rc_switch";
+                          root["status"] = "busy";
+                          root["delivery_confirmed"] = false;
+            else:
+              - mqtt.publish_json:
+                  topic: ${rf_transmit_result_topic}
+                  qos: 0
+                  retain: false
+                  payload: |-
+                    root["source"] = "${rf_source}";
+                    root["format"] = "rc_switch";
+                    root["status"] = "invalid_request";
+                    root["reason"] = "Expected 8-64 binary digits, protocol 1-8, repeats 1-10";
+                    root["delivery_confirmed"] = false;
+
+    - action: send_dooya_code
+      variables:
+        remote_id: int
+        channel: int
+        button: int
+        check: int
+        repeats: int
+      then:
+        - if:
+            condition:
+              lambda: return rf_bridge::valid_dooya_request(remote_id, channel, button, check, repeats);
+            then:
+              - if:
+                  condition:
+                    not:
+                      script.is_running: rf_send_job
+                  then:
+                    - script.execute:
+                        id: rf_send_job
+                        is_dooya: true
+                        code: ""
+                        protocol: 0
+                        remote_id: !lambda return remote_id;
+                        channel: !lambda return channel;
+                        button: !lambda return button;
+                        check: !lambda return check;
+                        repeats: !lambda return repeats;
+                  else:
+                    - mqtt.publish_json:
+                        topic: ${rf_transmit_result_topic}
+                        qos: 0
+                        retain: false
+                        payload: |-
+                          root["source"] = "${rf_source}";
+                          root["format"] = "dooya";
+                          root["status"] = "busy";
+                          root["delivery_confirmed"] = false;
+            else:
+              - mqtt.publish_json:
+                  topic: ${rf_transmit_result_topic}
+                  qos: 0
+                  retain: false
+                  payload: |-
+                    root["source"] = "${rf_source}";
+                    root["format"] = "dooya";
+                    root["status"] = "invalid_request";
+                    root["reason"] = "Expected remote_id 0-16777215, channel 0-255, button/check 0-15, repeats 1-10";
+                    root["delivery_confirmed"] = false;
+
+script:
+  # Both API actions use this one worker. It remains running through the final
+  # cooldown, so a different protocol cannot bypass an active transmission.
+  - id: rf_send_job
+    mode: single
+    parameters:
+      is_dooya: bool
+      code: string
+      protocol: int
+      remote_id: int
+      channel: int
+      button: int
+      check: int
+      repeats: int
+    then:
+      - lambda: |-
+          id(rf_tx_complete) = false;
+          id(rf_tx_error) = false;
+          // Reserve RX before any TX begins, including all legacy listeners.
+          id(rf_tx_active) = true;
+          if (id(rf_tx_fault) || id(rf_radio).is_failed() ||
+              id(rf_transmitter).is_failed() || !id(rf_receiver).suspend()) {
+            id(rf_tx_error) = true;
+            id(rf_tx_complete) = true;
+            id(rf_tx_fault) = true;
+          }
+      - if:
+          condition:
+            lambda: return !id(rf_tx_error);
+          then:
+            - if:
+                condition:
+                  lambda: return is_dooya;
+                then:
+                  - remote_transmitter.transmit_dooya:
+                      transmitter_id: rf_transmitter
+                      id: !lambda return remote_id;
+                      channel: !lambda return channel;
+                      button: !lambda return button;
+                      check: !lambda return check;
+                      repeat:
+                        times: !lambda return repeats;
+                        wait_time: 10ms
+                else:
+                  - remote_transmitter.transmit_rc_switch_raw:
+                      transmitter_id: rf_transmitter
+                      code: !lambda return code;
+                      protocol: !lambda return esphome::remote_base::RC_SWITCH_PROTOCOLS[protocol];
+                      repeat:
+                        times: !lambda return repeats;
+                        wait_time: 10ms
+      - wait_until:
+          condition:
+            lambda: return id(rf_tx_complete);
+          timeout: 30s
+      - lambda: |-
+          if (!id(rf_tx_complete)) {
+            // Fail closed: never resume capture or accept another TX after a
+            // missing completion. Restart is required to clear the fault.
+            id(rf_tx_error) = true;
+            id(rf_tx_fault) = true;
+            id(rf_radio).set_idle();
+          }
+      - mqtt.publish_json:
+          topic: ${rf_transmit_result_topic}
+          qos: 0
+          retain: false
+          payload: |-
+            root["source"] = "${rf_source}";
+            root["format"] = is_dooya ? "dooya" : "rc_switch";
+            root["status"] = id(rf_tx_error) ? "send_failed" : "send_finished";
+            if (id(rf_tx_error)) root["reason"] = "Radio/RMT fault; inspect logs and restart if fault remains";
+            if (is_dooya) {
+              root["remote_id"] = remote_id;
+              root["channel"] = channel;
+              root["button"] = button;
+              root["check"] = check;
+            } else {
+              root["code"] = code;
+              root["protocol"] = protocol;
+            }
+            root["repeats"] = repeats;
+            root["receiver_resumed"] = !id(rf_tx_active);
+            root["delivery_confirmed"] = false;
+      - delay: 750ms

@@ -1,0 +1,55 @@
+# RF Airbridge Ethernet port: SECOND Waveshare ESP32-S3-ETH-M + CC1101.
+# No microSD or camera. Separate GDO0 TX and GDO2 RX wires are required.
+substitutions:
+  rf_node_name: ha-radio-hub-rf
+  rf_friendly_name: HA Radio Hub RF
+  rf_airbridge_path: .
+
+packages:
+  rf_airbridge: !include rf-airbridge.yaml
+
+esphome:
+  name: ${rf_node_name}
+  friendly_name: ${rf_friendly_name}
+  min_version: 2026.9.1
+  compile_process_limit: 2
+
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+
+ethernet:
+  type: W5500
+  clk_pin: GPIO13
+  mosi_pin: GPIO11
+  miso_pin: GPIO12
+  cs_pin: GPIO14
+  interrupt_pin: GPIO10
+  reset_pin: GPIO9
+  clock_speed: 20MHz
+
+logger:
+  level: INFO
+  baud_rate: 0
+
+api:
+  reboot_timeout: 0s
+
+spi:
+  id: cc1101_spi
+  interface: spi3
+  clk_pin: GPIO7
+  mosi_pin: GPIO8
+  miso_pin: GPIO6
+
+sensor:
+  - platform: uptime
+    name: Uptime
+    entity_category: diagnostic
+
+binary_sensor:
+  - platform: status
+    name: API Connected
+    entity_category: diagnostic

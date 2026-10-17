@@ -418,7 +418,7 @@
       "power_or_signal": "USB5V W5500 CC1101_SPI",
       "dimensions_mm": "measure_headers",
       "budget_usd_each": "16.99-25.99",
-      "status": "experimental_optional_replaces_U8",
+      "status": "wired_rf_replaces_U8",
       "source": "https://www.waveshare.com/product/iot-communication/wired-comm-converter/esp32-s3-eth.htm",
       "notes": "All-wired branch;add Ethernet patch and USB-C power lead;no camera or SD;recheck20W budget",
       "variant": "wired_rf_only",
@@ -449,6 +449,20 @@
       "status": "required_for_wired_RF",
       "source": "",
       "notes": "Replaces NodeMCU microUSB cable in wired build",
+      "variant": "wired_rf_only",
+      "price_kind": "planning_allowance_not_quote"
+    },
+    {
+      "ref": "R1",
+      "qty": 1,
+      "item": "RF TX pull-up",
+      "model_or_requirement": "4.7 kohm resistor 1/8W or greater",
+      "power_or_signal": "GPIO4/GDO0 to local 3.3V",
+      "dimensions_mm": "insulate_leads",
+      "budget_usd_each": "0.10-0.50",
+      "status": "required_for_wired_RF",
+      "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+      "notes": "Open-drain TX is released during RX;never pull up to5V;short wiring",
       "variant": "wired_rf_only",
       "price_kind": "planning_allowance_not_quote"
     }

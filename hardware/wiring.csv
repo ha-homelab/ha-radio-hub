@@ -43,5 +43,6 @@ RF_ETH_CLK,U10_GPIO7,U9_SCLK,3.3V_SPI3,Wired_RF_variant_only_no_SD_camera
 RF_ETH_MOSI,U10_GPIO8,U9_MOSI,3.3V_SPI3,Wired_RF_variant_only_no_SD_camera
 RF_ETH_MISO,U9_MISO,U10_GPIO6,3.3V_SPI3,Wired_RF_variant_only_no_SD_camera
 RF_ETH_CS,U10_GPIO15,U9_CS,3.3V_SPI3,Wired_RF_variant_only_no_SD_camera
-RF_ETH_TX,U10_GPIO4,U9_GDO0,3.3V_pulse_TX,Wired_RF_variant_only_no_SD_camera
+RF_ETH_TX,U10_GPIO4,U9_GDO0,3.3V_open_drain_TX,Wired_RF_variant_only_4k7_pullup_to3V3
 RF_ETH_RX,U9_GDO2,U10_GPIO5,3.3V_pulse_RX,Wired_RF_variant_only_no_SD_camera
+RF_ETH_TX_PULLUP,U10_3V3,R1_4k7_to_GPIO4_GDO0,3.3V,Wired_RF_variant_only_never5V

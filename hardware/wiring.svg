@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" role="img" aria-labelledby="title desc">
 <title id="title">HA Radio Hub module interconnect, revision A</title>
-<desc id="desc">PoE splitter powers the internal switch, Linux Pi and ESP32 boards. Separate USB radios serve Zigbee and Thread. One Ethernet ESP32 serves BLE, ZAC93, LD2450 and an external BME680. A second experimental Ethernet ESP32 serves CC1101; an existing Wi-Fi NodeMCU is an alternative.</desc>
+<desc id="desc">PoE splitter powers the internal switch, Linux Pi and ESP32 boards. Separate USB radios serve Zigbee and Thread. One Ethernet ESP32 serves BLE, ZAC93, LD2450 and an external BME680. A second Ethernet ESP32 serves CC1101; an existing Wi-Fi NodeMCU is an alternative.</desc>
 <defs>
 <marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#4e94b8"/></marker>
 <marker id="p" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#d9784a"/></marker>
@@ -35,13 +35,13 @@
 <text x="1178" y="594" class="name">BME680 / external pod</text><text x="1178" y="623" class="small">3.3 V · I²C SDA1 / SCL2</text><text x="1178" y="646" class="small">0x77 · short ventilated harness</text>
 <path d="M1100 390H1158" class="wire"/><path d="M1100 451H1127V496H1158" class="wire"/><path d="M1100 485H1116V609H1158" class="wire"/>
 <rect x="860" y="704" width="240" height="116" class="box"/>
-<text x="878" y="736" class="name">ESP32-S3-ETH #2</text><text x="878" y="765" class="txt gold">RF Ethernet prototype</text><text x="878" y="793" class="small">Firmware included; bench test due</text>
+<text x="878" y="736" class="name">ESP32-S3-ETH #2</text><text x="878" y="765" class="txt gold">RF Airbridge / Ethernet</text><text x="878" y="793" class="small">MQTT + API; bench test due</text>
 <path d="M675 416V758H858" class="wire"/><text x="707" y="746" class="small">Ethernet</text>
 <rect x="1160" y="704" width="247" height="116" class="box"/>
-<text x="1178" y="736" class="name">CC1101 / 433.92 MHz</text><text x="1178" y="765" class="small">3.3 V · SPI7/8/6 · CS15</text><text x="1178" y="792" class="small">GPIO4 TX→GDO0 / GDO2→5 RX</text>
+<text x="1178" y="736" class="name">CC1101 / 433.92 MHz</text><text x="1178" y="765" class="small">3.3 V · SPI7/8/6 · CS15</text><text x="1178" y="792" class="small">TX4→GDO0; RX5←GDO2; R1 4k7</text>
 <path d="M1100 758H1158" class="wire"/>
 <rect x="30" y="360" width="535" height="180" class="box"/>
-<text x="49" y="393" class="name">Compatibility alternative</text><text x="49" y="426" class="txt">Existing NodeMCU ESP8266 + CC1101</text><text x="49" y="457" class="txt gold">Power from box; network remains Wi-Fi.</text><text x="49" y="490" class="small">Use instead of RF Ethernet prototype to preserve RF Airbridge.</text><text x="49" y="518" class="small">This option does not satisfy an all-wired installation.</text>
+<text x="49" y="393" class="name">Compatibility alternative</text><text x="49" y="426" class="txt">Existing NodeMCU ESP8266 + CC1101</text><text x="49" y="457" class="txt gold">Power from box; network remains Wi-Fi.</text><text x="49" y="490" class="small">Use instead of RF Airbridge / Ethernet to preserve RF Airbridge.</text><text x="49" y="518" class="small">This option does not satisfy an all-wired installation.</text>
 <rect x="30" y="600" width="535" height="220" class="box"/>
 <text x="49" y="634" class="name">Power and assembly</text><text x="49" y="666" class="txt">5 V distribution → individually fused branches</text><text x="49" y="699" class="small">Pi, switch, ESP32 boards and radar receive 5 V.</text><text x="49" y="727" class="small">ZAC93, BME680 and CC1101 receive local 3.3 V.</text><text x="49" y="755" class="small">Common low-voltage ground after isolated splitter.</text><text x="49" y="783" class="small">One supply per board. Disconnect branch before USB flashing.</text>
 <path d="M395 251V320H590V580H285V598" class="power"/>

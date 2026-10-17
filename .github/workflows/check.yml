@@ -23,10 +23,16 @@ jobs:
         run: |
           python3 -m venv .venv
           .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt
+      - name: RF contract and migration regressions
+        env:
+          RF_CPP_SANITIZERS: "1"
+        run: .venv/bin/python -m unittest discover -s tests -p 'test_*.py'
       - name: Validate and compile the combined Ethernet sensor firmware
         run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --compile
-      - name: Validate and compile the experimental Ethernet RF firmware
-        run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.experimental.yaml --compile
+      - name: Validate and compile RF Airbridge over Ethernet
+        run: |
+          .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml
+          .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
       - name: Regenerate printable geometry and validate meshes
         run: .venv/bin/python mechanical/build.py
       - name: Build the Linux serial service image
