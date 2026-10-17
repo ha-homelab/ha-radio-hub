@@ -24,8 +24,11 @@ MAP = 'tag:yaml.org,2002:map'
 SEQ = 'tag:yaml.org,2002:seq'
 ALLOWED_TAGS = {STR, MAP, SEQ, 'tag:yaml.org,2002:int', 'tag:yaml.org,2002:float',
                 'tag:yaml.org,2002:bool', 'tag:yaml.org,2002:null', '!secret', '!lambda', '!include'}
+LITERAL_TAGS = {STR, 'tag:yaml.org,2002:int', 'tag:yaml.org,2002:float',
+                'tag:yaml.org,2002:bool', 'tag:yaml.org,2002:null'}
 RESERVED_IDS = {'rf_mqtt', 'rm433_button', 'rf_radio', 'rf_receiver', 'rf_tx_active',
-                'rf_raw_learning', 'rf_transmitter', 'rf_send_job', 'rf_tx_complete', 'rf_tx_error', 'rf_tx_fault'}
+                'rf_raw_learning', 'rf_transmitter', 'rf_send_job', 'rf_tx_complete', 'rf_tx_error', 'rf_tx_fault',
+                'cc1101_spi'}
 
 
 class MigrationError(ValueError):
@@ -160,6 +163,13 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     if 'name' not in esp:
         raise MigrationError('The original esphome.name is required.')
     require_scalar(esp['name'], 'Node name')
+    if 'project' in esp:
+        reject_keys(fields(esp['project']), {'name', 'version'},
+                    'Custom project lifecycle or metadata requires manual review.')
+    # Only identity moves to the board package substitutions. The other allowed
+    # core fields retain their semantics instead of disappearing during import.
+    retained_core = {key: copy.deepcopy(value) for key, value in esp.items()
+                     if key not in {'name', 'friendly_name'}}
     subs = fields(copy.deepcopy(original.get('substitutions', mapping({}))))
     for value in subs.values():
         require_scalar(value, 'Substitution')
@@ -224,6 +234,8 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     result = {'substitutions': mapping(subs),
               'packages': mapping({'rf_ethernet': scalar(os.path.relpath(root / 'firmware/packages/rf-ethernet-base.yaml', output), '!include')}),
               'api': mapping(api), 'ota': ota_node, 'mqtt': mapping(mqtt)}
+    if retained_core:
+        result['esphome'] = mapping(retained_core)
     if 'web_server' in original:
         web = fields(copy.deepcopy(original['web_server']))
         reject_keys(web, {'port', 'auth', 'version', 'local', 'include_internal', 'enable_private_network_access'},
@@ -271,7 +283,7 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     for sensor in sensors.value:
         values = fields(sensor, 'binary_sensor entry')
         if 'id' in values:
-            sid = require_scalar(values['id'], 'Entity id').value
+            sid = resolve_identity(values['id'], subs)
             if sid in RESERVED_IDS or sid in sensor_ids:
                 raise MigrationError('A binary_sensor id conflicts with another or a reserved component.')
             sensor_ids.add(sid)
@@ -298,7 +310,7 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
             if reference not in secret_values:
                 raise MigrationError('A referenced secret is missing; no files were written.')
             value = secret_values[reference]
-            if not isinstance(value, ScalarNode) or value.tag == '!secret':
+            if not isinstance(value, ScalarNode) or value.tag not in LITERAL_TAGS:
                 raise MigrationError('Secrets must be literal scalar values.')
             exported_secrets[reference] = copy.deepcopy(value)
 

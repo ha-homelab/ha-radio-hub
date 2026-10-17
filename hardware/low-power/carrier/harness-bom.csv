@@ -1,0 +1,19 @@
+Item,Quantity,Model/specification,Purpose,Notes
+J1 mate,1,XHP-2,Isolated regulated 5V input,SXH-001T-P0.6
+J2 mate,1,XHP-3,External D24V22F3 buck,SXH-001T-P0.6
+J3 mate,1,61204023021,"S3 host harness, NOT Raspberry Pi pinout",IDC 40-conductor ribbon; AWG and insulation per mating connector datasheet
+J4 mate,1,XHP-10,WIZ850io Ethernet module,SXH-001T-P0.6
+J5 mate,1,XHP-7,H2 Thread RCP,SXH-001T-P0.6
+J6 mate,1,XHP-6,MG24 Zigbee NCP to M0 J1,SXH-001T-P0.6; second cable end counted in M0 harness BOM
+J7 mate,1,XHP-8,CC1101 RF module,SXH-001T-P0.6
+J8 mate,1,XHP-5,ZAC93 Z-Wave module,SXH-001T-P0.6
+J9 mate,1,XHP-4,LD2450 radar,SXH-001T-P0.6
+J10 mate,1,SHR-04V-S,BME680 STEMMA QT,SSH-003T-P0.2-H; prefer precrimped 100mm Adafruit 4210 cable
+XH crimp contacts,45,JST SXH-001T-P0.6,All eight JST XH cable housings,"Buy spare contacts; AWG 28-22, use 22 AWG for J1/J2; manufacturer crimp tooling or verified precrimp leads"
+IDC ribbon,1,"40 conductor, 1.27 mm pitch; wire gauge per 61204023021",J3 host harness,"Start <=100 mm; mate one end IDC, remote end fanout to verified GPIO; strain relief mandatory"
+QT cable,1,Adafruit 4210 100 mm JST SH 4-pin,J10 to BME680,Premade cable replaces loose SH crimps; verify wire order
+Mounting hardware,4,M3 insulating standoff + fastener sets,Carrier NPTH holes,Choose height for actual enclosure; board does not fit old case pattern
+5V source,1,Isolated regulated 5 V PoE front end,J1,Must be independently verified; not raw PoE 48 V
+3V3 buck,1,Pololu D24V22F3 item 2857,J2,"External module, no second 3.3 V source; test load and cooling"
+Remote modules/adapters,1,LP-P0 module set and revision-verified breakouts,J3-J9,Not included in PCB population; Use included populated M0 for MGM240P; S3/H2 still require verified board-specific power/service/strap circuits
+MG24 adapter,1,LP-M0 populated with MGM240PA22VNA3,C0 J6,See mg24-adapter assembly and harness BOMs; required per modular hub

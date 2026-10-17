@@ -1,0 +1,649 @@
+{
+  "status": "CONCEPT MOCK-UP ONLY: not a fabrication-ready carrier PCB or validated enclosure",
+  "units": "mm",
+  "parts": {
+    "mockup_base": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "volume_mm3": 141030.657,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          145.0,
+          42.6
+        ]
+      ],
+      "sha256": "feca2577dd41568d6af9a3240b0837ff979a52e8c0c6e0597c21f777194cfa43"
+    },
+    "mockup_lid": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "volume_mm3": 65118.634,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          145.0,
+          9.4
+        ]
+      ],
+      "sha256": "3bf9af840f24a1d80d08ebae2571f58aafcb73c8b1880c94c51542f65ca8ea29"
+    },
+    "carrier_fit_blank": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "volume_mm3": 25542.059,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          160.0,
+          100.0,
+          1.6
+        ]
+      ],
+      "sha256": "62aab59c2de5f1941ab4104ebbef39b6edf7db6407cc9fdd1ad055b706461b11"
+    },
+    "radar_holder": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "volume_mm3": 5199.574,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          70.0,
+          38.0,
+          2.0
+        ]
+      ],
+      "sha256": "f64587e3a54e1787edf6e2fdc9be46c379bb88de27a2a470bf5f3f8fad83dc80"
+    },
+    "fit_coupon": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "volume_mm3": 11053.176,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          72.0,
+          20.0,
+          8.0
+        ]
+      ],
+      "sha256": "d2d21e8fb9f1bc824fbcc185999ff55441afed227494f43731d49094ddd34994"
+    }
+  },
+  "inputs": {
+    "parameters": {
+      "status": "CONCEPT MOCK-UP ONLY: not a fabrication-ready carrier PCB or validated enclosure",
+      "units": "mm",
+      "case": {
+        "width": 190.0,
+        "depth": 145.0,
+        "height": 45.0,
+        "wall": 2.4,
+        "floor": 2.4,
+        "lid": 2.4,
+        "lid_gap": 0.35,
+        "boss_offset": 7.0,
+        "boss_diameter": 10.0,
+        "m3_clearance": 3.4,
+        "insert_pilot": 4.2,
+        "insert_depth": 6.0,
+        "radar_skin": 1.2,
+        "radar_window": [
+          65.0,
+          16.0,
+          60.0,
+          30.0
+        ],
+        "poe_opening": [
+          144.0,
+          14.0,
+          22.0,
+          16.0
+        ],
+        "bme_exit_y": 40.0,
+        "bme_exit_z": 20.0,
+        "bme_hole": 5.0
+      },
+      "carrier": {
+        "origin": [
+          15.0,
+          12.0,
+          10.0
+        ],
+        "size": [
+          160.0,
+          100.0,
+          1.6
+        ],
+        "mount_centres": [
+          [
+            5.0,
+            3.5
+          ],
+          [
+            155.0,
+            3.5
+          ],
+          [
+            5.0,
+            95.0
+          ],
+          [
+            120.5,
+            95.0
+          ]
+        ],
+        "status": "Designer-selected envelope and holes for a printed fit blank; not a routed PCB",
+        "fastener_head_envelope": [
+          6.8,
+          3.5
+        ]
+      },
+      "radar_holder": {
+        "origin": [
+          60.0,
+          12.0,
+          33.6
+        ],
+        "size": [
+          70.0,
+          38.0,
+          2.0
+        ],
+        "mount_inset": 3.0,
+        "boss_height": 7.0
+      },
+      "components": [
+        {
+          "id": "S3",
+          "label": "ESP32-S3 host",
+          "origin": [
+            18.0,
+            24.0,
+            11.6
+          ],
+          "size": [
+            32.0,
+            28.0,
+            12.0
+          ],
+          "kind": "radio",
+          "dimension_status": "Reservation; exact module and connector envelope to be measured"
+        },
+        {
+          "id": "H2",
+          "label": "Thread H2 RCP",
+          "origin": [
+            142.0,
+            24.0,
+            11.6
+          ],
+          "size": [
+            30.0,
+            28.0,
+            12.0
+          ],
+          "kind": "radio",
+          "dimension_status": "Reservation for ESP32-H2-MINI-1 module and connections; actual manufacturer body 13.2 x 16.6 x 2.4 mm. Not a DevKit board.",
+          "manufacturer_body_mm": [
+            13.2,
+            16.6,
+            2.4
+          ],
+          "source": "https://documentation.espressif.com/esp32-h2-mini-1_mini-1u_datasheet_en.pdf"
+        },
+        {
+          "id": "MG24",
+          "label": "Zigbee MG24",
+          "origin": [
+            142.0,
+            64.0,
+            11.6
+          ],
+          "size": [
+            32.0,
+            29.0,
+            12.0
+          ],
+          "kind": "radio",
+          "dimension_status": "Reservation for MGM240PA22VNA3 module and connections; actual manufacturer body 12.9 x 15 x 2.2 mm. Land pattern and antenna clearance not transferred.",
+          "manufacturer_body_mm": [
+            12.9,
+            15.0,
+            2.2
+          ],
+          "source": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf"
+        },
+        {
+          "id": "ZAC93",
+          "label": "Z-Wave ZAC93",
+          "origin": [
+            18.0,
+            65.0,
+            11.6
+          ],
+          "size": [
+            42.0,
+            35.0,
+            14.0
+          ],
+          "kind": "radio",
+          "dimension_status": "Reservation only; measure existing board, header and antenna"
+        },
+        {
+          "id": "CC1101",
+          "label": "RF CC1101",
+          "origin": [
+            66.0,
+            38.0,
+            11.6
+          ],
+          "size": [
+            32.0,
+            24.0,
+            12.0
+          ],
+          "kind": "radio",
+          "dimension_status": "Reservation only; measure existing module and antenna connection"
+        },
+        {
+          "id": "W5500",
+          "label": "W5500 MAC/PHY",
+          "origin": [
+            107.0,
+            65.0,
+            11.6
+          ],
+          "size": [
+            30.0,
+            24.0,
+            10.0
+          ],
+          "kind": "digital",
+          "dimension_status": "Reservation for custom circuit; not a finished module footprint"
+        },
+        {
+          "id": "BUCK",
+          "label": "3.3 V buck",
+          "origin": [
+            105.0,
+            38.0,
+            11.6
+          ],
+          "size": [
+            26.0,
+            24.0,
+            12.0
+          ],
+          "kind": "power",
+          "dimension_status": "Reservation for converter including connections; final part pending"
+        },
+        {
+          "id": "UART",
+          "label": "SC16IS752 + clock/reset",
+          "origin": [
+            66.0,
+            67.0,
+            11.6
+          ],
+          "size": [
+            32.0,
+            22.0,
+            14.0
+          ],
+          "kind": "digital",
+          "dimension_status": "Reservation for SC16IS752IPW,128 with 3.6864 MHz crystal and TPS3808G33 reset circuit. Actual layout pending; bench TSSOP adapter not included."
+        },
+        {
+          "id": "PD",
+          "label": "Ag97005-FL PoE",
+          "origin": [
+            66.0,
+            94.0,
+            11.6
+          ],
+          "size": [
+            64.0,
+            18.0,
+            20.0
+          ],
+          "kind": "power",
+          "dimension_status": "Reservation contains published 56 x 14 x 13 mm body; pin orientation, stand-off and carrier land pattern not transferred",
+          "manufacturer_body_mm": [
+            56.0,
+            14.0,
+            13.0
+          ],
+          "source": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf"
+        },
+        {
+          "id": "RJ45",
+          "label": "PoE MagJack",
+          "origin": [
+            141.0,
+            96.0,
+            11.6
+          ],
+          "size": [
+            33.0,
+            21.0,
+            20.0
+          ],
+          "kind": "connector",
+          "dimension_status": "Reservation only; exact PoE-rated MagJack and footprint pending; 5 mm carrier overhang allowed"
+        },
+        {
+          "id": "LD2450",
+          "label": "LD2450 radar",
+          "origin": [
+            73.0,
+            22.0,
+            35.6
+          ],
+          "size": [
+            44.0,
+            15.0,
+            4.0
+          ],
+          "kind": "radar",
+          "dimension_status": "44 x 15 mm board outline published; 4 mm thickness is an assumed fitted envelope; connector and insulated fixing need measurement",
+          "source": "https://www.hlktech.com/Goods-226.html"
+        }
+      ],
+      "antenna_reservations": [
+        {
+          "owner": "S3",
+          "origin": [
+            18.0,
+            20.0,
+            11.6
+          ],
+          "size": [
+            32.0,
+            12.0,
+            31.0
+          ]
+        },
+        {
+          "owner": "H2",
+          "origin": [
+            142.0,
+            20.0,
+            11.6
+          ],
+          "size": [
+            30.0,
+            12.0,
+            31.0
+          ]
+        },
+        {
+          "owner": "MG24",
+          "origin": [
+            162.0,
+            60.0,
+            11.6
+          ],
+          "size": [
+            13.0,
+            34.0,
+            31.0
+          ]
+        },
+        {
+          "owner": "ZAC93",
+          "origin": [
+            15.0,
+            63.0,
+            11.6
+          ],
+          "size": [
+            15.0,
+            39.0,
+            31.0
+          ]
+        },
+        {
+          "owner": "CC1101",
+          "origin": [
+            66.0,
+            36.0,
+            11.6
+          ],
+          "size": [
+            32.0,
+            12.0,
+            20.0
+          ]
+        }
+      ],
+      "service_reservations": [
+        {
+          "id": "ethernet_plug",
+          "origin": [
+            146.0,
+            117.0,
+            16.0
+          ],
+          "size": [
+            18.0,
+            53.0,
+            12.0
+          ],
+          "note": "Straight plug/cable route through rear opening; 25 mm extends outside. Not a validated connector model or bend radius."
+        },
+        {
+          "id": "radar_lead",
+          "origin": [
+            117.0,
+            24.0,
+            35.6
+          ],
+          "size": [
+            12.0,
+            12.0,
+            4.0
+          ],
+          "note": "Side lead reservation; exact LD2450 connector and strain relief must be measured."
+        }
+      ],
+      "bme_pod": {
+        "origin": [
+          -65.0,
+          28.0,
+          12.0
+        ],
+        "size": [
+          45.0,
+          36.0,
+          20.0
+        ],
+        "note": "External pod envelope only; print existing validated-geometry pod parts. Internal plus external I2C harness target 100-200 mm, to be tested."
+      },
+      "electrical_status": "Isolation spacing, creepage, land patterns and routing absent; this layout does not establish electrical safety or PCB manufacturability",
+      "rf_status": "Reservations are design hypotheses, not manufacturer keep-outs or RF simulations. Their overlap with the printed carrier blank does not authorize copper or components under an antenna."
+    },
+    "generator_sha256": "25112c3324b2c7927d32aa99b08362cdc7a34c5fbd011b16585f99a0167b72a5",
+    "helper_sha256": "b76e5b11da6b80a6dc48b12d20c854758338b5507b50163d0bc72d0d15b929f7"
+  },
+  "layout": {
+    "printed_part_intersections_mm3": {
+      "mockup_base/mockup_lid": 0.0,
+      "mockup_base/carrier_fit_blank": 0.0,
+      "mockup_base/radar_holder": 0.0,
+      "mockup_lid/carrier_fit_blank": 0.0,
+      "mockup_lid/radar_holder": -0.0,
+      "carrier_fit_blank/radar_holder": 0.0
+    },
+    "component_intersections_mm3": {
+      "S3/H2": 0.0,
+      "S3/MG24": 0.0,
+      "S3/ZAC93": 0.0,
+      "S3/CC1101": 0.0,
+      "S3/W5500": 0.0,
+      "S3/BUCK": 0.0,
+      "S3/UART": 0.0,
+      "S3/PD": 0.0,
+      "S3/RJ45": 0.0,
+      "S3/LD2450": 0.0,
+      "H2/MG24": 0.0,
+      "H2/ZAC93": 0.0,
+      "H2/CC1101": 0.0,
+      "H2/W5500": 0.0,
+      "H2/BUCK": 0.0,
+      "H2/UART": 0.0,
+      "H2/PD": 0.0,
+      "H2/RJ45": 0.0,
+      "H2/LD2450": 0.0,
+      "MG24/ZAC93": 0.0,
+      "MG24/CC1101": 0.0,
+      "MG24/W5500": 0.0,
+      "MG24/BUCK": 0.0,
+      "MG24/UART": 0.0,
+      "MG24/PD": 0.0,
+      "MG24/RJ45": 0.0,
+      "MG24/LD2450": 0.0,
+      "ZAC93/CC1101": 0.0,
+      "ZAC93/W5500": 0.0,
+      "ZAC93/BUCK": 0.0,
+      "ZAC93/UART": 0.0,
+      "ZAC93/PD": 0.0,
+      "ZAC93/RJ45": 0.0,
+      "ZAC93/LD2450": 0.0,
+      "CC1101/W5500": 0.0,
+      "CC1101/BUCK": 0.0,
+      "CC1101/UART": 0.0,
+      "CC1101/PD": 0.0,
+      "CC1101/RJ45": 0.0,
+      "CC1101/LD2450": 0.0,
+      "W5500/BUCK": 0.0,
+      "W5500/UART": 0.0,
+      "W5500/PD": 0.0,
+      "W5500/RJ45": 0.0,
+      "W5500/LD2450": 0.0,
+      "BUCK/UART": 0.0,
+      "BUCK/PD": 0.0,
+      "BUCK/RJ45": 0.0,
+      "BUCK/LD2450": 0.0,
+      "UART/PD": 0.0,
+      "UART/RJ45": 0.0,
+      "UART/LD2450": 0.0,
+      "PD/RJ45": 0.0,
+      "PD/LD2450": 0.0,
+      "RJ45/LD2450": 0.0
+    },
+    "minimum_component_gap_mm": {
+      "S3": {
+        "to_nominal_lid": 19.0
+      },
+      "H2": {
+        "to_nominal_lid": 19.0
+      },
+      "MG24": {
+        "to_nominal_lid": 19.0
+      },
+      "ZAC93": {
+        "to_nominal_lid": 17.0
+      },
+      "CC1101": {
+        "to_nominal_lid": 19.0
+      },
+      "W5500": {
+        "to_nominal_lid": 21.0
+      },
+      "BUCK": {
+        "to_nominal_lid": 19.0
+      },
+      "UART": {
+        "to_nominal_lid": 17.0
+      },
+      "PD": {
+        "to_nominal_lid": 11.0
+      },
+      "RJ45": {
+        "to_nominal_lid": 11.0
+      },
+      "LD2450": {
+        "to_nominal_lid": 3.0
+      }
+    },
+    "antenna_reservations": "Declared spatial reservations only; NOT manufacturer-certified keep-outs or RF isolation",
+    "physical_fit": "NOT TESTED",
+    "pcb_fabrication": "NOT READY",
+    "carrier_fastener_head_envelope_mm": [
+      6.8,
+      3.5
+    ],
+    "antenna_reservation_centre_distances_mm": {
+      "S3/H2": 123.0,
+      "S3/MG24": 143.84,
+      "S3/ZAC93": 57.66,
+      "S3/CC1101": 50.6,
+      "H2/MG24": 52.28,
+      "H2/ZAC93": 145.89,
+      "H2/CC1101": 76.69,
+      "MG24/ZAC93": 146.1,
+      "MG24/CC1101": 93.31,
+      "ZAC93/CC1101": 71.98
+    },
+    "checked_component_count": 11,
+    "service_reservations_checked": [
+      "ethernet_plug",
+      "radar_lead"
+    ],
+    "unchecked": [
+      "Real modules, header heights, plugs and cable bends",
+      "RF coexistence, antenna matching and actual PCB copper keep-outs",
+      "Creepage, electrical isolation and PCB routing",
+      "FDM tolerances, material strength and screw engagement",
+      "Radar performance through 1.2 mm plastic",
+      "PoE efficiency, thermal soak and module ambient temperature",
+      "BME cable electrical stability and temperature error",
+      "Mounting for actual components; layout blank is not a populated PCB"
+    ]
+  },
+  "artifacts": {
+    "assembly.glb": "bbdf88c20c6c0d7c062d0af0c95d43ce40db3860f4bcb6c53bd5dbc9e82d0c06",
+    "assembly.scad": "5101a7e5753957be6af58622c7ba942c39756b5641c6409218cf19ef144bf732",
+    "carrier_fit_blank.scad": "830e2991e4ef44e45d94f58d7b4cdf79d980093f7d51291702c8de17508c9ced",
+    "carrier_fit_blank.stl": "62aab59c2de5f1941ab4104ebbef39b6edf7db6407cc9fdd1ad055b706461b11",
+    "exploded-preview.png": "877be69ca8a79589df876f91d44f839c9830c27ecbd24f41985d8185b136cd4e",
+    "fit_coupon.scad": "ac89240a4c1c2e481bfe203e0cd471ffa6e4303c4c429c7ee76703dced0886fc",
+    "fit_coupon.stl": "d2d21e8fb9f1bc824fbcc185999ff55441afed227494f43731d49094ddd34994",
+    "layout-plan.png": "22b9b596b031ef872044372169da22aaedd43703450d1f061303c6ab7cda11e9",
+    "mockup_base.scad": "aa2e9c0be0b92c742c7dfa7d8e18c6c476ae063bbc1d19b7ab990c7efa3e1adc",
+    "mockup_base.stl": "feca2577dd41568d6af9a3240b0837ff979a52e8c0c6e0597c21f777194cfa43",
+    "mockup_lid.scad": "43285d2411f6467b856573f4982d7eff4101c52fea3da59aafcec7f9f98fe6bc",
+    "mockup_lid.stl": "3bf9af840f24a1d80d08ebae2571f58aafcb73c8b1880c94c51542f65ca8ea29",
+    "radar_holder.scad": "ee1c4266082d0f95135f6fd8e93357aa1a68535df9dc66de14ffbe99dbdade34",
+    "radar_holder.stl": "f64587e3a54e1787edf6e2fdc9be46c379bb88de27a2a470bf5f3f8fad83dc80"
+  }
+}

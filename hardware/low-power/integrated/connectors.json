@@ -1,0 +1,1015 @@
+{
+  "schema_version": 1,
+  "revision": "LP-I0",
+  "status": "engineering_prototype_not_fabrication_release",
+  "sources": {
+    "s3": {
+      "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "revision": "1.8",
+      "section": "Table 3-1, pages 11-12",
+      "checked_date": "2026-10-17"
+    },
+    "devkit": {
+      "url": "https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html",
+      "checked_date": "2026-10-17"
+    },
+    "h2": {
+      "url": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "revision": "1.6",
+      "section": "Table 3, page 10",
+      "checked_date": "2026-10-17"
+    },
+    "mg24": {
+      "url": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+      "revision": "1.4",
+      "section": "6.1, Table 6.1",
+      "checked_date": "2026-10-17",
+      "method": "Manufacturer PDF indexed pin table; direct PDF download unavailable during this review."
+    },
+    "wiz": {
+      "url": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+      "checked_date": "2026-10-17"
+    },
+    "pd": {
+      "url": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+      "revision": "2.0",
+      "section": "Table 3, Ag97000-FL, page 5",
+      "checked_date": "2026-10-17"
+    },
+    "eval": {
+      "url": "https://silvertel.com/ag97000/",
+      "checked_date": "2026-10-17"
+    },
+    "eval_manual": {
+      "url": "https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "buck": {
+      "url": "https://www.pololu.com/product/2857",
+      "checked_date": "2026-10-17"
+    },
+    "sc16": {
+      "url": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "revision": "9.1",
+      "section": "Table 2, TSSOP28 column only",
+      "checked_date": "2026-10-17"
+    },
+    "crystal": {
+      "url": "https://abracon.com/parametric/crystals/ABLS-3.6864MHZ-B2-T",
+      "checked_date": "2026-10-17"
+    },
+    "reset": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+      "revision": "N",
+      "section": "Table 5-1, SOT-23 column only",
+      "checked_date": "2026-10-17"
+    },
+    "zac": {
+      "url": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "cc": {
+      "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "ld": {
+      "url": "https://r0.hlktech.com/download/HLK-LD2450-24G/1/HLK%20LD2450%201T2R%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%BF%BD%E8%B8%AA%E6%A8%A1%E7%BB%84%E8%AF%B4%E6%98%8E%E4%B9%A6%20V1.01.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "bme": {
+      "url": "https://www.adafruit.com/product/3660",
+      "checked_date": "2026-10-17"
+    },
+    "qt": {
+      "url": "https://www.adafruit.com/product/4397",
+      "checked_date": "2026-10-17"
+    },
+    "zac_pinout": {
+      "url": "https://www.support.getzooz.com/kb/article/1426-zac93-gpio-module-faqs/",
+      "section": "ZAC93 pinout image",
+      "checked_date": "2026-10-17",
+      "method": "FAQ page checked; image fetch unavailable. Existing project contract retained pending physical confirmation."
+    },
+    "bme_pinout": {
+      "url": "https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas/pinouts",
+      "checked_date": "2026-10-17"
+    },
+    "firmware": {
+      "path": "firmware/low-power/hub.yaml",
+      "related": [
+        "firmware/low-power/proof.yaml",
+        "firmware/packages/rf-airbridge.yaml",
+        "firmware/low-power/mg24/config.json"
+      ]
+    },
+    "pololu_dimensions": "https://www.pololu.com/file/0J1031/d24v22fx-step-down-voltage-regulator-dimension-diagram.pdf",
+    "w5500": "https://docs.wiznet.io/img/products/w5500/w5500_sch_v110_use_mag_.pdf",
+    "bel": "https://www.belfuse.com/media/drawings/products/magjack%20ICMs/dr-mag-0813-1x1t-57-f.pdf",
+    "usb": "https://www.hroelec.com/UploadFiles/2017/04/TYPE-C-31-M-12.pdf",
+    "usb_esd": "https://www.st.com/resource/en/datasheet/usblc6-2.pdf",
+    "jst": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf",
+    "jst_sh": "https://www.jst-mfg.com/product/pdf/eng/eSH.pdf"
+  },
+  "connectors": [
+    {
+      "ref": "J1",
+      "model": "0813-1X1T-57-F",
+      "mating_model": "Shielded Cat5e/Cat6 8P8C cable",
+      "label": "PoE-capable magjack. PHY-side common CT. Four cable-side power taps, internal bridge in U7.",
+      "viewing_convention": "Magjack PCB solder-terminal numbers; these are NOT external RJ45 8P8C contact numbers.",
+      "contacts": "Manufacturer specified",
+      "pins": [
+        {
+          "number": "1",
+          "net": "mag_rxp",
+          "destination": "RJ45 magjack PCB solder terminal 1 / mag_rxp",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "eth_txp",
+          "destination": "RJ45 magjack PCB solder terminal 2 / eth_txp",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "5",
+          "net": "POE_12",
+          "destination": "RJ45 magjack PCB solder terminal 5 / POE_12",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "6",
+          "net": "POE_45",
+          "destination": "RJ45 magjack PCB solder terminal 6 / POE_45",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "7",
+          "net": "mag_ct",
+          "destination": "RJ45 magjack PCB solder terminal 7 / mag_ct",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "8",
+          "net": "mag_rxn",
+          "destination": "RJ45 magjack PCB solder terminal 8 / mag_rxn",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "9",
+          "net": "eth_txn",
+          "destination": "RJ45 magjack PCB solder terminal 9 / eth_txn",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "10",
+          "net": "POE_36",
+          "destination": "RJ45 magjack PCB solder terminal 10 / POE_36",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "11",
+          "net": "POE_78",
+          "destination": "RJ45 magjack PCB solder terminal 11 / POE_78",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "S1",
+          "net": "chassis",
+          "destination": "RJ45 magjack PCB solder terminal S1 / chassis",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "S2",
+          "net": "chassis",
+          "destination": "RJ45 magjack PCB solder terminal S2 / chassis",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        21,
+        100
+      ],
+      "rotation_deg": 90,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 36.24,
+          "y": 105.08
+        },
+        {
+          "number": "2",
+          "x": 36.24,
+          "y": 103.048
+        },
+        {
+          "number": "5",
+          "x": 36.24,
+          "y": 96.952
+        },
+        {
+          "number": "6",
+          "x": 36.24,
+          "y": 94.92
+        },
+        {
+          "number": "7",
+          "x": 38.78,
+          "y": 106.096
+        },
+        {
+          "number": "8",
+          "x": 38.78,
+          "y": 104.064
+        },
+        {
+          "number": "9",
+          "x": 38.78,
+          "y": 102.032
+        },
+        {
+          "number": "10",
+          "x": 38.78,
+          "y": 97.968
+        },
+        {
+          "number": "11",
+          "x": 38.78,
+          "y": 95.936
+        },
+        {
+          "number": "S1",
+          "x": 17.825,
+          "y": 108.0645
+        },
+        {
+          "number": "S2",
+          "x": 17.825,
+          "y": 91.9355
+        }
+      ]
+    },
+    {
+      "ref": "J3",
+      "model": "B8B-XH-A",
+      "mating_model": "XHP-8",
+      "label": "CC1101 remote RF module",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "SXH-001T-P0.6",
+      "pins": [
+        {
+          "number": "1",
+          "net": "3v3",
+          "destination": "CC1101 module VCC 3.3V",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "gnd",
+          "destination": "CC1101 GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "3",
+          "net": "shared_spi_sclk",
+          "destination": "CC1101 SCLK",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "4",
+          "net": "shared_spi_mosi",
+          "destination": "CC1101 SI/MOSI",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "5",
+          "net": "shared_spi_miso",
+          "destination": "CC1101 SO/MISO",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "6",
+          "net": "cc1101_cs",
+          "destination": "CC1101 CSn",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "7",
+          "net": "cc1101_gdo0_tx",
+          "destination": "CC1101 GDO0 TX open-drain from S3 GPIO4",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "8",
+          "net": "cc1101_gdo2_rx",
+          "destination": "CC1101 GDO2 RX to S3 GPIO5",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        146,
+        45
+      ],
+      "rotation_deg": 90,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 146.0,
+          "y": 45.0
+        },
+        {
+          "number": "2",
+          "x": 146.0,
+          "y": 42.5
+        },
+        {
+          "number": "3",
+          "x": 146.0,
+          "y": 40.0
+        },
+        {
+          "number": "4",
+          "x": 146.0,
+          "y": 37.5
+        },
+        {
+          "number": "5",
+          "x": 146.0,
+          "y": 35.0
+        },
+        {
+          "number": "6",
+          "x": 146.0,
+          "y": 32.5
+        },
+        {
+          "number": "7",
+          "x": 146.0,
+          "y": 30.0
+        },
+        {
+          "number": "8",
+          "x": 146.0,
+          "y": 27.5
+        }
+      ]
+    },
+    {
+      "ref": "J4",
+      "model": "B5B-XH-A",
+      "mating_model": "XHP-5",
+      "label": "ZAC93 remote module",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "SXH-001T-P0.6",
+      "pins": [
+        {
+          "number": "1",
+          "net": "3v3",
+          "destination": "ZAC93 pin1 3.3V; verify actual revision",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "gnd",
+          "destination": "ZAC93 pin6 GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "3",
+          "net": "zwave_tx",
+          "destination": "ZAC93 pin8 RX from SC16 TXA",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "4",
+          "net": "zwave_rx",
+          "destination": "ZAC93 pin10 TX to SC16 RXA",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "5",
+          "net": "gnd",
+          "destination": "ZAC93 pin9 GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        146,
+        78
+      ],
+      "rotation_deg": 90,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 146.0,
+          "y": 78.0
+        },
+        {
+          "number": "2",
+          "x": 146.0,
+          "y": 75.5
+        },
+        {
+          "number": "3",
+          "x": 146.0,
+          "y": 73.0
+        },
+        {
+          "number": "4",
+          "x": 146.0,
+          "y": 70.5
+        },
+        {
+          "number": "5",
+          "x": 146.0,
+          "y": 68.0
+        }
+      ]
+    },
+    {
+      "ref": "J5",
+      "model": "B4B-XH-A",
+      "mating_model": "XHP-4",
+      "label": "LD2450 remote radar",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "SXH-001T-P0.6",
+      "pins": [
+        {
+          "number": "1",
+          "net": "5v_fused",
+          "destination": "LD2450 +5V",
+          "voltage_v": 5,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "gnd",
+          "destination": "LD2450 GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "3",
+          "net": "ld2450_rx",
+          "destination": "LD2450 TX to S3 GPIO40",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "4",
+          "net": "ld2450_tx",
+          "destination": "LD2450 RX from S3 GPIO39",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        146,
+        101
+      ],
+      "rotation_deg": 90,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 146.0,
+          "y": 101.0
+        },
+        {
+          "number": "2",
+          "x": 146.0,
+          "y": 98.5
+        },
+        {
+          "number": "3",
+          "x": 146.0,
+          "y": 96.0
+        },
+        {
+          "number": "4",
+          "x": 146.0,
+          "y": 93.5
+        }
+      ]
+    },
+    {
+      "ref": "J6",
+      "model": "BM04B-SRSS-TB",
+      "mating_model": "SHR-04V-S; prefer Adafruit 4210 precrimped QT cable",
+      "label": "Standard QT order; breakout pullups only; short external ambient sensor cable.",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "SSH-003T-P0.2-H",
+      "pins": [
+        {
+          "number": "1",
+          "net": "gnd",
+          "destination": "BME680 QT GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "3v3",
+          "destination": "BME680 QT 3.3V",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "3",
+          "net": "bme680_sda",
+          "destination": "BME680 SDA to S3 GPIO1",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "4",
+          "net": "bme680_scl",
+          "destination": "BME680 SCL to S3 GPIO2",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "MP",
+          "net": null,
+          "destination": "Mechanical hold-down, not a signal",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        141,
+        127
+      ],
+      "rotation_deg": 0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 139.5,
+          "y": 128.325
+        },
+        {
+          "number": "2",
+          "x": 140.5,
+          "y": 128.325
+        },
+        {
+          "number": "3",
+          "x": 141.5,
+          "y": 128.325
+        },
+        {
+          "number": "4",
+          "x": 142.5,
+          "y": 128.325
+        },
+        {
+          "number": "MP",
+          "x": 138.2,
+          "y": 125.8
+        },
+        {
+          "number": "MP",
+          "x": 143.8,
+          "y": 125.8
+        }
+      ]
+    },
+    {
+      "ref": "J7",
+      "model": "B6B-XH-A",
+      "mating_model": "XHP-6",
+      "label": "MG24 service SWD/boot",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "SXH-001T-P0.6",
+      "pins": [
+        {
+          "number": "1",
+          "net": "3v3",
+          "destination": "Target voltage reference 3.3V; programmer must not source power",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "gnd",
+          "destination": "Programmer GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "3",
+          "net": "mg24_swclk",
+          "destination": "MGM240P PA01/SWCLK modulepad8",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "4",
+          "net": "mg24_swdio",
+          "destination": "MGM240P PA02/SWDIO modulepad9",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "5",
+          "net": "mg24_reset",
+          "destination": "MGM240P RESET modulepad31; pull low only",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "6",
+          "net": "mg24_boot",
+          "destination": "MGM240P PA00 boot modulepad7; pull low only",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        111,
+        46
+      ],
+      "rotation_deg": 0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 111.0,
+          "y": 46.0
+        },
+        {
+          "number": "2",
+          "x": 113.5,
+          "y": 46.0
+        },
+        {
+          "number": "3",
+          "x": 116.0,
+          "y": 46.0
+        },
+        {
+          "number": "4",
+          "x": 118.5,
+          "y": 46.0
+        },
+        {
+          "number": "5",
+          "x": 121.0,
+          "y": 46.0
+        },
+        {
+          "number": "6",
+          "x": 123.5,
+          "y": 46.0
+        }
+      ]
+    },
+    {
+      "ref": "J8",
+      "model": "B6B-XH-A",
+      "mating_model": "XHP-6",
+      "label": "H2 service UART/boot",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "SXH-001T-P0.6",
+      "pins": [
+        {
+          "number": "1",
+          "net": "3v3",
+          "destination": "Target voltage reference3.3V; programmer must not source power",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "2",
+          "net": "gnd",
+          "destination": "Programmer GND",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "3",
+          "net": "h2_rx",
+          "destination": "H2 TX GPIO24/modulepad31 to programmer RX",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "4",
+          "net": "h2_tx",
+          "destination": "H2 RX GPIO23/modulepad30 from programmer TX; hold S3 reset",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "5",
+          "net": "h2_reset",
+          "destination": "H2 EN/modulepad8; pull low only",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "6",
+          "net": "h2_boot",
+          "destination": "H2 BOOT GPIO9/modulepad23; pull low only",
+          "voltage_v": 3.3,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        86,
+        42
+      ],
+      "rotation_deg": 0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 86.0,
+          "y": 42.0
+        },
+        {
+          "number": "2",
+          "x": 88.5,
+          "y": 42.0
+        },
+        {
+          "number": "3",
+          "x": 91.0,
+          "y": 42.0
+        },
+        {
+          "number": "4",
+          "x": 93.5,
+          "y": 42.0
+        },
+        {
+          "number": "5",
+          "x": 96.0,
+          "y": 42.0
+        },
+        {
+          "number": "6",
+          "x": 98.5,
+          "y": 42.0
+        }
+      ]
+    },
+    {
+      "ref": "J2",
+      "model": "TYPE-C-31-M-12",
+      "mating_model": "USB-C data cable",
+      "label": "Self-powered USB service only. VBUS feeds ESD reference; never tied to PoE5V.",
+      "viewing_convention": "PCB top view; mating cable contact face is mirrored. Square pad or silk identifies pin1 where numbered.",
+      "contacts": "USB-C cable",
+      "pins": [
+        {
+          "number": "A1",
+          "net": "gnd",
+          "destination": "USB-C receptacle contact A1 / gnd",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A4",
+          "net": "usb_vbus",
+          "destination": "USB-C receptacle contact A4 / usb_vbus",
+          "voltage_v": 5,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A5",
+          "net": "usb_cc1",
+          "destination": "USB-C receptacle contact A5 / usb_cc1",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A6",
+          "net": "usb_dp_port",
+          "destination": "USB-C receptacle contact A6 / usb_dp_port",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A7",
+          "net": "usb_dm_port",
+          "destination": "USB-C receptacle contact A7 / usb_dm_port",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A8",
+          "net": null,
+          "destination": "USB-C receptacle contact A8 / None",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A9",
+          "net": "usb_vbus",
+          "destination": "USB-C receptacle contact A9 / usb_vbus",
+          "voltage_v": 5,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "A12",
+          "net": "gnd",
+          "destination": "USB-C receptacle contact A12 / gnd",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B1",
+          "net": "gnd",
+          "destination": "USB-C receptacle contact B1 / gnd",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B4",
+          "net": "usb_vbus",
+          "destination": "USB-C receptacle contact B4 / usb_vbus",
+          "voltage_v": 5,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B5",
+          "net": "usb_cc2",
+          "destination": "USB-C receptacle contact B5 / usb_cc2",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B6",
+          "net": "usb_dp_port",
+          "destination": "USB-C receptacle contact B6 / usb_dp_port",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B7",
+          "net": "usb_dm_port",
+          "destination": "USB-C receptacle contact B7 / usb_dm_port",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B8",
+          "net": null,
+          "destination": "USB-C receptacle contact B8 / None",
+          "voltage_v": null,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B9",
+          "net": "usb_vbus",
+          "destination": "USB-C receptacle contact B9 / usb_vbus",
+          "voltage_v": 5,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "B12",
+          "net": "gnd",
+          "destination": "USB-C receptacle contact B12 / gnd",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        },
+        {
+          "number": "SH",
+          "net": "gnd",
+          "destination": "USB-C receptacle contact SH / gnd",
+          "voltage_v": 0,
+          "notes": "PCB top/component view. Signal voltage is not specified for differential/analog or primary PoE nets."
+        }
+      ],
+      "board_position_mm": [
+        13,
+        52
+      ],
+      "rotation_deg": 270,
+      "pad_centers_mm": [
+        {
+          "number": "A1",
+          "x": 17.045,
+          "y": 48.75
+        },
+        {
+          "number": "A4",
+          "x": 17.045,
+          "y": 49.55
+        },
+        {
+          "number": "A5",
+          "x": 17.045,
+          "y": 50.75
+        },
+        {
+          "number": "A6",
+          "x": 17.045,
+          "y": 51.75
+        },
+        {
+          "number": "A7",
+          "x": 17.045,
+          "y": 52.25
+        },
+        {
+          "number": "A8",
+          "x": 17.045,
+          "y": 53.25
+        },
+        {
+          "number": "A9",
+          "x": 17.045,
+          "y": 54.45
+        },
+        {
+          "number": "A12",
+          "x": 17.045,
+          "y": 55.25
+        },
+        {
+          "number": "B1",
+          "x": 17.045,
+          "y": 55.25
+        },
+        {
+          "number": "B4",
+          "x": 17.045,
+          "y": 54.45
+        },
+        {
+          "number": "B5",
+          "x": 17.045,
+          "y": 53.75
+        },
+        {
+          "number": "B6",
+          "x": 17.045,
+          "y": 52.75
+        },
+        {
+          "number": "B7",
+          "x": 17.045,
+          "y": 51.25
+        },
+        {
+          "number": "B8",
+          "x": 17.045,
+          "y": 50.25
+        },
+        {
+          "number": "B9",
+          "x": 17.045,
+          "y": 49.55
+        },
+        {
+          "number": "B12",
+          "x": 17.045,
+          "y": 48.75
+        },
+        {
+          "number": "SH",
+          "x": 16.13,
+          "y": 47.68
+        },
+        {
+          "number": "SH",
+          "x": 11.95,
+          "y": 47.68
+        },
+        {
+          "number": "SH",
+          "x": 16.13,
+          "y": 56.32
+        },
+        {
+          "number": "SH",
+          "x": 11.95,
+          "y": 56.32
+        }
+      ]
+    }
+  ]
+}

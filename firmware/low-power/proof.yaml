@@ -1,0 +1,114 @@
+# First integration proof: the final profile additionally enables the UART bridge.
+substitutions:
+  build_jobs: "2"
+  bme680_address: "0x77"
+  rf_airbridge_path: ..
+  rf_source: low_power_proof
+  rf_received_topic: build-only/rf/received
+  rf_raw_topic: build-only/rf/raw
+  rf_transmit_result_topic: build-only/rf/result
+
+esphome:
+  name: low-power-hub-proof
+  min_version: 2026.9.1
+  compile_process_limit: ${build_jobs}
+
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  cpu_frequency: 160MHz
+  framework:
+    type: esp-idf
+    version: 5.5.5
+
+psram:
+  mode: octal
+  speed: 80MHz
+  ignore_not_found: false
+
+ethernet:
+  type: W5500
+  clk_pin: GPIO13
+  mosi_pin: GPIO11
+  miso_pin: GPIO12
+  cs_pin: GPIO14
+  interrupt_pin: GPIO10
+  reset_pin: GPIO9
+  clock_speed: 10MHz
+
+network:
+  enable_ipv6: true
+  min_ipv6_addr_count: 0
+
+logger:
+  level: INFO
+  hardware_uart: USB_SERIAL_JTAG
+  baud_rate: 0
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+  reboot_timeout: 0s
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+external_components:
+  - source:
+      type: local
+      path: components
+    components: [low_power_otbr, low_power_ethernet]
+
+low_power_ethernet:
+
+low_power_otbr:
+  server_component_path: generated/esp_ot_br_server
+  tx_pin: GPIO43
+  rx_pin: GPIO44
+  reset_pin: GPIO47
+  boot_pin: GPIO48
+  rest_port: 8081
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 320ms
+    window: 30ms
+    active: true
+bluetooth_proxy:
+  active: true
+  connection_slots: 3
+
+uart:
+  - id: radar_uart
+    tx_pin: GPIO39
+    rx_pin: GPIO40
+    baud_rate: 256000
+    rx_buffer_size: 1024
+
+ld2450:
+  id: radar
+  uart_id: radar_uart
+
+i2c:
+  id: expansion_bus
+  sda: GPIO1
+  scl: GPIO2
+  frequency: 100kHz
+
+spi:
+  id: cc1101_spi
+  interface: spi3
+  clk_pin: GPIO7
+  mosi_pin: GPIO8
+  miso_pin: GPIO6
+
+packages:
+  rf: !include ../packages/rf-airbridge.yaml
+  environment: !include ../packages/bme680.yaml
+  radar: !include ../packages/ld2450.yaml

@@ -1,34 +1,36 @@
-# Антенны, радар и сосуществование
+# Antennas, radar and coexistence
 
-Основной принцип — отдельное радио для каждого протокола и отдельное место для каждого излучателя. Расстояния ниже — исходные проектные цели, **не измеренная развязка**.
+The basic principle is a separate radio for each protocol and a separate location for each radiator. The distances below are initial design targets, **not measured isolation**.
 
-## Выбранные антенны
+## Selected antennas
 
-- Zigbee SLZB-07Mg24: штатная 2.4 GHz антенна поставщика. Не заменять её антенной 433/868/915 MHz. Сохранить заводской RF тракт и региональный предел мощности. SMLIGHT меняет линейку; до покупки проверить Mg24 в маркировке, тип RF коннектора и фактическую комплектацию.
-- Thread PCA10059: встроенная PCB антенна. У выбранного dongle нет штатного внешнего SMA тракта. Конец платы с антенной разместить у пластиковой стенки, не рядом с землёй Pi и не под металлической декой. Для выноса использовать USB удлинитель, а не припаивать коаксиал к неизвестной точке.
-- BLE ESP32-S3-ETH: встроенная керамическая антенна работает по умолчанию. [Waveshare](https://www.waveshare.com/wiki/ESP32-S3-ETH) указывает, что IPEX Gen 1 включается перестановкой резистора. Внешняя антенна — дополнительная аппаратная модификация, не просто подключение кабеля. При этой опции нужен согласованный 50 Ω 2.4 GHz тракт и подтверждение RF характеристик после rework.
-- Z-Wave ZAC93: штатная PCB антенна. Не переносить её в SMA и не припаивать случайный провод. Проверить, что регион модуля соответствует установленной Z-Wave сети и стране эксплуатации.
-- RF CC1101: сохранить существующую согласованную **433.92 MHz** антенну. Частотные диапазоны самого чипа CC1101 не означают, что один модуль/антенна одинаково работают на 433 и 915 MHz. Если понадобится новый модуль, выбрать модуль с matching network именно на нужный диапазон.
-- LD2450: встроенные печатные антенны 24 GHz, никаких внешних антенн. Перед активной стороной не должно быть металла, экрана, винтов и проводов.
+- Zigbee SLZB-07Mg24: the supplier's stock 2.4 GHz antenna. Do not replace it with a 433/868/915 MHz antenna. Preserve the factory RF path and regional power limit. SMLIGHT changes its product range; before buying, verify the Mg24 marking, RF connector type and actual package contents.
+- Thread PCA10059: built-in PCB antenna. The selected dongle has no stock external SMA path. Place the antenna end beside a plastic wall, away from the Pi ground plane and not under a metal deck. Reposition it with a USB extension rather than soldering coax to an unidentified point.
+- BLE ESP32-S3-ETH: the built-in ceramic antenna is active by default. [Waveshare](https://www.waveshare.com/wiki/ESP32-S3-ETH) states that enabling IPEX Gen 1 requires moving a resistor. An external antenna is an additional hardware modification, not just a cable connection. This option requires a matched 50 Ω 2.4 GHz path and RF verification after rework.
+- Z-Wave ZAC93: stock PCB antenna. Do not convert it to SMA or solder on an arbitrary wire. Verify that the module's region matches the installed Z-Wave network and country of operation.
+- RF CC1101: retain the existing matched **433.92 MHz** antenna. The CC1101 chip's frequency ranges do not mean that one module/antenna works equally well at 433 and 915 MHz. If a new module is needed, select one with a matching network for the required band.
+- LD2450: built-in 24 GHz printed antennas, no external antennas. Keep metal, shields, screws and wires out of the space in front of the active face.
 
-Для сменного RF ввода предусмотреть механический blanking plug. SMA и RP-SMA различаются центральным контактом; резьба сама по себе не доказывает совместимость. Проверить пол коннектора до заказа pigtail. Потери длинного коаксиала могут перечеркнуть выигрыш от выноса; USB удлинение радио обычно предсказуемее.
+Provide a mechanical blanking plug for an unused replaceable RF entry. SMA and RP-SMA differ in their center contact; matching threads alone do not establish compatibility. Check connector gender before ordering a pigtail. Long coax losses can offset the benefit of moving an antenna; extending the radio's USB connection is usually more predictable.
 
-## Первичная компоновка
+ZAC93 modular-approval conditions cannot automatically be applied to this enclosure. The [Zooz manual, page 2, §2.7 and §2.9](https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf) separately restricts co-location with other transmitters and describes evaluation of a device with multiple radios. This prototype deliberately contains several transmitters: the distances below and a functional RF test do not demonstrate compliance with those conditions. The complete assembly is not certified under this project.
 
-Выделить нижний уровень для Pi, switch и PoE DC/DC; верхний — для радиомодулей. Между активными 2.4 GHz антеннами стремиться к 100 mm; при габаритах корпуса часть антенн придётся вынести к противоположным стенкам или снаружи. У встроенных антенн оставить первоначально не менее 15–20 mm свободного объёма от кабелей, металла и крепежа; окончательные keep-out берутся из документации конкретной платы. Расстояние не заменяет испытание десенсибилизации.
+## Initial layout
 
-USB радио подключить к USB 2.0 через экранированные короткие удлинители, без USB 3.0 накопителя возле антенн. Витые силовые пары увести вниз. DC/DC и разъёмы RJ45 не должны находиться непосредственно под RF концом плат.
+Reserve the lower level for the Pi, switch and PoE DC/DC, and the upper level for radio modules. Aim for 100 mm between active 2.4 GHz antennas; given the enclosure dimensions, some antennas will need to be near opposite walls or outside. Initially leave at least 15–20 mm of clear space around built-in antennas, away from cables, metal and fasteners; final keep-outs come from each board's documentation. Distance is not a substitute for desensitization testing.
 
-На стенде сначала проверить каждое радио отдельно. Затем повторить при одновременной нагрузке BLE, Zigbee, Thread, Z-Wave и RF. Сравнить packet loss, задержки и число переподключений. Хороший RSSI сам по себе не доказывает отсутствие коллизий или потерь.
+Connect USB radios to USB 2.0 through short shielded extensions, with no USB 3.0 drive near the antennas. Route twisted power pairs below. DC/DC converters and RJ45 connectors must not sit directly under the RF end of the boards.
 
-## Каналы
+On the bench, test each radio individually first. Then repeat with simultaneous BLE, Zigbee, Thread, Z-Wave and RF loads. Compare packet loss, latency and reconnection counts. Good RSSI alone does not prove the absence of collisions or loss.
 
-Zigbee и Thread используют 2.4 GHz IEEE 802.15.4; BLE прыгает по каналам этого же диапазона. Раздельные радио не устраняют близкую взаимную блокировку. Начальная гипотеза: Zigbee channel 15 и Thread channel 25 при проверенной совместимости устройств и фактической Wi-Fi обстановке. Это **не универсальная настройка**. Канал существующей сети не менять без плана миграции и резервной копии; сначала записать реальные Wi-Fi/Zigbee/Thread каналы. Уменьшение ненужной TX мощности иногда полезнее большого усиления антенны.
+## Channels
 
-Для BLE Ethernet освобождает Wi-Fi радио ESP32 от сетевого трафика. [ESPHome](https://esphome.io/components/bluetooth_proxy/) рекомендует проводные proxy и предупреждает о близости источников EMI. Данный комбинированный корпус намеренно компромиссный: если BLE страдает, правильный выход — вынести proxy/антенну или разделить корпус, а не обещать, что любая компоновка будет равнозначна отдельным устройствам.
+Zigbee and Thread use 2.4 GHz IEEE 802.15.4; BLE hops across channels in the same band. Separate radios do not eliminate blocking between nearby transmitters and receivers. The initial hypothesis is Zigbee channel 15 and Thread channel 25, subject to device compatibility and the actual Wi-Fi environment. This is **not a universal setting**. Do not change an existing network's channel without a migration plan and backup; first record the actual Wi-Fi/Zigbee/Thread channels. Reducing unnecessary TX power can be more useful than increasing antenna gain.
 
-## LD2450 и BME680
+For BLE, Ethernet removes network traffic from the ESP32 Wi-Fi radio. [ESPHome](https://esphome.io/components/bluetooth_proxy/) recommends wired proxies and warns about nearby EMI sources. This combined enclosure is deliberately a compromise: if BLE suffers, move the proxy/antenna or split the enclosure rather than assuming every layout will perform like separate devices.
 
-Радар направлен в комнату; положительные/отрицательные координаты проверить проходом слева направо. Начать с неметаллизированного PETG radome примерно 1 mm и воздушного зазора, затем сравнить открытую плату и закрытую крышку. У 24 GHz толщина, пигмент, влажность пластика и ребра перед антенной влияют на результат; выбранная толщина не считается согласованной радиолинзой. Не применять carbon-fiber/metal-filled filament. Не размещать корпус так, чтобы радар видел только стену или закрытую дверь.
+## LD2450 and BME680
 
-LD2450 оптимизирован для отслеживания движущихся целей; наличие `still target` не гарантирует длительное обнаружение неподвижного человека. Настроить зоны и проверить собственные сценарии света. BME680 находится в отдельном проветриваемом pod, защищённом от прямого нагрева и сквозняка из основного корпуса. Влажность/температура оцениваются после стабилизации; газовый канал — сопротивление сенсора, не селективное измерение CO2.
+Aim the radar into the room; verify positive/negative coordinates by walking from left to right. The initial model has a **1.2 mm** non-metallized PETG window (`radar_skin` in the [enclosure parameters](../mechanical/parameters.json)); leave an air gap, then compare the exposed board with the lid closed. At 24 GHz, thickness, pigment, plastic moisture and ribs in front of the antenna affect performance; the selected thickness is not a validated RF lens. Do not use carbon-fiber/metal-filled filament. Do not position the enclosure so the radar sees only a wall or closed door.
+
+LD2450 is optimized for tracking moving targets; a `still target` indication does not guarantee sustained detection of a stationary person. Configure zones and test the intended lighting scenarios. BME680 sits in a separate ventilated pod, protected from direct heating and drafts from the main enclosure. Assess humidity/temperature after stabilization; the gas channel measures sensor resistance, not CO2 selectively.

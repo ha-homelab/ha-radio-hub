@@ -1,0 +1,614 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-17",
+  "status": "Sourcing and pilot plan; no production quotation or sales forecast",
+  "documentation": "../../docs/manufacturing.md",
+  "currency_policy": "Keep published currencies; no exchange-rate conversion or shipping/tax estimate is assumed",
+  "scope": {
+    "architectures": [
+      "modular_backplane",
+      "integrated_carrier"
+    ],
+    "delivery_formats": [
+      "bare_pcb",
+      "pcba",
+      "finished"
+    ],
+    "manufacturing_orders_placed": false,
+    "sales_listings_created": false,
+    "physical_acceptance_passed": false,
+    "actual_quotation_received": false,
+    "final_board_dimensions_mm": null,
+    "final_layer_counts": null,
+    "note": "Current CAD geometry, not a production release; final stack-up, DFM and physical acceptance pending. Requote if geometry changes.",
+    "design_status": "engineering_prototype_not_fabricated",
+    "quotation_quantities_per_design": [
+      5,
+      10,
+      20
+    ],
+    "prototype_board_dimensions_mm": {
+      "LP-C0": [
+        160,
+        100
+      ],
+      "LP-I0": [
+        160,
+        142
+      ]
+    },
+    "prototype_layer_counts": {
+      "LP-C0": 2,
+      "LP-I0": 4
+    }
+  },
+  "product_matrix": [
+    {
+      "id": "modular_bare",
+      "architecture": "modular_backplane",
+      "delivery_format": "bare_pcb",
+      "proposed_inclusions": [
+        "Unpopulated low-voltage backplane",
+        "One unpopulated LP-M0 MGM240P adapter PCB"
+      ],
+      "proposed_exclusions": [
+        "SC16 and support parts",
+        "Connectors and keyed harnesses",
+        "Host and radio modules",
+        "Power and Ethernet assemblies",
+        "Enclosure"
+      ],
+      "customer_work": "Populate the board, install compatible modules and harnesses, flash and test the complete hub",
+      "release_gate": "Fabrication data and assembly instructions verified on first articles; no complete-hub claim"
+    },
+    {
+      "id": "modular_pcba",
+      "architecture": "modular_backplane",
+      "delivery_format": "pcba",
+      "proposed_inclusions": [
+        "Backplane",
+        "SC16 and support circuitry",
+        "Keyed connectors",
+        "Backplane test record",
+        "One LP-M0 adapter populated with MGM240PA22VNA3, support circuitry and keyed connectors"
+      ],
+      "proposed_exclusions": [
+        "Other external host/radio modules unless explicitly listed",
+        "External power/Ethernet assemblies unless explicitly listed",
+        "Enclosure"
+      ],
+      "inclusions_to_freeze": [
+        "Harness quantities and pinouts",
+        "Optional installed module bundle"
+      ],
+      "customer_work": "Install the explicitly excluded modules, provision firmware and test the final system",
+      "release_gate": "Loaded rails, loopbacks and interfaces tested; assess supplied programmed MGM240P radio assembly as part of the actual product"
+    },
+    {
+      "id": "modular_finished",
+      "architecture": "modular_backplane",
+      "delivery_format": "finished",
+      "proposed_inclusions": [
+        "Tested backplane",
+        "Specified host/radio and power/Ethernet modules",
+        "Harnesses",
+        "Antennas and sensors",
+        "Enclosure and BME pod",
+        "Provisioning instructions",
+        "Full-system test record",
+        "One populated LP-M0 MGM240P adapter"
+      ],
+      "inclusions_to_freeze": [
+        "Regional radio SKU",
+        "Exact antenna types",
+        "External PSE included or excluded"
+      ],
+      "customer_work": "Local onboarding and Home Assistant integration",
+      "release_gate": "Complete-system physical, radio, thermal, regulatory, license and recovery acceptance"
+    },
+    {
+      "id": "integrated_bare",
+      "architecture": "integrated_carrier",
+      "delivery_format": "bare_pcb",
+      "proposed_inclusions": [
+        "Unpopulated integrated carrier"
+      ],
+      "proposed_exclusions": [
+        "S3/H2/MG24 modules",
+        "W5500/Ethernet and PoE parts",
+        "Other radios and sensors",
+        "Enclosure"
+      ],
+      "customer_work": "Advanced reflow/rework assembly, programming and full electrical/RF validation",
+      "release_gate": "Frozen fabrication files and independently repeatable assembly; disclose fine-pitch work"
+    },
+    {
+      "id": "integrated_pcba",
+      "architecture": "integrated_carrier",
+      "delivery_format": "pcba",
+      "proposed_inclusions": [
+        "Carrier and populated S3/H2/MG24 sections",
+        "Populated W5500/Ethernet and PoE sections",
+        "Board-level test record"
+      ],
+      "inclusions_to_freeze": [
+        "ZAC93 and CC1101 installation",
+        "Radar and BME breakout",
+        "Antennas and harnesses"
+      ],
+      "proposed_exclusions": [
+        "Enclosure unless explicitly listed"
+      ],
+      "customer_work": "Install excluded sensors/antennas and enclosure, then onboard locally",
+      "release_gate": "Operational radio PCBA assessed as supplied; absence of a case is not a regulatory exemption"
+    },
+    {
+      "id": "integrated_finished",
+      "architecture": "integrated_carrier",
+      "delivery_format": "finished",
+      "proposed_inclusions": [
+        "Tested integrated PCBA",
+        "Specified radios and sensors",
+        "Antennas and harnesses",
+        "Enclosure, radar window and BME pod",
+        "Provisioning instructions",
+        "Full-system test record"
+      ],
+      "inclusions_to_freeze": [
+        "Regional radio SKU",
+        "Exact antenna types",
+        "External PSE included or excluded"
+      ],
+      "customer_work": "Local onboarding and Home Assistant integration",
+      "release_gate": "Complete-system physical, radio, thermal, regulatory, license and recovery acceptance"
+    }
+  ],
+  "manufacturer_candidates": [
+    {
+      "id": "jlcpcb",
+      "role": "Primary comparative PCB and PCBA quotation for both architectures",
+      "pricing_status": "Published component charges only; not a hub quote",
+      "published_charges_usd": {
+        "economic_setup": 8.18,
+        "standard_single_side_setup": 25.56,
+        "economic_stencil": 1.53,
+        "standard_single_side_stencil": 8.21,
+        "initial_tier_smt_per_solder_joint": 0.0016
+      },
+      "charges_exclude": [
+        "PCB",
+        "Components",
+        "Applicable feeders and fixtures",
+        "Manual work",
+        "Other inspection/test charges",
+        "Freight and import costs"
+      ],
+      "quotation_questions": [
+        "Economic versus Standard eligibility",
+        "Module consignment/global sourcing",
+        "Through-hole/manual work",
+        "Programming and full functional-test scope"
+      ],
+      "sources": [
+        "jlcpcb_prices",
+        "jlcpcb_assembly"
+      ]
+    },
+    {
+      "id": "pcbway",
+      "role": "Parallel PCB/PCBA quotation, including consigned modules and manual operations",
+      "published_assembly_minimum_units": 5,
+      "pricing_status": "Quote required",
+      "quotation_questions": [
+        "Turnkey versus consigned parts",
+        "Component overage",
+        "Explicit return of unused modules",
+        "Fixture/programming/test pricing",
+        "Delivery of accepted good units versus raw assembled quantity"
+      ],
+      "sources": [
+        "pcbway_capabilities",
+        "pcbway_faq"
+      ]
+    },
+    {
+      "id": "oshpark",
+      "role": "US bare-PCB comparison; assembly excluded",
+      "pricing_status": "Published area formula; final uploaded design not quoted",
+      "medium_run_two_layer": {
+        "usd_per_square_inch_per_board": 1,
+        "minimum_order_square_inches": 100,
+        "quantity_multiple_per_design": 10,
+        "published_calendar_days_to_ship": [
+          12,
+          21
+        ]
+      },
+      "sources": [
+        "oshpark_medium"
+      ]
+    },
+    {
+      "id": "aisler",
+      "role": "EU fabrication/assembly alternative, with separate series box-build offering",
+      "pricing_status": "Current project upload/quote required",
+      "published_bare_board_quantity_multiple": 3,
+      "published_assembly_minimum_units": 1,
+      "bare_board_comparison_quantities_for_at_least_10_and_20": [
+        12,
+        21
+      ],
+      "quotation_questions": [
+        "Exact assembly quantities",
+        "Module sourcing",
+        "Series test/programming and final assembly scope"
+      ],
+      "sources": [
+        "aisler_products"
+      ]
+    }
+  ],
+  "area_price_scenario": {
+    "classification": "Calculated illustration for current LP-C0 outline from published area rate; not an actual quotation",
+    "manufacturer": "oshpark",
+    "service": "Two-layer Medium Run",
+    "width_mm": 160,
+    "height_mm": 100,
+    "layers": 2,
+    "inch_mm": 25.4,
+    "area_formula": "width_mm * height_mm / inch_mm^2",
+    "area_square_inches": 24.800049600099204,
+    "fabrication_costs_usd_rounded": {
+      "10": 248.0,
+      "20": 496.0
+    },
+    "exclusions": [
+      "Assembly",
+      "Components",
+      "Taxes/import charges",
+      "Applicable shipping options"
+    ],
+    "applicability": "LP-C0 two-layer board only; excludes the required LP-M0 adapter and does not apply to LP-I0 four-layer board or five-unit first articles. Recalculate after outline changes.",
+    "sources": [
+      "oshpark_medium"
+    ],
+    "design_id": "LP-C0"
+  },
+  "economics": {
+    "sale_prices": null,
+    "demand_evidence": "Not established",
+    "accepted_unit_cost_formula": "Total attributable batch cost / accepted units",
+    "batch_cost_lines": [
+      "PCB fabrication",
+      "Stencil and NRE/setup",
+      "Parts and procurement minimums",
+      "Consignment overage",
+      "Assembly and manual operations",
+      "Fixture and programming",
+      "Functional testing",
+      "Rework/retest",
+      "Freight/tax/import",
+      "Enclosure and final hardware",
+      "Labels and packaging"
+    ],
+    "sale_cost_additions": [
+      "Outbound fulfillment",
+      "Platform/payment/payout costs",
+      "Support",
+      "Replacement reserve"
+    ],
+    "usable_yield_sensitivity": {
+      "classification": "Planning assumptions only, not measured yields",
+      "fractions": [
+        1.0,
+        0.95,
+        0.9
+      ],
+      "note": "Do not double-count assumed factory scrap when the quotation already guarantees an accepted good-unit quantity"
+    },
+    "nre_amount": null,
+    "shipping_amount": null,
+    "regulatory_assessment_amount": null
+  },
+  "staged_plan": [
+    {
+      "stage": "engineering",
+      "suggested_units_per_architecture": 5,
+      "quantity_type": "Requested engineering RFQ quantity; adapt to manufacturer minimum, not an order",
+      "gate": "Reviewed design and first-article electrical, radio, power and enclosure tests",
+      "available_for_sale": false
+    },
+    {
+      "stage": "pilot",
+      "suggested_units_per_architecture": 10,
+      "quantity_type": "Conditional production plan, not an order",
+      "gate": "Repeatable fixture, frozen revision, acceptance records and applicable market obligations",
+      "note": "Deduct retained reference/replacement units; do not automatically build ten of every sales format"
+    },
+    {
+      "stage": "follow_on",
+      "suggested_units_per_architecture": 20,
+      "quantity_type": "Conditional plan after pilot",
+      "gate": "Demand at actual delivered price, satisfactory yield/support effort and no unresolved systemic faults",
+      "note": "Share PCBA/finished assembly stock only where hardware BOM and traceability permit"
+    }
+  ],
+  "quality_control": {
+    "fixture": [
+      "Current-limited isolated secondary supply",
+      "Keyed harness adapters",
+      "Service/pogo contacts",
+      "Known-good Ethernet/PoE source",
+      "Dedicated radio test network",
+      "Appropriate RF test arrangement"
+    ],
+    "every_pcba": [
+      "Visual/AOI inspection",
+      "Shorts and polarity",
+      "Rail voltage and loaded current",
+      "Programming verification",
+      "Reset/recovery",
+      "All populated interfaces"
+    ],
+    "complete_radio_assembly": [
+      "Zigbee and Thread commissioning/traffic",
+      "Z-Wave communication",
+      "CC1101 receive/transmit",
+      "BLE discovery",
+      "Radar and BME",
+      "Simultaneous operation",
+      "Power/network loss recovery"
+    ],
+    "finished_unit_additions": [
+      "Antenna/enclosure inspection",
+      "Strain relief",
+      "Cold starts",
+      "Thermal and power readings",
+      "Local onboarding",
+      "Factory reset"
+    ],
+    "traceability_fields": [
+      "Serial",
+      "PCB revision",
+      "BOM variant",
+      "Firmware hashes",
+      "Test-script version",
+      "Date",
+      "Pass/fail",
+      "Rework and retest"
+    ],
+    "credential_policy": "Never ship a copied home configuration; provision unique credentials or local first-use setup and erase returned units before reuse",
+    "soak_duration": "To be selected from first-article evidence; no completed soak test claimed"
+  },
+  "license_release_gates": [
+    {
+      "component": "Original project code, CAD and documentation",
+      "license": "MIT",
+      "action": "Preserve copyright and license notices; dependency licenses and trademarks remain separate",
+      "sources": [
+        "project_license",
+        "project_notices"
+      ]
+    },
+    {
+      "component": "ESPHome-based runtime",
+      "license": "Includes GPLv3 C++ runtime",
+      "action": "Provide compliant Corresponding Source for shipped versions and applicable User Product installation information; inventory all linked dependencies",
+      "sources": [
+        "esphome_license",
+        "gpl_faq",
+        "project_notices"
+      ]
+    },
+    {
+      "component": "MG24 NCP using Simplicity SDK 2025.6.3",
+      "license": "Silicon Labs MSLA by default with per-file exceptions",
+      "action": "Check accepted vendor terms for embedded object-code distribution, authorized devices, external manufacturers and end users; do not redistribute vendor SDK as project MIT source",
+      "sources": [
+        "silabs_pinned_license",
+        "silabs_msla"
+      ]
+    },
+    {
+      "component": "Vendored KiCad and Espressif footprint library sources",
+      "license": "CC BY-SA 4.0 with the KiCad electronic-design exception",
+      "action": "Preserve upstream attribution and local license notices. Original PCB designs retain the project license under the design exception; copied library sources are not relicensed as MIT.",
+      "sources": [
+        "kicad_library_license",
+        "espressif_library_license",
+        "project_notices"
+      ]
+    }
+  ],
+  "market_release_gates": {
+    "us": {
+      "rule": "Personal home-built exception is not the basis for a commercial 10-20 unit lot or kit",
+      "actions": [
+        "Classify actual supplied product",
+        "Review module grants and integration conditions",
+        "Assess antennas, simultaneous transmission, RF exposure and host emissions",
+        "Complete applicable authorization before commercial marketing"
+      ],
+      "sources": [
+        "fcc_home_built",
+        "fcc_marketing",
+        "fcc_modules",
+        "fcc_kdb996369"
+      ]
+    },
+    "eu": {
+      "rule": "Ordinary consumer hub kits are not automatically exempt from RED",
+      "actions": [
+        "Assess complete radio product safety, EMC and spectrum",
+        "Technical documentation and applicable conformity assessment",
+        "EU declaration and required identification/instructions/marking",
+        "Review applicable cybersecurity and other product/environmental obligations",
+        "Provide applicable consumer returns and conformity remedies"
+      ],
+      "sources": [
+        "eu_red",
+        "eu_red_status",
+        "eu_consumer"
+      ]
+    },
+    "module_approval_limit": "Module certification does not certify the complete multi-radio hub",
+    "bare_board_limit": "A genuinely unpopulated PCB is not itself a working intentional radiator; powered backplanes, operational radio PCBAs and functional kits require separate classification"
+  },
+  "marketplace_candidates": [
+    {
+      "id": "tindie",
+      "status": "Current seller pages inaccessible in this review; terms and fees unverified",
+      "verified_fee": null,
+      "action": "Verify seller access, terms, fee schedule, payout country and return requirements directly before listing",
+      "sources": [
+        "tindie_seller"
+      ]
+    },
+    {
+      "id": "smallrun",
+      "status": "Candidate only; FAQ and contractual fee wording conflict",
+      "faq_advertised_fee": {
+        "fraction_of_product_plus_shipping": 0.07,
+        "fixed_usd_per_order": 0.4,
+        "card_processing": "FAQ says included"
+      },
+      "fee_caveat": "Terms section 4 describes separate Stripe processing fees; confirm binding all-in terms during onboarding",
+      "published_return_floor_days": 30,
+      "return_scope": "Unused, undamaged, non-personalized items; statutory rights may add obligations",
+      "action": "Confirm fees/payout holds, supported destinations, tax/import handling and seller obligations; no demand or conversion rate assumed",
+      "sources": [
+        "smallrun_faq",
+        "smallrun_terms"
+      ]
+    }
+  ],
+  "sources": {
+    "jlcpcb_prices": "https://jlcpcb.com/help/article/pcb-assembly-price",
+    "jlcpcb_assembly": "https://jlcpcb.com/pcb-assembly",
+    "pcbway_capabilities": "https://www.pcbway.com/assembly-capabilities.html",
+    "pcbway_faq": "https://www.pcbway.com/assembly-faq.html",
+    "oshpark_medium": "https://docs.oshpark.com/services/two-layer-medium-run/",
+    "aisler_products": "https://aisler.net/en/products",
+    "project_license": "../../LICENSE",
+    "project_notices": "../../THIRD_PARTY_NOTICES.md",
+    "esphome_license": "https://github.com/esphome/esphome/blob/2026.9.1/LICENSE",
+    "gpl_faq": "https://www.gnu.org/licenses/gpl-faq.en.html",
+    "silabs_pinned_license": "https://github.com/SiliconLabs/simplicity_sdk/blob/b41bec3ff2485199c1a5a9995b3e649e118c1b8d/License.txt",
+    "silabs_msla": "https://www.silabs.com/about-us/legal/master-software-license-agreement",
+    "fcc_home_built": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15/subpart-A/section-15.23",
+    "fcc_marketing": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-2/subpart-I/section-2.803",
+    "fcc_modules": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15/subpart-C/section-15.212",
+    "fcc_kdb996369": "https://apps.fcc.gov/oetcf/kdb/forms/FTSSearchResultPage.cfm?id=44637&switch=P",
+    "eu_red": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014L0053-20241228",
+    "eu_red_status": "https://single-market-economy.ec.europa.eu/sectors/electrical-and-electronic-engineering-industries-eei/radio-equipment-directive-red_en",
+    "eu_consumer": "https://europa.eu/youreurope/business/selling-in-eu/consumer-contracts-guarantees/consumer-guarantees/index_en.htm",
+    "tindie_seller": "https://www.tindie.com/sell/",
+    "smallrun_faq": "https://www.smallrun.net/faq",
+    "smallrun_terms": "https://www.smallrun.net/terms",
+    "kicad_library_license": "https://www.kicad.org/libraries/license/",
+    "espressif_library_license": "https://github.com/espressif/kicad-libraries/blob/dd76561812ab300351234ba6e0ec1295641796f0/LICENSE.md"
+  },
+  "rfq_draft": "../../docs/manufacturing-rfq.md",
+  "pcb_candidates": [
+    {
+      "id": "LP-C0",
+      "architecture": "modular_backplane",
+      "width_mm": 160,
+      "height_mm": 100,
+      "copper_layers": 2,
+      "source": "carrier/carrier.kicad_pcb",
+      "design_status": "engineering_prototype_not_fabricated",
+      "fabrication_released": false,
+      "power_boundary": "Isolated regulated 5V input; external PoE front end and regulator",
+      "enclosure_status": "Not a drop-in fit in prior concept enclosure; three mounting centres differ and external modules need placement",
+      "mount_hole_diameter_mm": 3.2,
+      "mount_centres_mm": [
+        [
+          5,
+          5
+        ],
+        [
+          155,
+          5
+        ],
+        [
+          5,
+          95
+        ],
+        [
+          155,
+          95
+        ]
+      ]
+    },
+    {
+      "id": "LP-I0",
+      "architecture": "integrated_carrier",
+      "width_mm": 160,
+      "height_mm": 142,
+      "copper_layers": 4,
+      "source": "integrated/integrated.kicad_pcb",
+      "design_status": "engineering_prototype_not_fabricated",
+      "fabrication_released": false,
+      "power_boundary": "On-board PoE primary and isolated secondary; isolation/DFM qualification pending",
+      "enclosure_status": "PCB depth exceeds prior enclosure cavity; new mechanical release required",
+      "source_note": "Current native PCB candidate; routing/DFM and physical acceptance remain release gates.",
+      "mount_hole_diameter_mm": 3.2,
+      "mount_centres_mm": [
+        [
+          5,
+          5
+        ],
+        [
+          155,
+          23
+        ],
+        [
+          5,
+          137
+        ],
+        [
+          155,
+          137
+        ]
+      ]
+    }
+  ],
+  "pcb_accessories": [
+    {
+      "id": "LP-M0",
+      "required_for": "LP-C0",
+      "quantity_per_hub": 1,
+      "width_mm": 60,
+      "height_mm": 40,
+      "copper_layers": 2,
+      "proposed_thickness_mm": 1.6,
+      "proposed_copper_oz": 1,
+      "design_status": "engineering_prototype_not_fabricated",
+      "fabrication_released": false,
+      "function": "MGM240PA22VNA3 UART/SWD adapter with support circuitry; module antenna aligned to top PCB edge",
+      "quote_as": "Separate PCB/assembly line at the same 5/10/20 quantity as C0; not included in C0 area-price illustration",
+      "enclosure_status": "Separate module mount required in revised modular enclosure",
+      "source": "carrier/mg24-adapter/mg24-adapter.kicad_pcb",
+      "mount_hole_diameter_mm": 2.2,
+      "mount_centres_mm": [
+        [
+          3,
+          3
+        ],
+        [
+          57,
+          3
+        ],
+        [
+          3,
+          37
+        ],
+        [
+          57,
+          37
+        ]
+      ]
+    }
+  ]
+}

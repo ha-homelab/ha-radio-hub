@@ -1,108 +1,115 @@
-# Корпус HA Radio Hub — DRAFT V0
+# HA Radio Hub enclosure — DRAFT V0
 
-Модель готова к пробной печати, но ещё **не подтверждена сборкой реальных деталей**. STL проверяются как замкнутые сетки с согласованной ориентацией граней и одним связным телом. Эта проверка не доказывает размещение штекеров, качество радиосвязи, охлаждение или точность конкретного принтера.
+The model is ready for a test print, but has **not yet been validated by assembling the actual parts**. The STL files are checked for watertight meshes, consistent face winding, and one connected body. These checks do not prove connector clearance, radio performance, cooling, or the accuracy of a particular printer.
 
-![Взрыв-схема из реальных STL](../mechanical/generated/exploded-preview.png)
+![Exploded view generated from the actual STL files](../mechanical/generated/exploded-preview.png)
 
-## Габариты и ориентация
+## Dimensions and orientation
 
-Основной корпус: **240 × 200 × 80 мм** без выступающих головок винтов, кабелей и антенн. Основание 77 мм, крышка 3 мм; стенки и дно 3 мм. Для основания и крышки нужен стол как минимум 246 × 206 мм при кайме 3 мм; практически подходит класс 256 × 256 мм. **На стол 220 × 220 мм основание и крышка не помещаются.** Уменьшать STL масштабированием нельзя: изменятся посадки винтов и реальные размеры отсеков. Проверенного разъёмного корпуса для 220-мм стола в V0 нет.
+Main enclosure: **240 × 200 × 80 mm**, excluding protruding screw heads, cables, and antennas. The base is 77 mm high and the lid is 3 mm thick; walls and floor are 3 mm thick. The base and lid need a bed of at least 246 × 206 mm with a 3 mm brim; a 256 × 256 mm class printer is a practical fit. **The base and lid do not fit a 220 × 220 mm bed.** Do not scale down the STL files: this changes screw fits and the actual compartment dimensions. V0 does not include a validated split enclosure for a 220 mm bed.
 
-Координаты: x — ширина, y — глубина; дно z=0, наружная плоскость крышки z=80. Кабель PoE входит сзади, через y=200. Радар расположен под крышкой у y=40, антенной плоскостью к крышке. При настенном монтаже **крышка обращена в комнату**. На горизонтальном столе радар будет смотреть вверх, поэтому для слежения за людьми поставьте корпус вертикально на устойчивую подставку либо закрепите на стене. Направление координат радара проверьте после монтажа.
+Coordinates: x is width, y is depth; the floor is at z=0 and the outer lid surface at z=80. The PoE cable enters at the rear, through y=200. The radar sits below the lid near y=40, with its antenna plane facing the lid. For wall mounting, **the lid faces the room**. On a horizontal table, the radar points upward, so stand the enclosure vertically on a stable support or mount it on a wall to track people. Check the radar coordinate directions after installation.
 
-Варианты сборки:
+Assembly options:
 
-- Основной: печатный настенный корпус, два яруса, внешняя атмосферная капсула BME680.
-- Для отладки: тот же корпус со снятой крышкой; сравнение с закрытым обязательно для проверки радара и температуры.
-- Промышленная замена: покупной вентилируемый пластиковый корпус с внутренним свободным объёмом не менее 240 × 200 × 80 мм и отдельной монтажной панелью. Отверстия панели переносятся по измеренным деталям. Металлический корпус требует внешнего размещения радиомодулей/антенн и отдельного радиопрозрачного окна радара.
+- Main: printed wall-mounted enclosure with two levels and an external BME680 ambient-sensor pod.
+- Debugging: the same enclosure with the lid removed; comparison with the closed enclosure is required to check radar behavior and temperatures.
+- Commercial substitute: a purchased ventilated plastic enclosure with at least 240 × 200 × 80 mm of clear internal space and a separate mounting panel. Transfer panel hole locations from measured parts. A metal enclosure requires externally mounted radio modules/antennas and a separate RF-transparent radar window.
 
-## Компоновка
+## Layout
 
-![Размещение по ярусам](../mechanical/generated/layout-plan.png)
+![Layout by level](../mechanical/generated/layout-plan.png)
 
-Это **распределение пространства**, а не точные CAD-модели коммерческих устройств. Размеры штекеров, изгибы проводов, корпуса USB-радио и стойки должны быть проверены на приобретённых экземплярах.
+This is a **space allocation**, not accurate CAD models of the commercial devices. The dimensions and coordinates below refer to the supplied `parameters.json`. Connector dimensions, wire bends, USB radio housings, and standoffs must be checked against the purchased parts.
 
-Нижний ярус: верх дна z=3; низ съёмной полки z=40. Доступная высота 37 мм включает изолирующие прокладки и крепёж.
+Lower level: top of the floor at z=3; underside of the removable deck at z=40. The available 37 mm height includes insulating pads and fasteners.
 
-- Raspberry Pi 4: плата примерно 85 × 56 мм по [документации Raspberry Pi](https://www.raspberrypi.com/documentation/computers/sbcs.html). Плата повёрнута на 90°, отведена зона 72 × 90 мм, отдельно от кабельного коридора; USB/Ethernet направлены в сторону меньшего y. Кулер/радиатор и кабель USB-C должны уложиться ниже полки. Точные отверстия платы намеренно не перенесены на дно: применяются нейлоновые стойки на переходной площадке или изолированные крепёжные ремешки.
-- TP-Link TL-SF1005D v13: корпус 104 × 70 × 22 мм, область 110 × 75 мм. Порты направить к центральному кабельному коридору; длинные литые штекеры могут потребовать изменить расположение. См. [характеристики производителя](https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/).
-- PoE splitter Waveshare 25 W: корпус 102.5 × 29.6 × 24.8 мм, область 108 × 34 мм в переднем ряду: x=60…168, y=6…40. Входной RJ45 направить влево, несъёмные выходные Ethernet/DC кабели — вправо. До внутренних боковых стенок от границ этой области остаётся 57 и 69 мм соответственно; это свободное пространство ряда, **не подтверждённый радиус изгиба кабеля**. Распределение 5 V находится в следующем ряду y=40…75 и не должно перекрывать выход хвостов. См. [страницу производителя](https://www.waveshare.com/product/accessories/power-heat-sinks/poe-splitter-25w-type-c.htm).
-- Область 75 × 35 мм выделена для изолированного распределения 5 V, предохранителей и сервисных петель. Высота/сечение проводов выбираются электрической частью проекта.
-- Между передними и задними узлами оставлен кабельный коридор глубиной 30 мм: y=75…105. Pi занимает x=26…98, y=105…195; switch — x=106…216, y=105…180. У отдельных соединителей может потребоваться 30–40 мм; тогда используйте более короткие/угловые кабели либо увеличьте корпус. Не перегибайте Ethernet/коаксиальные кабели ради соблюдения эскиза. Питающий PoE кабель от задней проходки проходит по свободному периметру, с обходом стоек; длина входящего в корпус участка определяется макетом.
+- Raspberry Pi 4: board approximately 85 × 56 mm according to the [Raspberry Pi documentation](https://www.raspberrypi.com/documentation/computers/sbcs.html). The board is rotated 90° and allocated a 72 × 90 mm area, separate from the cable corridor; USB/Ethernet face toward lower y. The cooler/heatsink and USB-C cable must fit below the deck. Exact board mounting holes have deliberately not been transferred to the floor: use nylon standoffs on an adapter plate or insulated retaining straps.
+- The selected Pi power connection is a rigid C3 (Adafruit 4536) + C17 (Same Sky PP3-002A) pair. C17 has a specified size of 34 × 8.2 mm and an insertion length of 9.5 mm; the total projection together with C3 is not published. With the Pi rotated as specified, USB-C faces the side wall. The board area **does not establish clearance for this pair**: test its fit before printing, and move the Pi or enlarge the enclosure if necessary. Do not press the adapter against the wall or use it to support the board. Item numbers and sources are in the [BOM](../hardware/bom.csv).
+- TP-Link TL-SF1005D v13: housing 104 × 70 × 22 mm, allocated area 110 × 75 mm. Face the ports toward the central cable corridor; long molded plugs may require a layout change. See the [manufacturer's specifications](https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/).
+- Waveshare 25 W PoE splitter: housing 102.5 × 29.6 × 24.8 mm, allocated area 108 × 34 mm in the front row: x=60…168, y=6…40. Face the input RJ45 left and the captive Ethernet/DC output cables right. The gaps from this area's boundaries to the inner side walls are 57 and 69 mm respectively; these are free spaces in the row, **not validated cable bend radii**. The 5 V distribution occupies the next row at y=40…75 and must not obstruct the cable exits. See the [manufacturer's page](https://www.waveshare.com/product/accessories/power-heat-sinks/poe-splitter-25w-type-c.htm).
+- A 75 × 35 mm area is allocated to insulated 5 V distribution, fuses, and service loops. Wire height and cross-section are selected in the electrical design.
+- A 30 mm deep cable corridor separates the front and rear devices: y=75…105. The Pi occupies x=26…98, y=105…195; the switch occupies x=106…216, y=105…180. Some connectors may need 30–40 mm; use shorter/right-angle cables or enlarge the enclosure if needed. Do not overbend Ethernet/coaxial cables to match the sketch. The incoming PoE cable follows the free perimeter from the rear opening, around the standoffs; determine its required internal length on the mock-up.
 
-Верхний ярус: полка z=40…43; модули должны укладываться примерно до z=67. Стойки крышки и радиодатчика занимают отдельные области.
+Upper level: deck at z=40…43; modules should fit below approximately z=67. Lid and radar standoffs occupy separate areas.
 
-- ESP32-S3-ETH-M, ZAC93 и соединения: выделено 91 × 64 × 24 мм. Это размер зоны, **не спецификация платы**. Официальный [чертёж Waveshare](https://docs.waveshare.com/ESP32-S3-ETH#dimensions) задаёт план платы 72.80 × 21.00 мм; выступание установленных штекеров, высоту гребёнок и изоляционных опор нужно измерить отдельно.
-- RF-зона 90 × 64 × 24 мм: **вторая ESP32-S3-ETH-M + CC1101** для основной проводной сборки. Вариант совместимости заменяет именно эту плату на существующую NodeMCU + CC1101 с Wi-Fi. Не устанавливайте обе RF платы в эту зону одновременно. В проводной сборке сюда также входят короткий SPI-жгут и изолированная подтяжка 4.7 кОм линии TX; проверить высоту всех соединений.
-- Ethernet и USB-C обеих S3 требуют пространства **за пределами длины голой платы**. Располагайте платы и их разъёмы со смещением по y, чтобы противоположно направленные штекеры не столкнулись в промежутке между зонами. На плане заштрихован открытый кабельный вырез полки x=105…135, y=160…187: крепить плату на пустоте нельзя. Два Ethernet кабеля и питание S3 проходят через него между ярусами; USB-радио и кабель радара также требуют места. Номинальные 30 мм ширины выреза не доказывают проход всех жгутов одновременно: укладывайте и закрепляйте их при открытой полке, проверьте отсутствие перегиба и защемления крышкой.
-- Zigbee USB-радио: 105 × 23 мм в плане, включая короткий вывод USB; высоту/штекер измерить. Thread PCA10059: область 68 × 23 мм. USB-кабели идут к Pi через открытый вырез в краю полки. Штатные антенны должны выходить к свободной пластиковой стенке, а не быть зажаты между платами или экранированы проводами.
-- LD2450: подвешен к крышке, носитель x=78…162, y=14…66, z≈66…68. Под ним не размещать высокие платы. У модуля габарит 44 × 15 мм и рабочая частота **24 GHz**, не 2.450 GHz, по [Hi-Link](https://www.hlktech.com/Goods-226.html).
+- ESP32-S3-ETH-M, ZAC93, and wiring: allocated space 91 × 64 × 24 mm. This is the area's size, **not a board specification**. The official [Waveshare drawing](https://docs.waveshare.com/ESP32-S3-ETH#dimensions) gives a board outline of 72.80 × 21.00 mm; measure installed plug projection, header height, and insulating supports separately.
+- RF area 90 × 64 × 24 mm: **second ESP32-S3-ETH-M + CC1101** for the main wired build. The compatibility option replaces this board with the existing NodeMCU + CC1101 using Wi-Fi. Do not install both RF boards in this area simultaneously. The wired build also needs a short SPI harness and an insulated 4.7 kΩ TX pull-up here; check the height of all connections.
+- Ethernet and USB-C on both S3 boards need clearance **beyond the bare board length**. Offset the boards and their connectors along y so opposing plugs do not collide in the gap between the allocated areas. The plan hatches the open cable notch in the deck at x=105…135, y=160…187: a board cannot be fastened over empty space. Two Ethernet cables and S3 power pass between levels through this notch; the USB radios and radar cable also need space. The nominal 30 mm notch width does not prove that all harnesses fit simultaneously: route and secure them with the deck accessible, and check for overbending or pinching by the lid.
+- The C4/C9 DFRobot FIT0993 power cables are 300 mm long with a 4 mm outside diameter. Excess length and terminal blocks need separate insulated mountings and service loops; do not tighten them over antennas or the radar, or between the deck and a connector. The cables themselves are not modeled in the plan.
+- Zigbee USB radio: 105 × 23 mm in plan, including a short USB lead; measure its height and connector. Thread PCA10059: allocated area 68 × 23 mm. USB cables run to the Pi through the open notch at the deck edge. Stock antennas should face an unobstructed plastic wall, rather than being trapped between boards or shielded by wires.
+- LD2450: suspended from the lid, with its carrier at x=78…162, y=14…66, z≈66…68. Do not place tall boards beneath it. The module is 44 × 15 mm and operates at **24 GHz**, not 2.450 GHz, according to [Hi-Link](https://www.hlktech.com/Goods-226.html).
 
-После реальной раскладки сначала проверьте все три размерности бумажными/картонными шаблонами и подключёнными кабелями. Если зоны не хватает, увеличьте `width`, `depth` или `base_height` в параметрах и повторите визуальную проверку. Полка не должна опираться на разъёмы или компоненты.
+After laying out the actual parts, first check all three dimensions using paper/cardboard templates and connected cables. If an area is too small, increase `width`, `depth`, or `base_height` in the parameters and repeat the visual check. The builder changes the enclosure, mounts, and radar carrier position, but does not automatically rearrange boards or route cables. The deck must not rest on connectors or components.
 
-## Радарное окно и антенны
+## Radar window and antennas
 
-В крышке над LD2450 оставлен пластик толщиной 1.2 мм на области 60 × 28 мм. Это **начальное значение для эксперимента**, а не рассчитанный согласованный радиопрозрачный обтекатель. Диэлектрическая проницаемость, состав наполнителя, воздушный зазор и толщина влияют на 24-GHz радар. Нельзя клеить поверх этой зоны фольгу, магнит, металлический шильдик или использовать угле-/металлонаполненный пластик.
+The lid leaves a 1.2 mm plastic thickness over a 60 × 28 mm area above the LD2450. This is an **initial experimental value**, not an engineered, impedance-matched radome. Dielectric permittivity, filler composition, air gap, and thickness affect the 24 GHz radar. Do not place foil, magnets, or a metal label over this area, or use carbon-/metal-filled plastic.
 
-`radar_carrier.stl` — универсальная площадка с вырезом для проводки, а не защёлка под угаданные размеры разъёма. Поднимите PCB над площадкой изолирующими проставками, чтобы компоненты с обратной стороны не упирались в пластик. Крепите только за свободные края изолирующими опорами/лентой, не прижимайте печатные антенны. Рамка фиксируется к четырём стойкам крышки. Разъём и провод укладываются сбоку; сохраняйте свободное направление на окно. Конкретный держатель платы и зазор проверьте по приобретённой ревизии. Сравните дальность и координаты при снятой и установленной крышке.
+`radar_carrier.stl` is a general-purpose platform with a wiring cutout, not a clip based on assumed connector dimensions. Raise the PCB above it on insulating spacers so underside components do not press into the plastic. Support only free board edges using insulating supports/tape; do not press on the printed antennas. The carrier attaches to four lid standoffs. Route the connector and wire to the side, keeping the path to the window clear. Check the specific board holder and air gap against the purchased revision. Compare range and coordinates with the lid removed and installed.
 
-В обеих боковых стенках имеются проходки диаметром 6.5 мм: y=174, z=60. Размер параметрический. Используйте их только с совместимым штатным антенным разъёмом/переходником, после проверки резьбы, шайбы, толщины стенки и типа SMA/RP-SMA. Нельзя считать эти два типа взаимозаменяемыми. Невостребованные отверстия закрываются `antenna_blank.stl`, посадка удерживается маленькой точкой нейтрального силикона. Заглушки и отверстия не создают влагозащиты.
+Both side walls have 6.5 mm diameter feedthrough holes at y=174, z=60. The diameter is parametric. Use them only with a compatible antenna connector/adapter after checking the thread, washer, wall thickness, and SMA/RP-SMA type. These two connector types are not interchangeable. Close unused holes with `antenna_blank.stl`, held in place with a small spot of neutral-cure silicone. The plugs and holes do not provide water protection.
 
-PCA10059 использует штатную PCB-антенну; модель **не предполагает переделки под внешнюю антенну**. Разнесите Zigbee, Thread, BLE, Wi-Fi и суб-GHz антенны настолько, насколько позволяет корпус; размещение подтверждается нагрузочным RF-тестом, а не только расстоянием на рисунке. Коаксиал не должен пересекать печатную антенну радара.
+PCA10059 uses its stock PCB antenna; the model **does not assume modification for an external antenna**. Separate the Zigbee, Thread, BLE, Wi-Fi, and sub-GHz antennas as far as the enclosure allows; validate placement with a loaded RF test, not just distances on a drawing. Coax must not cross the radar's printed antenna.
 
-## Внешняя капсула BME680
+## External BME680 pod
 
-`bme680_pod_base.stl` и `bme680_pod_lid.stl`: **45 × 36 × 20 мм**, вентилируемая капсула для breakout в пределах примерно 30 × 23 × 10 мм. Контур текущей STEMMA QT платы в [исходном EagleCAD Adafruit](https://github.com/adafruit/Adafruit-BME680-PCB/blob/master/Adafruit%20BME680.brd) — 25.4 × 17.78 мм; этот размер не включает подключённую вилку и изгиб кабеля. Это универсальная корзина; посадочные отверстия конкретной платы не угаданы. Дно имеет прорези для изолированных ремешков. Два винта M2 удерживают крышку, датчик крепится отдельно и не должен касаться головок винтов.
+`bme680_pod_base.stl` and `bme680_pod_lid.stl`: **45 × 36 × 20 mm**, a ventilated pod for a breakout board within approximately 30 × 23 × 10 mm. The current STEMMA QT board outline in the [Adafruit EagleCAD source](https://github.com/adafruit/Adafruit-BME680-PCB/blob/master/Adafruit%20BME680.brd) is 25.4 × 17.78 mm; this excludes an attached plug and cable bend. This is a general-purpose holder; mounting holes for a specific board have not been guessed. The floor has slots for insulated straps. Two M2 screws retain the lid; mount the sensor separately without touching the screw heads.
 
-Капсула находится снаружи основного тёплого корпуса, сбоку или ниже него, **не над вентиляционным потоком**. Четырёхжильный кабель 3.3 V/GND/SDA/SCL выходит через левую стенку рядом с ESP32-S3: x=0, y=136, z=55, диаметр 5 мм. Вокруг отверстия сохранён сплошной участок стенки для втулки. Установите подходящую разрезную втулку и разгрузку натяжения. Начальная длина **всего жгута I²C — 10–20 см, включая внутренний отрезок от ESP32-S3 до стенки, внешнюю часть и сервисный запас у обоих разъёмов**. Это исходная рекомендация для макета, не гарантированная дальность; частота, подтяжки и стабильность проверяются на готовом кабеле. Расстояние капсулы от корпуса подбирайте по температурным измерениям в пределах этого бюджета длины; модель сборки показывает капсулу слева, с зазором 30 мм до корпуса.
+Place the pod outside the warm main enclosure, beside or below it, **not above the ventilation exhaust**. The four-wire 3.3 V/GND/SDA/SCL cable exits through the left wall near the ESP32-S3: x=0, y=136, z=55, with a 5 mm hole diameter. A solid wall area around the hole supports a grommet. Fit a suitable split grommet and strain relief. The initial length of the **entire I²C harness is 10–20 cm, including the internal run from the ESP32-S3 to the wall, the external run, and service slack at both connectors**. This is a starting recommendation for the prototype, not a guaranteed reach; check frequency, pull-ups, and stability on the finished cable. Choose the pod's distance from the enclosure using temperature measurements within this cable-length budget; the assembly model shows the pod to the left with a 30 mm gap to the enclosure.
 
-Отверстия капсулы открыты атмосфере: это комнатный датчик без защиты от воды и конденсата. Держите его вдали от клея, силикона, свежего пластика и горячего выхлопа: они искажают показания газового сенсора и температуру. Самонагрев датчика также остаётся и требует оценки; вынесенный корпус не устраняет его автоматически.
+The pod openings are exposed to ambient air: this is an indoor sensor with no protection against water or condensation. Keep it away from adhesive, silicone, fresh plastic, and hot exhaust air, which distort gas-sensor and temperature readings. Sensor self-heating also remains and must be evaluated; a separate enclosure does not automatically eliminate it.
 
-## Крепёж и печать
+## Fasteners and printing
 
-Для основного корпуса:
+For the main enclosure:
 
-- 12 латунных термовставок M3, ориентир внешнего диаметра 4.6 мм, длины 5 мм: 4 крышка, 4 полка, 4 радарная рамка. Пилот в модели 4.2 мм глубиной 6 мм; **подбирайте по спецификации вставки и пробной печати**.
-- 4 винта M3×6 с низкой/полукруглой головкой для крышки; головка не шире 6.8 мм. Убедитесь, что винт не упирается в дно отверстия и имеет достаточное зацепление.
-- 8 винтов M3×8 для полки и радарной рамки; 8 небольших шайб при необходимости. Проверьте фактическую длину с шайбой.
-- Нейлоновые стойки, крепёжные площадки и изолированные ремешки для плат. Голая пайка не должна касаться других плат, стенки splitter или металлического крепежа.
-- 2 винта M2×6 для капсулы в пилот 1.8 мм; нарезать аккуратно, без раскалывания стойки.
-- 4 самоклеящиеся резиновые опоры/дистанционные прокладки около 3 мм сзади основания. Для стены — два подходящих стене крепежа с головкой до 8 мм и шейкой до 4 мм, межосевое расстояние 120 мм. Подбор крепежа зависит от стены и массы сборки; испытания нагрузки ещё нет.
-- Разрезная втулка для PoE-проёма 22 × 16 мм, втулка для кабеля BME680, разгрузки натяжения для кабелей, 2 заглушки антенных проходок при необходимости.
+- 12 brass M3 heat-set inserts, nominally 4.6 mm outside diameter and 5 mm long: 4 for the lid, 4 for the deck, 4 for the radar carrier. The model uses 4.2 mm pilot holes 6 mm deep; **adjust them to the insert specification and a test print**.
+- 4 M3×6 low-profile/button-head screws for the lid, with heads no wider than 6.8 mm. Check that each screw has enough engagement and does not bottom out.
+- 4 M3×8 screws for the 3 mm thick deck: nominally 5 mm enters the standoff. Check the actual length with the selected washer and insert.
+- 4 M3×6 screws for the 2 mm thick radar carrier: nominally 4 mm enters the standoff. M3×8 without a washer is too long here: with a pilot depth of about 5.98 mm, it enters 6 mm and may bottom out against the plastic. Total for the printed parts: 8 M3×6 screws and 4 M3×8 screws; choose board fasteners separately.
+- Nylon standoffs, mounting pads, and insulated straps for the boards. Exposed solder joints must not touch other boards, the splitter housing, or metal fasteners.
+- 2 M2×6 screws for the pod, into 1.8 mm pilot holes; form the threads carefully without splitting the standoffs.
+- 4 self-adhesive rubber feet/spacers approximately 3 mm thick on the rear of the base. For a wall, use two fasteners suitable for that wall, with heads up to 8 mm and shanks up to 4 mm, spaced 120 mm center to center. Fastener selection depends on the wall and assembly mass; no load test has been performed yet.
+- A split grommet for the 22 × 16 mm PoE opening, a grommet for the BME680 cable, cable strain reliefs, and 2 antenna feedthrough plugs if needed.
 
-Первой печатайте `fit_coupon.stl` (72 × 20 × 8 мм). Слева направо центры x=8,18,28: сквозные отверстия 3.2/3.4/3.6 мм; x=44,54,64: пилоты 4.0/4.2/4.4 мм глубиной 6 мм. Подберите отверстие под свой пластик и вставку, затем измените `m3_clearance` и `insert_pilot`. Вставки не должны распирать стойки.
+Print `fit_coupon.stl` first (72 × 20 × 8 mm). From left to right, centers x=8,18,28 have 3.2/3.4/3.6 mm through-holes; x=44,54,64 have 4.0/4.2/4.4 mm pilot holes, 6 mm deep. Select the hole fit for your plastic and insert, then adjust `m3_clearance` and `insert_pilot`. Inserts must not split or bulge the standoffs.
 
-Начальные настройки для макета: PETG без электропроводных наполнителей, сопло 0.4 мм, слой 0.2 мм, 4 периметра, 5 верхних/нижних слоёв, заполнение 25–35%. Это рекомендации для пробного изделия; PETG не является автоматически огнестойким материалом. PLA допускается для холодного проверки габаритов; окончательный материал выбирайте после тепловых испытаний.
+Starting prototype settings: PETG without electrically conductive fillers, 0.4 mm nozzle, 0.2 mm layers, 4 perimeters, 5 top/bottom layers, and 25–35% infill. These are test-part recommendations; PETG is not automatically flame-retardant. PLA is acceptable for an unpowered dimensional check; choose the final material after thermal testing.
 
-Ориентация печати всех файлов уже задана:
+All files already have their print orientation set:
 
-- `base.stl`: дно на столе, полость вверх. Внутренние стойки печатаются вертикально. Над задним кабельным проёмом мост 22 мм; включите локальные поддержки из полости/от стола, если принтер не печатает такой мост. Для горизонтальных антенных отверстий также могут понадобиться локальные поддержки.
-- `lid.stl`: наружная плоскость на столе, бортик и четыре стойки вверх. Прозрачная для радара тонкая область печатается первыми слоями и не требует нависающих мостов.
-- `deck.stl`, `radar_carrier.stl`, `fit_coupon.stl`: плоско.
-- `antenna_blank.stl`: широким фланцем на стол.
-- `bme680_pod_base.stl`: дном на стол; `bme680_pod_lid.stl`: плоско. Верхние перемычки над вентиляцией имеют небольшие пролёты.
+- `base.stl`: floor on the bed, cavity upward. Internal standoffs print vertically. There is a 22 mm bridge above the rear cable opening; enable local supports from the cavity/bed if the printer cannot bridge it. Horizontal antenna holes may also need local supports.
+- `lid.stl`: outer face on the bed, lip and four standoffs upward. The thin radar-transparent area prints in the first layers and does not need overhanging bridges. For assembly, rotate the lid 180° around the y axis: the radar-window side remains at lower y. The assembly model applies this rotation, not a mirror transformation of the STL.
+- `deck.stl`, `radar_carrier.stl`, `fit_coupon.stl`: flat.
+- `antenna_blank.stl`: wide flange on the bed.
+- `bme680_pod_base.stl`: floor on the bed; `bme680_pod_lid.stl`: flat. The upper bridges above the vents have short spans.
 
-Очистите прорези, проверьте отсутствие острых кромок и только затем устанавливайте платы. Термовставки ставятся до монтажа электроники. Для обслуживания сперва отключается PoE, затем крышка и короткий кабель радара, после этого четыре винта полки.
+Clean the slots and check for sharp edges before installing boards. Install heat-set inserts before the electronics. For service, first disconnect PoE, then remove the lid and disconnect the short radar cable, followed by the four deck screws.
 
-## Воспроизводимое построение и проверки
+## Reproducible generation and checks
 
-Из корня репозитория, Python 3.12:
+From the repository root, using Python 3.12:
 
 ```sh
 python3.12 -m venv .venv-mechanical
 .venv-mechanical/bin/pip install -r mechanical/requirements.txt
 .venv-mechanical/bin/python mechanical/build.py
+.venv-mechanical/bin/python mechanical/build.py --check
+.venv-mechanical/bin/python -m unittest discover -s mechanical -p 'test_*.py'
 ```
 
-Параметры: `mechanical/parameters.json`. Исходная геометрия: `mechanical/build.py`. Одна и та же CSG-модель создаёт STL через Manifold и текстовые `generated/*.scad`; поэтому исходник OpenSCAD и экспорт не расходятся при ручном повторении конструкции. Можно изменять полученный SCAD вручную, но следующий build его перезапишет. `assembly.scad` и `assembly.glb` предназначены только для осмотра, не для общей печати всех деталей. В GLB геометрия переведена в метры по соглашению glTF; STL остаются в миллиметрах.
+Parameters: `mechanical/parameters.json`. Source geometry: `mechanical/build.py`. The same CSG model creates both the STL files through Manifold and the text `generated/*.scad` files, avoiding divergence between an independently recreated OpenSCAD source and its export. You can edit the generated SCAD manually, but the next build will overwrite it. `assembly.scad` and `assembly.glb` are for inspection only, not for printing all parts together. GLB geometry is converted to meters following the glTF convention; STL remains in millimeters.
 
-Сборщик читает **экспортированные STL заново** и проверяет замкнутость, ориентацию граней, положительный объём и единственное связное тело; также проверяет отсутствие объёмного пересечения печатных деталей в собранном положении. `generated/mesh-report.json` содержит результаты, габаритные параллелепипеды и SHA-256 файлов. Изображение взрыв-схемы строится по тем же сеткам. Открытие SCAD в установленном OpenSCAD в этой среде не проверялось: приложение отсутствует.
+The builder **reads the exported STL files back in** and checks watertightness, face winding, positive volume, and a single connected body. It also checks that printed parts do not overlap in volume in their assembled positions. `generated/mesh-report.json` contains the results, bounding boxes, parameters, generator fingerprint, and SHA-256 hashes of all exports. The exploded preview is generated from the same meshes. Opening SCAD in an installed OpenSCAD application has not been tested in this environment because the application is absent.
 
-Перед окончательным заказом/сборкой нужно закрыть следующие проверки:
+`--check` does not overwrite anything in `generated/`: it builds a reference in a temporary directory and checks the saved package. It checks the inventory, source/parameter fingerprints, file checksums against their report, exact CSG text, and STL/GLB geometry. Different triangle ordering is allowed: for differing binary files, it compares the solids rather than only their dimensions. The bounding-box tolerance is 0.0001 mm; the symmetric-difference volume must not exceed the larger of 0.01 mm³ and one millionth of the part volume. These numerical tolerances are not printing tolerances. Images are tied to the generator version and parameters through the report and checksums; byte-identical output across graphics libraries is not required. To check a different directory, use `--check --output PATH`. The `--no-preview` mode is for debugging and does not produce a complete release package.
 
-1. Примерка всех приобретённых деталей с подключёнными кабелями, кулером, изоляцией и реальным крепежом; отсутствие контакта полки с разъёмами.
-2. Проверка пробных отверстий, термовставок, усилия затяжки, посадки крышки и снятия полки.
-3. Тепловая выдержка с закрытой крышкой при максимальной ожидаемой температуре комнаты, одновременной нагрузке Ethernet/радио и включённом радаре. Контролировать Pi, splitter, ESP32 и температуру пластика; сравнить с пределами производителей.
-4. RF-тест Zigbee/Thread/BLE/Z-Wave/RF по отдельности и одновременно, в реальном месте установки; тест радара с крышкой и без неё.
-5. Проверка показаний вынесенного BME680 после прогрева и рядом с отдельным комнатным термометром.
-6. Проверка разгрузки кабелей и настенного крепления с запасом по массе; не оставлять макет без присмотра до окончания электрических/тепловых испытаний.
+Complete the following checks before final ordering/assembly:
+
+1. Test-fit every purchased part with connected cables, cooler, insulation, and actual fasteners; confirm that the deck does not touch connectors.
+2. Check test holes, heat-set inserts, tightening force, lid fit, and deck removal.
+3. Run a closed-lid thermal soak at the maximum expected room temperature, with simultaneous Ethernet/radio load and the radar enabled. Monitor the Pi, splitter, ESP32, plastic, and **local air around the radio modules**; respect each component's limits in the [power budget and thermal criteria](../hardware/power.md). Case or die temperature does not replace measurement of the air surrounding a module.
+4. Test Zigbee/Thread/BLE/Z-Wave/RF individually and simultaneously at the actual installation location; test the radar with and without the lid.
+5. Check the external BME680 readings after warm-up against a separate room thermometer.
+6. Check cable strain relief and wall mounting with a load margin; do not leave the prototype unattended until electrical/thermal testing is complete.

@@ -1,0 +1,4 @@
+(version 1)
+(rule "PoE input to secondary nets - preliminary 2.5mm minimum"
+  (condition "A.NetName =~ 'POE_*' && B.NetName != '' && !(B.NetName =~ 'POE_*')")
+  (constraint clearance (min 2.5mm)))

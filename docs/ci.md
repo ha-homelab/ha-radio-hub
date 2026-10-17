@@ -1,15 +1,28 @@
 # Continuous integration and automated approval
 
-The required `check` job compiles both Ethernet ESPHome configurations, tests the
-RF C++ contracts with sanitizers, exercises migration with synthetic inputs,
-validates printable geometry and builds the serial-service container. Thread RCP
-changes additionally run the existing independent RCP build.
+The required `check` job gates four independent jobs. The modular job compiles
+both existing Ethernet ESPHome configurations, tests the RF/UART C++ contracts
+with sanitizers, exercises migration with synthetic inputs, validates printable
+geometry and builds the serial-service container. The single-host job checks the
+new wiring/energy model, compiles all services into one S3 image plus its matching
+H2 radio firmware, exercises the actual REST handlers with the pinned HA client,
+and validates the separate concept enclosure. The MG24 job downloads hash-verified
+tools and SDK, generates the exact module/UART configuration, builds the Zigbee
+NCP and bootloader, and checks merged/update images. The PCB job checks the
+carrier, MG24 adapter and integrated board with circuit-contract tests and
+native KiCad ERC/DRC/connectivity checks in the official KiCad
+10.0.6 container, pinned by digest. Network access is disabled during those
+checks. The wiring atlas and physical contact drawings must reproduce from their
+committed sources; their checks run in the single-host job. Failure, cancellation or
+skipping of any job prevents the required gate from passing. Thread RCP changes additionally run
+the existing independent Nordic RCP build.
 
 Security scanning calls `victron-venus/venus-os-ci-toolkit` at the immutable commit
 `5d827f345c66fdb493efba9c24cf79575b681fdb`: Trivy scans dependencies and secrets;
 dependency review checks pull requests. The separate CodeQL matrix covers C++,
 Python and GitHub Actions using build mode `none`, because embedded firmware is
-built by its dedicated ESPHome job. Dependabot proposes reviewed workflow and
+built by its dedicated ESPHome job. It runs for every pull request, including
+stacked PRs whose base is another feature branch. Dependabot proposes reviewed workflow and
 Python dependency updates. Scanner failures must be investigated before merging.
 
 ## Approval and review

@@ -6,7 +6,9 @@ import subprocess
 import tempfile
 import unittest
 import zipfile
+from unittest.mock import patch
 
+from tools import check
 from tools.check import private_path, public_paths
 from tools.package_release import build_package
 
@@ -82,6 +84,34 @@ class ReleasePackageTest(unittest.TestCase):
         self.commit()
         with self.assertRaisesRegex(ValueError, 'regular committed files'):
             build_package(self.repo, 'HEAD', 'v0.2.0', self.root / 'out')
+
+    def test_hygiene_does_not_read_through_symlinked_inventory_directories(self):
+        package = self.root / 'extracted'
+        package.mkdir()
+        outside = self.root / 'outside'
+        outside.mkdir()
+        # Invalid UTF-8 would crash text scanning if the link were followed.
+        (outside / 'untrusted.md').write_bytes(b'\xff')
+        (package / 'docs').symlink_to(outside, target_is_directory=True)
+        (package / 'RELEASE-MANIFEST.json').write_text(json.dumps({
+            'files': {'docs/untrusted.md': {}}
+        }))
+        with patch.object(check, 'ROOT', package), patch('sys.stderr') as errors:
+            self.assertEqual(check.main(), 1)
+        self.assertIn('symlink', str(errors.write.call_args_list))
+
+    def test_hygiene_rejects_missing_tracked_files_and_dot_inventory_entry(self):
+        (self.repo / 'document.md').write_text('Tracked documentation')
+        self.commit()
+        (self.repo / 'document.md').unlink()
+        with patch.object(check, 'ROOT', self.repo), patch('sys.stderr') as errors:
+            self.assertEqual(check.main(), 1)
+        self.assertIn('document.md: public file is missing', str(errors.write.call_args_list))
+        extracted = self.root / 'extracted'
+        extracted.mkdir()
+        (extracted / 'RELEASE-MANIFEST.json').write_text(json.dumps({'files': {'.': {}}}))
+        with self.assertRaisesRegex(ValueError, 'invalid path'):
+            public_paths(extracted)
 
     def test_private_paths_are_rejected_on_case_insensitive_filesystems(self):
         for path in ('Private/device.yaml', 'Software/Runtime/hub.env', 'BACKUPS/state.json',

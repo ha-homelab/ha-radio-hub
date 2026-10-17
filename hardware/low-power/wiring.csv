@@ -1,0 +1,27 @@
+S3_GPIO,role,direction_at_S3,logic_V,endpoints
+13,w5500_sclk,output,3.3,WIZ850io J1.4 SCLK
+11,w5500_mosi,output,3.3,WIZ850io J1.3 MOSI
+12,w5500_miso,input,3.3,WIZ850io J2.6 MISO
+14,w5500_cs,output,3.3,WIZ850io J1.5 SCNn
+10,w5500_irq,input,3.3,WIZ850io J1.6 INTn
+9,w5500_reset,output,3.3,WIZ850io J2.5 RSTn
+7,shared_spi_sclk,output,3.3,CC1101 SCLK; SC16IS752 pin13 SCLK
+8,shared_spi_mosi,output,3.3,CC1101 SI; SC16IS752 pin11 SI
+6,shared_spi_miso,input,3.3,CC1101 SO; SC16IS752 pin12 SO
+15,cc1101_cs,output,3.3,CC1101 CSn
+4,cc1101_gdo0_tx,open_drain,3.3,CC1101 GDO0
+5,cc1101_gdo2_rx,input,3.3,CC1101 GDO2
+41,sc16_cs,output,3.3,SC16IS752 pin10 CS
+42,sc16_irq,input,3.3,SC16IS752 pin15 IRQ
+43,h2_tx,output,3.3,H2 GPIO23 RX
+44,h2_rx,input,3.3,H2 GPIO24 TX
+47,h2_reset,open_drain,3.3,H2 EN
+48,h2_boot,open_drain,3.3,H2 GPIO9
+17,mg24_tx,output,3.3,MGM240P pad12 PA05 RX
+18,mg24_rx,input,3.3,MGM240P pad13 PA06 TX
+16,mg24_rts,output,3.3,MGM240P pad5 PB01 CTS
+21,mg24_cts,input,3.3,MGM240P pad6 PB00 RTS
+39,ld2450_tx,output,3.3,LD2450 RX
+40,ld2450_rx,input,3.3,LD2450 TX
+1,bme680_sda,open_drain,3.3,BME680 SDA
+2,bme680_scl,open_drain,3.3,BME680 SCL

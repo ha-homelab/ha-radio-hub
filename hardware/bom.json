@@ -42,7 +42,7 @@
       "budget_usd_each": "10-20",
       "status": "manufacturer_spec",
       "source": "https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/",
-      "notes": "Check actual revision5V label and DC connector;1.9W vendor max;no PoE output",
+      "notes": "Check actual revision5V label and DC connector;1.9W vendor max;no PoE output;vendor operating ambient0 to40C",
       "variant": "common",
       "price_kind": "planning_allowance_not_quote"
     },
@@ -84,7 +84,7 @@
       "budget_usd_each": "25-40",
       "status": "manufacturer_family",
       "source": "https://smlight.tech/products/slzb-07mg24",
-      "notes": "Order Mg24 explicitly;retain supplied antenna;not generic SLZB-07 MG21",
+      "notes": "Order Mg24 explicitly;retain supplied antenna;not generic SLZB-07 MG21;vendor operating ambient +5 to +35C",
       "variant": "common",
       "price_kind": "planning_allowance_not_quote"
     },
@@ -126,7 +126,7 @@
       "budget_usd_each": "0_reuse",
       "status": "existing_design",
       "source": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
-      "notes": "Onboard antenna;check region;do not feed5V",
+      "notes": "Onboard antenna;check region;do not feed5V;vendor operating ambient0 to40C;co-location conditions see antennas.md",
       "variant": "common",
       "price_kind": "planning_allowance_not_quote"
     },

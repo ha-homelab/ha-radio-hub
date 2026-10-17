@@ -1,54 +1,54 @@
-# Подключение к Home Assistant
+# Connecting to Home Assistant
 
-Прибор появляется в HA через стандартные интеграции. Логические сети остаются независимыми: Zigbee в ZHA, Thread через OTBR, Matter через Matter Server, Bluetooth и датчики через ESPHome, Z-Wave через существующий Z-Wave JS driver. Не нужен второй экземпляр Home Assistant на Pi.
+The appliance appears in HA through standard integrations. Its logical networks remain independent: Zigbee through ZHA, Thread through OTBR, Matter through Matter Server, Bluetooth and sensors through ESPHome, and Z-Wave through the existing Z-Wave JS driver. A second Home Assistant instance on the Pi is not required.
 
 ## Zigbee
 
-1. Сначала проверьте готовность `ser2net` и доступность Pi:6638 с HA-хоста. Один радиоадаптер обслуживает только один Zigbee stack: одновременно ZHA и Zigbee2MQTT не запускаются.
-2. Settings → Devices & services → Add integration → **Zigbee Home Automation**. Выберите ручную настройку radio **EZSP/Ember (Silicon Labs)**, serial device path `socket://PI_IP:6638`, baud 115200. RTS/CTS для физического USB UART уже включён в `ser2net` на Pi. Формат `socket://` — не `tcp://` и не `http://`.
-3. Для новой сети разрешите pairing и проверьте событие от одного тестового датчика. При переносе существующей ZHA-сети используйте её backup/migration, а не factory reset координатора.
-4. Если нужен Zigbee2MQTT вместо ZHA: adapter `ember`, port `tcp://PI_IP:6638`; не используйте его параллельно с ZHA. Этот вариант в составе нового хаба ещё не проверен на железе.
+1. First check that `ser2net` is ready and Pi:6638 is reachable from the HA host. One radio adapter can serve only one Zigbee stack: do not run ZHA and Zigbee2MQTT simultaneously.
+2. Settings → Devices & services → Add integration → **Zigbee Home Automation**. Choose manual radio setup with **EZSP/Ember (Silicon Labs)**, serial device path `socket://PI_IP:6638`, and baud rate 115200. RTS/CTS for the physical USB UART is already enabled in `ser2net` on the Pi. Use the `socket://` format, not `tcp://` or `http://`.
+3. For a new network, enable pairing and check an event from one test sensor. When moving an existing ZHA network, use its backup/migration process rather than factory-resetting the coordinator.
+4. For Zigbee2MQTT instead of ZHA, use adapter `ember` and port `tcp://PI_IP:6638`; do not run it alongside ZHA. This option has not yet been tested on hardware as part of the new hub.
 
-[ZHA](https://www.home-assistant.io/integrations/zha/) поддерживает сетевые serial adapters, но стабильность зависит от LAN. Радио находится рядом с Pi, не рядом с HA-сервером. При firmware update координатора сначала остановите единственного клиента и `ser2net`; восстановите тот же Ember UART-профиль после обновления.
+[ZHA](https://www.home-assistant.io/integrations/zha/) supports network serial adapters, but stability depends on the LAN. The radio sits next to the Pi, not next to the HA server. Before updating the coordinator firmware, stop its sole client and `ser2net`; restore the same Ember UART profile after the update.
 
-## Thread и Matter
+## Thread and Matter
 
-В HA добавьте **OpenThread Border Router** с URL `http://PI_IP:8081`. Это [REST endpoint OTBR](https://www.home-assistant.io/integrations/otbr/), не web UI 8080. В интеграции **Thread** проверьте network name и preferred network; синхронизируйте Thread credentials с телефоном по [инструкции HA Thread](https://www.home-assistant.io/integrations/thread/). Для уже существующей сети используйте её credentials вместо создания второй сети с тем же именем.
+In HA, add **OpenThread Border Router** with URL `http://PI_IP:8081`. This is the [OTBR REST endpoint](https://www.home-assistant.io/integrations/otbr/), not the web UI on 8080. In the **Thread** integration, check the network name and preferred network; synchronize Thread credentials to the phone using the [HA Thread instructions](https://www.home-assistant.io/integrations/thread/). For an existing network, use its credentials instead of creating a second network with the same name.
 
-На HA-сервере требуется **Matter Server**: OTBR его не заменяет. HA OS может установить официальный Matter Server app; для HA Container применяются отдельные [инструкции Matter Server](https://github.com/home-assistant-libs/python-matter-server). Подключите интеграцию Matter к тому же серверу, который уже обслуживает существующие Matter-устройства. Не создавайте новую fabric без причины.
+The HA server needs **Matter Server**: OTBR does not replace it. HA OS can install the official Matter Server app; HA Container uses the separate [Matter Server instructions](https://github.com/home-assistant-libs/python-matter-server). Connect the Matter integration to the same server that already serves your existing Matter devices. Do not create a new fabric without a reason.
 
-Добавляйте Matter-over-Thread устройство из Companion app на телефоне, находясь рядом с новым устройством. Нужны QR/setup code, Bluetooth телефона, рабочая IPv6/multicast связность и правильный Thread dataset. **Bluetooth proxy ESPHome не заменяет Bluetooth телефона при Matter commissioning**. [HA Matter](https://www.home-assistant.io/integrations/matter/) описывает этот процесс и различие Matter/Thread: один логотип Thread не гарантирует поддержку Matter.
+Add a Matter-over-Thread device from the Companion app on the phone while standing near the new device. You need the QR/setup code, the phone's Bluetooth, working IPv6/multicast connectivity, and the correct Thread dataset. **The ESPHome Bluetooth proxy does not replace the phone's Bluetooth during Matter commissioning**. [HA Matter](https://www.home-assistant.io/integrations/matter/) describes this process and the distinction between Matter and Thread: a Thread logo alone does not guarantee Matter support.
 
-После включения одного устройства проверьте три вещи: состояние в HA меняется физически; отключение WAN не мешает локальному управлению; после перезапуска OTBR с сохранённым volume устройство возвращается без нового pairing. Для проверки независимости выключайте только один радиоузел за раз.
+After adding one device, check three things: a physical action changes its state in HA; disconnecting the WAN does not prevent local control; and the device returns without pairing again after restarting OTBR with its volume preserved. To check independence, turn off only one radio node at a time.
 
-## Bluetooth, LD2450 и BME680
+## Bluetooth, LD2450, and BME680
 
-Добавьте **ESPHome**, узел `ha-radio-hub-sensors.local` или его DHCP reservation, и локальный API encryption key. HA получит координаты/количество целей LD2450, presence, uptime, температуру/влажность/давление/газовое сопротивление BME680. Назначьте датчикам комнату; entity IDs создаёт HA, не подставляйте заранее выдуманные IDs в автоматизации.
+Add **ESPHome**, using node `ha-radio-hub-sensors.local` or its DHCP reservation and the local API encryption key. HA will receive LD2450 target coordinates/count, presence, uptime, and BME680 temperature/humidity/pressure/gas resistance. Assign the sensors to a room; HA creates the entity IDs, so do not put invented IDs into automations in advance.
 
-Добавьте **Bluetooth**, если его ещё нет. [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy/) передаёт BLE advertisements и предоставляет три одновременных активных GATT-соединения. BLE-устройства добавляются через свои интеграции (например, BTHome); proxy не делает совместимым произвольный Bluetooth Classic прибор. Число broadcast-датчиков не равно числу активных слотов.
+Add **Bluetooth** if it is not already present. The [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy/) forwards BLE advertisements and provides three simultaneous active GATT connections. Add BLE devices through their own integrations, such as BTHome; the proxy does not make an arbitrary Bluetooth Classic appliance compatible. The number of broadcast sensors is not the number of active connection slots.
 
-Проверка LD2450: переместитесь слева направо и подтвердите изменение координат; отойдите и проверьте timeout. Presence не используйте как единственное условие отключения критичной нагрузки. Проверка BME680: сравните температуру/влажность с отдельным датчиком после прогрева и с закрытым корпусом; нагрев Pi не исправляется универсальным вычитанием нескольких градусов. Gas Resistance публикуется в омах, не в ppm.
+LD2450 check: move from left to right and confirm that coordinates change; move away and check the timeout. Do not use presence as the sole condition for switching off a critical load. BME680 check: compare temperature/humidity with a separate sensor after warm-up and with the enclosure closed; Pi heating cannot be corrected by universally subtracting a few degrees. Gas Resistance is published in ohms, not ppm.
 
-## Z-Wave: перенос существующего ZAC93
+## Z-Wave: moving the existing ZAC93
 
-Плата ZAC93 сохраняет существующую сеть при замене UART-host, если её память не стирается. Сначала сделайте backup NVM и ключей существующего Z-Wave JS, остановите его driver, обесточьте обе ESP32, перенесите четыре провода ZAC93 по схеме и запустите новый S3-ETH. У старого ESP32 больше не должно быть физического подключения к этому модулю.
+The ZAC93 board retains its existing network when its UART host is replaced, provided its memory is not erased. First back up the existing Z-Wave JS NVM and keys, stop its driver, power off both ESP32 boards, move the four ZAC93 wires according to the diagram, and start the new S3-ETH. The old ESP32 must no longer be physically connected to this module.
 
-В **существующем Z-Wave JS UI** замените Serial Port на `esphome://ha-radio-hub-sensors.local:6053?key=URL_ENCODED_API_KEY`, сохранив network keys. Получить корректно encoded URL можно локальной командой Python:
+In the **existing Z-Wave JS UI**, change Serial Port to `esphome://ha-radio-hub-sensors.local:6053?key=URL_ENCODED_API_KEY`, keeping the network keys. You can generate a correctly encoded URL with this local Python command:
 
 ```sh
 python3 -c 'from getpass import getpass; from urllib.parse import quote; print("esphome://ha-radio-hub-sensors.local:6053?key=" + quote(getpass("API key: "), safe=""))'
 ```
 
-Результат содержит секрет; не публикуйте его в issue/log. Формат transport определён [Z-Wave JS](https://github.com/zwave-js/zwave-js/blob/master/docs/usage/esphome-connection.md). В поле WebSocket server интеграции HA остаётся адрес **Z-Wave JS server**, обычно `ws://ZWAVE_JS_HOST:3000`, а не ESP32:6053. Один driver подписывается на proxy. Отдельное подключение ESPHome-интеграции для BLE/датчиков нормально.
+The result contains a secret; do not publish it in an issue or log. The transport format is defined by [Z-Wave JS](https://github.com/zwave-js/zwave-js/blob/master/docs/usage/esphome-connection.md). The HA integration's WebSocket server field remains the address of the **Z-Wave JS server**, usually `ws://ZWAVE_JS_HOST:3000`, not ESP32:6053. One driver subscribes to the proxy. A separate connection from the ESPHome integration for BLE/sensors is normal.
 
-Подтвердите прежний Home ID, регион радио и список устройств; вызовите физическое событие известного Z-Wave-датчика. Не выполняйте exclusion/re-inclusion всех устройств для смены UART-host. Если новая комбинация нестабильна, остановите driver, верните модуль на старую ESP32 и верните её transport URL, сохранив те же сетевые ключи. Для нового пустого ZAC93 следуйте [проекту zac93-esp32](https://github.com/ha-homelab/zac93-esp32).
+Confirm the previous Home ID, radio region, and device list; trigger a physical event on a known Z-Wave sensor. Do not exclude/re-include all devices merely to change the UART host. If the new combination is unstable, stop the driver, return the module to the old ESP32, and restore its transport URL while keeping the same network keys. For a new, empty ZAC93, follow the [zac93-esp32 project](https://github.com/ha-homelab/zac93-esp32).
 
 ## RF
 
-Проводной RF-узел использует `firmware/rf-ethernet.yaml` на **второй S3-ETH-M**. MQTT получает прежние `rf/received`, `rf/received/raw`, `rf/transmit/result`; native API предоставляет `send_rf_code` и `send_dooya_code`. Source/topics и коды берутся из приватного wrapper. Экспериментальное событие `esphome.radio_hub_rf_received` и действие `send_rc_switch` больше не являются интерфейсом этого порта.
+The wired RF node uses `firmware/rf-ethernet.yaml` on the **second S3-ETH-M**. MQTT receives the existing `rf/received`, `rf/received/raw`, and `rf/transmit/result` topics; the native API provides `send_rf_code` and `send_dooya_code`. Source/topics and codes come from the private wrapper. The experimental `esphome.radio_hub_rf_received` event and `send_rc_switch` action are no longer interfaces of this port.
 
-Перед подключением выполните [полную процедуру переноса RF](../hardware/rf-migration.md): резервная копия, офлайн-импорт, сборка приватного wrapper, стенд, отключение старого узла, новая интеграция, сопоставление entities и откат. **MAC и HA registry identity меняются**. Старые имена можно сохранить в YAML, а прежние entity ID назначить новым соответствующим сущностям после освобождения ID старых записей; device triggers и ссылки `device_id` проверяются отдельно.
+Before connecting, follow the [full RF migration procedure](../hardware/rf-migration.md): backup, offline import, private wrapper build, bench test, old-node shutdown, new integration, entity mapping, and rollback. **The MAC address and HA registry identity change**. You can retain the old names in YAML and assign previous entity IDs to the corresponding new entities after releasing the IDs from the old records; check device triggers and `device_id` references separately.
 
-Проверьте зарегистрированные action names в Developer tools → Actions. Для прежнего имени `rf` ожидаются `esphome.rf_send_rf_code` и `esphome.rf_send_dooya_code`. MQTT receive-автоматизации сохраняют прежние строковые коды с ведущими нулями. Native RM433 event имеет типы `button_1`…`button_8`; не включайте параллельные native/MQTT автоматизации для одного нажатия.
+Check the registered action names in Developer tools → Actions. For the previous name `rf`, expect `esphome.rf_send_rf_code` and `esphome.rf_send_dooya_code`. MQTT receive automations retain the previous string codes with leading zeros. Native RM433 events have types `button_1`…`button_8`; do not enable parallel native/MQTT automations for the same button press.
 
-RX и отправка команды проверяются отдельно: `send_finished` и `delivery_confirmed: false` не подтверждают физическое действие приёмника. После каждой успешной передачи проверьте `receiver_resumed: true` и возвращение RX. `send_failed` означает обнаруженную ошибку radio/RMT или кооперативный timeout; защёлкнутый fault требует перезапуска и поиска причины. Таймер 30 секунд работает только при живом event loop, поэтому блокировка драйвера не имеет гарантированного предела восстановления. RX после успеха работает и в 750-мс cooldown, который блокирует только новые TX-команды. Все аппаратные проверки пока выполняются на вашем стенде; репозиторий не изменяет действующую HA-установку.
+Test RX and command transmission separately: `send_finished` and `delivery_confirmed: false` do not confirm a physical action at the receiver. After every successful transmission, check `receiver_resumed: true` and that RX returns. `send_failed` means a detected radio/RMT error or cooperative timeout; a latched fault requires a restart and investigation. The 30-second timer works only while the event loop is running, so a blocked driver has no guaranteed recovery deadline. After success, RX also works during the 750 ms cooldown, which blocks only new TX commands. All hardware checks still need to be performed on your bench; the repository does not modify the running HA installation.

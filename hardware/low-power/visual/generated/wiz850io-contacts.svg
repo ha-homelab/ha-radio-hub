@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1080" viewBox="0 0 1000 1080">
+<rect width="1000" height="1080" fill="#f8fafc"/>
+<style>text{font-family:Arial,sans-serif;fill:#17263c}.title{font-size:29px;font-weight:bold}.label{font-size:14px}.note{font-size:16px}</style>
+<text x="40.000" y="48.000" class="title" text-anchor="start" >WIZ850io header contact locations</text>
+<text x="40.000" y="80.000" class="note" text-anchor="start" >PCB footprint top view; module view requires datasheet</text>
+<text x="40.000" y="108.000" class="note" text-anchor="start" >CONTACT REFERENCE ONLY - not a Gerber, drill template or fabrication release</text>
+<text x="500.000" y="145.000" class="note" text-anchor="middle" >Nominal body 23 x 25 mm | x right, y down</text>
+<rect x="219.40000000000003" y="240" width="561.1999999999999" height="610.0" fill="#e6edf3" stroke="#496179" stroke-width="2"/>
+<text x="500.000" y="227.000" class="label" text-anchor="middle" >RJ45 MOUTH / 2.7 mm beyond PCB</text>
+<rect x="303.58000000000004" y="174.12" width="392.84000000000003" height="65.88" fill="none" stroke="#496179" stroke-dasharray="5 4"/>
+<g data-pad="J1.1"><title>J1.1 GND [1.34, 6.4]</title>
+<circle cx="252.09600000000003" cy="396.15999999999997" r="5" fill="#ffffff" stroke="#d9483b" stroke-width="2"/>
+<path d="M 244.09600000000003 396.15999999999997 h 16 M 252.09600000000003 388.15999999999997 v 16" stroke="#d9483b"/>
+</g>
+<text x="229.096" y="401.160" class="label" text-anchor="end" >J1.1 GND</text>
+<g data-pad="J1.2"><title>J1.2 GND [1.34, 8.94]</title>
+<circle cx="252.09600000000003" cy="458.13599999999997" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 244.09600000000003 458.13599999999997 h 16 M 252.09600000000003 450.13599999999997 v 16" stroke="#b56f16"/>
+</g>
+<text x="229.096" y="463.136" class="label" text-anchor="end" >J1.2 GND</text>
+<g data-pad="J1.3"><title>J1.3 MOSI [1.34, 11.48]</title>
+<circle cx="252.09600000000003" cy="520.112" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 244.09600000000003 520.112 h 16 M 252.09600000000003 512.112 v 16" stroke="#b56f16"/>
+</g>
+<text x="229.096" y="525.112" class="label" text-anchor="end" >J1.3 MOSI</text>
+<g data-pad="J1.4"><title>J1.4 SCLK [1.34, 14.02]</title>
+<circle cx="252.09600000000003" cy="582.088" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 244.09600000000003 582.088 h 16 M 252.09600000000003 574.088 v 16" stroke="#b56f16"/>
+</g>
+<text x="229.096" y="587.088" class="label" text-anchor="end" >J1.4 SCLK</text>
+<g data-pad="J1.5"><title>J1.5 SCNn [1.34, 16.56]</title>
+<circle cx="252.09600000000003" cy="644.064" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 244.09600000000003 644.064 h 16 M 252.09600000000003 636.064 v 16" stroke="#b56f16"/>
+</g>
+<text x="229.096" y="649.064" class="label" text-anchor="end" >J1.5 SCNn</text>
+<g data-pad="J1.6"><title>J1.6 INTn [1.34, 19.1]</title>
+<circle cx="252.09600000000003" cy="706.04" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 244.09600000000003 706.04 h 16 M 252.09600000000003 698.04 v 16" stroke="#b56f16"/>
+</g>
+<text x="229.096" y="711.040" class="label" text-anchor="end" >J1.6 INTn</text>
+<g data-pad="J2.1"><title>J2.1 GND [21.66, 6.4]</title>
+<circle cx="747.904" cy="396.15999999999997" r="5" fill="#ffffff" stroke="#d9483b" stroke-width="2"/>
+<path d="M 739.904 396.15999999999997 h 16 M 747.904 388.15999999999997 v 16" stroke="#d9483b"/>
+</g>
+<text x="770.904" y="401.160" class="label" text-anchor="start" >J2.1 GND</text>
+<g data-pad="J2.2"><title>J2.2 3V3D [21.66, 8.94]</title>
+<circle cx="747.904" cy="458.13599999999997" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 739.904 458.13599999999997 h 16 M 747.904 450.13599999999997 v 16" stroke="#b56f16"/>
+</g>
+<text x="770.904" y="463.136" class="label" text-anchor="start" >J2.2 3V3D</text>
+<g data-pad="J2.3"><title>J2.3 3V3D [21.66, 11.48]</title>
+<circle cx="747.904" cy="520.112" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 739.904 520.112 h 16 M 747.904 512.112 v 16" stroke="#b56f16"/>
+</g>
+<text x="770.904" y="525.112" class="label" text-anchor="start" >J2.3 3V3D</text>
+<g data-pad="J2.4"><title>J2.4 NC [21.66, 14.02]</title>
+<circle cx="747.904" cy="582.088" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 739.904 582.088 h 16 M 747.904 574.088 v 16" stroke="#b56f16"/>
+</g>
+<text x="770.904" y="587.088" class="label" text-anchor="start" >J2.4 NC</text>
+<g data-pad="J2.5"><title>J2.5 RSTn [21.66, 16.56]</title>
+<circle cx="747.904" cy="644.064" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 739.904 644.064 h 16 M 747.904 636.064 v 16" stroke="#b56f16"/>
+</g>
+<text x="770.904" y="649.064" class="label" text-anchor="start" >J2.5 RSTn</text>
+<g data-pad="J2.6"><title>J2.6 MISO [21.66, 19.1]</title>
+<circle cx="747.904" cy="706.04" r="5" fill="#ffffff" stroke="#b56f16" stroke-width="2"/>
+<path d="M 739.904 706.04 h 16 M 747.904 698.04 v 16" stroke="#b56f16"/>
+</g>
+<text x="770.904" y="711.040" class="label" text-anchor="start" >J2.6 MISO</text>
+<text x="40.000" y="883.000" class="note" text-anchor="start" >23x25 body; 20.32 row spacing; 2.54 pitch; pin1 6.4 from top; RJ45 overhang2.7</text>
+<text x="40.000" y="915.000" class="note" text-anchor="start" >Contact centres only: carrier hole/pad sizes are NOT specified here.</text>
+<text x="40.000" y="940.000" class="note" text-anchor="start" >J1 left, J2 right; mouth toward top. No PoE taps on these headers.</text>
+<text x="40.000" y="991.000" class="note" text-anchor="start" >Body/antenna outline is a reference, not a complete RF keep-out or case clearance.</text>
+<text x="40.000" y="1016.000" class="note" text-anchor="start" >Sources and source-derived coordinates: catalog.json, generated/contacts.json.</text>
+<text x="40.000" y="1041.000" class="note" text-anchor="start" >Red = first contact/orientation reference. Numbers identify pads, not ESP GPIOs.</text>
+</svg>

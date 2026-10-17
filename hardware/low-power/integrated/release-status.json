@@ -1,0 +1,15 @@
+{
+  "revision": "LP-I0",
+  "status": "engineering_prototype",
+  "fabrication_released": false,
+  "hardware_tested": false,
+  "blockers": [
+    "Independent schematic and footprint review against current manufacturer revisions, including MGM240P and PoE component placement.",
+    "Fabricator-selected four-layer stackup and verified 90-ohm USB / 100-ohm Ethernet differential geometry; inspect MDI layer changes, pair skew and return paths.",
+    "PoE input isolation, clearance/creepage, shield termination, surge/ESD and IEEE802.3 interoperability qualification.",
+    "Self-powered USB lacks VBUS-controlled attach in current firmware; USB compliance is not claimed.",
+    "Exact capacitor/resistor/TVS ordering codes, voltage/temperature/DC-bias derating and 5V input / 1.5A 3.3V rail load test.",
+    "RF antenna keepout and enclosure review, coexistence/range testing, programming and functional test of all three MCU modules.",
+    "Assembly method for through-hole PoE/buck/connectors and exposed-pad soldering/vias; DFM and first-article inspection."
+  ]
+}

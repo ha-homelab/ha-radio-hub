@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1080" viewBox="0 0 1000 1080">
+<rect width="1000" height="1080" fill="#f8fafc"/>
+<style>text{font-family:Arial,sans-serif;fill:#17263c}.title{font-size:29px;font-weight:bold}.label{font-size:14px}.note{font-size:16px}</style>
+<text x="40.000" y="48.000" class="title" text-anchor="start" >MGM240P built-in antenna</text>
+<text x="40.000" y="80.000" class="note" text-anchor="start" >PCB footprint top view; module view requires datasheet</text>
+<text x="40.000" y="108.000" class="note" text-anchor="start" >CONTACT REFERENCE ONLY - not a Gerber, drill template or fabrication release</text>
+<text x="500.000" y="145.000" class="note" text-anchor="middle" >Nominal body 12.9 x 15 mm | x right, y down</text>
+<rect x="325.85" y="175" width="348.3" height="405" fill="#e6edf3" stroke="#496179" stroke-width="2"/>
+<rect x="381.20000000000005" y="175" width="237.60000000000002" height="129.6" fill="#fef3c7" stroke="#a97b19" stroke-dasharray="6 4"/>
+<text x="500.000" y="239.800" class="label" text-anchor="middle" >ANTENNA REGION</text>
+<g data-pad="1"><title>1  [0.8, 0.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,193.9) rotate(0)" fill="#d9483b"/>
+</g>
+<text x="302.450" y="198.900" class="label" text-anchor="end" >1</text>
+<g data-pad="2"><title>2  [0.8, 1.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,220.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="225.900" class="label" text-anchor="end" >2</text>
+<g data-pad="3"><title>3  [0.8, 2.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,247.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="252.900" class="label" text-anchor="end" >3</text>
+<g data-pad="4"><title>4  [0.8, 3.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,274.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="279.900" class="label" text-anchor="end" >4</text>
+<g data-pad="5"><title>5  [0.8, 4.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,301.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="306.900" class="label" text-anchor="end" >5</text>
+<g data-pad="6"><title>6  [0.8, 5.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,328.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="333.900" class="label" text-anchor="end" >6</text>
+<g data-pad="7"><title>7  [0.8, 6.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,355.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="360.900" class="label" text-anchor="end" >7</text>
+<g data-pad="8"><title>8  [0.8, 7.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,382.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="387.900" class="label" text-anchor="end" >8</text>
+<g data-pad="9"><title>9  [0.8, 8.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,409.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="414.900" class="label" text-anchor="end" >9</text>
+<g data-pad="10"><title>10  [0.8, 9.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,436.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="441.900" class="label" text-anchor="end" >10</text>
+<g data-pad="11"><title>11  [0.8, 10.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,463.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="468.900" class="label" text-anchor="end" >11</text>
+<g data-pad="12"><title>12  [0.8, 11.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,490.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="495.900" class="label" text-anchor="end" >12</text>
+<g data-pad="13"><title>13  [0.8, 12.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,517.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="522.900" class="label" text-anchor="end" >13</text>
+<g data-pad="14"><title>14  [0.8, 13.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(347.45000000000005,544.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="302.450" y="549.900" class="label" text-anchor="end" >14</text>
+<g data-pad="15"><title>15  [2.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(405.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="405.500" y="606.400" class="label" text-anchor="middle" >15</text>
+<g data-pad="16"><title>16  [3.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(432.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="432.500" y="606.400" class="label" text-anchor="middle" >16</text>
+<g data-pad="17"><title>17  [4.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(459.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="459.500" y="606.400" class="label" text-anchor="middle" >17</text>
+<g data-pad="18"><title>18  [5.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(486.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="486.500" y="606.400" class="label" text-anchor="middle" >18</text>
+<g data-pad="19"><title>19  [6.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(513.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="513.500" y="606.400" class="label" text-anchor="middle" >19</text>
+<g data-pad="20"><title>20  [7.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(540.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="540.500" y="606.400" class="label" text-anchor="middle" >20</text>
+<g data-pad="21"><title>21  [8.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(567.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="567.500" y="606.400" class="label" text-anchor="middle" >21</text>
+<g data-pad="22"><title>22  [9.95, 14.2]</title>
+<rect x="-8.1" y="-32.4" width="16.2" height="64.8" rx="8.1" transform="translate(594.5,558.4) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="594.500" y="606.400" class="label" text-anchor="middle" >22</text>
+<g data-pad="23"><title>23  [12.1, 13.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,544.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="549.900" class="label" text-anchor="start" >23</text>
+<g data-pad="24"><title>24  [12.1, 12.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,517.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="522.900" class="label" text-anchor="start" >24</text>
+<g data-pad="25"><title>25  [12.1, 11.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,490.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="495.900" class="label" text-anchor="start" >25</text>
+<g data-pad="26"><title>26  [12.1, 10.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,463.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="468.900" class="label" text-anchor="start" >26</text>
+<g data-pad="27"><title>27  [12.1, 9.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,436.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="441.900" class="label" text-anchor="start" >27</text>
+<g data-pad="28"><title>28  [12.1, 8.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,409.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="414.900" class="label" text-anchor="start" >28</text>
+<g data-pad="29"><title>29  [12.1, 7.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,382.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="387.900" class="label" text-anchor="start" >29</text>
+<g data-pad="30"><title>30  [12.1, 6.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,355.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="360.900" class="label" text-anchor="start" >30</text>
+<g data-pad="31"><title>31  [12.1, 5.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,328.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="333.900" class="label" text-anchor="start" >31</text>
+<g data-pad="32"><title>32  [12.1, 4.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,301.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="306.900" class="label" text-anchor="start" >32</text>
+<g data-pad="33"><title>33  [12.1, 3.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,274.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="279.900" class="label" text-anchor="start" >33</text>
+<g data-pad="34"><title>34  [12.1, 2.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,247.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="252.900" class="label" text-anchor="start" >34</text>
+<g data-pad="35"><title>35  [12.1, 1.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,220.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="225.900" class="label" text-anchor="start" >35</text>
+<g data-pad="36"><title>36  [12.1, 0.7]</title>
+<rect x="-32.4" y="-8.1" width="64.8" height="16.2" rx="8.1" transform="translate(652.55,193.9) rotate(0)" fill="#b56f16"/>
+</g>
+<text x="697.550" y="198.900" class="label" text-anchor="start" >36</text>
+<text x="40.000" y="883.000" class="note" text-anchor="start" >Manufacturer drawing read visually; latest revision must be checked before fabrication</text>
+<text x="40.000" y="915.000" class="note" text-anchor="start" >Top-view land pattern: pad1 upper left, pad36 upper right.</text>
+<text x="40.000" y="940.000" class="note" text-anchor="start" >Shown keep-out is Fig8.3 only; additional placement clearances apply.</text>
+<text x="40.000" y="991.000" class="note" text-anchor="start" >Body/antenna outline is a reference, not a complete RF keep-out or case clearance.</text>
+<text x="40.000" y="1016.000" class="note" text-anchor="start" >Sources and source-derived coordinates: catalog.json, generated/contacts.json.</text>
+<text x="40.000" y="1041.000" class="note" text-anchor="start" >Red = first contact/orientation reference. Numbers identify pads, not ESP GPIOs.</text>
+</svg>

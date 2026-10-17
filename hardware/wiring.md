@@ -1,73 +1,77 @@
-# Соединения ревизии A
+# Revision A wiring
 
-[Машиночитаемый список сигналов](wiring.csv). Список задаёт **имена сигналов**, а не вид разъёма спереди: обратная сторона платы зеркальна. Перед монтажом сверить маркировку и [схему Waveshare](https://files.waveshare.com/wiki/ESP32-S3-ETH/ESP32-S3-ETH-Schematic.pdf). GPIO — номер ESP32, не номер контакта Pico header.
+This page describes the original **Pi + two S3 boards** assembly. For the
+**single-S3 low-power design**, use the [visual wiring atlas](low-power/visual/README.md)
+and its PCB connector maps. The GPIO assignments differ between these designs.
 
-## Ethernet и USB
+[Machine-readable signal list](wiring.csv). The list specifies **signal names**, not the front view of a connector: the back of the board is mirrored. Before assembly, check the markings and the [Waveshare schematic](https://files.waveshare.com/wiki/ESP32-S3-ETH/ESP32-S3-ETH-Schematic.pdf). GPIO refers to an ESP32 pin number, not a Pico header contact number.
 
-- Внешний PoE кабель → вход splitter. Несъёмный male RJ45 Ethernet out splitter → port 1 TL-SF1005D v13 напрямую, без отдельного patch cable.
-- Port 2 switch → RJ45 Pi 4; port 3 → RJ45 основной ESP32-S3-ETH; port 4 → RJ45 второй ESP32-S3-ETH для RF. Port 5 свободен. Для варианта со старой Wi-Fi RF платой port 4 также свободен.
-- Pi USB 2.0 → короткий экранированный USB удлинитель → SLZB-07Mg24 (Zigbee).
-- Второй Pi USB 2.0 → короткий удлинитель → Nordic PCA10059 (Thread).
-- Пять ветвей 5 V распределения → Pi USB-C, switch DC input, основная S3 USB-C, RF S3 USB-C и LD2450 5V. В Wi-Fi варианте четвёртая ветвь питает NodeMCU micro-USB вместо RF S3. Выход splitter только 5 V; проверить точный размер/полярность DC штекера switch по своему экземпляру. Не полагаться на совпадение наружного диаметра. Разъёмы и состав жгутов перечислены в [комплектовании](procurement.md).
+## Ethernet and USB
 
-Силовые C4/C9 — DFRobot FIT0993: клемма `+` получает 5 V своей защищённой ветви, `−` — GND; `D+`, `D−`, `S` не подключаются. C3 — Adafruit 4536 с питающим штекером C17 (Same Sky PP3-002A, центр +5 V, наружный GND). Для всего жгута Pi проверка до 3 A обязательна: у 4536 такой токовый рейтинг не опубликован. Не подключать питание компьютера параллельно этой разводке.
+- External PoE cable → splitter input. Splitter's captive male RJ45 Ethernet output → TL-SF1005D v13 port 1 directly, with no separate patch cable.
+- Switch port 2 → Pi 4 RJ45; port 3 → main ESP32-S3-ETH RJ45; port 4 → second ESP32-S3-ETH RJ45 for RF. Port 5 is free. In the old Wi-Fi RF board option, port 4 is also free.
+- Pi USB 2.0 → short shielded USB extension → SLZB-07Mg24 (Zigbee).
+- Second Pi USB 2.0 → short extension → Nordic PCA10059 (Thread).
+- Five 5 V distribution branches → Pi USB-C, switch DC input, main S3 USB-C, RF S3 USB-C and LD2450 5V. In the Wi-Fi option, the fourth branch powers NodeMCU micro-USB instead of the RF S3. The splitter output must be 5 V only; check the exact switch DC plug dimensions/polarity on the actual unit. Do not rely on a matching outer diameter. Connectors and harness parts are listed in the [procurement checklist](procurement.md).
 
-У S3 плата **ESP32-S3-ETH-M**, 16 MB flash + 8 MB PSRAM, без камеры, карты microSD и дополнительного PoE модуля. Задействованы аппаратные UART; это исключает общую загрузку bit-bang UART с BLE.
+Power leads C4/C9 are DFRobot FIT0993: terminal `+` receives 5 V from its fused branch, `−` receives GND; `D+`, `D−` and `S` are not connected. C3 is Adafruit 4536 with power plug C17 (Same Sky PP3-002A, center +5 V, outer GND). Testing the complete Pi harness up to 3 A is mandatory: no such current rating is published for 4536. Do not connect computer power in parallel with this wiring.
 
-## Встроенный W5500
+The S3 board is **ESP32-S3-ETH-M**, 16 MB flash + 8 MB PSRAM, with no camera, microSD card or additional PoE module. Hardware UARTs are used to avoid sharing the processing load of bit-banged UARTs with BLE.
 
-Эти цепи уже на плате, их не нужно соединять проводами: SCLK GPIO13, MOSI GPIO11, MISO GPIO12, CS GPIO14, INT GPIO10, RESET GPIO9. GPIO19/20 заняты native USB; GPIO21 — RGB LED. Эти контакты не используются как expansion.
+## Built-in W5500
+
+These connections are already on the board and need no external wires: SCLK GPIO13, MOSI GPIO11, MISO GPIO12, CS GPIO14, INT GPIO10, RESET GPIO9. GPIO19/20 are assigned to native USB; GPIO21 is the RGB LED. These pins are not used for expansion.
 
 ## ZAC93
 
-Проверить ревизию и маркировку модуля. [Zooz manual](https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf) задаёт **3.3 V DC**. На совместимом 2×5 header:
+Check the module revision and markings. The [Zooz manual](https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf) specifies **3.3 V DC**. On the compatible 2×5 header:
 
 - ZAC93 pin 1 `3V3` ← S3 `3V3`.
-- ZAC93 pin 6 `GND` ↔ S3 GND; pin 9 тоже земля.
+- ZAC93 pin 6 `GND` ↔ S3 GND; pin 9 is also ground.
 - ZAC93 pin 8 `RX` ← S3 GPIO17 TX.
 - ZAC93 pin 10 `TX` → S3 GPIO18 RX.
-- Остальные пины не подключаются. У hardware v2 pin 7 является reset, у старой ревизии обозначался PC01. Не повторять чужой reset circuit без проверки ревизии.
+- Leave the remaining pins unconnected. Hardware v2 uses pin 7 for reset; the older revision labeled it PC01. Do not copy another reset circuit without checking the revision.
 
-UART 115200, 8N1. Логика 3.3 V; MAX232/RS232 уровни сюда не подходят. Это перенос самой ZAC93 с прежней ESP32 платы; прежняя ESP32 прошивка остаётся вариантом отката. До переноса сохранить Z-Wave NVM/ключи приватно и остановить прежнего владельца serial/controller. Один контроллер не должен одновременно обслуживаться двумя Z-Wave серверами.
+UART 115200, 8N1. Logic is 3.3 V; MAX232/RS232 levels are unsuitable. Move the ZAC93 itself from the previous ESP32 board; retain the previous ESP32 firmware for rollback. Before moving it, privately back up the Z-Wave NVM/keys and stop the previous serial/controller owner. Two Z-Wave servers must not operate one controller simultaneously.
 
 ## LD2450
 
-Использовать коннектор, поставляемый с **HLK-LD2450**, а не кабель от LD2410. Распиновку читать с самого модуля:
+Use the connector supplied with **HLK-LD2450**, not an LD2410 cable. Read the pinout from the module itself:
 
-- `5V` ← отдельная защищённая 5 V ветвь.
-- `GND` ↔ общая земля S3.
+- `5V` ← separate fused 5 V branch.
+- `GND` ↔ common S3 ground.
 - `TX` → S3 GPIO5 RX.
 - `RX` ← S3 GPIO4 TX.
 
-UART 256000, 8N1, уровни 3.3 V. GPIO4/5 соединены также со слотом microSD, поэтому **карта microSD должна отсутствовать**. Камера также отсутствует. Минимальная версия radar firmware для ESPHome — V2.02.23090617 согласно [ESPHome](https://esphome.io/components/sensor/ld2450/).
+UART 256000, 8N1, 3.3 V levels. GPIO4/5 are also connected to the microSD slot, so **no microSD card may be installed**. The camera must also be absent. The minimum radar firmware for ESPHome is V2.02.23090617 according to [ESPHome](https://esphome.io/components/sensor/ld2450/).
 
-## BME680 и I²C expansion
+## BME680 and I²C expansion
 
-Выбрана Adafruit BME680 STEMMA QT, product 3660. Отдельно заказать [Adafruit 4397](https://www.adafruit.com/product/4397): JST-SH 4-pin/1.0 mm → female sockets, 150 mm. Female sockets подходят к male headers выбранной S3-ETH-M; кабеля в комплекте BME680 нет. Порядок смотреть по маркировке производителя, не «на глаз»:
+The selected board is Adafruit BME680 STEMMA QT, product 3660. Order [Adafruit 4397](https://www.adafruit.com/product/4397) separately: JST-SH 4-pin/1.0 mm → female sockets, 150 mm. The female sockets fit the male headers on the selected S3-ETH-M; the BME680 does not include this cable. Follow the manufacturer's markings, not visual guesses:
 
 - VIN/V+ → S3 **3V3**.
 - GND → S3 GND.
 - SDA/SDI → S3 GPIO1.
 - SCL/SCK → S3 GPIO2.
 
-I²C 100 kHz. Адрес Adafruit по умолчанию **0x77**; `SDO→GND` переключает в 0x76. На breakout уже есть подтяжки; при нескольких модулях проверить их параллельное сопротивление. GPIO1/2 разделены с камерой, поэтому подключение камеры исключено. Длина I²C жгута — первоначально 10–20 cm; большее расстояние требует проверки фронтов/ёмкости или дифференциального I²C extender, не просто длинного кабеля.
+I²C 100 kHz. The default Adafruit address is **0x77**; `SDO→GND` changes it to 0x76. The breakout already has pull-ups; check their parallel resistance when using several modules. GPIO1/2 are shared with the camera, so a camera cannot be connected. Initially limit the I²C harness to 10–20 cm; longer distances require edge/capacitance checks or a differential I²C extender, not just a longer cable.
 
-Второй STEMMA QT разъём можно использовать для ещё одного **3.3 V-compatible** I²C датчика с другим адресом. Свободный адрес не означает гарантированный запас питания. В готовой прошивке подключён BME680; дополнительные сенсоры требуют явного компонента ESPHome. Не подключать hot-plug, 5 V pull-ups, длинные уличные провода или сильные нагрузки на этот разъём.
+The second STEMMA QT connector can support another **3.3 V-compatible** I²C sensor with a different address. An unused address does not guarantee power headroom. The supplied firmware configures BME680; additional sensors require explicit ESPHome components. Do not use this connector for hot-plugging, 5 V pull-ups, long outdoor wiring or heavy loads.
 
-## RF Airbridge — исходная плата
+## RF Airbridge — original board
 
-Существующий NodeMCU v2/ESP8266 сохранён с CC1101 433.92 MHz. По публичному проекту [RF Airbridge](https://github.com/ha-homelab/rf-airbridge): SCLK GPIO14/D5, MOSI GPIO13/D7, MISO GPIO12/D6, CS GPIO15/D8, GDO0 GPIO4/D2, VCC 3V3, GND общий. GDO0 общий для RX/TX, радио полудуплексное. GDO2 не используется. Питание NodeMCU 5 V через micro-USB; CC1101 получает 3.3 V от своей NodeMCU, не соединять его 3V3 с выходом S3 регулятора.
+The existing NodeMCU v2/ESP8266 is retained with CC1101 433.92 MHz. According to the public [RF Airbridge](https://github.com/ha-homelab/rf-airbridge) project: SCLK GPIO14/D5, MOSI GPIO13/D7, MISO GPIO12/D6, CS GPIO15/D8, GDO0 GPIO4/D2, VCC 3V3 and common GND. GDO0 is shared for RX/TX; the radio is half-duplex. GDO2 is unused. Power NodeMCU with 5 V through micro-USB; CC1101 receives 3.3 V from its own NodeMCU. Do not join this 3V3 rail to the S3 regulator output.
 
-Сеть этой исходной платы — Wi-Fi. Наличие внутреннего Ethernet switch само по себе не меняет транспорт ESP8266. Реальные RF коды, MAC/IP, ключи и Wi-Fi учётные данные в публичный проект не переносятся.
+The original board uses Wi-Fi. An internal Ethernet switch alone does not change the ESP8266 transport. Actual RF codes, MAC/IP addresses, keys and Wi-Fi credentials are not copied into the public project.
 
-## RF Ethernet — замена NodeMCU на ESP32-S3
+## RF Ethernet — replacing NodeMCU with ESP32-S3
 
-Вторая ESP32-S3-ETH-M получает отдельные 5 V и Ethernet port 4. Основная плата с BME680/ZAC93/LD2450 не используется для этих соединений. Карта новой прошивки: CLK GPIO7, MOSI GPIO8, MISO GPIO6, CS GPIO15; **GPIO4 TX → GDO0**, **GDO2 → GPIO5 RX**; CC1101 VCC3V3/GND. MicroSD и камера отсутствуют. GDO0/GDO2 разделены намеренно, это не существующая однопроводная распиновка NodeMCU. Если у модуля GDO2 не выведен, сначала выбрать подходящий модуль/пайку по его схеме; не подставлять другую площадку.
+The second ESP32-S3-ETH-M receives a separate 5 V branch and Ethernet port 4. The main BME680/ZAC93/LD2450 board is not used for these connections. The new firmware map is CLK GPIO7, MOSI GPIO8, MISO GPIO6, CS GPIO15; **GPIO4 TX → GDO0**, **GDO2 → GPIO5 RX**; CC1101 VCC3V3/GND. No microSD card or camera is installed. GDO0/GDO2 are deliberately separate; this differs from the existing single-wire NodeMCU pinout. If GDO2 is not exposed on the module, first select a suitable module or solder connection based on its schematic; do not substitute another pad.
 
-Обязательно добавьте **R1 = 4,7 кОм между GPIO4/GDO0 и локальными 3V3 второй S3**. Передатчик работает с открытым стоком и отпускает линию во время приёма: CC1101 в async-режиме может сам выдавать данные на GDO0. Подтяжка к 5 V запрещена. Прошивка удерживает низкий уровень в паузах между повторами, затем отпускает линию перед возвратом в RX. GDO2 подключается непосредственно к GPIO5. Основание — [TI CC1101, §27.1 и таблица 41](https://www.ti.com/lit/ds/symlink/cc1101.pdf); проверяйте фронты на собранном жгуте.
+Add **R1 = 4.7 kΩ between GPIO4/GDO0 and the second S3's local 3V3**. The transmitter uses open-drain and releases the line during reception: CC1101 can itself drive GDO0 in asynchronous mode. A pull-up to 5 V is prohibited. The firmware holds the line low during gaps between repeats, then releases it before returning to RX. GDO2 connects directly to GPIO5. The basis is [TI CC1101, §27.1 and Table 41](https://www.ti.com/lit/ds/symlink/cc1101.pdf); check signal edges on the assembled harness.
 
-Проверить нагрузку общего питания с этой веткой по [power.md](power.md). Приватные RF-коды и настройки переносятся по [инструкции миграции](rf-migration.md). Новый MAC требует проверки идентификаторов в HA; совпадение имени узла само по себе не сохраняет запись устройства. Проверка на физической плате остаётся обязательной.
+Check the shared supply load with this branch against [power.md](power.md). Migrate private RF codes and settings using the [migration instructions](rf-migration.md). A new MAC requires HA identity checks; a matching node name alone does not preserve the device record. Testing on physical hardware remains mandatory.
 
-## Локальные настройки Zigbee USB
+## Local Zigbee USB settings
 
-Для SLZB-07Mg24 исходный профиль — 115200 baud, 8N1 и hardware RTS/CTS. [SMLIGHT setup](https://smlight.tech/support/manuals/books/slzb-07pxmgx/page/zigbee2mqtt-setup) указывает RTS/CTS для SLZB-07/MGx; [benchmark](https://smlight.tech/blog/zigbee-over-ethernet-vs-usb-latency-test) использует 115200. Проверить по установленной версии NCP; значение на стороне ZHA TCP не меняет настройки физического UART в ser2net на Pi. Для изменённой прошивки UART параметры должны быть обновлены именно на Pi.
+The baseline SLZB-07Mg24 profile is 115200 baud, 8N1 and hardware RTS/CTS. [SMLIGHT setup](https://smlight.tech/support/manuals/books/slzb-07pxmgx/page/zigbee2mqtt-setup) specifies RTS/CTS for SLZB-07/MGx; its [benchmark](https://smlight.tech/blog/zigbee-over-ethernet-vs-usb-latency-test) uses 115200. Check against the installed NCP version; the ZHA TCP-side setting does not change the physical UART configuration in ser2net on the Pi. With modified firmware, update UART parameters on the Pi itself.

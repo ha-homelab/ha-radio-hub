@@ -1,0 +1,4 @@
+.build/
+*.kicad_prl
+*.lck
+__pycache__/
