@@ -29,9 +29,12 @@ on `main`, manual recovery also accepts a same-repository PR number and the exac
 shared workflow. Do not rerun an older commit's CI as evidence for a newer commit.
 
 `CodeRabbit Review Requests` uses the toolkit's deduplicated review-request flow
-for newly opened public PRs, plus manual dispatch for an existing PR. CodeRabbit
-must be installed for it to deliver a review. Automated approval and a CodeRabbit
-review are separate mechanisms.
+for newly opened PRs in active public repositories with fewer than ten stars,
+plus manual dispatch for an existing PR. The shared workflow skips repositories
+outside that eligibility policy. CodeRabbit must be installed for it to deliver
+a review. The opening trigger becomes available after this workflow reaches
+`main`; it does not run retroactively on the installation PR. Automated approval
+and a CodeRabbit review are separate mechanisms.
 
 `BOT_PAT` is an encrypted repository Actions **secret**, never an Actions variable
 or Terraform value. Its account is the existing `californiantiramisu` reviewer,
