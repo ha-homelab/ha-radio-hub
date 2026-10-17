@@ -2,7 +2,7 @@
   "revision": "LP-P0",
   "date": "2026-10-17",
   "status": "engineering_prototype_selection_not_order_release",
-  "quantities": "Peroneprototype; bench/carrieralternatives are not additive. No pricesorstockguarantee.",
+  "quantities": "Per LP-P0 concept prototype; alternatives are not additive. Use the selected PCB revision's assembly and harness BOMs for purchasing. No price or stock guarantee.",
   "items": [
     {
       "ref": "P1",
@@ -28,7 +28,7 @@
     {
       "ref": "P3",
       "qty": 1,
-      "model": "Pololu D24V22F3 / item2857",
+      "model": "Pololu D24V22F3 / item 2857",
       "phase": "both",
       "source": "https://www.pololu.com/product/2857",
       "note": "Synchronous 5 V to 3.3 V buck. Advertised 2.6 A is typical at 24 V input; validate 1.5 A at 5 V input. Do not substitute an LDO.",
@@ -93,7 +93,7 @@
     {
       "ref": "U5",
       "qty": 1,
-      "model": "Zooz ZAC93 regional existingmodule",
+      "model": "Existing regional Zooz ZAC93 module",
       "phase": "both",
       "source": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
       "note": "3.3 V only; retain the regional antenna. Inspect board revision, pin 7 reset function and physical dimensions before mounting."
@@ -101,7 +101,7 @@
     {
       "ref": "U6",
       "qty": 1,
-      "model": "Existing CC1101 433.92MHz module withSMAantenna",
+      "model": "Existing CC1101 433.92 MHz module with SMA antenna",
       "phase": "both",
       "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
       "note": "Must expose GDO2. The chip datasheet does not define the existing module header or dimensions. Retain the 433 MHz antenna."
@@ -122,7 +122,7 @@
     {
       "ref": "U8",
       "qty": 1,
-      "model": "Adafruit BME680 STEMMAQT /3660",
+      "model": "Adafruit BME680 STEMMA QT / item 3660",
       "phase": "both",
       "source": "https://www.adafruit.com/product/3660",
       "note": "External ventilated pod; 3.3 V VIN; I2C address 0x77; onboard pull-ups.",
@@ -228,7 +228,7 @@
     {
       "ref": "R1",
       "qty": 1,
-      "model": "4.7k\u03a9 1% 0.1W resistor",
+      "model": "4.7kΩ 1% 0.1W resistor",
       "phase": "both",
       "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
       "note": "GDO0 to 3.3 V; required for open-drain TX and release during receive."
@@ -236,7 +236,7 @@
     {
       "ref": "R2",
       "qty": 1,
-      "model": "1k\u03a9 1% 0.1W resistor",
+      "model": "1kΩ 1% 0.1W resistor",
       "phase": "both",
       "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
       "note": "IRQ to 3.3 V; value specified by NXP, not 10 kohm."
@@ -244,7 +244,7 @@
     {
       "ref": "R3",
       "qty": 12,
-      "model": "10k\u03a9 1% 0.1W resistor",
+      "model": "10kΩ 1% 0.1W resistor",
       "phase": "both",
       "source": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
       "note": "Pull-ups: three SPI CS signals, H2 EN, H2 BOOT, H2 GPIO8, SC16 RESET, unused RXB, S3 EN and S3 BOOT. Pull-down: H2 GPIO25. MG24 PA00 BOOT pull-up uses the twelfth resistor; no spare. Omit duplicates already installed on boards."
@@ -252,7 +252,7 @@
     {
       "ref": "R4",
       "qty": 8,
-      "model": "100k\u03a9 1% 0.1W resistor",
+      "model": "100kΩ 1% 0.1W resistor",
       "phase": "both",
       "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
       "note": "Unused SC16 GPIO0 through GPIO7 to GND. Avoid a hard short if a pin is later configured as an output."
@@ -260,7 +260,7 @@
     {
       "ref": "J1",
       "qty": 1,
-      "model": "Adafruit4397 QT 4pin to female sockets150mm",
+      "model": "Adafruit 4397 QT 4-pin to female sockets, 150 mm",
       "phase": "bench",
       "source": "https://www.adafruit.com/product/4397",
       "note": "BME cable: 150 mm is its total length, not its reach outside the case."
@@ -268,7 +268,7 @@
     {
       "ref": "J2",
       "qty": 1,
-      "model": "Cat5e short4pair RJ45patch lead",
+      "model": "Short Cat5e four-pair RJ45 patch lead",
       "phase": "bench",
       "source": "https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf",
       "note": "EvalPoE DATA OUT to WIZ850io. One external PoE cable; no internal switch."
@@ -276,7 +276,7 @@
     {
       "ref": "J3",
       "qty": 1,
-      "model": "28pin TSSOP0.65mm pitch breakout adapter",
+      "model": "28-pin TSSOP 0.65 mm pitch breakout adapter",
       "phase": "bench",
       "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
       "note": "Select the footprint before ordering. Place crystal and supervisor locally; avoid long breadboard clock wires."
@@ -284,7 +284,7 @@
     {
       "ref": "J4",
       "qty": 1,
-      "model": "2\u00d75 SWD service header1.27mm + compatible3V3probe",
+      "model": "2x5 SWD service header, 1.27 mm pitch, and compatible 3.3 V probe",
       "phase": "both",
       "source": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
       "note": "Expose MG24 SWCLK, SWDIO, RESETn, GND and VTref. Assign the header pinout and verify it against the probe before connecting. Also expose PA00/pad7 BOOT and GND as a separate service jumper; hold low through reset to enter XMODEM bootloader."
@@ -292,7 +292,7 @@
     {
       "ref": "J5",
       "qty": 1,
-      "model": "Locking5V/GND powerdistribution,\u22652A percontact,\u22640.05\u03a9 wholeloop",
+      "model": "Locking 5 V/GND power distribution, >=2 A per contact, <=0.05 ohm whole loop",
       "phase": "both",
       "source": "https://www.pololu.com/product/2857",
       "note": "Exact housing and wire length depend on bench or PCB assembly. Mark polarity and coordinate the fuse with wire gauge; no Dupont lead for the distribution trunk."
@@ -300,7 +300,7 @@
     {
       "ref": "F1",
       "qty": 1,
-      "model": "1.5A time-delay fuse plusratedholder",
+      "model": "1.5 A time-delay fuse and rated holder",
       "phase": "both",
       "source": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
       "note": "Candidate for the 5 V secondary distribution. Validate cold start, I-squared-t and wire gauge. PD short-circuit protection does not validate branch wiring."
@@ -308,7 +308,7 @@
     {
       "ref": "SW1",
       "qty": 3,
-      "model": "Normallyopen momentaryservicebutton",
+      "model": "Normally open momentary service button",
       "phase": "carrier",
       "source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
       "note": "S3 BOOT, S3 RESET and MG24 RESET. MG24 RESET only sinks to GND; no external 3.3 V pull-up."
@@ -316,16 +316,29 @@
     {
       "ref": "PCB1",
       "qty": 1,
-      "model": "Custom3V3carrier160\u00d7100mm reservation",
+      "model": "Single-host PCB option: LP-C0 backplane or LP-I0 integrated board",
       "phase": "carrier",
       "source": null,
-      "note": "Not ready for fabrication. Requires a PoE magjack, isolation, EMI, RF, ERC and DRC review. No Gerbers supplied."
+      "note": "Original 160x100 mm reservation is superseded by the selected board revision. LP-C0 is 160x100 mm, 2 layers; LP-I0 is 160x142 mm, 4 layers. Use native CAD, verification reports and per-board BOMs; neither board is physically validated."
     }
   ],
   "gates": [
-    "CarrierRJ45/PoEmagneticsandisolationroutingunselected; EvalPoEresolvesbenchpoweronly.",
-    "Powerleadconnectorandwiregaugefinalizedafterbenchlayout.",
+    "Select one PCB revision and use its assembly/harness BOMs; this conceptual list is not an additive shopping cart.",
+    "LP-C0 uses a separate isolated PoE front end and WIZ850io; LP-I0 uses its own specified magjack and PD circuit. Isolation, DFM and first-article acceptance remain required.",
+    "Validate power leads, fuse derating, wire gauge and voltage drop on the actual assembly.",
     "MG24 requires SWD programming and hardware validation; simultaneous radio operation is unverified.",
-    "ReusedZAC93/CC1101andradarconnectorsmustbeinspected."
+    "Inspect the exact reused ZAC93, CC1101 and radar connector revisions before making their cable ends."
+  ],
+  "phase_meanings": {
+    "bench": "External evaluation/development board assembly, also relevant to LP-C0 off-board modules",
+    "carrier": "Original bare-module concept stage; not a claim that this item mounts on the LP-C0 backplane",
+    "both": "Shared conceptual requirement; quantities and implementations vary by actual PCB revision"
+  },
+  "board_boms": [
+    "carrier/assembly-bom.csv",
+    "carrier/harness-bom.csv",
+    "carrier/mg24-adapter/assembly-bom.csv",
+    "carrier/mg24-adapter/harness-bom.csv",
+    "integrated/assembly-bom.csv"
   ]
 }

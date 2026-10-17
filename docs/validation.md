@@ -45,6 +45,43 @@ an upstream OpenThread panic and restart the shared S3. Full acceptance therefor
 includes radio fault recovery as well as the normal concurrent workload. Existing
 Home Assistant services were not switched to this unassembled variant.
 
+## Graphical wiring and custom PCB evidence
+
+The [connection atlas](../hardware/low-power/visual/README.md) is generated from
+an independently checked pin/net model. It distinguishes module pads, GPIO
+numbers and unverified reused-board headers; NC and mechanical pads remain
+visible. Its tests cover firmware-pin agreement, supply domains, open-drain
+signals, handshake directions, ground coverage and export freshness. Separate
+contact drawings check physical geometry and viewing orientation against their
+recorded sources. Browser checks cover offline use, connector selection,
+pin highlighting and layouts at 375, 760 and 1360 pixels.
+
+The [LP-C0 backplane](../hardware/low-power/carrier/), its
+[LP-M0 MG24 daughterboard](../hardware/low-power/carrier/mg24-adapter/) and the
+[LP-I0 integrated PCB](../hardware/low-power/integrated/) have separate native
+KiCad sources and revision-specific connector manifests. Their validators
+compare the circuit contract with the actual schematic netlist and PCB pad
+nets, including unused contacts, and run native ERC/DRC. Fabrication exports
+must match their recorded source/output hashes. The required CI gate includes
+these checks in the pinned KiCad 10.0.6 container.
+
+The 2026-10-17 local native runs returned zero ERC violations, DRC violations,
+unconnected items and schematic-parity errors for C0, M0 and I0. The PCB
+contract suites passed 39 tests; the connection/atlas and physical-reference
+suites passed 23 tests. The browser smoke check covered all three boards,
+20 connectors and 19 available net-trace links, with no page errors or missing
+images. I0 critical Ethernet and USB routes stay on F.Cu with no vias; recorded
+track-length skew is 1.925 mm TX, 1.731 mm RX and 0.795 mm USB. These are
+geometry measurements, not impedance or signal-integrity measurements.
+
+These checks do not establish controlled impedance, insulation qualification,
+EMC, radio coexistence, assembly yield or physical operation. Read each board's
+own status and open items before making first articles. Neither custom PCB
+assembly fits the earlier concept case as a complete product; the
+[mechanical compatibility review](../hardware/low-power/visual/physical/README.md)
+records the differences. No production batch or sales release has been authorized
+by a passing software or CAD check.
+
 ## Local evidence
 
 - Main ESPHome 2026.9.1 configuration: schema validation and full ESP-IDF 5.5.5

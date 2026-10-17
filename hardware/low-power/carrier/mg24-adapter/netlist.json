@@ -1,0 +1,213 @@
+{
+  "revision": "LP-M0",
+  "parts": [
+    {
+      "ref": "U1",
+      "model": "MGM240PA22VNA3",
+      "footprint": "Carrier:MGM240P",
+      "pins": {
+        "1": "GND",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": "mg24_rts",
+        "6": "mg24_cts",
+        "7": "BOOT",
+        "8": "SWCLK",
+        "9": "SWDIO",
+        "10": null,
+        "11": null,
+        "12": "mg24_tx",
+        "13": "mg24_rx",
+        "14": "GND",
+        "15": "+3V3",
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": "GND",
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": "RESET",
+        "32": "GND",
+        "33": null,
+        "34": "GND",
+        "35": "GND",
+        "36": "GND"
+      },
+      "xy": [
+        23.55,
+        0
+      ],
+      "rotation": 0,
+      "source": "mg24",
+      "notes": "Exact PA22VNA3 firmware target; all GND pads direct to plane; RFOUT33 intentionally NC",
+      "types": {
+        "15": "power_in",
+        "5": "input",
+        "6": "output",
+        "7": "input",
+        "8": "input",
+        "9": "bidirectional",
+        "12": "input",
+        "13": "output",
+        "31": "input"
+      }
+    },
+    {
+      "ref": "J1",
+      "model": "B6B-XH-A",
+      "footprint": "Carrier:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "mg24_tx",
+        "4": "mg24_rx",
+        "5": "mg24_rts",
+        "6": "mg24_cts"
+      },
+      "xy": [
+        7,
+        28
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "To carrier J6",
+      "types": {}
+    },
+    {
+      "ref": "J2",
+      "model": "B7B-XH-A",
+      "footprint": "Carrier:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "SWCLK",
+        "4": "SWDIO",
+        "5": "RESET",
+        "6": "BOOT",
+        "7": "GND"
+      },
+      "xy": [
+        37,
+        28
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "SWD / reset / boot service",
+      "types": {}
+    },
+    {
+      "ref": "R1",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "BOOT"
+      },
+      "xy": [
+        17,
+        10
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805",
+      "types": {}
+    },
+    {
+      "ref": "C1",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        26.5,
+        18
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V X7R, 0805, close to VDD15",
+      "types": {}
+    },
+    {
+      "ref": "C2",
+      "model": "1uF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        26.5,
+        22
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V X7R, 0805",
+      "types": {}
+    },
+    {
+      "ref": "C3",
+      "model": "10uF",
+      "footprint": "Carrier:C_1206_3216Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        20,
+        22
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V X7R, 1206; account for DC bias",
+      "types": {}
+    },
+    {
+      "ref": "#FLG1",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG2",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "GND"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    }
+  ]
+}

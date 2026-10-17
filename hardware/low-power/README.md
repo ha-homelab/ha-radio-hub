@@ -1,6 +1,8 @@
 # Low-power LP-P0: prototype hardware contract
 
-This is a separate design with **one S3 host and one Ethernet interface**, three dedicated radio controllers H2/MG24/ZAC93, and CC1101. Assembly, firmware for the individual radio modules and hardware testing are required. There is no fabricated carrier PCB, Gerber output or verified “3 W” result.
+This is a separate design with **one S3 host and one Ethernet interface**, three dedicated radio controllers H2/MG24/ZAC93, and CC1101. Assembly, firmware for the individual radio modules and hardware testing are required. No board has been fabricated or tested, and there is no verified “3 W” result.
+The [ready-module carrier](carrier/) and [integrated board](integrated/) are
+separate engineering revisions; use their own verification reports and connector maps.
 
 The current calculation gives scenarios of **2.03 / 2.82 / 4.92 W incremental AC power**. These are not measurements or a confidence interval. **3 W AC is a testable target**, not a guaranteed specification. Detailed assumptions, current reserves and calculation boundaries are in [power-budget.json](power-budget.json); the earlier architectures are compared separately in [energy-comparison.json](energy-comparison.json).
 
@@ -8,6 +10,8 @@ The current calculation gives scenarios of **2.03 / 2.82 / 4.92 W incremental AC
 
 - [BOM](bom.json): exact main models, quantities, `bench`/`carrier`/`both` stages and primary sources. Do not combine alternatives for different stages into a single order.
 - [Pinmap](pinmap.json) and [wiring CSV](wiring.csv): 26 unique S3 GPIOs, three native UARTs and two SPI buses. The CSV defines signals; a GPIO number is not a header contact number.
+- [Visual connection atlas](visual/README.md): offline interactive pin-to-pin guide, part identification sketches and printable connection sheets, with physical-pad evidence and unverified header positions distinguished.
+- [Manufacturing and sales](../../docs/manufacturing.md): first articles, batch sizes, fabrication services and all three delivery formats.
 - The [combined firmware](../../firmware/low-power/hub.yaml) uses the same GPIOs. Build status and software limitations are in [firmware/low-power](../../firmware/low-power/).
 - [Enclosure mockup](../../mechanical/low-power/): 160×100 mm carrier reservation, 190×145×45 mm shell. The EvalPoE/DevKit development boards are not claimed to fit this enclosure.
 
@@ -19,7 +23,23 @@ Run from the repository root: `python3 hardware/low-power/validate.py`. This che
 
 EvalPoE compatibility with Ag97000-FL is explicitly stated on the [manufacturer's page](https://silvertel.com/ag97000/), although the PDF manual lists older models. Specify **Ag97005-FL** when ordering rather than assuming the module is included with an empty EvalPoE. Check bridge-bypass and output-filter settings against the revision of the [EvalPoE manual](https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf): the FL uses its built-in bridges, bypasses the external bridge, uses class 0 and keeps the nominal untrimmed output. Measure 5 V and polarity before connecting logic.
 
-**Future carrier:** retain Ag97005-FL, the shared buck and bare S3/H2/MGM240P modules. The PoE magjack/magnetics and W5500 section requires a separate schematic and layout. **WIZ850io does not expose PoE center taps on its SPI headers. Do not connect Ag97005-FL inputs to those headers.** A mockup with a separate RJ45 rectangle is not a complete Ethernet front-end design. Until that section is designed, EvalPoE on the bench is the reproducible path.
+**Ready-module carrier (LP-C0):** distributes isolated 5 V and regulated 3.3 V,
+provides a local SC16/clock/reset circuit and keyed harnesses to the controller,
+radios and sensors. Its [MG24 daughterboard](carrier/mg24-adapter/) mounts the
+exact MGM240PA22VNA3 and provides UART, BOOT and SWD service access.
+The external EvalPoE, buck, WIZ850io and radio boards still
+need separate mounting. A bare carrier does not include those modules.
+
+**Integrated board (LP-I0):** places the bare S3/H2/MGM240P modules, W5500,
+PoE magjack, Ag97005-FL, buck and support circuits on a separate PCB. ZAC93,
+CC1101, radar and the external BME680 remain cable-connected. It needs its own
+larger enclosure and physical bring-up; the earlier concept case is not a fit claim.
+
+**WIZ850io does not expose PoE center taps on its SPI headers. Do not connect
+Ag97005-FL inputs to those headers.** LP-C0 retains the external isolated front
+end; LP-I0 uses its own specified PoE-capable magjack. A successful CAD check
+is not validation of PoE isolation, Ethernet performance or radio coexistence.
+Until the boards pass bring-up, EvalPoE on the bench remains the assembly path.
 
 ## Power and calculation
 
@@ -79,4 +99,4 @@ The radar looks through a 1.2 mm nonmetallic wall; radome geometry and the absen
 1. Check actual modules/connectors, DevKit UART isolation, GDO2, GPIO48 and the 3.3 V supply. Do not connect unisolated interfaces with two active drivers.
 2. Assemble on the bench with EvalPoE; check rails, MPS, cold start, load transients and thermal performance. Record AC and DC separately.
 3. Flash H2 and MG24, check UART/CTS and SC16 without RF load, then exercise all functions together, including long runs and recovery from power/Ethernet loss.
-4. Only then finish the PoE front-end/carrier schematic, select the magjack, route isolation/return paths, run ERC/DRC and check RF keep-outs, EMI and mechanical fit. The actual carrier may require changes to the enclosure mockup.
+4. Review the selected PCB revision and its verification report before first-article fabrication. Resolve electrical, isolation, return-path, RF keep-out and mechanical findings, then run DFM and bench validation. The earlier enclosure mockup is not proof of fit for either complete assembly.

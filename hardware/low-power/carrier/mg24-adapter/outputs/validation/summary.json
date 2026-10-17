@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "tool": "10.0.6",
+  "erc_violations": 0,
+  "drc_violations": 0,
+  "unconnected": 0,
+  "schematic_parity": 0,
+  "checked_component_pins": 57,
+  "keyed_connectors": 2,
+  "copper_items": 103,
+  "hardware_validated": false
+}

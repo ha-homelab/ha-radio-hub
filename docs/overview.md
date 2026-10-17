@@ -1,5 +1,9 @@
 # Home Assistant radio hub with a single PoE input
 
+This page introduces the original modular Pi-based reference. For the current
+minimum-energy development and its custom PCBs, start with the
+[single-S3 design](low-power.md) and [visual wiring atlas](../hardware/low-power/visual/README.md).
+
 This project provides a prototype build: software and models are checked separately
 from physical acceptance tests. The complete electronics have not been assembled
 or measured as part of this development. Verify part numbers before purchasing

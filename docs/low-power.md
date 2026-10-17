@@ -60,6 +60,8 @@ system has not been measured.
 ## Included resources
 
 - [Hardware and component selection](../hardware/low-power/README.md).
+- [Visual wiring atlas and printable pin-to-pin sheets](../hardware/low-power/visual/README.md).
+- [PCB manufacturing, batch sizing and sales formats](manufacturing.md).
 - [Unified firmware and build preparation](../firmware/low-power/README.md).
 - [Enclosure, layout and trial prints](low-power-enclosure.md).
 - [Machine-readable energy assumptions](../hardware/low-power/energy-comparison.json).

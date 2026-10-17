@@ -15,6 +15,12 @@ radio modules. Its objective is minimum lifetime electricity, independent of
 component price. The 3 W AC target is unmeasured; see its firmware, carrier and
 enclosure readiness before choosing it over the modular reference below.
 
+**Visual wiring and custom boards:** use the [offline pin-to-pin atlas](hardware/low-power/visual/README.md)
+for the low-power design, including actual connector pad maps and part identification.
+Two PCB variants are documented separately: the [ready-module carrier](hardware/low-power/carrier/)
+with its MG24 daughterboard, and the [integrated radio board](hardware/low-power/integrated/). The [manufacturing and sales plan](docs/manufacturing.md) covers first
+articles, batches of 10/20, bare PCBs, assembled boards and boxed hubs.
+
 ![Printable enclosure and external sensor pod](mechanical/generated/exploded-preview.png)
 
 ## What is inside

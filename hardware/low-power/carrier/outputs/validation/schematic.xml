@@ -1,0 +1,2218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>hardware/low-power/carrier/carrier.kicad_sch</source>
+    <date>2026-10-17T10:28:41</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>LP-C0 low-voltage module carrier - PROTOTYPE</title>
+        <company/>
+        <rev>C0</rev>
+        <date>2026-10-17</date>
+        <source>carrier.kicad_sch</source>
+        <comment number="1" value="3.3V logic; external isolated5V and buck; named harnesses, no unverified module footprints"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>22pF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C1" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>482e0a59-9e6f-593a-861d-0a1b6f7750d9</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C2">
+      <value>33pF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C2" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f57b4439-6824-55c6-82b4-c34677632464</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C3">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C3" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>83b84e11-2eab-53dd-8a86-7a1e99393374</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C4">
+      <value>1uF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C4" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6263bcf0-2c9d-5d4f-bd03-1e6fc99170c3</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C5">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C5" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>51e55726-907a-5ac5-83d0-59154cc650be</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C6">
+      <value>1nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C6" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2ceaa9e2-138a-5747-a1ac-1e6cecd6b59a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C7">
+      <value>1uF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C7" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f9e5d4ac-1760-5af4-a324-7f44eaa3a6b8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C8">
+      <value>22uF</value>
+      <footprint>Carrier:C_1206_3216Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_1206_3216Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C8" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>73f6b51d-5944-5c25-967f-f4522b492e66</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C9">
+      <value>22uF</value>
+      <footprint>Carrier:C_1206_3216Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_1206_3216Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C9" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5e4f497b-680c-59d2-8c01-66fd67c0a04e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C10">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C10" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e2f5c949-4d3a-5a53-91b4-34f7614d9210</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C11">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C11" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>69c591d9-88ae-5d6e-8c59-725661e56ad2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C12">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C12" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>115c0104-19fb-57ce-af2d-c4e54c8af43e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C13">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C13" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dff0762c-45e8-527f-b876-614f008986a8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C14">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C14" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7465c8c7-44ae-5ff0-8ee5-9548019765eb</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C15">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C15" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>07f99281-e11c-5d94-b78a-cdba08a433fa</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C16">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C16" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>984f9ab5-1dd6-58c1-a372-c2d6600af88d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C17">
+      <value>100nF</value>
+      <footprint>Carrier:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_C17" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b8763f1d-792d-5eda-89b1-e1e8d4397281</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="F1">
+      <value>044901.5MR</value>
+      <footprint>Carrier:Littelfuse_449</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Littelfuse_449</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_F1" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>533c8233-8107-536e-9bbb-6cfb4af78fd2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>B2B-XH-A</value>
+      <footprint>Carrier:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J1" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2e3c45b4-b132-5c2d-9547-de9aa0c67dcc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J2">
+      <value>B3B-XH-A</value>
+      <footprint>Carrier:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J2" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7aa67086-bf21-5404-8074-34fd2adbcab7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J3">
+      <value>61204021621</value>
+      <footprint>Carrier:Wurth_61204021621</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Wurth_61204021621</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J3" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>672441d5-20be-57c5-a0b8-c43725c912a8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="16"/>
+            <pin num="17"/>
+            <pin num="18"/>
+            <pin num="19"/>
+            <pin num="20"/>
+            <pin num="21"/>
+            <pin num="22"/>
+            <pin num="23"/>
+            <pin num="24"/>
+            <pin num="25"/>
+            <pin num="26"/>
+            <pin num="27"/>
+            <pin num="28"/>
+            <pin num="29"/>
+            <pin num="30"/>
+            <pin num="31"/>
+            <pin num="32"/>
+            <pin num="33"/>
+            <pin num="34"/>
+            <pin num="35"/>
+            <pin num="36"/>
+            <pin num="37"/>
+            <pin num="38"/>
+            <pin num="39"/>
+            <pin num="40"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J4">
+      <value>B10B-XH-A</value>
+      <footprint>Carrier:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J4" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2273b6dd-47ec-5bd4-85da-36c7eecde660</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J5">
+      <value>B7B-XH-A</value>
+      <footprint>Carrier:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J5" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>01c831d1-9257-5449-8067-1e2a4e6f69f8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J6">
+      <value>B6B-XH-A</value>
+      <footprint>Carrier:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J6" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>44696e30-f358-527e-b560-7cae3b87ec9c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J7">
+      <value>B8B-XH-A</value>
+      <footprint>Carrier:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J7" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f6b72713-c2e8-510a-a7fd-633c1b6613d4</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J8">
+      <value>B5B-XH-A</value>
+      <footprint>Carrier:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J8" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8a053c93-7c71-53b6-9bd4-b24aef233434</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J9">
+      <value>B4B-XH-A</value>
+      <footprint>Carrier:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J9" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2d8b3c0f-c917-5ef1-88a0-78bf53b5fe29</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J10">
+      <value>BM04B-SRSS-TB</value>
+      <footprint>Carrier:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Carrier:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_J10" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>90219aee-b332-5cff-91d1-3c9799610582</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="MP1"/>
+            <pin num="MP2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>1k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R1" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>faa5d22c-4704-57a3-a1a5-9f98e7a77dfd</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R2" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c80adbcc-523d-5142-b2bd-97b29a6f7f81</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R3" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>356001fa-81a0-551e-b6dd-aeee7bcf1dfd</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R4" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>93ae8468-45fb-5117-b3d4-af8aebbf096b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R5">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R5" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8ea192af-848a-541c-8d21-adc3d503e672</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R6">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R6" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c48a8303-3982-5677-8dd2-2972937bef81</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R7">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R7" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>65750f4e-ff92-5606-ab05-0ae09db7d65b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R8">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R8" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>cccfaafa-0de3-5794-959a-caea1aeb3f97</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R9">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R9" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>78a69b2b-1351-5d04-b116-d1305b123fbe</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R10">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R10" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3a29a2e5-fd1a-5a1b-92b4-4bb233c127e0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R11">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R11" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>56ba55cb-63e4-56ba-9f0e-2764f11ec80d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R12">
+      <value>100k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R12" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fbc2cf2d-1bc3-510f-b0d5-2d686bb6c3cd</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R13">
+      <value>4.7k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R13" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e1488062-95aa-513f-b32e-d849ccb0a154</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R14">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R14" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b3fa698e-4810-5e90-a4d2-f4c294b7efe4</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R15">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R15" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>098c2436-44dd-51d7-871e-dceab3a50a54</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R16">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R16" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>682b3828-58ff-54dd-a02d-15d0d97b9f69</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R17">
+      <value>10k</value>
+      <footprint>Carrier:R_0805_2012Metric</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_R17" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bd2cc5dd-40a8-5287-b06d-8b60f28438bc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>SC16IS752IPW,128</value>
+      <footprint>Carrier:TSSOP-28_4.4x9.7mm_P0.65mm</footprint>
+      <fields>
+        <field name="Footprint">Carrier:TSSOP-28_4.4x9.7mm_P0.65mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_U1" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>89cfb0ca-7a85-5c8f-a820-6e82bcdefaae</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="16"/>
+            <pin num="17"/>
+            <pin num="18"/>
+            <pin num="19"/>
+            <pin num="20"/>
+            <pin num="21"/>
+            <pin num="22"/>
+            <pin num="23"/>
+            <pin num="24"/>
+            <pin num="25"/>
+            <pin num="26"/>
+            <pin num="27"/>
+            <pin num="28"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U2">
+      <value>TPS3808G33DBVR</value>
+      <footprint>Carrier:SOT-23-6</footprint>
+      <fields>
+        <field name="Footprint">Carrier:SOT-23-6</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_U2" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>809dea57-2235-5329-a03b-a24995a2ded5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Y1">
+      <value>ABLS-3.6864MHZ-B2-T</value>
+      <footprint>Carrier:Crystal_SMD_HC49-SD</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Crystal_SMD_HC49-SD</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LP_Y1" description=""/>
+      <property name="Sheetname" value="carrier"/>
+      <property name="Sheetfile" value="carrier.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e2d562a1-b836-5636-98d8-a124ee1ebef1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Carrier" part="LP_C1">
+      <fields>
+        <field name="Reference">C1</field>
+        <field name="Value">22pF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C10">
+      <fields>
+        <field name="Reference">C10</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C11">
+      <fields>
+        <field name="Reference">C11</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C12">
+      <fields>
+        <field name="Reference">C12</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C13">
+      <fields>
+        <field name="Reference">C13</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C14">
+      <fields>
+        <field name="Reference">C14</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C15">
+      <fields>
+        <field name="Reference">C15</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C16">
+      <fields>
+        <field name="Reference">C16</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C17">
+      <fields>
+        <field name="Reference">C17</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C2">
+      <fields>
+        <field name="Reference">C2</field>
+        <field name="Value">33pF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C3">
+      <fields>
+        <field name="Reference">C3</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C4">
+      <fields>
+        <field name="Reference">C4</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C5">
+      <fields>
+        <field name="Reference">C5</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C6">
+      <fields>
+        <field name="Reference">C6</field>
+        <field name="Value">1nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C7">
+      <fields>
+        <field name="Reference">C7</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C8">
+      <fields>
+        <field name="Reference">C8</field>
+        <field name="Value">22uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_C9">
+      <fields>
+        <field name="Reference">C9</field>
+        <field name="Value">22uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_F1">
+      <fields>
+        <field name="Reference">F1</field>
+        <field name="Value">044901.5MR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J1">
+      <fields>
+        <field name="Reference">J1</field>
+        <field name="Value">B2B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+5V_IN" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J10">
+      <fields>
+        <field name="Reference">J10</field>
+        <field name="Value">BM04B-SRSS-TB</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="passive"/>
+        <pin num="2" name="+3V3" type="passive"/>
+        <pin num="3" name="bme680_sda" type="passive"/>
+        <pin num="4" name="bme680_scl" type="passive"/>
+        <pin num="MP1" name="NC" type="passive"/>
+        <pin num="MP2" name="NC" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J2">
+      <fields>
+        <field name="Reference">J2</field>
+        <field name="Value">B3B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+5V" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="+3V3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J3">
+      <fields>
+        <field name="Reference">J3</field>
+        <field name="Value">61204021621</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+3V3" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="w5500_sclk" type="passive"/>
+        <pin num="4" name="GND" type="passive"/>
+        <pin num="5" name="w5500_mosi" type="passive"/>
+        <pin num="6" name="GND" type="passive"/>
+        <pin num="7" name="w5500_miso" type="passive"/>
+        <pin num="8" name="GND" type="passive"/>
+        <pin num="9" name="w5500_cs" type="passive"/>
+        <pin num="10" name="w5500_irq" type="passive"/>
+        <pin num="11" name="w5500_reset" type="passive"/>
+        <pin num="12" name="GND" type="passive"/>
+        <pin num="13" name="shared_spi_sclk" type="passive"/>
+        <pin num="14" name="GND" type="passive"/>
+        <pin num="15" name="shared_spi_mosi" type="passive"/>
+        <pin num="16" name="shared_spi_miso" type="passive"/>
+        <pin num="17" name="cc1101_cs" type="passive"/>
+        <pin num="18" name="cc1101_gdo0_tx" type="passive"/>
+        <pin num="19" name="cc1101_gdo2_rx" type="passive"/>
+        <pin num="20" name="sc16_cs" type="passive"/>
+        <pin num="21" name="sc16_irq" type="passive"/>
+        <pin num="22" name="GND" type="passive"/>
+        <pin num="23" name="h2_tx" type="passive"/>
+        <pin num="24" name="h2_rx" type="passive"/>
+        <pin num="25" name="h2_reset" type="passive"/>
+        <pin num="26" name="h2_boot" type="passive"/>
+        <pin num="27" name="mg24_tx" type="passive"/>
+        <pin num="28" name="mg24_rx" type="passive"/>
+        <pin num="29" name="mg24_rts" type="passive"/>
+        <pin num="30" name="mg24_cts" type="passive"/>
+        <pin num="31" name="ld2450_tx" type="passive"/>
+        <pin num="32" name="ld2450_rx" type="passive"/>
+        <pin num="33" name="bme680_sda" type="passive"/>
+        <pin num="34" name="bme680_scl" type="passive"/>
+        <pin num="35" name="GND" type="passive"/>
+        <pin num="36" name="GND" type="passive"/>
+        <pin num="37" name="GND" type="passive"/>
+        <pin num="38" name="GND" type="passive"/>
+        <pin num="39" name="+3V3" type="passive"/>
+        <pin num="40" name="GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J4">
+      <fields>
+        <field name="Reference">J4</field>
+        <field name="Value">B10B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+3V3" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="w5500_sclk" type="passive"/>
+        <pin num="4" name="w5500_mosi" type="passive"/>
+        <pin num="5" name="w5500_miso" type="passive"/>
+        <pin num="6" name="w5500_cs" type="passive"/>
+        <pin num="7" name="w5500_irq" type="passive"/>
+        <pin num="8" name="w5500_reset" type="passive"/>
+        <pin num="9" name="GND" type="passive"/>
+        <pin num="10" name="+3V3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J5">
+      <fields>
+        <field name="Reference">J5</field>
+        <field name="Value">B7B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+3V3" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="h2_tx" type="passive"/>
+        <pin num="4" name="h2_rx" type="passive"/>
+        <pin num="5" name="h2_reset" type="passive"/>
+        <pin num="6" name="h2_boot" type="passive"/>
+        <pin num="7" name="GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J6">
+      <fields>
+        <field name="Reference">J6</field>
+        <field name="Value">B6B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+3V3" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="mg24_tx" type="passive"/>
+        <pin num="4" name="mg24_rx" type="passive"/>
+        <pin num="5" name="mg24_rts" type="passive"/>
+        <pin num="6" name="mg24_cts" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J7">
+      <fields>
+        <field name="Reference">J7</field>
+        <field name="Value">B8B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+3V3" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="shared_spi_sclk" type="passive"/>
+        <pin num="4" name="shared_spi_mosi" type="passive"/>
+        <pin num="5" name="shared_spi_miso" type="passive"/>
+        <pin num="6" name="cc1101_cs" type="passive"/>
+        <pin num="7" name="cc1101_gdo0_tx" type="passive"/>
+        <pin num="8" name="cc1101_gdo2_rx" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J8">
+      <fields>
+        <field name="Reference">J8</field>
+        <field name="Value">B5B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+3V3" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="zac93_tx" type="passive"/>
+        <pin num="4" name="zac93_rx" type="passive"/>
+        <pin num="5" name="GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_J9">
+      <fields>
+        <field name="Reference">J9</field>
+        <field name="Value">B4B-XH-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="+5V" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="ld2450_rx" type="passive"/>
+        <pin num="4" name="ld2450_tx" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R1">
+      <fields>
+        <field name="Reference">R1</field>
+        <field name="Value">1k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R10">
+      <fields>
+        <field name="Reference">R10</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R11">
+      <fields>
+        <field name="Reference">R11</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R12">
+      <fields>
+        <field name="Reference">R12</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R13">
+      <fields>
+        <field name="Reference">R13</field>
+        <field name="Value">4.7k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R14">
+      <fields>
+        <field name="Reference">R14</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R15">
+      <fields>
+        <field name="Reference">R15</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R16">
+      <fields>
+        <field name="Reference">R16</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R17">
+      <fields>
+        <field name="Reference">R17</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R2">
+      <fields>
+        <field name="Reference">R2</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R3">
+      <fields>
+        <field name="Reference">R3</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R4">
+      <fields>
+        <field name="Reference">R4</field>
+        <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R5">
+      <fields>
+        <field name="Reference">R5</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R6">
+      <fields>
+        <field name="Reference">R6</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R7">
+      <fields>
+        <field name="Reference">R7</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R8">
+      <fields>
+        <field name="Reference">R8</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_R9">
+      <fields>
+        <field name="Reference">R9</field>
+        <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_U1">
+      <fields>
+        <field name="Reference">U1</field>
+        <field name="Value">SC16IS752IPW,128</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="NC" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="zac93_tx" type="output"/>
+        <pin num="4" name="zac93_rx" type="input"/>
+        <pin num="5" name="sc16_reset" type="input"/>
+        <pin num="6" name="xtal1" type="input"/>
+        <pin num="7" name="xtal2" type="output"/>
+        <pin num="8" name="+3V3" type="power_in"/>
+        <pin num="9" name="GND" type="passive"/>
+        <pin num="10" name="sc16_cs" type="input"/>
+        <pin num="11" name="shared_spi_mosi" type="input"/>
+        <pin num="12" name="shared_spi_miso" type="tri_state"/>
+        <pin num="13" name="shared_spi_sclk" type="input"/>
+        <pin num="14" name="GND" type="passive"/>
+        <pin num="15" name="sc16_irq" type="open_collector"/>
+        <pin num="16" name="GND" type="passive"/>
+        <pin num="17" name="NC" type="passive"/>
+        <pin num="18" name="gpio0_unused" type="passive"/>
+        <pin num="19" name="gpio1_unused" type="passive"/>
+        <pin num="20" name="gpio2_unused" type="passive"/>
+        <pin num="21" name="gpio3_unused" type="passive"/>
+        <pin num="22" name="GND" type="power_in"/>
+        <pin num="23" name="NC" type="passive"/>
+        <pin num="24" name="rxb_unused" type="passive"/>
+        <pin num="25" name="gpio4_unused" type="passive"/>
+        <pin num="26" name="gpio5_unused" type="passive"/>
+        <pin num="27" name="gpio6_unused" type="passive"/>
+        <pin num="28" name="gpio7_unused" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_U2">
+      <fields>
+        <field name="Reference">U2</field>
+        <field name="Value">TPS3808G33DBVR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="sc16_reset" type="open_collector"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="NC" type="passive"/>
+        <pin num="4" name="NC" type="passive"/>
+        <pin num="5" name="+3V3" type="input"/>
+        <pin num="6" name="+3V3" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LP_Y1">
+      <fields>
+        <field name="Reference">Y1</field>
+        <field name="Value">ABLS-3.6864MHZ-B2-T</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Carrier">
+      <uri>${KIPRJMOD}/Carrier.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/+3V3" class="Default">
+      <node ref="C10" pin="1" pintype="passive"/>
+      <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="C12" pin="1" pintype="passive"/>
+      <node ref="C13" pin="1" pintype="passive"/>
+      <node ref="C14" pin="1" pintype="passive"/>
+      <node ref="C15" pin="1" pintype="passive"/>
+      <node ref="C17" pin="1" pintype="passive"/>
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="C9" pin="1" pintype="passive"/>
+      <node ref="J10" pin="2" pinfunction="+3V3_2" pintype="passive"/>
+      <node ref="J2" pin="3" pinfunction="+3V3_3" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="+3V3_1" pintype="passive"/>
+      <node ref="J3" pin="39" pinfunction="+3V3_39" pintype="passive"/>
+      <node ref="J4" pin="1" pinfunction="+3V3_1" pintype="passive"/>
+      <node ref="J4" pin="10" pinfunction="+3V3_10" pintype="passive"/>
+      <node ref="J5" pin="1" pinfunction="+3V3_1" pintype="passive"/>
+      <node ref="J6" pin="1" pinfunction="+3V3_1" pintype="passive"/>
+      <node ref="J7" pin="1" pinfunction="+3V3_1" pintype="passive"/>
+      <node ref="J8" pin="1" pinfunction="+3V3_1" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R13" pin="1" pintype="passive"/>
+      <node ref="R14" pin="1" pintype="passive"/>
+      <node ref="R15" pin="1" pintype="passive"/>
+      <node ref="R16" pin="1" pintype="passive"/>
+      <node ref="R17" pin="1" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="U1" pin="8" pinfunction="+3V3_8" pintype="power_in"/>
+      <node ref="U2" pin="5" pinfunction="+3V3_5" pintype="input"/>
+      <node ref="U2" pin="6" pinfunction="+3V3_6" pintype="power_in"/>
+    </net>
+    <net code="2" name="/+5V" class="Default">
+      <node ref="C16" pin="1" pintype="passive"/>
+      <node ref="C8" pin="1" pintype="passive"/>
+      <node ref="F1" pin="2" pintype="passive"/>
+      <node ref="J2" pin="1" pinfunction="+5V_1" pintype="passive"/>
+      <node ref="J9" pin="1" pinfunction="+5V_1" pintype="passive"/>
+    </net>
+    <net code="3" name="/+5V_IN" class="Default">
+      <node ref="F1" pin="1" pintype="passive"/>
+      <node ref="J1" pin="1" pinfunction="+5V_IN_1" pintype="passive"/>
+    </net>
+    <net code="4" name="/GND" class="Default">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C10" pin="2" pintype="passive"/>
+      <node ref="C11" pin="2" pintype="passive"/>
+      <node ref="C12" pin="2" pintype="passive"/>
+      <node ref="C13" pin="2" pintype="passive"/>
+      <node ref="C14" pin="2" pintype="passive"/>
+      <node ref="C15" pin="2" pintype="passive"/>
+      <node ref="C16" pin="2" pintype="passive"/>
+      <node ref="C17" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="C7" pin="2" pintype="passive"/>
+      <node ref="C8" pin="2" pintype="passive"/>
+      <node ref="C9" pin="2" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J10" pin="1" pinfunction="GND_1" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J3" pin="12" pinfunction="GND_12" pintype="passive"/>
+      <node ref="J3" pin="14" pinfunction="GND_14" pintype="passive"/>
+      <node ref="J3" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J3" pin="22" pinfunction="GND_22" pintype="passive"/>
+      <node ref="J3" pin="35" pinfunction="GND_35" pintype="passive"/>
+      <node ref="J3" pin="36" pinfunction="GND_36" pintype="passive"/>
+      <node ref="J3" pin="37" pinfunction="GND_37" pintype="passive"/>
+      <node ref="J3" pin="38" pinfunction="GND_38" pintype="passive"/>
+      <node ref="J3" pin="4" pinfunction="GND_4" pintype="passive"/>
+      <node ref="J3" pin="40" pinfunction="GND_40" pintype="passive"/>
+      <node ref="J3" pin="6" pinfunction="GND_6" pintype="passive"/>
+      <node ref="J3" pin="8" pinfunction="GND_8" pintype="passive"/>
+      <node ref="J4" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J4" pin="9" pinfunction="GND_9" pintype="passive"/>
+      <node ref="J5" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J5" pin="7" pinfunction="GND_7" pintype="passive"/>
+      <node ref="J6" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J7" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J8" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J8" pin="5" pinfunction="GND_5" pintype="passive"/>
+      <node ref="J9" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="R10" pin="2" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+      <node ref="R8" pin="2" pintype="passive"/>
+      <node ref="R9" pin="2" pintype="passive"/>
+      <node ref="U1" pin="14" pinfunction="GND_14" pintype="passive"/>
+      <node ref="U1" pin="16" pinfunction="GND_16" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="U1" pin="22" pinfunction="GND_22" pintype="power_in"/>
+      <node ref="U1" pin="9" pinfunction="GND_9" pintype="passive"/>
+      <node ref="U2" pin="2" pinfunction="GND_2" pintype="power_in"/>
+    </net>
+    <net code="5" name="/bme680_scl" class="Default">
+      <node ref="J10" pin="4" pinfunction="bme680_scl_4" pintype="passive"/>
+      <node ref="J3" pin="34" pinfunction="bme680_scl_34" pintype="passive"/>
+    </net>
+    <net code="6" name="/bme680_sda" class="Default">
+      <node ref="J10" pin="3" pinfunction="bme680_sda_3" pintype="passive"/>
+      <node ref="J3" pin="33" pinfunction="bme680_sda_33" pintype="passive"/>
+    </net>
+    <net code="7" name="/cc1101_cs" class="Default">
+      <node ref="J3" pin="17" pinfunction="cc1101_cs_17" pintype="passive"/>
+      <node ref="J7" pin="6" pinfunction="cc1101_cs_6" pintype="passive"/>
+      <node ref="R14" pin="2" pintype="passive"/>
+    </net>
+    <net code="8" name="/cc1101_gdo0_tx" class="Default">
+      <node ref="J3" pin="18" pinfunction="cc1101_gdo0_tx_18" pintype="passive"/>
+      <node ref="J7" pin="7" pinfunction="cc1101_gdo0_tx_7" pintype="passive"/>
+      <node ref="R13" pin="2" pintype="passive"/>
+    </net>
+    <net code="9" name="/cc1101_gdo2_rx" class="Default">
+      <node ref="J3" pin="19" pinfunction="cc1101_gdo2_rx_19" pintype="passive"/>
+      <node ref="J7" pin="8" pinfunction="cc1101_gdo2_rx_8" pintype="passive"/>
+    </net>
+    <net code="10" name="/gpio0_unused" class="Default">
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="U1" pin="18" pinfunction="gpio0_unused_18" pintype="passive"/>
+    </net>
+    <net code="11" name="/gpio1_unused" class="Default">
+      <node ref="R6" pin="1" pintype="passive"/>
+      <node ref="U1" pin="19" pinfunction="gpio1_unused_19" pintype="passive"/>
+    </net>
+    <net code="12" name="/gpio2_unused" class="Default">
+      <node ref="R7" pin="1" pintype="passive"/>
+      <node ref="U1" pin="20" pinfunction="gpio2_unused_20" pintype="passive"/>
+    </net>
+    <net code="13" name="/gpio3_unused" class="Default">
+      <node ref="R8" pin="1" pintype="passive"/>
+      <node ref="U1" pin="21" pinfunction="gpio3_unused_21" pintype="passive"/>
+    </net>
+    <net code="14" name="/gpio4_unused" class="Default">
+      <node ref="R9" pin="1" pintype="passive"/>
+      <node ref="U1" pin="25" pinfunction="gpio4_unused_25" pintype="passive"/>
+    </net>
+    <net code="15" name="/gpio5_unused" class="Default">
+      <node ref="R10" pin="1" pintype="passive"/>
+      <node ref="U1" pin="26" pinfunction="gpio5_unused_26" pintype="passive"/>
+    </net>
+    <net code="16" name="/gpio6_unused" class="Default">
+      <node ref="R11" pin="1" pintype="passive"/>
+      <node ref="U1" pin="27" pinfunction="gpio6_unused_27" pintype="passive"/>
+    </net>
+    <net code="17" name="/gpio7_unused" class="Default">
+      <node ref="R12" pin="1" pintype="passive"/>
+      <node ref="U1" pin="28" pinfunction="gpio7_unused_28" pintype="passive"/>
+    </net>
+    <net code="18" name="/h2_boot" class="Default">
+      <node ref="J3" pin="26" pinfunction="h2_boot_26" pintype="passive"/>
+      <node ref="J5" pin="6" pinfunction="h2_boot_6" pintype="passive"/>
+      <node ref="R17" pin="2" pintype="passive"/>
+    </net>
+    <net code="19" name="/h2_reset" class="Default">
+      <node ref="C7" pin="1" pintype="passive"/>
+      <node ref="J3" pin="25" pinfunction="h2_reset_25" pintype="passive"/>
+      <node ref="J5" pin="5" pinfunction="h2_reset_5" pintype="passive"/>
+      <node ref="R16" pin="2" pintype="passive"/>
+    </net>
+    <net code="20" name="/h2_rx" class="Default">
+      <node ref="J3" pin="24" pinfunction="h2_rx_24" pintype="passive"/>
+      <node ref="J5" pin="4" pinfunction="h2_rx_4" pintype="passive"/>
+    </net>
+    <net code="21" name="/h2_tx" class="Default">
+      <node ref="J3" pin="23" pinfunction="h2_tx_23" pintype="passive"/>
+      <node ref="J5" pin="3" pinfunction="h2_tx_3" pintype="passive"/>
+    </net>
+    <net code="22" name="/ld2450_rx" class="Default">
+      <node ref="J3" pin="32" pinfunction="ld2450_rx_32" pintype="passive"/>
+      <node ref="J9" pin="3" pinfunction="ld2450_rx_3" pintype="passive"/>
+    </net>
+    <net code="23" name="/ld2450_tx" class="Default">
+      <node ref="J3" pin="31" pinfunction="ld2450_tx_31" pintype="passive"/>
+      <node ref="J9" pin="4" pinfunction="ld2450_tx_4" pintype="passive"/>
+    </net>
+    <net code="24" name="/mg24_cts" class="Default">
+      <node ref="J3" pin="30" pinfunction="mg24_cts_30" pintype="passive"/>
+      <node ref="J6" pin="6" pinfunction="mg24_cts_6" pintype="passive"/>
+    </net>
+    <net code="25" name="/mg24_rts" class="Default">
+      <node ref="J3" pin="29" pinfunction="mg24_rts_29" pintype="passive"/>
+      <node ref="J6" pin="5" pinfunction="mg24_rts_5" pintype="passive"/>
+    </net>
+    <net code="26" name="/mg24_rx" class="Default">
+      <node ref="J3" pin="28" pinfunction="mg24_rx_28" pintype="passive"/>
+      <node ref="J6" pin="4" pinfunction="mg24_rx_4" pintype="passive"/>
+    </net>
+    <net code="27" name="/mg24_tx" class="Default">
+      <node ref="J3" pin="27" pinfunction="mg24_tx_27" pintype="passive"/>
+      <node ref="J6" pin="3" pinfunction="mg24_tx_3" pintype="passive"/>
+    </net>
+    <net code="28" name="/rxb_unused" class="Default">
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="U1" pin="24" pinfunction="rxb_unused_24" pintype="passive"/>
+    </net>
+    <net code="29" name="/sc16_cs" class="Default">
+      <node ref="J3" pin="20" pinfunction="sc16_cs_20" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="U1" pin="10" pinfunction="sc16_cs_10" pintype="input"/>
+    </net>
+    <net code="30" name="/sc16_irq" class="Default">
+      <node ref="J3" pin="21" pinfunction="sc16_irq_21" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="U1" pin="15" pinfunction="sc16_irq_15" pintype="open_collector"/>
+    </net>
+    <net code="31" name="/sc16_reset" class="Default">
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="sc16_reset_5" pintype="input"/>
+      <node ref="U2" pin="1" pinfunction="sc16_reset_1" pintype="open_collector"/>
+    </net>
+    <net code="32" name="/shared_spi_miso" class="Default">
+      <node ref="J3" pin="16" pinfunction="shared_spi_miso_16" pintype="passive"/>
+      <node ref="J7" pin="5" pinfunction="shared_spi_miso_5" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="shared_spi_miso_12" pintype="tri_state"/>
+    </net>
+    <net code="33" name="/shared_spi_mosi" class="Default">
+      <node ref="J3" pin="15" pinfunction="shared_spi_mosi_15" pintype="passive"/>
+      <node ref="J7" pin="4" pinfunction="shared_spi_mosi_4" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="shared_spi_mosi_11" pintype="input"/>
+    </net>
+    <net code="34" name="/shared_spi_sclk" class="Default">
+      <node ref="J3" pin="13" pinfunction="shared_spi_sclk_13" pintype="passive"/>
+      <node ref="J7" pin="3" pinfunction="shared_spi_sclk_3" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="shared_spi_sclk_13" pintype="input"/>
+    </net>
+    <net code="35" name="/w5500_cs" class="Default">
+      <node ref="J3" pin="9" pinfunction="w5500_cs_9" pintype="passive"/>
+      <node ref="J4" pin="6" pinfunction="w5500_cs_6" pintype="passive"/>
+      <node ref="R15" pin="2" pintype="passive"/>
+    </net>
+    <net code="36" name="/w5500_irq" class="Default">
+      <node ref="J3" pin="10" pinfunction="w5500_irq_10" pintype="passive"/>
+      <node ref="J4" pin="7" pinfunction="w5500_irq_7" pintype="passive"/>
+    </net>
+    <net code="37" name="/w5500_miso" class="Default">
+      <node ref="J3" pin="7" pinfunction="w5500_miso_7" pintype="passive"/>
+      <node ref="J4" pin="5" pinfunction="w5500_miso_5" pintype="passive"/>
+    </net>
+    <net code="38" name="/w5500_mosi" class="Default">
+      <node ref="J3" pin="5" pinfunction="w5500_mosi_5" pintype="passive"/>
+      <node ref="J4" pin="4" pinfunction="w5500_mosi_4" pintype="passive"/>
+    </net>
+    <net code="39" name="/w5500_reset" class="Default">
+      <node ref="J3" pin="11" pinfunction="w5500_reset_11" pintype="passive"/>
+      <node ref="J4" pin="8" pinfunction="w5500_reset_8" pintype="passive"/>
+    </net>
+    <net code="40" name="/w5500_sclk" class="Default">
+      <node ref="J3" pin="3" pinfunction="w5500_sclk_3" pintype="passive"/>
+      <node ref="J4" pin="3" pinfunction="w5500_sclk_3" pintype="passive"/>
+    </net>
+    <net code="41" name="/xtal1" class="Default">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="xtal1_6" pintype="input"/>
+      <node ref="Y1" pin="1" pintype="passive"/>
+    </net>
+    <net code="42" name="/xtal2" class="Default">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="U1" pin="7" pinfunction="xtal2_7" pintype="output"/>
+      <node ref="Y1" pin="2" pintype="passive"/>
+    </net>
+    <net code="43" name="/zac93_rx" class="Default">
+      <node ref="J8" pin="4" pinfunction="zac93_rx_4" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="zac93_rx_4" pintype="input"/>
+    </net>
+    <net code="44" name="/zac93_tx" class="Default">
+      <node ref="J8" pin="3" pinfunction="zac93_tx_3" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="zac93_tx_3" pintype="output"/>
+    </net>
+    <net code="45" name="unconnected-(J10-NC-PadMP1)" class="Default">
+      <node ref="J10" pin="MP1" pinfunction="NC_MP1" pintype="passive+no_connect"/>
+    </net>
+    <net code="46" name="unconnected-(J10-NC-PadMP2)" class="Default">
+      <node ref="J10" pin="MP2" pinfunction="NC_MP2" pintype="passive+no_connect"/>
+    </net>
+    <net code="47" name="unconnected-(U1-NC-Pad1)" class="Default">
+      <node ref="U1" pin="1" pinfunction="NC_1" pintype="passive+no_connect"/>
+    </net>
+    <net code="48" name="unconnected-(U1-NC-Pad17)" class="Default">
+      <node ref="U1" pin="17" pinfunction="NC_17" pintype="passive+no_connect"/>
+    </net>
+    <net code="49" name="unconnected-(U1-NC-Pad23)" class="Default">
+      <node ref="U1" pin="23" pinfunction="NC_23" pintype="passive+no_connect"/>
+    </net>
+    <net code="50" name="unconnected-(U2-NC-Pad3)" class="Default">
+      <node ref="U2" pin="3" pinfunction="NC_3" pintype="passive+no_connect"/>
+    </net>
+    <net code="51" name="unconnected-(U2-NC-Pad4)" class="Default">
+      <node ref="U2" pin="4" pinfunction="NC_4" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>

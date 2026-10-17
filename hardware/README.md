@@ -1,5 +1,8 @@
 # HA Radio Hub hardware platform
 
+This is the original Pi-based reference. The newer **single-S3** architecture,
+custom PCBs and graphical connector maps are in [low-power hardware](low-power/README.md).
+
 Design prototype, revision A. Component selection against documentation was checked on 2026-10-16; combined hardware operation, thermal performance and fit have not yet been measured. This is an assembly of off-the-shelf modules, not a designed or certified PCB.
 
 ## Selected architecture

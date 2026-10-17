@@ -1,0 +1,7 @@
+# Preserve native EDA exports. KiCad SVGs contain harmless line-end spaces;
+# assembly BOM CSVs use valid CRLF records. Do not rewrite hashed exports.
+hardware/low-power/**/assembly-bom.csv -text whitespace=cr-at-eol
+hardware/low-power/carrier/outputs/*.svg -text whitespace=-blank-at-eol
+hardware/low-power/carrier/mg24-adapter/outputs/*.svg -text whitespace=-blank-at-eol
+hardware/low-power/integrated/fabrication/*.svg -text whitespace=-blank-at-eol
+hardware/low-power/visual/generated/*-assembly.svg -text whitespace=-blank-at-eol

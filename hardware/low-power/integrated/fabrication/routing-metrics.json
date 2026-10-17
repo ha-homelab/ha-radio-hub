@@ -1,0 +1,132 @@
+{
+  "method": "Planar track-centerline shortest path. Pad and series-component body lengths excluded; via barrel length excluded. Not impedance/delay qualification.",
+  "paths": {
+    "eth_txp": {
+      "from": "U4.2",
+      "to": "J1.2",
+      "track_mm": 21.135,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 21.175,
+      "total_net_vias": 0
+    },
+    "eth_txn": {
+      "from": "U4.1",
+      "to": "J1.9",
+      "track_mm": 19.21,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 20.829,
+      "total_net_vias": 0
+    },
+    "eth_rxp": {
+      "from": "U4.6",
+      "to": "C34.1",
+      "track_mm": 13.976,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 13.976,
+      "total_net_vias": 0
+    },
+    "eth_rxn": {
+      "from": "U4.5",
+      "to": "C35.1",
+      "track_mm": 17.298,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 17.298,
+      "total_net_vias": 0
+    },
+    "mag_rxp": {
+      "from": "C34.2",
+      "to": "J1.1",
+      "track_mm": 11.293,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 11.293,
+      "total_net_vias": 0
+    },
+    "mag_rxn": {
+      "from": "C35.2",
+      "to": "J1.8",
+      "track_mm": 6.24,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 6.626,
+      "total_net_vias": 0
+    },
+    "usb_dp": {
+      "from": "U1.14",
+      "to": "R20.2",
+      "track_mm": 19.749,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 19.749,
+      "total_net_vias": 0
+    },
+    "usb_dm": {
+      "from": "U1.13",
+      "to": "R19.2",
+      "track_mm": 17.019,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 17.019,
+      "total_net_vias": 0
+    },
+    "usb_dp_port": {
+      "from": "R20.1",
+      "to": "J2.A6",
+      "track_mm": 11.55,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 13.23,
+      "total_net_vias": 0
+    },
+    "usb_dm_port": {
+      "from": "R19.1",
+      "to": "J2.A7",
+      "track_mm": 15.075,
+      "via_transitions": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "total_net_track_mm": 15.683,
+      "total_net_vias": 0
+    }
+  },
+  "pairs": {
+    "ethernet_tx": {
+      "positive_track_mm": 21.135,
+      "negative_track_mm": 19.21,
+      "track_skew_mm": 1.925
+    },
+    "ethernet_rx": {
+      "positive_track_mm": 25.269,
+      "negative_track_mm": 23.538,
+      "track_skew_mm": 1.731
+    },
+    "usb": {
+      "positive_track_mm": 31.299,
+      "negative_track_mm": 32.094,
+      "track_skew_mm": 0.795
+    }
+  }
+}

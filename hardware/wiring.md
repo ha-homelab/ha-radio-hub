@@ -1,5 +1,9 @@
 # Revision A wiring
 
+This page describes the original **Pi + two S3 boards** assembly. For the
+**single-S3 low-power design**, use the [visual wiring atlas](low-power/visual/README.md)
+and its PCB connector maps. The GPIO assignments differ between these designs.
+
 [Machine-readable signal list](wiring.csv). The list specifies **signal names**, not the front view of a connector: the back of the board is mirrored. Before assembly, check the markings and the [Waveshare schematic](https://files.waveshare.com/wiki/ESP32-S3-ETH/ESP32-S3-ETH-Schematic.pdf). GPIO refers to an ESP32 pin number, not a Pico header contact number.
 
 ## Ethernet and USB

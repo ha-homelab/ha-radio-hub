@@ -1,6 +1,6 @@
 # Low-power enclosure: layout mock-up
 
-**This is a preliminary mock-up for checking dimensions. Printable parts are available, but there is no PCB ready to order or physically validated assembly.** The enclosure dimensions match the hardware concept of one ESP32-S3, one W5500, separate H2/MG24 radios and locally connected radio modules. The original Pi enclosure remains a separate design.
+**This is a preliminary mock-up for checking dimensions. Printable parts are available, but there is no PCB ready to order or physically validated assembly.** The enclosure dimensions match the hardware concept of one ESP32-S3, one W5500, separate H2/MG24 radios and locally connected radio modules. The original Pi enclosure remains a separate design. The later LP-C0 and LP-I0 PCBs do not fit this mock-up as complete assemblies: see the [CAD-coordinate compatibility review](../hardware/low-power/visual/physical/README.md).
 
 ![Space allocation plan](../mechanical/low-power/generated/layout-plan.png)
 
@@ -79,4 +79,4 @@ python -m unittest discover -s mechanical/low-power -p 'test_*.py'
 
 Changing the enclosure size **does not rearrange components automatically**: reservation coordinates are defined in JSON. Repeat the geometry checks and inspect the PNG/GLB after any change. A software clearance check does not replace a physical fit check with connectors and cables attached.
 
-Before manufacturing the electrical board or operating it continuously, the following remain: select the MagJack, protection and grommet; obtain actual drawings for all modules; establish PoE isolation clearances and PCB routing; validate mounting and strain relief; test all radio networks simultaneously; compare radar performance with and without the lid; perform a thermal soak and measure the energy of **the entire device at the PoE input**. The PD's nominal output power or efficiency at a different operating point does not establish this mock-up's consumption. Firmware readiness is checked separately and cannot be inferred from the presence of STL files.
+Before manufacturing the electrical board or operating it continuously, the following remain: review the selected PCB revision's MagJack/protection choices and grommet; verify actual drawings for all modules; qualify PoE isolation clearances and PCB routing; validate mounting and strain relief; test all radio networks simultaneously; compare radar performance with and without the lid; perform a thermal soak and measure the energy of **the entire device at the PoE input**. The PD's nominal output power or efficiency at a different operating point does not establish this mock-up's consumption. Firmware readiness is checked separately and cannot be inferred from the presence of STL files.

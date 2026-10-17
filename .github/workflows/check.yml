@@ -67,6 +67,11 @@ jobs:
       - name: Check wiring and lifetime-energy model
         run: |
           python3 hardware/low-power/validate.py
+          python3 hardware/low-power/visual/validate.py
+          python3 -m unittest discover -s hardware/low-power/visual -p 'test_*.py'
+          python3 -m unittest discover -s hardware/low-power/visual/physical -p 'test_*.py'
+          python3 hardware/low-power/visual/physical/build.py --check
+          python3 hardware/low-power/visual/build.py --check
           python3 tools/energy.py plan --years 15
       - name: Compile all services in one S3 image
         run: .venv/bin/python firmware/low-power/validate.py --esphome .venv/bin/esphome --compile --output .build/low-power
@@ -87,10 +92,41 @@ jobs:
         run: |
           .venv/bin/python -m unittest discover -s mechanical/low-power -p 'test_*.py'
           .venv/bin/python mechanical/low-power/build.py --check
+  pcb:
+    name: Carrier and integrated PCB validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      KICAD_IMAGE: kicad/kicad:10.0.6@sha256:18693567392b80da435f9fa952ce3a3e534c66eb5a6033f5b9c80aa3b19dd3ec
+    steps:
+      - name: Audit runner network access
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Fetch pinned official KiCad image
+        run: docker pull "$KICAD_IMAGE"
+      - name: Verify circuit contracts, native ERC, DRC and connectivity
+        run: |
+          docker run --rm --network none --env QT_QPA_PLATFORM=offscreen \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/source,readonly" --workdir /tmp \
+            "$KICAD_IMAGE" bash -euc '
+              cp -R /source /tmp/pcb-source
+              cd /tmp/pcb-source
+              kicad-cli version
+              python3 -m unittest discover -s hardware/low-power/carrier -p "test_*.py"
+              python3 hardware/low-power/carrier/validate.py --check-hashes --out /tmp/carrier-validation
+              python3 -m unittest discover -s hardware/low-power/carrier/mg24-adapter -p "test_*.py"
+              python3 hardware/low-power/carrier/mg24-adapter/validate.py --check-hashes --out /tmp/mg24-adapter-validation
+              python3 -m unittest discover -s hardware/low-power/integrated -p "test_*.py"
+              python3 hardware/low-power/integrated/validate.py
+            '
   check:
     name: check
     if: always()
-    needs: [baseline, low-power, mg24]
+    needs: [baseline, low-power, mg24, pcb]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -99,10 +135,12 @@ jobs:
           BASELINE_RESULT: ${{ needs.baseline.result }}
           LOW_POWER_RESULT: ${{ needs.low-power.result }}
           MG24_RESULT: ${{ needs.mg24.result }}
+          PCB_RESULT: ${{ needs.pcb.result }}
         run: |
           test "$BASELINE_RESULT" = success
           test "$LOW_POWER_RESULT" = success
           test "$MG24_RESULT" = success
+          test "$PCB_RESULT" = success
   mg24:
     name: MG24 Zigbee NCP and bootloader
     runs-on: ubuntu-latest

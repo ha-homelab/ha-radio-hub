@@ -1,6 +1,6 @@
 # Continuous integration and automated approval
 
-The required `check` job gates three independent jobs. The modular job compiles
+The required `check` job gates four independent jobs. The modular job compiles
 both existing Ethernet ESPHome configurations, tests the RF/UART C++ contracts
 with sanitizers, exercises migration with synthetic inputs, validates printable
 geometry and builds the serial-service container. The single-host job checks the
@@ -8,7 +8,12 @@ new wiring/energy model, compiles all services into one S3 image plus its matchi
 H2 radio firmware, exercises the actual REST handlers with the pinned HA client,
 and validates the separate concept enclosure. The MG24 job downloads hash-verified
 tools and SDK, generates the exact module/UART configuration, builds the Zigbee
-NCP and bootloader, and checks merged/update images. Failure, cancellation or
+NCP and bootloader, and checks merged/update images. The PCB job checks the
+carrier, MG24 adapter and integrated board with circuit-contract tests and
+native KiCad ERC/DRC/connectivity checks in the official KiCad
+10.0.6 container, pinned by digest. Network access is disabled during those
+checks. The wiring atlas and physical contact drawings must reproduce from their
+committed sources; their checks run in the single-host job. Failure, cancellation or
 skipping of any job prevents the required gate from passing. Thread RCP changes additionally run
 the existing independent Nordic RCP build.
 
