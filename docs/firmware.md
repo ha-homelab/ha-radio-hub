@@ -120,7 +120,7 @@ docker compose --env-file software/runtime/hub.env -f software/compose.yaml exec
 
 Первый вариант сохраняет работающий [rf-airbridge](https://github.com/ha-homelab/rf-airbridge) вместе с текущими локальными настройками, MQTT topics и HA-автоматизациями. Это NodeMCU ESP8266 + CC1101 433,92 MHz: SCLK14, MOSI13, MISO12, CS15, общий GDO0 GPIO4. Не копируйте публичный example поверх действующего YAML: там нет ваших entity IDs и кодов устройств. Плата получает питание в новом корпусе, но остаётся Wi-Fi-клиентом. Ни один Wi-Fi credential или RF-код из действующей установки в этот репозиторий не переносился.
 
-`firmware/rf-ethernet.experimental.yaml` реализует проводной **второй** S3-ETH-M с CC1101. W5500 pin map тот же; отдельный SPI3: SCLK7, MOSI8, MISO6, CS15; **GDO0 → GPIO4 TX, GDO2 → GPIO5 RX**, 3V3 и GND. Установите подходящую антенну 433 MHz до передачи. Раздельные data pins следуют [документации CC1101 ESPHome](https://esphome.io/components/cc1101/) и не требуют ESP8266-only receiver patch старого проекта.
+`firmware/rf-ethernet.experimental.yaml` реализует проводной **второй** S3-ETH-M с CC1101. W5500 pin map тот же; отдельный SPI3: SCLK7, MOSI8, MISO6, CS15; **GPIO4 TX → GDO0, GDO2 → GPIO5 RX**, 3V3 и GND. Установите подходящую антенну 433 MHz до передачи. Раздельные data pins следуют [документации CC1101 ESPHome](https://esphome.io/components/cc1101/) и не требуют ESP8266-only receiver patch старого проекта.
 
 ```sh
 python firmware/validate.py --config rf-ethernet.experimental.yaml --compile

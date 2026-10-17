@@ -79,6 +79,9 @@ def models(p):
     # Side vent windows; 3 mm spans can bridge in the default print orientation.
     for y in range(38,int(d)-30,7):
         for x in (-EPS,w-t-EPS):
+            # Leave material around the ambient-sensor cable gland on the left.
+            if x == -EPS and abs(y + 1.5 - p['bme_exit_y']) < 10:
+                continue
             cuts.append(box(t+2*EPS,3,17).move((x,y,52)))
     # Rear RJ45 cable access: allow connector passage; fit a split grommet later.
     cuts.append(box(22,t+2*EPS,16).move((w/2-11,d-t-EPS,12)))
@@ -86,7 +89,7 @@ def models(p):
     for x in (-EPS,w-t-EPS):
         cuts.append(cylinder(p['bulkhead_hole'],t+2*EPS).rotate((0,90,0)).move((x,d-26,60)))
     # Exit for the remote, naturally ventilated ambient sensor pod.
-    cuts.append(cylinder(p['bme_cable_hole'],t+2*EPS).rotate((90,0,0)).move((w-35,t+EPS,24)))
+    cuts.append(cylinder(p['bme_cable_hole'],t+2*EPS).rotate((0,90,0)).move((-EPS,p['bme_exit_y'],p['bme_exit_z'])))
     # Universal strap slots, not claimed to match any manufacturer's mounting holes.
     for x in range(30,int(w)-25,30):
         for y in range(30,int(d)-25,30):
@@ -198,7 +201,7 @@ def preview(meshes,p,out):
     ax=fig.add_axes([0.02,0.04,0.74,0.86],projection='3d',facecolor='#f4f7fa')
     scene=[('base',(0,0,0),navy,0.30),('deck',(p['deck_margin']-5,p['deck_margin']-5,94),teal,.85),
            ('lid',(0,0,139),'#c8d6e4',.68),('radar_carrier',(p['width']/2-42,p['radar_window_center_y']-26,122),gold,1),
-           ('bme680_pod_base',(p['width']+14,20,0),teal,.85),('bme680_pod_lid',(p['width']+14,20,34),'#c8d6e4',1)]
+           ('bme680_pod_base',(-75,p['bme_exit_y']-18,40),teal,.85),('bme680_pod_lid',(-75,p['bme_exit_y']-18,74),'#c8d6e4',1)]
     for name,offset,color,alpha in scene:
         vertices=meshes[name].vertices.copy()
         if name=='lid':
@@ -206,8 +209,8 @@ def preview(meshes,p,out):
         vertices+=offset
         collection=Poly3DCollection(vertices[meshes[name].faces],facecolor=color,edgecolor='none',alpha=alpha)
         ax.add_collection3d(collection)
-    ax.set(xlim=(0,300),ylim=(0,p['depth']),zlim=(0,145))
-    ax.set_box_aspect((300,p['depth'],170));ax.view_init(elev=27,azim=-61);ax.set_axis_off()
+    ax.set(xlim=(-85,p['width']),ylim=(0,p['depth']),zlim=(0,145))
+    ax.set_box_aspect((p['width']+85,p['depth'],170));ax.view_init(elev=27,azim=-120);ax.set_axis_off()
     fig.text(.04,.94,'HA RADIO HUB',fontsize=24,fontweight='bold',color=navy)
     fig.text(.04,.898,'DRAFT V0  /  printable enclosure and two-level arrangement',fontsize=12,color='#456078')
     text='240 × 200 × 80 mm\nMain enclosure\n\n01  Vented lid\n      1.2 mm radar window\n\n02  LD2450 carrier\n      Insulated ties; fit to verify\n\n03  Removable cable tray\n      z = 40 mm assembled\n\n04  Base + mounting pillars\n      PoE / Linux / switch below\n\n05  Ambient BME680 pod\n      45 × 36 × 20 mm\n\nSTL geometry validated\nComponent / RF / thermal fit pending'
@@ -223,7 +226,7 @@ def preview(meshes,p,out):
       (22,66,202,30,'Cable lane: Ethernet / USB / 5 V'),
     ],[
       (22,104,91,64,'ESP32-S3-ETH\n+ ZAC93 allocation'),
-      (128,104,90,64,'NodeMCU + CC1101\nallocation'),
+      (128,104,90,64,'RF S3-ETH or NodeMCU\n+ CC1101 allocation'),
       (22,76,105,23,'MG24 stick + lead'),
       (148,76,68,23,'Thread PCA10059'),
       (78,14,84,52,'LD2450 carrier\non lid above this zone'),
@@ -277,8 +280,8 @@ def main():
       'deck':(p['deck_margin']-5,p['deck_margin']-5,p['deck_z']),
       'lid':(0,0,p['base_height']+p['lid_thickness']),
       'radar_carrier':(p['width']/2-42,p['radar_window_center_y']-26,p['base_height']-11+EPS),
-      'bme680_pod_base':(p['width']+15,10,0),
-      'bme680_pod_lid':(p['width']+15,10,p['pod_height']-p['pod_wall'])
+      'bme680_pod_base':(-75,p['bme_exit_y']-18,40),
+      'bme680_pod_lid':(-75,p['bme_exit_y']-18,40+p['pod_height']-p['pod_wall'])
     }
     assembled={}
     for name,offset in transforms.items():

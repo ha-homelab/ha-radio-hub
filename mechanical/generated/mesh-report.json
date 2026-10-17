@@ -7,8 +7,8 @@
       "winding_consistent": true,
       "connected_bodies": 1,
       "positive_volume": true,
-      "volume_mm3": 364840.8,
-      "triangles": 5316,
+      "volume_mm3": 365299.8,
+      "triangles": 5258,
       "bounds_mm": [
         [
           0.0,
@@ -21,7 +21,7 @@
           77.0
         ]
       ],
-      "sha256": "6fd8b2ad512ab57dfa2f8e5edb7308418057020d0de84bf30ef7f4f9d83f83c8"
+      "sha256": "f719cea0f27436237b4b1087e4c52bfffeeff29ef628b08e61ebf3fe4cc322e2"
     },
     "lid": {
       "watertight": true,

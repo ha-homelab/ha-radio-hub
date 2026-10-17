@@ -24,5 +24,7 @@
   "pod_width": 45.0,
   "pod_depth": 36.0,
   "pod_height": 20.0,
-  "pod_wall": 2.0
+  "pod_wall": 2.0,
+  "bme_exit_y": 136.0,
+  "bme_exit_z": 55.0
 }
