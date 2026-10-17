@@ -1,0 +1,91 @@
+(footprint "FuseHarness"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -2.8 0)
+		(layer "F.SilkS")
+		(uuid "a54cbd36-589b-5f3a-a986-819326b95bbe")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "FuseHarness"
+		(at 0 2.8 0)
+		(layer "F.Fab")
+		(uuid "658fe385-20af-5b5e-a3ac-f699108607ff")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d29bb8fb-1e9f-5777-a6d1-c605adf91455")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a728c288-8733-56fa-9662-d5a2e8f36dba")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.7 -1.7)
+		(end 9.7 1.7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "b65891df-9448-5f6a-a20c-ac52cf0a48a1")
+	)
+	(fp_rect
+		(start -1.2 -1.2)
+		(end 9.2 1.2)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "c8f57520-dad2-556e-be6d-806bdfc5ff3d")
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu")
+		(remove_unused_layers no)
+		(uuid "33f463b0-3bcf-5876-bdc4-0988f794338b")
+	)
+	(pad "2" thru_hole circle
+		(at 8 0)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu")
+		(remove_unused_layers no)
+		(uuid "bd4bd7f5-15a6-550e-b32e-22af2d40d92f")
+	)
+	(embedded_fonts no)
+)

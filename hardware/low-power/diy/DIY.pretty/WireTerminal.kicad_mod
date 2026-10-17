@@ -1,0 +1,61 @@
+(footprint "WireTerminal"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "T?"
+		(at 0 -1.7 0)
+		(layer "F.Fab")
+		(uuid "eae4abec-2ada-5124-a318-adedda0aa4d1")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Wire terminal"
+		(at 0 1.7 0)
+		(layer "F.Fab")
+		(uuid "e824628e-7a58-51a8-958f-1f3f8b4a0fe7")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "138a4d7f-8698-5ed3-b61d-5b33e068488a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "086dfd6b-dcc3-5265-81fb-08cd2365a778")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu")
+		(remove_unused_layers no)
+		(uuid "61eaaf6c-1a83-5934-a316-dd1444f5b348")
+	)
+	(embedded_fonts no)
+)

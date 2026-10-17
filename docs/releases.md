@@ -5,6 +5,13 @@ Use the newest engineering prerelease from
 `v0.1.0` archive predates the complete RF Ethernet port; use `v0.2.0` or later for
 the migrated RF contracts and matching wiring instructions.
 
+The illustrated parts catalog and D0 toner-transfer design were added after
+`v0.2.0`; that older archive does not contain them. Until a later versioned
+package includes these additions, use the current repository's
+[parts gallery](parts-gallery.md) and [D0 print/assembly files](diy-pcb.md) as a
+matching source set. Do not mix a D0 copper mask with an older or different
+revision's drilling or wiring sheet.
+
 The `ha-radio-hub-VERSION-build-pack.zip` archive contains the committed project:
 the parts list and wiring, eight printable STL parts, parametric CAD and previews,
 firmware sources, Linux deployment files, tests, and assembly/HA instructions.

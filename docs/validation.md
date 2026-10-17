@@ -84,6 +84,44 @@ by a passing software or CAD check.
 
 ## Local evidence
 
+### Illustrated parts and DIY carrier, 2026-10-17
+
+The README gallery is rendered from the native C0, M0, I0 and D0 PCB files.
+Source and image hashes, tool version and image dimensions are checked offline.
+These are bare-board CAD views, not photographs of assembled hardware.
+
+The parts catalog covers all 341 canonical BOM rows in 223 cards, preserving
+quantities, packages and notes for each build. It includes a GitHub-readable image gallery and a
+filterable HTML version. Manufacturer images have source/credit metadata;
+offline fallbacks are explicitly labelled original illustrations. AliExpress
+links are unverified searches, not approved seller listings. Browser checks
+cover filtering, search, missing remote images and layouts at 375, 760 and
+1360 pixels. The updated wiring atlas passed browser checks for all four
+boards, 30 connectors and 29 available net-trace links.
+
+The separate D0 toner-transfer design has 636 bottom-copper tracks and 54
+insulated wire links, including one connection to the exposed U1.11 adapter
+pin at a documented height. Native KiCad ERC, DRC, unconnected-item and
+schematic-parity checks returned zero violations. An independent geometry
+and wire-union check verified 195 component pins across 44 logical nets, with
+a minimum copper clearance of 0.500 mm. There are no top-layer tracks, plated
+vias or copper zones. Removing a wire, cutting a track or changing a connector
+assignment is covered by connectivity regressions.
+
+The matching vector print package provides transfer copper, bottom inspection
+and drilling, component-side assembly with wire schedules, and calibration
+coupons. Its checks cover source/output freshness, PDF scale and orientation,
+including the raised-pin joint without inventing an extra drilled hole. The
+adapter footprints are independently checked against pinned manufacturer CAD.
+The relevant suites passed 26 D0, 14 catalog, 18 atlas, 6 contact-reference and
+8 print-export tests. All eight pages of the four print PDFs were rendered and
+visually inspected; the drilling set contains 299 real holes.
+These checks do not establish printer accuracy, etching quality, mechanical
+clearance in a real assembly, signal integrity or powered operation. D0 still
+needs factory-made fine-pitch adapters and the populated M0 radio board.
+
+### Modular reference and shared tooling
+
 - Main ESPHome 2026.9.1 configuration: schema validation and full ESP-IDF 5.5.5
   compilation passed. It includes W5500 Ethernet, active BLE proxy, ZAC93 UART,
   LD2450 UART and BME680 I²C. Static RAM 104,319 / 341,760 bytes; application

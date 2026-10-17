@@ -36,14 +36,20 @@ on confirming the actual board revision.
 
 ## PCB connectors
 
-The **Board connectors** tab selects the carrier, its MG24 daughterboard, or
-the integrated board's connector manifest. Each row identifies the board connector pin, net, destination signal,
+The **Board connectors** tab selects C0 (carrier), M0 (MG24 daughterboard),
+I0 (integrated board), or D0 (DIY single-sided board) and its connector manifest. Each row identifies the board connector pin, net, destination signal,
 voltage and assembly notes. The adjacent drawing uses actual KiCad pad centres
 in PCB top/component view. It is not the cable mating-face view, which is mirrored.
 Pin 1 is highlighted; shared physical pads are grouped without inventing separate
 positions. Expand the PCB drawing to locate each connector. Use moulded circuit
 numbers and a continuity test instead
 of inferring polarity from wire colour.
+
+D0 preserves C0 signal roles but requires the numbered insulated wire links in
+its [assembly instructions](../diy/README.md), in addition to its bottom copper.
+Its **J10 is JST XH 2.50 mm**, mating with XHP-4, rather than C0's JST SH/QT socket.
+Use the continuity-verified XH-to-factory-QT cable; a QT plug does not fit D0 J10.
+Both C0 and D0 use the separate populated M0 radio adapter.
 
 The connector manifest also names the mating housing and crimp contacts. Unknown
 reused-module contact positions remain unknown; a numbered carrier socket does

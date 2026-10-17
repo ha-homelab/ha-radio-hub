@@ -111,13 +111,18 @@ def generate() -> dict[str, bytes]:
     for key, directory, title in [
             ('carrier', 'carrier', 'Ready-module carrier'),
             ('integrated', 'integrated', 'Integrated radio board'),
-            ('mg24-adapter', 'carrier/mg24-adapter', 'MG24 daughterboard for carrier')]:
+            ('mg24-adapter', 'carrier/mg24-adapter', 'MG24 daughterboard for carrier'),
+            ('diy', 'diy', 'DIY single-sided board with insulated links')]:
         path = ROOT.parent / directory / 'connectors.json'
         if path.exists():
             board_raw = path.read_bytes()
             inputs[f'../{directory}/connectors.json'] = hashlib.sha256(board_raw).hexdigest()
             board = json.loads(board_raw)
             board.update(id=key, title=title)
+            if key == 'diy':
+                board['wiring_note'] = ('D0 uses bottom copper plus the numbered insulated wire links in its assembly instructions. '
+                                        'It needs the external M0 radio adapter. J10 is JST XH 2.50 mm, not the C0 JST SH/QT socket; '
+                                        'use the verified XH-to-factory-QT cable. The net roles are unchanged.')
             overview = ROOT.parent / directory / ('fabrication' if key == 'integrated' else 'outputs') / 'assembly-top.svg'
             if overview.exists():
                 payload = overview.read_bytes()

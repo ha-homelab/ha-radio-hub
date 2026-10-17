@@ -1,5 +1,10 @@
 # Prototype procurement
 
+For photographs, identification drawings and AliExpress search links, use the
+[illustrated parts catalog](../docs/parts-catalog.md). It keeps the original Pi
+build, C0 + M0, I0 and the bench reference in separate inventories. The quantities
+below apply to the original Pi-based build, not the single-S3 alternatives.
+
 Use the [BOM CSV](bom.csv) or equivalent [BOM JSON](bom.json). A fully wired assembly needs the `common` and `wired_rf_only` rows: **two** ESP32-S3-ETH-M boards in total, three separate internal Ethernet patch cables, two USB radio extensions and three USB-C power harnesses. Exclude `compatibility_wifi_only` rows. `injector_only` is needed only with a separate PoE injector; `optional` is not part of the baseline assembly.
 
 The main board models have been selected, but several order items are still defined by technical requirements. The `select_after_connector_check` field means that a part number cannot be selected before inspecting the relevant board. A blank price means no quote is available, not that the part is free. Do not treat the main-module prices alone as the complete order total.

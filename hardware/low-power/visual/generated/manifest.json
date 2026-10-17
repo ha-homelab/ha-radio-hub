@@ -5,6 +5,8 @@
     "../carrier/mg24-adapter/connectors.json": "9a09a5bb9dc909cc7044822e6c0a2c7a17b989427979811449af497e5b7e26ca",
     "../carrier/mg24-adapter/outputs/assembly-top.svg": "b6aedeac785b98c4e489f9e9bd434dae396ae153663325054950d322675a0446",
     "../carrier/outputs/assembly-top.svg": "4cd1a1129a333ac874b18848efc88d7393433091b72eb4c4b28a47c676c2e73f",
+    "../diy/connectors.json": "2ef0efaae9176b3dfa0bdc4166cb5a231bf4cec5c950fc99096b76d0341c2a45",
+    "../diy/outputs/assembly-top.svg": "fcd455942c6cee15b5ee111a4b4b8eb757d02854ea6519692325086a097269cc",
     "../integrated/connectors.json": "6dabb5fe801e3eb04c6e55a92a5f1507615aba9e548b9c60cd01862c4e5f7a1d",
     "../integrated/fabrication/assembly-top.svg": "2d6edbec44dd9b0593775527483fdaed9e78326cabf19af324cab53370d4326d",
     "connections.json": "c428425508110e04d330fbcbd5470f28a23a02ffefd5dffedb69016cf9a6d750",
@@ -14,16 +16,17 @@
     "physical/generated/pololu-contacts.svg": "6e252e0f8d84174b257b820b35c26a9b7f085ca1776d8894dd8ad18f496020cf",
     "physical/generated/s3-contacts.svg": "be45a80b16fb941f12881f221749b8b6b0df570e00973dfa0fe311138fbcc0f8",
     "physical/generated/wiz850io-contacts.svg": "71f040411a3f85ca600fbbb9147da01ffb03fb56f0ef30f55b46f5f9574679fb",
-    "viewer.template.html": "959f854037b62a3786a96a1a9d1829251a400a2ccdb4960e16c4aba8286996d1"
+    "viewer.template.html": "a4d8c3b2ce8b97792348f7e527b46055c89a1d338d4b75fdd12eb4cc0cfe3d51"
   },
   "files": {
     "bme680-connections.svg": "0706f1f63523c20aa82e42f08a82ee468ae1e80291573cbbcf087cd44646c3f7",
     "buck-connections.svg": "f97924fe3461aa6d3e6c740d2f64b4d182a5a90337c91cf3a9b4f2422ec50d9c",
     "carrier-assembly.svg": "4cd1a1129a333ac874b18848efc88d7393433091b72eb4c4b28a47c676c2e73f",
     "cc1101-connections.svg": "edbed64bfe39f9723da74e636cfd313e770b2a517d7b22469a6158189f440de2",
+    "diy-assembly.svg": "fcd455942c6cee15b5ee111a4b4b8eb757d02854ea6519692325086a097269cc",
     "h2-connections.svg": "dcc2b5175542add02b2b05e50822b82cd6aeef14d632f36cf39636c1b8415def",
     "h2-contacts.svg": "2d109b688e026ba2e7fa961192b7feaca6c9a01b0286fc35250e1b74f57e2e5b",
-    "index.html": "dd008bb4dfe82de0110bc94cec364ce2468d1e089d69174da2e3d453dfa311e9",
+    "index.html": "50ff4d25cd5c67cb358a2927209f348cbe7673222e918d13e4c5bba4d4421d03",
     "integrated-assembly.svg": "2d6edbec44dd9b0593775527483fdaed9e78326cabf19af324cab53370d4326d",
     "ld2450-connections.svg": "0e78f4d8684b07b9e70c7a59d13c5e64067ab6606afd5287d4042f40501e48ea",
     "mg24-adapter-assembly.svg": "b6aedeac785b98c4e489f9e9bd434dae396ae153663325054950d322675a0446",

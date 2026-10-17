@@ -1,0 +1,2682 @@
+{
+  "schema_version": 1,
+  "revision": "LP-D0",
+  "fabricated_copper": false,
+  "view": "component/top view; wire ABOVE board",
+  "terminals": [
+    {
+      "ref": "T1",
+      "xy": [
+        22.5,
+        92.8097
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__5",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T2",
+      "xy": [
+        38.6076,
+        28.709
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T3",
+      "xy": [
+        55.829,
+        28.2573
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T4",
+      "xy": [
+        87.515,
+        77.0854
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__6",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T5",
+      "xy": [
+        91.2602,
+        77.0854
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T6",
+      "xy": [
+        28.1381,
+        36.526
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__6",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T7",
+      "xy": [
+        29.6351,
+        42.9696
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__5",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T8",
+      "xy": [
+        29.6351,
+        52.2198
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__7",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T9",
+      "xy": [
+        31.9067,
+        82.7749
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T10",
+      "xy": [
+        42.8675,
+        36.0798
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T11",
+      "xy": [
+        78.0,
+        66.459999
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T12",
+      "xy": [
+        88.0,
+        80.32
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T13",
+      "xy": [
+        176.0,
+        12.46
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T14",
+      "xy": [
+        15.1961,
+        112.0564
+      ],
+      "logical_net": "cc1101_cs",
+      "physical_net": "cc1101_cs__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T15",
+      "xy": [
+        62.9092,
+        112.0564
+      ],
+      "logical_net": "cc1101_cs",
+      "physical_net": "cc1101_cs__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T16",
+      "xy": [
+        37.432,
+        52.1625
+      ],
+      "logical_net": "cc1101_gdo0_tx",
+      "physical_net": "cc1101_gdo0_tx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T17",
+      "xy": [
+        4.3668,
+        70.1635
+      ],
+      "logical_net": "cc1101_gdo2_rx",
+      "physical_net": "cc1101_gdo2_rx__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T18",
+      "xy": [
+        11.0626,
+        70.1635
+      ],
+      "logical_net": "cc1101_gdo2_rx",
+      "physical_net": "cc1101_gdo2_rx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T19",
+      "xy": [
+        70.3842,
+        35.9414
+      ],
+      "logical_net": "cc1101_gdo2_rx",
+      "physical_net": "cc1101_gdo2_rx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T20",
+      "xy": [
+        92.5284,
+        27.8153
+      ],
+      "logical_net": "cc1101_gdo2_rx",
+      "physical_net": "cc1101_gdo2_rx__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T21",
+      "xy": [
+        103.24,
+        85.4
+      ],
+      "logical_net": "gpio0_unused",
+      "physical_net": "gpio0_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T22",
+      "xy": [
+        113.0,
+        72.0
+      ],
+      "logical_net": "gpio0_unused",
+      "physical_net": "gpio0_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T23",
+      "xy": [
+        28.54,
+        60.48
+      ],
+      "logical_net": "h2_boot",
+      "physical_net": "h2_boot__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T24",
+      "xy": [
+        183.16,
+        30.0
+      ],
+      "logical_net": "h2_boot",
+      "physical_net": "h2_boot__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T25",
+      "xy": [
+        14.8038,
+        63.48
+      ],
+      "logical_net": "h2_reset",
+      "physical_net": "h2_reset__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T26",
+      "xy": [
+        91.2102,
+        61.4903
+      ],
+      "logical_net": "h2_reset",
+      "physical_net": "h2_reset__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T27",
+      "xy": [
+        144.4034,
+        35.8225
+      ],
+      "logical_net": "h2_reset",
+      "physical_net": "h2_reset__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T28",
+      "xy": [
+        149.0,
+        36.0168
+      ],
+      "logical_net": "h2_reset",
+      "physical_net": "h2_reset__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T29",
+      "xy": [
+        167.16,
+        30.0
+      ],
+      "logical_net": "h2_reset",
+      "physical_net": "h2_reset__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T30",
+      "xy": [
+        31.2518,
+        54.1506
+      ],
+      "logical_net": "h2_rx",
+      "physical_net": "h2_rx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T31",
+      "xy": [
+        158.5,
+        23.6399
+      ],
+      "logical_net": "h2_rx",
+      "physical_net": "h2_rx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T32",
+      "xy": [
+        14.8038,
+        60.94
+      ],
+      "logical_net": "h2_tx",
+      "physical_net": "h2_tx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T33",
+      "xy": [
+        153.5,
+        13.6699
+      ],
+      "logical_net": "h2_tx",
+      "physical_net": "h2_tx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T34",
+      "xy": [
+        15.1959,
+        101.54
+      ],
+      "logical_net": "ld2450_tx",
+      "physical_net": "ld2450_tx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T35",
+      "xy": [
+        51.735,
+        101.54
+      ],
+      "logical_net": "ld2450_tx",
+      "physical_net": "ld2450_tx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T36",
+      "xy": [
+        37.3908,
+        57.3405
+      ],
+      "logical_net": "mg24_cts",
+      "physical_net": "mg24_cts__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T37",
+      "xy": [
+        163.5,
+        54.8667
+      ],
+      "logical_net": "mg24_cts",
+      "physical_net": "mg24_cts__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T38",
+      "xy": [
+        13.393,
+        114.0392
+      ],
+      "logical_net": "mg24_rts",
+      "physical_net": "mg24_rts__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T39",
+      "xy": [
+        138.1076,
+        115.1429
+      ],
+      "logical_net": "mg24_rts",
+      "physical_net": "mg24_rts__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T40",
+      "xy": [
+        40.7496,
+        50.8579
+      ],
+      "logical_net": "mg24_rx",
+      "physical_net": "mg24_rx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T41",
+      "xy": [
+        158.5,
+        49.2112
+      ],
+      "logical_net": "mg24_rx",
+      "physical_net": "mg24_rx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T42",
+      "xy": [
+        12.2755,
+        90.2964
+      ],
+      "logical_net": "mg24_tx",
+      "physical_net": "mg24_tx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T43",
+      "xy": [
+        62.3786,
+        90.2964
+      ],
+      "logical_net": "mg24_tx",
+      "physical_net": "mg24_tx__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T44",
+      "xy": [
+        77.9975,
+        57.0833
+      ],
+      "logical_net": "mg24_tx",
+      "physical_net": "mg24_tx__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T45",
+      "xy": [
+        156.0,
+        56.7042
+      ],
+      "logical_net": "mg24_tx",
+      "physical_net": "mg24_tx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T46",
+      "xy": [
+        33.4476,
+        57.2988
+      ],
+      "logical_net": "sc16_cs",
+      "physical_net": "sc16_cs__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T47",
+      "xy": [
+        11.9836,
+        73.667
+      ],
+      "logical_net": "sc16_irq",
+      "physical_net": "sc16_irq__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T48",
+      "xy": [
+        4.6058,
+        49.5507
+      ],
+      "logical_net": "shared_spi_mosi",
+      "physical_net": "shared_spi_mosi__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T49",
+      "xy": [
+        14.4585,
+        49.5507
+      ],
+      "logical_net": "shared_spi_mosi",
+      "physical_net": "shared_spi_mosi__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T50",
+      "xy": [
+        57.5,
+        37.7431
+      ],
+      "logical_net": "shared_spi_mosi",
+      "physical_net": "shared_spi_mosi__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T51",
+      "xy": [
+        89.3787,
+        36.4923
+      ],
+      "logical_net": "shared_spi_mosi",
+      "physical_net": "shared_spi_mosi__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T52",
+      "xy": [
+        97.5873,
+        71.0485
+      ],
+      "logical_net": "shared_spi_mosi",
+      "physical_net": "shared_spi_mosi__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T53",
+      "xy": [
+        6.4075,
+        47.5002
+      ],
+      "logical_net": "shared_spi_sclk",
+      "physical_net": "shared_spi_sclk__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T54",
+      "xy": [
+        6.4075,
+        88.4947
+      ],
+      "logical_net": "shared_spi_sclk",
+      "physical_net": "shared_spi_sclk__4",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T55",
+      "xy": [
+        11.5883,
+        40.3714
+      ],
+      "logical_net": "shared_spi_sclk",
+      "physical_net": "shared_spi_sclk__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T56",
+      "xy": [
+        43.4013,
+        54.8409
+      ],
+      "logical_net": "shared_spi_sclk",
+      "physical_net": "shared_spi_sclk__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T57",
+      "xy": [
+        46.3337,
+        52.5192
+      ],
+      "logical_net": "shared_spi_sclk",
+      "physical_net": "shared_spi_sclk__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T58",
+      "xy": [
+        51.7998,
+        88.4947
+      ],
+      "logical_net": "shared_spi_sclk",
+      "physical_net": "shared_spi_sclk__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T59",
+      "xy": [
+        6.5588,
+        42.4228
+      ],
+      "logical_net": "w5500_cs",
+      "physical_net": "w5500_cs__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T60",
+      "xy": [
+        14.8038,
+        43.16
+      ],
+      "logical_net": "w5500_cs",
+      "physical_net": "w5500_cs__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T61",
+      "xy": [
+        80.16,
+        28.0
+      ],
+      "logical_net": "w5500_cs",
+      "physical_net": "w5500_cs__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T62",
+      "xy": [
+        88.5991,
+        27.4779
+      ],
+      "logical_net": "w5500_cs",
+      "physical_net": "w5500_cs__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T63",
+      "xy": [
+        43.2102,
+        42.3968
+      ],
+      "logical_net": "w5500_irq",
+      "physical_net": "w5500_irq__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T64",
+      "xy": [
+        77.9083,
+        25.4699
+      ],
+      "logical_net": "w5500_irq",
+      "physical_net": "w5500_irq__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T65",
+      "xy": [
+        14.8038,
+        40.62
+      ],
+      "logical_net": "w5500_miso",
+      "physical_net": "w5500_miso__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T66",
+      "xy": [
+        62.5,
+        13.6699
+      ],
+      "logical_net": "w5500_miso",
+      "physical_net": "w5500_miso__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T67",
+      "xy": [
+        18.0803,
+        21.2208
+      ],
+      "logical_net": "w5500_mosi",
+      "physical_net": "w5500_mosi__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T68",
+      "xy": [
+        41.4558,
+        20.8591
+      ],
+      "logical_net": "w5500_mosi",
+      "physical_net": "w5500_mosi__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T69",
+      "xy": [
+        46.5234,
+        26.1104
+      ],
+      "logical_net": "w5500_mosi",
+      "physical_net": "w5500_mosi__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T70",
+      "xy": [
+        58.351,
+        25.8888
+      ],
+      "logical_net": "w5500_mosi",
+      "physical_net": "w5500_mosi__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T71",
+      "xy": [
+        4.331,
+        45.6985
+      ],
+      "logical_net": "w5500_reset",
+      "physical_net": "w5500_reset__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T72",
+      "xy": [
+        14.8038,
+        45.7
+      ],
+      "logical_net": "w5500_reset",
+      "physical_net": "w5500_reset__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T73",
+      "xy": [
+        17.6566,
+        4.4954
+      ],
+      "logical_net": "w5500_reset",
+      "physical_net": "w5500_reset__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T74",
+      "xy": [
+        70.0,
+        13.6699
+      ],
+      "logical_net": "w5500_reset",
+      "physical_net": "w5500_reset__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T75",
+      "xy": [
+        21.8865,
+        22.6641
+      ],
+      "logical_net": "w5500_sclk",
+      "physical_net": "w5500_sclk__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T76",
+      "xy": [
+        56.28,
+        24.0041
+      ],
+      "logical_net": "w5500_sclk",
+      "physical_net": "w5500_sclk__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T77",
+      "xy": [
+        95.1541,
+        93.9996
+      ],
+      "logical_net": "zac93_tx",
+      "physical_net": "zac93_tx__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T78",
+      "xy": [
+        107.87868,
+        87.12132
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T79",
+      "xy": [
+        67.0,
+        111.0
+      ],
+      "logical_net": "+3V3",
+      "physical_net": "+3V3__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T80",
+      "xy": [
+        126.057777,
+        61.776457
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__8",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T81",
+      "xy": [
+        28.3651,
+        54.419505
+      ],
+      "logical_net": "GND",
+      "physical_net": "GND__7",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T82",
+      "xy": [
+        65.0,
+        49.0
+      ],
+      "logical_net": "cc1101_gdo0_tx",
+      "physical_net": "cc1101_gdo0_tx__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T83",
+      "xy": [
+        124.343146,
+        74.656854
+      ],
+      "logical_net": "gpio3_unused",
+      "physical_net": "gpio3_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T84",
+      "xy": [
+        102.99,
+        75.03
+      ],
+      "logical_net": "gpio3_unused",
+      "physical_net": "gpio3_unused__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T85",
+      "xy": [
+        126.0,
+        77.0
+      ],
+      "logical_net": "gpio4_unused",
+      "physical_net": "gpio4_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T86",
+      "xy": [
+        104.570127,
+        70.12
+      ],
+      "logical_net": "gpio4_unused",
+      "physical_net": "gpio4_unused__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T87",
+      "xy": [
+        115.511113,
+        81.117714
+      ],
+      "logical_net": "gpio5_unused",
+      "physical_net": "gpio5_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T88",
+      "xy": [
+        104.570127,
+        67.58
+      ],
+      "logical_net": "gpio5_unused",
+      "physical_net": "gpio5_unused__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T89",
+      "xy": [
+        142.669873,
+        74.5
+      ],
+      "logical_net": "gpio6_unused",
+      "physical_net": "gpio6_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T90",
+      "xy": [
+        107.001481,
+        60.728267
+      ],
+      "logical_net": "gpio6_unused",
+      "physical_net": "gpio6_unused__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T91",
+      "xy": [
+        142.757359,
+        80.757359
+      ],
+      "logical_net": "gpio7_unused",
+      "physical_net": "gpio7_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T92",
+      "xy": [
+        114.728887,
+        56.117714
+      ],
+      "logical_net": "gpio7_unused",
+      "physical_net": "gpio7_unused__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T93",
+      "xy": [
+        121.16,
+        80.464102
+      ],
+      "logical_net": "rxb_unused",
+      "physical_net": "rxb_unused__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T94",
+      "xy": [
+        104.570127,
+        72.66
+      ],
+      "logical_net": "rxb_unused",
+      "physical_net": "rxb_unused__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T95",
+      "xy": [
+        116.624466,
+        88.535534
+      ],
+      "logical_net": "sc16_cs",
+      "physical_net": "sc16_cs__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T96",
+      "xy": [
+        77.5,
+        93.11
+      ],
+      "logical_net": "sc16_cs",
+      "physical_net": "sc16_cs__3",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T97",
+      "xy": [
+        112.097822,
+        89.5
+      ],
+      "logical_net": "sc16_irq",
+      "physical_net": "sc16_irq__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T98",
+      "xy": [
+        85.16,
+        108.0
+      ],
+      "logical_net": "sc16_reset",
+      "physical_net": "sc16_reset__1",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "T99",
+      "xy": [
+        71.829629,
+        102.294095
+      ],
+      "logical_net": "sc16_reset",
+      "physical_net": "sc16_reset__2",
+      "drill_mm": 1.1
+    },
+    {
+      "ref": "E1",
+      "kind": "adapter_pin",
+      "physical_pin": "U1.11",
+      "xy": [
+        85.0,
+        85.4
+      ],
+      "logical_net": "shared_spi_mosi",
+      "physical_net": "shared_spi_mosi__3",
+      "drill_mm": null,
+      "connection_height_mm": 4,
+      "notes": "Solder one insulated wire to the exposed adapter header shaft at 4mm above D0 BEFORE installing the adapter at 6mm underside height. No additional hole. Insulate and strain-relieve; inspect clearance to adjacent pins."
+    },
+    {
+      "ref": "T101",
+      "xy": [
+        82.102223,
+        65.856457
+      ],
+      "logical_net": "zac93_tx",
+      "physical_net": "zac93_tx__2",
+      "drill_mm": 1.1
+    }
+  ],
+  "wires": [
+    {
+      "ref": "W1",
+      "logical_net": "mg24_cts",
+      "from_terminal": "T36",
+      "to_terminal": "T37",
+      "from_net": "mg24_cts__1",
+      "to_net": "mg24_cts__2",
+      "route_mm": [
+        [
+          37.3908,
+          57.3405
+        ],
+        [
+          37.8257,
+          57.7754
+        ],
+        [
+          74.7574,
+          57.7754
+        ],
+        [
+          77.6661,
+          54.8667
+        ],
+        [
+          163.5,
+          54.8667
+        ]
+      ],
+      "route_length_mm": 127.49,
+      "cut_length_mm": 142,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W2",
+      "logical_net": "mg24_rts",
+      "from_terminal": "T38",
+      "to_terminal": "T39",
+      "from_net": "mg24_rts__1",
+      "to_net": "mg24_rts__2",
+      "route_mm": [
+        [
+          13.393,
+          114.0392
+        ],
+        [
+          14.4967,
+          115.1429
+        ],
+        [
+          138.1076,
+          115.1429
+        ]
+      ],
+      "route_length_mm": 125.17,
+      "cut_length_mm": 140,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W3",
+      "logical_net": "mg24_rx",
+      "from_terminal": "T40",
+      "to_terminal": "T41",
+      "from_net": "mg24_rx__1",
+      "to_net": "mg24_rx__2",
+      "route_mm": [
+        [
+          40.7496,
+          50.8579
+        ],
+        [
+          42.3963,
+          49.2112
+        ],
+        [
+          158.5,
+          49.2112
+        ]
+      ],
+      "route_length_mm": 118.43,
+      "cut_length_mm": 133,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W4",
+      "logical_net": "mg24_tx",
+      "from_terminal": "T42",
+      "to_terminal": "T43",
+      "from_net": "mg24_tx__1",
+      "to_net": "mg24_tx__3",
+      "route_mm": [
+        [
+          12.2755,
+          90.2964
+        ],
+        [
+          62.3786,
+          90.2964
+        ]
+      ],
+      "route_length_mm": 50.1,
+      "cut_length_mm": 65,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W5",
+      "logical_net": "mg24_tx",
+      "from_terminal": "T44",
+      "to_terminal": "T45",
+      "from_net": "mg24_tx__3",
+      "to_net": "mg24_tx__2",
+      "route_mm": [
+        [
+          77.9975,
+          57.0833
+        ],
+        [
+          79.1124,
+          55.9684
+        ],
+        [
+          155.2642,
+          55.9684
+        ],
+        [
+          156.0,
+          56.7042
+        ]
+      ],
+      "route_length_mm": 78.77,
+      "cut_length_mm": 93,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W6",
+      "logical_net": "h2_rx",
+      "from_terminal": "T30",
+      "to_terminal": "T31",
+      "from_net": "h2_rx__1",
+      "to_net": "h2_rx__2",
+      "route_mm": [
+        [
+          31.2518,
+          54.1506
+        ],
+        [
+          38.7099,
+          46.6925
+        ],
+        [
+          38.7099,
+          44.3269
+        ],
+        [
+          52.9447,
+          30.0921
+        ],
+        [
+          56.6958,
+          30.0921
+        ],
+        [
+          63.148,
+          23.6399
+        ],
+        [
+          158.5,
+          23.6399
+        ]
+      ],
+      "route_length_mm": 141.27,
+      "cut_length_mm": 156,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W7",
+      "logical_net": "h2_tx",
+      "from_terminal": "T32",
+      "to_terminal": "T33",
+      "from_net": "h2_tx__1",
+      "to_net": "h2_tx__2",
+      "route_mm": [
+        [
+          14.8038,
+          60.94
+        ],
+        [
+          13.4471,
+          60.94
+        ],
+        [
+          1.4024,
+          48.8953
+        ],
+        [
+          1.4024,
+          18.1539
+        ],
+        [
+          16.8852,
+          2.6711
+        ],
+        [
+          142.5012,
+          2.6711
+        ],
+        [
+          153.5,
+          13.6699
+        ]
+      ],
+      "route_length_mm": 212.2,
+      "cut_length_mm": 227,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W8",
+      "logical_net": "h2_reset",
+      "from_terminal": "T25",
+      "to_terminal": "T26",
+      "from_net": "h2_reset__2",
+      "to_net": "h2_reset__3",
+      "route_mm": [
+        [
+          14.8038,
+          63.48
+        ],
+        [
+          14.8038,
+          84.0789
+        ],
+        [
+          15.6388,
+          84.9139
+        ],
+        [
+          27.1843,
+          84.9139
+        ],
+        [
+          51.9141,
+          60.1841
+        ],
+        [
+          81.6821,
+          60.1841
+        ],
+        [
+          83.6679,
+          58.1983
+        ],
+        [
+          87.9182,
+          58.1983
+        ],
+        [
+          91.2102,
+          61.4903
+        ]
+      ],
+      "route_length_mm": 109.78,
+      "cut_length_mm": 124,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W9",
+      "logical_net": "ld2450_tx",
+      "from_terminal": "T34",
+      "to_terminal": "T35",
+      "from_net": "ld2450_tx__1",
+      "to_net": "ld2450_tx__2",
+      "route_mm": [
+        [
+          15.1959,
+          101.54
+        ],
+        [
+          51.735,
+          101.54
+        ]
+      ],
+      "route_length_mm": 36.54,
+      "cut_length_mm": 51,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W10",
+      "logical_net": "w5500_reset",
+      "from_terminal": "T71",
+      "to_terminal": "T72",
+      "from_net": "w5500_reset__3",
+      "to_net": "w5500_reset__1",
+      "route_mm": [
+        [
+          4.331,
+          45.6985
+        ],
+        [
+          14.8023,
+          45.6985
+        ],
+        [
+          14.8038,
+          45.7
+        ]
+      ],
+      "route_length_mm": 10.47,
+      "cut_length_mm": 25,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W11",
+      "logical_net": "w5500_reset",
+      "from_terminal": "T73",
+      "to_terminal": "T74",
+      "from_net": "w5500_reset__3",
+      "to_net": "w5500_reset__2",
+      "route_mm": [
+        [
+          17.6566,
+          4.4954
+        ],
+        [
+          18.1993,
+          3.9527
+        ],
+        [
+          66.8955,
+          3.9527
+        ],
+        [
+          70.0,
+          7.0572
+        ],
+        [
+          70.0,
+          13.6699
+        ]
+      ],
+      "route_length_mm": 60.47,
+      "cut_length_mm": 75,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W12",
+      "logical_net": "w5500_irq",
+      "from_terminal": "T63",
+      "to_terminal": "T64",
+      "from_net": "w5500_irq__1",
+      "to_net": "w5500_irq__2",
+      "route_mm": [
+        [
+          43.2102,
+          42.3968
+        ],
+        [
+          50.2164,
+          35.3906
+        ],
+        [
+          68.3871,
+          35.3906
+        ],
+        [
+          68.3871,
+          35.3905
+        ],
+        [
+          69.6379,
+          34.1397
+        ],
+        [
+          84.5151,
+          34.1397
+        ],
+        [
+          90.4244,
+          28.2304
+        ],
+        [
+          90.4244,
+          26.6637
+        ],
+        [
+          89.2306,
+          25.4699
+        ],
+        [
+          77.9083,
+          25.4699
+        ]
+      ],
+      "route_length_mm": 67.66,
+      "cut_length_mm": 82,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W13",
+      "logical_net": "w5500_cs",
+      "from_terminal": "T61",
+      "to_terminal": "T62",
+      "from_net": "w5500_cs__2",
+      "to_net": "w5500_cs__3",
+      "route_mm": [
+        [
+          80.16,
+          28.0
+        ],
+        [
+          88.077,
+          28.0
+        ],
+        [
+          88.5991,
+          27.4779
+        ]
+      ],
+      "route_length_mm": 8.66,
+      "cut_length_mm": 23,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W14",
+      "logical_net": "w5500_cs",
+      "from_terminal": "T59",
+      "to_terminal": "T60",
+      "from_net": "w5500_cs__3",
+      "to_net": "w5500_cs__1",
+      "route_mm": [
+        [
+          6.5588,
+          42.4228
+        ],
+        [
+          14.0666,
+          42.4228
+        ],
+        [
+          14.8038,
+          43.16
+        ]
+      ],
+      "route_length_mm": 8.55,
+      "cut_length_mm": 23,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W15",
+      "logical_net": "w5500_miso",
+      "from_terminal": "T65",
+      "to_terminal": "T66",
+      "from_net": "w5500_miso__1",
+      "to_net": "w5500_miso__2",
+      "route_mm": [
+        [
+          14.8038,
+          40.62
+        ],
+        [
+          14.8038,
+          21.9279
+        ],
+        [
+          17.342,
+          19.3897
+        ],
+        [
+          29.6015,
+          19.3897
+        ],
+        [
+          36.5871,
+          12.4041
+        ],
+        [
+          36.5871,
+          10.0051
+        ],
+        [
+          38.4857,
+          8.1065
+        ],
+        [
+          50.5314,
+          8.1065
+        ],
+        [
+          51.0248,
+          8.5999
+        ],
+        [
+          51.0248,
+          11.4209
+        ],
+        [
+          53.2738,
+          13.6699
+        ],
+        [
+          62.5,
+          13.6699
+        ]
+      ],
+      "route_length_mm": 77.48,
+      "cut_length_mm": 92,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W16",
+      "logical_net": "w5500_mosi",
+      "from_terminal": "T69",
+      "to_terminal": "T70",
+      "from_net": "w5500_mosi__3",
+      "to_net": "w5500_mosi__2",
+      "route_mm": [
+        [
+          46.5234,
+          26.1104
+        ],
+        [
+          58.1294,
+          26.1104
+        ],
+        [
+          58.351,
+          25.8888
+        ]
+      ],
+      "route_length_mm": 11.92,
+      "cut_length_mm": 26,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W17",
+      "logical_net": "w5500_mosi",
+      "from_terminal": "T67",
+      "to_terminal": "T68",
+      "from_net": "w5500_mosi__1",
+      "to_net": "w5500_mosi__3",
+      "route_mm": [
+        [
+          18.0803,
+          21.2208
+        ],
+        [
+          18.442,
+          20.8591
+        ],
+        [
+          41.4558,
+          20.8591
+        ]
+      ],
+      "route_length_mm": 23.53,
+      "cut_length_mm": 38,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W18",
+      "logical_net": "w5500_sclk",
+      "from_terminal": "T75",
+      "to_terminal": "T76",
+      "from_net": "w5500_sclk__1",
+      "to_net": "w5500_sclk__2",
+      "route_mm": [
+        [
+          21.8865,
+          22.6641
+        ],
+        [
+          37.3571,
+          22.6641
+        ],
+        [
+          38.6971,
+          24.0041
+        ],
+        [
+          56.28,
+          24.0041
+        ]
+      ],
+      "route_length_mm": 34.95,
+      "cut_length_mm": 49,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W19",
+      "logical_net": "cc1101_gdo2_rx",
+      "from_terminal": "T19",
+      "to_terminal": "T20",
+      "from_net": "cc1101_gdo2_rx__2",
+      "to_net": "cc1101_gdo2_rx__3",
+      "route_mm": [
+        [
+          70.3842,
+          35.9414
+        ],
+        [
+          70.935,
+          35.3906
+        ],
+        [
+          84.9531,
+          35.3906
+        ],
+        [
+          92.5284,
+          27.8153
+        ]
+      ],
+      "route_length_mm": 25.51,
+      "cut_length_mm": 40,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W20",
+      "logical_net": "cc1101_gdo2_rx",
+      "from_terminal": "T17",
+      "to_terminal": "T18",
+      "from_net": "cc1101_gdo2_rx__3",
+      "to_net": "cc1101_gdo2_rx__1",
+      "route_mm": [
+        [
+          4.3668,
+          70.1635
+        ],
+        [
+          11.0626,
+          70.1635
+        ]
+      ],
+      "route_length_mm": 6.7,
+      "cut_length_mm": 21,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W21",
+      "logical_net": "cc1101_cs",
+      "from_terminal": "T14",
+      "to_terminal": "T15",
+      "from_net": "cc1101_cs__1",
+      "to_net": "cc1101_cs__2",
+      "route_mm": [
+        [
+          15.1961,
+          112.0564
+        ],
+        [
+          62.9092,
+          112.0564
+        ]
+      ],
+      "route_length_mm": 47.71,
+      "cut_length_mm": 62,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W22",
+      "logical_net": "shared_spi_mosi",
+      "from_terminal": "T50",
+      "to_terminal": "T51",
+      "from_net": "shared_spi_mosi__2",
+      "to_net": "shared_spi_mosi__4",
+      "route_mm": [
+        [
+          57.5,
+          37.7431
+        ],
+        [
+          71.1306,
+          37.7431
+        ],
+        [
+          72.3813,
+          36.4924
+        ],
+        [
+          72.3813,
+          36.4923
+        ],
+        [
+          89.3787,
+          36.4923
+        ]
+      ],
+      "route_length_mm": 32.4,
+      "cut_length_mm": 47,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W23",
+      "logical_net": "shared_spi_mosi",
+      "from_terminal": "T48",
+      "to_terminal": "T49",
+      "from_net": "shared_spi_mosi__4",
+      "to_net": "shared_spi_mosi__1",
+      "route_mm": [
+        [
+          4.6058,
+          49.5507
+        ],
+        [
+          14.4585,
+          49.5507
+        ]
+      ],
+      "route_length_mm": 9.85,
+      "cut_length_mm": 24,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W24",
+      "logical_net": "shared_spi_sclk",
+      "from_terminal": "T56",
+      "to_terminal": "T57",
+      "from_net": "shared_spi_sclk__3",
+      "to_net": "shared_spi_sclk__2",
+      "route_mm": [
+        [
+          43.4013,
+          54.8409
+        ],
+        [
+          45.723,
+          52.5192
+        ],
+        [
+          46.3337,
+          52.5192
+        ]
+      ],
+      "route_length_mm": 3.89,
+      "cut_length_mm": 18,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W25",
+      "logical_net": "shared_spi_sclk",
+      "from_terminal": "T53",
+      "to_terminal": "T55",
+      "from_net": "shared_spi_sclk__4",
+      "to_net": "shared_spi_sclk__1",
+      "route_mm": [
+        [
+          6.4075,
+          47.5002
+        ],
+        [
+          3.5543,
+          47.5002
+        ],
+        [
+          2.5041,
+          46.45
+        ],
+        [
+          2.5041,
+          43.8633
+        ],
+        [
+          5.996,
+          40.3714
+        ],
+        [
+          11.5883,
+          40.3714
+        ]
+      ],
+      "route_length_mm": 17.46,
+      "cut_length_mm": 32,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W26",
+      "logical_net": "shared_spi_sclk",
+      "from_terminal": "T54",
+      "to_terminal": "T58",
+      "from_net": "shared_spi_sclk__4",
+      "to_net": "shared_spi_sclk__3",
+      "route_mm": [
+        [
+          6.4075,
+          88.4947
+        ],
+        [
+          51.7998,
+          88.4947
+        ]
+      ],
+      "route_length_mm": 45.39,
+      "cut_length_mm": 60,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W27",
+      "logical_net": "GND",
+      "from_terminal": "T6",
+      "to_terminal": "T7",
+      "from_net": "GND__6",
+      "to_net": "GND__5",
+      "route_mm": [
+        [
+          28.1381,
+          36.526
+        ],
+        [
+          28.1381,
+          41.4726
+        ],
+        [
+          29.6351,
+          42.9696
+        ]
+      ],
+      "route_length_mm": 7.06,
+      "cut_length_mm": 22,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W28",
+      "logical_net": "GND",
+      "from_terminal": "T7",
+      "to_terminal": "T8",
+      "from_net": "GND__5",
+      "to_net": "GND__7",
+      "route_mm": [
+        [
+          29.6351,
+          42.9696
+        ],
+        [
+          29.6351,
+          52.2198
+        ]
+      ],
+      "route_length_mm": 9.25,
+      "cut_length_mm": 24,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W29",
+      "logical_net": "GND",
+      "from_terminal": "T8",
+      "to_terminal": "T10",
+      "from_net": "GND__7",
+      "to_net": "GND__1",
+      "route_mm": [
+        [
+          29.6351,
+          52.2198
+        ],
+        [
+          29.6351,
+          42.9696
+        ],
+        [
+          28.1381,
+          41.4726
+        ],
+        [
+          28.1381,
+          36.526
+        ],
+        [
+          28.5843,
+          36.0798
+        ],
+        [
+          42.8675,
+          36.0798
+        ]
+      ],
+      "route_length_mm": 31.23,
+      "cut_length_mm": 46,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W30",
+      "logical_net": "+3V3",
+      "from_terminal": "T4",
+      "to_terminal": "T5",
+      "from_net": "+3V3__6",
+      "to_net": "+3V3__4",
+      "route_mm": [
+        [
+          87.515,
+          77.0854
+        ],
+        [
+          91.2602,
+          77.0854
+        ]
+      ],
+      "route_length_mm": 3.75,
+      "cut_length_mm": 18,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W31",
+      "logical_net": "+3V3",
+      "from_terminal": "T2",
+      "to_terminal": "T3",
+      "from_net": "+3V3__1",
+      "to_net": "+3V3__2",
+      "route_mm": [
+        [
+          38.6076,
+          28.709
+        ],
+        [
+          39.0593,
+          28.2573
+        ],
+        [
+          55.829,
+          28.2573
+        ]
+      ],
+      "route_length_mm": 17.41,
+      "cut_length_mm": 32,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W32",
+      "logical_net": "+3V3",
+      "from_terminal": "T78",
+      "to_terminal": "T5",
+      "from_net": "+3V3__3",
+      "to_net": "+3V3__4",
+      "route_mm": [
+        [
+          107.87868,
+          87.12132
+        ],
+        [
+          102.0,
+          95.0
+        ],
+        [
+          98.5,
+          95.0
+        ],
+        [
+          91.2602,
+          77.0854
+        ]
+      ],
+      "route_length_mm": 32.65,
+      "cut_length_mm": 47,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W33",
+      "logical_net": "+3V3",
+      "from_terminal": "T3",
+      "to_terminal": "T4",
+      "from_net": "+3V3__2",
+      "to_net": "+3V3__6",
+      "route_mm": [
+        [
+          55.829,
+          28.2573
+        ],
+        [
+          71.0,
+          40.0
+        ],
+        [
+          74.0,
+          45.5
+        ],
+        [
+          87.0,
+          58.5
+        ],
+        [
+          87.515,
+          77.0854
+        ]
+      ],
+      "route_length_mm": 62.43,
+      "cut_length_mm": 77,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W34",
+      "logical_net": "+3V3",
+      "from_terminal": "T79",
+      "to_terminal": "T1",
+      "from_net": "+3V3__2",
+      "to_net": "+3V3__5",
+      "route_mm": [
+        [
+          67.0,
+          111.0
+        ],
+        [
+          48.0,
+          107.5
+        ],
+        [
+          22.5,
+          92.8097
+        ]
+      ],
+      "route_length_mm": 48.75,
+      "cut_length_mm": 63,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W35",
+      "logical_net": "GND",
+      "from_terminal": "T11",
+      "to_terminal": "T12",
+      "from_net": "GND__1",
+      "to_net": "GND__3",
+      "route_mm": [
+        [
+          78.0,
+          66.459999
+        ],
+        [
+          83.5,
+          58.0
+        ],
+        [
+          86.5,
+          58.0
+        ],
+        [
+          87.0,
+          59.0
+        ],
+        [
+          88.0,
+          80.32
+        ]
+      ],
+      "route_length_mm": 35.55,
+      "cut_length_mm": 50,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W36",
+      "logical_net": "GND",
+      "from_terminal": "T13",
+      "to_terminal": "T80",
+      "from_net": "GND__2",
+      "to_net": "GND__8",
+      "route_mm": [
+        [
+          176.0,
+          12.46
+        ],
+        [
+          172.5,
+          13.5
+        ],
+        [
+          166.5,
+          29.0
+        ],
+        [
+          156.0,
+          39.5
+        ],
+        [
+          148.0,
+          39.5
+        ],
+        [
+          126.057777,
+          61.776457
+        ]
+      ],
+      "route_length_mm": 74.39,
+      "cut_length_mm": 89,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W37",
+      "logical_net": "GND",
+      "from_terminal": "T9",
+      "to_terminal": "T81",
+      "from_net": "GND__4",
+      "to_net": "GND__7",
+      "route_mm": [
+        [
+          31.9067,
+          82.7749
+        ],
+        [
+          28.3651,
+          54.419505
+        ]
+      ],
+      "route_length_mm": 28.58,
+      "cut_length_mm": 43,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W38",
+      "logical_net": "GND",
+      "from_terminal": "T11",
+      "to_terminal": "T80",
+      "from_net": "GND__1",
+      "to_net": "GND__8",
+      "route_mm": [
+        [
+          78.0,
+          66.459999
+        ],
+        [
+          83.5,
+          58.0
+        ],
+        [
+          122.0,
+          58.5
+        ],
+        [
+          126.057777,
+          61.776457
+        ]
+      ],
+      "route_length_mm": 53.81,
+      "cut_length_mm": 68,
+      "awg": 24,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W39",
+      "logical_net": "cc1101_gdo0_tx",
+      "from_terminal": "T16",
+      "to_terminal": "T82",
+      "from_net": "cc1101_gdo0_tx__1",
+      "to_net": "cc1101_gdo0_tx__2",
+      "route_mm": [
+        [
+          37.432,
+          52.1625
+        ],
+        [
+          65.0,
+          49.0
+        ]
+      ],
+      "route_length_mm": 27.75,
+      "cut_length_mm": 42,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W40",
+      "logical_net": "gpio3_unused",
+      "from_terminal": "T83",
+      "to_terminal": "T84",
+      "from_net": "gpio3_unused__1",
+      "to_net": "gpio3_unused__2",
+      "route_mm": [
+        [
+          124.343146,
+          74.656854
+        ],
+        [
+          103.5,
+          74.5
+        ],
+        [
+          102.99,
+          75.03
+        ]
+      ],
+      "route_length_mm": 21.58,
+      "cut_length_mm": 36,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W41",
+      "logical_net": "gpio4_unused",
+      "from_terminal": "T85",
+      "to_terminal": "T86",
+      "from_net": "gpio4_unused__1",
+      "to_net": "gpio4_unused__2",
+      "route_mm": [
+        [
+          126.0,
+          77.0
+        ],
+        [
+          122.0,
+          74.5
+        ],
+        [
+          104.570127,
+          70.12
+        ]
+      ],
+      "route_length_mm": 22.69,
+      "cut_length_mm": 37,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W42",
+      "logical_net": "gpio5_unused",
+      "from_terminal": "T87",
+      "to_terminal": "T88",
+      "from_net": "gpio5_unused__1",
+      "to_net": "gpio5_unused__2",
+      "route_mm": [
+        [
+          115.511113,
+          81.117714
+        ],
+        [
+          106.0,
+          70.5
+        ],
+        [
+          104.570127,
+          67.58
+        ]
+      ],
+      "route_length_mm": 17.51,
+      "cut_length_mm": 32,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W43",
+      "logical_net": "gpio6_unused",
+      "from_terminal": "T89",
+      "to_terminal": "T90",
+      "from_net": "gpio6_unused__1",
+      "to_net": "gpio6_unused__2",
+      "route_mm": [
+        [
+          142.669873,
+          74.5
+        ],
+        [
+          126.0,
+          70.0
+        ],
+        [
+          122.0,
+          66.5
+        ],
+        [
+          107.001481,
+          60.728267
+        ]
+      ],
+      "route_length_mm": 38.65,
+      "cut_length_mm": 53,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W44",
+      "logical_net": "gpio7_unused",
+      "from_terminal": "T91",
+      "to_terminal": "T92",
+      "from_net": "gpio7_unused__1",
+      "to_net": "gpio7_unused__2",
+      "route_mm": [
+        [
+          142.757359,
+          80.757359
+        ],
+        [
+          139.5,
+          75.0
+        ],
+        [
+          135.0,
+          71.5
+        ],
+        [
+          131.0,
+          71.5
+        ],
+        [
+          122.5,
+          59.0
+        ],
+        [
+          122.0,
+          58.5
+        ],
+        [
+          114.728887,
+          56.117714
+        ]
+      ],
+      "route_length_mm": 39.79,
+      "cut_length_mm": 54,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W45",
+      "logical_net": "h2_boot",
+      "from_terminal": "T23",
+      "to_terminal": "T24",
+      "from_net": "h2_boot__1",
+      "to_net": "h2_boot__2",
+      "route_mm": [
+        [
+          28.54,
+          60.48
+        ],
+        [
+          61.5,
+          55.0
+        ],
+        [
+          66.0,
+          50.5
+        ],
+        [
+          179.0,
+          32.5
+        ],
+        [
+          183.16,
+          30.0
+        ]
+      ],
+      "route_length_mm": 159.05,
+      "cut_length_mm": 174,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W46",
+      "logical_net": "h2_reset",
+      "from_terminal": "T28",
+      "to_terminal": "T27",
+      "from_net": "h2_reset__1",
+      "to_net": "h2_reset__3",
+      "route_mm": [
+        [
+          149.0,
+          36.0168
+        ],
+        [
+          144.4034,
+          35.8225
+        ]
+      ],
+      "route_length_mm": 4.6,
+      "cut_length_mm": 19,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W47",
+      "logical_net": "h2_reset",
+      "from_terminal": "T27",
+      "to_terminal": "T29",
+      "from_net": "h2_reset__3",
+      "to_net": "h2_reset__4",
+      "route_mm": [
+        [
+          144.4034,
+          35.8225
+        ],
+        [
+          163.5,
+          32.5
+        ],
+        [
+          167.16,
+          30.0
+        ]
+      ],
+      "route_length_mm": 23.82,
+      "cut_length_mm": 38,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W48",
+      "logical_net": "rxb_unused",
+      "from_terminal": "T93",
+      "to_terminal": "T94",
+      "from_net": "rxb_unused__1",
+      "to_net": "rxb_unused__2",
+      "route_mm": [
+        [
+          121.16,
+          80.464102
+        ],
+        [
+          114.0,
+          79.5
+        ],
+        [
+          104.570127,
+          72.66
+        ]
+      ],
+      "route_length_mm": 18.87,
+      "cut_length_mm": 33,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W49",
+      "logical_net": "sc16_cs",
+      "from_terminal": "T95",
+      "to_terminal": "T96",
+      "from_net": "sc16_cs__2",
+      "to_net": "sc16_cs__3",
+      "route_mm": [
+        [
+          116.624466,
+          88.535534
+        ],
+        [
+          105.5,
+          91.5
+        ],
+        [
+          101.5,
+          95.0
+        ],
+        [
+          81.5,
+          95.0
+        ],
+        [
+          77.5,
+          93.11
+        ]
+      ],
+      "route_length_mm": 41.25,
+      "cut_length_mm": 56,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W50",
+      "logical_net": "sc16_cs",
+      "from_terminal": "T46",
+      "to_terminal": "T96",
+      "from_net": "sc16_cs__1",
+      "to_net": "sc16_cs__3",
+      "route_mm": [
+        [
+          33.4476,
+          57.2988
+        ],
+        [
+          71.0,
+          92.5
+        ],
+        [
+          77.5,
+          93.11
+        ]
+      ],
+      "route_length_mm": 58.0,
+      "cut_length_mm": 72,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W51",
+      "logical_net": "sc16_irq",
+      "from_terminal": "T47",
+      "to_terminal": "T97",
+      "from_net": "sc16_irq__1",
+      "to_net": "sc16_irq__2",
+      "route_mm": [
+        [
+          11.9836,
+          73.667
+        ],
+        [
+          16.0,
+          84.0
+        ],
+        [
+          16.5,
+          84.5
+        ],
+        [
+          85.0,
+          95.0
+        ],
+        [
+          102.0,
+          95.0
+        ],
+        [
+          109.0,
+          90.5
+        ],
+        [
+          112.097822,
+          89.5
+        ]
+      ],
+      "route_length_mm": 109.67,
+      "cut_length_mm": 124,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W52",
+      "logical_net": "sc16_reset",
+      "from_terminal": "T98",
+      "to_terminal": "T99",
+      "from_net": "sc16_reset__1",
+      "to_net": "sc16_reset__2",
+      "route_mm": [
+        [
+          85.16,
+          108.0
+        ],
+        [
+          73.0,
+          108.0
+        ],
+        [
+          71.829629,
+          102.294095
+        ]
+      ],
+      "route_length_mm": 17.98,
+      "cut_length_mm": 32,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    },
+    {
+      "ref": "W53",
+      "logical_net": "shared_spi_mosi",
+      "from_terminal": "T50",
+      "to_terminal": "E1",
+      "from_net": "shared_spi_mosi__2",
+      "to_net": "shared_spi_mosi__3",
+      "route_mm": [
+        [
+          57.5,
+          37.7431
+        ],
+        [
+          71.0,
+          40.0
+        ],
+        [
+          74.0,
+          45.5
+        ],
+        [
+          87.0,
+          58.5
+        ],
+        [
+          88.0,
+          85.4
+        ],
+        [
+          85.0,
+          85.4
+        ]
+      ],
+      "route_length_mm": 68.26,
+      "cut_length_mm": 87,
+      "awg": 26,
+      "strip_each_end_mm": 5,
+      "height_allowance_mm": 4,
+      "from_pin": "T50.1",
+      "to_pin": "U1.11",
+      "from_height_mm": 0,
+      "to_height_mm": 4,
+      "notes": "Projected route; add 4mm cut allowance per elevated joint. First/last 3mm over an adapter header strip stays at 4mm height, then descends. Fit before adapter."
+    },
+    {
+      "ref": "W54",
+      "logical_net": "zac93_tx",
+      "from_terminal": "T77",
+      "to_terminal": "T101",
+      "from_net": "zac93_tx__1",
+      "to_net": "zac93_tx__2",
+      "route_mm": [
+        [
+          95.1541,
+          93.9996
+        ],
+        [
+          87.0,
+          58.5
+        ],
+        [
+          86.0,
+          58.0
+        ],
+        [
+          83.5,
+          58.0
+        ],
+        [
+          83.0,
+          59.0
+        ],
+        [
+          82.102223,
+          65.856457
+        ]
+      ],
+      "route_length_mm": 48.08,
+      "cut_length_mm": 63,
+      "awg": 26,
+      "strip_each_end_mm": 5
+    }
+  ]
+}

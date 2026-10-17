@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-10-17",
+  "sources": [
+    {
+      "id": "modular",
+      "label": "Original Pi modular hub",
+      "path": "hardware/bom.json",
+      "format": "original"
+    },
+    {
+      "id": "lp-reference",
+      "label": "LP-P0 bench reference (not additive)",
+      "path": "hardware/low-power/bom.json",
+      "format": "reference"
+    },
+    {
+      "id": "c0",
+      "label": "C0 carrier • fitted parts",
+      "path": "hardware/low-power/carrier/assembly-bom.csv",
+      "format": "assembly"
+    },
+    {
+      "id": "c0-harness",
+      "label": "C0 carrier • harness / external",
+      "path": "hardware/low-power/carrier/harness-bom.csv",
+      "format": "harness"
+    },
+    {
+      "id": "m0",
+      "label": "M0 MG24 adapter • fitted parts",
+      "path": "hardware/low-power/carrier/mg24-adapter/assembly-bom.csv",
+      "format": "assembly"
+    },
+    {
+      "id": "m0-harness",
+      "label": "M0 MG24 adapter • harness",
+      "path": "hardware/low-power/carrier/mg24-adapter/harness-bom.csv",
+      "format": "harness"
+    },
+    {
+      "id": "i0",
+      "label": "I0 integrated • fitted parts",
+      "path": "hardware/low-power/integrated/assembly-bom.csv",
+      "format": "assembly"
+    },
+    {
+      "id": "d0",
+      "label": "D0 DIY • fitted parts",
+      "path": "hardware/low-power/diy/assembly-bom.csv",
+      "format": "assembly"
+    },
+    {
+      "id": "d0-harness",
+      "label": "D0 DIY • adapters / harness / jumper wire",
+      "path": "hardware/low-power/diy/harness-bom.csv",
+      "format": "harness"
+    }
+  ],
+  "images": [
+    {
+      "match": "Adafruit.*3660|BME680",
+      "kind": "manufacturer_photo",
+      "url": "https://cdn-shop.adafruit.com/970x728/3660-08.jpg",
+      "source": "https://www.adafruit.com/product/3660",
+      "credit": "Adafruit",
+      "caption": "Adafruit 3660 BME680 STEMMA QT board; a bare BME680 IC is not the same item."
+    },
+    {
+      "match": "D24V22F3",
+      "kind": "manufacturer_photo",
+      "url": "https://a.pololu-files.com/picture/0J6803.450.jpg?10081bce1c1fb78772e2840b2a0e7e18=",
+      "source": "https://www.pololu.com/product/2857",
+      "credit": "Pololu",
+      "caption": "D24V22F3 side view. Verify the 3.3 V version; the output-current headline at 24 V input does not establish our 5 V thermal capability."
+    },
+    {
+      "match": "WIZ850io",
+      "kind": "manufacturer_photo",
+      "url": "https://docs.wiznet.io/img/products/wiz850io/wiz850io.png",
+      "source": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+      "credit": "WIZnet",
+      "caption": "WIZ850io module with magnetics and RJ45. It is not a bare W5500 or an arbitrary W5500 breakout."
+    },
+    {
+      "match": "ZAC93",
+      "kind": "manufacturer_photo",
+      "url": "https://www.getzooz.com/wp-content/uploads/elementor/thumbs/zooz-z-wave-800-series-long-range-gpio-module-zac93-800lr-q46phl8398q0nyunhezj45tfnwygx04u24zk3z0r60.png",
+      "source": "https://www.getzooz.com/zac93-gpio-module/",
+      "credit": "Zooz",
+      "caption": "ZAC93 product appearance. Keep the correct regional radio version and verify the physical revision before wiring."
+    },
+    {
+      "match": "^(Silvertel )?Ag97005-FL( 5V)?$",
+      "kind": "manufacturer_photo",
+      "url": "https://silvertel.com/wp-content/uploads/2025/02/Ag97000-cross-sm.png",
+      "source": "https://silvertel.com/ag97000/",
+      "credit": "Silvertel",
+      "caption": "Ag97000-FL family image; order specifically Ag97005-FL (5 V), not the 12 V or 24 V variant."
+    },
+    {
+      "match": "EvalPoE|EvalPOE",
+      "kind": "manufacturer_photo",
+      "url": "https://silvertel.com/wp-content/uploads/2019/12/EVAL-9xxx.png",
+      "source": "https://silvertel.com/ag97000/",
+      "credit": "Silvertel",
+      "caption": "Evaluation-board family image. Online EvalPoE orders may omit the PD module; inspect package contents."
+    },
+    {
+      "match": "ESP32-S3-ETH",
+      "kind": "manufacturer_photo",
+      "url": "https://www.waveshare.com/img/devkit/ESP32-S3-ETH/ESP32-S3-ETH-details-5-5.jpg",
+      "source": "https://www.waveshare.com/product/esp32-s3-eth.htm",
+      "credit": "Waveshare",
+      "caption": "ESP32-S3-ETH-M with headers. The baseline excludes the optional PoE board, camera and microSD."
+    },
+    {
+      "match": "HLK-LD2450|^LD2450",
+      "kind": "manufacturer_photo",
+      "url": "https://www.hlktech.com/Uploads/AlbumPic/xhec0zwtasuqg.png",
+      "source": "https://www.hlktech.com/Goods-352.html",
+      "credit": "Hi-Link",
+      "caption": "HLK-LD2450 24 GHz tracking radar. LD2410 / LD2420 are not substitutions."
+    },
+    {
+      "match": "SLZB-07Mg24",
+      "kind": "manufacturer_render",
+      "url": "https://smlight.tech/media/products/renders/slzb-07.webp",
+      "source": "https://smlight.tech/products/slzb-07mg24",
+      "credit": "SMLIGHT",
+      "caption": "Manufacturer SLZB-07 family render. Read the Mg24 model marking; the shared enclosure does not identify the radio."
+    },
+    {
+      "match": "ESP32-S3-DevKitC",
+      "kind": "manufacturer_photo",
+      "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/_images/esp32-s3-devkitc-1-v1.1-isometric.png",
+      "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+      "credit": "Espressif",
+      "caption": "DevKitC-1 v1.1 family photo; check N16R8 marking. Low-power wiring requires the documented USB-UART/LED isolation checks."
+    },
+    {
+      "match": "ESP32-H2-DevKitM",
+      "kind": "manufacturer_photo",
+      "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/_images/esp32-h2-devkitm-1-45.png",
+      "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
+      "credit": "Espressif",
+      "caption": "H2 DevKitM-1 family photo. Check the installed module and isolate conflicting USB-UART signals before low-power harness use."
+    },
+    {
+      "match": "Adafruit.*1208|1208.*Adafruit",
+      "kind": "manufacturer_photo",
+      "url": "https://cdn-shop.adafruit.com/970x728/1208-04.jpg",
+      "source": "https://www.adafruit.com/product/1208",
+      "credit": "Adafruit",
+      "caption": "Adafruit 1208 unpopulated SOIC/TSSOP-28 breakout PCBs. Use the TSSOP side for SC16IS752IPW; the IC and headers are separate parts."
+    },
+    {
+      "match": "Adafruit.*1230|1230.*Adafruit",
+      "kind": "manufacturer_photo",
+      "url": "https://cdn-shop.adafruit.com/970x728/1230-04.jpg",
+      "source": "https://www.adafruit.com/product/1230",
+      "credit": "Adafruit",
+      "caption": "Adafruit 1230 mixed-package unpopulated breakout set. Use the SOT-23-6 board for TPS3808; the supervisor IC and headers are separate parts."
+    }
+  ],
+  "accessories": [
+    {
+      "id": "bench-s3",
+      "model": "ESP32-S3-DevKitC-1 N16R8",
+      "qty": "1 alternative bench host",
+      "scope": "LP-P0 bench only",
+      "notes": "Development-board alternative to the bare WROOM module; not an extra fitted part on I0. USB-UART GPIO44 and revision-dependent LED GPIO48 require physical isolation where documented.",
+      "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html"
+    },
+    {
+      "id": "bench-h2",
+      "model": "ESP32-H2-DevKitM-1",
+      "qty": "1 alternative bench RCP",
+      "scope": "LP-P0 bench only",
+      "notes": "Alternative to the bare H2-MINI on I0. Verify module marking and flash size; onboard USB-UART can conflict with the host TX connection.",
+      "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html"
+    },
+    {
+      "id": "i0-harness",
+      "model": "I0 JST XH harness housings: XHP-8, XHP-5, XHP-4, 2 × XHP-6",
+      "qty": "1 set",
+      "scope": "I0 external harness / service",
+      "notes": "Matches J3–J5 and service J7/J8: 29 SXH-001T-P0.6 contacts total when all are populated; service harnesses can be shared. J6 uses a separate precrimped 4-pin QT cable. Use connector pin atlas, not wire colors.",
+      "source": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf"
+    },
+    {
+      "id": "i0-peripherals",
+      "model": "I0 external modules: ZAC93, CC1101, HLK-LD2450, Adafruit 3660",
+      "qty": "1 of each",
+      "scope": "I0 external modules",
+      "notes": "These modules are not fitted to I0 and are not included in its 106 assembly rows. Their individual identification cards appear in the LP-P0 reference. Add the matched 433.92 MHz antenna and 4-pin QT cable; verify any cable already included in a module kit.",
+      "source": "https://www.adafruit.com/product/3660"
+    },
+    {
+      "id": "probe",
+      "model": "3.3 V SWD debug probe supporting Silicon Labs MGM240P",
+      "qty": "1 reusable tool",
+      "scope": "M0 / I0 commissioning",
+      "notes": "Use a compatible J-Link / Silicon Labs debug adapter, target-voltage sense and ground. The service harness is not a standard ARM connector: map each signal using the pin atlas. Do not connect 5 V UART signals.",
+      "source": "https://www.silabs.com/development-tools/wireless/wireless-pro-kit-debug-adapter"
+    },
+    {
+      "id": "uart",
+      "model": "3.3 V USB UART adapter plus USB data cable",
+      "qty": "1 reusable tool",
+      "scope": "Flashing / diagnostics",
+      "notes": "Verify signal voltage, not just the power jumper. Use the documented boot/reset sequence; avoid two powered outputs driving the same UART signal.",
+      "source": "https://docs.espressif.com/projects/esptool/en/latest/esp32s3/esptool/entering-bootloader.html"
+    },
+    {
+      "id": "solder",
+      "model": "Temperature-controlled soldering station, flux, tweezers and magnification",
+      "qty": "1 reusable tool set",
+      "scope": "DIY / rework",
+      "notes": "I0 and M0 require suitable SMT/reflow capability, inspection and continuity testing. Bare PCBs are not plug-in kits. Match soldering equipment to the selected board assembly route.",
+      "source": ""
+    },
+    {
+      "id": "crimp",
+      "model": "JST XH / SH compatible crimp tooling and wire stripper",
+      "qty": "1 reusable tool set",
+      "scope": "Harness assembly",
+      "notes": "Use tooling appropriate for the exact contact and wire gauge; precrimped QT leads avoid attempting SH crimps with an XH die. Pull-test crimps and continuity-test both ends before power.",
+      "source": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf"
+    },
+    {
+      "id": "test",
+      "model": "DMM, current-limited bench supply, DC load and power meter",
+      "qty": "1 reusable test set",
+      "scope": "First article / power qualification",
+      "notes": "Required to verify polarity, shorts, supply droop, regulator heat and actual always-on energy. This gallery does not remove open prototype qualification gates.",
+      "source": ""
+    },
+    {
+      "id": "antennas",
+      "model": "433.92 MHz 50 Ω antenna matched to the existing CC1101 module",
+      "qty": "1 if not already supplied",
+      "scope": "C0 / I0 / LP-P0 RF",
+      "notes": "Confirm SMA versus RP-SMA and gender from the real module. S3-WROOM-1, H2-MINI-1 and MGM240PA22VNA3 have integrated antennas; do not add pigtails to their unconnected RF pads. Keep all antenna clearance regions free.",
+      "source": "https://www.ti.com/product/CC1101"
+    }
+  ]
+}

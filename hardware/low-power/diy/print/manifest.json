@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "design": "LP-D0",
+  "status": "print_geometry_checked_not_physically_fabricated",
+  "paper": "a4",
+  "page_mm": [
+    210.0,
+    297.0
+  ],
+  "scale": 1,
+  "board": "hardware/low-power/diy/diy.kicad_pcb",
+  "board_sha256": "5503f4687406a5d5ea4a093d6161ff96db4e3d024f6c2653ddb8169400ac37d9",
+  "generator_sha256": "3cda21e363e1670b738ba85b93e9fd6db409b511a9a9a36f31fedf44f5d6218a",
+  "requirements_sha256": "05486ed4cebbc83161a15c95b0ffc3e8907bb58825b6adb1cef965c62e8441ad",
+  "kicad_version": "10.0.6",
+  "outline_mm": [
+    190.0,
+    145.0
+  ],
+  "copper_layer": "B.Cu",
+  "native_plot_mirror": false,
+  "transfer_contact": "toner against copper",
+  "inspection_view": "bottom: x = board_width - component_x; y unchanged",
+  "pilot_marks": "KiCad small drill marks; see drill map for actual diameters",
+  "minimum_track_mm": 0.6,
+  "hole_count": 299,
+  "physical_gates": [
+    "printer calibration",
+    "toner transfer",
+    "etching",
+    "drilling",
+    "assembly",
+    "electrical test"
+  ],
+  "outputs": {
+    "toner-transfer.pdf": "c886be8860e855a8bcde0a257c379d9002c7ac4d404b1a409131190f63698587",
+    "assembly.pdf": "1e19463c6d51b4735738f06ab14b40ed593a69a174acc9bf5e9687dbb66b3874",
+    "drilling.pdf": "b61057fff5a1d97cca4149e0db277554ff535735695e6b72bd0d617d6e49d7ef",
+    "calibration.pdf": "afa0cb75420ebb08d551b1453e897074a818b8770dc84078b49b6395e6b292b7",
+    "copper-native.svg": "323d907ded6b13fd6863586905fdc4ec4fd32e6b485ac3d7cb7cadd7e992d1c0",
+    "drill-map.json": "3cf3f5f5a630237c5cd2f7f7866e0df36e611621a727a79c5b9425ddb563b46f"
+  },
+  "pdf_pages": {
+    "toner-transfer.pdf": 1,
+    "assembly.pdf": 4,
+    "drilling.pdf": 2,
+    "calibration.pdf": 1
+  },
+  "jumper_schedule": {
+    "path": "hardware/low-power/diy/routing-plan.json",
+    "sha256": "c5bd4f0dfab3406aedd909458f71f9ca08b28c631e571830050af436a0770ca7"
+  },
+  "wire_count": 54,
+  "dedicated_terminal_count": 100,
+  "raised_endpoint_count": 1
+}

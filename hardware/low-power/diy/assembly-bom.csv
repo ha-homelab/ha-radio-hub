@@ -1,0 +1,49 @@
+Reference,Quantity,Manufacturer part / value,Footprint,Note,Source
+J1,1,B2B-XH-A,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,Isolated regulated 5V input,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J2,1,B3B-XH-A,Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,External D24V22F3 buck,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J3,1,61204021621,DIY:Wurth_61204021621,S3 keyed 40-position IDC harness; NOT Raspberry Pi compatible,https://www.we-online.com/components/products/datasheet/61204021621.pdf
+J4,1,B10B-XH-A,Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical,WIZ850io Ethernet module,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J5,1,B7B-XH-A,Connector_JST:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical,H2 Thread RCP,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J6,1,B6B-XH-A,Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,MG24 Zigbee NCP,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J7,1,B8B-XH-A,Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical,CC1101 RF module,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J8,1,B5B-XH-A,Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,ZAC93 Z-Wave module,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J9,1,B4B-XH-A,Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,LD2450 radar,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J10,1,B4B-XH-A,Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,"TH XH to factory STEMMA QT cable; same logical order as C0, mechanically NOT a QT socket.",https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+F1,1,Littelfuse 022901.5MXP,DIY:FuseHarness,1.5A slow-blow 2AG cartridge in external01500274Z holder. Holder leads adapt to22AWG at F1 holes; insulate splices. <=1A continuous design. Do not bridge.,https://www.littelfuse.com/assetdocs/powr-gard-catalog?assetguid=85d36235-a32b-4608-bfed-f9878aa43af0
+U1,1,"SC16IS752IPW,128",DIY:Adafruit1208_TSSOP28,"SC16IS752IPW,128 soldered to factory Adafruit1208 TSSOP side; pin1 adapter orientation verified from published CAD; no SOIC chip. Solder 2x14 male headers to adapter.",https://www.adafruit.com/product/1208
+U2,1,TPS3808G33DBVR,DIY:Adafruit1230_SOT23_6,"TPS3808G33DBVR soldered to factory Adafruit1230 SOT23-6 adapter, two 1x3 male headers. Do not populate reverse-side transistor footprints.",https://www.adafruit.com/product/1230
+Y1,1,AB-3.6864MHZ-B2,DIY:HC49U,"Through-hole HC49/U 3.6864MHz18pF; 4.88mm lead pitch; initial22/33pF loads, validate oscillation/frequency on hardware.",https://abracon.com/Resonators/ab.pdf
+R1,1,1k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R2,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R3,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R4,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R5,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R6,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R7,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R8,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R9,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R10,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R11,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R12,1,100k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R13,1,4.7k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R14,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R15,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R16,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+R17,1,10k,DIY:Axial_R_P10.16,"Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+C1,1,22pF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C2,1,33pF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C3,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C4,1,1uF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C5,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C6,1,1nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C7,1,1uF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C8,1,22uF,DIY:Radial_C_P2.54,"22uF >=10V radial electrolytic, body<=5mm, pin1 positive. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C9,1,22uF,DIY:Radial_C_P2.54,"22uF >=10V radial electrolytic, body<=5mm, pin1 positive. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C10,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C11,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C12,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C13,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C14,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C15,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C16,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+C17,1,100nF,DIY:Radial_C_P2.54,"Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
