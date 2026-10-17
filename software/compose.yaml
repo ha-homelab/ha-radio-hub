@@ -45,7 +45,12 @@ services:
     devices:
       - "${ZIGBEE_SERIAL_DEVICE:?Run render_config.py first}:/dev/zigbee"
     volumes:
-      - ./runtime/ser2net.yaml:/etc/ser2net.yaml:ro
+      - type: bind
+        source: "${SER2NET_CONFIG:?Run render_config.py on the target Pi first}"
+        target: /etc/ser2net.yaml
+        read_only: true
+        bind:
+          create_host_path: false
     logging:
       driver: json-file
       options:

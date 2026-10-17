@@ -19,8 +19,8 @@ from hardware acceptance; it is not a declaration that the appliance works in a 
 - Native RF regressions exercise golden payloads, exact bit widths, RM433
   quiet-time behavior, offline publishing, actual RMT lifecycle code with driver
   doubles, and the YAML TX worker under delayed completion/faults. AddressSanitizer
-  and UndefinedBehaviorSanitizer runs passed: 48 RF/migration tests in the local
-  suite, including 19 importer tests. Six additional release-package tests verify
+  and UndefinedBehaviorSanitizer runs passed: 53 RF/migration tests in the local
+  suite, including 24 importer tests. Eight additional release-package tests verify
   committed-source selection, checksums, private-path rejection and archive use.
   These tests do not measure physical
   pulse timing, interrupt races on silicon, RF range or analog pin contention.
@@ -40,12 +40,17 @@ from hardware acceptance; it is not a declaration that the appliance works in a 
   passed. Its source, credentials and binaries remain in ignored private storage.
   No board was flashed and HA was not switched; the new controller is not ready.
   HA registry identity is deliberately not claimed to transfer.
-- Linux config renderer: positive rendering and invalid-input tests passed.
-  Docker Compose parsed the rendered configuration. No local Docker daemon or
+- Linux config renderer: four tests passed, including custom output paths,
+  private atomic replacement and rejection of linked output files. Docker Compose
+  parsed the rendered configuration and selected its actual generated bind source.
+  No local Docker daemon or
   USB hardware was available for service runtime validation.
 - CAD: eight exported STL files were re-imported and checked for watertightness,
   consistent winding, positive volume and one connected body. See the generated
-  [mesh report](../mechanical/generated/mesh-report.json). These are geometry checks.
+  [mesh report](../mechanical/generated/mesh-report.json). Seven CAD regression tests
+  cover source/artifact consistency, geometry changes and rigid assembly placement.
+  CI regenerates in a temporary directory and compares the committed STL/GLB solids
+  and SCAD source before packaging. These are geometry checks.
 - Original source and documentation: the repository provides an offline checker
   for local links, Python/shell/JSON syntax, required assets, pin-map collisions
   and common credential patterns. This is not an exhaustive security audit.

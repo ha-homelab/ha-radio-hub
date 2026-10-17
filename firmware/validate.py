@@ -36,6 +36,12 @@ def migration_fixture(snapshot: Path, repository: Path, key: str) -> Path:
 esphome:
   name: ${node_name}
   friendly_name: RF Migration Validation
+  comment: Synthetic legacy RF fixture
+  project:
+    name: validation.rf_bridge
+    version: "1.0.0"
+  min_version: "2026.9.1"
+  compile_process_limit: 2
 esp8266:
   board: esp12e
 packages:

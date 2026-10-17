@@ -30,7 +30,7 @@
 
 ### Nanoleaf Essentials Matter-over-Thread A19/E26 — свет
 
-[Официальный каталог ламп](https://nanoleaf.me/en-us/collections/nanoleaf-smart-bulbs) и [руководство по вариантам Essentials](https://support.nanoleaf.me/hc/en-us/articles/37415330897556-Resource-Product-User-Guide-Indoor-Essentials-Includes-Seasonal). В каталоге одновременно есть **Matter over Thread** и **Matter over Wi-Fi**. Выбирать надпись Thread на точном SKU; старые HomeKit/Thread лампы — отдельный вариант. На момент просмотра Thread A19 в каталоге отмечалась sold out; это альтернатива, не гарантированная доступная покупка.
+[Официальный каталог ламп](https://nanoleaf.me/en-us/collections/nanoleaf-smart-bulbs) и [руководство по вариантам Essentials](https://support.nanoleaf.me/hc/en-us/articles/37415330897556-Resource-Product-User-Guide-Indoor-Essentials-Includes-Seasonal). В каталоге одновременно есть **Matter over Thread** и **Matter over Wi-Fi**. Выбирать надпись Thread на точном SKU; старые HomeKit/Thread лампы — отдельный вариант. На момент просмотра одиночная Thread A19 отмечалась sold out, а упаковка Thread A19 из трёх ламп была доступна для заказа. Наличие проверяется отдельно для каждой упаковки; это альтернативный кандидат для стенда.
 
 Лампа должна оставаться под напряжением, если предполагается её участие в mesh. Проверяем on/off, яркость и цветовые режимы по фактически доступным HA entities. Для первой опоры сети розетка предпочтительнее лампы за обычным настенным выключателем.
 

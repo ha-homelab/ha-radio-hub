@@ -41,6 +41,17 @@ def private_path(path: str) -> bool:
     )
 
 
+def public_file(root: Path, path: Path) -> bool:
+    """Do not follow a symlink at any level of a public inventory entry."""
+    relative = path.relative_to(root)
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            return False
+    return bool(relative.parts) and path.is_file()
+
+
 def public_paths(root: Path) -> list[Path]:
     # Downloaded build packages have no .git directory. Their manifest provides
     # the public source inventory without walking later-created private files.
@@ -53,7 +64,7 @@ def public_paths(root: Path) -> list[Path]:
             raise ValueError('Invalid public release inventory')
         for name in inventory:
             path = PurePosixPath(name)
-            if (not name or path.is_absolute() or '..' in path.parts
+            if (not path.parts or path.is_absolute() or '..' in path.parts
                     or '\\' in name or path.as_posix() != name):
                 raise ValueError('Release inventory contains an invalid path')
         return [root / name for name in sorted(inventory)] + [manifest]
@@ -74,10 +85,8 @@ def main() -> int:
         if private_path(relative.as_posix()):
             errors.append(f'{relative}: private/generated installation material must not be tracked')
             continue
-        if path.is_symlink():
-            errors.append(f'{relative}: symlinks are not permitted in the public build package')
-            continue
-        if not path.is_file():
+        if not public_file(ROOT, path):
+            errors.append(f'{relative}: public file is missing, not regular, or reached through a symlink')
             continue
         if path.suffix not in {'.py', '.md', '.json', '.yaml', '.yml', '.sh', '.txt', '.toml'}:
             continue
@@ -111,9 +120,10 @@ def main() -> int:
         'docs/firmware.md', 'docs/home-assistant.md', 'docs/thread-devices.md',
         'mechanical/generated/base.stl', 'mechanical/generated/lid.stl',
     ]
-    errors.extend(f'Missing deliverable: {name}' for name in required if not (ROOT / name).is_file())
+    errors.extend(f'Missing or non-regular deliverable: {name}' for name in required
+                  if not public_file(ROOT, ROOT / name))
     pinmap_path = ROOT / 'hardware/pinmap.json'
-    if pinmap_path.is_file():
+    if public_file(ROOT, pinmap_path):
         pinmap = json.loads(pinmap_path.read_text())
         pins = pinmap['exclusive_pins']
         if len({pin['gpio'] for pin in pins}) != len(pins):

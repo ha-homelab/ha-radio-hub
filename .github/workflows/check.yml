@@ -40,8 +40,10 @@ jobs:
         run: |
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
-      - name: Regenerate printable geometry and validate meshes
-        run: .venv/bin/python mechanical/build.py
+      - name: Check committed CAD against its source and validate meshes
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical -p 'test_*.py'
+          .venv/bin/python mechanical/build.py --check
       - name: Build the public release package from committed sources
         run: python3 tools/package_release.py --version v0.0.0-ci --output .build/ci-release
       - name: Build the Linux serial service image

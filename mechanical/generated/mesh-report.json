@@ -171,6 +171,39 @@
       "sha256": "d2d21e8fb9f1bc824fbcc185999ff55441afed227494f43731d49094ddd34994"
     }
   },
+  "inputs": {
+    "generator_sha256": "b76e5b11da6b80a6dc48b12d20c854758338b5507b50163d0bc72d0d15b929f7",
+    "parameters": {
+      "status": "DRAFT: geometry checked; component fit, RF, thermal and print validation pending",
+      "width": 240.0,
+      "depth": 200.0,
+      "base_height": 77.0,
+      "lid_thickness": 3.0,
+      "wall": 3.0,
+      "floor": 3.0,
+      "lid_clearance": 0.35,
+      "boss_offset": 8.0,
+      "boss_diameter": 12.0,
+      "m3_clearance": 3.4,
+      "insert_pilot": 4.2,
+      "insert_depth": 6.0,
+      "deck_z": 40.0,
+      "deck_thickness": 3.0,
+      "deck_margin": 18.0,
+      "radar_window_width": 60.0,
+      "radar_window_depth": 28.0,
+      "radar_window_center_y": 40.0,
+      "radar_skin": 1.2,
+      "bulkhead_hole": 6.5,
+      "bme_cable_hole": 5.0,
+      "pod_width": 45.0,
+      "pod_depth": 36.0,
+      "pod_height": 20.0,
+      "pod_wall": 2.0,
+      "bme_exit_y": 136.0,
+      "bme_exit_z": 55.0
+    }
+  },
   "checks_not_performed": [
     "physical component and cable fit",
     "actual FDM print fit",
@@ -182,7 +215,7 @@
   ],
   "assembled_intersection_volume_mm3": {
     "base/deck": 0.0,
-    "base/lid": 0.0,
+    "base/lid": -0.0,
     "base/radar_carrier": 0.0,
     "base/bme680_pod_base": 0.0,
     "base/bme680_pod_lid": 0.0,
@@ -190,11 +223,33 @@
     "deck/radar_carrier": 0.0,
     "deck/bme680_pod_base": 0.0,
     "deck/bme680_pod_lid": 0.0,
-    "lid/radar_carrier": 0.0,
+    "lid/radar_carrier": -0.0,
     "lid/bme680_pod_base": 0.0,
     "lid/bme680_pod_lid": 0.0,
     "radar_carrier/bme680_pod_base": 0.0,
     "radar_carrier/bme680_pod_lid": 0.0,
     "bme680_pod_base/bme680_pod_lid": 0.0
+  },
+  "artifacts": {
+    "antenna_blank.scad": "6d1fe544a80ccc5dac8a9b9f97f8fcac89acbced43abc9305c808c88f223f6ad",
+    "antenna_blank.stl": "2eed067e4d0fe0cfbbd429029b575808ffd90d7e098bd52a8bf9e470cb0e5dd1",
+    "assembly.glb": "447c6bcb21f65e3e4dc8c81520e4b229e8d701223eafa270b2633135c7fce7de",
+    "assembly.scad": "0969663ba30bf57dc6990bd43031e31c6b55c7957ad6f3d931d51f4a76afb612",
+    "base.scad": "c2428c67d6d8caa700c231b42651444cfd1104c2d5a7c7c88bb0402412070640",
+    "base.stl": "f719cea0f27436237b4b1087e4c52bfffeeff29ef628b08e61ebf3fe4cc322e2",
+    "bme680_pod_base.scad": "6392afbc5cab3aaa048e0f07fa9c47c29d612c25ca6257cd30b532cef5d232a5",
+    "bme680_pod_base.stl": "31f9352dae56b027a79daf6f4d4773e74b358999da03d39a5cb1355e85a0cecd",
+    "bme680_pod_lid.scad": "20b597cc40961567ad9e3f327e154acde8d093adecd53d1d7ef153cf8df9541d",
+    "bme680_pod_lid.stl": "2875e2dfca8e96bea10b64d16ee102b60bb8ce23da47000823dbe9eece6cb5ef",
+    "deck.scad": "d1e30cda5cba1356ff634bfe9720f8db3b5156adc23ee99b65763274328bc179",
+    "deck.stl": "3e0eb31d161af0d0d7d01f7f2f60c1d61d5fd83e73e49b1db0ea531c1a7d8b50",
+    "exploded-preview.png": "6f767d215dc4495378eedce020ce2d7429ffee6ed19ee7e492a3e62b5d30a6ed",
+    "fit_coupon.scad": "03ae436fc4820b127333e346de5e5786eb3a71b0b210903e17017147f6774209",
+    "fit_coupon.stl": "d2d21e8fb9f1bc824fbcc185999ff55441afed227494f43731d49094ddd34994",
+    "layout-plan.png": "196aae8b95b20bd0232045f927a20cc479426d1146e8a8fd946459933b242256",
+    "lid.scad": "e88e0627e9b1466f599a2742daabbf11835da762525e7efb392091d4f7d2b4fd",
+    "lid.stl": "503f09545555ff10e9a1f29e6a7607ed99d292fb85fc2706da092b42310eca70",
+    "radar_carrier.scad": "870adc51f761c453a562ebc3f51d7a2160cacb2779d4d6b48601d626836eee8e",
+    "radar_carrier.stl": "475a7a7c05411e2b26c02f0dfc97e92b014627bc7df863586cbc1ededb92481f"
   }
 }

@@ -286,6 +286,53 @@ remote_receiver:
         values = yaml.safe_load((self.output / "secrets.yaml").read_text())
         self.assertEqual(values["mqtt_password"], "synthetic-mqtt-secret")
 
+    def test_preserves_allowed_core_metadata_and_build_constraints(self):
+        core = """  comment: !secret node_comment
+  project:
+    name: fixture.rf_bridge
+    version: "1.2.3"
+  min_version: "2026.9.1"
+  compile_process_limit: 1
+"""
+        self.source.write_text(SOURCE.replace("  friendly_name: Living RF\n", "  friendly_name: Living RF\n" + core))
+        self.secrets.write_text(SECRETS + "node_comment: Private fixture description\n")
+        self.migrate()
+        device = yaml.load((self.output / "device.yaml").read_text(), Loader=TaggedLoader)
+        values = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(device["esphome"], yaml.load(core, Loader=TaggedLoader))
+        self.assertEqual(values["node_comment"], "Private fixture description")
+
+    def test_project_update_hook_is_not_silently_discarded(self):
+        project = """  project:
+    name: fixture.rf_bridge
+    version: "1.2.3"
+    on_update:
+      - logger.log: Migration must preserve this behavior
+"""
+        self.assert_rejected_without_output(SOURCE.replace("  friendly_name: Living RF\n", "  friendly_name: Living RF\n" + project))
+
+    def test_resolves_sensor_ids_before_checking_package_collisions(self):
+        for identifier in ("cc1101_spi", "rf_receiver"):
+            for declaration in (identifier, "${sensor_identifier}"):
+                with self.subTest(identifier=identifier, substitution=declaration.startswith("$")):
+                    source = SOURCE.replace("id: hall_motion", "id: " + declaration)
+                    source = source.replace("substitutions:\n", f"substitutions:\n  sensor_identifier: {identifier}\n")
+                    self.assert_rejected_without_output(source)
+
+    def test_resolved_duplicate_sensor_ids_are_rejected(self):
+        source = SOURCE.replace("substitutions:\n", "substitutions:\n  another_id: hall_motion\n")
+        source += "  - platform: template\n    id: ${another_id}\n    name: Another sensor\n"
+        self.assert_rejected_without_output(source)
+
+    def test_referenced_secrets_cannot_hide_nonliteral_includes_or_lambdas(self):
+        self.source.write_text(SOURCE.replace("'000000010010001101000101'", "!secret motion_code"))
+        for value in ("!include missing-private-code.yaml", "!lambda return 123;", "!secret another_code"):
+            with self.subTest(tag=value.split()[0]):
+                self.secrets.write_text(SECRETS + "motion_code: " + value + "\n")
+                with self.assertRaises(MIGRATE.MigrationError):
+                    self.migrate()
+                self.assertFalse(self.output.exists())
+
     def test_cli_output_never_contains_values_on_success_or_parse_error(self):
         args = [sys.executable, str(ROOT / "tools/migrate_rf.py"), "--source", str(self.source),
                 "--secrets", str(self.secrets), "--output", str(self.output)]
