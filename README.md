@@ -99,6 +99,7 @@ python3 -m venv .venv
 .venv/bin/python mechanical/build.py
 ```
 
-See [validation status](docs/validation.md) for what was actually run. Original
+See [validation status](docs/validation.md) for what was actually run and
+[CI and approval](docs/ci.md) for shared pipelines and reviewer configuration. Original
 code, CAD and documentation use [MIT](LICENSE); see [third-party notices](THIRD_PARTY_NOTICES.md)
 for the RF Airbridge port and upstream firmware licenses.

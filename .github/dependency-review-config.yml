@@ -1,0 +1,13 @@
+# Consumed by the pinned toolkit security-scan.yml reusable workflow.
+# Include build tooling as well as firmware dependencies in vulnerability gates.
+fail-on-severity: high
+fail-on-scopes: [runtime, development, unknown]
+vulnerability-check: true
+# This repository intentionally contains MIT and GPLv3 source; a single
+# allowlist cannot establish compatibility of the assembled firmware.
+license-check: false
+warn-only: false
+comment-summary-in-pr: never
+retry-on-snapshot-warnings: true
+retry-on-snapshot-warnings-timeout: 120
+show-patched-versions: true

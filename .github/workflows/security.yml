@@ -1,0 +1,33 @@
+name: Security scans
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '37 4 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  security:
+    # Pin the reusable workflow and its nested change-scope workflow together.
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/security-scan.yml@5d827f345c66fdb493efba9c24cf79575b681fdb
+    permissions:
+      contents: read
+      actions: read
+      # Declared by the reusable workflow's optional CodeQL job. CodeQL runs
+      # separately in codeql.yml because this firmware needs build-mode: none.
+      security-events: write
+    with:
+      force-full: true
+      working-directory: .
+      run-codeql: false
+      run-trivy: true
+      run-dependency-review: true
+      # Gate fixed HIGH/CRITICAL vulnerabilities and secrets. Radio/OTBR host
+      # networking and hardware privileges need contextual configuration review.
+      strict-trivy: false
+      trivy-severity: HIGH,CRITICAL
