@@ -1,26 +1,26 @@
-# Прошивка и программная часть
+# Firmware and software
 
-Основная сборка использует Raspberry Pi 4 с Linux, два независимых USB-радио и Waveshare **ESP32-S3-ETH-M** с 16 MB flash. На S3 работают Ethernet, Bluetooth proxy, LD2450, BME680 и UART-прокси существующего Zooz ZAC93. Отдельная вторая S3-ETH-M с CC1101 обслуживает проводной RF Airbridge; прежний ESP8266 сохраняется для отката. Все платы питаются от общей PoE-системы. Перенос частной конфигурации и HA registry выполняется отдельно по инструкции миграции.
+The main build uses a Raspberry Pi 4 running Linux, two independent USB radios, and a Waveshare **ESP32-S3-ETH-M** with 16 MB flash. The S3 runs Ethernet, a Bluetooth proxy, LD2450, BME680, and a UART proxy for the existing Zooz ZAC93. A separate second S3-ETH-M with CC1101 handles the wired RF Airbridge; the previous ESP8266 is retained for rollback. All boards share the PoE power system. Private configuration and HA registry migration are handled separately using the migration guide.
 
-## Что действительно проверено
+## What has actually been verified
 
-- Основной `hub-s3-eth.yaml`: schema validation и полная компиляция ESPHome **2026.9.1**, ESP-IDF **5.5.5**, успешны. Статическая RAM 104 319 / 341 760 байт (30,5%); программа 942 199 байт. Это не измерение свободной памяти при работе BLE.
-- RF Ethernet: schema validation и полная компиляция **синтетического fixture, перенесённого настоящим импортёром**, с 15 legacy binary sensors, отдельными source/topics и RM433 slot прошли на ESPHome **2026.9.1** / ESP-IDF **5.5.5**. Статическая RAM 72 991 / 341 760 байт (21,4%); программа 699 707 байт. Пустой публичный шаблон также собран. RF/migration regression-тесты с ASan/UBSan проверяют программные контракты; актуальные результаты и состав проверок приведены в [журнале validation](validation.md).
-- Актуальная **приватная конфигурация действующего RF Airbridge** также перенесена офлайн и успешно скомпилирована ESPHome **2026.9.1**: 15 legacy RF-датчиков, RAM 73 247 байт (21,4%), программа 697 435 байт (8,6%). Пройдены 10 проверок сохранения конфигурации. Исходники установки, секреты и бинарники остаются в игнорируемом Git каталоге `private/`. Новая плата ещё не готова; waveform/RX→TX→RX и физическое переключение HA не проверялись.
-- `software/render_config.py`: тесты ограничений входных данных и конфигурации прошли; Docker Compose разобрал конфигурацию успешно.
-- Ни одна реальная плата не прошивалась. Электрические соединения, совместная работа радиосетей, тепловой режим и долговременная стабильность требуют стенда.
-- Docker daemon недоступен на машине разработки: запуск контейнеров, загрузка драйверов Linux и связь с RCP локально не проверялись. ARM-сборка Thread RCP локально не выполнялась; закреплённая прошивка PCA10059 успешно собрана в [Linux GitHub CI](https://github.com/ha-homelab/ha-radio-hub/actions/runs/38992347499). Радиосвязь этим тестом не проверяется.
+- Main `hub-s3-eth.yaml`: schema validation and a full build passed with ESPHome **2026.9.1**, ESP-IDF **5.5.5**. Static RAM: 104 319 / 341 760 bytes (30.5%); program: 942 199 bytes. This is not a measurement of free memory while BLE is running.
+- RF Ethernet: schema validation and a full build of a **synthetic fixture migrated using the actual importer**, with 15 legacy binary sensors, custom source/topics, and an RM433 slot, passed with ESPHome **2026.9.1** / ESP-IDF **5.5.5**. Static RAM: 72 991 / 341 760 bytes (21.4%); program: 699 707 bytes. The empty public template was also built. RF/migration regression tests with ASan/UBSan check the software contracts; current results and test coverage are listed in the [validation log](validation.md).
+- The current **private configuration of the running RF Airbridge** was also migrated offline and successfully compiled with ESPHome **2026.9.1**: 15 legacy RF sensors, RAM 73 247 bytes (21.4%), program 697 435 bytes (8.6%). All 10 configuration preservation checks passed. The installation's source files, secrets, and binaries remain in the Git-ignored `private/` directory. The new board is not ready yet; waveform/RX→TX→RX behavior and the physical HA cutover have not been tested.
+- `software/render_config.py`: input constraint and configuration tests passed; Docker Compose parsed the configuration successfully.
+- No physical board has been flashed. Electrical connections, simultaneous radio operation, thermal behavior, and long-term stability require bench testing.
+- A Docker daemon is unavailable on the development machine: container startup, Linux driver loading, and RCP communication have not been tested locally. The Thread RCP ARM build was not run locally; the pinned PCA10059 firmware built successfully in [Linux GitHub CI](https://github.com/ha-homelab/ha-radio-hub/actions/runs/38992347499). That test does not verify radio communication.
 
-## 1. Основной ESP32-S3
+## 1. Main ESP32-S3
 
-Используйте именно S3-ETH-M, без камеры и без карты microSD: GPIO4/5 и GPIO1/2/17/18 заняты этими периферийными разъёмами в других вариантах платы. Pin map соответствует [Waveshare](https://www.waveshare.com/wiki/ESP32-S3-ETH) и [Ethernet ESPHome](https://esphome.io/components/ethernet/).
+Use the S3-ETH-M specifically, without a camera or microSD card: GPIO4/5 and GPIO1/2/17/18 are used by those peripheral connectors in other board configurations. The pin map follows [Waveshare](https://www.waveshare.com/wiki/ESP32-S3-ETH) and [ESPHome Ethernet](https://esphome.io/components/ethernet/).
 
-- W5500 уже распаян: SCLK13, MOSI11, MISO12, CS14, IRQ10, RESET9.
-- ZAC93: S3 GPIO17 TX → ZAC93 pin 8 RX; S3 GPIO18 RX ← ZAC93 pin 10 TX; 3V3 → pin 1; GND → pin 6. Скорость 115200 8N1. Не подавайте 5 V на ZAC93.
-- LD2450: S3 GPIO4 TX → radar RX; S3 GPIO5 RX ← radar TX; питание radar 5 V и общая земля. UART 256000 8N1, логические уровни 3,3 V.
-- BME680: SDA GPIO1, SCL GPIO2, 3V3 и GND. По умолчанию адрес Adafruit STEMMA QT **0x77**; для платы с другим адресом измените `bme680_address`.
+- W5500 is already on the board: SCLK13, MOSI11, MISO12, CS14, IRQ10, RESET9.
+- ZAC93: S3 GPIO17 TX → ZAC93 pin 8 RX; S3 GPIO18 RX ← ZAC93 pin 10 TX; 3V3 → pin 1; GND → pin 6. Baud rate: 115200, 8N1. Do not supply 5 V to the ZAC93.
+- LD2450: S3 GPIO4 TX → radar RX; S3 GPIO5 RX ← radar TX; 5 V radar supply and common ground. UART: 256000, 8N1, 3.3 V logic levels.
+- BME680: SDA GPIO1, SCL GPIO2, 3V3, and GND. The default Adafruit STEMMA QT address is **0x77**; change `bme680_address` for a board with a different address.
 
-Python-окружение создаётся из корня репозитория:
+Create the Python environment from the repository root:
 
 ```sh
 python3 -m venv .venv
@@ -29,7 +29,7 @@ python -m pip install -r firmware/requirements.txt
 python firmware/validate.py --compile
 ```
 
-Последняя команда использует одноразовые ключи во временном каталоге и удаляет тестовый бинарный файл. Для своей прошивки создайте локальные секреты:
+The last command uses disposable keys in a temporary directory and deletes the test binary. For your own firmware, create local secrets:
 
 ```sh
 cp firmware/secrets.example.yaml firmware/secrets.yaml
@@ -37,48 +37,48 @@ openssl rand -base64 32
 openssl rand -hex 24
 ```
 
-Поместите первый результат в `api_encryption_key`, второй — в `ota_password` файла `firmware/secrets.yaml`. Не добавляйте его в Git. API-ключ потребуется ESPHome-интеграции и Z-Wave JS. Соберите свою прошивку:
+Place the first result in `api_encryption_key` and the second in `ota_password` in `firmware/secrets.yaml`. Do not add that file to Git. The API key is required by the ESPHome integration and Z-Wave JS. Build your firmware:
 
 ```sh
 esphome config firmware/hub-s3-eth.yaml
 esphome compile firmware/hub-s3-eth.yaml
 ```
 
-Перед первой прошивкой отключите питание PoE и периферию. Подключите USB data к компьютеру; при необходимости удерживайте BOOT при нажатии RESET. Выберите фактический serial-порт в команде `esphome upload firmware/hub-s3-eth.yaml --device PORT`. После прошивки отключите USB, подключите периферию по схеме и подайте штатное питание. Не соединяйте независимые источники 5 V без развязки.
+Before the first flash, disconnect PoE power and peripherals. Connect a USB data cable to the computer; if needed, hold BOOT while pressing RESET. Select the actual serial port in `esphome upload firmware/hub-s3-eth.yaml --device PORT`. After flashing, disconnect USB, wire the peripherals according to the diagram, and apply the normal power supply. Do not connect independent 5 V sources together without isolation.
 
-Последующие обновления: `esphome upload firmware/hub-s3-eth.yaml --device ha-radio-hub-sensors.local`; при недоступном mDNS используйте зарезервированный DHCP-адрес. Логи: `esphome logs firmware/hub-s3-eth.yaml --device ha-radio-hub-sensors.local`. Конфигурация не включает Wi-Fi fallback: Ethernet требуется для API и OTA.
+For subsequent updates: `esphome upload firmware/hub-s3-eth.yaml --device ha-radio-hub-sensors.local`; if mDNS is unavailable, use the reserved DHCP address. Logs: `esphome logs firmware/hub-s3-eth.yaml --device ha-radio-hub-sensors.local`. The configuration has no Wi-Fi fallback: Ethernet is required for the API and OTA.
 
-У LD2450 в [ESPHome](https://esphome.io/components/sensor/ld2450/) доступны координаты трёх целей и датчики присутствия. Начните с проверки одного человека перед открытой платой. Отключите собственный Bluetooth радара через его диагностический switch после настройки, если он не нужен. Это не отключает Bluetooth proxy ESP32. LD2450 не следует считать гарантированным детектором полностью неподвижного человека во всех условиях.
+[ESPHome's LD2450 integration](https://esphome.io/components/sensor/ld2450/) provides coordinates for three targets and presence sensors. Start by testing one person in front of the uncovered board. After setup, disable the radar's own Bluetooth using its diagnostic switch if it is not needed. This does not disable the ESP32 Bluetooth proxy. Do not treat the LD2450 as a guaranteed detector of a completely stationary person in all conditions.
 
-[BME680](https://esphome.io/components/sensor/bme680/) публикует температуру, давление, влажность и **сопротивление газа** раз в 60 секунд. Здесь нет расчётного CO₂, VOC ppm или обещания калиброванного IAQ. Размещайте датчик в вентилируемом боковом отсеке, удалённом от Pi и преобразователей. Пакет `firmware/packages/bme680.yaml` можно отключить до установки датчика. На I²C расширении используйте 3,3 V, короткий кабель до 20 см и проверьте суммарные pull-up: параллельное добавление плат с подтяжками снижает сопротивление. Не подключайте устройства с подтяжками к 5 V.
+[BME680](https://esphome.io/components/sensor/bme680/) publishes temperature, pressure, humidity, and **gas resistance** every 60 seconds. This configuration does not calculate CO₂ or VOC ppm, or promise calibrated IAQ. Place the sensor in the ventilated side compartment, away from the Pi and converters. You can disable the `firmware/packages/bme680.yaml` package until the sensor is installed. Use 3.3 V and a short cable of up to 20 cm for the I²C expansion, and check the combined pull-up resistance: adding boards with pull-ups in parallel reduces the resistance. Do not connect devices with pull-ups to 5 V.
 
 ## 2. Thread RCP: Nordic PCA10059
 
-Это отдельное USB-радио, не BLE proxy и не Zigbee-координатор. OTBR исполняется на Linux Pi; RCP предоставляет ему IEEE 802.15.4. Выбран прозрачный официальный путь [OpenThread nRF52840](https://github.com/openthread/ot-nrf528xx/blob/1ff0a4905e436eb79605582f36b689063b1282ef/src/nrf52840/README.md) с USB bootloader. Этот upstream рекомендует nRF Connect SDK для новых коммерческих продуктов; выбранная legacy-платформа здесь служит воспроизводимым DIY-прототипом.
+This is a separate USB radio, not a BLE proxy or Zigbee coordinator. OTBR runs on the Linux Pi; the RCP supplies its IEEE 802.15.4 radio. The build uses the official [OpenThread nRF52840](https://github.com/openthread/ot-nrf528xx/blob/1ff0a4905e436eb79605582f36b689063b1282ef/src/nrf52840/README.md) path with a USB bootloader. That upstream recommends nRF Connect SDK for new commercial products; the selected legacy platform serves here as a reproducible DIY prototype.
 
-Установите Arm GNU toolchain с `arm-none-eabi-gcc`, CMake, Ninja, Git и зависимости upstream. Затем:
+Install an Arm GNU toolchain with `arm-none-eabi-gcc`, CMake, Ninja, Git, and the upstream dependencies. Then run:
 
 ```sh
 bash firmware/build-thread-rcp.sh
 ```
 
-Скрипт фиксирует Git SHA и submodules, собирает USB RCP с `-DOT_BOOTLOADER=USB`, создаёт `.build/thread-rcp/ot-rcp-pca10059.hex`. Инструменты и системные зависимости не зафиксированы побитово; это source pin, а не заявленная бит-в-бит воспроизводимость.
+The script pins the Git SHA and submodules, builds a USB RCP with `-DOT_BOOTLOADER=USB`, and creates `.build/thread-rcp/ot-rcp-pca10059.hex`. Tools and system dependencies are not pinned byte for byte; this pins the source and does not claim bit-for-bit reproducibility.
 
-Прошейте HEX через **nRF Connect for Desktop → Programmer**, выбрав именно PCA10059. Нажмите RESET донгла, чтобы войти в штатный USB bootloader. Используйте запись application, сохраните bootloader; не используйте erase-all. Подробности — [Nordic Programmer](https://docs.nordicsemi.com/r/bundle/nrf-connect-for-desktop/page/app/pc-nrfconnect-programmer/programming_nrf52840_dongle.html/programming-nrf52840-dongle). После перезагрузки на Pi должен появиться USB CDC ACM serial-порт. Найдите его стабильное имя `ls -l /dev/serial/by-id/`; после смены прошивки USB-имя может измениться. Зафиксируйте именно имя рабочей RCP-прошивки.
+Flash the HEX using **nRF Connect for Desktop → Programmer**, selecting the PCA10059 specifically. Press the dongle's RESET button to enter its stock USB bootloader. Write the application and preserve the bootloader; do not use erase-all. See [Nordic Programmer](https://docs.nordicsemi.com/r/bundle/nrf-connect-for-desktop/page/app/pc-nrfconnect-programmer/programming_nrf52840_dongle.html/programming-nrf52840-dongle). After reboot, a USB CDC ACM serial port should appear on the Pi. Find its stable name with `ls -l /dev/serial/by-id/`; the USB name can change after a firmware replacement. Record the name used by the working RCP firmware.
 
-Если образ не устанавливается или RCP не отвечает, не меняйте случайно Zigbee-радио. Для стенда допустима замена на другой документированный USB Thread RCP, но потребуется проверить скорость, flow control и OpenThread RCP API compatibility. Nordic USB CDC в предоставленном compose использует URL с 1000000 baud и без hardware flow control.
+If the image cannot be installed or the RCP does not respond, do not accidentally modify the Zigbee radio. Another documented USB Thread RCP can be substituted on the bench, but its baud rate, flow control, and OpenThread RCP API compatibility must be checked. The provided Compose configuration uses a URL with 1000000 baud and no hardware flow control for Nordic USB CDC.
 
 ## 3. Zigbee MG24
 
-Используйте SMLIGHT **SLZB-07Mg24** со штатной **Zigbee coordinator / Ember NCP** прошивкой. Сохраните информацию о её версии перед изменениями. Не устанавливайте Thread/multiprotocol прошивку на этот же экземпляр. Перепрошивка нового исправного Zigbee-адаптера не обязательна; обновление выполняется официальным инструментом SMLIGHT для точной модели.
+Use the SMLIGHT **SLZB-07Mg24** with its stock **Zigbee coordinator / Ember NCP** firmware. Record its version before making changes. Do not install Thread/multiprotocol firmware on the same unit. A new, working Zigbee adapter does not have to be reflashed; use SMLIGHT's official tool for the exact model if updating it.
 
-В `ser2net` на стороне Pi включены **115200 8N1 и RTS/CTS**, как для SLZB-07/MGx в [настройках SMLIGHT](https://smlight.tech/support/manuals/books/slzb-07pxmgx/page/zigbee2mqtt-setup). Это управление USB UART между Pi и адаптером; переключатель flow control у удалённого TCP-клиента не заменяет эту настройку. Если производитель изменит UART профиль в новой прошивке, измените renderer и ZHA согласованно. Для другого семейства адаптера настройки требуют отдельной проверки.
+Pi-side `ser2net` enables **115200, 8N1, and RTS/CTS**, as specified for SLZB-07/MGx in the [SMLIGHT settings](https://smlight.tech/support/manuals/books/slzb-07pxmgx/page/zigbee2mqtt-setup). This controls the USB UART between the Pi and the adapter; a flow-control toggle in the remote TCP client does not replace this setting. If the manufacturer changes the UART profile in new firmware, update the renderer and ZHA consistently. A different adapter family requires a separate settings check.
 
-## 4. Linux-сервисы на Pi
+## 4. Linux services on the Pi
 
-Установите 64-битный Raspberry Pi OS Lite/Debian, Docker Engine и Compose plugin по [официальному руководству Docker](https://docs.docker.com/engine/install/debian/). Pi — отдельный прибор, Home Assistant продолжает работать на существующем сервере. Подключите оба USB-радио и внутренний Ethernet. Зарезервируйте DHCP-адреса Pi и ESP32. На первом стенде HA, Pi, ESP32 и телефон разместите в одном LAN с рабочим IPv6 и multicast.
+Install 64-bit Raspberry Pi OS Lite/Debian, Docker Engine, and the Compose plugin using the [official Docker guide](https://docs.docker.com/engine/install/debian/). The Pi is a separate appliance; Home Assistant continues running on the existing server. Connect both USB radios and the internal Ethernet cable. Reserve DHCP addresses for the Pi and ESP32. For the first bench test, place HA, the Pi, ESP32, and phone on the same LAN with working IPv6 and multicast.
 
-Скопируйте репозиторий на Pi. Команда ниже содержит исключительно адреса TEST-NET для примера — замените их, а также USB symlink:
+Copy the repository to the Pi. The following command uses TEST-NET example addresses only: replace them and the USB symlinks.
 
 ```sh
 python3 software/render_config.py \
@@ -88,11 +88,11 @@ python3 software/render_config.py \
 docker compose --env-file software/runtime/hub.env -f software/compose.yaml config --quiet
 ```
 
-Renderer только создаёт локальные файлы. Он отказывает при одинаковом Thread/Zigbee device, wildcard IP, нестабильном `/dev/ttyUSB0` и недопустимых символах. `--ha-ip` должен быть адресом источника соединений HA **как его видит Pi**, что важно при контейнерах/NAT. Для HA с несколькими адресами добавляйте в allow-list только нужные источники после сетевой проверки.
+The renderer only creates local files. It rejects identical Thread/Zigbee devices, wildcard IPs, unstable paths such as `/dev/ttyUSB0`, and invalid characters. `--ha-ip` must be the HA connection source address **as seen by the Pi**, which matters with containers/NAT. If HA has multiple addresses, add only the required sources to the allow-list after verifying the network path.
 
-Генерируйте runtime-файлы на самом Pi: `hub.env` содержит `SER2NET_CONFIG` с абсолютным путём к созданному `ser2net.yaml`. После переноса каталога с другого компьютера или обновления старого `hub.env` повторите render. Для нестандартного `--output` используйте его `hub.env` в каждой команде `docker compose --env-file`; отсутствующий файл bind mount автоматически не создаётся. Renderer атомарно записывает файлы с правами 0600 и отказывает для симлинков вместо выходных файлов.
+Generate the runtime files on the Pi itself: `hub.env` contains `SER2NET_CONFIG` with the absolute path to the generated `ser2net.yaml`. Rerun the renderer after moving the directory from another computer or updating an old `hub.env`. For a custom `--output`, use that directory's `hub.env` in every `docker compose --env-file` command; a missing bind-mount file is not created automatically. The renderer writes files atomically with mode 0600 and rejects symlinks in place of output files.
 
-Теперь примените настройки на **Pi**, не на рабочем компьютере:
+Now apply the settings on the **Pi**, not the workstation:
 
 ```sh
 sudo install -m 644 software/runtime/60-ha-radio-hub.conf /etc/sysctl.d/60-ha-radio-hub.conf
@@ -101,13 +101,13 @@ docker compose --env-file software/runtime/hub.env -f software/compose.yaml up -
 docker compose --env-file software/runtime/hub.env -f software/compose.yaml logs --tail 100
 ```
 
-Sysctl включает IP forwarding и приём IPv6 RA/RIO, следуя [OpenThread setup-host](https://github.com/openthread/ot-br-posix/blob/f064121702b7c2a9f7bf853ca39167c26ee11ec9/etc/docker/border-router/setup-host). OTBR использует host networking, NET_ADMIN и TUN для маршрутизации; его штатный entrypoint также меняет правила forwarding/NAT. Поэтому это конфигурация выделенного Pi, а не безусловный install script для существующего маршрутизатора.
+Sysctl enables IP forwarding and reception of IPv6 RA/RIO, following [OpenThread setup-host](https://github.com/openthread/ot-br-posix/blob/f064121702b7c2a9f7bf853ca39167c26ee11ec9/etc/docker/border-router/setup-host). OTBR uses host networking, NET_ADMIN, and TUN for routing; its stock entrypoint also modifies forwarding/NAT rules. This is a configuration for a dedicated Pi, not an unconditional installation script for an existing router.
 
-`software/versions.json` хранит source/image pins. OTBR REST API слушает только LAN IPv4 Pi:8081, локальный web UI — 127.0.0.1:8080. `ser2net` слушает Pi:6638 и разрешает один клиент с адреса HA. **REST API OTBR не имеет встроенной авторизации**: в firewall/ACL разрешите TCP8081 только HA и выбранному администратору; TCP6638 — HA. ESPHome API6053 и OTA3232 разрешите от HA/администраторского компьютера. Не открывайте эти порты в интернет. Не блокируйте IPv6 ICMP, multicast, mDNS и Thread-routing между разрешёнными устройствами; простой проброс IPv4 портов не заменяет эту связность.
+`software/versions.json` stores the source/image pins. The OTBR REST API listens only on the Pi's LAN IPv4 address at port 8081; the local web UI listens on 127.0.0.1:8080. `ser2net` listens on Pi:6638 and permits one client from the HA address. **The OTBR REST API has no built-in authentication**: use firewall/ACL rules to permit TCP8081 only from HA and the chosen administrator, and TCP6638 from HA. Permit ESPHome API6053 and OTA3232 from HA/the administrator's computer. Do not expose these ports to the internet. Do not block IPv6 ICMP, multicast, mDNS, or Thread routing between permitted devices; simple IPv4 port forwarding does not replace this connectivity.
 
-Проверка: OTBR log содержит успешный Spinel handshake и RCP version; `docker compose ... exec otbr ot-ctl state` возвращает Thread state. До создания/подключения сети состояние disabled/detached допустимо. Доступность `http://PI_IP:8081/node` проверяется с HA-хоста. Команда `curl` сама по себе не доказывает, что Matter commissioning работает.
+Verification: the OTBR log should contain a successful Spinel handshake and RCP version; `docker compose ... exec otbr ot-ctl state` should return the Thread state. Before a network is created/joined, disabled/detached is acceptable. Check access to `http://PI_IP:8081/node` from the HA host. A successful `curl` alone does not prove that Matter commissioning works.
 
-**Только для новой сети**, если в доме ещё нет предпочитаемой Thread-сети:
+**For a new network only**, if the home does not already have a preferred Thread network:
 
 ```sh
 docker compose --env-file software/runtime/hub.env -f software/compose.yaml exec otbr ot-ctl dataset init new
@@ -118,17 +118,17 @@ docker compose --env-file software/runtime/hub.env -f software/compose.yaml exec
 docker compose --env-file software/runtime/hub.env -f software/compose.yaml exec otbr ot-ctl thread start
 ```
 
-Канал 25 — начальная настройка, проверьте его относительно своего Wi-Fi/Zigbee. Не выполняйте `dataset init new` поверх уже выбранной домашней сети: сначала сохраните её credentials и импортируйте существующий dataset. Файлы dataset содержат сетевые ключи. Резервируйте Docker volume `otbr-data` и Z-Wave/Zigbee network backups в приватном хранилище; `docker compose down -v` удаляет состояние OTBR.
+Channel 25 is an initial setting; check it against your Wi-Fi/Zigbee channels. Do not run `dataset init new` over the home's existing preferred network: first back up its credentials and import the existing dataset. Dataset files contain network keys. Back up the Docker volume `otbr-data` and Z-Wave/Zigbee network backups to private storage; `docker compose down -v` deletes OTBR state.
 
-## 5. RF Airbridge по Ethernet
+## 5. RF Airbridge over Ethernet
 
-`firmware/rf-ethernet.yaml` использует отдельную **вторую S3-ETH-M** с CC1101, MQTT и native API. Сохраняются `rf/received`, `rf/received/raw`, `rf/transmit/result`, RM433 button events, `send_rf_code` и `send_dooya_code`, single worker с `busy` и 750-мс cooldown. Частные source/topics/codes и старые определения датчиков импортируются в локальный wrapper; публичный шаблон их не содержит.
+`firmware/rf-ethernet.yaml` uses a separate **second S3-ETH-M** with CC1101, MQTT, and the native API. It preserves `rf/received`, `rf/received/raw`, `rf/transmit/result`, RM433 button events, `send_rf_code`, and `send_dooya_code`, with a single worker, `busy` rejection, and a 750 ms cooldown. Private source/topics/codes and legacy sensor definitions are imported into a local wrapper; the public template does not contain them.
 
-RF SPI3: SCLK7, MOSI8, MISO6, CS15; GPIO4 TX → GDO0 **open-drain с внешней подтяжкой 4.7 кОм к 3,3 В**, GDO2 → GPIO5 RX. W5500 остаётся на GPIO9–14. Это отдельная RF-плата: соединение не применяется к основному S3 с LD2450. Локальный RMT receiver patch соответствует ESPHome 2026.9.1 и обеспечивает управление захватом вокруг TX; работа со штатным ESP8266 patch не предполагается.
+RF SPI3: SCLK7, MOSI8, MISO6, CS15; GPIO4 TX → GDO0 **open-drain with an external 4.7 kΩ pull-up to 3.3 V**, GDO2 → GPIO5 RX. W5500 remains on GPIO9–14. This is a separate RF board: the wiring does not apply to the main S3 with LD2450. The local RMT receiver patch matches ESPHome 2026.9.1 and manages capture around TX; it does not use the existing ESP8266 patch.
 
 ```sh
 python firmware/validate.py --config rf-ethernet.yaml
 python firmware/validate.py --config rf-ethernet.yaml --migration-fixture --compile
 ```
 
-Первая команда проверяет публичный шаблон, вторая запускает настоящий импортёр на синтетической конфигурации с 15 датчиками и полностью компилирует результат. Используются одноразовые секреты, ничего не прошивается. Для замены установленного узла сначала выполните [офлайн-перенос, стенд, cutover и rollback](../hardware/rf-migration.md). Сохранение `esphome.name` и API key не гарантирует прежний HA device ID/unique ID: у Ethernet-платы другой MAC. Требуются приватное сопоставление сущностей и проверка device triggers. Старый ESP8266 остаётся выключенным резервом после перехода.
+The first command validates the public template; the second runs the actual importer on a synthetic configuration with 15 sensors and fully compiles the result. Disposable secrets are used, and nothing is flashed. Before replacing an installed node, follow the [offline migration, bench test, cutover, and rollback procedure](../hardware/rf-migration.md). Preserving `esphome.name` and the API key does not guarantee the previous HA device ID/unique ID: the Ethernet board has a different MAC address. Private entity mapping and device-trigger checks are required. After cutover, keep the old ESP8266 powered off as a spare.

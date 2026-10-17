@@ -1,75 +1,75 @@
-# Корпус экономичной версии: макет компоновки
+# Low-power enclosure: layout mock-up
 
-**Это предварительный макет для проверки размеров. Печатные детали созданы, но готовой к заказу PCB и подтверждённой сборки здесь нет.** Габариты коробки согласованы с аппаратной концепцией одного ESP32-S3, одного W5500, отдельных H2/MG24 и локально подключённых радиомодулей. Корпус исходной версии с Pi остаётся отдельным проектом.
+**This is a preliminary mock-up for checking dimensions. Printable parts are available, but there is no PCB ready to order or physically validated assembly.** The enclosure dimensions match the hardware concept of one ESP32-S3, one W5500, separate H2/MG24 radios and locally connected radio modules. The original Pi enclosure remains a separate design.
 
-![План распределения места](../mechanical/low-power/generated/layout-plan.png)
+![Space allocation plan](../mechanical/low-power/generated/layout-plan.png)
 
-![Геометрия печатных деталей](../mechanical/low-power/generated/exploded-preview.png)
+![Printable part geometry](../mechanical/low-power/generated/exploded-preview.png)
 
-## Что можно печатать
+## Printable parts
 
-Основной объём — **190 × 145 × 45 мм**, без головок винтов, входящего кабеля и внешнего BME680. Основание высотой 42.6 мм, крышка 2.4 мм, дно и стенки 2.4 мм. Зазор бортика крышки относительно стенок — 0.35 мм на сторону. Для каймы 3 мм требуется область стола 196 × 151 мм; детали помещаются на обычный стол 220 × 220 мм без масштабирования.
+The main envelope is **190 × 145 × 45 mm**, excluding screw heads, the incoming cable and the external BME680. The base is 42.6 mm high, the lid 2.4 mm thick, and the floor and walls 2.4 mm thick. The lid lip has 0.35 mm clearance per side from the walls. A 3 mm brim requires a 196 × 151 mm bed area; the parts fit a typical 220 × 220 mm bed without scaling.
 
-В [каталоге экспорта](../mechanical/low-power/generated/assembly.scad) находятся:
+The [export directory](../mechanical/low-power/generated/assembly.scad) contains:
 
-- `mockup_base.stl`: одно основание со стойками, вентиляцией и проходами кабелей.
-- `mockup_lid.stl`: одна крышка с четырьмя стойками держателя радара и экспериментальным тонким окном.
-- `carrier_fit_blank.stl`: один **пластиковый шаблон платы** 160 × 100 × 1.6 мм. Он проверяет объём и расположение крепежа; не заменяет FR4, электрическую схему, трассировку или сборочную плату.
-- `radar_holder.stl`: один универсальный держатель 70 × 38 × 2 мм с прорезями для изолированных ремешков.
-- `fit_coupon.stl`: один пробник отверстий и термовставок.
+- `mockup_base.stl`: one base with posts, ventilation and cable openings.
+- `mockup_lid.stl`: one lid with four radar-holder posts and an experimental thin window.
+- `carrier_fit_blank.stl`: one **plastic board template**, 160 × 100 × 1.6 mm. It checks the envelope and fastener positions; it does not replace FR4, a schematic, PCB routing or an assembly board.
+- `radar_holder.stl`: one universal 70 × 38 × 2 mm holder with slots for insulating straps.
+- `fit_coupon.stl`: one test coupon for holes and heat-set inserts.
 
-Для BME680 используются отдельные [основание](../mechanical/generated/bme680_pod_base.stl) и [крышка](../mechanical/generated/bme680_pod_lid.stl) существующей капсулы 45 × 36 × 20 мм. Они не дублируются в новом каталоге. Корпус капсулы также ещё не подтверждён физической примеркой. В новой сборочной 3D-модели он показан только прямоугольным габаритом.
+The BME680 uses the separate [base](../mechanical/generated/bme680_pod_base.stl) and [lid](../mechanical/generated/bme680_pod_lid.stl) of the existing 45 × 36 × 20 mm pod. These files are not duplicated in the new directory. The pod enclosure also awaits a physical fit check. The new 3D assembly shows it only as a rectangular envelope.
 
-STL находятся в миллиметрах и уже ориентированы для печати: основание дном вниз, крышка наружной плоскостью вниз и стойками вверх, шаблон и держатель плоско. Начальные настройки для холодного макета: сопло 0.4 мм, слой 0.2 мм, 4 периметра, PETG без проводящих наполнителей. PLA подходит только для проверки размеров. Мост над кабельным проёмом имеет пролёт 22 мм; могут понадобиться локальные поддержки. Выбор материала для постоянно работающего устройства требует теплового испытания; огнестойкость не заявлена.
+STL units are millimeters, and the parts are already oriented for printing: base floor down, lid outer face down with posts up, and template and holder flat. Initial settings for an unpowered fit mock-up: 0.4 mm nozzle, 0.2 mm layers, 4 perimeters and PETG without conductive fillers. PLA is suitable only for dimensional checks. The bridge above the cable opening spans 22 mm; local supports may be required. Material selection for a continuously operating device requires thermal testing; no flame-resistance claim is made.
 
-## Плата, крепёж и фактические габариты
+## Board, fasteners and actual dimensions
 
-Начало координат корпуса — передний левый нижний угол; x направлен вправо, y назад, z к крышке. Шаблон платы расположен в x=15…175, y=12…112, z=10…11.6 мм. В плане нет медных слоёв или электрических соединений.
+The enclosure origin is its front-left-bottom corner; x points right, y toward the back and z toward the lid. The board template occupies x=15…175, y=12…112, z=10…11.6 mm. The plan contains no copper layers or electrical connections.
 
-Четыре отверстия шаблона диаметром 3.4 мм заданы **нашим макетом**, а не перенесены с коммерческой платы. Их центры относительно левого переднего угла шаблона: (5,3.5), (155,3.5), (5,95), **(120.5,95)** мм. Передние отверстия сдвинуты к краю, чтобы головки не входили в предварительные антенные зоны. Последнее отверстие намеренно смещено от угла: стандартное положение (155,95) попало бы под габарит MagJack. Проверка учитывает также головку винта диаметром 6.8 мм высотой 3.5 мм над шаблоном. Реальную плату нельзя заказывать только по этим четырём координатам.
+The four 3.4 mm template holes are defined by **this mock-up**, not copied from a commercial board. Their centers relative to the template's front-left corner are (5,3.5), (155,3.5), (5,95), **(120.5,95)** mm. The front holes are moved toward the edge to keep screw heads out of the provisional antenna zones. The last hole is intentionally offset from the corner: the standard position (155,95) would lie under the MagJack envelope. Validation also includes a screw head 6.8 mm in diameter and 3.5 mm high above the template. These four coordinates alone are not sufficient to order a real PCB.
 
-Прямоугольники на плане — резервируемые объёмы, а не точные модели деталей. Полный список размеров, координат, статусов и источников хранится в [parameters.json](../mechanical/low-power/parameters.json).
+Rectangles in the plan reserve space; they are not accurate part models. The complete dimensions, coordinates, statuses and sources are in [parameters.json](../mechanical/low-power/parameters.json).
 
-- PoE PD: выбранный для исследования **Silvertel Ag97005-FL**, семейство Ag97000, выход 5 V / 9 W continuous. Опубликованный габарит корпуса 56 × 14 × 13 мм; в макете отведено 64 × 18 × 20 мм. Пины, высота установки и изоляционные зазоры ещё не перенесены. Вариант `-FL` включает мостовые выпрямители; `-S` отличается их отсутствием. [Официальный datasheet](https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf).
-- H2: резерв 30 × 28 × 12 мм под модуль и обвязку. Опубликованный корпус ESP32-H2-MINI-1 — 13.2 × 16.6 × 2.4 мм. Это не плата DevKit; DevKit стенда в этот габарит не обещан. [Espressif](https://documentation.espressif.com/esp32-h2-mini-1_mini-1u_datasheet_en.pdf).
-- MG24: резерв 32 × 29 × 12 мм под MGM240P и обвязку. Сам модуль имеет габарит 12.9 × 15 × 2.2 мм. Конкретные land pattern, ориентация антенны и запретные зоны требуют переноса из актуальной документации. [Silicon Labs](https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf).
-- ZAC93: резерв 42 × 35 × 14 мм; CC1101: 32 × 24 × 12 мм. **Эти размеры предположены для распределения места**: имеющиеся у владельца платы, их антенны, разъёмы и высоты нужно измерить. Совпадение их физических размеров с прямоугольниками не утверждается.
-- S3, W5500, buck и MagJack представлены резервами под целевые схемы/модули. Это не обещание вместить готовые DevKit, EvalPoE, WIZ850io или USB/Ethernet-платы стенда. В окончательной carrier PCB будут другие контуры и соединения.
-- LD2450 имеет опубликованный контур платы 44 × 15 мм; резервная высота 4 мм пока предполагается. Разъём и крепление проверяются отдельно. [Hi-Link](https://www.hlktech.com/Goods-226.html).
+- PoE PD: **Silvertel Ag97005-FL**, from the Ag97000 family, is selected for evaluation with a 5 V / 9 W continuous output. Its published body dimensions are 56 × 14 × 13 mm; the mock-up reserves 64 × 18 × 20 mm. Pins, mounting height and isolation clearances have not yet been incorporated. The `-FL` version includes bridge rectifiers; the `-S` version omits them. [Official datasheet](https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf).
+- H2: 30 × 28 × 12 mm reserved for the module and supporting circuitry. The published ESP32-H2-MINI-1 body is 13.2 × 16.6 × 2.4 mm. This is not a DevKit board; the bench DevKit is not guaranteed to fit this envelope. [Espressif](https://documentation.espressif.com/esp32-h2-mini-1_mini-1u_datasheet_en.pdf).
+- MG24: 32 × 29 × 12 mm reserved for the MGM240P and supporting circuitry. The module itself is 12.9 × 15 × 2.2 mm. Its exact land pattern, antenna orientation and keep-out zones must be transferred from current documentation. [Silicon Labs](https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf).
+- ZAC93: 42 × 35 × 14 mm reserved; CC1101: 32 × 24 × 12 mm. **These dimensions are assumptions for space allocation**: the owner's existing boards, antennas, connectors and heights must be measured. Their actual dimensions are not claimed to match these rectangles.
+- S3, W5500, buck converter and MagJack are represented by reservations for the target circuits/modules. This does not guarantee that complete DevKit, EvalPoE, WIZ850io or bench USB/Ethernet boards will fit. The final carrier PCB will have different outlines and connections.
+- LD2450 has a published board outline of 44 × 15 mm; the reserved 4 mm height is still an assumption. Its connector and mounting require separate checks. [Hi-Link](https://www.hlktech.com/Goods-226.html).
 
-В центре оставлена область UART 32 × 22 × 14 мм под SC16IS752IPW,128, кварц 3.6864 MHz и reset supervisor TPS3808G33. Это предварительный объём под разводку цепи и обслуживание, а не второй MCU или подтверждённая посадка готовой переходной платы TSSOP. Переходник электрического стенда в этот габарит не включён.
+A central UART area of 32 × 22 × 14 mm is reserved for the SC16IS752IPW,128, a 3.6864 MHz crystal and a TPS3808G33 reset supervisor. This is preliminary space for circuit layout and servicing, not a second MCU or a validated fit for a complete TSSOP adapter board. The electrical bench adapter is not included in this envelope.
 
-Необходимый крепёж **для данного макета**, отдельно от старого корпуса:
+Required fasteners **for this mock-up**, separate from the original enclosure:
 
-- 12 термовставок M3 длиной около 5 мм: 4 для крышки, 4 для шаблона платы, 4 для держателя радара. Пилот 4.2 мм глубиной 6 мм; диаметр и температуру установки подбирать по пробнику и документации конкретной вставки.
-- 12 винтов **M3×6**: по четыре на крышку, шаблон и держатель. Номинальное зацепление без шайб составляет соответственно 3.6, 4.4 и 4 мм. M3×8 для шаблона слишком длинный при пилоте 6 мм; старый комплект крепежа полки сюда переносить нельзя. При шайбах заново проверить зацепление.
-- Для капсулы BME680 — два M2×6; остальные особенности её сборки описаны в [исходной инструкции](enclosure.md).
-- Подходящие изолированные крепления реальных модулей, втулки и разгрузки натяжения выбираются после примерки; точный крепёж модулей пока не задан. Шаблон платы не предназначен для приклеивания и питания полного набора электроники.
+- 12 M3 heat-set inserts approximately 5 mm long: 4 for the lid, 4 for the board template and 4 for the radar holder. The pilot is 4.2 mm in diameter and 6 mm deep; select the diameter and installation temperature using the coupon and the specific insert's documentation.
+- 12 **M3×6** screws: four each for the lid, template and holder. Nominal engagement without washers is 3.6, 4.4 and 4 mm, respectively. M3×8 screws are too long for the template with a 6 mm pilot; do not reuse the original deck fastener set here. Recheck engagement if washers are used.
+- Two M2×6 screws for the BME680 pod; its other assembly details are in the [original instructions](enclosure.md).
+- Suitable insulating mounts for actual modules, grommets and strain relief must be selected after fit checks; exact module fasteners are not yet specified. The board template is not intended as a surface for gluing down and powering the complete electronics assembly.
 
-## Кабели, антенны и радар
+## Cables, antennas and radar
 
-Единственный PoE-кабель идёт прямо к заднему MagJack. Проём в стенке — 22 × 16 мм; координаты x=144…166, z=14…30 мм. Для прямого штекера зарезервирована область 18 × 53 × 12 мм, которая выходит на 25 мм за заднюю стенку. Такая схема не требует разворота кабеля внутри коробки. **Размеры конкретного штекера, его защёлки, резинового хвостовика, втулки и силы выдёргивания не проверены**. Для толстого кабеля/колпачка отверстие и расположение разъёма придётся изменить. Крепление кабеля должно передавать усилие на корпус, а не на пайку разъёма.
+The single PoE cable runs straight to the rear MagJack. The wall opening is 22 × 16 mm at x=144…166, z=14…30 mm. A straight plug has an 18 × 53 × 12 mm reservation extending 25 mm beyond the rear wall. This arrangement requires no cable turn inside the enclosure. **The dimensions of the actual plug, latch, rubber boot and grommet, and the pull-out force, have not been checked.** A thick cable or boot may require changing the opening and connector position. Cable retention must transfer force to the enclosure, not the connector's solder joints.
 
-BME680 расположен снаружи, слева, с изображённым зазором 20 мм. Это начальное положение, не доказанная тепловая изоляция. Вывод кабеля диаметром 5 мм расположен в x=0, y=40, z=20 рядом с зоной S3. Начальная длина всего I²C-жгута — 100–200 мм, включая внутренний отрезок, разъёмы и запас. Фактическую частоту, подтяжки, отсутствие ошибок и температуру BME нужно проверить; капсулу размещают сбоку/ниже источника тепла, вне тёплого потока.
+The BME680 sits outside on the left, with a drawn gap of 20 mm. This is a starting position, not proven thermal isolation. The 5 mm cable exit is at x=0, y=40, z=20 beside the S3 zone. The initial length of the entire I²C harness is 100–200 mm, including the internal segment, connectors and slack. Check the actual frequency, pull-ups, error-free operation and BME temperature; position the pod beside or below the heat source, outside the warm airflow.
 
-Штриховка на плане означает **предварительно освобождённое место для антенн**. Скрипт проверяет отсутствие в этих объёмах чужих модулей, но не проверяет медь, землю, реальный ток RF, диаграмму направленности и требования сертификации. Сплошной пластиковый шаблон под штриховкой не разрешает размещать там медь/FR4 в итоговой плате. Потребуются реальные ограничения производителя каждого модуля, возможно вырезы края PCB или перенос антенны за его край. На макете нет выбранных SMA-проходок: штатный тип подключения ZAC93/CC1101 ещё не подтверждён, переделка антенн не предполагается.
+Hatching in the plan marks **provisional space reserved for antennas**. The script checks that other modules do not occupy these volumes, but does not check copper, ground planes, actual RF currents, radiation patterns or certification requirements. A solid plastic template under the hatching does not authorize copper or FR4 in that area on the final board. Each module's actual manufacturer restrictions must be applied; PCB edge cut-outs or moving an antenna beyond the edge may be required. No SMA bulkhead connectors have been selected for this mock-up: the stock ZAC93/CC1101 connection types are not yet confirmed, and antenna modification is not assumed.
 
-Радар установлен на отдельном держателе: верх держателя z=35.6 мм, предполагаемая верхняя плоскость модуля z=39.6 мм. В крышке над ним оставлена область 60 × 30 мм толщиной 1.2 мм; нижняя сторона тонкого окна z=43.8 мм. Получается номинальный воздушный зазор 4.2 мм **при предполагаемой толщине модуля 4 мм**. Это экспериментальная геометрия для 24 GHz, не рассчитанный согласованный обтекатель. Не применять фольгу, металлонаполненный пластик, краску с металлом или крепёж перед антенной. Провода и ремешки не должны проходить по печатным антеннам радара. При необходимости изолирующей прокладки под модуль её толщина уменьшит зазор; измените параметры после измерения реального модуля.
+The radar sits on a separate holder: the holder top is z=35.6 mm, and the assumed module top is z=39.6 mm. Above it, the lid has a 60 × 30 mm area that is 1.2 mm thick; the underside of the thin window is z=43.8 mm. This gives a nominal 4.2 mm air gap **with the assumed 4 mm module thickness**. This is experimental geometry for 24 GHz, not an impedance-matched radome design. Do not place foil, metal-filled plastic, metallic paint or fasteners in front of the antenna. Wires and straps must not cross the radar's printed antennas. If an insulating pad is needed under the module, its thickness reduces the gap; update the parameters after measuring the actual module.
 
-Крышка должна быть обращена в комнату. При горизонтальной установке на стол радар смотрит вверх; готовая настенная скоба/нагруженное крепление для этого предварительного корпуса не разработаны.
+The lid must face the room. When placed horizontally on a table, the radar points upward; a finished wall bracket or load-bearing mount has not been designed for this preliminary enclosure.
 
-## Проверки и границы результата
+## Validation and limits
 
-[build.py](../mechanical/low-power/build.py) создаёт CSG/OpenSCAD, STL, GLB, PNG и [отчёт](../mechanical/low-power/generated/mesh-report.json). Используются функции геометрии старого генератора; существующие STL не меняются. В GLB применены метры по соглашению glTF, в STL/SCAD — миллиметры.
+[build.py](../mechanical/low-power/build.py) generates CSG/OpenSCAD, STL, GLB, PNG and a [report](../mechanical/low-power/generated/mesh-report.json). It uses geometry functions from the original generator; existing STL files are not changed. GLB uses meters as required by glTF; STL/SCAD use millimeters.
 
-Проверено программно:
+Software checks performed:
 
-1. Пять экспортированных STL повторно прочитаны: каждый является одним замкнутым телом с согласованной ориентацией и положительным объёмом.
-2. В собранных положениях нет объёмных пересечений печатных частей. Нет пересечений одиннадцати прямоугольных резервов компонентов между собой и с деталями корпуса. Головки крепежа шаблона учтены отдельными резервами.
-3. Резервы антенн свободны от других компонентов и головок крепежа шаблона; прямой коридор Ethernet-штекера и резерв вывода радара не перекрыты печатными деталями/компонентами.
-4. Девять регрессионных тестов проверяют также намеренно испорченную раскладку, неверное крепление, перекрытый кабельный выход и устаревшие STL/SCAD. Режим `--check` заново генерирует эталон во временном каталоге, не исправляя старые файлы молча.
+1. The five exported STL files are read back: each is one closed body with consistent winding and positive volume.
+2. Printable parts do not intersect volumetrically in their assembled positions. The eleven rectangular component reservations do not intersect each other or the enclosure parts. Template fastener heads have separate reservations.
+3. Antenna reservations are clear of other components and template fastener heads; the straight Ethernet plug corridor and radar cable reservation are not obstructed by printable parts or components.
+4. Nine regression tests also exercise deliberately invalid layouts, incorrect mounting, blocked cable exits and stale STL/SCAD. The `--check` mode regenerates a reference in a temporary directory rather than silently correcting old files.
 
-Команды из корня репозитория в окружении с [CAD-зависимостями](../mechanical/requirements.txt):
+Run these commands from the repository root in an environment with the [CAD dependencies](../mechanical/requirements.txt):
 
 ```sh
 python mechanical/low-power/build.py
@@ -77,6 +77,6 @@ python mechanical/low-power/build.py --check
 python -m unittest discover -s mechanical/low-power -p 'test_*.py'
 ```
 
-Изменение размера коробки **не перекладывает компоненты автоматически**: координаты резервов заданы в JSON. После изменения обязательны повторные геометрические проверки и осмотр PNG/GLB. Программная проверка пустого места не заменяет примерку детали с разъёмами и кабелями.
+Changing the enclosure size **does not rearrange components automatically**: reservation coordinates are defined in JSON. Repeat the geometry checks and inspect the PNG/GLB after any change. A software clearance check does not replace a physical fit check with connectors and cables attached.
 
-До изготовления электрической платы и постоянной эксплуатации остаются: выбор MagJack/защиты/втулки; реальные чертежи всех модулей; изоляционные расстояния PoE и разводка PCB; крепление и strain relief; RF-тест всех сетей одновременно; проверка радара с крышкой/без неё; thermal soak и измерение энергии **всего устройства на входе PoE**. Номинальная мощность PD или КПД в другой рабочей точке не подтверждают потребление этого макета. Готовность прошивки проверяется отдельно и не следует из наличия STL.
+Before manufacturing the electrical board or operating it continuously, the following remain: select the MagJack, protection and grommet; obtain actual drawings for all modules; establish PoE isolation clearances and PCB routing; validate mounting and strain relief; test all radio networks simultaneously; compare radar performance with and without the lid; perform a thermal soak and measure the energy of **the entire device at the PoE input**. The PD's nominal output power or efficiency at a different operating point does not establish this mock-up's consumption. Firmware readiness is checked separately and cannot be inferred from the presence of STL files.

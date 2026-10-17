@@ -6,7 +6,7 @@ Separate 190 × 145 × 45 mm enclosure study for a 160 × 100 mm single carrier.
 It does not replace the older Pi-based enclosure or claim that the complete
 single-host firmware, radio coexistence or power target has been validated.
 
-- [Russian assembly and limitations](../../docs/low-power-enclosure.md)
+- [Assembly instructions and limitations](../../docs/low-power-enclosure.md)
 - [Parameters and allocation status](parameters.json)
 - [Allocation plan](generated/layout-plan.png)
 - [Printable geometry preview](generated/exploded-preview.png)

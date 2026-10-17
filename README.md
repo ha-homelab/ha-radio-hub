@@ -2,7 +2,7 @@
 
 A modular, single-input PoE appliance for **Zigbee, Thread, Bluetooth, Z-Wave,
 433 MHz RF, presence and environmental sensing**. Original public design by
-HA Homelab. [Русский обзор](docs/overview.ru.md).
+HA Homelab. [Project overview](docs/overview.md).
 
 **Status: engineering prototype design, not a physically validated product.**
 CAD, firmware configuration and deployment tooling are provided. A successful
@@ -63,7 +63,7 @@ matching source, wiring and assembly instructions in one verified archive.
 
 ![Power and communication wiring](hardware/wiring.svg)
 
-1. Read the [Russian overview](docs/overview.ru.md), [hardware design](hardware/README.md)
+1. Read the [project overview](docs/overview.md), [hardware design](hardware/README.md)
    and [wiring](hardware/wiring.md); verify the exact board and regional radio variants.
 2. Check [enclosure instructions](docs/enclosure.md). Print fit coupons and dry-fit
    the parts before printing the whole enclosure. Parametric source is in `mechanical/`.

@@ -1,54 +1,54 @@
-# Питание и тепловая проверка
+# Power and thermal testing
 
-Этот документ описывает резерв мощности **модульного варианта с Pi**; приведённые
-ниже ватты не являются прогнозом среднего расхода. Для минимального потребления
-за годы работы разрабатывается [отдельный вариант с одним S3](../docs/low-power.md).
-Его питание и распиновку нельзя смешивать с этой схемой.
+This document describes the power reserve for the **modular Pi design**; the wattages
+below are not predictions of average consumption. A [separate single-S3 design](../docs/low-power.md)
+is being developed to minimize energy use over years of operation.
+Its power system and pinout must not be mixed with this design.
 
-## Цепочка
+## Power chain
 
-**802.3at PSE → Cat5e/6 → Waveshare POE-SPLITTER-25W-5.5-2.1 → распределение 5 V с отдельными предохранителями.** Data out splitter → TL-SF1005D v13 port 1. Это активный изолированный splitter, не пассивный PoE переходник. На низковольтной стороне нет 48 V. Не устанавливать PoE HAT на Pi и отдельный PoE модуль на ESP32 одновременно с этой разводкой.
+**802.3at PSE → Cat5e/6 → Waveshare POE-SPLITTER-25W-5.5-2.1 → 5 V distribution with individual fuses.** Splitter data out → TL-SF1005D v13 port 1. This is an active isolated splitter, not a passive PoE adapter. There is no 48 V on the low-voltage side. Do not install a PoE HAT on the Pi or a separate PoE module on an ESP32 alongside this wiring.
 
-Если свободного активного PoE+ порта нет, выбран внешний [TP-Link Omada POE160S (TL-POE160S)](https://www.omadanetworks.com/us/business-networking/omada-accessory-poe-adapter/poe160s/): IEEE 802.3af/at, до 30 W. LAN подключается к DATA IN, единственный кабель к коробке — к POWER+DATA OUT. Инжектор со своим штатным сетевым шнуром остаётся вне корпуса; его питание не входит в расчёт 5 V нагрузки.
+If no active PoE+ port is available, the selected external injector is [TP-Link Omada POE160S (TL-POE160S)](https://www.omadanetworks.com/us/business-networking/omada-accessory-poe-adapter/poe160s/): IEEE 802.3af/at, up to 30 W. Connect LAN to DATA IN and the single enclosure cable to POWER+DATA OUT. The injector and its supplied mains cable stay outside the enclosure; its own consumption is not part of the 5 V load calculation.
 
-[Waveshare](https://www.waveshare.com/product/accessories/power-heat-sinks/poe-splitter-25w-type-c.htm) указывает 5 V 5 A **maximum**, 37–57 V input и поддержку af/at. Для всей коробки выбирается 802.3at. Заявленные 25 W выхода не считаются гарантией длительных 25 W в закрытом печатном корпусе. Проектный предел испытания — **не более 20 W / 4 A на выходе splitter**, с проверкой просадки и температуры.
+[Waveshare](https://www.waveshare.com/product/accessories/power-heat-sinks/poe-splitter-25w-type-c.htm) specifies 5 V 5 A **maximum**, 37–57 V input and af/at support. The complete enclosure uses 802.3at. The stated 25 W output is not treated as a guarantee of sustained 25 W operation inside a closed printed enclosure. The design test limit is **no more than 20 W / 4 A at the splitter output**, subject to voltage-drop and temperature checks.
 
-## Предварительный бюджет — проектные допущения
+## Preliminary budget — design assumptions
 
-Ниже не измерения и не суммарные паспортные максимумы:
+These are neither measurements nor the sum of all datasheet maxima:
 
-- Pi 4 с microSD, без SSD: 8 W на обычную работу OTBR/serial bridge, кратковременный резерв ещё 2 W.
-- Два USB-радио суммарно: 1 W.
-- TL-SF1005D v13: 2 W резерв. [TP-Link](https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/) указывает 5 V/0.6 A и maximum consumption 1.9 W. Проверить наклейку конкретной ревизии. Выбран 100 Mbps switch: пропускной способности достаточно для радиопротоколов, а энергопотребление ниже первоначального Gigabit варианта.
-- ESP32-S3-ETH + ZAC93: 2.5 W резерв.
-- LD2450: 0.75 W резерв.
-- BME680 с нагревателем: 0.25 W резерв.
-- NodeMCU + CC1101 в совместимой ветке: 1 W резерв. При замене на отдельную RF S3-ETH + CC1101 предварительно зарезервировать 2 W.
-- Вентилятор/потери проводки: 0.5 W резерв.
+- Pi 4 with microSD, no SSD: 8 W for normal OTBR/serial-bridge operation, plus 2 W of transient reserve.
+- Two USB radios together: 1 W.
+- TL-SF1005D v13: 2 W reserve. [TP-Link](https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/) specifies 5 V/0.6 A and maximum consumption of 1.9 W. Check the label on the actual revision. A 100 Mbps switch was selected: bandwidth is sufficient for the radio protocols, and consumption is lower than the initial Gigabit option.
+- ESP32-S3-ETH + ZAC93: 2.5 W reserve.
+- LD2450: 0.75 W reserve.
+- BME680 with its heater: 0.25 W reserve.
+- NodeMCU + CC1101 in the compatibility branch: 1 W reserve. When replacing it with a separate RF S3-ETH + CC1101, provisionally reserve 2 W.
+- Fan/wiring losses: 0.5 W reserve.
 
-Рабочее допущение для совместимой RF ветки: 16 W, с кратковременным запасом Pi около 18 W. Для проводной RF ветки: около 17 W, с тем же запасом около 19 W. Обе оценки ниже проектного предела 20 W, однако должны быть подтверждены измерениями. **Одновременный паспортный максимум Pi и всех модулей в этот бюджет не помещается.** Не запускать на Pi сервер HA, компиляцию, SSD/NVMe или другие тяжёлые службы. Если измерение превышает 20 W, есть undervoltage либо splitter перегревается, эта конфигурация не принимается: нужен документированный 802.3bt splitter с большим запасом, меньший switch/SBC или раздельные корпуса. Ограничение не исправляется увеличением номинала предохранителя.
+The working assumption for the compatibility RF branch is 16 W, or about 18 W with the Pi transient reserve. For the wired RF branch it is about 17 W, or about 19 W with the same reserve. Both estimates are below the 20 W design limit, but require measurement. **The simultaneous datasheet maxima of the Pi and all modules do not fit this budget.** Do not run the HA server, compilation, SSD/NVMe or other heavy services on the Pi. If measured consumption exceeds 20 W, undervoltage occurs or the splitter overheats, the configuration fails acceptance: use a documented 802.3bt splitter with more headroom, a lower-power switch/SBC or separate enclosures. A higher-rated fuse does not solve this limit.
 
-## Низковольтный жгут
+## Low-voltage harness
 
-Использовать закрытое распределение с клеммами и проводом, рассчитанными минимум на 5 A. Магистраль 5 V/GND — короткая пара 18–20 AWG. К Pi выбран C17 (короткая пара 20 AWG и Same Sky PP3-002A) → Adafruit 4536 → USB-C. Производитель рекомендует 4536 для Pi 4, но токовый рейтинг 3 A не опубликован: это кандидат прототипа, требующий испытания всего жгута до 3 A до подключения Pi. Ветви S3 используют DFRobot FIT0993 с паспортными 5 V / 2 A и предохранителем 1 A. Подключения и ограничения — в [комплектовании](procurement.md). Остальные ветви — 22–24 AWG при подходящем токе/длине. JST-SH/STEMMA QT используется только для малоточного датчика, не для общей шины 5 V.
+Use enclosed distribution with terminals and wire rated for at least 5 A. The 5 V/GND trunk is a short 18–20 AWG pair. The selected Pi path is C17 (a short 20 AWG pair and Same Sky PP3-002A) → Adafruit 4536 → USB-C. The manufacturer recommends 4536 for Pi 4, but publishes no 3 A current rating: it is a prototype candidate whose complete harness must be load-tested up to 3 A before connecting the Pi. S3 branches use DFRobot FIT0993, rated 5 V / 2 A, with a 1 A fuse. Connections and limits are in the [procurement checklist](procurement.md). Other branches use 22–24 AWG as appropriate for current and length. JST-SH/STEMMA QT is only for the low-current sensor, not the shared 5 V bus.
 
-Рекомендуемые стартовые ветви: Pi 3 A; switch 1 A; основная ESP32 1 A; RF ESP32 1 A **либо** NodeMCU 0.75 A; LD2450 0.25–0.5 A. Всего пять ветвей и шесть держателей с учётом общего входного предохранителя. Это номиналы для подбора, их I²t, нагрев и пусковой ток надо проверить. Общий DC предохранитель подбирается не выше 5 A и рейтинга слабейшего участка splitter/кабеля/контакта; индивидуальные предохранители защищают проводку, а не регулируют потребление. Сумма номиналов ветвей не является разрешённым суммарным током. Корпус распределителя изолирует открытую медь от радиомодулей.
+Suggested initial branch fuse ratings: Pi 3 A; switch 1 A; main ESP32 1 A; RF ESP32 1 A **or** NodeMCU 0.75 A; LD2450 0.25–0.5 A. There are five branches and six holders including the common input fuse. These are starting selections; verify I²t, heating and inrush current. Select the common DC fuse at no more than 5 A or the rating of the weakest splitter/cable/contact section; individual fuses protect wiring rather than regulate consumption. The sum of branch fuse ratings is not the permitted total current. The distribution enclosure isolates exposed copper from radio modules.
 
-ZAC93 питается от 3V3 ESP32-S3-ETH, BME680 — от той же 3V3 через отдельный разъём. Уточнить запас JW5060/3V3 конкретной платы и измерить 3.3 V при BLE + Z-Wave TX. LD2450 подключён к отдельной 5 V ветви, не к 3V3. У каждого внешнего разъёма есть strain relief; Dupont-провода пригодны для стенда, а окончательный жгут фиксируется механически.
+ZAC93 is powered from ESP32-S3-ETH 3V3; BME680 uses the same 3V3 through a separate connector. Check the JW5060/3V3 headroom of the actual board and measure 3.3 V during BLE + Z-Wave TX. LD2450 connects to a separate 5 V branch, not 3V3. Every external connector needs strain relief; Dupont wires are suitable for bench work, while the final harness must be mechanically secured.
 
-При прошивке отключить штатную 5 V ветвь прошиваемого модуля, затем подключить USB компьютера. Радио на USB Pi не получают параллельных 5 V. Никогда не соединять два выхода регуляторов «для усиления» питания.
+When flashing, disconnect the module's normal 5 V branch before connecting the computer's USB. Radios on the Pi USB ports must not receive parallel 5 V power. Never join regulator outputs to “boost” the supply.
 
-## Температура воздуха у модулей
+## Air temperature at the modules
 
-Для выбранных модулей опубликованы пределы рабочей температуры: [SLZB-07Mg24](https://smlight.tech/products/slzb-07mg24) **+5…+35 °C**, [ZAC93](https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf) **0…+40 °C**, [TL-SF1005D v13](https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/) **0…+40 °C**. При помещении в коробку окружающий их воздух — воздух внутри корпуса, а не показание комнатного BME680 снаружи. Измерить его рядом с этими узлами при закрытой крышке. Температура кристалла Pi и температура наружной стенки — другие измерения; отсутствие throttling и стенка холоднее 50 °C не доказывают выполнение предела +35 °C для Zigbee-адаптера. До испытаний верхняя допустимая температура комнаты для всей сборки не установлена.
+Published operating-temperature limits for the selected modules are: [SLZB-07Mg24](https://smlight.tech/products/slzb-07mg24) **+5…+35 °C**, [ZAC93](https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf) **0…+40 °C**, and [TL-SF1005D v13](https://www.tp-link.com/us/home-networking/5-port-switch/tl-sf1005d/v13/) **0…+40 °C**. Once enclosed, their ambient air is the air inside the enclosure, not the room reading from the external BME680. Measure it beside these modules with the lid closed. Pi die temperature and outer-wall temperature are separate measurements; no throttling and a wall below 50 °C do not prove compliance with the Zigbee adapter's +35 °C limit. The maximum allowable room temperature for the complete assembly has not been established before testing.
 
-## Что измерить на стенде
+## Bench measurements
 
-1. На пустом выходе splitter проверить полярность и 5 V; на 3V3 проверить отсутствие 5 V.
-2. Подключать ветви по одной через измеритель тока. Записать пусковой и установившийся ток.
-3. На Pi контролировать undervoltage/throttling; целевой диапазон на входе 5 V **4.85–5.15 V** — проектный критерий, не цитата допуска всех модулей. У каждого модуля соблюдать его более строгие паспортные ограничения.
-4. Одновременно загрузить BLE proxy, Zigbee/Thread и Z-Wave; отдельно выполнить короткую известную RF передачу. Осциллографом проверить провалы и помехи на 5 V и 3V3. Мультиметр не выявляет короткие провалы.
-5. На стенде, затем с закрытой крышкой, выдержать 2 h при ожидаемой температуре комнаты. Проверить splitter, Pi, switch, ESP32, пластик у разъёмов и отдельно воздух у радиомодулей по пределам выше. Проектная цель поверхности печатного корпуса <50 °C; она не заменяет ограничения модулей и температурный derating.
-6. Повторить с реальной длиной PoE кабеля, после нескольких отключений PSE и после 24–72 h работы. Данные измерений записать отдельно; в этой ревизии их ещё нет.
+1. Check polarity and 5 V at the unloaded splitter output; verify that no 5 V appears on 3V3.
+2. Connect branches one at a time through a current meter. Record startup and steady-state current.
+3. Monitor Pi undervoltage/throttling; the target range at its 5 V input is **4.85–5.15 V**. This is a design criterion, not a quoted tolerance for every module. Respect any stricter datasheet limits at each module.
+4. Load the BLE proxy, Zigbee/Thread and Z-Wave simultaneously; separately perform a short known RF transmission. Use an oscilloscope to check 5 V and 3V3 dips and noise. A multimeter cannot detect short dips.
+5. Run for 2 h at the expected room temperature, first on the bench and then with the lid closed. Check the splitter, Pi, switch, ESP32, plastic around connectors and, separately, air beside the radio modules against the limits above. The printed enclosure surface target is <50 °C; it does not replace module limits or thermal derating.
+6. Repeat with the actual PoE cable length, after several PSE power interruptions and after 24–72 h of operation. Record measurements separately; this revision does not yet include them.
 
-BME680 измеряет тёплый воздух неправильно, если его поместить в коробку Pi. Полный I²C жгут, включая участок внутри корпуса и сервисные петли, ограничен исходными 10–20 cm. Pod размещён сбоку или ниже корпуса с воздушным зазором, не над горячими вентиляционными отверстиями. Начальное температурное смещение оценить по независимому термометру после теплового равновесия. Не вводить произвольную постоянную коррекцию до такого измерения.
+BME680 will not represent room temperature if placed in the warm Pi enclosure. The complete I²C harness, including its internal section and service loops, is initially limited to 10–20 cm. Place the pod beside or below the enclosure with an air gap, not above hot vents. Assess initial temperature offset against an independent thermometer after thermal equilibrium. Do not apply an arbitrary fixed correction before that measurement.

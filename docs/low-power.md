@@ -1,24 +1,26 @@
-# Компактный хаб с минимальным расходом электроэнергии
+# Compact hub with minimum energy consumption
 
-Цель этой ветки — **минимум энергии за весь срок эксплуатации**, без расчёта
-окупаемости или ограничений на цену компонентов. Для дальнейшей разработки выбран
-один ESP32-S3, один Ethernet-интерфейс и общие эффективные линии питания. Linux,
-внутренний коммутатор и дополнительные Ethernet-контроллеры в этой версии не нужны.
-Home Assistant, Matter Server и Z-Wave JS продолжают работать на существующем сервере.
+This branch aims to **minimize energy use over the full service life**, without
+using payback calculations or component price limits. Further development uses
+one ESP32-S3, one Ethernet interface and shared efficient power rails. This
+version does not need Linux, an internal switch or additional Ethernet
+controllers. Home Assistant, Matter Server and Z-Wave JS continue to run on the
+existing server.
 
-**Это отдельный инженерный прототип.** Его корпус является макетом компоновки,
-а не подтверждением готовности печатной платы к производству. На физическом узле
-ещё не проверены запуск, совместная работа радио и энергопотребление. Базовый
-[модульный вариант](../README.md#what-is-inside) сохранён для сравнения.
+**This is a separate engineering prototype.** Its enclosure is a layout mock-up,
+not evidence that the PCB is ready for manufacture. Startup, simultaneous radio
+operation and power consumption have not yet been tested on physical hardware.
+The baseline [modular version](../README.md#what-is-inside) remains available for
+comparison.
 
-## Выбранная архитектура
+## Selected architecture
 
 ```mermaid
 flowchart LR
-  LAN[Один кабель Ethernet + PoE] --> PD[Изолированный PoE PD]
-  PD -->|Данные| ETH[Один W5500]
-  PD -->|5 В| R[LD2450]
-  PD -->|5 В| BUCK[Эффективный buck 3.3 В]
+  LAN[One Ethernet + PoE cable] --> PD[Isolated PoE PD]
+  PD -->|Data| ETH[One W5500]
+  PD -->|5 V| R[LD2450]
+  PD -->|5 V| BUCK[Efficient 3.3 V buck]
   ETH -->|SPI| S3[ESP32-S3: ESPHome + OTBR]
   S3 -->|UART2| H2[ESP32-H2: Thread RCP]
   S3 -->|UART1 + RTS/CTS| MG[MG24: Zigbee NCP]
@@ -26,7 +28,7 @@ flowchart LR
   S3 -->|SPI| CC[CC1101: RF Airbridge]
   S3 -->|SPI| SC[SC16IS752 UART bridge]
   SC -->|115200 8N1| Z[Zooz ZAC93]
-  S3 -->|I²C| B[BME680: внешний датчик]
+  S3 -->|I²C| B[BME680: external sensor]
   S3 --> BLE[Bluetooth proxy]
   BUCK --> S3
   BUCK --> H2
@@ -38,107 +40,114 @@ flowchart LR
   BUCK --> B
 ```
 
-Три нативных UART заняты радаром, Zigbee и Thread. ZAC93 подключается через
-SC16IS752: отдельная задача обслуживает FIFO по прерыванию, сохраняя стандартный
-интерфейс UART для ESPHome Z-Wave proxy. При ошибке линии или переполнении канал
-помечается неисправным, чтобы не продолжать передавать повреждённый поток.
+The three native UARTs serve the radar, Zigbee and Thread. The ZAC93 connects
+through an SC16IS752: a dedicated task services its FIFO on interrupts while
+preserving the standard UART interface for the ESPHome Z-Wave proxy. A line
+error or overflow marks the channel as failed so it does not continue forwarding
+a corrupted stream.
 
-BLE, Zigbee и Thread имеют отдельные радиотракты. S3 не делит один радиомодуль
-между Zigbee и Thread. Wi-Fi не требуется. BME680 вынесен за пределы тёплого
-корпуса; его нагреватель включается кратковременно при опросе раз в минуту.
-Deep sleep несовместим с постоянным приёмом RF и маршрутизацией Thread.
+BLE, Zigbee and Thread have separate radios. The S3 does not share one radio
+between Zigbee and Thread. Wi-Fi is not required. The BME680 sits outside the
+warm enclosure; its heater runs briefly when sampled once per minute. Deep sleep
+is incompatible with continuous RF reception and Thread routing.
 
-Выбор S3 опирается на совместимость с уже имеющимся RF-кодом и ESPHome, а не на
-утверждение, что он экономичнее любого другого чипа. P4 с DP83825I остаётся
-альтернативой: PHY может потреблять меньше W5500, но P4 требует отдельного
-BLE-сопроцессора. Преимущество всей такой сборки не измерено.
+The S3 was selected for compatibility with the existing RF code and ESPHome,
+not because it is claimed to use less power than every other chip. A P4 with a
+DP83825I remains an alternative: the PHY may consume less than the W5500, but
+the P4 requires a separate BLE coprocessor. An advantage for that complete
+system has not been measured.
 
-## Что входит в комплект
+## Included resources
 
-- [Аппаратная часть и подбор компонентов](../hardware/low-power/README.md).
-- [Единая прошивка и подготовка сборки](../firmware/low-power/README.md).
-- [Корпус, компоновка и печать пробных деталей](low-power-enclosure.md).
-- [Машиночитаемые исходные допущения по энергии](../hardware/low-power/energy-comparison.json).
-- [Отдельный бюджет новой платы](../hardware/low-power/power-budget.json).
-- [Шаблон протокола измерений](../hardware/low-power/measurement-template.json).
-- [Общий журнал проверок](validation.md).
+- [Hardware and component selection](../hardware/low-power/README.md).
+- [Unified firmware and build preparation](../firmware/low-power/README.md).
+- [Enclosure, layout and trial prints](low-power-enclosure.md).
+- [Machine-readable energy assumptions](../hardware/low-power/energy-comparison.json).
+- [Separate budget for the new board](../hardware/low-power/power-budget.json).
+- [Measurement record template](../hardware/low-power/measurement-template.json).
+- [Project validation log](validation.md).
 
-Эта распиновка предназначена для новой carrier-платы. У DevKitC выводы 43/44
-соединены с USB-UART, а GPIO48 может быть связан с RGB LED. Выбор USB Serial/JTAG
-в прошивке не разрывает физические соединения: перед макетированием проверить
-схему конкретной ревизии и устранить конфликт. Не подключать этот жгут к старой
-плате S3-ETH по совпадению номеров выводов.
+This pin assignment targets a new carrier board. On a DevKitC, pins 43/44 connect
+to USB-UART, and GPIO48 may connect to an RGB LED. Selecting USB Serial/JTAG in
+firmware does not disconnect physical traces: check the schematic for the exact
+board revision and resolve conflicts before prototyping. Do not connect this
+harness to the old S3-ETH board just because pin numbers match.
 
-## Энергия за срок службы
+## Lifetime energy
 
-Проектная цель — **не более 3 Вт среднего добавочного потребления от сети AC**
-при работающих функциях. Это соответствует 26.28 кВт·ч за год, 262.8 кВт·ч за
-10 лет или 394.2 кВт·ч за 15 лет непрерывной работы. Это пересчёт цели, а не
-прогноз или измерение будущей платы. Каждый постоянно потребляемый ватт добавляет
-87.6 кВт·ч за 10 лет.
+The design target is **no more than 3 W of average incremental AC input power**
+with all functions operating. That corresponds to 26.28 kWh per year, 262.8 kWh
+over 10 years or 394.2 kWh over 15 years of continuous operation. These figures
+convert the target into energy; they are not a forecast or measurement of the
+future board. Each continuously consumed watt adds 87.6 kWh over 10 years.
 
-Покомпонентная модель новой платы даёт **2.82 Вт AC** в опорном сценарии и
-**2.03–4.92 Вт** по границам допущений. В ней W5500 учтён в режиме 100 Mbps;
-потенциальный выигрыш 10 Mbps заранее не вычитается. Диапазон пересекает цель
-3 Вт, поэтому объявлять её достигнутой нельзя. В модели отдельно учтены buck,
-PoE PD, кабель и PSE; максимальный рекламный КПД не подставляется как постоянный
-при малой нагрузке.
+The component model for the new board gives **2.82 W AC** in the reference
+scenario and **2.03–4.92 W** across the assumption bounds. It accounts for the
+W5500 at 100 Mbps; potential savings at 10 Mbps are not deducted in advance.
+The range crosses the 3 W target, so the target cannot be declared achieved.
+The model accounts separately for the buck converter, PoE PD, cable and PSE;
+advertised peak efficiency is not treated as a constant at low load.
 
-Исходные варианты на Pi, Orange Pi и нескольких ESP сравниваются по одной границе:
-учитываются коробка, внутренний Ethernet, радио, датчики и потери питания.
-Базовый расход уже работающего HA-сервера и общего сетевого оборудования одинаков
-и исключён. Если нужен новый выделенный инжектор/PSE, его базовый расход добавляется.
-Если новый вариант увеличит нагрузку HA-сервера, этот прирост тоже надо измерить.
+The original Pi, Orange Pi and multiple-ESP variants use the same accounting
+boundary: the enclosure contents, internal Ethernet, radios, sensors and power
+losses are included. The baseline draw of the existing HA server and shared
+network equipment is the same and is excluded. If a new dedicated injector/PSE
+is needed, its baseline draw is added. Any increase in HA server load caused by
+the new design must also be measured.
 
 ```sh
 python3 tools/energy.py plan --years 10
 python3 tools/energy.py plan --years 15 --extra-ac-w 0.5
 ```
 
-Вторая команда иллюстрирует добавочные 0.5 Вт отдельного PSE; это не паспортное
-значение выбранного устройства. Все сценарные диапазоны обозначают неопределённость
-допущений, а не доверительные интервалы. Близкие варианты нельзя достоверно
-ранжировать до одинаковых стендовых измерений. Номинал блока питания и пиковый
-резерв не являются средним энергопотреблением.
+The second command illustrates an additional 0.5 W for a dedicated PSE; this is
+not a specification for a selected device. All scenario ranges express
+uncertainty in assumptions, not confidence intervals. Similar variants cannot
+be ranked reliably until they have been measured under identical bench
+conditions. A power supply rating and peak allowance are not average power
+consumption.
 
-## Как подтвердить экономичность
+## Validating energy consumption
 
-1. Сначала проверить питание и устойчивость всех функций по аппаратным инструкциям.
-   Замерить краткие провалы и пусковой ток отдельно: ваттметр их не заменяет.
-2. Для нового выделенного инжектора измерять весь его вход AC. Для существующего
-   коммутатора сравнить вход AC с узлом и без него, сохранив остальные порты,
-   нагрузку и кабель. Показание PoE-порта или ток на 5 В не включает все потери AC.
-3. Записать минимум 24 часа энергии в Wh; лучше 72 часа обычного использования.
-   Сохранить версию прошивки, длину кабеля, температуру, режим BLE и активности
-   всех радиосетей. Отдельно выполнить нагрузочный тест, не выдавая его среднее
-   за обычный суточный профиль.
-4. Указать абсолютную погрешность измерителя в Wh. При вычитании базового расхода
-   погрешности обоих замеров суммируются. Если разница сопоставима с погрешностью,
-   результат не позволяет выбрать победителя.
-5. Скопировать шаблон в игнорируемый каталог `private/`, заполнить реальные значения
-   и рассчитать результат:
+1. First verify power delivery and stable operation of all functions using the
+   hardware instructions. Measure brief voltage dips and inrush current
+   separately; a power meter does not replace those measurements.
+2. For a new dedicated injector, measure its entire AC input. For an existing
+   switch, compare AC input with and without the hub while keeping other ports,
+   load and cable unchanged. A PoE port reading or 5 V current reading does not
+   include all AC power losses.
+3. Record energy in Wh for at least 24 hours, preferably 72 hours of normal use.
+   Record the firmware version, cable length, temperature, BLE mode and activity
+   of all radio networks. Run a separate stress test without presenting its
+   average as a normal daily usage profile.
+4. State the meter's absolute error in Wh. When subtracting baseline draw, add
+   the errors of both measurements. If the difference is comparable to the
+   error, the result cannot identify a winner.
+5. Copy the template into the ignored `private/` directory, enter the measured
+   values and calculate the result:
 
 ```sh
 python3 tools/energy.py measure private/energy-measurement.json --years 15
 ```
 
-`ac_dedicated` означает полный вход отдельного блока питания; поля baseline должны
-отсутствовать или быть `null`. `ac_incremental` вычитает среднюю мощность базового
-замера, нормализуя его по собственной длительности. Поле `all_functions_passed`
-должно подтверждать весь набор функций; неполный или короткий тест не получает
-статус достижения цели. Пересечение диапазона погрешности с 3 Вт даёт
-`inconclusive`, а не автоматический успех.
+`ac_dedicated` means the full input of a dedicated power supply; baseline fields
+must be absent or `null`. `ac_incremental` subtracts the average power of the
+baseline measurement, normalizing it by its own duration. The
+`all_functions_passed` field must confirm the complete set of functions; an
+incomplete or short test does not receive a target-achieved status. An error
+interval that crosses 3 W produces `inconclusive`, not an automatic pass.
 
-Уменьшать расход следует по измеренному вкладу: преобразователи на малой нагрузке,
-Ethernet PHY, частота CPU и режим BLE. Для W5500 возможная экономия от 10 Mbps
-требует отдельной проверки режима соединения и стабильности; SPI clock 10 MHz
-не означает Ethernet 10 Mbps. Такое правило нельзя переносить на любой PHY.
+Reduce consumption according to measured contributions: converters at low
+load, Ethernet PHY, CPU frequency and BLE mode. Any W5500 savings at 10 Mbps
+require a separate check of link mode and stability; a 10 MHz SPI clock does
+not mean 10 Mbps Ethernet. This behavior must not be assumed for every PHY.
 
-## До переключения Home Assistant
+## Before switching Home Assistant
 
-Нужны собранный и проверенный узел, резервные копии Zigbee/Thread/Z-Wave, перенос
-приватных RF-настроек и испытание восстановления после отключения питания.
-Компиляция не переносит сетевые ключи и устройства. Thread dataset не должен
-создаваться заново вместо существующего, а ZHA и Zigbee2MQTT не должны одновременно
-подключаться к одному NCP. Сетевые serial/OTBR порты доступны только доверенным
-сервисам локальной сети. До завершения этих испытаний текущий HA не переключается.
+A built and tested unit, Zigbee/Thread/Z-Wave backups, migration of private RF
+settings and a power-loss recovery test are required. Compilation does not
+migrate network keys or devices. Do not create a new Thread dataset in place of
+the existing one, and do not connect ZHA and Zigbee2MQTT to the same NCP at the
+same time. Network serial/OTBR ports must be accessible only to trusted services
+on the local network. Do not switch the current HA installation until these
+tests are complete.

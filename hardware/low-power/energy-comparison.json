@@ -1,26 +1,26 @@
 {
   "date": "2026-10-17",
   "timezone": "America/Los_Angeles",
-  "objective": "Минимум эксплуатационной электроэнергии; стоимость покупки и окупаемость исключены из выбора.",
+  "objective": "Minimize operating energy use; purchase cost and payback are excluded from the decision.",
   "hours_per_year": 8760,
   "efficiency": {
     "low": 0.7,
     "reference": 0.8,
     "high": 0.88
   },
-  "boundary": "Добавочное питание всей коробки от сети AC: Ethernet/радио/датчики/локальный switch/потери PoE включены. Уже работающий HA/Matter/Z-Wave JS сервер и общий базовый расход существующего сетевого оборудования исключены как одинаковые. Для нового выделенного PSE можно добавить его отдельный непосчитанный базовый расход, не дублируя потери в КПД.",
+  "boundary": "Incremental AC input power for the entire enclosure: Ethernet, radios, sensors, the local switch and PoE losses are included. The existing HA/Matter/Z-Wave JS server and the shared baseline draw of existing network equipment are excluded as identical. For a new dedicated PSE, add any otherwise unaccounted baseline draw without double-counting losses already included in efficiency.",
   "assumptions": [
-    "24/7, 365 дней в году; без deep sleep, сохраняются приём RF, маршрутизация Thread и работа радара.",
-    "Все входные мощности, кроме паспортного среднего LD2450, — сценарные оценки; измерений нашей сборки нет.",
-    "КПД 70–88% относится к целому пути питания при рабочей нагрузке, включая его потери; это не спецификация конкретного splitter.",
-    "Нижний/верхний итог — сумма сценарных границ, не статистический доверительный интервал и не гарантированный максимум.",
-    "BLE scan сохраняет профиль 30/320 мс. Увеличение до 100% изменит расход; нельзя сравнивать варианты с разной функциональностью.",
-    "SLZB-06 и switch имеют неясную паспортную границу измерения; близкое ранжирование вариантов до стенда ненадёжно.",
-    "Питание рассчитано для оценки энергии, не для выбора номинала БП/предохранителей. Пусковые и TX-пики проверяются отдельно."
+    "24/7, 365 days per year; no deep sleep, preserving RF reception, Thread routing and radar operation.",
+    "All input power values except the LD2450's specified average are scenario estimates; our assembly has not been measured.",
+    "The 70–88% efficiency applies to the complete power path at operating load, including its losses; it is not a specification for a particular splitter.",
+    "The lower and upper totals sum the scenario bounds; they are not a statistical confidence interval or a guaranteed maximum.",
+    "BLE scanning retains the 30/320 ms profile. Increasing it to 100% changes consumption; variants with different functionality must not be compared.",
+    "The specified measurement boundary for the SLZB-06 and switch is unclear; close rankings are unreliable before bench measurements.",
+    "The power calculation estimates energy use, not power supply or fuse ratings. Startup and TX peaks require separate checks."
   ],
   "parts": {
     "switch": {
-      "label": "Коммутатор TL-SF1005D",
+      "label": "TL-SF1005D switch",
       "w": [
         1.0,
         1.3,
@@ -29,10 +29,10 @@
       "sources": [
         "switch"
       ],
-      "note": "Условная оценка входа 5 В; опубликован только максимум, без однозначной границы AC/DC."
+      "note": "Assumed 5 V input estimate; only a maximum is published, without an unambiguous AC/DC boundary."
     },
     "radar": {
-      "label": "LD2450 постоянно включён",
+      "label": "LD2450 always on",
       "w": [
         0.6,
         0.6,
@@ -41,10 +41,10 @@
       "sources": [
         "radar"
       ],
-      "note": "Паспортное среднее, без учёта разброса экземпляров; не потолок тока."
+      "note": "Specified average, excluding unit-to-unit variation; not a current limit."
     },
     "zac": {
-      "label": "ZAC93 с потерями питания",
+      "label": "ZAC93 including power losses",
       "w": [
         0.05,
         0.12,
@@ -53,10 +53,10 @@
       "sources": [
         "zac"
       ],
-      "note": "Инженерный резерв; ток конкретной платы не измерен."
+      "note": "Engineering allowance; current draw of the specific board has not been measured."
     },
     "cc": {
-      "label": "CC1101 постоянно слушает",
+      "label": "CC1101 continuously receiving",
       "w": [
         0.075,
         0.085,
@@ -65,10 +65,10 @@
       "sources": [
         "cc"
       ],
-      "note": "Входной эквивалент 5 В; редкие передачи, не непрерывный TX."
+      "note": "Equivalent at the 5 V input; occasional transmissions, not continuous TX."
     },
     "bme": {
-      "label": "BME680 breakout, опрос 60 с",
+      "label": "BME680 breakout, 60 s sampling",
       "w": [
         0.005,
         0.01,
@@ -77,17 +77,17 @@
       "sources": [
         "bme"
       ],
-      "note": "Оценка всей платы, heater 150 мс/60 с; не 0.25 Вт постоянно."
+      "note": "Estimate for the entire board, heater 150 ms/60 s; not a continuous 0.25 W."
     },
     "wiring": {
-      "label": "Потери низковольтного жгута",
+      "label": "Low-voltage harness losses",
       "w": [
         0.03,
         0.06,
         0.15
       ],
       "sources": [],
-      "note": "Непроверенное допущение; не включает PoE-конвертацию."
+      "note": "Unverified assumption; excludes PoE conversion."
     },
     "pi": {
       "label": "Raspberry Pi 4 + SD, OTBR",
@@ -99,7 +99,7 @@
       "sources": [
         "pi"
       ],
-      "note": "Headless лёгкая нагрузка, без USB-радио, вентилятора, SSD и HA Server."
+      "note": "Headless light load, excluding USB radios, fan, SSD and HA Server."
     },
     "orange": {
       "label": "Orange Pi One + SD, OTBR",
@@ -111,7 +111,7 @@
       "sources": [
         "orange"
       ],
-      "note": "Старые замеры дают порядок величины; современный Armbian не измерен."
+      "note": "Historical measurements indicate the order of magnitude; current Armbian has not been measured."
     },
     "usb_radios": {
       "label": "USB Zigbee + USB Thread RCP",
@@ -121,7 +121,7 @@
         0.6
       ],
       "sources": [],
-      "note": "Условная сумма двух донглов с обвязкой/LED; не опубликованный паспортный итог."
+      "note": "Assumed total for two dongles including supporting circuitry and LEDs; not a published specification."
     },
     "usb_thread": {
       "label": "USB Thread RCP",
@@ -131,20 +131,20 @@
         0.15
       ],
       "sources": [],
-      "note": "Условный резерв полного донгла, не ток только SoC."
+      "note": "Assumed allowance for the complete dongle, not just the SoC current."
     },
     "usb_hub": {
-      "label": "USB 2.0 hub без внешнего БП",
+      "label": "USB 2.0 hub without external PSU",
       "w": [
         0.1,
         0.2,
         0.4
       ],
       "sources": [],
-      "note": "Кандидат не выбран; добавочный расход и обратное питание нужно проверить."
+      "note": "No candidate selected; additional draw and backfeeding must be checked."
     },
     "slzb": {
-      "label": "SLZB-06, эквивалент входа 5 В",
+      "label": "SLZB-06, equivalent 5 V input",
       "w": [
         1.2,
         2.0,
@@ -153,10 +153,10 @@
       "sources": [
         "slzb"
       ],
-      "note": "Вендор: 1.5–3 Вт с неизвестной границей. 1.2–3 Вт здесь — допущение пересчёта, не результат замера; источник большой неопределённости."
+      "note": "Vendor: 1.5–3 W with an unknown measurement boundary. The 1.2–3 W used here is a conversion assumption, not a measurement; a major source of uncertainty."
     },
     "hub_dev": {
-      "label": "S3 DevKit + W5500: BLE/датчики",
+      "label": "S3 DevKit + W5500: BLE/sensors",
       "w": [
         1.0,
         1.25,
@@ -167,7 +167,7 @@
         "wiz",
         "devkit"
       ],
-      "note": "Оценка при 240 MHz/PSRAM80 MHz; BLE scan 30/320 мс + до 3 соединений; внешние устройства исключены."
+      "note": "Estimate at 240 MHz/PSRAM80 MHz; BLE scan 30/320 ms + up to 3 connections; external devices excluded."
     },
     "rf_dev": {
       "label": "S3 DevKit + W5500: RF host",
@@ -181,7 +181,7 @@
         "wiz",
         "devkit"
       ],
-      "note": "240 MHz, Wi-Fi выключен; CC1101 посчитан отдельно."
+      "note": "240 MHz, Wi-Fi disabled; CC1101 counted separately."
     },
     "thread_dev": {
       "label": "S3 + W5500 + H2: Thread BR",
@@ -196,10 +196,10 @@
         "wiz",
         "devkit"
       ],
-      "note": "S3 160 MHz + H2 96 MHz, PM off; H2 включён, остальные радио исключены."
+      "note": "S3 160 MHz + H2 96 MHz, PM off; H2 included, other radios excluded."
     },
     "hub_buck": {
-      "label": "S3 + W5500: BLE, питание buck",
+      "label": "S3 + W5500: BLE, buck supply",
       "w": [
         0.75,
         0.95,
@@ -210,7 +210,7 @@
         "wiz",
         "waveshare"
       ],
-      "note": "Оценка платы с импульсным 5→3.3 В, без лишнего USB-UART; не замер Waveshare."
+      "note": "Estimate for a board with switching 5→3.3 V conversion and no extra USB-UART; not a Waveshare measurement."
     },
     "rf_buck": {
       "label": "S3 + W5500: RF host, buck",
@@ -224,7 +224,7 @@
         "wiz",
         "waveshare"
       ],
-      "note": "CC1101 отдельно. КПД buck 85–92% лишь допущение."
+      "note": "CC1101 counted separately. The 85–92% buck efficiency is only an assumption."
     },
     "thread_buck": {
       "label": "S3 + W5500 + H2: Thread, buck",
@@ -238,23 +238,23 @@
         "h2",
         "wiz"
       ],
-      "note": "Новая разводка питания; программная сборка на DevKit не проверяет эту плату."
+      "note": "New power layout; a software build on a DevKit does not validate this board."
     },
     "nodemcu": {
-      "label": "NodeMCU: старый RF host по Wi-Fi",
+      "label": "NodeMCU: existing RF host over Wi-Fi",
       "w": [
         0.4,
         0.55,
         0.9
       ],
       "sources": [],
-      "note": "Непроверенная оценка 5 В входа платы; CC1101 отдельно; не полностью проводной вариант."
+      "note": "Unverified estimate at the board's 5 V input; CC1101 counted separately; not an entirely wired variant."
     }
   },
   "variants": [
     {
       "id": "pi_wifi",
-      "title": "Pi 4 + прежний RF Wi-Fi",
+      "title": "Pi 4 + existing RF Wi-Fi",
       "parts": [
         "switch",
         "radar",
@@ -267,8 +267,8 @@
         "hub_buck",
         "nodemcu"
       ],
-      "status": "Базовая совместимая ветка",
-      "description": "USB Zigbee/Thread, основной ESP Ethernet; RF остаётся на NodeMCU Wi-Fi."
+      "status": "Baseline compatible branch",
+      "description": "USB Zigbee/Thread, main ESP on Ethernet; RF remains on NodeMCU Wi-Fi."
     },
     {
       "id": "pi_wired",
@@ -285,8 +285,8 @@
         "hub_buck",
         "rf_buck"
       ],
-      "status": "Текущий проводной проект",
-      "description": "USB Zigbee/Thread и две платы S3-ETH; энергопотребление не измерено."
+      "status": "Current wired design",
+      "description": "USB Zigbee/Thread and two S3-ETH boards; power consumption has not been measured."
     },
     {
       "id": "orange_lan",
@@ -304,8 +304,8 @@
         "hub_dev",
         "rf_dev"
       ],
-      "status": "Вариант с найденными деталями",
-      "description": "Orange Pi OTBR; один USB RCP; Zigbee через SLZB-06 LAN, две DevKit+W5500."
+      "status": "Variant using available parts",
+      "description": "Orange Pi OTBR; one USB RCP; Zigbee over SLZB-06 LAN, two DevKit+W5500."
     },
     {
       "id": "esp_dev",
@@ -322,12 +322,12 @@
         "hub_dev",
         "rf_dev"
       ],
-      "status": "ESP-прототипы скомпилированы",
-      "description": "Linux в коробке отсутствует; остаются три W5500, отдельный SLZB и коммутатор."
+      "status": "ESP prototypes compiled",
+      "description": "No Linux in the enclosure; three W5500s, a separate SLZB and a switch remain."
     },
     {
       "id": "esp_buck",
-      "title": "3 ESP с buck + H2 + SLZB",
+      "title": "3 ESP with buck + H2 + SLZB",
       "parts": [
         "switch",
         "radar",
@@ -340,12 +340,12 @@
         "hub_buck",
         "rf_buck"
       ],
-      "status": "Вариант эффективного питания",
-      "description": "Та же сетевая топология, эффективное питание вместо LDO; аппаратно не проверен."
+      "status": "Efficient power supply variant",
+      "description": "Same network topology, efficient power conversion instead of LDOs; hardware not validated."
     },
     {
       "id": "orange_usb",
-      "title": "Orange Pi + USB-радио + 2 ESP",
+      "title": "Orange Pi + USB radios + 2 ESP",
       "parts": [
         "switch",
         "radar",
@@ -359,8 +359,8 @@
         "hub_buck",
         "rf_buck"
       ],
-      "status": "Новый Linux-вариант",
-      "description": "SLZB заменён USB Zigbee; нужен проверенный USB hub для двух радио и адаптация настройки."
+      "status": "New Linux variant",
+      "description": "SLZB replaced by USB Zigbee; requires a validated USB hub for two radios and configuration changes."
     }
   ],
   "sources": [
@@ -492,10 +492,10 @@
     }
   ],
   "target": {
-    "title": "Компактная плата: 1 S3 + 1 Ethernet + локальные радио",
+    "title": "Compact board: 1 S3 + 1 Ethernet + local radios",
     "ac_w": 3.0,
     "kind": "design_target_not_measurement",
-    "description": "Один S3 с ESPHome/OTBR, один W5500, H2 Thread RCP, MG24 Zigbee NCP, ZAC93 через SC16IS752, CC1101, LD2450 и BME680. Это цель для проектируемой платы, а не измерение прототипа. См. docs/low-power.md."
+    "description": "One S3 with ESPHome/OTBR, one W5500, H2 Thread RCP, MG24 Zigbee NCP, ZAC93 through SC16IS752, CC1101, LD2450 and BME680. This is a target for a board under development, not a prototype measurement. See docs/low-power.md."
   },
   "schema_version": 1
 }
