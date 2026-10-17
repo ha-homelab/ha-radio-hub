@@ -1,0 +1,28 @@
+# Complete unified software target; physical operation/power must be verified.
+packages:
+  core: !include proof.yaml
+
+external_components:
+  - source:
+      type: local
+      path: components
+    components: [sc16is752_uart, zigbee_tcp]
+
+sc16is752_uart:
+  id: uart_zwave
+  spi_id: cc1101_spi
+  cs_pin: GPIO41
+  interrupt_pin: GPIO42
+  crystal_frequency: 3686400
+  baud_rate: 115200
+
+zwave_proxy:
+  id: zwave_radio
+  uart_id: uart_zwave
+
+zigbee_tcp:
+  tx_pin: GPIO17
+  rx_pin: GPIO18
+  rts_pin: GPIO16
+  cts_pin: GPIO21
+  port: 6638

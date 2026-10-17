@@ -3,6 +3,48 @@
 Initial design reviewed on **2026-10-16**. This record separates software evidence
 from hardware acceptance; it is not a declaration that the appliance works in a home.
 
+## Single-host low-power variant, 2026-10-17
+
+The separate [low-power design](low-power.md) now has a full compiled S3 profile,
+not just a proposed consolidation of the older YAML files.
+
+- ESPHome 2026.9.1 / ESP-IDF 5.5.5 compiled and linked `firmware/low-power/hub.yaml`
+  with BLE, RF, radar, BME680, SC16 Z-Wave UART, Zigbee TCP and H2-backed OTBR
+  together. Application/OTA binary: 1,716,944 bytes; static RAM: 161,127 / 341,760
+  bytes (47.1%). Nineteen required SDK settings were checked against the actual
+  generated configuration. Runtime heap, task stacks and concurrent throughput
+  are not established by these numbers.
+- The matching ESP-IDF 5.5.5 H2 UART RCP compiled: 208,928 bytes, 4 MB flash,
+  UART0 RX23/TX24 at 460800 baud. The source is the pinned SDK example with its
+  build configuration prepared by `prepare_h2.py`; no radio was flashed.
+- MGM240PA22VNA3 Ember NCP and UART-XMODEM bootloader compiled from Simplicity
+  SDK 2025.6.3 / Zigbee 8.2.3. Generated UART pins, flow control and module clocks
+  were inspected. Commander created the bootloader CRC, GBL update and merged
+  initial image; address ranges, vectors and GBL roundtrip were checked. See the
+  [MG24 evidence](../firmware/low-power/mg24/build-evidence.json). This establishes
+  a build for the selected module, not physical startup or pairing.
+- The complete native/Python suite passed 77 tests with C++ AddressSanitizer and
+  UndefinedBehaviorSanitizer enabled. New coverage includes seven SC16 register
+  scenarios, eight actual Zigbee TCP-worker scenarios, and lifetime-energy
+  arithmetic/measurement boundaries. The Zigbee tests use real loopback sockets
+  and a modeled UART; restoring the old FIFO/timeout defects makes them fail.
+- Two offline REST contract tests passed using the exported Espressif C handlers
+  and `python-otbr-api` 3.0.0. They reproduce the upstream HTTP-200 dialect-probe
+  problem and verify the HTTP-404 correction. They do not exercise an on-device
+  web server, radio commissioning or Thread routing.
+- Low-power CAD regeneration and nine geometry tests passed. Five printable
+  solids, the GLB assembly and layout views match their source. The dimensions
+  are allocation envelopes for a concept carrier, not a fabricated PCB or
+  verified module mounting pattern.
+- The hardware validator checked 26 unique S3 GPIO assignments, UART ownership,
+  supply/IRQ constraints, pin agreement with the YAML, and AC/DC/kWh arithmetic.
+  This does not replace schematic ERC, PCB DRC, isolation or signal-integrity tests.
+
+The 3 W AC objective remains unmeasured. An absent/incompatible H2 can trigger
+an upstream OpenThread panic and restart the shared S3. Full acceptance therefore
+includes radio fault recovery as well as the normal concurrent workload. Existing
+Home Assistant services were not switched to this unassembled variant.
+
 ## Local evidence
 
 - Main ESPHome 2026.9.1 configuration: schema validation and full ESP-IDF 5.5.5

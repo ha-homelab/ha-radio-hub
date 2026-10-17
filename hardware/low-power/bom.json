@@ -1,0 +1,331 @@
+{
+  "revision": "LP-P0",
+  "date": "2026-10-17",
+  "status": "engineering_prototype_selection_not_order_release",
+  "quantities": "Peroneprototype; bench/carrieralternatives are not additive. No pricesorstockguarantee.",
+  "items": [
+    {
+      "ref": "P1",
+      "qty": 1,
+      "model": "Silvertel Ag97005-FL",
+      "phase": "both",
+      "source": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+      "note": "5 V, 1.8 A nominal, 9 W; integrated bridge, class 0. Do not substitute the 12 V variant.",
+      "body_mm": [
+        56.01,
+        14.02,
+        13
+      ]
+    },
+    {
+      "ref": "P2",
+      "qty": 1,
+      "model": "Silvertel EvalPoE",
+      "phase": "bench",
+      "source": "https://silvertel.com/ag97000/",
+      "note": "Order Ag97005-FL separately; compatibility is explicit on the manufacturer page. DATA OUT connects to WIZ850io. The evaluation board is excluded from the compact CAD."
+    },
+    {
+      "ref": "P3",
+      "qty": 1,
+      "model": "Pololu D24V22F3 / item2857",
+      "phase": "both",
+      "source": "https://www.pololu.com/product/2857",
+      "note": "Synchronous 5 V to 3.3 V buck. Advertised 2.6 A is typical at 24 V input; validate 1.5 A at 5 V input. Do not substitute an LDO.",
+      "body_mm": [
+        17.8,
+        17.8,
+        null
+      ]
+    },
+    {
+      "ref": "U1",
+      "qty": 1,
+      "model": "ESP32-S3-WROOM-1-N16R8",
+      "phase": "carrier",
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "note": "Bare module, 16 MB flash, 8 MB PSRAM. Bench: existing N16R8 DevKit only after USB-UART, LED and power isolation checks.",
+      "body_mm": [
+        18,
+        25.5,
+        3.1
+      ]
+    },
+    {
+      "ref": "U2",
+      "qty": 1,
+      "model": "ESP32-H2-MINI-1-H4S",
+      "phase": "carrier",
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "note": "4 MB flash, separate Thread RCP. Verify the bench DevKitM-1 flash size and isolate its USB-UART TX from GPIO23.",
+      "body_mm": [
+        13.2,
+        16.6,
+        2.4
+      ]
+    },
+    {
+      "ref": "U3",
+      "qty": 1,
+      "model": "MGM240PA22VNA3",
+      "phase": "carrier",
+      "source": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+      "note": "10 dBm, internal antenna. Exact-pin Ember NCP and UART bootloader build recipe in firmware/low-power/mg24 passes offline checks; SWD programming and hardware validation remain required.",
+      "body_mm": [
+        12.9,
+        15,
+        2.2
+      ]
+    },
+    {
+      "ref": "U4",
+      "qty": 1,
+      "model": "WIZnet WIZ850io",
+      "phase": "bench",
+      "source": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+      "note": "SPI Ethernet module with RJ45. No PoE center-tap headers. Mechanical section says 25 by 23 mm; feature section says 20 by 25 mm. Verify the drawing.",
+      "body_mm": [
+        25,
+        23,
+        null
+      ]
+    },
+    {
+      "ref": "U5",
+      "qty": 1,
+      "model": "Zooz ZAC93 regional existingmodule",
+      "phase": "both",
+      "source": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+      "note": "3.3 V only; retain the regional antenna. Inspect board revision, pin 7 reset function and physical dimensions before mounting."
+    },
+    {
+      "ref": "U6",
+      "qty": 1,
+      "model": "Existing CC1101 433.92MHz module withSMAantenna",
+      "phase": "both",
+      "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+      "note": "Must expose GDO2. The chip datasheet does not define the existing module header or dimensions. Retain the 433 MHz antenna."
+    },
+    {
+      "ref": "U7",
+      "qty": 1,
+      "model": "Hi-Link HLK-LD2450",
+      "phase": "both",
+      "source": "https://r0.hlktech.com/download/HLK-LD2450-24G/1/HLK%20LD2450%201T2R%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%BF%BD%E8%B8%AA%E6%A8%A1%E7%BB%84%E8%AF%B4%E6%98%8E%E4%B9%A6%20V1.01.pdf",
+      "note": "5 V supply, 3.3 V UART. Reuse a matching cable; never infer wire order from color.",
+      "body_mm": [
+        44,
+        15,
+        null
+      ]
+    },
+    {
+      "ref": "U8",
+      "qty": 1,
+      "model": "Adafruit BME680 STEMMAQT /3660",
+      "phase": "both",
+      "source": "https://www.adafruit.com/product/3660",
+      "note": "External ventilated pod; 3.3 V VIN; I2C address 0x77; onboard pull-ups.",
+      "body_mm": [
+        25.4,
+        17.78,
+        null
+      ]
+    },
+    {
+      "ref": "U9",
+      "qty": 1,
+      "model": "NXP SC16IS752IPW,128",
+      "phase": "both",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "TSSOP28 UART expander. SPI mode 0, maximum 4 MHz; the current driver uses 4 MHz. Channel A runs at 115200 baud. Bare IC requires a bench adapter."
+    },
+    {
+      "ref": "U10",
+      "qty": 1,
+      "model": "TI TPS3808G33DBVR",
+      "phase": "both",
+      "source": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+      "note": "SC16 reset supervisor, 3.07 V threshold; CT open gives 20 ms; MR has an internal pull-up; add local 100 nF bypass."
+    },
+    {
+      "ref": "Y1",
+      "qty": 1,
+      "model": "Abracon ABLS-3.6864MHZ-B2-T",
+      "phase": "both",
+      "source": "https://abracon.com/parametric/crystals/ABLS-3.6864MHZ-B2-T",
+      "note": "18 pF load, 180 ohm ESR. Clock prescaler 1 and divisor 2. Measure oscillation, startup and baud rate.",
+      "body_mm": [
+        11.4,
+        4.7,
+        4.2
+      ]
+    },
+    {
+      "ref": "C1",
+      "qty": 1,
+      "model": "100uF 25V low-ESR electrolytic",
+      "phase": "both",
+      "source": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+      "note": "Across the PD 5 V output. Include the installed EvalPoE capacitor in the 47 to 470 uF allowance; do not blindly double it."
+    },
+    {
+      "ref": "C2",
+      "qty": 1,
+      "model": "10uF 25V X7R ceramic",
+      "phase": "both",
+      "source": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+      "note": "PD output local filter; inspect EvalPoE population."
+    },
+    {
+      "ref": "C3",
+      "qty": 12,
+      "model": "100nF 16V X7R ceramic",
+      "phase": "both",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "Assembly allowance for local IC/module power entry bypassing. Do not duplicate installed module capacitors automatically; count after layout."
+    },
+    {
+      "ref": "C4",
+      "qty": 1,
+      "model": "47uF 10V low-ESR bulk capacitor",
+      "phase": "both",
+      "source": "https://www.pololu.com/product/2857",
+      "note": "3.3 V rail bulk capacitor; validate buck startup, stability and transient response."
+    },
+    {
+      "ref": "C5",
+      "qty": 1,
+      "model": "22pF 50V C0G ceramic",
+      "phase": "both",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "XTAL1 to GND; initial NXP example value. Tune for the selected 18 pF crystal and stray capacitance."
+    },
+    {
+      "ref": "C6",
+      "qty": 1,
+      "model": "33pF 50V C0G ceramic",
+      "phase": "both",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "XTAL2 to GND; initial NXP example value, not validated for the final PCB."
+    },
+    {
+      "ref": "C7",
+      "qty": 2,
+      "model": "1uF 16V X7R ceramic",
+      "phase": "carrier",
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "note": "S3 EN and H2 EN startup RC networks; confirm rise time and reset sequencing."
+    },
+    {
+      "ref": "C8",
+      "qty": 1,
+      "model": "1nF 16V C0G ceramic",
+      "phase": "both",
+      "source": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+      "note": "Supervisor SENSE to GND."
+    },
+    {
+      "ref": "R1",
+      "qty": 1,
+      "model": "4.7k\u03a9 1% 0.1W resistor",
+      "phase": "both",
+      "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+      "note": "GDO0 to 3.3 V; required for open-drain TX and release during receive."
+    },
+    {
+      "ref": "R2",
+      "qty": 1,
+      "model": "1k\u03a9 1% 0.1W resistor",
+      "phase": "both",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "IRQ to 3.3 V; value specified by NXP, not 10 kohm."
+    },
+    {
+      "ref": "R3",
+      "qty": 12,
+      "model": "10k\u03a9 1% 0.1W resistor",
+      "phase": "both",
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "note": "Pull-ups: three SPI CS signals, H2 EN, H2 BOOT, H2 GPIO8, SC16 RESET, unused RXB, S3 EN and S3 BOOT. Pull-down: H2 GPIO25. MG24 PA00 BOOT pull-up uses the twelfth resistor; no spare. Omit duplicates already installed on boards."
+    },
+    {
+      "ref": "R4",
+      "qty": 8,
+      "model": "100k\u03a9 1% 0.1W resistor",
+      "phase": "both",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "Unused SC16 GPIO0 through GPIO7 to GND. Avoid a hard short if a pin is later configured as an output."
+    },
+    {
+      "ref": "J1",
+      "qty": 1,
+      "model": "Adafruit4397 QT 4pin to female sockets150mm",
+      "phase": "bench",
+      "source": "https://www.adafruit.com/product/4397",
+      "note": "BME cable: 150 mm is its total length, not its reach outside the case."
+    },
+    {
+      "ref": "J2",
+      "qty": 1,
+      "model": "Cat5e short4pair RJ45patch lead",
+      "phase": "bench",
+      "source": "https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf",
+      "note": "EvalPoE DATA OUT to WIZ850io. One external PoE cable; no internal switch."
+    },
+    {
+      "ref": "J3",
+      "qty": 1,
+      "model": "28pin TSSOP0.65mm pitch breakout adapter",
+      "phase": "bench",
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "note": "Select the footprint before ordering. Place crystal and supervisor locally; avoid long breadboard clock wires."
+    },
+    {
+      "ref": "J4",
+      "qty": 1,
+      "model": "2\u00d75 SWD service header1.27mm + compatible3V3probe",
+      "phase": "both",
+      "source": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+      "note": "Expose MG24 SWCLK, SWDIO, RESETn, GND and VTref. Assign the header pinout and verify it against the probe before connecting. Also expose PA00/pad7 BOOT and GND as a separate service jumper; hold low through reset to enter XMODEM bootloader."
+    },
+    {
+      "ref": "J5",
+      "qty": 1,
+      "model": "Locking5V/GND powerdistribution,\u22652A percontact,\u22640.05\u03a9 wholeloop",
+      "phase": "both",
+      "source": "https://www.pololu.com/product/2857",
+      "note": "Exact housing and wire length depend on bench or PCB assembly. Mark polarity and coordinate the fuse with wire gauge; no Dupont lead for the distribution trunk."
+    },
+    {
+      "ref": "F1",
+      "qty": 1,
+      "model": "1.5A time-delay fuse plusratedholder",
+      "phase": "both",
+      "source": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+      "note": "Candidate for the 5 V secondary distribution. Validate cold start, I-squared-t and wire gauge. PD short-circuit protection does not validate branch wiring."
+    },
+    {
+      "ref": "SW1",
+      "qty": 3,
+      "model": "Normallyopen momentaryservicebutton",
+      "phase": "carrier",
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "note": "S3 BOOT, S3 RESET and MG24 RESET. MG24 RESET only sinks to GND; no external 3.3 V pull-up."
+    },
+    {
+      "ref": "PCB1",
+      "qty": 1,
+      "model": "Custom3V3carrier160\u00d7100mm reservation",
+      "phase": "carrier",
+      "source": null,
+      "note": "Not ready for fabrication. Requires a PoE magjack, isolation, EMI, RF, ERC and DRC review. No Gerbers supplied."
+    }
+  ],
+  "gates": [
+    "CarrierRJ45/PoEmagneticsandisolationroutingunselected; EvalPoEresolvesbenchpoweronly.",
+    "Powerleadconnectorandwiregaugefinalizedafterbenchlayout.",
+    "MG24 requires SWD programming and hardware validation; simultaneous radio operation is unverified.",
+    "ReusedZAC93/CC1101andradarconnectorsmustbeinspected."
+  ]
+}

@@ -9,6 +9,12 @@ CAD, firmware configuration and deployment tooling are provided. A successful
 software build does not establish RF range, power margin, thermal performance,
 sensor accuracy or mechanical fit. See [acceptance](docs/acceptance.md).
 
+**Minimum-energy variant:** a separate [single-ESP32-S3 design](docs/low-power.md)
+combines ESPHome and local OTBR behind one Ethernet interface, with dedicated
+radio modules. Its objective is minimum lifetime electricity, independent of
+component price. The 3 W AC target is unmeasured; see its firmware, carrier and
+enclosure readiness before choosing it over the modular reference below.
+
 ![Printable enclosure and external sensor pod](mechanical/generated/exploded-preview.png)
 
 ## What is inside

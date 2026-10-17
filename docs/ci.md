@@ -1,9 +1,16 @@
 # Continuous integration and automated approval
 
-The required `check` job compiles both Ethernet ESPHome configurations, tests the
-RF C++ contracts with sanitizers, exercises migration with synthetic inputs,
-validates printable geometry and builds the serial-service container. Thread RCP
-changes additionally run the existing independent RCP build.
+The required `check` job gates three independent jobs. The modular job compiles
+both existing Ethernet ESPHome configurations, tests the RF/UART C++ contracts
+with sanitizers, exercises migration with synthetic inputs, validates printable
+geometry and builds the serial-service container. The single-host job checks the
+new wiring/energy model, compiles all services into one S3 image plus its matching
+H2 radio firmware, exercises the actual REST handlers with the pinned HA client,
+and validates the separate concept enclosure. The MG24 job downloads hash-verified
+tools and SDK, generates the exact module/UART configuration, builds the Zigbee
+NCP and bootloader, and checks merged/update images. Failure, cancellation or
+skipping of any job prevents the required gate from passing. Thread RCP changes additionally run
+the existing independent Nordic RCP build.
 
 Security scanning calls `victron-venus/venus-os-ci-toolkit` at the immutable commit
 `5d827f345c66fdb493efba9c24cf79575b681fdb`: Trivy scans dependencies and secrets;

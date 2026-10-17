@@ -1,0 +1,53 @@
+{
+  "status": "build-and-offline-validation-pass",
+  "hardware_tested": false,
+  "sdk_tag": "v2025.6.3",
+  "sdk_inspection": {
+    "verified_sdk_version": "2025.6.3",
+    "verified_ezsp_protocol_version": 18,
+    "expected_source_commit": "b41bec3ff2485199c1a5a9995b3e649e118c1b8d",
+    "source_commit_verified": false,
+    "scope": "Version/protocol header inspection; unpacked source tree identity is not attested."
+  },
+  "target": "MGM240PA22VNA",
+  "ezsp_protocol_version": 18,
+  "flash_ranges": {
+    "bootloader": {
+      "data_bytes": 11272,
+      "first_address": "0x8000000",
+      "last_address": "0x8002c07"
+    },
+    "application": {
+      "data_bytes": 224852,
+      "first_address": "0x8006000",
+      "last_address": "0x803ce53"
+    },
+    "combined": {
+      "data_bytes": 236124,
+      "first_address": "0x8000000",
+      "last_address": "0x803ce53"
+    }
+  },
+  "files": {
+    "application/build/release/zigbee_ncp_uart_hw.s37": {
+      "bytes": 674684,
+      "sha256": "2c7ee60460f0168c7d05c979e0e5b6f315dc986264fbfaf1aac0fa22432455a2"
+    },
+    "bootloader/artifact/bootloader-uart-xmodem-crc.s37": {
+      "bytes": 33924,
+      "sha256": "0f98943b6721f00dc228387508e9e9188dea701ebda95e7835c73a4961e8fd15"
+    },
+    "artifacts/ha-radio-hub-mg24-ncp.gbl": {
+      "bytes": 224928,
+      "sha256": "6dd9ad4bf2d5375ec69a9f0797c338af9c15b94543155868cbdf64b043757f0f"
+    },
+    "artifacts/ha-radio-hub-mg24-initial.s37": {
+      "bytes": 708490,
+      "sha256": "b9c04af2e25dfd0c6a5db1d9af94e84428bb6ba4e46f6b53ebc7b794243e888a"
+    }
+  },
+  "build_host": "macOS arm64",
+  "date": "2026-10-17",
+  "linux_execution_verified": false,
+  "tests_passed": 6
+}

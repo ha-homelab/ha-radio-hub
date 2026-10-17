@@ -30,6 +30,20 @@ contain private configuration and are not published as release assets.
 
 ## Other components
 
+The single-host prototype fetches the REST component from
+[Espressif esp-thread-br at 29a2345](https://github.com/espressif/esp-thread-br/tree/29a2345e3f0c61bba9307f3daea5ed0c94388ed3).
+Its prepared copy retains upstream notices and is patched during the build for
+the HTTP 404 dialect probe, a separate REST port and ESPHome-owned network setup.
+ESP-IDF 5.5.5 supplies the OpenThread host and H2 RCP. These dependencies are not
+relicensed by the repository's MIT license; generated firmware must retain their
+license obligations and the ESPHome obligations above.
+
+The [MG24 build kit](firmware/low-power/mg24/README.md) downloads Silicon Labs
+Simplicity SDK 2025.6.3, SLC and Commander plus the Arm GNU toolchain. Their
+vendor licenses continue to apply to the downloaded tools, generated sources,
+libraries and firmware. Vendor SDK sources and generated radio images are not
+distributed as this repository's original MIT code.
+
 OpenThread, OTBR, ESP-IDF, ser2net, Linux container packages and Python build
 dependencies retain their upstream licenses. Build definitions identify their
 versions. Manufacturer names and trademarks are used only to identify parts.
