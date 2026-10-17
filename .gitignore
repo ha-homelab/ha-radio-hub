@@ -1,0 +1,24 @@
+# Installation data never belongs in this public design repository.
+.venv*/
+__pycache__/
+*.pyc
+.esphome/
+.build/
+software/runtime/
+secrets.yaml
+.env
+.env.*
+!.env.example
+*.tfstate*
+*.tfplan
+.terraform/
+*.bin
+*.gbl
+*.hex
+*.uf2
+*.log
+backups/
+private/
+otbr-data/
+node_modules/
+.DS_Store

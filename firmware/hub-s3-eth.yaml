@@ -1,0 +1,109 @@
+# Waveshare ESP32-S3-ETH-M, ESP32-S3R8 / 16MB flash.
+# No camera, microSD card, or expansion board may be fitted: their pins are reused.
+substitutions:
+  node_name: ha-radio-hub-sensors
+  friendly_name: HA Radio Hub Sensors
+  bme680_address: "0x77"
+
+esphome:
+  name: ${node_name}
+  friendly_name: ${friendly_name}
+  min_version: 2026.9.1
+  compile_process_limit: 2
+
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+
+# Official ESPHome Waveshare ESP32-S3-ETH pin mapping.
+ethernet:
+  type: W5500
+  clk_pin: GPIO13
+  mosi_pin: GPIO11
+  miso_pin: GPIO12
+  cs_pin: GPIO14
+  interrupt_pin: GPIO10
+  reset_pin: GPIO9
+  clock_speed: 20MHz
+
+logger:
+  level: INFO
+  baud_rate: 0
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+  reboot_timeout: 0s
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+esp32_ble_tracker:
+
+bluetooth_proxy:
+  active: true
+  connection_slots: 3
+
+uart:
+  - id: zwave_uart
+    tx_pin: GPIO17
+    rx_pin: GPIO18
+    baud_rate: 115200
+    rx_buffer_size: 1024
+    parity: NONE
+    stop_bits: 1
+  - id: radar_uart
+    tx_pin: GPIO4
+    rx_pin: GPIO5
+    baud_rate: 256000
+    rx_buffer_size: 1024
+    parity: NONE
+    stop_bits: 1
+
+zwave_proxy:
+  id: zwave_radio
+  uart_id: zwave_uart
+
+ld2450:
+  id: radar
+  uart_id: radar_uart
+
+i2c:
+  id: expansion_bus
+  sda: GPIO1
+  scl: GPIO2
+  scan: true
+  frequency: 100kHz
+
+packages:
+  environment: !include packages/bme680.yaml
+  radar_entities: !include packages/ld2450.yaml
+
+sensor:
+  - platform: uptime
+    name: Uptime
+    entity_category: diagnostic
+    update_interval: 60s
+
+text_sensor:
+  - platform: version
+    name: ESPHome Version
+    entity_category: diagnostic
+  - platform: ethernet_info
+    ip_address:
+      name: Ethernet IP
+      entity_category: diagnostic
+
+binary_sensor:
+  - platform: status
+    name: API Connected
+    entity_category: diagnostic
+
+button:
+  - platform: restart
+    name: Restart sensor controller
+    entity_category: diagnostic
+    disabled_by_default: true

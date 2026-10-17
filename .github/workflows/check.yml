@@ -1,0 +1,33 @@
+name: Prototype validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Offline source and documentation checks
+        run: |
+          python3 tools/check.py
+          python3 -m unittest discover -s software -p 'test_*.py'
+      - name: Install pinned prototype build dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt
+      - name: Validate and compile the combined Ethernet sensor firmware
+        run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --compile
+      - name: Validate and compile the experimental Ethernet RF firmware
+        run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.experimental.yaml --compile
+      - name: Regenerate printable geometry and validate meshes
+        run: .venv/bin/python mechanical/build.py
+      - name: Build the Linux serial service image
+        run: docker build -t ha-radio-hub/ser2net:ci software/ser2net

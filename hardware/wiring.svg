@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" role="img" aria-labelledby="title desc">
+<title id="title">HA Radio Hub module interconnect, revision A</title>
+<desc id="desc">PoE splitter powers the internal switch, Linux Pi and ESP32 boards. Separate USB radios serve Zigbee and Thread. One Ethernet ESP32 serves BLE, ZAC93, LD2450 and an external BME680. A second experimental Ethernet ESP32 serves CC1101; an existing Wi-Fi NodeMCU is an alternative.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#4e94b8"/></marker>
+<marker id="p" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#d9784a"/></marker>
+<style>text{font-family:Arial,sans-serif;fill:#e1eaf3}.title{font-size:30px;font-weight:bold}.sub{font-size:16px;fill:#9fb7c9}.name{font-size:19px;font-weight:bold}.txt{font-size:15px}.small{font-size:13px;fill:#b6c8d7}.box{fill:#142939;stroke:#375165;stroke-width:2;rx:12}.wire{fill:none;stroke:#4e94b8;stroke-width:3;marker-end:url(#a)}.power{fill:none;stroke:#d9784a;stroke-width:3;marker-end:url(#p)}.dash{stroke-dasharray:8 5}.gold{fill:#e8b56f}</style>
+</defs>
+<rect width="1440" height="980" fill="#0b1924"/>
+<text x="40" y="52" class="title">HA RADIO HUB / MODULE INTERCONNECT</text>
+<text x="40" y="83" class="sub">Revision A · logical connections, not PCB artwork · verify connector orientation before assembly</text>
+<rect x="30" y="135" width="205" height="116" class="box"/>
+<text x="48" y="166" class="name">Home LAN + PoE+</text><text x="48" y="194" class="txt">Active IEEE 802.3at</text><text x="48" y="220" class="small">One external Cat5e/6 cable</text>
+<rect x="280" y="135" width="232" height="116" class="box"/>
+<text x="298" y="166" class="name">Isolated PoE splitter</text><text x="298" y="194" class="txt">Waveshare 25W / 5 V</text><text x="298" y="220" class="small">DC output + Ethernet out</text>
+<rect x="560" y="135" width="230" height="116" class="box"/>
+<text x="578" y="166" class="name">Internal LAN switch</text><text x="578" y="194" class="txt">TL-SF1005D v13 · 100 Mbps</text><text x="578" y="220" class="small">Ports 1–4 used · port 5 reserved</text>
+<path d="M235 190H278" class="wire"/><path d="M512 190H558" class="wire"/>
+<rect x="860" y="135" width="240" height="116" class="box"/>
+<text x="878" y="166" class="name">Raspberry Pi 4</text><text x="878" y="194" class="txt">OTBR + Zigbee serial bridge</text><text x="878" y="220" class="small">HA server stays elsewhere</text>
+<path d="M790 190H858" class="wire"/>
+<rect x="1160" y="120" width="247" height="85" class="box"/>
+<text x="1178" y="150" class="name">Zigbee / SLZB-07Mg24</text><text x="1178" y="179" class="small">USB NCP · 115200 · RTS/CTS</text>
+<rect x="1160" y="227" width="247" height="85" class="box"/>
+<text x="1178" y="257" class="name">Thread / PCA10059</text><text x="1178" y="286" class="small">USB OpenThread RCP</text>
+<path d="M1100 166H1158" class="wire"/><path d="M1100 215H1127V267H1158" class="wire"/>
+<rect x="860" y="360" width="240" height="155" class="box"/>
+<text x="878" y="392" class="name">ESP32-S3-ETH #1</text><text x="878" y="420" class="txt">BLE proxy / native ESPHome</text><text x="878" y="447" class="small">W5500 Ethernet · no Wi-Fi</text><text x="878" y="473" class="small">No microSD / no camera</text><text x="878" y="498" class="small">16 MB flash · 8 MB PSRAM</text>
+<path d="M675 251V416H858" class="wire"/><text x="708" y="404" class="small">Ethernet</text>
+<rect x="1160" y="350" width="247" height="80" class="box"/>
+<text x="1178" y="380" class="name">ZAC93 / Z-Wave</text><text x="1178" y="409" class="small">3.3 V · UART TX17 / RX18</text>
+<rect x="1160" y="457" width="247" height="80" class="box"/>
+<text x="1178" y="487" class="name">HLK-LD2450 / 24 GHz</text><text x="1178" y="516" class="small">5 V · UART TX4 / RX5</text>
+<rect x="1160" y="564" width="247" height="100" class="box"/>
+<text x="1178" y="594" class="name">BME680 / external pod</text><text x="1178" y="623" class="small">3.3 V · I²C SDA1 / SCL2</text><text x="1178" y="646" class="small">0x77 · short ventilated harness</text>
+<path d="M1100 390H1158" class="wire"/><path d="M1100 451H1127V496H1158" class="wire"/><path d="M1100 485H1116V609H1158" class="wire"/>
+<rect x="860" y="704" width="240" height="116" class="box"/>
+<text x="878" y="736" class="name">ESP32-S3-ETH #2</text><text x="878" y="765" class="txt gold">RF Ethernet prototype</text><text x="878" y="793" class="small">Firmware included; bench test due</text>
+<path d="M675 416V758H858" class="wire"/><text x="707" y="746" class="small">Ethernet</text>
+<rect x="1160" y="704" width="247" height="116" class="box"/>
+<text x="1178" y="736" class="name">CC1101 / 433.92 MHz</text><text x="1178" y="765" class="small">3.3 V · SPI7/8/6 · CS15</text><text x="1178" y="792" class="small">GPIO4 TX→GDO0 / GDO2→5 RX</text>
+<path d="M1100 758H1158" class="wire"/>
+<rect x="30" y="360" width="535" height="180" class="box"/>
+<text x="49" y="393" class="name">Compatibility alternative</text><text x="49" y="426" class="txt">Existing NodeMCU ESP8266 + CC1101</text><text x="49" y="457" class="txt gold">Power from box; network remains Wi-Fi.</text><text x="49" y="490" class="small">Use instead of RF Ethernet prototype to preserve RF Airbridge.</text><text x="49" y="518" class="small">This option does not satisfy an all-wired installation.</text>
+<rect x="30" y="600" width="535" height="220" class="box"/>
+<text x="49" y="634" class="name">Power and assembly</text><text x="49" y="666" class="txt">5 V distribution → individually fused branches</text><text x="49" y="699" class="small">Pi, switch, ESP32 boards and radar receive 5 V.</text><text x="49" y="727" class="small">ZAC93, BME680 and CC1101 receive local 3.3 V.</text><text x="49" y="755" class="small">Common low-voltage ground after isolated splitter.</text><text x="49" y="783" class="small">One supply per board. Disconnect branch before USB flashing.</text>
+<path d="M395 251V320H590V580H285V598" class="power"/>
+<text x="628" y="881" class="txt" fill="#d9784a">5 V DC rail (logical): see power.md for load limits and branch protection</text>
+<text x="40" y="931" class="sub">Blue = data · orange = DC power · all UART/I²C/SPI signal levels are 3.3 V · never feed PoE voltage into GPIO</text>
+</svg>

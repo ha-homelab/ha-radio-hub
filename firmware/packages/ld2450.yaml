@@ -1,0 +1,61 @@
+binary_sensor:
+  - platform: ld2450
+    ld2450_id: radar
+    has_target:
+      name: Presence
+    has_moving_target:
+      name: Moving Target
+    has_still_target:
+      name: Still Target
+
+sensor:
+  - platform: ld2450
+    ld2450_id: radar
+    target_count:
+      name: Target Count
+    moving_target_count:
+      name: Moving Target Count
+    still_target_count:
+      name: Still Target Count
+    target_1:
+      x:
+        name: Target 1 X
+      y:
+        name: Target 1 Y
+      speed:
+        name: Target 1 Speed
+    target_2:
+      x:
+        name: Target 2 X
+      y:
+        name: Target 2 Y
+      speed:
+        name: Target 2 Speed
+    target_3:
+      x:
+        name: Target 3 X
+      y:
+        name: Target 3 Y
+      speed:
+        name: Target 3 Speed
+
+number:
+  - platform: ld2450
+    ld2450_id: radar
+    presence_timeout:
+      name: Presence Timeout
+
+switch:
+  - platform: ld2450
+    ld2450_id: radar
+    bluetooth:
+      name: Radar Bluetooth
+      disabled_by_default: true
+    multi_target:
+      name: Radar Multi Target
+
+text_sensor:
+  - platform: ld2450
+    ld2450_id: radar
+    version:
+      name: Radar Firmware Version

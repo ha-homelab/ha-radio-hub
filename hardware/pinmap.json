@@ -1,0 +1,146 @@
+{
+  "revision": "A",
+  "board": "Waveshare ESP32-S3-ETH-M",
+  "flash_mb": 16,
+  "psram_mb": 8,
+  "required_absent": [
+    "microSD card",
+    "camera",
+    "add-on PoE module"
+  ],
+  "exclusive_pins": [
+    {
+      "gpio": 1,
+      "role": "i2c_sda",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 2,
+      "role": "i2c_scl",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 4,
+      "role": "ld2450_tx",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 5,
+      "role": "ld2450_rx",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 9,
+      "role": "w5500_reset",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 10,
+      "role": "w5500_interrupt",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 11,
+      "role": "w5500_mosi",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 12,
+      "role": "w5500_miso",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 13,
+      "role": "w5500_clock",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 14,
+      "role": "w5500_cs",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 17,
+      "role": "zac93_tx",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 18,
+      "role": "zac93_rx",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 19,
+      "role": "usb_dm",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 20,
+      "role": "usb_dp",
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 21,
+      "role": "onboard_rgb",
+      "logic_voltage": 3.3
+    }
+  ],
+  "external_modules": [
+    {
+      "id": "zac93",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3,
+      "interface": "uart",
+      "baud": 115200
+    },
+    {
+      "id": "ld2450",
+      "supply_voltage": 5.0,
+      "logic_voltage": 3.3,
+      "interface": "uart",
+      "baud": 256000
+    },
+    {
+      "id": "bme680",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3,
+      "interface": "i2c",
+      "address": "0x77",
+      "clock_hz": 100000
+    }
+  ],
+  "rf_compatibility": {
+    "board": "ESP8266 NodeMCU v2",
+    "network": "wifi",
+    "supply_voltage": 5.0,
+    "radio_supply_voltage": 3.3,
+    "pins": {
+      "clock": 14,
+      "mosi": 13,
+      "miso": 12,
+      "cs": 15,
+      "gdo0": 4
+    }
+  },
+  "validation": "design_only_no_hardware_test",
+  "rf_ethernet_experimental": {
+    "board": "second Waveshare ESP32-S3-ETH-M",
+    "network": "ethernet",
+    "supply_voltage": 5.0,
+    "radio_supply_voltage": 3.3,
+    "pins": {
+      "clock": 7,
+      "mosi": 8,
+      "miso": 6,
+      "cs": 15,
+      "gdo0_tx": 4,
+      "gdo2_rx": 5
+    },
+    "required_absent": [
+      "microSD card",
+      "camera",
+      "add-on PoE module"
+    ],
+    "hardware_tested": false
+  }
+}

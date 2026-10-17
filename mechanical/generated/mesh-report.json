@@ -1,0 +1,200 @@
+{
+  "status": "DRAFT: geometry checked; component fit, RF, thermal and print validation pending",
+  "units": "mm",
+  "parts": {
+    "base": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 364840.8,
+      "triangles": 5316,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          240.0,
+          200.0,
+          77.0
+        ]
+      ],
+      "sha256": "6fd8b2ad512ab57dfa2f8e5edb7308418057020d0de84bf30ef7f4f9d83f83c8"
+    },
+    "lid": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 132130.19,
+      "triangles": 4782,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          240.0,
+          200.0,
+          11.98
+        ]
+      ],
+      "sha256": "503f09545555ff10e9a1f29e6a7607ed99d292fb85fc2706da092b42310eca70"
+    },
+    "deck": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 94589.36,
+      "triangles": 2776,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          214.0,
+          174.0,
+          3.0
+        ]
+      ],
+      "sha256": "3e0eb31d161af0d0d7d01f7f2f60c1d61d5fd83e73e49b1db0ea531c1a7d8b50"
+    },
+    "radar_carrier": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 8135.57,
+      "triangles": 896,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          84.0,
+          52.0,
+          2.0
+        ]
+      ],
+      "sha256": "475a7a7c05411e2b26c02f0dfc97e92b014627bc7df863586cbc1ededb92481f"
+    },
+    "antenna_blank": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 193.32,
+      "triangles": 380,
+      "bounds_mm": [
+        [
+          -5.0,
+          -5.0,
+          0.0
+        ],
+        [
+          5.0,
+          5.0,
+          4.5
+        ]
+      ],
+      "sha256": "2eed067e4d0fe0cfbbd429029b575808ffd90d7e098bd52a8bf9e470cb0e5dd1"
+    },
+    "bme680_pod_base": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 8221.62,
+      "triangles": 918,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          45.0,
+          36.0,
+          18.0
+        ]
+      ],
+      "sha256": "31f9352dae56b027a79daf6f4d4773e74b358999da03d39a5cb1355e85a0cecd"
+    },
+    "bme680_pod_lid": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 2723.43,
+      "triangles": 504,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          45.0,
+          36.0,
+          2.0
+        ]
+      ],
+      "sha256": "2875e2dfca8e96bea10b64d16ee102b60bb8ce23da47000823dbe9eece6cb5ef"
+    },
+    "fit_coupon": {
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_bodies": 1,
+      "positive_volume": true,
+      "volume_mm3": 11053.18,
+      "triangles": 1176,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          72.0,
+          20.0,
+          8.0
+        ]
+      ],
+      "sha256": "d2d21e8fb9f1bc824fbcc185999ff55441afed227494f43731d49094ddd34994"
+    }
+  },
+  "checks_not_performed": [
+    "physical component and cable fit",
+    "actual FDM print fit",
+    "heat-set insert pull-out",
+    "RF coexistence / radiation efficiency",
+    "LD2450 radome transmission",
+    "thermal soak under full load",
+    "wall fastener load test"
+  ],
+  "assembled_intersection_volume_mm3": {
+    "base/deck": 0.0,
+    "base/lid": 0.0,
+    "base/radar_carrier": 0.0,
+    "base/bme680_pod_base": 0.0,
+    "base/bme680_pod_lid": 0.0,
+    "deck/lid": 0.0,
+    "deck/radar_carrier": 0.0,
+    "deck/bme680_pod_base": 0.0,
+    "deck/bme680_pod_lid": 0.0,
+    "lid/radar_carrier": 0.0,
+    "lid/bme680_pod_base": 0.0,
+    "lid/bme680_pod_lid": 0.0,
+    "radar_carrier/bme680_pod_base": 0.0,
+    "radar_carrier/bme680_pod_lid": 0.0,
+    "bme680_pod_base/bme680_pod_lid": 0.0
+  }
+}

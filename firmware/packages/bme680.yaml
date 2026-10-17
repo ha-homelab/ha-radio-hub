@@ -1,0 +1,16 @@
+# Adafruit BME680 STEMMA QT defaults to 0x77; confirm the breakout's address.
+# Raw gas resistance is not CO2, VOC ppm, or a calibrated IAQ measurement.
+sensor:
+  - platform: bme680
+    i2c_id: expansion_bus
+    address: ${bme680_address}
+    temperature:
+      name: Ambient Temperature
+      oversampling: 8x
+    pressure:
+      name: Ambient Pressure
+    humidity:
+      name: Ambient Humidity
+    gas_resistance:
+      name: Gas Resistance
+    update_interval: 60s

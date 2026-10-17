@@ -1,0 +1,24 @@
+name: Thread RCP build
+on:
+  push:
+    branches: [main]
+    paths: ['firmware/build-thread-rcp.sh', '.github/workflows/thread-rcp.yml']
+  pull_request:
+    paths: ['firmware/build-thread-rcp.sh', '.github/workflows/thread-rcp.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  thread-rcp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install Arm bare metal toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install --no-install-recommends -y gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib cmake ninja-build
+      - name: Build pinned PCA10059 USB RCP without flashing
+        run: bash firmware/build-thread-rcp.sh
