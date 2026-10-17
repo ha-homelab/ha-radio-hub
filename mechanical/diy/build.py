@@ -412,6 +412,7 @@ def compose(board, out, cli, paper='a4', jumper_path=None):
       'paper':paper,'page_mm':[round(v/MM,6) for v in page], 'scale':1,
       'board':str(board.relative_to(ROOT)) if board.is_relative_to(ROOT) else board.name,
       'board_sha256':digest(board),'generator_sha256':digest(__file__),
+      'requirements_sha256':digest(Path(__file__).with_name('requirements.txt')),
       'kicad_version':subprocess.check_output([cli,'version'],text=True).strip(),
       'outline_mm':[geom['width_mm'],geom['height_mm']],
       'copper_layer':'B.Cu','native_plot_mirror':False,'transfer_contact':'toner against copper',
@@ -436,6 +437,8 @@ def check(out, board=None):
     manifest=json.loads((out/'manifest.json').read_text())
     if digest(__file__)!=manifest['generator_sha256']:
         raise ValueError('Print generator changed; regenerate outputs')
+    if digest(Path(__file__).with_name('requirements.txt'))!=manifest.get('requirements_sha256'):
+        raise ValueError('Print dependencies changed; regenerate outputs')
     if board and digest(board)!=manifest['board_sha256']:
         raise ValueError('Native board changed; regenerate outputs')
     for name,sha in manifest['outputs'].items():
