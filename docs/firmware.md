@@ -5,9 +5,10 @@
 ## Что действительно проверено
 
 - Основной `hub-s3-eth.yaml`: schema validation и полная компиляция ESPHome **2026.9.1**, ESP-IDF **5.5.5**, успешны. Статическая RAM 104 319 / 341 760 байт (30,5%); программа 942 199 байт. Это не измерение свободной памяти при работе BLE.
+- Экспериментальный `rf-ethernet.experimental.yaml`: schema validation и полная компиляция ESPHome **2026.9.1**, ESP-IDF **5.5.5**, успешны. Статическая RAM 63 135 / 341 760 байт (18,5%); программа 491 639 байт. Это подтверждает сборку, но не качество RF waveforms или совместимость с прежними автоматизациями.
 - `software/render_config.py`: тесты ограничений входных данных и конфигурации прошли; Docker Compose разобрал конфигурацию успешно.
 - Ни одна реальная плата не прошивалась. Электрические соединения, совместная работа радиосетей, тепловой режим и долговременная стабильность требуют стенда.
-- Docker daemon недоступен на машине разработки: запуск контейнеров, загрузка драйверов Linux и связь с RCP не проверялись. Thread RCP source pin подготовлен; ARM-сборка отдельно не выполнялась.
+- Docker daemon недоступен на машине разработки: запуск контейнеров, загрузка драйверов Linux и связь с RCP локально не проверялись. ARM-сборка Thread RCP локально не выполнялась; закреплённая прошивка PCA10059 успешно собрана в [Linux GitHub CI](https://github.com/ha-homelab/ha-radio-hub/actions/runs/38992347499). Радиосвязь этим тестом не проверяется.
 
 ## 1. Основной ESP32-S3
 
@@ -62,7 +63,7 @@ bash firmware/build-thread-rcp.sh
 
 Скрипт фиксирует Git SHA и submodules, собирает USB RCP с `-DOT_BOOTLOADER=USB`, создаёт `.build/thread-rcp/ot-rcp-pca10059.hex`. Инструменты и системные зависимости не зафиксированы побитово; это source pin, а не заявленная бит-в-бит воспроизводимость.
 
-Прошейте HEX через **nRF Connect for Desktop → Programmer**, выбрав именно PCA10059. Нажмите RESET донгла, чтобы войти в штатный USB bootloader. Используйте запись application, сохраните bootloader; не используйте erase-all. Подробности — [Nordic Programmer](https://docs.nordicsemi.com/bundle/nrf-connect-programmer/page/index.html). После перезагрузки на Pi должен появиться USB CDC ACM serial-порт. Найдите его стабильное имя `ls -l /dev/serial/by-id/`; после смены прошивки USB-имя может измениться. Зафиксируйте именно имя рабочей RCP-прошивки.
+Прошейте HEX через **nRF Connect for Desktop → Programmer**, выбрав именно PCA10059. Нажмите RESET донгла, чтобы войти в штатный USB bootloader. Используйте запись application, сохраните bootloader; не используйте erase-all. Подробности — [Nordic Programmer](https://docs.nordicsemi.com/r/bundle/nrf-connect-for-desktop/page/app/pc-nrfconnect-programmer/programming_nrf52840_dongle.html/programming-nrf52840-dongle). После перезагрузки на Pi должен появиться USB CDC ACM serial-порт. Найдите его стабильное имя `ls -l /dev/serial/by-id/`; после смены прошивки USB-имя может измениться. Зафиксируйте именно имя рабочей RCP-прошивки.
 
 Если образ не устанавливается или RCP не отвечает, не меняйте случайно Zigbee-радио. Для стенда допустима замена на другой документированный USB Thread RCP, но потребуется проверить скорость, flow control и OpenThread RCP API compatibility. Nordic USB CDC в предоставленном compose использует URL с 1000000 baud и без hardware flow control.
 
