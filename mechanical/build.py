@@ -219,14 +219,14 @@ def preview(meshes,p,out):
     # Practical envelope plan, every box denotes an allocation, not actual PCB CAD.
     fig,axes=plt.subplots(1,2,figsize=(14,7.8),facecolor='#f4f7fa')
     zones=[[
-      (26,99,72,90,'Raspberry Pi 4\nrotated 90 degrees\nports towards cable lane'),
-      (116,103,110,75,'TL-SF1005D switch\n104 × 70 case'),
-      (22,27,108,34,'5 V PoE splitter\n102.5 × 29.6 case'),
-      (139,28,75,35,'Fused 5 V\ndistribution'),
-      (22,66,202,30,'Cable lane: Ethernet / USB / 5 V'),
+      (26,105,72,90,'Raspberry Pi 4\nrotated 90 degrees\nports towards cable lane'),
+      (106,105,110,75,'TL-SF1005D switch\n104 × 70 case'),
+      (60,6,108,34,'5 V PoE splitter\ninput left / tails right'),
+      (139,40,75,35,'Fused 5 V\ndistribution'),
+      (22,75,202,30,'30 mm cable lane: Ethernet / USB / 5 V'),
     ],[
       (22,104,91,64,'ESP32-S3-ETH\n+ ZAC93 allocation'),
-      (128,104,90,64,'RF S3-ETH or NodeMCU\n+ CC1101 allocation'),
+      (128,104,90,64,'RF ESP32-S3-ETH\n+ CC1101 allocation'),
       (22,76,105,23,'MG24 stick + lead'),
       (148,76,68,23,'Thread PCA10059'),
       (78,14,84,52,'LD2450 carrier\non lid above this zone'),
@@ -241,6 +241,14 @@ def preview(meshes,p,out):
         for x in (p['deck_margin'],p['width']-p['deck_margin']):
             for y in (p['deck_margin'],p['depth']-p['deck_margin']):
                 ax.add_patch(plt.Circle((x,y),4.5,fc=navy))
+        if ai == 1:
+            # This opening cuts into both allocation boxes: no mounting surface
+            # exists here. Keep its actual projected outline visible in the plan.
+            ax.add_patch(Rectangle((p['width']/2-15,p['depth']-p['deck_margin']-22),
+                                   30,27,fc='white',ec=navy,hatch='///',lw=1))
+            ax.annotate('Open cable chase',xy=(p['width']/2,p['depth']-p['deck_margin']-10),
+                        xytext=(p['width']/2,195),ha='center',fontsize=8,color=navy,
+                        arrowprops={'arrowstyle':'-','color':navy})
         ax.text(120,204,'BACK: PoE cable / service lane',ha='center',fontsize=9,color=navy)
         ax.set_title(('LOWER LAYER · floor z = 3 mm','UPPER LAYER · tray z = 40–43 mm')[ai],fontsize=13,color=navy,pad=22)
         ax.set_xlabel('x / mm');ax.set_ylabel('y / mm');ax.grid(alpha=.13)

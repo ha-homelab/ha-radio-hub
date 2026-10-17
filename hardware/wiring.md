@@ -4,11 +4,13 @@
 
 ## Ethernet и USB
 
-- Внешний PoE кабель → вход splitter. Ethernet out splitter → port 1 TL-SF1005D v13.
-- Port 2 switch → RJ45 Pi 4; port 3 → RJ45 ESP32-S3-ETH. Ports 4–5 оставлены для расширения, в том числе отдельной проводной RF платы.
+- Внешний PoE кабель → вход splitter. Несъёмный male RJ45 Ethernet out splitter → port 1 TL-SF1005D v13 напрямую, без отдельного patch cable.
+- Port 2 switch → RJ45 Pi 4; port 3 → RJ45 основной ESP32-S3-ETH; port 4 → RJ45 второй ESP32-S3-ETH для RF. Port 5 свободен. Для варианта со старой Wi-Fi RF платой port 4 также свободен.
 - Pi USB 2.0 → короткий экранированный USB удлинитель → SLZB-07Mg24 (Zigbee).
 - Второй Pi USB 2.0 → короткий удлинитель → Nordic PCA10059 (Thread).
-- 5 V распределение → Pi USB-C, switch DC input, S3 USB-C, NodeMCU micro-USB и LD2450 5V. Выход splitter только 5 V; проверить точный размер/полярность DC штекера switch по своему экземпляру. Не полагаться на совпадение наружного диаметра.
+- Пять ветвей 5 V распределения → Pi USB-C, switch DC input, основная S3 USB-C, RF S3 USB-C и LD2450 5V. В Wi-Fi варианте четвёртая ветвь питает NodeMCU micro-USB вместо RF S3. Выход splitter только 5 V; проверить точный размер/полярность DC штекера switch по своему экземпляру. Не полагаться на совпадение наружного диаметра. Разъёмы и состав жгутов перечислены в [комплектовании](procurement.md).
+
+Силовые C4/C9 — DFRobot FIT0993: клемма `+` получает 5 V своей защищённой ветви, `−` — GND; `D+`, `D−`, `S` не подключаются. C3 — Adafruit 4536 с питающим штекером C17 (Same Sky PP3-002A, центр +5 V, наружный GND). Для всего жгута Pi проверка до 3 A обязательна: у 4536 такой токовый рейтинг не опубликован. Не подключать питание компьютера параллельно этой разводке.
 
 У S3 плата **ESP32-S3-ETH-M**, 16 MB flash + 8 MB PSRAM, без камеры, карты microSD и дополнительного PoE модуля. Задействованы аппаратные UART; это исключает общую загрузку bit-bang UART с BLE.
 
@@ -41,7 +43,7 @@ UART 256000, 8N1, уровни 3.3 V. GPIO4/5 соединены также со
 
 ## BME680 и I²C expansion
 
-Выбрана Adafruit BME680 STEMMA QT, product 3660. Разъём JST-SH 4-pin/1.0 mm подключается коротким breakout кабелем; порядок смотреть по маркировке производителя, не «на глаз»:
+Выбрана Adafruit BME680 STEMMA QT, product 3660. Отдельно заказать [Adafruit 4397](https://www.adafruit.com/product/4397): JST-SH 4-pin/1.0 mm → female sockets, 150 mm. Female sockets подходят к male headers выбранной S3-ETH-M; кабеля в комплекте BME680 нет. Порядок смотреть по маркировке производителя, не «на глаз»:
 
 - VIN/V+ → S3 **3V3**.
 - GND → S3 GND.

@@ -221,6 +221,71 @@ class MigrationTest(unittest.TestCase):
             with self.subTest(text=text[-60:]):
                 self.assert_rejected_without_output(text)
 
+    def test_plaintext_legacy_api_and_passwordless_ota_are_not_invented(self):
+        legacy = SOURCE.replace("api:\n  encryption:\n    key: !secret old_api\n", "api:\n")
+        legacy = legacy.replace("    password: !secret old_ota\n", "")
+        legacy += """web_server:
+  port: 8080
+cc1101:
+  cs_pin: GPIO15
+  frequency: 433.92MHz
+  max_dvga_gain: 6
+remote_receiver:
+  pin:
+    number: GPIO4
+    allow_other_uses: true
+  filter: 250us
+"""
+        self.source.write_text(legacy)
+        report = self.migrate()
+        after = yaml.load((self.output / "device.yaml").read_text(), Loader=TaggedLoader)
+        credentials = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(after["api"], {})
+        self.assertEqual(after["ota"], [{"platform": "esphome"}])
+        self.assertEqual(set(credentials), {"mqtt_broker", "mqtt_username", "mqtt_password"})
+        self.assertEqual(after["web_server"], {"port": 8080})
+        self.assertEqual(after["cc1101"], {"frequency": "433.92MHz", "max_dvga_gain": 6})
+        self.assertEqual(after["remote_receiver"], {"filter": "150us"})
+        self.assertFalse(report["api_encryption_preserved"])
+        self.assertFalse(report["ota_password_preserved"])
+        self.assertTrue(report["web_server_preserved"])
+        self.assertIn("remote_receiver.pin", report["replaced_hardware_blocks"])
+        self.assertIn("cc1101.cs_pin", report["replaced_hardware_blocks"])
+
+    def test_unknown_radio_profile_and_pin_callbacks_require_review(self):
+        for suffix in ("cc1101:\n  frequency: 868MHz\n",
+                       "cc1101:\n  cs_pin: !lambda return private_pin();\n",
+                       "remote_receiver:\n  pin: !lambda return private_pin();\n",
+                       "web_server:\n  on_request: []\n"):
+            with self.subTest(case=suffix.splitlines()[0]):
+                self.assert_rejected_without_output(SOURCE + suffix)
+
+    def test_missing_api_block_is_not_implicitly_enabled(self):
+        self.assert_rejected_without_output(SOURCE.replace("api:\n  encryption:\n    key: !secret old_api\n", ""))
+
+    def test_rejects_canonical_secret_collision_in_preserved_fields(self):
+        cases = [SOURCE + "web_server:\n  auth:\n    username: test\n    password: !secret mqtt_password\n",
+                 SOURCE.replace("'000000010010001101000101'", "!secret mqtt_password")]
+        for source in cases:
+            with self.subTest(field="web" if "web_server:" in source else "rf"):
+                self.secrets.write_text(SECRETS + "mqtt_password: '000000010010001101000101'\n")
+                self.assert_rejected_without_output(source)
+
+    def test_equal_canonical_secret_alias_is_preserved(self):
+        self.source.write_text(SOURCE + "web_server:\n  auth:\n    username: test\n    password: !secret mqtt_password\n")
+        self.secrets.write_text(SECRETS + "mqtt_password: synthetic-mqtt-secret\n")
+        self.migrate()
+        after = yaml.load((self.output / "device.yaml").read_text(), Loader=TaggedLoader)
+        values = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(after["web_server"]["auth"]["password"], ("secret", "mqtt_password"))
+        self.assertEqual(values["mqtt_password"], "synthetic-mqtt-secret")
+
+    def test_unused_canonical_secret_does_not_block_remapping(self):
+        self.secrets.write_text(SECRETS + "mqtt_password: unused-distinct-secret\n")
+        self.migrate()
+        values = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(values["mqtt_password"], "synthetic-mqtt-secret")
+
     def test_cli_output_never_contains_values_on_success_or_parse_error(self):
         args = [sys.executable, str(ROOT / "tools/migrate_rf.py"), "--source", str(self.source),
                 "--secrets", str(self.secrets), "--output", str(self.output)]

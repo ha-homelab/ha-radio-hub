@@ -52,6 +52,9 @@ flowchart LR
 
 ## Build the prototype
 
+Download the [versioned build package](docs/releases.md) for printable parts,
+matching source, wiring and assembly instructions in one verified archive.
+
 ![Power and communication wiring](hardware/wiring.svg)
 
 1. Read the [Russian overview](docs/overview.ru.md), [hardware design](hardware/README.md)
