@@ -1,0 +1,1975 @@
+{
+  "schema_version": 1,
+  "revision": "LP-C0",
+  "status": "prototype_not_hardware_validated",
+  "sources": {
+    "jst_xh": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf",
+    "jst_sh": "https://www.jst-mfg.com/product/pdf/eng/eSH.pdf",
+    "idc": "https://www.we-online.com/components/products/datasheet/61204021621.pdf",
+    "idc_mate": "https://www.we-online.com/components/products/datasheet/61204023021.pdf",
+    "sc16": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+    "tps": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+    "crystal": "https://abracon.com/Resonators/abls.pdf",
+    "fuse": "https://www.littelfuse.com/assetdocs/fuses-449-datasheet?assetguid=7aef6e93-9808-456e-9bee-fba54271285f",
+    "buck": "https://www.pololu.com/product/2857",
+    "stemma": "https://learn.adafruit.com/introducing-adafruit-stemma-qt/technical-specs"
+  },
+  "connectors": [
+    {
+      "ref": "J1",
+      "model": "B2B-XH-A",
+      "mating_model": "XHP-2",
+      "contacts": "SXH-001T-P0.6",
+      "label": "Isolated regulated 5V input",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+5V_IN",
+          "destination": "External isolated PoE front end +5V, NOT 48V PoE",
+          "voltage_v": 5.0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "pd",
+              "pin": "5V",
+              "position": "8",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "External isolated PoE front end return",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "pd",
+              "pin": "GND",
+              "position": "7",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        12.0,
+        12.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 12.0,
+          "y": 12.0
+        },
+        {
+          "number": "2",
+          "x": 14.5,
+          "y": 12.0
+        }
+      ]
+    },
+    {
+      "ref": "J2",
+      "model": "B3B-XH-A",
+      "mating_model": "XHP-3",
+      "contacts": "SXH-001T-P0.6",
+      "label": "External D24V22F3 buck",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+5V",
+          "destination": "D24V22F3 VIN",
+          "voltage_v": 5.0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "buck",
+              "pin": "VIN",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "D24V22F3 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "buck",
+              "pin": "GND",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "+3V3",
+          "destination": "D24V22F3 VOUT (3.3V); sole 3.3V source",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "buck",
+              "pin": "VOUT",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        30.0,
+        12.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 30.0,
+          "y": 12.0
+        },
+        {
+          "number": "2",
+          "x": 32.5,
+          "y": 12.0
+        },
+        {
+          "number": "3",
+          "x": 35.0,
+          "y": 12.0
+        }
+      ]
+    },
+    {
+      "ref": "J3",
+      "model": "61204021621",
+      "mating_model": "61204023021",
+      "contacts": "IDC 40-conductor ribbon; AWG and insulation per mating connector datasheet",
+      "label": "S3 host harness, NOT Raspberry Pi pinout",
+      "viewing_convention": "PCB top: pin1 square at first row, pin2 across row, odd/even columns continue in 2.54mm steps. Socket mating-face view is mirrored. Follow molded pin1 and ribbon conductor1; continuity-test every conductor.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "destination": "S3 3V3 regulated input; isolate USB/board regulator",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "3V3",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "w5500_sclk",
+          "destination": "S3 GPIO13",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO13",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "net": "w5500_mosi",
+          "destination": "S3 GPIO11",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO11",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "net": "w5500_miso",
+          "destination": "S3 GPIO12",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO12",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "net": "w5500_cs",
+          "destination": "S3 GPIO14",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO14",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "net": "w5500_irq",
+          "destination": "S3 GPIO10",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO10",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 11,
+          "net": "w5500_reset",
+          "destination": "S3 GPIO9",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO9",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 12,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 13,
+          "net": "shared_spi_sclk",
+          "destination": "S3 GPIO7",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO7",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 14,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 15,
+          "net": "shared_spi_mosi",
+          "destination": "S3 GPIO8",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO8",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 16,
+          "net": "shared_spi_miso",
+          "destination": "S3 GPIO6",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO6",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 17,
+          "net": "cc1101_cs",
+          "destination": "S3 GPIO15",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO15",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 18,
+          "net": "cc1101_gdo0_tx",
+          "destination": "S3 GPIO4",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO4",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 19,
+          "net": "cc1101_gdo2_rx",
+          "destination": "S3 GPIO5",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO5",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 20,
+          "net": "sc16_cs",
+          "destination": "S3 GPIO41",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO41",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 21,
+          "net": "sc16_irq",
+          "destination": "S3 GPIO42",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO42",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 22,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 23,
+          "net": "h2_tx",
+          "destination": "S3 GPIO43",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO43",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 24,
+          "net": "h2_rx",
+          "destination": "S3 GPIO44",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO44",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 25,
+          "net": "h2_reset",
+          "destination": "S3 GPIO47",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO47",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 26,
+          "net": "h2_boot",
+          "destination": "S3 GPIO48",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO48",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 27,
+          "net": "mg24_tx",
+          "destination": "S3 GPIO17",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO17",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 28,
+          "net": "mg24_rx",
+          "destination": "S3 GPIO18",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO18",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 29,
+          "net": "mg24_rts",
+          "destination": "S3 GPIO16",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO16",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 30,
+          "net": "mg24_cts",
+          "destination": "S3 GPIO21",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO21",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 31,
+          "net": "ld2450_tx",
+          "destination": "S3 GPIO39",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO39",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 32,
+          "net": "ld2450_rx",
+          "destination": "S3 GPIO40",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO40",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 33,
+          "net": "bme680_sda",
+          "destination": "S3 GPIO1",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 34,
+          "net": "bme680_scl",
+          "destination": "S3 GPIO2",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GPIO2",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 35,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 36,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 37,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 38,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 39,
+          "net": "+3V3",
+          "destination": "S3 3V3 regulated input; isolate USB/board regulator",
+          "voltage_v": 3.3,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "3V3",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        },
+        {
+          "number": 40,
+          "net": "GND",
+          "destination": "S3 GND",
+          "voltage_v": 0,
+          "notes": "Remote header numbers intentionally unspecified; verify actual DevKit schematic. Both 3V3 pins are the same rail, never independent supplies.",
+          "remote_endpoints": [
+            {
+              "component": "s3",
+              "pin": "GND1",
+              "position": null,
+              "position_namespace": "DevKit header unknown; use labelled GPIO"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        22.0,
+        27.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 22.0,
+          "y": 27.0
+        },
+        {
+          "number": "2",
+          "x": 24.54,
+          "y": 27.0
+        },
+        {
+          "number": "3",
+          "x": 22.0,
+          "y": 29.54
+        },
+        {
+          "number": "4",
+          "x": 24.54,
+          "y": 29.54
+        },
+        {
+          "number": "5",
+          "x": 22.0,
+          "y": 32.08
+        },
+        {
+          "number": "6",
+          "x": 24.54,
+          "y": 32.08
+        },
+        {
+          "number": "7",
+          "x": 22.0,
+          "y": 34.62
+        },
+        {
+          "number": "8",
+          "x": 24.54,
+          "y": 34.62
+        },
+        {
+          "number": "9",
+          "x": 22.0,
+          "y": 37.16
+        },
+        {
+          "number": "10",
+          "x": 24.54,
+          "y": 37.16
+        },
+        {
+          "number": "11",
+          "x": 22.0,
+          "y": 39.7
+        },
+        {
+          "number": "12",
+          "x": 24.54,
+          "y": 39.7
+        },
+        {
+          "number": "13",
+          "x": 22.0,
+          "y": 42.24
+        },
+        {
+          "number": "14",
+          "x": 24.54,
+          "y": 42.24
+        },
+        {
+          "number": "15",
+          "x": 22.0,
+          "y": 44.78
+        },
+        {
+          "number": "16",
+          "x": 24.54,
+          "y": 44.78
+        },
+        {
+          "number": "17",
+          "x": 22.0,
+          "y": 47.32
+        },
+        {
+          "number": "18",
+          "x": 24.54,
+          "y": 47.32
+        },
+        {
+          "number": "19",
+          "x": 22.0,
+          "y": 49.86
+        },
+        {
+          "number": "20",
+          "x": 24.54,
+          "y": 49.86
+        },
+        {
+          "number": "21",
+          "x": 22.0,
+          "y": 52.4
+        },
+        {
+          "number": "22",
+          "x": 24.54,
+          "y": 52.4
+        },
+        {
+          "number": "23",
+          "x": 22.0,
+          "y": 54.94
+        },
+        {
+          "number": "24",
+          "x": 24.54,
+          "y": 54.94
+        },
+        {
+          "number": "25",
+          "x": 22.0,
+          "y": 57.48
+        },
+        {
+          "number": "26",
+          "x": 24.54,
+          "y": 57.48
+        },
+        {
+          "number": "27",
+          "x": 22.0,
+          "y": 60.02
+        },
+        {
+          "number": "28",
+          "x": 24.54,
+          "y": 60.02
+        },
+        {
+          "number": "29",
+          "x": 22.0,
+          "y": 62.56
+        },
+        {
+          "number": "30",
+          "x": 24.54,
+          "y": 62.56
+        },
+        {
+          "number": "31",
+          "x": 22.0,
+          "y": 65.1
+        },
+        {
+          "number": "32",
+          "x": 24.54,
+          "y": 65.1
+        },
+        {
+          "number": "33",
+          "x": 22.0,
+          "y": 67.64
+        },
+        {
+          "number": "34",
+          "x": 24.54,
+          "y": 67.64
+        },
+        {
+          "number": "35",
+          "x": 22.0,
+          "y": 70.18
+        },
+        {
+          "number": "36",
+          "x": 24.54,
+          "y": 70.18
+        },
+        {
+          "number": "37",
+          "x": 22.0,
+          "y": 72.72
+        },
+        {
+          "number": "38",
+          "x": 24.54,
+          "y": 72.72
+        },
+        {
+          "number": "39",
+          "x": 22.0,
+          "y": 75.26
+        },
+        {
+          "number": "40",
+          "x": 24.54,
+          "y": 75.26
+        }
+      ]
+    },
+    {
+      "ref": "J4",
+      "model": "B10B-XH-A",
+      "mating_model": "XHP-10",
+      "contacts": "SXH-001T-P0.6",
+      "label": "WIZ850io Ethernet module",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "destination": "WIZ850io J2.3 3V3",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "3V3B",
+              "position": "J2.3",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "WIZ850io J1.1 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "GND1",
+              "position": "J1.1",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "w5500_sclk",
+          "destination": "WIZ850io J1.4 SCLK",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "SCLK",
+              "position": "J1.4",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "w5500_mosi",
+          "destination": "WIZ850io J1.3 MOSI",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "MOSI",
+              "position": "J1.3",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "net": "w5500_miso",
+          "destination": "WIZ850io J2.6 MISO",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "MISO",
+              "position": "J2.6",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "net": "w5500_cs",
+          "destination": "WIZ850io J1.5 SCNn",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "CS",
+              "position": "J1.5",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "net": "w5500_irq",
+          "destination": "WIZ850io J1.6 INTn",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "IRQ",
+              "position": "J1.6",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "net": "w5500_reset",
+          "destination": "WIZ850io J2.5 RSTn",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "RESET",
+              "position": "J2.5",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "net": "GND",
+          "destination": "WIZ850io J1.2/J2.1 GND; J2.4 NC remains unconnected",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "GND2",
+              "position": "J1.2",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            },
+            {
+              "component": "w5500",
+              "pin": "GND3",
+              "position": "J2.1",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "net": "+3V3",
+          "destination": "WIZ850io J2.2 3V3",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "w5500",
+              "pin": "3V3A",
+              "position": "J2.2",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        72.0,
+        13.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 72.0,
+          "y": 13.0
+        },
+        {
+          "number": "2",
+          "x": 74.5,
+          "y": 13.0
+        },
+        {
+          "number": "3",
+          "x": 77.0,
+          "y": 13.0
+        },
+        {
+          "number": "4",
+          "x": 79.5,
+          "y": 13.0
+        },
+        {
+          "number": "5",
+          "x": 82.0,
+          "y": 13.0
+        },
+        {
+          "number": "6",
+          "x": 84.5,
+          "y": 13.0
+        },
+        {
+          "number": "7",
+          "x": 87.0,
+          "y": 13.0
+        },
+        {
+          "number": "8",
+          "x": 89.5,
+          "y": 13.0
+        },
+        {
+          "number": "9",
+          "x": 92.0,
+          "y": 13.0
+        },
+        {
+          "number": "10",
+          "x": 94.5,
+          "y": 13.0
+        }
+      ]
+    },
+    {
+      "ref": "J5",
+      "model": "B7B-XH-A",
+      "mating_model": "XHP-7",
+      "contacts": "SXH-001T-P0.6",
+      "label": "H2 Thread RCP",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "destination": "H2 3V3",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "3V3",
+              "position": "3",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "H2 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "GND1",
+              "position": "1",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "h2_tx",
+          "destination": "H2 GPIO23 RX",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "GPIO23",
+              "position": "30",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "h2_rx",
+          "destination": "H2 GPIO24 TX",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "GPIO24",
+              "position": "31",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "net": "h2_reset",
+          "destination": "H2 EN, open-drain control",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "EN",
+              "position": "8",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "net": "h2_boot",
+          "destination": "H2 GPIO9 BOOT, open-drain control",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "GPIO9",
+              "position": "23",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "net": "GND",
+          "destination": "H2 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "h2",
+              "pin": "GND2",
+              "position": "2",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        131.0,
+        18.0
+      ],
+      "rotation_deg": 90.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 131.0,
+          "y": 18.0
+        },
+        {
+          "number": "2",
+          "x": 131.0,
+          "y": 15.5
+        },
+        {
+          "number": "3",
+          "x": 131.0,
+          "y": 13.0
+        },
+        {
+          "number": "4",
+          "x": 131.0,
+          "y": 10.5
+        },
+        {
+          "number": "5",
+          "x": 131.0,
+          "y": 8.0
+        },
+        {
+          "number": "6",
+          "x": 131.0,
+          "y": 5.5
+        },
+        {
+          "number": "7",
+          "x": 131.0,
+          "y": 3.0
+        }
+      ]
+    },
+    {
+      "ref": "J6",
+      "model": "B6B-XH-A",
+      "mating_model": "XHP-6",
+      "contacts": "SXH-001T-P0.6",
+      "label": "MG24 Zigbee NCP",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "destination": "MGM240P adapter VDD pad15",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "mg24",
+              "pin": "VDD",
+              "position": "15",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "MGM240P adapter GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "mg24",
+              "pin": "GND1",
+              "position": "1",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "mg24_tx",
+          "destination": "MGM240P PA05 pad12 RX",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "mg24",
+              "pin": "RX",
+              "position": "12",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "mg24_rx",
+          "destination": "MGM240P PA06 pad13 TX",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "mg24",
+              "pin": "TX",
+              "position": "13",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "net": "mg24_rts",
+          "destination": "MGM240P PB01 pad5 CTS",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "mg24",
+              "pin": "CTS",
+              "position": "5",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "net": "mg24_cts",
+          "destination": "MGM240P PB00 pad6 RTS",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "mg24",
+              "pin": "RTS",
+              "position": "6",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        131.0,
+        45.0
+      ],
+      "rotation_deg": 90.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 131.0,
+          "y": 45.0
+        },
+        {
+          "number": "2",
+          "x": 131.0,
+          "y": 42.5
+        },
+        {
+          "number": "3",
+          "x": 131.0,
+          "y": 40.0
+        },
+        {
+          "number": "4",
+          "x": 131.0,
+          "y": 37.5
+        },
+        {
+          "number": "5",
+          "x": 131.0,
+          "y": 35.0
+        },
+        {
+          "number": "6",
+          "x": 131.0,
+          "y": 32.5
+        }
+      ]
+    },
+    {
+      "ref": "J7",
+      "model": "B8B-XH-A",
+      "mating_model": "XHP-8",
+      "contacts": "SXH-001T-P0.6",
+      "label": "CC1101 RF module",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "destination": "CC1101 module VCC",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "VCC",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "CC1101 module GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "GND",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "shared_spi_sclk",
+          "destination": "CC1101 SCLK",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "SCLK",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "shared_spi_mosi",
+          "destination": "CC1101 SI",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "SI",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "net": "shared_spi_miso",
+          "destination": "CC1101 SO",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "SO",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "net": "cc1101_cs",
+          "destination": "CC1101 CSn",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "CS",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "net": "cc1101_gdo0_tx",
+          "destination": "CC1101 GDO0",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "GDO0",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "net": "cc1101_gdo2_rx",
+          "destination": "CC1101 GDO2",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "cc1101",
+              "pin": "GDO2",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        131.0,
+        75.0
+      ],
+      "rotation_deg": 90.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 131.0,
+          "y": 75.0
+        },
+        {
+          "number": "2",
+          "x": 131.0,
+          "y": 72.5
+        },
+        {
+          "number": "3",
+          "x": 131.0,
+          "y": 70.0
+        },
+        {
+          "number": "4",
+          "x": 131.0,
+          "y": 67.5
+        },
+        {
+          "number": "5",
+          "x": 131.0,
+          "y": 65.0
+        },
+        {
+          "number": "6",
+          "x": 131.0,
+          "y": 62.5
+        },
+        {
+          "number": "7",
+          "x": 131.0,
+          "y": 60.0
+        },
+        {
+          "number": "8",
+          "x": 131.0,
+          "y": 57.5
+        }
+      ]
+    },
+    {
+      "ref": "J8",
+      "model": "B5B-XH-A",
+      "mating_model": "XHP-5",
+      "contacts": "SXH-001T-P0.6",
+      "label": "ZAC93 Z-Wave module",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "destination": "ZAC93 pin1 3V3",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "zac93",
+              "pin": "3V3",
+              "position": "1",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "ZAC93 pin6 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "zac93",
+              "pin": "GND6",
+              "position": "6",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "zac93_tx",
+          "destination": "ZAC93 pin8 RX from SC16 TXA",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "zac93",
+              "pin": "RX",
+              "position": "8",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "zac93_rx",
+          "destination": "ZAC93 pin10 TX to SC16 RXA",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "zac93",
+              "pin": "TX",
+              "position": "10",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "net": "GND",
+          "destination": "ZAC93 pin9 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "zac93",
+              "pin": "GND9",
+              "position": "9",
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        91.0,
+        89.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 91.0,
+          "y": 89.0
+        },
+        {
+          "number": "2",
+          "x": 93.5,
+          "y": 89.0
+        },
+        {
+          "number": "3",
+          "x": 96.0,
+          "y": 89.0
+        },
+        {
+          "number": "4",
+          "x": 98.5,
+          "y": 89.0
+        },
+        {
+          "number": "5",
+          "x": 101.0,
+          "y": 89.0
+        }
+      ]
+    },
+    {
+      "ref": "J9",
+      "model": "B4B-XH-A",
+      "mating_model": "XHP-4",
+      "contacts": "SXH-001T-P0.6",
+      "label": "LD2450 radar",
+      "viewing_convention": "Carrier PCB top/component view, square copper pad and silkscreen 1 identify pin 1. The cable mating-face view is mirrored; use molded circuit numbers and continuity test, never wire colors alone.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+5V",
+          "destination": "LD2450 5V",
+          "voltage_v": 5.0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "ld2450",
+              "pin": "5V",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "destination": "LD2450 GND",
+          "voltage_v": 0,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "ld2450",
+              "pin": "GND",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "ld2450_rx",
+          "destination": "LD2450 TX (3.3V logic) to S3 GPIO40",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "ld2450",
+              "pin": "TX",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "ld2450_tx",
+          "destination": "LD2450 RX from S3 GPIO39",
+          "voltage_v": 3.3,
+          "notes": "22 AWG for 5V/buck power; 26 AWG for logic. No hot plugging.",
+          "remote_endpoints": [
+            {
+              "component": "ld2450",
+              "pin": "RX",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        51.0,
+        89.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 51.0,
+          "y": 89.0
+        },
+        {
+          "number": "2",
+          "x": 53.5,
+          "y": 89.0
+        },
+        {
+          "number": "3",
+          "x": 56.0,
+          "y": 89.0
+        },
+        {
+          "number": "4",
+          "x": 58.5,
+          "y": 89.0
+        }
+      ]
+    },
+    {
+      "ref": "J10",
+      "model": "BM04B-SRSS-TB",
+      "mating_model": "SHR-04V-S",
+      "contacts": "SSH-003T-P0.2-H; prefer precrimped 100mm Adafruit 4210 cable",
+      "label": "BME680 STEMMA QT",
+      "viewing_convention": "Carrier top view; square pad and silk1. JST SH mating face is mirrored. Standard QT order is 1GND 2V+ 3SDA 4SCL.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "GND",
+          "destination": "BME680 QT GND",
+          "voltage_v": 0,
+          "notes": "Use breakout I2C pull-ups; no extra pull-ups fitted on carrier.",
+          "remote_endpoints": [
+            {
+              "component": "bme680",
+              "pin": "GND",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "net": "+3V3",
+          "destination": "BME680 QT +3V3",
+          "voltage_v": 3.3,
+          "notes": "Use breakout I2C pull-ups; no extra pull-ups fitted on carrier.",
+          "remote_endpoints": [
+            {
+              "component": "bme680",
+              "pin": "VIN",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "net": "bme680_sda",
+          "destination": "BME680 QT bme680_sda",
+          "voltage_v": 3.3,
+          "notes": "Use breakout I2C pull-ups; no extra pull-ups fitted on carrier.",
+          "remote_endpoints": [
+            {
+              "component": "bme680",
+              "pin": "SDA",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "net": "bme680_scl",
+          "destination": "BME680 QT bme680_scl",
+          "voltage_v": 3.3,
+          "notes": "Use breakout I2C pull-ups; no extra pull-ups fitted on carrier.",
+          "remote_endpoints": [
+            {
+              "component": "bme680",
+              "pin": "SCL",
+              "position": null,
+              "position_namespace": "module pad or documented module header; use local adapter for castellated pads"
+            }
+          ]
+        }
+      ],
+      "board_position_mm": [
+        15.0,
+        88.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 13.5,
+          "y": 89.325
+        },
+        {
+          "number": "2",
+          "x": 14.5,
+          "y": 89.325
+        },
+        {
+          "number": "3",
+          "x": 15.5,
+          "y": 89.325
+        },
+        {
+          "number": "4",
+          "x": 16.5,
+          "y": 89.325
+        }
+      ]
+    }
+  ]
+}

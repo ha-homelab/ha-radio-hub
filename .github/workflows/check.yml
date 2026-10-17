@@ -10,8 +10,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  check:
-    name: check
+  baseline:
+    name: Modular prototype
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -40,7 +40,141 @@ jobs:
         run: |
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
-      - name: Regenerate printable geometry and validate meshes
-        run: .venv/bin/python mechanical/build.py
+      - name: Check committed CAD against its source and validate meshes
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical -p 'test_*.py'
+          .venv/bin/python mechanical/build.py --check
+      - name: Build the public release package from committed sources
+        run: python3 tools/package_release.py --version v0.0.0-ci --output .build/ci-release
       - name: Build the Linux serial service image
         run: docker build -t ha-radio-hub/ser2net:ci software/ser2net
+  low-power:
+    name: Single-host low-power prototype
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Audit runner network access
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned prototype dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt -r firmware/low-power/requirements-test.txt
+      - name: Check wiring and lifetime-energy model
+        run: |
+          python3 hardware/low-power/validate.py
+          python3 hardware/low-power/visual/validate.py
+          python3 -m unittest discover -s hardware/low-power/visual -p 'test_*.py'
+          python3 -m unittest discover -s hardware/low-power/visual/physical -p 'test_*.py'
+          python3 hardware/low-power/visual/physical/build.py --check
+          python3 hardware/low-power/visual/build.py --check
+          python3 tools/energy.py plan --years 15
+      - name: Compile all services in one S3 image
+        run: .venv/bin/python firmware/low-power/validate.py --esphome .venv/bin/esphome --compile --output .build/low-power
+      - name: Test actual REST handlers against the pinned Home Assistant client
+        run: |
+          IDF_SDK_PATH=$(.venv/bin/python -c 'import json; print(json.load(open(".build/low-power/firmware/low-power/.esphome/build/low-power-hub-proof/build/project_description.json"))["idf_path"])')
+          .venv/bin/python firmware/low-power/test_rest_contract.py --prepared .build/low-power --idf "$IDF_SDK_PATH"
+      - name: Build the matching H2 Thread radio firmware
+        run: |
+          IDF_PATH=$(.venv/bin/python -c 'import json; print(json.load(open(".build/low-power/firmware/low-power/.esphome/build/low-power-hub-proof/build/project_description.json"))["idf_path"])')
+          export IDF_PATH
+          export IDF_TOOLS_PATH="$RUNNER_TEMP/low-power-idf-h2"
+          "$IDF_PATH/install.sh" esp32h2
+          source "$IDF_PATH/export.sh"
+          python "$GITHUB_WORKSPACE/firmware/low-power/prepare_h2.py" "$GITHUB_WORKSPACE/.build/h2" --idf "$IDF_PATH"
+          idf.py -C "$GITHUB_WORKSPACE/.build/h2" -DIDF_TARGET=esp32h2 build
+      - name: Check concept enclosure geometry and exports
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical/low-power -p 'test_*.py'
+          .venv/bin/python mechanical/low-power/build.py --check
+  pcb:
+    name: Carrier and integrated PCB validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      KICAD_IMAGE: kicad/kicad:10.0.6@sha256:18693567392b80da435f9fa952ce3a3e534c66eb5a6033f5b9c80aa3b19dd3ec
+    steps:
+      - name: Audit runner network access
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Fetch pinned official KiCad image
+        run: docker pull "$KICAD_IMAGE"
+      - name: Verify circuit contracts, native ERC, DRC and connectivity
+        run: |
+          docker run --rm --network none --env QT_QPA_PLATFORM=offscreen \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/source,readonly" --workdir /tmp \
+            "$KICAD_IMAGE" bash -euc '
+              cp -R /source /tmp/pcb-source
+              cd /tmp/pcb-source
+              kicad-cli version
+              python3 -m unittest discover -s hardware/low-power/carrier -p "test_*.py"
+              python3 hardware/low-power/carrier/validate.py --check-hashes --out /tmp/carrier-validation
+              python3 -m unittest discover -s hardware/low-power/carrier/mg24-adapter -p "test_*.py"
+              python3 hardware/low-power/carrier/mg24-adapter/validate.py --check-hashes --out /tmp/mg24-adapter-validation
+              python3 -m unittest discover -s hardware/low-power/integrated -p "test_*.py"
+              python3 hardware/low-power/integrated/validate.py
+            '
+  check:
+    name: check
+    if: always()
+    needs: [baseline, low-power, mg24, pcb]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Require all prototype validations
+        env:
+          BASELINE_RESULT: ${{ needs.baseline.result }}
+          LOW_POWER_RESULT: ${{ needs.low-power.result }}
+          MG24_RESULT: ${{ needs.mg24.result }}
+          PCB_RESULT: ${{ needs.pcb.result }}
+        run: |
+          test "$BASELINE_RESULT" = success
+          test "$LOW_POWER_RESULT" = success
+          test "$MG24_RESULT" = success
+          test "$PCB_RESULT" = success
+  mg24:
+    name: MG24 Zigbee NCP and bootloader
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - name: Audit runner network access
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Java and host runtime libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install --no-install-recommends -y openjdk-21-jre-headless make unzip libgl1 libx11-xcb1 libxext6 libdbus-1-3 libfontconfig1 libfreetype6 libglib2.0-0t64 libgssapi-krb5-2 libxcb1 libxkbcommon-x11-0 libusb-1.0-0
+      - name: Fetch verified SDK and tools
+        run: python3 firmware/low-power/mg24/bootstrap_linux.py --output "$RUNNER_TEMP/ha-radio-mg24-tools"
+      - name: Test image and configuration validation
+        run: python3 -m unittest discover -s firmware/low-power/mg24 -p 'test_*.py'
+      - name: Generate exact module and UART configuration
+        run: |
+          python3 firmware/low-power/mg24/generate.py \
+            --sdk "$RUNNER_TEMP/ha-radio-mg24-tools/sdk" \
+            --slc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/slc_cli/slc" \
+            --python-pack "$RUNNER_TEMP/ha-radio-mg24-tools/tools/python" \
+            --gcc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi" \
+            --java-home /usr/lib/jvm/java-21-openjdk-amd64 \
+            --output "$RUNNER_TEMP/ha-radio-mg24-build"
+      - name: Build and verify NCP, bootloader and update images
+        run: |
+          python3 firmware/low-power/mg24/build.py \
+            --project "$RUNNER_TEMP/ha-radio-mg24-build" \
+            --gcc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi" \
+            --commander "$RUNNER_TEMP/ha-radio-mg24-tools/tools/commander/commander"

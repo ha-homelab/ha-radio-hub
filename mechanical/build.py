@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import tempfile
 
 import manifold3d as mf
 import numpy as np
@@ -188,6 +189,27 @@ def mesh_of(node):
     return trimesh.Trimesh(vertices=raw.vert_properties[:,:3],faces=raw.tri_verts,process=True)
 
 
+def assembly_poses(p):
+    """Rigid print-to-assembly poses: (Euler degrees, translation in mm)."""
+    return {
+      'base':((0,0,0),(0,0,0)),
+      'deck':((0,0,0),(p['deck_margin']-5,p['deck_margin']-5,p['deck_z'])),
+      # A physical flip also reverses X. Reflecting only Z would assemble a
+      # different, mirrored part because the ventilation grid is asymmetric.
+      'lid':((0,180,0),(p['width'],0,p['base_height']+p['lid_thickness'])),
+      'radar_carrier':((0,0,0),(p['width']/2-42,p['radar_window_center_y']-26,p['base_height']-11+EPS)),
+      'bme680_pod_base':((0,0,0),(-75,p['bme_exit_y']-18,40)),
+      'bme680_pod_lid':((0,0,0),(-75,p['bme_exit_y']-18,40+p['pod_height']-p['pod_wall']))
+    }
+
+
+def pose_matrix(rotation, translation):
+    matrix=trimesh.transformations.euler_matrix(*np.radians(rotation))
+    matrix[:3,3]=translation
+    assert np.isclose(np.linalg.det(matrix[:3,:3]),1), 'Assembly poses must be rigid, not reflected'
+    return matrix
+
+
 def preview(meshes,p,out):
     import matplotlib
     matplotlib.use('Agg')
@@ -199,37 +221,43 @@ def preview(meshes,p,out):
     # Exploded render from actual generated meshes, not a conceptual image.
     fig=plt.figure(figsize=(14,9),facecolor='#f4f7fa')
     ax=fig.add_axes([0.02,0.04,0.74,0.86],projection='3d',facecolor='#f4f7fa')
-    scene=[('base',(0,0,0),navy,0.30),('deck',(p['deck_margin']-5,p['deck_margin']-5,94),teal,.85),
-           ('lid',(0,0,139),'#c8d6e4',.68),('radar_carrier',(p['width']/2-42,p['radar_window_center_y']-26,122),gold,1),
-           ('bme680_pod_base',(-75,p['bme_exit_y']-18,40),teal,.85),('bme680_pod_lid',(-75,p['bme_exit_y']-18,74),'#c8d6e4',1)]
-    for name,offset,color,alpha in scene:
-        vertices=meshes[name].vertices.copy()
-        if name=='lid':
-            vertices[:,2]*=-1
-        vertices+=offset
+    scene=[('base',0,navy,0.30),('deck',54,teal,.85),
+           ('lid',59,'#c8d6e4',.68),('radar_carrier',56,gold,1),
+           ('bme680_pod_base',0,teal,.85),('bme680_pod_lid',16,'#c8d6e4',1)]
+    poses=assembly_poses(p)
+    for name,lift,color,alpha in scene:
+        rotation,translation=poses[name]
+        matrix=pose_matrix(rotation,translation)
+        matrix[2,3]+=lift
+        vertices=trimesh.transform_points(meshes[name].vertices,matrix)
         collection=Poly3DCollection(vertices[meshes[name].faces],facecolor=color,edgecolor='none',alpha=alpha)
         ax.add_collection3d(collection)
-    ax.set(xlim=(-85,p['width']),ylim=(0,p['depth']),zlim=(0,145))
-    ax.set_box_aspect((p['width']+85,p['depth'],170));ax.view_init(elev=27,azim=-120);ax.set_axis_off()
+    preview_height=p['base_height']+p['lid_thickness']+65
+    ax.set(xlim=(-85,p['width']),ylim=(0,p['depth']),zlim=(0,preview_height))
+    ax.set_box_aspect((p['width']+85,p['depth'],preview_height+25));ax.view_init(elev=27,azim=-120);ax.set_axis_off()
     fig.text(.04,.94,'HA RADIO HUB',fontsize=24,fontweight='bold',color=navy)
     fig.text(.04,.898,'DRAFT V0  /  printable enclosure and two-level arrangement',fontsize=12,color='#456078')
-    text='240 × 200 × 80 mm\nMain enclosure\n\n01  Vented lid\n      1.2 mm radar window\n\n02  LD2450 carrier\n      Insulated ties; fit to verify\n\n03  Removable cable tray\n      z = 40 mm assembled\n\n04  Base + mounting pillars\n      PoE / Linux / switch below\n\n05  Ambient BME680 pod\n      45 × 36 × 20 mm\n\nSTL geometry validated\nComponent / RF / thermal fit pending'
+    text=(f"{p['width']:g} × {p['depth']:g} × {p['base_height']+p['lid_thickness']:g} mm\nMain enclosure\n\n"
+          f"01  Vented lid\n      {p['radar_skin']:g} mm radar window\n\n02  LD2450 carrier\n      Insulated ties; fit to verify\n\n"
+          f"03  Removable cable tray\n      z = {p['deck_z']:g} mm assembled\n\n04  Base + mounting pillars\n      PoE / Linux / switch below\n\n"
+          f"05  Ambient BME680 pod\n      {p['pod_width']:g} × {p['pod_depth']:g} × {p['pod_height']:g} mm\n\n"
+          'STL geometry validated\nComponent / RF / thermal fit pending')
     fig.text(.76,.80,text,va='top',linespacing=1.65,fontsize=11,color=navy)
     fig.savefig(out/'exploded-preview.png',dpi=160);plt.close(fig)
     # Practical envelope plan, every box denotes an allocation, not actual PCB CAD.
     fig,axes=plt.subplots(1,2,figsize=(14,7.8),facecolor='#f4f7fa')
     zones=[[
-      (26,99,72,90,'Raspberry Pi 4\nrotated 90 degrees\nports towards cable lane'),
-      (116,103,110,75,'TL-SF1005D switch\n104 × 70 case'),
-      (22,27,108,34,'5 V PoE splitter\n102.5 × 29.6 case'),
-      (139,28,75,35,'Fused 5 V\ndistribution'),
-      (22,66,202,30,'Cable lane: Ethernet / USB / 5 V'),
+      (26,105,72,90,'Raspberry Pi 4\nrotated 90 degrees\nports towards cable lane'),
+      (106,105,110,75,'TL-SF1005D switch\n104 × 70 case'),
+      (60,6,108,34,'5 V PoE splitter\ninput left / tails right'),
+      (139,40,75,35,'Fused 5 V\ndistribution'),
+      (22,75,202,30,'30 mm cable lane: Ethernet / USB / 5 V'),
     ],[
       (22,104,91,64,'ESP32-S3-ETH\n+ ZAC93 allocation'),
-      (128,104,90,64,'RF S3-ETH or NodeMCU\n+ CC1101 allocation'),
+      (128,104,90,64,'RF ESP32-S3-ETH\n+ CC1101 allocation'),
       (22,76,105,23,'MG24 stick + lead'),
       (148,76,68,23,'Thread PCA10059'),
-      (78,14,84,52,'LD2450 carrier\non lid above this zone'),
+      (p['width']/2-42,p['radar_window_center_y']-26,84,52,'LD2450 carrier\non lid above this zone'),
     ]]
     colors=[teal,'#6596bd',gold,'#bda6d2','#d7e0e8']
     for ai,(ax,items) in enumerate(zip(axes,zones)):
@@ -241,27 +269,32 @@ def preview(meshes,p,out):
         for x in (p['deck_margin'],p['width']-p['deck_margin']):
             for y in (p['deck_margin'],p['depth']-p['deck_margin']):
                 ax.add_patch(plt.Circle((x,y),4.5,fc=navy))
-        ax.text(120,204,'BACK: PoE cable / service lane',ha='center',fontsize=9,color=navy)
-        ax.set_title(('LOWER LAYER · floor z = 3 mm','UPPER LAYER · tray z = 40–43 mm')[ai],fontsize=13,color=navy,pad=22)
+        if ai == 1:
+            # This opening cuts into both allocation boxes: no mounting surface
+            # exists here. Keep its actual projected outline visible in the plan.
+            ax.add_patch(Rectangle((p['width']/2-15,p['depth']-p['deck_margin']-22),
+                                   30,27,fc='white',ec=navy,hatch='///',lw=1))
+            ax.annotate('Open cable chase',xy=(p['width']/2,p['depth']-p['deck_margin']-10),
+                        xytext=(p['width']/2,p['depth']-5),ha='center',fontsize=8,color=navy,
+                        arrowprops={'arrowstyle':'-','color':navy})
+        ax.text(p['width']/2,p['depth']+4,'BACK: PoE cable / service lane',ha='center',fontsize=9,color=navy)
+        ax.set_title((f"LOWER LAYER · floor z = {p['floor']:g} mm",
+                      f"UPPER LAYER · tray z = {p['deck_z']:g}–{p['deck_z']+p['deck_thickness']:g} mm")[ai],fontsize=13,color=navy,pad=22)
         ax.set_xlabel('x / mm');ax.set_ylabel('y / mm');ax.grid(alpha=.13)
     fig.suptitle('DRAFT ALLOCATION PLAN · all cables and antenna clearance need a physical mock-up',fontsize=15,color=navy)
     fig.text(.05,.04,'Antenna elements must stay clear of copper, switch casing and cables. Keep the BME680 pod outside the heat plume.',color=navy,fontsize=10)
     fig.tight_layout(rect=(0,.08,1,.94));fig.savefig(out/'layout-plan.png',dpi=160);plt.close(fig)
 
 
-def main():
-    parser=argparse.ArgumentParser()
-    parser.add_argument('--parameters',type=Path,default=ROOT/'parameters.json')
-    parser.add_argument('--output',type=Path,default=ROOT/'generated')
-    parser.add_argument('--no-preview',action='store_true')
-    args=parser.parse_args()
-    p=json.loads(args.parameters.read_text())
-    args.output.mkdir(parents=True,exist_ok=True)
+def generate(p,output,render_preview=True):
+    output.mkdir(parents=True,exist_ok=True)
     nodes=models(p); meshes={};report={'status':p['status'],'units':'mm','parts':{}}
+    report['inputs']={'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                      'parameters':p}
     preamble='// Generated from parameters.json by build.py. Edit parameters.json, then rebuild.\n// CSG and STL share the same source. See docs/enclosure.md. Units mm.\n'
     for name,node in nodes.items():
         mesh=mesh_of(node);meshes[name]=mesh
-        path=args.output/f'{name}.stl';mesh.export(path)
+        path=output/f'{name}.stl';mesh.export(path)
         # Validate the exported binary STL again, not only the in-memory manifold.
         reread=trimesh.load_mesh(path,process=True)
         bodies=len(reread.split(only_watertight=False))
@@ -271,23 +304,14 @@ def main():
                 'bounds_mm':np.round(reread.bounds,3).tolist(),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
         assert detail['watertight'] and detail['winding_consistent'] and bodies==1 and detail['positive_volume'],(name,detail)
         report['parts'][name]=detail
-        (args.output/f'{name}.scad').write_text(preamble+node.scad+'\n')
+        (output/f'{name}.scad').write_text(preamble+node.scad+'\n')
     report['checks_not_performed']=['physical component and cable fit','actual FDM print fit','heat-set insert pull-out',
       'RF coexistence / radiation efficiency','LD2450 radome transmission','thermal soak under full load','wall fastener load test']
     # Check printable pieces in the assembled transform, excluding fasteners.
-    transforms={
-      'base':(0,0,0),
-      'deck':(p['deck_margin']-5,p['deck_margin']-5,p['deck_z']),
-      'lid':(0,0,p['base_height']+p['lid_thickness']),
-      'radar_carrier':(p['width']/2-42,p['radar_window_center_y']-26,p['base_height']-11+EPS),
-      'bme680_pod_base':(-75,p['bme_exit_y']-18,40),
-      'bme680_pod_lid':(-75,p['bme_exit_y']-18,40+p['pod_height']-p['pod_wall'])
-    }
+    poses=assembly_poses(p)
     assembled={}
-    for name,offset in transforms.items():
-        solid=nodes[name].solid
-        if name=='lid': solid=solid.mirror((0,0,1))
-        assembled[name]=solid.translate(offset)
+    for name,(rotation,offset) in poses.items():
+        assembled[name]=nodes[name].solid.rotate(rotation).translate(offset)
     collision_report={}
     names=list(assembled)
     for i,name in enumerate(names):
@@ -296,29 +320,129 @@ def main():
             collision_report[f'{name}/{other}']=round(volume,6)
             assert volume < 0.001,(name,other,volume)
     report['assembled_intersection_volume_mm3']=collision_report
-    (args.output/'mesh-report.json').write_text(json.dumps(report,indent=2)+'\n')
     # The OpenSCAD assembly transforms also follow parameters.json.
     scad=['// Visualization only; print individual parts, not this assembly.']
     scene=trimesh.Scene()
     colors={'base':[36,66,90,180],'deck':[25,167,165,255],'lid':[196,210,225,180],
             'radar_carrier':[241,186,85,255],'bme680_pod_base':[25,167,165,255],
             'bme680_pod_lid':[196,210,225,255]}
-    for name,offset in transforms.items():
-        mirror='mirror([0,0,1]) ' if name=='lid' else ''
-        scad.append(f'translate({list(offset)}) {mirror}import("{name}.stl");')
+    for name,(rotation,offset) in poses.items():
+        scad.append(f'translate({list(offset)}) rotate({list(rotation)}) import("{name}.stl");')
         part=meshes[name].copy()
-        matrix=np.eye(4)
-        if name=='lid': matrix[2,2]=-1
-        matrix[:3,3]=offset
-        part.apply_transform(matrix)
+        part.apply_transform(pose_matrix(rotation,offset))
         # glTF uses metres. STL and all source parameters remain millimetres.
         part.apply_scale(0.001)
         part.visual.vertex_colors=np.tile(colors[name],(len(part.vertices),1))
         scene.add_geometry(part,node_name=name,geom_name=name)
-    (args.output/'assembly.scad').write_text('\n'.join(scad)+'\n')
-    scene.export(args.output/'assembly.glb')
-    if not args.no_preview:preview(meshes,p,args.output)
-    print(json.dumps({'parts':len(nodes),'all_watertight':True,'single_body_each':True,'output':str(args.output)},indent=2))
+    (output/'assembly.scad').write_text('\n'.join(scad)+'\n')
+    scene.export(output/'assembly.glb')
+    if render_preview:preview(meshes,p,output)
+    artifacts=[f'{name}.{extension}' for name in nodes for extension in ('stl','scad')]
+    artifacts+=['assembly.scad','assembly.glb']
+    if render_preview:artifacts+=['exploded-preview.png','layout-plan.png']
+    report['artifacts']={name:hashlib.sha256((output/name).read_bytes()).hexdigest()
+                         for name in sorted(artifacts)}
+    (output/'mesh-report.json').write_text(json.dumps(report,indent=2)+'\n')
+    return report
+
+
+class StaleAssets(ValueError):
+    """Checked-in generated artifacts do not represent the current CAD source."""
+
+
+def solid_from_mesh(mesh,name):
+    if (not mesh.is_watertight or not mesh.is_winding_consistent or mesh.volume<=0
+            or len(mesh.split(only_watertight=False))!=1):
+        raise StaleAssets(f'{name}: expected one closed, consistently oriented positive-volume solid')
+    solid=mf.Manifold(mf.Mesh(np.asarray(mesh.vertices,dtype=np.float32),
+                              np.asarray(mesh.faces,dtype=np.uint32)))
+    if solid.status()!=mf.Error.NoError:
+        raise StaleAssets(f'{name}: mesh cannot be compared as a manifold')
+    return solid
+
+
+def compare_mesh(actual,expected,name):
+    """Compare solids, accepting triangle ordering and tiny exporter rounding."""
+    left=solid_from_mesh(actual,name)
+    right=solid_from_mesh(expected,name)
+    if not np.allclose(actual.bounds,expected.bounds,rtol=0,atol=0.0001):
+        raise StaleAssets(f'{name}: stale geometry bounds')
+    difference=float((left-right).volume()+(right-left).volume())
+    tolerance=max(0.01,float(right.volume())*0.000001)
+    if difference>tolerance:
+        raise StaleAssets(f'{name}: stale geometry; symmetric difference {difference:.6g} mm3 exceeds {tolerance:.6g} mm3')
+
+
+def scene_meshes(path):
+    scene=trimesh.load(path,force='scene')
+    parts={}
+    for node in scene.graph.nodes_geometry:
+        transform,geometry=scene.graph[node]
+        mesh=scene.geometry[geometry].copy()
+        mesh.apply_transform(transform)
+        mesh.apply_scale(1000)  # glTF metres -> comparison units mm.
+        parts[node]=mesh
+    return parts
+
+
+def check_assets(actual,expected):
+    """Check committed exports against a separately generated current model."""
+    want=json.loads((expected/'mesh-report.json').read_text())
+    names=set(want['artifacts'])|{'mesh-report.json'}
+    if not actual.is_dir() or {p.name for p in actual.iterdir()}!=names:
+        raise StaleAssets('Generated asset inventory differs; rebuild the complete output directory')
+    if any(not (actual/name).is_file() or (actual/name).is_symlink() for name in names):
+        raise StaleAssets('Generated assets must be regular files')
+    have=json.loads((actual/'mesh-report.json').read_text())
+    if have.get('inputs')!=want['inputs']:
+        raise StaleAssets('Generated assets use stale CAD source or parameters; rebuild them')
+    if set(have.get('artifacts',{}))!=set(want['artifacts']):
+        raise StaleAssets('Reported artifact inventory differs; rebuild it')
+    for name,checksum in have['artifacts'].items():
+        if hashlib.sha256((actual/name).read_bytes()).hexdigest()!=checksum:
+            raise StaleAssets(f'{name}: content differs from the generated report')
+    for name in sorted(names):
+        if name.endswith('.scad') and (actual/name).read_text()!=(expected/name).read_text():
+            raise StaleAssets(f'{name}: stale CSG source')
+        if name.endswith('.stl'):
+            stem=Path(name).stem
+            if have.get('parts',{}).get(stem,{}).get('sha256')!=have['artifacts'][name]:
+                raise StaleAssets(f'{name}: inconsistent STL checksum in mesh report')
+            # Byte equality is a fast path, never a requirement across platforms.
+            if have['artifacts'][name]!=want['artifacts'][name]:
+                compare_mesh(trimesh.load_mesh(actual/name,process=True),
+                             trimesh.load_mesh(expected/name,process=True),name)
+    if have['artifacts']['assembly.glb']!=want['artifacts']['assembly.glb']:
+        actual_scene=scene_meshes(actual/'assembly.glb')
+        expected_scene=scene_meshes(expected/'assembly.glb')
+        if set(actual_scene)!=set(expected_scene):
+            raise StaleAssets('assembly.glb: stale part inventory')
+        for name,mesh in actual_scene.items():
+            compare_mesh(mesh,expected_scene[name],f'assembly.glb/{name}')
+
+
+def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--parameters',type=Path,default=ROOT/'parameters.json')
+    parser.add_argument('--output',type=Path,default=ROOT/'generated')
+    parser.add_argument('--no-preview',action='store_true')
+    parser.add_argument('--check',action='store_true',help='Verify existing exports without rewriting them')
+    args=parser.parse_args()
+    if args.check and args.no_preview:
+        parser.error('--check requires the complete asset set, including previews')
+    p=json.loads(args.parameters.read_text())
+    if args.check:
+        with tempfile.TemporaryDirectory(prefix='ha-radio-hub-cad-check-') as directory:
+            expected=Path(directory)
+            report=generate(p,expected)
+            try:
+                check_assets(args.output,expected)
+            except (StaleAssets,OSError,KeyError,ValueError) as error:
+                parser.exit(1,f'CAD asset check failed: {error}\n')
+        print(json.dumps({'parts':len(report['parts']),'generated_assets_current':True,'output':str(args.output)},indent=2))
+    else:
+        report=generate(p,args.output,not args.no_preview)
+        print(json.dumps({'parts':len(report['parts']),'all_watertight':True,'single_body_each':True,'output':str(args.output)},indent=2))
 
 
 if __name__=='__main__':main()

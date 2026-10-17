@@ -1,0 +1,4934 @@
+{
+  "schema_version": 1,
+  "revision": "LP-P0",
+  "status": "engineering_connection_contract_not_fabrication_release",
+  "checked_date": "2026-10-17",
+  "components": [
+    {
+      "id": "s3",
+      "order": 0,
+      "title": "S3 host",
+      "kind": "controller",
+      "model": "ESP32-S3-WROOM-1-N16R8",
+      "pins": [
+        {
+          "id": "GPIO13",
+          "label": "GPIO13 / w5500_sclk",
+          "gpio": 13,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "21",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO11",
+          "label": "GPIO11 / w5500_mosi",
+          "gpio": 11,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "19",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO12",
+          "label": "GPIO12 / w5500_miso",
+          "gpio": 12,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "20",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO14",
+          "label": "GPIO14 / w5500_cs",
+          "gpio": 14,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "22",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO10",
+          "label": "GPIO10 / w5500_irq",
+          "gpio": 10,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "18",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO9",
+          "label": "GPIO9 / w5500_reset",
+          "gpio": 9,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "17",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO7",
+          "label": "GPIO7 / shared_spi_sclk",
+          "gpio": 7,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "7",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO8",
+          "label": "GPIO8 / shared_spi_mosi",
+          "gpio": 8,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "12",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO6",
+          "label": "GPIO6 / shared_spi_miso",
+          "gpio": 6,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO15",
+          "label": "GPIO15 / cc1101_cs",
+          "gpio": 15,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "8",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO4",
+          "label": "GPIO4 / cc1101_gdo0_tx",
+          "gpio": 4,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "4",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO5",
+          "label": "GPIO5 / cc1101_gdo2_rx",
+          "gpio": 5,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO41",
+          "label": "GPIO41 / sc16_cs",
+          "gpio": 41,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "34",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO42",
+          "label": "GPIO42 / sc16_irq",
+          "gpio": 42,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "35",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO43",
+          "label": "GPIO43 / h2_tx",
+          "gpio": 43,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "37",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO44",
+          "label": "GPIO44 / h2_rx",
+          "gpio": 44,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "36",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO47",
+          "label": "GPIO47 / h2_reset",
+          "gpio": 47,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "24",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO48",
+          "label": "GPIO48 / h2_boot",
+          "gpio": 48,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "25",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO17",
+          "label": "GPIO17 / mg24_tx",
+          "gpio": 17,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "10",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO18",
+          "label": "GPIO18 / mg24_rx",
+          "gpio": 18,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "11",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO16",
+          "label": "GPIO16 / mg24_rts",
+          "gpio": 16,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "9",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO21",
+          "label": "GPIO21 / mg24_cts",
+          "gpio": 21,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "23",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO39",
+          "label": "GPIO39 / ld2450_tx",
+          "gpio": 39,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "32",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO40",
+          "label": "GPIO40 / ld2450_rx",
+          "gpio": 40,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "33",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO1",
+          "label": "GPIO1 / bme680_sda",
+          "gpio": 1,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "39",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO2",
+          "label": "GPIO2 / bme680_scl",
+          "gpio": 2,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "38",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO0",
+          "label": "GPIO0",
+          "gpio": 0,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "27",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO19",
+          "label": "GPIO19",
+          "gpio": 19,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "13",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO20",
+          "label": "GPIO20",
+          "gpio": 20,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "14",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "EN",
+          "label": "EN / reset active-low",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "3V3",
+          "label": "3V3",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND1",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND40",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "40",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND41",
+          "label": "EPAD / GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "41",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "s3"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        }
+      ],
+      "notes": [
+        "Bare-module pad numbers only. Actual DevKit header positions are unknown. Isolate onboard USB-UART from GPIO43/44 and LED from GPIO48 before bench wiring.",
+        "Native USB GPIO19/20 are reserved; they are not UART0."
+      ]
+    },
+    {
+      "id": "w5500",
+      "order": 1,
+      "title": "Ethernet",
+      "kind": "ethernet",
+      "model": "WIZnet WIZ850io",
+      "pins": [
+        {
+          "id": "MOSI",
+          "label": "MOSI",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J1.3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "SCLK",
+          "label": "SCLK",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J1.4",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "CS",
+          "label": "SCNn / CS active-low",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J1.5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "IRQ",
+          "label": "INTn active-low",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J1.6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "RESET",
+          "label": "RSTn active-low",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J2.5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "MISO",
+          "label": "MISO",
+          "gpio": null,
+          "direction": "tri_state_output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J2.6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "GND1",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J1.1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "GND2",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J1.2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "GND3",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J2.1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "3V3A",
+          "label": "3V3D",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J2.2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "3V3B",
+          "label": "3V3D",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J2.3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          }
+        },
+        {
+          "id": "NC",
+          "label": "NC",
+          "gpio": null,
+          "direction": "no_connect",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_header",
+            "position": "J2.4",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "wiz"
+            ]
+          },
+          "termination": "leave_unconnected"
+        }
+      ],
+      "notes": [
+        "This pinout is for WIZ850io, not an arbitrary W5500 breakout. All three GND contacts and both 3V3D contacts connect. J2.4 stays unconnected.",
+        "PoE primary inputs must never connect to these SPI headers."
+      ]
+    },
+    {
+      "id": "h2",
+      "order": 2,
+      "title": "Thread RCP",
+      "kind": "radio",
+      "model": "ESP32-H2-MINI-1-H4S",
+      "pins": [
+        {
+          "id": "GPIO23",
+          "label": "GPIO23",
+          "gpio": 23,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "30",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO24",
+          "label": "GPIO24",
+          "gpio": 24,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "31",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO9",
+          "label": "GPIO9",
+          "gpio": 9,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "23",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO8",
+          "label": "GPIO8",
+          "gpio": 8,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "22",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GPIO25",
+          "label": "GPIO25",
+          "gpio": 25,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "25",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "EN",
+          "label": "EN / reset active-low",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "8",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "3V3",
+          "label": "3V3",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND1",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND2",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND11",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "11",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND14",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "14",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND36",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "36",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND37",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "37",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND38",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "38",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND39",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "39",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND40",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "40",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND41",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "41",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND42",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "42",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND43",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "43",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND44",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "44",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND45",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "45",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND46",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "46",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND47",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "47",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND48",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "48",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND49",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "49",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND50",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "50",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND51",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "51",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND52",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "52",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "GND53",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "53",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          }
+        },
+        {
+          "id": "VBAT",
+          "label": "VBAT / internally connected by default",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "15",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "h2"
+            ]
+          },
+          "bench_header": {
+            "position": null,
+            "status": "unknown",
+            "reason": "Actual DevKit revision/header orientation not inspected; module pad is not a board-header position."
+          },
+          "termination": "leave_externally_unconnected"
+        }
+      ],
+      "notes": [
+        "UART0 at H2, UART2 at S3; 460800 8N1, no hardware flow control.",
+        "H2 DevKit USB-UART TX must be disconnected from GPIO23. VBAT is internally connected to 3V3 by default; no external battery is used."
+      ]
+    },
+    {
+      "id": "mg24",
+      "order": 3,
+      "title": "Zigbee NCP",
+      "kind": "radio",
+      "model": "MGM240PA22VNA3",
+      "pins": [
+        {
+          "id": "RX",
+          "label": "PA05 / NCP RX",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "12",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "TX",
+          "label": "PA06 / NCP TX",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "13",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "CTS",
+          "label": "PB01 / NCP CTS active-low",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "RTS",
+          "label": "PB00 / NCP RTS active-low",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "BOOT",
+          "label": "PA00 / BOOT active-low",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "7",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "SWCLK",
+          "label": "PA01 / SWCLK",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "8",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "SWDIO",
+          "label": "PA02 / SWDIO",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "9",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "RESET",
+          "label": "RESETn",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "31",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "VDD",
+          "label": "VDD",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "15",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND1",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND14",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "14",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND23",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "23",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND32",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "32",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND34",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "34",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND35",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "35",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        },
+        {
+          "id": "GND36",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "36",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "mg24"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "Custom NCP and bootloader config: USART0 115200 8N1 RTS/CTS; factory firmware is not assumed compatible.",
+        "RESETn has an internal DVDD pull-up: only pull low/release, never add a 3.3 V pull-up."
+      ]
+    },
+    {
+      "id": "sc16",
+      "order": 4,
+      "title": "Z-Wave UART bridge",
+      "kind": "bridge",
+      "model": "NXP SC16IS752IPW,128 / TSSOP28",
+      "pins": [
+        {
+          "id": "RTSA",
+          "label": "RTSA",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "CTSA",
+          "label": "CTSA",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "TXA",
+          "label": "TXA",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "RXA",
+          "label": "RXA",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "4",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "RESET",
+          "label": "RESET",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "XTAL1",
+          "label": "XTAL1",
+          "gpio": null,
+          "direction": "analog_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "XTAL2",
+          "label": "XTAL2",
+          "gpio": null,
+          "direction": "analog_output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "7",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "VDD",
+          "label": "VDD",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "8",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "SPI_SELECT",
+          "label": "SPI_SELECT",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "9",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "CS",
+          "label": "CS",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "10",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "SI",
+          "label": "SI",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "11",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "SO",
+          "label": "SO",
+          "gpio": null,
+          "direction": "tri_state_output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "12",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "SCLK",
+          "label": "SCLK",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "13",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "SDA_UNUSED",
+          "label": "SDA_UNUSED",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "14",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "IRQ",
+          "label": "IRQ",
+          "gpio": null,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "15",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "CTSB",
+          "label": "CTSB",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "16",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "RTSB",
+          "label": "RTSB",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "17",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "GPIO0",
+          "label": "GPIO0",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "18",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO1",
+          "label": "GPIO1",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "19",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO2",
+          "label": "GPIO2",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "20",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO3",
+          "label": "GPIO3",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "21",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "22",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "TXB",
+          "label": "TXB",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "23",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "RXB",
+          "label": "RXB",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "24",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO4",
+          "label": "GPIO4",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "25",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO5",
+          "label": "GPIO5",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "26",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO6",
+          "label": "GPIO6",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "27",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        },
+        {
+          "id": "GPIO7",
+          "label": "GPIO7",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "28",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "sc16"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "These are TSSOP28 package pins, not HVQFN32 pins or breakout-header positions.",
+        "SPI mode 0, 4 MHz maximum; channel A 115200 8N1, crystal 3.6864 MHz, prescaler 1, divisor 2."
+      ]
+    },
+    {
+      "id": "zac93",
+      "order": 5,
+      "title": "Z-Wave radio",
+      "kind": "radio",
+      "model": "Zooz ZAC93 / existing regional variant",
+      "pins": [
+        {
+          "id": "3V3",
+          "label": "3V3",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "1",
+            "status": "project_contract_pending_physical_check",
+            "source_ids": [
+              "zac_pinout"
+            ]
+          }
+        },
+        {
+          "id": "GND6",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": "6",
+            "status": "project_contract_pending_physical_check",
+            "source_ids": [
+              "zac_pinout"
+            ]
+          }
+        },
+        {
+          "id": "GND9",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": "9",
+            "status": "project_contract_pending_physical_check",
+            "source_ids": [
+              "zac_pinout"
+            ]
+          }
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "8",
+            "status": "project_contract_pending_physical_check",
+            "source_ids": [
+              "zac_pinout"
+            ]
+          }
+        },
+        {
+          "id": "TX",
+          "label": "TX",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": "10",
+            "status": "project_contract_pending_physical_check",
+            "source_ids": [
+              "zac_pinout"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "Project header numbering retained; confirm connector orientation and hardware revision on the real module. Manufacturer pinout image was not retrievable in this review.",
+        "Leave pins 2/3/4/5/7 unconnected; pin 7 function differs by hardware revision."
+      ]
+    },
+    {
+      "id": "cc1101",
+      "order": 6,
+      "title": "433.92 MHz radio",
+      "kind": "radio",
+      "model": "Existing CC1101 module / exact board unknown",
+      "pins": [
+        {
+          "id": "SCLK",
+          "label": "SCLK",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "SI",
+          "label": "SI",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "SO",
+          "label": "SO",
+          "gpio": null,
+          "direction": "tri_state_output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "CS",
+          "label": "CS",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "GDO0",
+          "label": "GDO0",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "GDO2",
+          "label": "GDO2",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "VCC",
+          "label": "VCC",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "cc"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "Module header positions are UNKNOWN. Follow the actual board labels and schematic, never the CC1101 chip pin numbers.",
+        "GDO0 is driven by CC1101 during RX and sampled during TX; S3 open-drain must release during RX. GDO2 remains the separate RX data output."
+      ]
+    },
+    {
+      "id": "ld2450",
+      "order": 7,
+      "title": "24 GHz radar",
+      "kind": "sensor",
+      "model": "Hi-Link HLK-LD2450",
+      "pins": [
+        {
+          "id": "RX",
+          "label": "RX",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "ld"
+            ]
+          }
+        },
+        {
+          "id": "TX",
+          "label": "TX",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "ld"
+            ]
+          }
+        },
+        {
+          "id": "5V",
+          "label": "5V",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 5,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "ld"
+            ]
+          }
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_header",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "ld"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "5 V supply, 3.3 V UART, 256000 8N1. Connector orientation/numbering remains unknown until the actual module/cable is checked."
+      ]
+    },
+    {
+      "id": "bme680",
+      "order": 8,
+      "title": "Ambient sensor",
+      "kind": "sensor",
+      "model": "Adafruit BME680 STEMMA QT / 3660",
+      "pins": [
+        {
+          "id": "VIN",
+          "label": "VIN",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "bme_pinout"
+            ]
+          }
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "bme_pinout"
+            ]
+          }
+        },
+        {
+          "id": "SDA",
+          "label": "SDA",
+          "gpio": null,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "bme_pinout"
+            ]
+          }
+        },
+        {
+          "id": "SCL",
+          "label": "SCL",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": null,
+            "status": "unknown",
+            "source_ids": [
+              "bme_pinout"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "I2C 100 kHz, address 0x77. Use VIN at 3.3 V; do not wire the regulator-output 3Vo pad as an input.",
+        "SDA/SCL pull-ups are fitted on the breakout; inspect total parallel resistance. Exact cable contact orientation is not inferred from wire color."
+      ]
+    },
+    {
+      "id": "supervisor",
+      "order": 9,
+      "title": "SC16 reset supervisor",
+      "kind": "support",
+      "model": "TI TPS3808G33DBVR / SOT-23-6",
+      "pins": [
+        {
+          "id": "RESET",
+          "label": "RESET",
+          "gpio": null,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "reset"
+            ]
+          }
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "reset"
+            ]
+          }
+        },
+        {
+          "id": "MR",
+          "label": "MR",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "reset"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "CT",
+          "label": "CT",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "4",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "reset"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "SENSE",
+          "label": "SENSE",
+          "gpio": null,
+          "direction": "analog_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "reset"
+            ]
+          }
+        },
+        {
+          "id": "VDD",
+          "label": "VDD",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "package_pin",
+            "position": "6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "reset"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "G33 threshold 3.07 V. CT open selects 20 ms delay; MR has an internal pull-up. Package is DBV/SOT-23, not DRV/WSON."
+      ]
+    },
+    {
+      "id": "pd",
+      "order": 10,
+      "title": "Isolated PoE supply",
+      "kind": "power",
+      "model": "Silvertel Ag97005-FL on EvalPoE for bench",
+      "pins": [
+        {
+          "id": "VINA",
+          "label": "VINA",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "1",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "separate_poe_frontend_required"
+        },
+        {
+          "id": "VINB",
+          "label": "VINB",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "separate_poe_frontend_required"
+        },
+        {
+          "id": "VINC",
+          "label": "VINC",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "3",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "separate_poe_frontend_required"
+        },
+        {
+          "id": "VIND",
+          "label": "VIND",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "4",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "separate_poe_frontend_required"
+        },
+        {
+          "id": "CP1",
+          "label": "CP1",
+          "gpio": null,
+          "direction": "passive",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "5",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "CP2",
+          "label": "CP2",
+          "gpio": null,
+          "direction": "passive",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "6",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "7",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          }
+        },
+        {
+          "id": "5V",
+          "label": "5V",
+          "gpio": null,
+          "direction": "power_output",
+          "voltage_v": 5,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "8",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          }
+        },
+        {
+          "id": "ADJ",
+          "label": "ADJ",
+          "gpio": null,
+          "direction": "analog_input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "9",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "leave_unconnected"
+        },
+        {
+          "id": "IC",
+          "label": "IC",
+          "gpio": null,
+          "direction": "no_connect",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "module_pad",
+            "position": "10",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pd"
+            ]
+          },
+          "termination": "leave_unconnected"
+        }
+      ],
+      "notes": [
+        "Only the isolated secondary is connected in this low-voltage model. VINA-D primary inputs require the separate verified PoE front-end; never connect them to logic GND or WIZ850io SPI headers.",
+        "Class 0: CP1/CP2 open; nominal output: ADJ open; IC pin 10 must remain unconnected. EvalPoE terminal positions must be checked on its actual revision."
+      ]
+    },
+    {
+      "id": "buck",
+      "order": 11,
+      "title": "Shared 3.3 V regulator",
+      "kind": "power",
+      "model": "Pololu D24V22F3 / item 2857",
+      "pins": [
+        {
+          "id": "VIN",
+          "label": "VIN",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 5,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": "VIN",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pololu_dimensions"
+            ],
+            "center_mm": [
+              6.35,
+              16.53
+            ],
+            "coordinate_system": "Top view, board top-left origin; main five-pin row along bottom. Names are silk labels, not numerical pin identifiers."
+          }
+        },
+        {
+          "id": "VOUT",
+          "label": "VOUT",
+          "gpio": null,
+          "direction": "power_output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": "VOUT",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pololu_dimensions"
+            ],
+            "center_mm": [
+              11.43,
+              16.53
+            ],
+            "coordinate_system": "Top view, board top-left origin; main five-pin row along bottom. Names are silk labels, not numerical pin identifiers."
+          }
+        },
+        {
+          "id": "GND",
+          "label": "GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": "GND",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pololu_dimensions"
+            ],
+            "center_mm": [
+              8.89,
+              16.53
+            ],
+            "coordinate_system": "Top view, board top-left origin; main five-pin row along bottom. Names are silk labels, not numerical pin identifiers."
+          }
+        },
+        {
+          "id": "EN",
+          "label": "EN",
+          "gpio": null,
+          "direction": "input",
+          "voltage_v": null,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": "EN",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pololu_dimensions"
+            ],
+            "center_mm": [
+              3.81,
+              16.53
+            ],
+            "coordinate_system": "Top view, board top-left origin; main five-pin row along bottom. Names are silk labels, not numerical pin identifiers."
+          },
+          "termination": "leave_unconnected_internal_pullup"
+        },
+        {
+          "id": "PG",
+          "label": "PG",
+          "gpio": null,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": "PG",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pololu_dimensions"
+            ],
+            "center_mm": [
+              1.27,
+              16.53
+            ],
+            "coordinate_system": "Top view, board top-left origin; main five-pin row along bottom. Names are silk labels, not numerical pin identifiers."
+          },
+          "termination": "Leave unconnected; open-drain power-good output, not a power input."
+        },
+        {
+          "id": "GND2",
+          "label": "GND2",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "board_silkscreen",
+            "position": "GND2",
+            "status": "datasheet_verified",
+            "source_ids": [
+              "pololu_dimensions"
+            ],
+            "center_mm": [
+              1.27,
+              5.84
+            ],
+            "coordinate_system": "Top view, board top-left origin; main five-pin row along bottom. Names are silk labels, not numerical pin identifiers."
+          }
+        }
+      ],
+      "notes": [
+        "Feed VIN from the fused isolated 5 V rail. Terminal names are authoritative; no numbered header position is assumed. EN is left at its default enabled state."
+      ]
+    },
+    {
+      "id": "service",
+      "order": 12,
+      "title": "Service connections",
+      "kind": "service",
+      "model": "Unassigned connectors/test points / no released footprint",
+      "pins": [
+        {
+          "id": "SWCLK",
+          "label": "MG24 SWCLK",
+          "gpio": null,
+          "direction": "output",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        },
+        {
+          "id": "SWDIO",
+          "label": "MG24 SWDIO",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        },
+        {
+          "id": "RESET",
+          "label": "MG24 RESET / sink only",
+          "gpio": null,
+          "direction": "open_drain",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        },
+        {
+          "id": "VTREF",
+          "label": "Target VTref",
+          "gpio": null,
+          "direction": "power_input",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        },
+        {
+          "id": "GND",
+          "label": "Target GND",
+          "gpio": null,
+          "direction": "ground",
+          "voltage_v": 0,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        },
+        {
+          "id": "USB_DM",
+          "label": "S3 USB D-",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        },
+        {
+          "id": "USB_DP",
+          "label": "S3 USB D+",
+          "gpio": null,
+          "direction": "bidirectional",
+          "voltage_v": 3.3,
+          "physical": {
+            "namespace": "unassigned_connector",
+            "position": null,
+            "status": "unknown",
+            "source_ids": []
+          }
+        }
+      ],
+      "notes": [
+        "These are signal assignments, not the pinout of a commercial programmer. Verify the actual SWD probe and USB wiring before assigning connector numbers.",
+        "VTref is a 3.3 V reference output from the target, not an extra power supply input."
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "id": "w5500_sclk",
+      "title": "w5500 sclk",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO13"
+        },
+        {
+          "component": "w5500",
+          "pin": "SCLK"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "w5500_sclk"
+    },
+    {
+      "id": "w5500_mosi",
+      "title": "w5500 mosi",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO11"
+        },
+        {
+          "component": "w5500",
+          "pin": "MOSI"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "w5500_mosi"
+    },
+    {
+      "id": "w5500_miso",
+      "title": "w5500 miso",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO12"
+        },
+        {
+          "component": "w5500",
+          "pin": "MISO"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "w5500_miso"
+    },
+    {
+      "id": "w5500_cs",
+      "title": "w5500 cs",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO14"
+        },
+        {
+          "component": "w5500",
+          "pin": "CS"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "w5500_cs"
+    },
+    {
+      "id": "w5500_irq",
+      "title": "w5500 irq",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO10"
+        },
+        {
+          "component": "w5500",
+          "pin": "IRQ"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "w5500_irq"
+    },
+    {
+      "id": "w5500_reset",
+      "title": "w5500 reset",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO9"
+        },
+        {
+          "component": "w5500",
+          "pin": "RESET"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "w5500_reset"
+    },
+    {
+      "id": "shared_spi_sclk",
+      "title": "shared spi sclk",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO7"
+        },
+        {
+          "component": "cc1101",
+          "pin": "SCLK"
+        },
+        {
+          "component": "sc16",
+          "pin": "SCLK"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "shared_spi_sclk"
+    },
+    {
+      "id": "shared_spi_mosi",
+      "title": "shared spi mosi",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO8"
+        },
+        {
+          "component": "cc1101",
+          "pin": "SI"
+        },
+        {
+          "component": "sc16",
+          "pin": "SI"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "shared_spi_mosi"
+    },
+    {
+      "id": "shared_spi_miso",
+      "title": "shared spi miso",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO6"
+        },
+        {
+          "component": "cc1101",
+          "pin": "SO"
+        },
+        {
+          "component": "sc16",
+          "pin": "SO"
+        }
+      ],
+      "notes": [
+        "Only the selected SPI slave may drive MISO; inactive slave outputs must be high impedance."
+      ],
+      "firmware_role": "shared_spi_miso"
+    },
+    {
+      "id": "cc1101_cs",
+      "title": "cc1101 cs",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO15"
+        },
+        {
+          "component": "cc1101",
+          "pin": "CS"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "cc1101_cs"
+    },
+    {
+      "id": "cc1101_gdo0_tx",
+      "title": "cc1101 gdo0 tx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO4"
+        },
+        {
+          "component": "cc1101",
+          "pin": "GDO0"
+        }
+      ],
+      "notes": [
+        "State-dependent direction: S3 sinks/releases TX data; CC1101 may drive during RX. External 4.7 k\u03a9 pull-up required; no push-pull host output."
+      ],
+      "firmware_role": "cc1101_gdo0_tx"
+    },
+    {
+      "id": "cc1101_gdo2_rx",
+      "title": "cc1101 gdo2 rx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO5"
+        },
+        {
+          "component": "cc1101",
+          "pin": "GDO2"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "cc1101_gdo2_rx"
+    },
+    {
+      "id": "sc16_cs",
+      "title": "sc16 cs",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO41"
+        },
+        {
+          "component": "sc16",
+          "pin": "CS"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "sc16_cs"
+    },
+    {
+      "id": "sc16_irq",
+      "title": "sc16 irq",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO42"
+        },
+        {
+          "component": "sc16",
+          "pin": "IRQ"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "sc16_irq"
+    },
+    {
+      "id": "h2_tx",
+      "title": "h2 tx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO43"
+        },
+        {
+          "component": "h2",
+          "pin": "GPIO23"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "h2_tx"
+    },
+    {
+      "id": "h2_rx",
+      "title": "h2 rx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO44"
+        },
+        {
+          "component": "h2",
+          "pin": "GPIO24"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "h2_rx"
+    },
+    {
+      "id": "h2_reset",
+      "title": "h2 reset",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO47"
+        },
+        {
+          "component": "h2",
+          "pin": "EN"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "h2_reset"
+    },
+    {
+      "id": "h2_boot",
+      "title": "h2 boot",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO48"
+        },
+        {
+          "component": "h2",
+          "pin": "GPIO9"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "h2_boot"
+    },
+    {
+      "id": "mg24_tx",
+      "title": "mg24 tx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO17"
+        },
+        {
+          "component": "mg24",
+          "pin": "RX"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "mg24_tx"
+    },
+    {
+      "id": "mg24_rx",
+      "title": "mg24 rx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO18"
+        },
+        {
+          "component": "mg24",
+          "pin": "TX"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "mg24_rx"
+    },
+    {
+      "id": "mg24_rts",
+      "title": "mg24 rts",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO16"
+        },
+        {
+          "component": "mg24",
+          "pin": "CTS"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "mg24_rts"
+    },
+    {
+      "id": "mg24_cts",
+      "title": "mg24 cts",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO21"
+        },
+        {
+          "component": "mg24",
+          "pin": "RTS"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "mg24_cts"
+    },
+    {
+      "id": "ld2450_tx",
+      "title": "ld2450 tx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO39"
+        },
+        {
+          "component": "ld2450",
+          "pin": "RX"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "ld2450_tx"
+    },
+    {
+      "id": "ld2450_rx",
+      "title": "ld2450 rx",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO40"
+        },
+        {
+          "component": "ld2450",
+          "pin": "TX"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "ld2450_rx"
+    },
+    {
+      "id": "bme680_sda",
+      "title": "bme680 sda",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO1"
+        },
+        {
+          "component": "bme680",
+          "pin": "SDA"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "bme680_sda"
+    },
+    {
+      "id": "bme680_scl",
+      "title": "bme680 scl",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO2"
+        },
+        {
+          "component": "bme680",
+          "pin": "SCL"
+        }
+      ],
+      "notes": [],
+      "firmware_role": "bme680_scl"
+    },
+    {
+      "id": "zwave_tx",
+      "title": "SC16 TXA to ZAC93 RX",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "TXA"
+        },
+        {
+          "component": "zac93",
+          "pin": "RX"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "zwave_rx",
+      "title": "ZAC93 TX to SC16 RXA",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "zac93",
+          "pin": "TX"
+        },
+        {
+          "component": "sc16",
+          "pin": "RXA"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_reset",
+      "title": "Supervisor RESET to SC16 RESET",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "supervisor",
+          "pin": "RESET"
+        },
+        {
+          "component": "sc16",
+          "pin": "RESET"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_xtal1",
+      "title": "SC16 crystal input",
+      "kind": "clock",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "XTAL1"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_xtal2",
+      "title": "SC16 crystal output",
+      "kind": "clock",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "XTAL2"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_rxb_unused",
+      "title": "Unused RXB pull-up",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "RXB"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio0_unused",
+      "title": "Unused SC16 GPIO0",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO0"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio1_unused",
+      "title": "Unused SC16 GPIO1",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO1"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio2_unused",
+      "title": "Unused SC16 GPIO2",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO2"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio3_unused",
+      "title": "Unused SC16 GPIO3",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO3"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio4_unused",
+      "title": "Unused SC16 GPIO4",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO4"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio5_unused",
+      "title": "Unused SC16 GPIO5",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO5"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio6_unused",
+      "title": "Unused SC16 GPIO6",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO6"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sc16_gpio7_unused",
+      "title": "Unused SC16 GPIO7",
+      "kind": "signal",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "sc16",
+          "pin": "GPIO7"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "h2_gpio8",
+      "title": "h2 gpio8",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "h2",
+          "pin": "GPIO8"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "h2_gpio25",
+      "title": "h2 gpio25",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "h2",
+          "pin": "GPIO25"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "s3_reset",
+      "title": "s3 reset",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "EN"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "s3_boot",
+      "title": "s3 boot",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO0"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "mg24_boot",
+      "title": "mg24 boot",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "mg24",
+          "pin": "BOOT"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "mg24_reset",
+      "title": "mg24 reset",
+      "kind": "service",
+      "nominal_voltage_v": null,
+      "members": [
+        {
+          "component": "mg24",
+          "pin": "RESET"
+        },
+        {
+          "component": "service",
+          "pin": "RESET"
+        }
+      ],
+      "notes": [
+        "Internally pulled to module DVDD. External programmer/button may only sink and release. No external 3.3 V pull-up."
+      ]
+    },
+    {
+      "id": "mg24_swclk",
+      "title": "mg24 swclk",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "mg24",
+          "pin": "SWCLK"
+        },
+        {
+          "component": "service",
+          "pin": "SWCLK"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "mg24_swdio",
+      "title": "mg24 swdio",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "mg24",
+          "pin": "SWDIO"
+        },
+        {
+          "component": "service",
+          "pin": "SWDIO"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "s3_usb_dm",
+      "title": "s3 usb dm",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO19"
+        },
+        {
+          "component": "service",
+          "pin": "USB_DM"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "s3_usb_dp",
+      "title": "s3 usb dp",
+      "kind": "service",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GPIO20"
+        },
+        {
+          "component": "service",
+          "pin": "USB_DP"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "5v_pd",
+      "title": "Isolated 5 V before fuse",
+      "kind": "power",
+      "nominal_voltage_v": 5,
+      "members": [
+        {
+          "component": "pd",
+          "pin": "5V"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "5v_fused",
+      "title": "Fused isolated 5 V",
+      "kind": "power",
+      "nominal_voltage_v": 5,
+      "members": [
+        {
+          "component": "buck",
+          "pin": "VIN"
+        },
+        {
+          "component": "ld2450",
+          "pin": "5V"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "3v3",
+      "title": "Shared regulated 3.3 V",
+      "kind": "power",
+      "nominal_voltage_v": 3.3,
+      "members": [
+        {
+          "component": "buck",
+          "pin": "VOUT"
+        },
+        {
+          "component": "s3",
+          "pin": "3V3"
+        },
+        {
+          "component": "w5500",
+          "pin": "3V3A"
+        },
+        {
+          "component": "w5500",
+          "pin": "3V3B"
+        },
+        {
+          "component": "h2",
+          "pin": "3V3"
+        },
+        {
+          "component": "mg24",
+          "pin": "VDD"
+        },
+        {
+          "component": "sc16",
+          "pin": "VDD"
+        },
+        {
+          "component": "zac93",
+          "pin": "3V3"
+        },
+        {
+          "component": "cc1101",
+          "pin": "VCC"
+        },
+        {
+          "component": "bme680",
+          "pin": "VIN"
+        },
+        {
+          "component": "supervisor",
+          "pin": "VDD"
+        },
+        {
+          "component": "service",
+          "pin": "VTREF"
+        },
+        {
+          "component": "supervisor",
+          "pin": "SENSE"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "gnd",
+      "title": "Isolated secondary GND",
+      "kind": "ground",
+      "nominal_voltage_v": 0,
+      "members": [
+        {
+          "component": "s3",
+          "pin": "GND1"
+        },
+        {
+          "component": "s3",
+          "pin": "GND40"
+        },
+        {
+          "component": "s3",
+          "pin": "GND41"
+        },
+        {
+          "component": "w5500",
+          "pin": "GND1"
+        },
+        {
+          "component": "w5500",
+          "pin": "GND2"
+        },
+        {
+          "component": "w5500",
+          "pin": "GND3"
+        },
+        {
+          "component": "h2",
+          "pin": "GND1"
+        },
+        {
+          "component": "h2",
+          "pin": "GND2"
+        },
+        {
+          "component": "h2",
+          "pin": "GND11"
+        },
+        {
+          "component": "h2",
+          "pin": "GND14"
+        },
+        {
+          "component": "h2",
+          "pin": "GND36"
+        },
+        {
+          "component": "h2",
+          "pin": "GND37"
+        },
+        {
+          "component": "h2",
+          "pin": "GND38"
+        },
+        {
+          "component": "h2",
+          "pin": "GND39"
+        },
+        {
+          "component": "h2",
+          "pin": "GND40"
+        },
+        {
+          "component": "h2",
+          "pin": "GND41"
+        },
+        {
+          "component": "h2",
+          "pin": "GND42"
+        },
+        {
+          "component": "h2",
+          "pin": "GND43"
+        },
+        {
+          "component": "h2",
+          "pin": "GND44"
+        },
+        {
+          "component": "h2",
+          "pin": "GND45"
+        },
+        {
+          "component": "h2",
+          "pin": "GND46"
+        },
+        {
+          "component": "h2",
+          "pin": "GND47"
+        },
+        {
+          "component": "h2",
+          "pin": "GND48"
+        },
+        {
+          "component": "h2",
+          "pin": "GND49"
+        },
+        {
+          "component": "h2",
+          "pin": "GND50"
+        },
+        {
+          "component": "h2",
+          "pin": "GND51"
+        },
+        {
+          "component": "h2",
+          "pin": "GND52"
+        },
+        {
+          "component": "h2",
+          "pin": "GND53"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND1"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND14"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND23"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND32"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND34"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND35"
+        },
+        {
+          "component": "mg24",
+          "pin": "GND36"
+        },
+        {
+          "component": "sc16",
+          "pin": "GND"
+        },
+        {
+          "component": "zac93",
+          "pin": "GND6"
+        },
+        {
+          "component": "zac93",
+          "pin": "GND9"
+        },
+        {
+          "component": "cc1101",
+          "pin": "GND"
+        },
+        {
+          "component": "ld2450",
+          "pin": "GND"
+        },
+        {
+          "component": "bme680",
+          "pin": "GND"
+        },
+        {
+          "component": "supervisor",
+          "pin": "GND"
+        },
+        {
+          "component": "pd",
+          "pin": "GND"
+        },
+        {
+          "component": "buck",
+          "pin": "GND"
+        },
+        {
+          "component": "service",
+          "pin": "GND"
+        },
+        {
+          "component": "sc16",
+          "pin": "SPI_SELECT"
+        },
+        {
+          "component": "sc16",
+          "pin": "SDA_UNUSED"
+        },
+        {
+          "component": "sc16",
+          "pin": "CTSA"
+        },
+        {
+          "component": "sc16",
+          "pin": "CTSB"
+        },
+        {
+          "component": "buck",
+          "pin": "GND2"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "support_parts": [
+    {
+      "id": "F_SECONDARY",
+      "kind": "fuse",
+      "value": 1.5,
+      "unit": "A",
+      "between": [
+        "5v_pd",
+        "5v_fused"
+      ],
+      "population": "candidate",
+      "notes": [
+        "Time-delay; verify inrush/I\u00b2t, wire gauge and temperature."
+      ],
+      "source_ids": [
+        "pd"
+      ]
+    },
+    {
+      "id": "R_cc1101_gdo0_tx",
+      "kind": "resistor",
+      "value": 4700,
+      "unit": "ohm",
+      "between": [
+        "cc1101_gdo0_tx",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_irq",
+      "kind": "resistor",
+      "value": 1000,
+      "unit": "ohm",
+      "between": [
+        "sc16_irq",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_w5500_cs",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "w5500_cs",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_cc1101_cs",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "cc1101_cs",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_cs",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "sc16_cs",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_h2_reset",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "h2_reset",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_h2_boot",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "h2_boot",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_h2_gpio8",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "h2_gpio8",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_s3_reset",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "s3_reset",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_s3_boot",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "s3_boot",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_mg24_boot",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "mg24_boot",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_reset",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "sc16_reset",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_rxb_unused",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "sc16_rxb_unused",
+        "3v3"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "Check existing module pull-ups before adding duplicates."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "R_h2_gpio25",
+      "kind": "resistor",
+      "value": 10000,
+      "unit": "ohm",
+      "between": [
+        "h2_gpio25",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio0",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio0_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio1",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio1_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio2",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio2_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio3",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio3_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio4",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio4_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio5",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio5_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio6",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio6_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "R_sc16_gpio7",
+      "kind": "resistor",
+      "value": 100000,
+      "unit": "ohm",
+      "between": [
+        "sc16_gpio7_unused",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [],
+      "source_ids": []
+    },
+    {
+      "id": "Y_SC16",
+      "kind": "crystal",
+      "value": 3686400,
+      "unit": "Hz",
+      "between": [
+        "sc16_xtal1",
+        "sc16_xtal2"
+      ],
+      "population": "required",
+      "notes": [
+        "Abracon ABLS-3.6864MHZ-B2-T; 18 pF load. Physical pad numbers follow the selected footprint, not this logical terminal order."
+      ],
+      "source_ids": [
+        "crystal"
+      ]
+    },
+    {
+      "id": "C_X1",
+      "kind": "capacitor",
+      "value": 22,
+      "unit": "pF",
+      "between": [
+        "sc16_xtal1",
+        "gnd"
+      ],
+      "population": "candidate",
+      "notes": [
+        "NXP example value; tune against selected crystal and stray capacitance."
+      ],
+      "source_ids": [
+        "sc16"
+      ]
+    },
+    {
+      "id": "C_X2",
+      "kind": "capacitor",
+      "value": 33,
+      "unit": "pF",
+      "between": [
+        "sc16_xtal2",
+        "gnd"
+      ],
+      "population": "candidate",
+      "notes": [
+        "NXP example value; verify oscillation/startup."
+      ],
+      "source_ids": [
+        "sc16"
+      ]
+    },
+    {
+      "id": "C_S3_EN",
+      "kind": "capacitor",
+      "value": 1,
+      "unit": "uF",
+      "between": [
+        "s3_reset",
+        "gnd"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [],
+      "source_ids": [
+        "s3"
+      ]
+    },
+    {
+      "id": "C_H2_EN",
+      "kind": "capacitor",
+      "value": 1,
+      "unit": "uF",
+      "between": [
+        "h2_reset",
+        "gnd"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [],
+      "source_ids": [
+        "h2"
+      ]
+    },
+    {
+      "id": "C_SENSE",
+      "kind": "capacitor",
+      "value": 1,
+      "unit": "nF",
+      "between": [
+        "3v3",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [
+        "Place at supervisor SENSE."
+      ],
+      "source_ids": [
+        "reset"
+      ]
+    },
+    {
+      "id": "C_SUPPLY_SC16",
+      "kind": "capacitor",
+      "value": 100,
+      "unit": "nF",
+      "between": [
+        "3v3",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [
+        "Place beside SC16 VDD pin 8 / GND pin 22."
+      ],
+      "source_ids": [
+        "sc16"
+      ]
+    },
+    {
+      "id": "C_SUPPLY_SUP",
+      "kind": "capacitor",
+      "value": 100,
+      "unit": "nF",
+      "between": [
+        "3v3",
+        "gnd"
+      ],
+      "population": "required",
+      "notes": [
+        "Place beside supervisor VDD pin 6 / GND pin 2."
+      ],
+      "source_ids": [
+        "reset"
+      ]
+    },
+    {
+      "id": "C_PD_BULK",
+      "kind": "capacitor",
+      "value": 100,
+      "unit": "uF",
+      "between": [
+        "5v_pd",
+        "gnd"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [
+        "25 V low-ESR; include installed EvalPoE capacitors in total 47-470 uF."
+      ],
+      "source_ids": [
+        "pd"
+      ]
+    },
+    {
+      "id": "C_PD_HF",
+      "kind": "capacitor",
+      "value": 100,
+      "unit": "nF",
+      "between": [
+        "5v_pd",
+        "gnd"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [],
+      "source_ids": [
+        "pd"
+      ]
+    },
+    {
+      "id": "C_PD_FILTER",
+      "kind": "capacitor",
+      "value": 10,
+      "unit": "uF",
+      "between": [
+        "5v_pd",
+        "gnd"
+      ],
+      "population": "required_unless_already_fitted",
+      "notes": [],
+      "source_ids": [
+        "pd"
+      ]
+    },
+    {
+      "id": "C_3V3_BULK",
+      "kind": "capacitor",
+      "value": 47,
+      "unit": "uF",
+      "between": [
+        "3v3",
+        "gnd"
+      ],
+      "population": "candidate",
+      "notes": [
+        "Check buck startup and transients; not a complete layout decoupling specification."
+      ],
+      "source_ids": [
+        "buck"
+      ]
+    },
+    {
+      "id": "SW_s3_reset",
+      "kind": "button",
+      "value": null,
+      "unit": null,
+      "between": [
+        "s3_reset",
+        "gnd"
+      ],
+      "population": "service_option",
+      "notes": [
+        "Normally open. Never apply an external supply to reset."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "SW_s3_boot",
+      "kind": "button",
+      "value": null,
+      "unit": null,
+      "between": [
+        "s3_boot",
+        "gnd"
+      ],
+      "population": "service_option",
+      "notes": [
+        "Normally open. Never apply an external supply to reset."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "SW_mg24_reset",
+      "kind": "button",
+      "value": null,
+      "unit": null,
+      "between": [
+        "mg24_reset",
+        "gnd"
+      ],
+      "population": "service_option",
+      "notes": [
+        "Normally open. Never apply an external supply to reset."
+      ],
+      "source_ids": []
+    },
+    {
+      "id": "SW_mg24_boot",
+      "kind": "button",
+      "value": null,
+      "unit": null,
+      "between": [
+        "mg24_boot",
+        "gnd"
+      ],
+      "population": "service_option",
+      "notes": [
+        "Normally open. Never apply an external supply to reset."
+      ],
+      "source_ids": []
+    }
+  ],
+  "sources": {
+    "s3": {
+      "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "revision": "1.8",
+      "section": "Table 3-1, pages 11-12",
+      "checked_date": "2026-10-17"
+    },
+    "devkit": {
+      "url": "https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html",
+      "checked_date": "2026-10-17"
+    },
+    "h2": {
+      "url": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "revision": "1.6",
+      "section": "Table 3, page 10",
+      "checked_date": "2026-10-17"
+    },
+    "mg24": {
+      "url": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+      "revision": "1.4",
+      "section": "6.1, Table 6.1",
+      "checked_date": "2026-10-17",
+      "method": "Manufacturer PDF indexed pin table; direct PDF download unavailable during this review."
+    },
+    "wiz": {
+      "url": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+      "checked_date": "2026-10-17"
+    },
+    "pd": {
+      "url": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+      "revision": "2.0",
+      "section": "Table 3, Ag97000-FL, page 5",
+      "checked_date": "2026-10-17"
+    },
+    "eval": {
+      "url": "https://silvertel.com/ag97000/",
+      "checked_date": "2026-10-17"
+    },
+    "eval_manual": {
+      "url": "https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "buck": {
+      "url": "https://www.pololu.com/product/2857",
+      "checked_date": "2026-10-17"
+    },
+    "sc16": {
+      "url": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "revision": "9.1",
+      "section": "Table 2, TSSOP28 column only",
+      "checked_date": "2026-10-17"
+    },
+    "crystal": {
+      "url": "https://abracon.com/parametric/crystals/ABLS-3.6864MHZ-B2-T",
+      "checked_date": "2026-10-17"
+    },
+    "reset": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+      "revision": "N",
+      "section": "Table 5-1, SOT-23 column only",
+      "checked_date": "2026-10-17"
+    },
+    "zac": {
+      "url": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "cc": {
+      "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "ld": {
+      "url": "https://r0.hlktech.com/download/HLK-LD2450-24G/1/HLK%20LD2450%201T2R%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%BF%BD%E8%B8%AA%E6%A8%A1%E7%BB%84%E8%AF%B4%E6%98%8E%E4%B9%A6%20V1.01.pdf",
+      "checked_date": "2026-10-17"
+    },
+    "bme": {
+      "url": "https://www.adafruit.com/product/3660",
+      "checked_date": "2026-10-17"
+    },
+    "qt": {
+      "url": "https://www.adafruit.com/product/4397",
+      "checked_date": "2026-10-17"
+    },
+    "zac_pinout": {
+      "url": "https://www.support.getzooz.com/kb/article/1426-zac93-gpio-module-faqs/",
+      "section": "ZAC93 pinout image",
+      "checked_date": "2026-10-17",
+      "method": "FAQ page checked; image fetch unavailable. Existing project contract retained pending physical confirmation."
+    },
+    "bme_pinout": {
+      "url": "https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas/pinouts",
+      "checked_date": "2026-10-17"
+    },
+    "firmware": {
+      "path": "firmware/low-power/hub.yaml",
+      "related": [
+        "firmware/low-power/proof.yaml",
+        "firmware/packages/rf-airbridge.yaml",
+        "firmware/low-power/mg24/config.json"
+      ]
+    },
+    "pololu_dimensions": "https://www.pololu.com/file/0J1031/d24v22fx-step-down-voltage-regulator-dimension-diagram.pdf"
+  },
+  "warnings": [
+    "GPIO numbers, bare-module pads and board-header positions are separate namespaces. Unknown physical positions are intentionally null.",
+    "This graph covers the isolated low-voltage system. PoE magnetics/primary wiring, RF keep-outs, USB connector protection and complete PCB decoupling require a separately verified schematic/layout.",
+    "No board has been electrically validated. This model does not authorize manufacturing or prove whole-system power consumption.",
+    "S3/H2 DevKit USB-UART contention, GPIO48 LED loading, back-powering and regulator isolation must be checked before bench connection.",
+    "Existing CC1101 and LD2450 connector ordering is unknown. ZAC93 numbering is retained from the project contract and requires a physical orientation check.",
+    "MG24 reset uses an internal DVDD pull-up; its voltage is not assumed to equal the external 3.3 V rail."
+  ],
+  "firmware_roles": {
+    "w5500_sclk": 13,
+    "w5500_mosi": 11,
+    "w5500_miso": 12,
+    "w5500_cs": 14,
+    "w5500_irq": 10,
+    "w5500_reset": 9,
+    "shared_spi_sclk": 7,
+    "shared_spi_mosi": 8,
+    "shared_spi_miso": 6,
+    "cc1101_cs": 15,
+    "cc1101_gdo0_tx": 4,
+    "cc1101_gdo2_rx": 5,
+    "sc16_cs": 41,
+    "sc16_irq": 42,
+    "h2_tx": 43,
+    "h2_rx": 44,
+    "h2_reset": 47,
+    "h2_boot": 48,
+    "mg24_tx": 17,
+    "mg24_rx": 18,
+    "mg24_rts": 16,
+    "mg24_cts": 21,
+    "ld2450_tx": 39,
+    "ld2450_rx": 40,
+    "bme680_sda": 1,
+    "bme680_scl": 2
+  }
+}

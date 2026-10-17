@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+from decimal import Decimal
 import json
 import os
 import re
@@ -23,8 +24,11 @@ MAP = 'tag:yaml.org,2002:map'
 SEQ = 'tag:yaml.org,2002:seq'
 ALLOWED_TAGS = {STR, MAP, SEQ, 'tag:yaml.org,2002:int', 'tag:yaml.org,2002:float',
                 'tag:yaml.org,2002:bool', 'tag:yaml.org,2002:null', '!secret', '!lambda', '!include'}
+LITERAL_TAGS = {STR, 'tag:yaml.org,2002:int', 'tag:yaml.org,2002:float',
+                'tag:yaml.org,2002:bool', 'tag:yaml.org,2002:null'}
 RESERVED_IDS = {'rf_mqtt', 'rm433_button', 'rf_radio', 'rf_receiver', 'rf_tx_active',
-                'rf_raw_learning', 'rf_transmitter', 'rf_send_job', 'rf_tx_complete', 'rf_tx_error', 'rf_tx_fault'}
+                'rf_raw_learning', 'rf_transmitter', 'rf_send_job', 'rf_tx_complete', 'rf_tx_error', 'rf_tx_fault',
+                'cc1101_spi'}
 
 
 class MigrationError(ValueError):
@@ -82,13 +86,15 @@ def require_scalar(node, context):
     return node
 
 
-def secret_refs(node) -> set[str]:
+def secret_refs(node, skip_nodes=frozenset()) -> set[str]:
+    if id(node) in skip_nodes:
+        return set()
     if node.tag == '!include':
         raise MigrationError('Nested includes require a reviewed standalone device wrapper before migration.')
     if isinstance(node, ScalarNode):
         return {node.value} if node.tag == '!secret' else set()
     children = fields(node).values() if isinstance(node, MappingNode) else node.value
-    return set().union(*(secret_refs(child) for child in children))
+    return set().union(*(secret_refs(child, skip_nodes) for child in children))
 
 
 def reject_keys(values, allowed, message):
@@ -138,7 +144,7 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     original = fields(load(source), 'a device wrapper mapping')
     secret_values = fields(load(secrets), 'a secrets mapping')
     reject_keys(original, {'substitutions', 'esphome', 'esp8266', 'wifi', 'logger', 'api', 'ota',
-                           'mqtt', 'spi', 'packages', 'binary_sensor', 'remote_receiver'},
+                           'mqtt', 'spi', 'packages', 'binary_sensor', 'remote_receiver', 'web_server', 'cc1101'},
                 'Custom top-level firmware blocks require manual review; no files were written.')
     discarded = [key for key in ('esp8266', 'wifi', 'spi', 'logger') if key in original]
     for key in discarded:
@@ -157,6 +163,13 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     if 'name' not in esp:
         raise MigrationError('The original esphome.name is required.')
     require_scalar(esp['name'], 'Node name')
+    if 'project' in esp:
+        reject_keys(fields(esp['project']), {'name', 'version'},
+                    'Custom project lifecycle or metadata requires manual review.')
+    # Only identity moves to the board package substitutions. The other allowed
+    # core fields retain their semantics instead of disappearing during import.
+    retained_core = {key: copy.deepcopy(value) for key, value in esp.items()
+                     if key not in {'name', 'friendly_name'}}
     subs = fields(copy.deepcopy(original.get('substitutions', mapping({}))))
     for value in subs.values():
         require_scalar(value, 'Substitution')
@@ -165,12 +178,17 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     subs['rf_node_name'] = scalar(node_name)
     subs['rf_friendly_name'] = scalar(friendly_name)
     subs['rf_airbridge_path'] = scalar(os.path.relpath(root / 'firmware', output))
-    api = fields(copy.deepcopy(original.get('api', mapping({}))))
+    if 'api' not in original:
+        raise MigrationError('The original API block is required; do not enable a new API implicitly.')
+    api_node = copy.deepcopy(original['api'])
+    # Older installations use `api:` without encryption. Preserve that explicit
+    # contract; never invent an old credential or remove existing encryption.
+    api = {} if isinstance(api_node, ScalarNode) and api_node.tag == 'tag:yaml.org,2002:null' else fields(api_node)
     reject_keys(api, {'encryption', 'reboot_timeout', 'port', 'batch_delay', 'max_connections',
                       'listen_backlog', 'max_send_queue'},
                 'Custom API actions or hooks require manual review; standard actions come from the new package.')
     encryption = fields(api.get('encryption', mapping({})))
-    if set(encryption) != {'key'}:
+    if 'encryption' in api and set(encryption) != {'key'}:
         raise MigrationError('Expected api.encryption.key in the original wrapper.')
     mqtt = fields(copy.deepcopy(original.get('mqtt', mapping({}))))
     if 'id' in mqtt and require_scalar(mqtt['id'], 'MQTT id').value != 'rf_mqtt':
@@ -181,13 +199,16 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     if not isinstance(ota_node, SequenceNode) or len(ota_node.value) != 1:
         raise MigrationError('Expected one ESPHome OTA platform in a list.')
     ota = fields(ota_node.value[0])
-    if 'platform' not in ota or ota['platform'].value != 'esphome' or 'password' not in ota:
-        raise MigrationError('Expected the password-protected ESPHome OTA platform.')
+    if 'platform' not in ota or ota['platform'].value != 'esphome':
+        raise MigrationError('Expected the ESPHome OTA platform.')
 
     # Preserve the effective credential values, without copying unused Wi-Fi secrets.
     exported_secrets = {}
-    credentials = {'api_encryption_key': encryption['key'], 'ota_password': ota['password'],
-                   'mqtt_broker': mqtt['broker'], 'mqtt_username': mqtt['username'], 'mqtt_password': mqtt['password']}
+    credentials = {'mqtt_broker': mqtt['broker'], 'mqtt_username': mqtt['username'], 'mqtt_password': mqtt['password']}
+    if encryption:
+        credentials['api_encryption_key'] = encryption['key']
+    if 'password' in ota:
+        credentials['ota_password'] = ota['password']
     for canonical, node in credentials.items():
         require_scalar(node, 'Credential')
         value = secret_values.get(node.value) if node.tag == '!secret' else node
@@ -195,19 +216,52 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
             raise MigrationError('A required credential is missing or is not a literal string.')
         # Firmware supplies the canonical !secret references; wrapper keeps them explicit.
         exported_secrets[canonical] = copy.deepcopy(value)
-    encryption['key'] = scalar('api_encryption_key', '!secret')
-    api['encryption'] = mapping(encryption)
-    ota['password'] = scalar('ota_password', '!secret')
+    rewritten_secret_nodes = set()
+    def credential_ref(name):
+        node = scalar(name, '!secret')
+        rewritten_secret_nodes.add(id(node))
+        return node
+
+    if encryption:
+        encryption['key'] = credential_ref('api_encryption_key')
+        api['encryption'] = mapping(encryption)
+    if 'password' in ota:
+        ota['password'] = credential_ref('ota_password')
     ota_node.value[0] = mapping(ota)
     for key in ('broker', 'username', 'password'):
-        mqtt[key] = scalar('mqtt_' + key, '!secret')
+        mqtt[key] = credential_ref('mqtt_' + key)
 
     result = {'substitutions': mapping(subs),
               'packages': mapping({'rf_ethernet': scalar(os.path.relpath(root / 'firmware/packages/rf-ethernet-base.yaml', output), '!include')}),
               'api': mapping(api), 'ota': ota_node, 'mqtt': mapping(mqtt)}
+    if retained_core:
+        result['esphome'] = mapping(retained_core)
+    if 'web_server' in original:
+        web = fields(copy.deepcopy(original['web_server']))
+        reject_keys(web, {'port', 'auth', 'version', 'local', 'include_internal', 'enable_private_network_access'},
+                    'Custom web-server behavior requires manual migration.')
+        reject_discarded_hooks(mapping(web))
+        result['web_server'] = mapping(web)
+    radio = fields(copy.deepcopy(original.get('cc1101', mapping({}))))
+    reject_keys(radio, {'cs_pin', 'frequency', 'max_dvga_gain'},
+                'Custom radio behavior requires manual migration.')
+    if 'cs_pin' in radio:
+        reject_discarded_hooks(radio.pop('cs_pin'))
+        discarded.append('cc1101.cs_pin')
+    if 'frequency' in radio:
+        frequency = require_scalar(radio['frequency'], 'RF frequency')
+        match = re.fullmatch(r'([0-9]+(?:\.[0-9]+)?)\s*(MHz|kHz|Hz)', frequency.value)
+        units = {'MHz': Decimal(1), 'kHz': Decimal('0.001'), 'Hz': Decimal('0.000001')}
+        if frequency.tag != STR or match is None or Decimal(match.group(1)) * units[match.group(2)] != Decimal('433.92'):
+            raise MigrationError('This RF firmware supports only the documented 433.92 MHz profile.')
+    if radio:
+        result['cc1101'] = mapping(radio)
     rx = fields(copy.deepcopy(original.get('remote_receiver', mapping({}))))
-    reject_keys(rx, {'filter', 'idle', 'tolerance', 'dump'},
-                'Receiver wiring or callbacks require manual migration; only timing/dump overrides are imported.')
+    reject_keys(rx, {'pin', 'filter', 'idle', 'tolerance', 'dump'},
+                'Receiver callbacks require manual migration; only timing/dump overrides are imported.')
+    if 'pin' in rx:
+        reject_discarded_hooks(rx.pop('pin'))
+        discarded.append('remote_receiver.pin')
     normalized_filter = False
     if 'filter' in rx:
         filter_node = require_scalar(rx['filter'], 'Receiver filter')
@@ -229,7 +283,7 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
     for sensor in sensors.value:
         values = fields(sensor, 'binary_sensor entry')
         if 'id' in values:
-            sid = require_scalar(values['id'], 'Entity id').value
+            sid = resolve_identity(values['id'], subs)
             if sid in RESERVED_IDS or sid in sensor_ids:
                 raise MigrationError('A binary_sensor id conflicts with another or a reserved component.')
             sensor_ids.add(sid)
@@ -238,21 +292,34 @@ def migrate(source: Path, secrets: Path, output: Path, repo_root: Path | None = 
 
     # Do not traverse the new package include; it is a known local source path.
     references = set()
+    original_references = set()
     for key, node in result.items():
         if key != 'packages':
             references |= secret_refs(node)
+            original_references |= secret_refs(node, rewritten_secret_nodes)
+    # Canonical credential names can already occur in unrelated original fields
+    # (web authentication, RF codes, substitutions). Never silently redirect one
+    # of those original references to a different canonical credential value.
+    for reference in original_references & exported_secrets.keys():
+        before = secret_values.get(reference)
+        after = exported_secrets[reference]
+        if not isinstance(before, ScalarNode) or (before.tag, before.value) != (after.tag, after.value):
+            raise MigrationError('An original secret reference conflicts with a canonical credential name; rename that original secret before migration.')
     for reference in references:
         if reference not in exported_secrets:
             if reference not in secret_values:
                 raise MigrationError('A referenced secret is missing; no files were written.')
             value = secret_values[reference]
-            if not isinstance(value, ScalarNode) or value.tag == '!secret':
+            if not isinstance(value, ScalarNode) or value.tag not in LITERAL_TAGS:
                 raise MigrationError('Secrets must be literal scalar values.')
             exported_secrets[reference] = copy.deepcopy(value)
 
     report = {'status': 'offline_candidate_requires_compile_and_hardware_acceptance',
               'binary_sensor_count': len(sensors.value), 'secret_count': len(exported_secrets),
               'original_node_name_preserved': True,
+              'api_encryption_preserved': bool(encryption),
+              'ota_password_preserved': 'password' in ota,
+              'web_server_preserved': 'web_server' in result,
               'upstream_package_contents_verified': False,
               'replaced_hardware_blocks': discarded, 'network_transport': 'ethernet',
               'receiver_filter_normalized_to_150us': normalized_filter,

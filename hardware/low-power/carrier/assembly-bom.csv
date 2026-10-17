@@ -1,0 +1,49 @@
+Reference,Quantity,Manufacturer part / value,Footprint,Note,Source
+J1,1,B2B-XH-A,Carrier:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,Isolated regulated 5V input,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J2,1,B3B-XH-A,Carrier:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,External D24V22F3 buck,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J3,1,61204021621,Carrier:Wurth_61204021621,S3 keyed 40-position IDC harness; NOT Raspberry Pi compatible,https://www.we-online.com/components/products/datasheet/61204021621.pdf
+J4,1,B10B-XH-A,Carrier:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical,WIZ850io Ethernet module,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J5,1,B7B-XH-A,Carrier:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical,H2 Thread RCP,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J6,1,B6B-XH-A,Carrier:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,MG24 Zigbee NCP,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J7,1,B8B-XH-A,Carrier:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical,CC1101 RF module,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J8,1,B5B-XH-A,Carrier:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,ZAC93 Z-Wave module,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J9,1,B4B-XH-A,Carrier:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,LD2450 radar,https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+J10,1,BM04B-SRSS-TB,Carrier:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical,STEMMA QT: 3.3V only; BME680 external ventilated pod,https://www.jst-mfg.com/product/pdf/eng/eSH.pdf
+F1,1,044901.5MR,Carrier:Littelfuse_449,"1.5A time-delay; design <=1.0A continuous at 5V, temperature derating applies",https://www.littelfuse.com/assetdocs/fuses-449-datasheet?assetguid=7aef6e93-9808-456e-9bee-fba54271285f
+U1,1,"SC16IS752IPW,128",Carrier:TSSOP-28_4.4x9.7mm_P0.65mm,"SPI mode; channel A 115200 8N1, crystal3.6864MHz",https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf
+U2,1,TPS3808G33DBVR,Carrier:SOT-23-6,G33 supervisor; CT open=20ms; MR internal pullup,https://www.ti.com/lit/ds/symlink/tps3808.pdf
+Y1,1,ABLS-3.6864MHZ-B2-T,Carrier:Crystal_SMD_HC49-SD,"18pF CL, initial load caps22pF/33pF; verify frequency/drive on bench",https://abracon.com/Resonators/abls.pdf
+R1,1,1k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R2,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R3,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R4,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R5,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R6,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R7,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R8,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R9,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R10,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R11,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R12,1,100k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R13,1,4.7k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R14,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R15,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R16,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+R17,1,10k,Carrier:R_0805_2012Metric,"1%, 0.125W, 0805; select a stocked part meeting these specifications",
+C1,1,22pF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C2,1,33pF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C3,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C4,1,1uF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C5,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C6,1,1nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C7,1,1uF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C8,1,22uF,Carrier:C_1206_3216Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C9,1,22uF,Carrier:C_1206_3216Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C10,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C11,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C12,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C13,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C14,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C15,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C16,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",
+C17,1,100nF,Carrier:C_0805_2012Metric,"10V minimum; C0G crystal caps, X7R bypass/bulk",

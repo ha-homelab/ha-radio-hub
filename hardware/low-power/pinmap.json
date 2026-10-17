@@ -1,0 +1,496 @@
+{
+  "revision": "LP-P0",
+  "date": "2026-10-17",
+  "status": "design_contract_not_hardware_validated",
+  "host": "ESP32-S3-WROOM-1-N16R8",
+  "logic_voltage": 3.3,
+  "exclusive_pins": [
+    {
+      "gpio": 13,
+      "role": "w5500_sclk",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "WIZ850io J1.4 SCLK"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 11,
+      "role": "w5500_mosi",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "WIZ850io J1.3 MOSI"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 12,
+      "role": "w5500_miso",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "WIZ850io J2.6 MISO"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 14,
+      "role": "w5500_cs",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "WIZ850io J1.5 SCNn"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 10,
+      "role": "w5500_irq",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "WIZ850io J1.6 INTn"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 9,
+      "role": "w5500_reset",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "WIZ850io J2.5 RSTn"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 7,
+      "role": "shared_spi_sclk",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "CC1101 SCLK",
+        "SC16IS752 pin13 SCLK"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 8,
+      "role": "shared_spi_mosi",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "CC1101 SI",
+        "SC16IS752 pin11 SI"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 6,
+      "role": "shared_spi_miso",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "CC1101 SO",
+        "SC16IS752 pin12 SO"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 15,
+      "role": "cc1101_cs",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "CC1101 CSn"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 4,
+      "role": "cc1101_gdo0_tx",
+      "direction_at_s3": "open_drain",
+      "endpoints": [
+        "CC1101 GDO0"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 5,
+      "role": "cc1101_gdo2_rx",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "CC1101 GDO2"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 41,
+      "role": "sc16_cs",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "SC16IS752 pin10 CS"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 42,
+      "role": "sc16_irq",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "SC16IS752 pin15 IRQ"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 43,
+      "role": "h2_tx",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "H2 GPIO23 RX"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 44,
+      "role": "h2_rx",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "H2 GPIO24 TX"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 47,
+      "role": "h2_reset",
+      "direction_at_s3": "open_drain",
+      "endpoints": [
+        "H2 EN"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 48,
+      "role": "h2_boot",
+      "direction_at_s3": "open_drain",
+      "endpoints": [
+        "H2 GPIO9"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 17,
+      "role": "mg24_tx",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "MGM240P pad12 PA05 RX"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 18,
+      "role": "mg24_rx",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "MGM240P pad13 PA06 TX"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 16,
+      "role": "mg24_rts",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "MGM240P pad5 PB01 CTS"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 21,
+      "role": "mg24_cts",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "MGM240P pad6 PB00 RTS"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 39,
+      "role": "ld2450_tx",
+      "direction_at_s3": "output",
+      "endpoints": [
+        "LD2450 RX"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 40,
+      "role": "ld2450_rx",
+      "direction_at_s3": "input",
+      "endpoints": [
+        "LD2450 TX"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 1,
+      "role": "bme680_sda",
+      "direction_at_s3": "open_drain",
+      "endpoints": [
+        "BME680 SDA"
+      ],
+      "logic_voltage": 3.3
+    },
+    {
+      "gpio": 2,
+      "role": "bme680_scl",
+      "direction_at_s3": "open_drain",
+      "endpoints": [
+        "BME680 SCL"
+      ],
+      "logic_voltage": 3.3
+    }
+  ],
+  "reserved": {
+    "strapping": [
+      0,
+      3,
+      45,
+      46
+    ],
+    "flash_psram": [
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37
+    ],
+    "native_usb": [
+      19,
+      20
+    ],
+    "unused": [
+      38
+    ]
+  },
+  "uart_owners": [
+    {
+      "port": 0,
+      "owner": "ESPHome LD2450",
+      "baud": 256000,
+      "tx": 39,
+      "rx": 40,
+      "flow_control": false
+    },
+    {
+      "port": 1,
+      "owner": "zigbee_tcp",
+      "baud": 115200,
+      "tx": 17,
+      "rx": 18,
+      "rts": 16,
+      "cts": 21,
+      "flow_control": true
+    },
+    {
+      "port": 2,
+      "owner": "low_power_otbr",
+      "baud": 460800,
+      "tx": 43,
+      "rx": 44,
+      "flow_control": false
+    }
+  ],
+  "spi_buses": [
+    {
+      "id": "ethernet",
+      "controller": "SPI2",
+      "clock": 13,
+      "mosi": 11,
+      "miso": 12,
+      "devices": [
+        {
+          "id": "w5500",
+          "cs": 14,
+          "clock_hz": 10000000,
+          "mode": 0
+        }
+      ]
+    },
+    {
+      "id": "cc1101_spi",
+      "controller": "SPI3",
+      "clock": 7,
+      "mosi": 8,
+      "miso": 6,
+      "devices": [
+        {
+          "id": "cc1101",
+          "cs": 15,
+          "clock_hz": 1000000,
+          "mode": 0
+        },
+        {
+          "id": "sc16is752",
+          "cs": 41,
+          "clock_hz": 4000000,
+          "mode": 0
+        }
+      ]
+    }
+  ],
+  "sc16": {
+    "part": "SC16IS752IPW,128",
+    "package": "TSSOP28",
+    "channel": "A",
+    "crystal_hz": 3686400,
+    "baud": 115200,
+    "divisor": 2,
+    "prescaler": 1,
+    "irq_pullup_ohms": 1000,
+    "reset_source": "TPS3808G33DBVR open-drain RESET,10k pullup3V3,CT open20ms",
+    "fixed_pins": {
+      "8": "3V3",
+      "22": "GND",
+      "9": "GND (SPI select)",
+      "14": "GND (unused SDA in SPI)",
+      "6": "XTAL1",
+      "7": "XTAL2",
+      "5": "supervisor RESET",
+      "3": "ZAC93 pin8 RX",
+      "4": "ZAC93 pin10 TX",
+      "2": "GND (CTSA; flow control disabled)",
+      "16": "GND (CTSB; channelB unused)",
+      "24": "3V3 through10k (RXB unused)"
+    },
+    "unused_outputs": [
+      1,
+      17,
+      23
+    ],
+    "unused_gpio_inputs": [
+      18,
+      19,
+      20,
+      21,
+      25,
+      26,
+      27,
+      28
+    ],
+    "unused_gpio_policy": "100k toGND each; do not short GPIO outputs"
+  },
+  "pullups": [
+    {
+      "net": "cc1101_gdo0_tx",
+      "ohms": 4700,
+      "rail_v": 3.3
+    },
+    {
+      "net": "sc16_irq",
+      "ohms": 1000,
+      "rail_v": 3.3
+    },
+    {
+      "net": "cc1101_cs",
+      "ohms": 10000,
+      "rail_v": 3.3
+    },
+    {
+      "net": "sc16_cs",
+      "ohms": 10000,
+      "rail_v": 3.3
+    },
+    {
+      "net": "h2_reset",
+      "ohms": 10000,
+      "rail_v": 3.3
+    },
+    {
+      "net": "h2_boot",
+      "ohms": 10000,
+      "rail_v": 3.3
+    }
+  ],
+  "h2_fixed": {
+    "GPIO8": "10k to3V3 for ROM download",
+    "GPIO25": "10k toGND; fixed strap, retain default USB JTAG eFuse settings",
+    "EN": "10k to3V3 plus1uF toGND",
+    "GPIO9": "10k to3V3; S3GPIO48 controls boot"
+  },
+  "external_modules": [
+    {
+      "id": "w5500",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "h2",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "mg24",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "zac93",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "cc1101",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "sc16is752",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "bme680",
+      "supply_voltage": 3.3,
+      "logic_voltage": 3.3
+    },
+    {
+      "id": "ld2450",
+      "supply_voltage": 5.0,
+      "logic_voltage": 3.3
+    }
+  ],
+  "board_gates": [
+    "DevKit USB-UART TX must be electrically disconnected fromGPIO44 before H2TX is attached; inspect43/44 and auto-reset circuit, nativeUSB alone is not isolation.",
+    "GPIO48 must be free of RGB LED or its trace/load isolated; officialv1.1 LED is38, clones may differ.",
+    "3V3 external feed and USB VBUS must never connect two regulators without a verified isolation arrangement.",
+    "MG24 PA/PB routing is a custom NCP firmware contract, not claimed factory firmware.",
+    "H2 DevKit USB-UART TX must be disconnected from GPIO23 before S3TX is attached."
+  ],
+  "sources": {
+    "s3": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+    "devkit": "https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html",
+    "h2": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+    "mg24": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+    "wiz": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+    "pd": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+    "eval": "https://silvertel.com/ag97000/",
+    "eval_manual": "https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf",
+    "buck": "https://www.pololu.com/product/2857",
+    "sc16": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+    "crystal": "https://abracon.com/parametric/crystals/ABLS-3.6864MHZ-B2-T",
+    "reset": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+    "zac": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+    "cc": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+    "ld": "https://r0.hlktech.com/download/HLK-LD2450-24G/1/HLK%20LD2450%201T2R%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%BF%BD%E8%B8%AA%E6%A8%A1%E7%BB%84%E8%AF%B4%E6%98%8E%E4%B9%A6%20V1.01.pdf",
+    "bme": "https://www.adafruit.com/product/3660",
+    "qt": "https://www.adafruit.com/product/4397"
+  },
+  "mg24_service": {
+    "PA00_pad7": "BOOT active-low service jumper to GND; 10k pull-up to3V3; no S3 GPIO",
+    "PA01_pad8": "SWCLK",
+    "PA02_pad9": "SWDIO",
+    "RESETn_pad31": "Service button/probe only sinks to GND; internal DVDD pull-up, no external3V3 pull-up",
+    "firmware_recipe": "firmware/low-power/mg24",
+    "hardware_tested": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "input_sha256": {
+    "../carrier/connectors.json": "7f011725bcadbc04075d3e3bf8df935d43b07652094a4c4024215fedc14f7f35",
+    "../carrier/mg24-adapter/connectors.json": "9a09a5bb9dc909cc7044822e6c0a2c7a17b989427979811449af497e5b7e26ca",
+    "../carrier/mg24-adapter/outputs/assembly-top.svg": "b6aedeac785b98c4e489f9e9bd434dae396ae153663325054950d322675a0446",
+    "../carrier/outputs/assembly-top.svg": "4cd1a1129a333ac874b18848efc88d7393433091b72eb4c4b28a47c676c2e73f",
+    "../integrated/connectors.json": "6dabb5fe801e3eb04c6e55a92a5f1507615aba9e548b9c60cd01862c4e5f7a1d",
+    "../integrated/fabrication/assembly-top.svg": "2d6edbec44dd9b0593775527483fdaed9e78326cabf19af324cab53370d4326d",
+    "connections.json": "c428425508110e04d330fbcbd5470f28a23a02ffefd5dffedb69016cf9a6d750",
+    "physical/catalog.json": "0fcea29c97cf4282f84b4d8dd4fda22958c16448d7cf6c874b6b8d4586f3bc15",
+    "physical/generated/h2-contacts.svg": "2d109b688e026ba2e7fa961192b7feaca6c9a01b0286fc35250e1b74f57e2e5b",
+    "physical/generated/mg24-contacts.svg": "4bdc250f1fd0fe6e634119a8b63428159c20491f5d322e55869723be488bc4ad",
+    "physical/generated/pololu-contacts.svg": "6e252e0f8d84174b257b820b35c26a9b7f085ca1776d8894dd8ad18f496020cf",
+    "physical/generated/s3-contacts.svg": "be45a80b16fb941f12881f221749b8b6b0df570e00973dfa0fe311138fbcc0f8",
+    "physical/generated/wiz850io-contacts.svg": "71f040411a3f85ca600fbbb9147da01ffb03fb56f0ef30f55b46f5f9574679fb",
+    "viewer.template.html": "959f854037b62a3786a96a1a9d1829251a400a2ccdb4960e16c4aba8286996d1"
+  },
+  "files": {
+    "bme680-connections.svg": "0706f1f63523c20aa82e42f08a82ee468ae1e80291573cbbcf087cd44646c3f7",
+    "buck-connections.svg": "f97924fe3461aa6d3e6c740d2f64b4d182a5a90337c91cf3a9b4f2422ec50d9c",
+    "carrier-assembly.svg": "4cd1a1129a333ac874b18848efc88d7393433091b72eb4c4b28a47c676c2e73f",
+    "cc1101-connections.svg": "edbed64bfe39f9723da74e636cfd313e770b2a517d7b22469a6158189f440de2",
+    "h2-connections.svg": "dcc2b5175542add02b2b05e50822b82cd6aeef14d632f36cf39636c1b8415def",
+    "h2-contacts.svg": "2d109b688e026ba2e7fa961192b7feaca6c9a01b0286fc35250e1b74f57e2e5b",
+    "index.html": "dd008bb4dfe82de0110bc94cec364ce2468d1e089d69174da2e3d453dfa311e9",
+    "integrated-assembly.svg": "2d6edbec44dd9b0593775527483fdaed9e78326cabf19af324cab53370d4326d",
+    "ld2450-connections.svg": "0e78f4d8684b07b9e70c7a59d13c5e64067ab6606afd5287d4042f40501e48ea",
+    "mg24-adapter-assembly.svg": "b6aedeac785b98c4e489f9e9bd434dae396ae153663325054950d322675a0446",
+    "mg24-connections.svg": "4749dc5d81f9b3da8958449160e8f9957e5e1fcd5419dd4b8dde16c812200cb2",
+    "mg24-contacts.svg": "4bdc250f1fd0fe6e634119a8b63428159c20491f5d322e55869723be488bc4ad",
+    "pd-connections.svg": "2e2758c2194645d387afbb3d53157497069c98cb60350f8729ae2c3f26a78802",
+    "pololu-contacts.svg": "6e252e0f8d84174b257b820b35c26a9b7f085ca1776d8894dd8ad18f496020cf",
+    "s3-connections.svg": "f7146b1249ac8796658967e1468d08a92c7bc04bf89ef4d51c843b5b0bc4186c",
+    "s3-contacts.svg": "be45a80b16fb941f12881f221749b8b6b0df570e00973dfa0fe311138fbcc0f8",
+    "sc16-connections.svg": "0468edbe940989eaa7aa43041651eb41e20df7b7e36f9f49f11ff851266123ac",
+    "service-connections.svg": "292653b081c23e553acb49c2125763d68f93b93db07a6560b23eb50c71e4a7f5",
+    "supervisor-connections.svg": "6d0802bdc818e5adf1629665fc513adfb5c89e90b481be022ff1df6e6d4a05e6",
+    "w5500-connections.svg": "dc30e5d5d9ee48330871b6af110ac456db9e590ddfa223706074679a831a0257",
+    "wiz850io-contacts.svg": "71f040411a3f85ca600fbbb9147da01ffb03fb56f0ef30f55b46f5f9574679fb",
+    "zac93-connections.svg": "b8e6f5cf6f1cda68493edb5465b20f9774545551be042c18f1c8a673303e44e0"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "platform": "linux-x86_64",
+  "java": "Java21 supplied by runner; no vendor login required",
+  "archives": [
+    {
+      "name": "sdk",
+      "url": "https://github.com/SiliconLabs/simplicity_sdk/releases/download/v2025.6.3/simplicity-sdk.zip",
+      "sha256": "c7cf5c002e26f6561fbbd392b9c6e159c607f77d92cbb55abad0ff7b0ff4cbf8",
+      "bytes": 586163252,
+      "extract_to": "sdk"
+    },
+    {
+      "name": "slc",
+      "url": "https://updates.silabs.com/studio/v6/updates/update_site/archives/slc-cli/6.0.15/slc-cli.linux.gtk.x86_64.zip",
+      "sha256": "85cb10d24606f4d95a8696012e282d3e4e0ef0d79ed6ac2d6126c1aff314bd54",
+      "bytes": 77973144,
+      "extract_to": "tools"
+    },
+    {
+      "name": "gcc",
+      "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.2.rel1/binrel/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi.tar.xz",
+      "sha256": "84be93d0f9e96a15addd490b6e237f588c641c8afdf90e7610a628007fc96867",
+      "bytes": 155407328,
+      "extract_to": "tools"
+    },
+    {
+      "name": "commander",
+      "url": "https://updates.silabs.com/studio/v6/updates/update_site/archives/commander/1.25.0/Commander_linux_x86_64_1v25p0b1995.tar.bz",
+      "sha256": "956ae8e9e1600e492e1c4e57d271941ebf83bde6bfe23530a4e09ea300fdea32",
+      "bytes": 42675064,
+      "extract_to": "tools"
+    },
+    {
+      "name": "python",
+      "url": "https://updates.silabs.com/studio/v6/updates/update_site/archives/python/3.10.1/python.3.10.gtk.linux.x86_64.zip",
+      "sha256": "2c5c3c3f574b1c4f2f2fa354dffe68f8ea6ceda004fb5b03e8ca0ac13a696927",
+      "bytes": 131165485,
+      "extract_to": "tools"
+    }
+  ]
+}

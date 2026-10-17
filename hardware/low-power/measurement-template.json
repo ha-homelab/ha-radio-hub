@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "notes": "Unmeasured template. Copy under private/, replace nulls with readings. Keep the same workload and PSE/ports/cable for baseline; sum worst-case absolute meter errors in Wh. Do not publish network identifiers.",
+  "boundary": "ac_incremental",
+  "duration_hours": null,
+  "energy_wh": null,
+  "uncertainty_wh": null,
+  "baseline_duration_hours": null,
+  "baseline_energy_wh": null,
+  "baseline_uncertainty_wh": null,
+  "all_functions_passed": null,
+  "firmware_revision": null,
+  "meter_and_accuracy": null,
+  "poe_source_and_cable": null,
+  "workload": "Ethernet linked; BLE 30/320 ms plus active connections; Thread/Zigbee connected; RF continuous RX and representative TX; Z-Wave active; LD2450 on; BME680 60 s with 150 ms heater"
+}

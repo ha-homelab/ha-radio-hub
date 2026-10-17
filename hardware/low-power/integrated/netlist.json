@@ -1,0 +1,2364 @@
+{
+  "revision": "LP-I0",
+  "parts": [
+    {
+      "ref": "U1",
+      "model": "ESP32-S3-WROOM-1-N16R8",
+      "footprint": "Hub:ESP32-S3-WROOM-1",
+      "pins": {
+        "1": "gnd",
+        "2": "3v3",
+        "3": "s3_en",
+        "4": "cc1101_gdo0_tx",
+        "5": "cc1101_gdo2_rx",
+        "6": "shared_spi_miso",
+        "7": "shared_spi_sclk",
+        "8": "cc1101_cs",
+        "9": "mg24_rts",
+        "10": "mg24_tx",
+        "11": "mg24_rx",
+        "12": "shared_spi_mosi",
+        "13": "usb_dm",
+        "14": "usb_dp",
+        "15": null,
+        "16": null,
+        "17": "w5500_reset",
+        "18": "w5500_irq",
+        "19": "w5500_mosi",
+        "20": "w5500_miso",
+        "21": "w5500_sclk",
+        "22": "w5500_cs",
+        "23": "mg24_cts",
+        "24": "h2_reset",
+        "25": "h2_boot",
+        "26": null,
+        "27": "s3_boot",
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": "ld2450_tx",
+        "33": "ld2450_rx",
+        "34": "sc16_cs",
+        "35": "sc16_irq",
+        "36": "h2_rx",
+        "37": "h2_tx",
+        "38": "bme680_scl",
+        "39": "bme680_sda",
+        "40": "gnd",
+        "41": "gnd"
+      },
+      "xy": [
+        42,
+        22
+      ],
+      "rotation": 0,
+      "source": "s3",
+      "notes": "Module pad numbers, not development-board header positions.",
+      "types": {
+        "21": "output",
+        "19": "output",
+        "20": "input",
+        "22": "output",
+        "18": "input",
+        "17": "output",
+        "7": "output",
+        "12": "output",
+        "6": "input",
+        "8": "output",
+        "4": "open_collector",
+        "5": "input",
+        "34": "output",
+        "35": "input",
+        "37": "output",
+        "36": "input",
+        "24": "open_collector",
+        "25": "open_collector",
+        "10": "output",
+        "11": "input",
+        "9": "output",
+        "23": "input",
+        "32": "output",
+        "33": "input",
+        "39": "open_collector",
+        "38": "open_collector",
+        "27": "input",
+        "13": "bidirectional",
+        "14": "bidirectional",
+        "3": "input",
+        "2": "power_in",
+        "1": "power_in",
+        "40": "power_in",
+        "41": "power_in"
+      }
+    },
+    {
+      "ref": "U2",
+      "model": "ESP32-H2-MINI-1-H4S",
+      "footprint": "Hub:ESP32-H2-MINI-1",
+      "pins": {
+        "1": "gnd",
+        "2": "gnd",
+        "3": "3v3",
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": "h2_reset",
+        "9": null,
+        "10": null,
+        "11": "gnd",
+        "12": null,
+        "13": null,
+        "14": "gnd",
+        "15": null,
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": "h2_gpio8",
+        "23": "h2_boot",
+        "24": null,
+        "25": "h2_gpio25",
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": "h2_tx",
+        "31": "h2_rx",
+        "32": null,
+        "33": null,
+        "34": null,
+        "35": null,
+        "36": "gnd",
+        "37": "gnd",
+        "38": "gnd",
+        "39": "gnd",
+        "40": "gnd",
+        "41": "gnd",
+        "42": "gnd",
+        "43": "gnd",
+        "44": "gnd",
+        "45": "gnd",
+        "46": "gnd",
+        "47": "gnd",
+        "48": "gnd",
+        "49": "gnd",
+        "50": "gnd",
+        "51": "gnd",
+        "52": "gnd",
+        "53": "gnd"
+      },
+      "xy": [
+        92,
+        20
+      ],
+      "rotation": 0,
+      "source": "h2",
+      "notes": "Module pad numbers, not development-board header positions.",
+      "types": {
+        "30": "input",
+        "31": "output",
+        "23": "input",
+        "22": "input",
+        "25": "input",
+        "8": "input",
+        "3": "power_in",
+        "1": "power_in",
+        "2": "power_in",
+        "11": "power_in",
+        "14": "power_in",
+        "36": "power_in",
+        "37": "power_in",
+        "38": "power_in",
+        "39": "power_in",
+        "40": "power_in",
+        "41": "power_in",
+        "42": "power_in",
+        "43": "power_in",
+        "44": "power_in",
+        "45": "power_in",
+        "46": "power_in",
+        "47": "power_in",
+        "48": "power_in",
+        "49": "power_in",
+        "50": "power_in",
+        "51": "power_in",
+        "52": "power_in",
+        "53": "power_in",
+        "15": "power_in"
+      }
+    },
+    {
+      "ref": "U3",
+      "model": "MGM240PA22VNA3",
+      "footprint": "Hub:MGM240P",
+      "pins": {
+        "1": "gnd",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": "mg24_rts",
+        "6": "mg24_cts",
+        "7": "mg24_boot",
+        "8": "mg24_swclk",
+        "9": "mg24_swdio",
+        "10": null,
+        "11": null,
+        "12": "mg24_tx",
+        "13": "mg24_rx",
+        "14": "gnd",
+        "15": "3v3",
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": "gnd",
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": "mg24_reset",
+        "32": "gnd",
+        "33": null,
+        "34": "gnd",
+        "35": "gnd",
+        "36": "gnd"
+      },
+      "xy": [
+        139,
+        0
+      ],
+      "rotation": 0,
+      "source": "mg24",
+      "notes": "Module pad numbers, not development-board header positions.",
+      "types": {
+        "12": "input",
+        "13": "output",
+        "5": "input",
+        "6": "output",
+        "7": "input",
+        "8": "input",
+        "9": "bidirectional",
+        "31": "input",
+        "15": "power_in",
+        "1": "power_in",
+        "14": "power_in",
+        "23": "power_in",
+        "32": "power_in",
+        "34": "power_in",
+        "35": "power_in",
+        "36": "power_in"
+      }
+    },
+    {
+      "ref": "U5",
+      "model": "NXP SC16IS752IPW,128 / TSSOP28",
+      "footprint": "Hub:TSSOP-28_4.4x9.7mm_P0.65mm",
+      "pins": {
+        "1": null,
+        "2": "gnd",
+        "3": "zwave_tx",
+        "4": "zwave_rx",
+        "5": "sc16_reset",
+        "6": "sc16_xtal1",
+        "7": "sc16_xtal2",
+        "8": "3v3",
+        "9": "gnd",
+        "10": "sc16_cs",
+        "11": "shared_spi_mosi",
+        "12": "shared_spi_miso",
+        "13": "shared_spi_sclk",
+        "14": "gnd",
+        "15": "sc16_irq",
+        "16": "gnd",
+        "17": null,
+        "18": "sc16_gpio0",
+        "19": "sc16_gpio1",
+        "20": "sc16_gpio2",
+        "21": "sc16_gpio3",
+        "22": "gnd",
+        "23": null,
+        "24": "sc16_rxb",
+        "25": "sc16_gpio4",
+        "26": "sc16_gpio5",
+        "27": "sc16_gpio6",
+        "28": "sc16_gpio7"
+      },
+      "xy": [
+        86,
+        60
+      ],
+      "rotation": 0,
+      "source": "sc16",
+      "notes": "Module pad numbers, not development-board header positions.",
+      "types": {
+        "1": "output",
+        "2": "input",
+        "3": "output",
+        "4": "input",
+        "5": "input",
+        "6": "passive",
+        "7": "passive",
+        "8": "power_in",
+        "9": "input",
+        "10": "input",
+        "11": "input",
+        "12": "passive",
+        "13": "input",
+        "14": "input",
+        "15": "open_collector",
+        "16": "input",
+        "17": "output",
+        "18": "bidirectional",
+        "19": "bidirectional",
+        "20": "bidirectional",
+        "21": "bidirectional",
+        "22": "power_in",
+        "23": "output",
+        "24": "input",
+        "25": "bidirectional",
+        "26": "bidirectional",
+        "27": "bidirectional",
+        "28": "bidirectional"
+      }
+    },
+    {
+      "ref": "U6",
+      "model": "TI TPS3808G33DBVR / SOT-23-6",
+      "footprint": "Hub:SOT-23-6",
+      "pins": {
+        "1": "sc16_reset",
+        "2": "gnd",
+        "3": null,
+        "4": null,
+        "5": "3v3",
+        "6": "3v3"
+      },
+      "xy": [
+        72,
+        60
+      ],
+      "rotation": 0,
+      "source": "supervisor",
+      "notes": "Module pad numbers, not development-board header positions.",
+      "types": {
+        "1": "open_collector",
+        "2": "power_in",
+        "3": "input",
+        "4": "input",
+        "5": "passive",
+        "6": "power_in"
+      }
+    },
+    {
+      "ref": "U7",
+      "model": "Ag97005-FL",
+      "footprint": "Hub:Ag97000_FL",
+      "pins": {
+        "1": "POE_12",
+        "2": "POE_36",
+        "3": "POE_45",
+        "4": "POE_78",
+        "5": null,
+        "6": null,
+        "7": "gnd",
+        "8": "5v_pd",
+        "9": null,
+        "10": null
+      },
+      "xy": [
+        30,
+        130
+      ],
+      "rotation": 0,
+      "source": "pd",
+      "notes": "Bare isolated PoE module installed on this PCB; not the separate EvalPoE bench board.",
+      "types": {
+        "1": "power_in",
+        "2": "power_in",
+        "3": "power_in",
+        "4": "power_in",
+        "5": "passive",
+        "6": "passive",
+        "7": "power_in",
+        "8": "power_out",
+        "9": "passive",
+        "10": "passive"
+      }
+    },
+    {
+      "ref": "U8",
+      "model": "D24V22F3",
+      "footprint": "Hub:D24V22F3",
+      "pins": {
+        "PG": null,
+        "EN": null,
+        "VIN": "5v_fused",
+        "GND": "gnd",
+        "VOUT": "3v3",
+        "GND2": "gnd"
+      },
+      "xy": [
+        112,
+        109
+      ],
+      "rotation": 0,
+      "source": "pololu_dimensions",
+      "notes": "Only regulator feeding 3V3. 1.5A at 5V input bench gate; soldered headers.",
+      "types": {
+        "VIN": "power_in",
+        "GND": "power_in",
+        "GND2": "power_in",
+        "VOUT": "power_out",
+        "PG": "open_collector",
+        "EN": "input"
+      }
+    },
+    {
+      "ref": "U4",
+      "model": "W5500",
+      "footprint": "Hub:LQFP-48_7x7mm_P0.5mm",
+      "pins": {
+        "1": "eth_txn",
+        "2": "eth_txp",
+        "3": "gnd",
+        "4": "3v3_analog",
+        "5": "eth_rxn",
+        "6": "eth_rxp",
+        "7": null,
+        "8": "3v3_analog",
+        "9": "gnd",
+        "10": "eth_exres",
+        "11": "3v3_analog",
+        "12": null,
+        "13": null,
+        "14": "gnd",
+        "15": "3v3_analog",
+        "16": "gnd",
+        "17": "3v3_analog",
+        "18": null,
+        "19": "gnd",
+        "20": "eth_tocap",
+        "21": "3v3_analog",
+        "22": "eth_1v2",
+        "23": "gnd",
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": "3v3",
+        "29": "gnd",
+        "30": "eth_xi",
+        "31": "eth_xo",
+        "32": "w5500_cs",
+        "33": "w5500_sclk",
+        "34": "w5500_miso",
+        "35": "w5500_mosi",
+        "36": "w5500_irq",
+        "37": "w5500_reset",
+        "38": null,
+        "39": null,
+        "40": null,
+        "41": null,
+        "42": null,
+        "43": "eth_pmode",
+        "44": "eth_pmode",
+        "45": "eth_pmode",
+        "46": null,
+        "47": null,
+        "48": "gnd"
+      },
+      "xy": [
+        61,
+        104
+      ],
+      "rotation": 0,
+      "source": "w5500",
+      "notes": "25MHz crystal; common-CT magnetics with RX AC coupling; hardware PMODE111; firmware selects10M.",
+      "types": {
+        "3": "power_in",
+        "4": "power_in",
+        "8": "power_in",
+        "9": "power_in",
+        "11": "power_in",
+        "14": "power_in",
+        "15": "power_in",
+        "16": "power_in",
+        "17": "power_in",
+        "19": "power_in",
+        "21": "power_in",
+        "23": "power_in",
+        "28": "power_in",
+        "29": "power_in",
+        "48": "power_in",
+        "32": "input",
+        "33": "input",
+        "34": "tri_state",
+        "35": "input",
+        "36": "output",
+        "37": "input",
+        "43": "input",
+        "44": "input",
+        "45": "input",
+        "30": "input",
+        "31": "output"
+      }
+    },
+    {
+      "ref": "J1",
+      "model": "0813-1X1T-57-F",
+      "footprint": "Hub:Bel_0813_1X1T_57_F",
+      "pins": {
+        "1": "mag_rxp",
+        "2": "eth_txp",
+        "5": "POE_12",
+        "6": "POE_45",
+        "7": "mag_ct",
+        "8": "mag_rxn",
+        "9": "eth_txn",
+        "10": "POE_36",
+        "11": "POE_78",
+        "S1": "chassis",
+        "S2": "chassis"
+      },
+      "xy": [
+        21,
+        100
+      ],
+      "rotation": 90,
+      "source": "bel",
+      "notes": "PoE-capable magjack. PHY-side common CT. Four cable-side power taps, internal bridge in U7.",
+      "types": {}
+    },
+    {
+      "ref": "J3",
+      "model": "B8B-XH-A",
+      "footprint": "Hub:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd",
+        "3": "shared_spi_sclk",
+        "4": "shared_spi_mosi",
+        "5": "shared_spi_miso",
+        "6": "cc1101_cs",
+        "7": "cc1101_gdo0_tx",
+        "8": "cc1101_gdo2_rx"
+      },
+      "xy": [
+        146,
+        45
+      ],
+      "rotation": 90,
+      "source": "jst",
+      "notes": "CC1101 remote RF module",
+      "types": {}
+    },
+    {
+      "ref": "J4",
+      "model": "B5B-XH-A",
+      "footprint": "Hub:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd",
+        "3": "zwave_tx",
+        "4": "zwave_rx",
+        "5": "gnd"
+      },
+      "xy": [
+        146,
+        78
+      ],
+      "rotation": 90,
+      "source": "jst",
+      "notes": "ZAC93 remote module",
+      "types": {}
+    },
+    {
+      "ref": "J5",
+      "model": "B4B-XH-A",
+      "footprint": "Hub:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "5v_fused",
+        "2": "gnd",
+        "3": "ld2450_rx",
+        "4": "ld2450_tx"
+      },
+      "xy": [
+        146,
+        101
+      ],
+      "rotation": 90,
+      "source": "jst",
+      "notes": "LD2450 remote radar",
+      "types": {}
+    },
+    {
+      "ref": "J6",
+      "model": "BM04B-SRSS-TB",
+      "footprint": "Hub:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical",
+      "pins": {
+        "1": "gnd",
+        "2": "3v3",
+        "3": "bme680_sda",
+        "4": "bme680_scl",
+        "MP": null
+      },
+      "xy": [
+        141,
+        127
+      ],
+      "rotation": 0,
+      "source": "jst_sh",
+      "notes": "Standard QT order; breakout pullups only; short external ambient sensor cable.",
+      "types": {},
+      "mechanical_pads": [
+        "MP"
+      ]
+    },
+    {
+      "ref": "J7",
+      "model": "B6B-XH-A",
+      "footprint": "Hub:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd",
+        "3": "mg24_swclk",
+        "4": "mg24_swdio",
+        "5": "mg24_reset",
+        "6": "mg24_boot"
+      },
+      "xy": [
+        111,
+        46
+      ],
+      "rotation": 0,
+      "source": "jst",
+      "notes": "MG24 service SWD/boot",
+      "types": {}
+    },
+    {
+      "ref": "J8",
+      "model": "B6B-XH-A",
+      "footprint": "Hub:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd",
+        "3": "h2_rx",
+        "4": "h2_tx",
+        "5": "h2_reset",
+        "6": "h2_boot"
+      },
+      "xy": [
+        86,
+        42
+      ],
+      "rotation": 0,
+      "source": "jst",
+      "notes": "H2 service UART/boot",
+      "types": {}
+    },
+    {
+      "ref": "J2",
+      "model": "TYPE-C-31-M-12",
+      "footprint": "Hub:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
+      "pins": {
+        "A1": "gnd",
+        "A4": "usb_vbus",
+        "A5": "usb_cc1",
+        "A6": "usb_dp_port",
+        "A7": "usb_dm_port",
+        "A8": null,
+        "A9": "usb_vbus",
+        "A12": "gnd",
+        "B1": "gnd",
+        "B4": "usb_vbus",
+        "B5": "usb_cc2",
+        "B6": "usb_dp_port",
+        "B7": "usb_dm_port",
+        "B8": null,
+        "B9": "usb_vbus",
+        "B12": "gnd",
+        "SH": "gnd"
+      },
+      "xy": [
+        13,
+        52
+      ],
+      "rotation": 270,
+      "source": "usb",
+      "notes": "Self-powered USB service only. VBUS feeds ESD reference; never tied to PoE5V.",
+      "types": {}
+    },
+    {
+      "ref": "U9",
+      "model": "USBLC6-2SC6",
+      "footprint": "Hub:SOT-23-6",
+      "pins": {
+        "1": "usb_dm_port",
+        "2": "gnd",
+        "3": "usb_dp_port",
+        "4": "usb_dp_port",
+        "5": "usb_vbus",
+        "6": "usb_dm_port"
+      },
+      "xy": [
+        24,
+        51
+      ],
+      "rotation": 0,
+      "source": "usb_esd",
+      "notes": "Low-capacitance ESD near USB; VBUS not board supply.",
+      "types": {}
+    },
+    {
+      "ref": "Y1",
+      "model": "ABLS-3.6864MHZ-B2-T",
+      "footprint": "Hub:Crystal_SMD_HC49-SD",
+      "pins": {
+        "1": "sc16_xtal1",
+        "2": "sc16_xtal2"
+      },
+      "xy": [
+        77.5,
+        59.35
+      ],
+      "rotation": 90,
+      "source": "sc16",
+      "notes": "18pF load; verify measured frequency and drive.",
+      "types": {}
+    },
+    {
+      "ref": "C1",
+      "model": "22pF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "sc16_xtal1",
+        "2": "gnd"
+      },
+      "xy": [
+        77.5,
+        68
+      ],
+      "rotation": 270,
+      "source": null,
+      "notes": "C0G,50V",
+      "types": {}
+    },
+    {
+      "ref": "C2",
+      "model": "33pF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "sc16_xtal2",
+        "2": "gnd"
+      },
+      "xy": [
+        77.5,
+        50.5
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "C0G,50V",
+      "types": {}
+    },
+    {
+      "ref": "R1",
+      "model": "1k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_irq",
+        "2": "3v3"
+      },
+      "xy": [
+        95,
+        58
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R2",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_reset",
+        "2": "3v3"
+      },
+      "xy": [
+        72,
+        55
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R3",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_cs",
+        "2": "3v3"
+      },
+      "xy": [
+        96,
+        62
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R4",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_rxb",
+        "2": "3v3"
+      },
+      "xy": [
+        97,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R5",
+      "model": "4.7k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "cc1101_gdo0_tx",
+        "2": "3v3"
+      },
+      "xy": [
+        139,
+        62
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R6",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "cc1101_cs",
+        "2": "3v3"
+      },
+      "xy": [
+        139,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R7",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "h2_reset",
+        "2": "3v3"
+      },
+      "xy": [
+        81,
+        29
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R8",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "h2_boot",
+        "2": "3v3"
+      },
+      "xy": [
+        103,
+        26
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R9",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "h2_gpio8",
+        "2": "3v3"
+      },
+      "xy": [
+        103,
+        22
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R10",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "h2_gpio25",
+        "2": "gnd"
+      },
+      "xy": [
+        103,
+        18
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R11",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "mg24_boot",
+        "2": "3v3"
+      },
+      "xy": [
+        133,
+        28
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R12",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "s3_en",
+        "2": "3v3"
+      },
+      "xy": [
+        27,
+        28
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R13",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "s3_boot",
+        "2": "3v3"
+      },
+      "xy": [
+        58,
+        35
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R14",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "w5500_cs",
+        "2": "3v3"
+      },
+      "xy": [
+        70,
+        97
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R15",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "w5500_reset",
+        "2": "3v3"
+      },
+      "xy": [
+        73,
+        94
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R16",
+      "model": "10k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_pmode",
+        "2": "3v3"
+      },
+      "xy": [
+        58,
+        96
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R17",
+      "model": "5.1k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "usb_cc1",
+        "2": "gnd"
+      },
+      "xy": [
+        20,
+        59
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R18",
+      "model": "5.1k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "usb_cc2",
+        "2": "gnd"
+      },
+      "xy": [
+        25,
+        59
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R19",
+      "model": "22",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "usb_dm_port",
+        "2": "usb_dm"
+      },
+      "xy": [
+        29,
+        47
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R20",
+      "model": "22",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "usb_dp_port",
+        "2": "usb_dp"
+      },
+      "xy": [
+        29,
+        51
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R21",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio0",
+        "2": "gnd"
+      },
+      "xy": [
+        106,
+        59
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R22",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio1",
+        "2": "gnd"
+      },
+      "xy": [
+        110,
+        59
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R23",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio2",
+        "2": "gnd"
+      },
+      "xy": [
+        114,
+        59
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R24",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio3",
+        "2": "gnd"
+      },
+      "xy": [
+        118,
+        59
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R25",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio4",
+        "2": "gnd"
+      },
+      "xy": [
+        106,
+        64
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R26",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio5",
+        "2": "gnd"
+      },
+      "xy": [
+        110,
+        64
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R27",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio6",
+        "2": "gnd"
+      },
+      "xy": [
+        114,
+        64
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R28",
+      "model": "100k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "sc16_gpio7",
+        "2": "gnd"
+      },
+      "xy": [
+        118,
+        64
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "C3",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        30,
+        25
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C4",
+      "model": "10uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        26,
+        21
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C5",
+      "model": "1uF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "s3_en",
+        "2": "gnd"
+      },
+      "xy": [
+        27,
+        32
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C6",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        81,
+        21
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C7",
+      "model": "10uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        74,
+        20
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C8",
+      "model": "1uF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "h2_reset",
+        "2": "gnd"
+      },
+      "xy": [
+        81,
+        25
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C9",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        142,
+        17.3
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C10",
+      "model": "10uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        146.5,
+        18
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C11",
+      "model": "100nF",
+      "footprint": "Hub:C_0603_1608Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        81.25,
+        60.3
+      ],
+      "rotation": 270,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C12",
+      "model": "1uF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        86,
+        69
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C13",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        67,
+        60
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C14",
+      "model": "1nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        67,
+        64
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C15",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "usb_vbus",
+        "2": "gnd"
+      },
+      "xy": [
+        24,
+        55
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C16",
+      "model": "22uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        119,
+        132
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C17",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        139,
+        80
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C18",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        139,
+        48
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C19",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "5v_fused",
+        "2": "gnd"
+      },
+      "xy": [
+        140,
+        101
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "FB1",
+      "model": "BLM21PG121SN1D",
+      "footprint": "Hub:L_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "3v3_analog"
+      },
+      "xy": [
+        71,
+        116
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "120ohm at100MHz, low DCR ferrite; local analog supply filter.",
+      "types": {}
+    },
+    {
+      "ref": "C20",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        54,
+        99.5
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C21",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        52,
+        112
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C22",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        56,
+        113
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C23",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        58,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C24",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        61.6,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C25",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        65.2,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C26",
+      "model": "10uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "3v3_analog",
+        "2": "gnd"
+      },
+      "xy": [
+        77,
+        116
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C27",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        73,
+        108
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C28",
+      "model": "10uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "3v3",
+        "2": "gnd"
+      },
+      "xy": [
+        76,
+        112
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "R29",
+      "model": "12.4k",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_exres",
+        "2": "gnd"
+      },
+      "xy": [
+        55,
+        108.5
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "C29",
+      "model": "10nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_1v2",
+        "2": "gnd"
+      },
+      "xy": [
+        65,
+        114
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C30",
+      "model": "4.7uF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_tocap",
+        "2": "gnd"
+      },
+      "xy": [
+        60.5,
+        114
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "Y2",
+      "model": "ABM8-25.000MHZ-B2-T",
+      "footprint": "Hub:Crystal_SMD_3225-4Pin_3.2x2.5mm",
+      "pins": {
+        "1": "eth_xi",
+        "2": "gnd",
+        "3": "eth_xo",
+        "4": "gnd"
+      },
+      "xy": [
+        69,
+        104
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "25MHz,18pF load,<=50ppm total; verify crystal ordering specification.",
+      "types": {}
+    },
+    {
+      "ref": "R30",
+      "model": "1M",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_xi",
+        "2": "eth_xo"
+      },
+      "xy": [
+        73,
+        104
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "C31",
+      "model": "18pF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_xi",
+        "2": "gnd"
+      },
+      "xy": [
+        69,
+        107.5
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "C0G,50V",
+      "types": {}
+    },
+    {
+      "ref": "C32",
+      "model": "18pF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_xo",
+        "2": "gnd"
+      },
+      "xy": [
+        69,
+        100.5
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "C0G,50V",
+      "types": {}
+    },
+    {
+      "ref": "R31",
+      "model": "49.9",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_txp",
+        "2": "3v3_analog"
+      },
+      "xy": [
+        50,
+        104
+      ],
+      "rotation": 270,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R32",
+      "model": "49.9",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_txn",
+        "2": "3v3_analog"
+      },
+      "xy": [
+        46,
+        99.5
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R33",
+      "model": "10",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "mag_ct",
+        "2": "3v3_analog"
+      },
+      "xy": [
+        45,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "C33",
+      "model": "22nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "mag_ct",
+        "2": "gnd"
+      },
+      "xy": [
+        41,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C34",
+      "model": "6.8nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_rxp",
+        "2": "mag_rxp"
+      },
+      "xy": [
+        44.5,
+        110
+      ],
+      "rotation": 180,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C35",
+      "model": "6.8nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_rxn",
+        "2": "mag_rxn"
+      },
+      "xy": [
+        44.5,
+        108
+      ],
+      "rotation": 180,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "R34",
+      "model": "49.9",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_rxp",
+        "2": "eth_rxterm"
+      },
+      "xy": [
+        48,
+        110.9125
+      ],
+      "rotation": 270,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "R35",
+      "model": "49.9",
+      "footprint": "Hub:R_0805_2012Metric",
+      "pins": {
+        "1": "eth_rxn",
+        "2": "eth_rxterm"
+      },
+      "xy": [
+        47.5,
+        107.0875
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "1%,0805,0.125W",
+      "types": {}
+    },
+    {
+      "ref": "C36",
+      "model": "10nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "eth_rxterm",
+        "2": "gnd"
+      },
+      "xy": [
+        48,
+        115
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C50",
+      "model": "1nF 2kV",
+      "footprint": "Hub:C_Disc_D7.5mm_W5.0mm_P7.50mm",
+      "pins": {
+        "1": "chassis",
+        "2": "gnd"
+      },
+      "xy": [
+        29,
+        75
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Safety/ESD rated capacitor; qualification and touch-current review required.",
+      "types": {}
+    },
+    {
+      "ref": "D1",
+      "model": "SMBJ58CA",
+      "footprint": "Hub:D_SMB",
+      "pins": {
+        "1": "POE_12",
+        "2": "POE_36"
+      },
+      "xy": [
+        28,
+        116
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Bidirectional58V TVS across input bridge pair; select surge rating during qualification.",
+      "types": {}
+    },
+    {
+      "ref": "C37",
+      "model": "10nF 100V",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "POE_12",
+        "2": "POE_36"
+      },
+      "xy": [
+        28,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R100V minimum, PoE primary only",
+      "types": {}
+    },
+    {
+      "ref": "D2",
+      "model": "SMBJ58CA",
+      "footprint": "Hub:D_SMB",
+      "pins": {
+        "1": "POE_45",
+        "2": "POE_78"
+      },
+      "xy": [
+        39,
+        116
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Bidirectional58V TVS across input bridge pair; select surge rating during qualification.",
+      "types": {}
+    },
+    {
+      "ref": "C38",
+      "model": "10nF 100V",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "POE_45",
+        "2": "POE_78"
+      },
+      "xy": [
+        39,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R100V minimum, PoE primary only",
+      "types": {}
+    },
+    {
+      "ref": "C39",
+      "model": "22uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "5v_pd",
+        "2": "gnd"
+      },
+      "xy": [
+        78,
+        137
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R16V1206;3x22uF; measure effective aggregate under5V bias and startup",
+      "types": {}
+    },
+    {
+      "ref": "C40",
+      "model": "22uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "5v_pd",
+        "2": "gnd"
+      },
+      "xy": [
+        85,
+        137
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R16V1206;3x22uF; measure effective aggregate under5V bias and startup",
+      "types": {}
+    },
+    {
+      "ref": "C41",
+      "model": "22uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "5v_pd",
+        "2": "gnd"
+      },
+      "xy": [
+        89,
+        124
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R16V1206;3x22uF; measure effective aggregate under5V bias and startup",
+      "types": {}
+    },
+    {
+      "ref": "C42",
+      "model": "100nF",
+      "footprint": "Hub:C_0805_2012Metric",
+      "pins": {
+        "1": "5v_pd",
+        "2": "gnd"
+      },
+      "xy": [
+        89,
+        128
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "C43",
+      "model": "10uF",
+      "footprint": "Hub:C_1206_3216Metric",
+      "pins": {
+        "1": "5v_pd",
+        "2": "gnd"
+      },
+      "xy": [
+        89,
+        133
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "X7R,16V; evaluate DC-bias effective capacitance",
+      "types": {}
+    },
+    {
+      "ref": "F1",
+      "model": "044901.5MR",
+      "footprint": "Hub:Littelfuse_449",
+      "pins": {
+        "1": "5v_pd",
+        "2": "5v_fused"
+      },
+      "xy": [
+        99,
+        132
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.5A time-delay secondary fuse,<=1A continuous5V load; verify derating.",
+      "types": {}
+    },
+    {
+      "ref": "SW1",
+      "model": "SW_PUSH",
+      "footprint": "Hub:SW_SPST_TL3342",
+      "pins": {
+        "1": "s3_en",
+        "2": "gnd"
+      },
+      "xy": [
+        23,
+        38
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Momentary normally open; pulls low, never drives voltage.",
+      "types": {}
+    },
+    {
+      "ref": "SW2",
+      "model": "SW_PUSH",
+      "footprint": "Hub:SW_SPST_TL3342",
+      "pins": {
+        "1": "s3_boot",
+        "2": "gnd"
+      },
+      "xy": [
+        36,
+        40
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Momentary normally open; pulls low, never drives voltage.",
+      "types": {}
+    },
+    {
+      "ref": "SW3",
+      "model": "SW_PUSH",
+      "footprint": "Hub:SW_SPST_TL3342",
+      "pins": {
+        "1": "mg24_reset",
+        "2": "gnd"
+      },
+      "xy": [
+        122,
+        33
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Momentary normally open; pulls low, never drives voltage.",
+      "types": {}
+    },
+    {
+      "ref": "SW4",
+      "model": "SW_PUSH",
+      "footprint": "Hub:SW_SPST_TL3342",
+      "pins": {
+        "1": "mg24_boot",
+        "2": "gnd"
+      },
+      "xy": [
+        138,
+        34
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Momentary normally open; pulls low, never drives voltage.",
+      "types": {}
+    },
+    {
+      "ref": "#FLG1",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "gnd"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG2",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "POE_12"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG3",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "POE_36"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG4",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "POE_45"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG5",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "POE_78"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG6",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "5v_fused"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG7",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "3v3_analog"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "",
+      "types": {
+        "1": "power_out"
+      }
+    }
+  ]
+}

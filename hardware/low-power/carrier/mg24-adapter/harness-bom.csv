@@ -1,0 +1,6 @@
+Item,Quantity,Model/specification,Purpose,Notes
+J1 adapter cable end,1,JST XHP-6,Straight cable to C0 J6,The other XHP-6 is counted in C0 harness BOM
+J1 contacts,6,JST SXH-001T-P0.6,Adapter end only,AWG28-22; verify crimp and continuity before power
+J2 service cable end,1,JST XHP-7,SWD and boot service,Optional if shared production fixture connects directly
+J2 contacts,7,JST SXH-001T-P0.6,Service end only,VTref is sense only; RESET sink only
+Mounting hardware,4,M2 nonconductive standoff and fastener sets,2.2mm NPTH,Choose length after enclosure and antenna clearance review

@@ -1,0 +1,210 @@
+{
+  "revision": "LP-P0",
+  "hardware_measured": false,
+  "target_ac_w": 3.0,
+  "target_kind": "acceptance_hypothesis_not_prediction_or_rating",
+  "boundary": "Incremental AC load of one hub. Existing network and HA server base loads are excluded. Add the standby load of a new dedicated PSE separately.",
+  "loads": [
+    {
+      "id": "s3",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 75,
+        "reference": 110,
+        "high": 180
+      },
+      "peak_reserve_ma": 500,
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "basis": "Model: 160 MHz, N16R8, BLE scan 30/320 ms, Wi-Fi off. Unified workload is unmeasured."
+    },
+    {
+      "id": "w5500",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 128,
+        "reference": 141,
+        "high": 155
+      },
+      "peak_reserve_ma": 200,
+      "source": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+      "basis": "Exact module typical normal current is 141 mA. Envelope and peak reserve are assumptions; 100 Mbps baseline."
+    },
+    {
+      "id": "h2",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 25,
+        "reference": 32,
+        "high": 50
+      },
+      "peak_reserve_ma": 100,
+      "source": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "basis": "25 mA radio receive reference. Whole RCP allowance includes CPU; unmeasured."
+    },
+    {
+      "id": "mg24",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 8,
+        "reference": 12,
+        "high": 22
+      },
+      "peak_reserve_ma": 40,
+      "source": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+      "basis": "Whole NCP planning allowance for continuous availability; not deep-sleep current."
+    },
+    {
+      "id": "zac93",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 7,
+        "reference": 18,
+        "high": 40
+      },
+      "peak_reserve_ma": 100,
+      "source": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+      "basis": "Manufacturer does not publish whole-module current. Measure this reserve."
+    },
+    {
+      "id": "cc1101",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 15,
+        "reference": 17,
+        "high": 22
+      },
+      "peak_reserve_ma": 40,
+      "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+      "basis": "Continuous receive and occasional transmit; module allowance, not chip absolute maximum."
+    },
+    {
+      "id": "sc16is752_clock_reset",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 2,
+        "reference": 4,
+        "high": 8
+      },
+      "peak_reserve_ma": 15,
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "basis": "IC, oscillator and supervisor allowance. IRQ pull-up losses are counted under passives."
+    },
+    {
+      "id": "bme680",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 0.3,
+        "reference": 1,
+        "high": 3
+      },
+      "peak_reserve_ma": 15,
+      "source": "https://www.adafruit.com/product/3660",
+      "basis": "Breakout estimate: 320 C heater, 150 ms per 60 s. Peak is a design reserve."
+    },
+    {
+      "id": "pullups_indicators",
+      "voltage_v": 3.3,
+      "average_ma": {
+        "low": 0.5,
+        "reference": 2,
+        "high": 5
+      },
+      "peak_reserve_ma": 15,
+      "source": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+      "basis": "Includes IRQ and other resistor losses. No always-on power LED in the final carrier."
+    },
+    {
+      "id": "ld2450",
+      "voltage_v": 5.0,
+      "average_ma": {
+        "low": 120,
+        "reference": 120,
+        "high": 140
+      },
+      "peak_reserve_ma": 250,
+      "source": "https://r0.hlktech.com/download/HLK-LD2450-24G/1/HLK%20LD2450%201T2R%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%BF%BD%E8%B8%AA%E6%A8%A1%E7%BB%84%E8%AF%B4%E6%98%8E%E4%B9%A6%20V1.01.pdf",
+      "basis": "120 mA manufacturer average. Upper and peak assembly reserves are not published maxima."
+    }
+  ],
+  "efficiency_scenarios": {
+    "buck": {
+      "low": 0.85,
+      "reference": 0.9,
+      "high": 0.94
+    },
+    "pd": {
+      "low": 0.68,
+      "reference": 0.76,
+      "high": 0.815
+    },
+    "cable": {
+      "low": 0.97,
+      "reference": 0.99,
+      "high": 0.995
+    },
+    "pse": {
+      "low": 0.82,
+      "reference": 0.88,
+      "high": 0.93
+    }
+  },
+  "efficiency_note": "Buck, PSE, cable and low-load PD values are assumptions. PD high efficiency 0.815 is the vendor peak typical value at the module pins, not guaranteed at 2 W. The FL input bridge is already included in PD efficiency.",
+  "results": {
+    "low": {
+      "load_3v3_w": 0.86064,
+      "load_5v_w": 0.6,
+      "secondary_wiring_loss_w": 0.015,
+      "pd_5v_output_w": 1.530574,
+      "ac_incremental_w": 2.029508,
+      "kwh_10y": 177.785,
+      "kwh_15y": 266.677
+    },
+    "reference": {
+      "load_3v3_w": 1.1121,
+      "load_5v_w": 0.6,
+      "secondary_wiring_loss_w": 0.03,
+      "pd_5v_output_w": 1.865667,
+      "ac_incremental_w": 2.817751,
+      "kwh_10y": 246.835,
+      "kwh_15y": 370.252
+    },
+    "high": {
+      "load_3v3_w": 1.6005,
+      "load_5v_w": 0.7,
+      "secondary_wiring_loss_w": 0.08,
+      "pd_5v_output_w": 2.662941,
+      "ac_incremental_w": 4.923422,
+      "kwh_10y": 431.292,
+      "kwh_15y": 646.938
+    }
+  },
+  "peak": {
+    "kind": "sumofengineeringcurrentreserves_notmeasuredstartuporcertifiedmax",
+    "rail_3v3_a": 1.025,
+    "rail_5v_direct_a": 0.25,
+    "secondary_wiring_loss_w": 0.15,
+    "pd_output_w_at_buck_eta_0_85": 5.379412,
+    "pd_nominal_capacity_w": 9,
+    "buck_required_test_a": 1.5
+  },
+  "mps_min_5v_load_ma": 70,
+  "sources": {
+    "s3": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+    "devkit": "https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html",
+    "h2": "https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+    "mg24": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+    "wiz": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+    "pd": "https://silvertel.com/images/datasheets/Ag97000-Datasheet-low-cost-isolated-12W-Power-over-Ethernet-PoE-module-solution.pdf",
+    "eval": "https://silvertel.com/ag97000/",
+    "eval_manual": "https://silvertel.com/images/Eval-Board-User-Guides/POE-Eval-Board-User-Manual.pdf",
+    "buck": "https://www.pololu.com/product/2857",
+    "sc16": "https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf",
+    "crystal": "https://abracon.com/parametric/crystals/ABLS-3.6864MHZ-B2-T",
+    "reset": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+    "zac": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+    "cc": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+    "ld": "https://r0.hlktech.com/download/HLK-LD2450-24G/1/HLK%20LD2450%201T2R%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%BF%BD%E8%B8%AA%E6%A8%A1%E7%BB%84%E8%AF%B4%E6%98%8E%E4%B9%A6%20V1.01.pdf",
+    "bme": "https://www.adafruit.com/product/3660",
+    "qt": "https://www.adafruit.com/product/4397"
+  }
+}

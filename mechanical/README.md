@@ -8,11 +8,19 @@ Full instructions, assembly allocation, fasteners, material and print orientatio
 [docs/enclosure.md](../docs/enclosure.md).
 
 - Edit `parameters.json`; run `python build.py` with `requirements.txt` installed.
+- Run `python build.py --check` before committing or packaging. It regenerates
+  into a temporary directory and verifies the saved exports without replacing
+  them: exact CSG, geometrically equivalent STL/GLB, inventory, input provenance
+  and file checksums. Triangle ordering and renderer-specific PNG bytes may vary
+  between systems. This does not replace a physical fit or print test.
+- From the repository root, run the disposable regression fixtures with
+  `python -m unittest discover -s mechanical -p 'test_*.py'`.
 - `generated/*.stl`: individual printable parts, all in their print orientation.
 - `generated/*.scad`: CSG source emitted by the same model as each STL.
 - `generated/assembly.scad` and `generated/assembly.glb`: assembled visualization only.
   GLB uses metres as required by glTF; all STL files use millimetres.
-- `generated/mesh-report.json`: re-import validation and SHA-256 checksums.
+- `generated/mesh-report.json`: re-import validation, generator/parameter
+  provenance and SHA-256 checksums of the exported artifacts.
 - `generated/fit_coupon.stl`: print first to select clearances and insert pilot.
 - `generated/exploded-preview.png`, `generated/layout-plan.png`: geometry preview
   and planning envelopes. The latter are not exact models of commercial PCBs.

@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "revision": "LP-M0",
+  "status": "prototype_not_hardware_validated",
+  "sources": {
+    "mg24": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+    "jst_xh": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf"
+  },
+  "connectors": [
+    {
+      "ref": "J1",
+      "model": "B6B-XH-A",
+      "mating_model": "XHP-6",
+      "contacts": "SXH-001T-P0.6",
+      "label": "To carrier J6",
+      "viewing_convention": "Component/PCB top view; square pad is pin1. Cable mating face is mirrored; continuity-test pin numbers, not colors.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "voltage_v": 3.3,
+          "destination": "Carrier J6.1 (straight number-to-number harness)",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "voltage_v": 0,
+          "destination": "Carrier J6.2 (straight number-to-number harness)",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 3,
+          "net": "mg24_tx",
+          "voltage_v": 3.3,
+          "destination": "Carrier J6.3 (straight number-to-number harness)",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 4,
+          "net": "mg24_rx",
+          "voltage_v": 3.3,
+          "destination": "Carrier J6.4 (straight number-to-number harness)",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 5,
+          "net": "mg24_rts",
+          "voltage_v": 3.3,
+          "destination": "Carrier J6.5 (straight number-to-number harness)",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 6,
+          "net": "mg24_cts",
+          "voltage_v": 3.3,
+          "destination": "Carrier J6.6 (straight number-to-number harness)",
+          "notes": "3.3V only; not hot pluggable"
+        }
+      ],
+      "board_position_mm": [
+        7.0,
+        28.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 7.0,
+          "y": 28.0
+        },
+        {
+          "number": "2",
+          "x": 9.5,
+          "y": 28.0
+        },
+        {
+          "number": "3",
+          "x": 12.0,
+          "y": 28.0
+        },
+        {
+          "number": "4",
+          "x": 14.5,
+          "y": 28.0
+        },
+        {
+          "number": "5",
+          "x": 17.0,
+          "y": 28.0
+        },
+        {
+          "number": "6",
+          "x": 19.5,
+          "y": 28.0
+        }
+      ]
+    },
+    {
+      "ref": "J2",
+      "model": "B7B-XH-A",
+      "mating_model": "XHP-7",
+      "contacts": "SXH-001T-P0.6",
+      "label": "SWD / reset / boot service",
+      "viewing_convention": "Component/PCB top view; square pad is pin1. Cable mating face is mirrored; continuity-test pin numbers, not colors.",
+      "pins": [
+        {
+          "number": 1,
+          "net": "+3V3",
+          "voltage_v": 3.3,
+          "destination": "Probe VTref sense, never external supply",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 2,
+          "net": "GND",
+          "voltage_v": 0,
+          "destination": "Probe GND",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 3,
+          "net": "SWCLK",
+          "voltage_v": 3.3,
+          "destination": "Probe SWCLK -> PA01 pad8",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 4,
+          "net": "SWDIO",
+          "voltage_v": 3.3,
+          "destination": "Probe SWDIO -> PA02 pad9",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 5,
+          "net": "RESET",
+          "voltage_v": null,
+          "destination": "Probe open-drain RESET -> pad31; no3.3V pullup",
+          "notes": "Internal DVDD reset domain; probe may sink only. Never drive high or add an external 3.3V pull-up."
+        },
+        {
+          "number": 6,
+          "net": "BOOT",
+          "voltage_v": 3.3,
+          "destination": "Temporarily ground PA00 pad7 during reset for bootloader entry",
+          "notes": "3.3V only; not hot pluggable"
+        },
+        {
+          "number": 7,
+          "net": "GND",
+          "voltage_v": 0,
+          "destination": "Service GND",
+          "notes": "3.3V only; not hot pluggable"
+        }
+      ],
+      "board_position_mm": [
+        37.0,
+        28.0
+      ],
+      "rotation_deg": 0.0,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "x": 37.0,
+          "y": 28.0
+        },
+        {
+          "number": "2",
+          "x": 39.5,
+          "y": 28.0
+        },
+        {
+          "number": "3",
+          "x": 42.0,
+          "y": 28.0
+        },
+        {
+          "number": "4",
+          "x": 44.5,
+          "y": 28.0
+        },
+        {
+          "number": "5",
+          "x": 47.0,
+          "y": 28.0
+        },
+        {
+          "number": "6",
+          "x": 49.5,
+          "y": 28.0
+        },
+        {
+          "number": "7",
+          "x": 52.0,
+          "y": 28.0
+        }
+      ]
+    }
+  ]
+}

@@ -221,6 +221,118 @@ class MigrationTest(unittest.TestCase):
             with self.subTest(text=text[-60:]):
                 self.assert_rejected_without_output(text)
 
+    def test_plaintext_legacy_api_and_passwordless_ota_are_not_invented(self):
+        legacy = SOURCE.replace("api:\n  encryption:\n    key: !secret old_api\n", "api:\n")
+        legacy = legacy.replace("    password: !secret old_ota\n", "")
+        legacy += """web_server:
+  port: 8080
+cc1101:
+  cs_pin: GPIO15
+  frequency: 433.92MHz
+  max_dvga_gain: 6
+remote_receiver:
+  pin:
+    number: GPIO4
+    allow_other_uses: true
+  filter: 250us
+"""
+        self.source.write_text(legacy)
+        report = self.migrate()
+        after = yaml.load((self.output / "device.yaml").read_text(), Loader=TaggedLoader)
+        credentials = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(after["api"], {})
+        self.assertEqual(after["ota"], [{"platform": "esphome"}])
+        self.assertEqual(set(credentials), {"mqtt_broker", "mqtt_username", "mqtt_password"})
+        self.assertEqual(after["web_server"], {"port": 8080})
+        self.assertEqual(after["cc1101"], {"frequency": "433.92MHz", "max_dvga_gain": 6})
+        self.assertEqual(after["remote_receiver"], {"filter": "150us"})
+        self.assertFalse(report["api_encryption_preserved"])
+        self.assertFalse(report["ota_password_preserved"])
+        self.assertTrue(report["web_server_preserved"])
+        self.assertIn("remote_receiver.pin", report["replaced_hardware_blocks"])
+        self.assertIn("cc1101.cs_pin", report["replaced_hardware_blocks"])
+
+    def test_unknown_radio_profile_and_pin_callbacks_require_review(self):
+        for suffix in ("cc1101:\n  frequency: 868MHz\n",
+                       "cc1101:\n  cs_pin: !lambda return private_pin();\n",
+                       "remote_receiver:\n  pin: !lambda return private_pin();\n",
+                       "web_server:\n  on_request: []\n"):
+            with self.subTest(case=suffix.splitlines()[0]):
+                self.assert_rejected_without_output(SOURCE + suffix)
+
+    def test_missing_api_block_is_not_implicitly_enabled(self):
+        self.assert_rejected_without_output(SOURCE.replace("api:\n  encryption:\n    key: !secret old_api\n", ""))
+
+    def test_rejects_canonical_secret_collision_in_preserved_fields(self):
+        cases = [SOURCE + "web_server:\n  auth:\n    username: test\n    password: !secret mqtt_password\n",
+                 SOURCE.replace("'000000010010001101000101'", "!secret mqtt_password")]
+        for source in cases:
+            with self.subTest(field="web" if "web_server:" in source else "rf"):
+                self.secrets.write_text(SECRETS + "mqtt_password: '000000010010001101000101'\n")
+                self.assert_rejected_without_output(source)
+
+    def test_equal_canonical_secret_alias_is_preserved(self):
+        self.source.write_text(SOURCE + "web_server:\n  auth:\n    username: test\n    password: !secret mqtt_password\n")
+        self.secrets.write_text(SECRETS + "mqtt_password: synthetic-mqtt-secret\n")
+        self.migrate()
+        after = yaml.load((self.output / "device.yaml").read_text(), Loader=TaggedLoader)
+        values = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(after["web_server"]["auth"]["password"], ("secret", "mqtt_password"))
+        self.assertEqual(values["mqtt_password"], "synthetic-mqtt-secret")
+
+    def test_unused_canonical_secret_does_not_block_remapping(self):
+        self.secrets.write_text(SECRETS + "mqtt_password: unused-distinct-secret\n")
+        self.migrate()
+        values = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(values["mqtt_password"], "synthetic-mqtt-secret")
+
+    def test_preserves_allowed_core_metadata_and_build_constraints(self):
+        core = """  comment: !secret node_comment
+  project:
+    name: fixture.rf_bridge
+    version: "1.2.3"
+  min_version: "2026.9.1"
+  compile_process_limit: 1
+"""
+        self.source.write_text(SOURCE.replace("  friendly_name: Living RF\n", "  friendly_name: Living RF\n" + core))
+        self.secrets.write_text(SECRETS + "node_comment: Private fixture description\n")
+        self.migrate()
+        device = yaml.load((self.output / "device.yaml").read_text(), Loader=TaggedLoader)
+        values = yaml.safe_load((self.output / "secrets.yaml").read_text())
+        self.assertEqual(device["esphome"], yaml.load(core, Loader=TaggedLoader))
+        self.assertEqual(values["node_comment"], "Private fixture description")
+
+    def test_project_update_hook_is_not_silently_discarded(self):
+        project = """  project:
+    name: fixture.rf_bridge
+    version: "1.2.3"
+    on_update:
+      - logger.log: Migration must preserve this behavior
+"""
+        self.assert_rejected_without_output(SOURCE.replace("  friendly_name: Living RF\n", "  friendly_name: Living RF\n" + project))
+
+    def test_resolves_sensor_ids_before_checking_package_collisions(self):
+        for identifier in ("cc1101_spi", "rf_receiver"):
+            for declaration in (identifier, "${sensor_identifier}"):
+                with self.subTest(identifier=identifier, substitution=declaration.startswith("$")):
+                    source = SOURCE.replace("id: hall_motion", "id: " + declaration)
+                    source = source.replace("substitutions:\n", f"substitutions:\n  sensor_identifier: {identifier}\n")
+                    self.assert_rejected_without_output(source)
+
+    def test_resolved_duplicate_sensor_ids_are_rejected(self):
+        source = SOURCE.replace("substitutions:\n", "substitutions:\n  another_id: hall_motion\n")
+        source += "  - platform: template\n    id: ${another_id}\n    name: Another sensor\n"
+        self.assert_rejected_without_output(source)
+
+    def test_referenced_secrets_cannot_hide_nonliteral_includes_or_lambdas(self):
+        self.source.write_text(SOURCE.replace("'000000010010001101000101'", "!secret motion_code"))
+        for value in ("!include missing-private-code.yaml", "!lambda return 123;", "!secret another_code"):
+            with self.subTest(tag=value.split()[0]):
+                self.secrets.write_text(SECRETS + "motion_code: " + value + "\n")
+                with self.assertRaises(MIGRATE.MigrationError):
+                    self.migrate()
+                self.assertFalse(self.output.exists())
+
     def test_cli_output_never_contains_values_on_success_or_parse_error(self):
         args = [sys.executable, str(ROOT / "tools/migrate_rf.py"), "--source", str(self.source),
                 "--secrets", str(self.secrets), "--output", str(self.output)]

@@ -1,0 +1,1012 @@
+{
+  "revision": "LP-C0",
+  "parts": [
+    {
+      "ref": "J1",
+      "model": "B2B-XH-A",
+      "footprint": "Carrier:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V_IN",
+        "2": "GND"
+      },
+      "xy": [
+        12,
+        12
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "Isolated regulated 5V input",
+      "types": {}
+    },
+    {
+      "ref": "J2",
+      "model": "B3B-XH-A",
+      "footprint": "Carrier:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "+3V3"
+      },
+      "xy": [
+        30,
+        12
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "External D24V22F3 buck",
+      "types": {}
+    },
+    {
+      "ref": "J3",
+      "model": "61204021621",
+      "footprint": "Carrier:Wurth_61204021621",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "w5500_sclk",
+        "4": "GND",
+        "5": "w5500_mosi",
+        "6": "GND",
+        "7": "w5500_miso",
+        "8": "GND",
+        "9": "w5500_cs",
+        "10": "w5500_irq",
+        "11": "w5500_reset",
+        "12": "GND",
+        "13": "shared_spi_sclk",
+        "14": "GND",
+        "15": "shared_spi_mosi",
+        "16": "shared_spi_miso",
+        "17": "cc1101_cs",
+        "18": "cc1101_gdo0_tx",
+        "19": "cc1101_gdo2_rx",
+        "20": "sc16_cs",
+        "21": "sc16_irq",
+        "22": "GND",
+        "23": "h2_tx",
+        "24": "h2_rx",
+        "25": "h2_reset",
+        "26": "h2_boot",
+        "27": "mg24_tx",
+        "28": "mg24_rx",
+        "29": "mg24_rts",
+        "30": "mg24_cts",
+        "31": "ld2450_tx",
+        "32": "ld2450_rx",
+        "33": "bme680_sda",
+        "34": "bme680_scl",
+        "35": "GND",
+        "36": "GND",
+        "37": "GND",
+        "38": "GND",
+        "39": "+3V3",
+        "40": "GND"
+      },
+      "xy": [
+        22,
+        27
+      ],
+      "rotation": 0,
+      "source": "idc",
+      "notes": "S3 keyed 40-position IDC harness; NOT Raspberry Pi compatible",
+      "types": {}
+    },
+    {
+      "ref": "J4",
+      "model": "B10B-XH-A",
+      "footprint": "Carrier:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "w5500_sclk",
+        "4": "w5500_mosi",
+        "5": "w5500_miso",
+        "6": "w5500_cs",
+        "7": "w5500_irq",
+        "8": "w5500_reset",
+        "9": "GND",
+        "10": "+3V3"
+      },
+      "xy": [
+        72,
+        13
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "WIZ850io Ethernet module",
+      "types": {}
+    },
+    {
+      "ref": "J5",
+      "model": "B7B-XH-A",
+      "footprint": "Carrier:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "h2_tx",
+        "4": "h2_rx",
+        "5": "h2_reset",
+        "6": "h2_boot",
+        "7": "GND"
+      },
+      "xy": [
+        131,
+        18
+      ],
+      "rotation": 90,
+      "source": "jst_xh",
+      "notes": "H2 Thread RCP",
+      "types": {}
+    },
+    {
+      "ref": "J6",
+      "model": "B6B-XH-A",
+      "footprint": "Carrier:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "mg24_tx",
+        "4": "mg24_rx",
+        "5": "mg24_rts",
+        "6": "mg24_cts"
+      },
+      "xy": [
+        131,
+        45
+      ],
+      "rotation": 90,
+      "source": "jst_xh",
+      "notes": "MG24 Zigbee NCP",
+      "types": {}
+    },
+    {
+      "ref": "J7",
+      "model": "B8B-XH-A",
+      "footprint": "Carrier:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "shared_spi_sclk",
+        "4": "shared_spi_mosi",
+        "5": "shared_spi_miso",
+        "6": "cc1101_cs",
+        "7": "cc1101_gdo0_tx",
+        "8": "cc1101_gdo2_rx"
+      },
+      "xy": [
+        131,
+        75
+      ],
+      "rotation": 90,
+      "source": "jst_xh",
+      "notes": "CC1101 RF module",
+      "types": {}
+    },
+    {
+      "ref": "J8",
+      "model": "B5B-XH-A",
+      "footprint": "Carrier:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "zac93_tx",
+        "4": "zac93_rx",
+        "5": "GND"
+      },
+      "xy": [
+        91,
+        89
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "ZAC93 Z-Wave module",
+      "types": {}
+    },
+    {
+      "ref": "J9",
+      "model": "B4B-XH-A",
+      "footprint": "Carrier:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "ld2450_rx",
+        "4": "ld2450_tx"
+      },
+      "xy": [
+        51,
+        89
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "LD2450 radar",
+      "types": {}
+    },
+    {
+      "ref": "J10",
+      "model": "BM04B-SRSS-TB",
+      "footprint": "Carrier:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "+3V3",
+        "3": "bme680_sda",
+        "4": "bme680_scl",
+        "MP1": null,
+        "MP2": null
+      },
+      "xy": [
+        15,
+        88
+      ],
+      "rotation": 0,
+      "source": "jst_sh",
+      "notes": "STEMMA QT: 3.3V only; BME680 external ventilated pod",
+      "types": {}
+    },
+    {
+      "ref": "F1",
+      "model": "044901.5MR",
+      "footprint": "Carrier:Littelfuse_449",
+      "pins": {
+        "1": "+5V_IN",
+        "2": "+5V"
+      },
+      "xy": [
+        22,
+        12
+      ],
+      "rotation": 0,
+      "source": "fuse",
+      "notes": "1.5A time-delay; design <=1.0A continuous at 5V, temperature derating applies",
+      "types": {}
+    },
+    {
+      "ref": "U1",
+      "model": "SC16IS752IPW,128",
+      "footprint": "Carrier:TSSOP-28_4.4x9.7mm_P0.65mm",
+      "pins": {
+        "1": null,
+        "2": "GND",
+        "3": "zac93_tx",
+        "4": "zac93_rx",
+        "5": "sc16_reset",
+        "6": "xtal1",
+        "7": "xtal2",
+        "8": "+3V3",
+        "9": "GND",
+        "10": "sc16_cs",
+        "11": "shared_spi_mosi",
+        "12": "shared_spi_miso",
+        "13": "shared_spi_sclk",
+        "14": "GND",
+        "15": "sc16_irq",
+        "16": "GND",
+        "17": null,
+        "18": "gpio0_unused",
+        "19": "gpio1_unused",
+        "20": "gpio2_unused",
+        "21": "gpio3_unused",
+        "22": "GND",
+        "23": null,
+        "24": "rxb_unused",
+        "25": "gpio4_unused",
+        "26": "gpio5_unused",
+        "27": "gpio6_unused",
+        "28": "gpio7_unused"
+      },
+      "xy": [
+        88,
+        57
+      ],
+      "rotation": 0,
+      "source": "sc16",
+      "notes": "SPI mode; channel A 115200 8N1, crystal3.6864MHz",
+      "types": {
+        "3": "output",
+        "4": "input",
+        "5": "input",
+        "6": "input",
+        "7": "output",
+        "8": "power_in",
+        "22": "power_in",
+        "10": "input",
+        "11": "input",
+        "12": "tri_state",
+        "13": "input",
+        "15": "open_collector"
+      }
+    },
+    {
+      "ref": "U2",
+      "model": "TPS3808G33DBVR",
+      "footprint": "Carrier:SOT-23-6",
+      "pins": {
+        "1": "sc16_reset",
+        "2": "GND",
+        "3": null,
+        "4": null,
+        "5": "+3V3",
+        "6": "+3V3"
+      },
+      "xy": [
+        65,
+        69
+      ],
+      "rotation": 0,
+      "source": "tps",
+      "notes": "G33 supervisor; CT open=20ms; MR internal pullup",
+      "types": {
+        "1": "open_collector",
+        "2": "power_in",
+        "5": "input",
+        "6": "power_in"
+      }
+    },
+    {
+      "ref": "Y1",
+      "model": "ABLS-3.6864MHZ-B2-T",
+      "footprint": "Carrier:Crystal_SMD_HC49-SD",
+      "pins": {
+        "1": "xtal1",
+        "2": "xtal2"
+      },
+      "xy": [
+        76,
+        57
+      ],
+      "rotation": 270,
+      "source": "crystal",
+      "notes": "18pF CL, initial load caps22pF/33pF; verify frequency/drive on bench",
+      "types": {}
+    },
+    {
+      "ref": "R1",
+      "model": "1k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "sc16_irq"
+      },
+      "xy": [
+        100,
+        53
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R2",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "sc16_cs"
+      },
+      "xy": [
+        100,
+        58
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R3",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "sc16_reset"
+      },
+      "xy": [
+        65,
+        63
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R4",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "rxb_unused"
+      },
+      "xy": [
+        96,
+        68
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R5",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio0_unused",
+        "2": "GND"
+      },
+      "xy": [
+        105,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R6",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio1_unused",
+        "2": "GND"
+      },
+      "xy": [
+        109,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R7",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio2_unused",
+        "2": "GND"
+      },
+      "xy": [
+        113,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R8",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio3_unused",
+        "2": "GND"
+      },
+      "xy": [
+        117,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R9",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio4_unused",
+        "2": "GND"
+      },
+      "xy": [
+        105,
+        71
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R10",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio5_unused",
+        "2": "GND"
+      },
+      "xy": [
+        109,
+        71
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R11",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio6_unused",
+        "2": "GND"
+      },
+      "xy": [
+        113,
+        71
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R12",
+      "model": "100k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "gpio7_unused",
+        "2": "GND"
+      },
+      "xy": [
+        117,
+        71
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R13",
+      "model": "4.7k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "cc1101_gdo0_tx"
+      },
+      "xy": [
+        113,
+        78
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R14",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "cc1101_cs"
+      },
+      "xy": [
+        119,
+        78
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R15",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "w5500_cs"
+      },
+      "xy": [
+        92,
+        23
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R16",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "h2_reset"
+      },
+      "xy": [
+        120,
+        25
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "R17",
+      "model": "10k",
+      "footprint": "Carrier:R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "h2_boot"
+      },
+      "xy": [
+        120,
+        30
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1%, 0.125W, 0805; select a stocked part meeting these specifications",
+      "types": {}
+    },
+    {
+      "ref": "C1",
+      "model": "22pF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "xtal1",
+        "2": "GND"
+      },
+      "xy": [
+        81,
+        51
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C2",
+      "model": "33pF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "xtal2",
+        "2": "GND"
+      },
+      "xy": [
+        81,
+        63
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C3",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        84,
+        66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C4",
+      "model": "1uF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        84,
+        71
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C5",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        60,
+        69
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C6",
+      "model": "1nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        60,
+        74
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C7",
+      "model": "1uF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "h2_reset",
+        "2": "GND"
+      },
+      "xy": [
+        120,
+        20
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C8",
+      "model": "22uF",
+      "footprint": "Carrier:C_1206_3216Metric",
+      "pins": {
+        "1": "+5V",
+        "2": "GND"
+      },
+      "xy": [
+        42,
+        12
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C9",
+      "model": "22uF",
+      "footprint": "Carrier:C_1206_3216Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        44,
+        20
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C10",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        33,
+        30
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C11",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        103,
+        13
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C12",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        124,
+        35
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C13",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        124,
+        49
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C14",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        124,
+        81
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C15",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        107,
+        89
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C16",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+5V",
+        "2": "GND"
+      },
+      "xy": [
+        69,
+        89
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "C17",
+      "model": "100nF",
+      "footprint": "Carrier:C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        23,
+        88
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "10V minimum; C0G crystal caps, X7R bypass/bulk",
+      "types": {}
+    },
+    {
+      "ref": "#FLG1",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+5V_IN"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG2",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+5V"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG3",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG4",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "GND"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    }
+  ]
+}

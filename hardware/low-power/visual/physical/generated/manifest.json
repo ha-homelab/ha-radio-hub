@@ -1,0 +1,17 @@
+{
+  "source_sha256": {
+    "build.py": "a66353a17f4d78e1fdb562c256617e839802be036b352e515a7eaa04f7e77cb8",
+    "catalog.json": "0fcea29c97cf4282f84b4d8dd4fda22958c16448d7cf6c874b6b8d4586f3bc15",
+    "source/ESP32-H2-MINI-1.kicad_mod": "a5df9d16c34f0fc5e70e6cc13cedc005098f7f0663422c5448a5aac83641de5b",
+    "source/ESP32-S3-WROOM-1.kicad_mod": "d0cfbb31fef0c47396c0d061ec5a3bff60f0567d8d4ea8dd4769c84f52bd656f",
+    "source/LIBRARY-LICENSE.md": "6eb43c2548ac6714db47ccbd62354bd194e918f606b071a5e9893680b941d75a"
+  },
+  "generated_sha256": {
+    "s3-contacts.svg": "be45a80b16fb941f12881f221749b8b6b0df570e00973dfa0fe311138fbcc0f8",
+    "h2-contacts.svg": "2d109b688e026ba2e7fa961192b7feaca6c9a01b0286fc35250e1b74f57e2e5b",
+    "mg24-contacts.svg": "4bdc250f1fd0fe6e634119a8b63428159c20491f5d322e55869723be488bc4ad",
+    "wiz850io-contacts.svg": "71f040411a3f85ca600fbbb9147da01ffb03fb56f0ef30f55b46f5f9574679fb",
+    "pololu-contacts.svg": "6e252e0f8d84174b257b820b35c26a9b7f085ca1776d8894dd8ad18f496020cf",
+    "contacts.json": "304196b5bfd14059787212b55e3744756d9f7cae2b126dcb73d36c55a1fb0f39"
+  }
+}

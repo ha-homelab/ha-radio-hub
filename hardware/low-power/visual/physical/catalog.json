@@ -1,0 +1,123 @@
+{
+  "reviewed_on": "2026-10-17",
+  "view": "PCB footprint top view; module view requires datasheet",
+  "coordinates": "millimetres; origin at nominal body top-left; x right, y down",
+  "status": "Contact-location reference, not a fabrication release",
+  "modules": [
+    {
+      "id": "s3",
+      "title": "ESP32-S3-WROOM-1",
+      "kind": "kicad",
+      "source_file": "source/ESP32-S3-WROOM-1.kicad_mod",
+      "body": [
+        18,
+        25.5
+      ],
+      "offset": [
+        9,
+        12.75
+      ],
+      "antenna": [
+        0,
+        0,
+        18,
+        6
+      ],
+      "source": "https://www.kicad.org/libraries/download/",
+      "source_version": "KiCad 10.0.6 macOS bundled library; source SHA256 in manifest",
+      "datasheet": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "check": "KiCad 10.0.6 geometry; numbering matches datasheet v1.8 Fig 3-1, p10.",
+      "notes": [
+        "Pads 1-14 left, 15-26 bottom, 27-40 right; central ground is 41.",
+        "Antenna region is not a complete carrier keep-out. Consult hardware guidelines."
+      ],
+      "source_note": "Exact source bundled with KiCad10.0.6 copied unchanged; do not assume a matching library Git tag"
+    },
+    {
+      "id": "h2",
+      "title": "ESP32-H2-MINI-1",
+      "kind": "kicad",
+      "source_file": "source/ESP32-H2-MINI-1.kicad_mod",
+      "body": [
+        13.2,
+        16.6
+      ],
+      "offset": [
+        6.6,
+        8.3
+      ],
+      "antenna": [
+        0,
+        0,
+        13.2,
+        5.4
+      ],
+      "source": "https://github.com/espressif/kicad-libraries/blob/dd76561812ab300351234ba6e0ec1295641796f0/footprints/Espressif.pretty/ESP32-H2-MINI-1.kicad_mod",
+      "source_version": "dd76561812ab300351234ba6e0ec1295641796f0",
+      "datasheet": "https://documentation.espressif.com/esp32-h2-mini-1_mini-1u_datasheet_en.pdf",
+      "check": "Datasheet v1.6 Fig 11 p38 and Fig3 p9:13.2x16.6, pitch0.8, main rows11.8x9.8",
+      "notes": [
+        "49 identifies the exposed-ground array; 50-53 are corner ground pads.",
+        "Pad1 is below corner53. A DevKit header uses different numbering."
+      ]
+    },
+    {
+      "id": "mg24",
+      "title": "MGM240P built-in antenna",
+      "kind": "derived",
+      "body": [
+        12.9,
+        15
+      ],
+      "antenna": [
+        2.05,
+        0,
+        8.8,
+        4.8
+      ],
+      "source": "https://www.silabs.com/documents/public/data-sheets/mgm240p-datasheet.pdf",
+      "retrieved_from": "https://download.kamami.pl/p1186191-MGM240P-Datasheet.pdf",
+      "source_version": "Silicon Labs Rev1.0, Fig8.3 p49; distributor mirror transport",
+      "check": "Manufacturer drawing read visually; latest revision must be checked before fabrication",
+      "notes": [
+        "Top-view land pattern: pad1 upper left, pad36 upper right.",
+        "Shown keep-out is Fig8.3 only; additional placement clearances apply."
+      ]
+    },
+    {
+      "id": "wiz850io",
+      "title": "WIZ850io header contact locations",
+      "kind": "derived",
+      "body": [
+        23,
+        25
+      ],
+      "source": "https://docs.wiznet.io/Product/ioModule/WIZ850io",
+      "source_version": "Official dimension drawing and top-view pin photo, accessed2026-10-17",
+      "photo": "https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png",
+      "dimension_image": "https://docs.wiznet.io/img/products/wiz850io/wiz850io_dimension.png",
+      "check": "23x25 body; 20.32 row spacing; 2.54 pitch; pin1 6.4 from top; RJ45 overhang2.7",
+      "notes": [
+        "Contact centres only: carrier hole/pad sizes are NOT specified here.",
+        "J1 left, J2 right; mouth toward top. No PoE taps on these headers."
+      ]
+    },
+    {
+      "id": "pololu",
+      "title": "Pololu D24V22F3 contact locations",
+      "kind": "derived",
+      "body": [
+        17.8,
+        17.8
+      ],
+      "source": "https://www.pololu.com/file/0J1031/d24v22fx-step-down-voltage-regulator-dimension-diagram.pdf",
+      "source_version": "Pololu reg19a drawing12Nov2015, item2857; rounded millimetre dimensions",
+      "photo": "https://a.pololu-files.com/picture/0J6802.1200.jpg",
+      "check": "PDF top view plus labeled top photo; bottom-view callouts reflected into top view",
+      "notes": [
+        "Symbolic contact names; no manufacturer numeric pin IDs claimed.",
+        "Holes shown belong to MODULE. Design carrier drill/pads for actual headers."
+      ]
+    }
+  ]
+}

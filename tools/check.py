@@ -8,14 +8,13 @@ from __future__ import annotations
 
 import ast
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import sys
 from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
-EXCLUDE = {'.git', '.venv', '.esphome', '__pycache__', 'node_modules'}
 SECRET_PATTERNS = [
     re.compile(r'gh[pousr]_[A-Za-z0-9]{30,}'),
     re.compile(r'github_pat_[A-Za-z0-9_]{40,}'),
@@ -24,15 +23,70 @@ SECRET_PATTERNS = [
 ]
 
 
+def private_path(path: str) -> bool:
+    """Reject installation material even if somebody accidentally tracks it."""
+    normalized = path.replace('\\', '/').casefold()
+    parts = Path(normalized).parts
+    name = parts[-1]
+    return (
+        any(part in {'.git', '.esphome', '.build', '.terraform', '__pycache__',
+                     'node_modules', 'private', 'backups', 'otbr-data'}
+            or part.startswith('.venv') for part in parts)
+        or normalized.startswith('software/runtime/')
+        or name == 'secrets.yaml'
+        or (name.startswith('.env') and name != '.env.example')
+        or 'bot_pat' in name
+        or '.tfstate' in name
+        or name.endswith(('.tfplan', '.bin', '.gbl', '.hex', '.uf2', '.log', '.pem', '.key'))
+    )
+
+
+def public_file(root: Path, path: Path) -> bool:
+    """Do not follow a symlink at any level of a public inventory entry."""
+    relative = path.relative_to(root)
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            return False
+    return bool(relative.parts) and path.is_file()
+
+
+def public_paths(root: Path) -> list[Path]:
+    # Downloaded build packages have no .git directory. Their manifest provides
+    # the public source inventory without walking later-created private files.
+    manifest = root / 'RELEASE-MANIFEST.json'
+    if not (root / '.git').exists() and manifest.is_symlink():
+        raise ValueError('Release inventory must be a regular file')
+    if not (root / '.git').exists() and manifest.is_file():
+        inventory = json.loads(manifest.read_text())['files']
+        if not isinstance(inventory, dict):
+            raise ValueError('Invalid public release inventory')
+        for name in inventory:
+            path = PurePosixPath(name)
+            if (not path.parts or path.is_absolute() or '..' in path.parts
+                    or '\\' in name or path.as_posix() != name):
+                raise ValueError('Release inventory contains an invalid path')
+        return [root / name for name in sorted(inventory)] + [manifest]
+    # Honor gitignore without overlooking an accidentally tracked private file.
+    # In particular, never traverse an operator's private migration workspace.
+    result = subprocess.run(
+        ['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'],
+        cwd=root, check=True, capture_output=True,
+    )
+    return [root / name for name in sorted(set(result.stdout.decode().split('\0'))) if name]
+
+
 def main() -> int:
     errors = []
     count = 0
-    for path in sorted(ROOT.rglob('*')):
+    for path in public_paths(ROOT):
         relative = path.relative_to(ROOT)
-        if not path.is_file() or EXCLUDE.intersection(relative.parts) or any(p.startswith('.venv') for p in relative.parts):
+        if private_path(relative.as_posix()):
+            errors.append(f'{relative}: private/generated installation material must not be tracked')
             continue
-        if path.name == 'secrets.yaml':
-            # Local operator input is intentionally ignored by release checks.
+        if not public_file(ROOT, path):
+            errors.append(f'{relative}: public file is missing, not regular, or reached through a symlink')
             continue
         if path.suffix not in {'.py', '.md', '.json', '.yaml', '.yml', '.sh', '.txt', '.toml'}:
             continue
@@ -66,9 +120,10 @@ def main() -> int:
         'docs/firmware.md', 'docs/home-assistant.md', 'docs/thread-devices.md',
         'mechanical/generated/base.stl', 'mechanical/generated/lid.stl',
     ]
-    errors.extend(f'Missing deliverable: {name}' for name in required if not (ROOT / name).is_file())
+    errors.extend(f'Missing or non-regular deliverable: {name}' for name in required
+                  if not public_file(ROOT, ROOT / name))
     pinmap_path = ROOT / 'hardware/pinmap.json'
-    if pinmap_path.is_file():
+    if public_file(ROOT, pinmap_path):
         pinmap = json.loads(pinmap_path.read_text())
         pins = pinmap['exclusive_pins']
         if len({pin['gpio'] for pin in pins}) != len(pins):

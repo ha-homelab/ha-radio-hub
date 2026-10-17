@@ -22,3 +22,8 @@ private/
 otbr-data/
 node_modules/
 .DS_Store
+# KiCad workspace state and automatic backups are not design deliverables.
+*.kicad_prl
+*-backups/
+fp-info-cache
+~*.lck
