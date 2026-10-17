@@ -25,11 +25,18 @@ jobs:
       - name: Offline source and documentation checks
         run: |
           python3 tools/check.py
+          python3 hardware/gallery/render.py --check
+          python3 hardware/parts/build.py --check
+          python3 -m unittest discover -s hardware/parts -p 'test_*.py'
           python3 -m unittest discover -s software -p 'test_*.py'
       - name: Install pinned prototype build dependencies
         run: |
           python3 -m venv .venv
-          .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt
+          .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt -r mechanical/diy/requirements.txt
+      - name: Check DIY print scale, orientation and source freshness
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical/diy -p 'test_*.py'
+          .venv/bin/python mechanical/diy/build.py --check
       - name: RF contract and migration regressions
         env:
           RF_CPP_SANITIZERS: "1"
@@ -93,7 +100,7 @@ jobs:
           .venv/bin/python -m unittest discover -s mechanical/low-power -p 'test_*.py'
           .venv/bin/python mechanical/low-power/build.py --check
   pcb:
-    name: Carrier and integrated PCB validation
+    name: Carrier, integrated and DIY PCB validation
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -122,6 +129,8 @@ jobs:
               python3 hardware/low-power/carrier/mg24-adapter/validate.py --check-hashes --out /tmp/mg24-adapter-validation
               python3 -m unittest discover -s hardware/low-power/integrated -p "test_*.py"
               python3 hardware/low-power/integrated/validate.py
+              python3 -m unittest discover -s hardware/low-power/diy -p "test_*.py"
+              python3 hardware/low-power/diy/validate.py --check-hashes --out /tmp/diy-validation
             '
   check:
     name: check

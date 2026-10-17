@@ -1,0 +1,1010 @@
+{
+  "revision": "LP-D0",
+  "parts": [
+    {
+      "ref": "J1",
+      "model": "B2B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V_IN",
+        "2": "GND"
+      },
+      "xy": [
+        15,
+        12
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "Isolated regulated 5V input",
+      "types": {}
+    },
+    {
+      "ref": "J2",
+      "model": "B3B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "+3V3"
+      },
+      "xy": [
+        42,
+        12
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "External D24V22F3 buck",
+      "types": {}
+    },
+    {
+      "ref": "J3",
+      "model": "61204021621",
+      "footprint": "DIY:Wurth_61204021621",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "w5500_sclk",
+        "4": "GND",
+        "5": "w5500_mosi",
+        "6": "GND",
+        "7": "w5500_miso",
+        "8": "GND",
+        "9": "w5500_cs",
+        "10": "w5500_irq",
+        "11": "w5500_reset",
+        "12": "GND",
+        "13": "shared_spi_sclk",
+        "14": "GND",
+        "15": "shared_spi_mosi",
+        "16": "shared_spi_miso",
+        "17": "cc1101_cs",
+        "18": "cc1101_gdo0_tx",
+        "19": "cc1101_gdo2_rx",
+        "20": "sc16_cs",
+        "21": "sc16_irq",
+        "22": "GND",
+        "23": "h2_tx",
+        "24": "h2_rx",
+        "25": "h2_reset",
+        "26": "h2_boot",
+        "27": "mg24_tx",
+        "28": "mg24_rx",
+        "29": "mg24_rts",
+        "30": "mg24_cts",
+        "31": "ld2450_tx",
+        "32": "ld2450_rx",
+        "33": "bme680_sda",
+        "34": "bme680_scl",
+        "35": "GND",
+        "36": "GND",
+        "37": "GND",
+        "38": "GND",
+        "39": "+3V3",
+        "40": "GND"
+      },
+      "xy": [
+        20,
+        30
+      ],
+      "rotation": 0,
+      "source": "idc",
+      "notes": "S3 keyed 40-position IDC harness; NOT Raspberry Pi compatible",
+      "types": {}
+    },
+    {
+      "ref": "J4",
+      "model": "B10B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "w5500_sclk",
+        "4": "w5500_mosi",
+        "5": "w5500_miso",
+        "6": "w5500_cs",
+        "7": "w5500_irq",
+        "8": "w5500_reset",
+        "9": "GND",
+        "10": "+3V3"
+      },
+      "xy": [
+        55,
+        18
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "WIZ850io Ethernet module",
+      "types": {}
+    },
+    {
+      "ref": "J5",
+      "model": "B7B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "h2_tx",
+        "4": "h2_rx",
+        "5": "h2_reset",
+        "6": "h2_boot",
+        "7": "GND"
+      },
+      "xy": [
+        151,
+        18
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "H2 Thread RCP",
+      "types": {}
+    },
+    {
+      "ref": "J6",
+      "model": "B6B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "mg24_tx",
+        "4": "mg24_rx",
+        "5": "mg24_rts",
+        "6": "mg24_cts"
+      },
+      "xy": [
+        151,
+        43
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "MG24 Zigbee NCP",
+      "types": {}
+    },
+    {
+      "ref": "J7",
+      "model": "B8B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "shared_spi_sclk",
+        "4": "shared_spi_mosi",
+        "5": "shared_spi_miso",
+        "6": "cc1101_cs",
+        "7": "cc1101_gdo0_tx",
+        "8": "cc1101_gdo2_rx"
+      },
+      "xy": [
+        50,
+        43
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "CC1101 RF module",
+      "types": {}
+    },
+    {
+      "ref": "J8",
+      "model": "B5B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "zac93_tx",
+        "4": "zac93_rx",
+        "5": "GND"
+      },
+      "xy": [
+        116,
+        130
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "ZAC93 Z-Wave module",
+      "types": {}
+    },
+    {
+      "ref": "J9",
+      "model": "B4B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "ld2450_rx",
+        "4": "ld2450_tx"
+      },
+      "xy": [
+        57,
+        130
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "LD2450 radar",
+      "types": {}
+    },
+    {
+      "ref": "J10",
+      "model": "B4B-XH-A",
+      "footprint": "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "+3V3",
+        "3": "bme680_sda",
+        "4": "bme680_scl"
+      },
+      "xy": [
+        20,
+        121
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "TH XH to factory STEMMA QT cable; same logical order as C0, mechanically NOT a QT socket.",
+      "types": {}
+    },
+    {
+      "ref": "F1",
+      "model": "Littelfuse 022901.5MXP",
+      "footprint": "DIY:FuseHarness",
+      "pins": {
+        "1": "+5V_IN",
+        "2": "+5V"
+      },
+      "xy": [
+        24,
+        12
+      ],
+      "rotation": 0,
+      "source": "fuse",
+      "notes": "1.5A slow-blow 2AG cartridge in external01500274Z holder. Holder leads adapt to22AWG at F1 holes; insulate splices. <=1A continuous design. Do not bridge.",
+      "types": {}
+    },
+    {
+      "ref": "U1",
+      "model": "SC16IS752IPW,128",
+      "footprint": "DIY:Adafruit1208_TSSOP28",
+      "pins": {
+        "1": null,
+        "2": "GND",
+        "3": "zac93_tx",
+        "4": "zac93_rx",
+        "5": "sc16_reset",
+        "6": "xtal1",
+        "7": "xtal2",
+        "8": "+3V3",
+        "9": "GND",
+        "10": "sc16_cs",
+        "11": "shared_spi_mosi",
+        "12": "shared_spi_miso",
+        "13": "shared_spi_sclk",
+        "14": "GND",
+        "15": "sc16_irq",
+        "16": "GND",
+        "17": null,
+        "18": "gpio0_unused",
+        "19": "gpio1_unused",
+        "20": "gpio2_unused",
+        "21": "gpio3_unused",
+        "22": "GND",
+        "23": null,
+        "24": "rxb_unused",
+        "25": "gpio4_unused",
+        "26": "gpio5_unused",
+        "27": "gpio6_unused",
+        "28": "gpio7_unused"
+      },
+      "xy": [
+        85,
+        60
+      ],
+      "rotation": 0,
+      "source": "adafruit1208",
+      "notes": "SC16IS752IPW,128 soldered to factory Adafruit1208 TSSOP side; pin1 adapter orientation verified from published CAD; no SOIC chip. Solder 2x14 male headers to adapter.",
+      "types": {
+        "3": "output",
+        "4": "input",
+        "5": "input",
+        "6": "input",
+        "7": "output",
+        "8": "power_in",
+        "22": "power_in",
+        "10": "input",
+        "11": "input",
+        "12": "tri_state",
+        "13": "input",
+        "15": "open_collector"
+      }
+    },
+    {
+      "ref": "U2",
+      "model": "TPS3808G33DBVR",
+      "footprint": "DIY:Adafruit1230_SOT23_6",
+      "pins": {
+        "1": "sc16_reset",
+        "2": "GND",
+        "3": null,
+        "4": null,
+        "5": "+3V3",
+        "6": "+3V3"
+      },
+      "xy": [
+        67,
+        101
+      ],
+      "rotation": 0,
+      "source": "adafruit1230",
+      "notes": "TPS3808G33DBVR soldered to factory Adafruit1230 SOT23-6 adapter, two 1x3 male headers. Do not populate reverse-side transistor footprints.",
+      "types": {
+        "1": "open_collector",
+        "2": "power_in",
+        "5": "input",
+        "6": "power_in"
+      }
+    },
+    {
+      "ref": "Y1",
+      "model": "AB-3.6864MHZ-B2",
+      "footprint": "DIY:HC49U",
+      "pins": {
+        "1": "xtal1",
+        "2": "xtal2"
+      },
+      "xy": [
+        71,
+        77
+      ],
+      "rotation": 90,
+      "source": "crystal",
+      "notes": "Through-hole HC49/U 3.6864MHz18pF; 4.88mm lead pitch; initial22/33pF loads, validate oscillation/frequency on hardware.",
+      "types": {}
+    },
+    {
+      "ref": "R1",
+      "model": "1k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "sc16_irq"
+      },
+      "xy": [
+        108,
+        93
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R2",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "sc16_cs"
+      },
+      "xy": [
+        110,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R3",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "sc16_reset"
+      },
+      "xy": [
+        75,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R4",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "rxb_unused"
+      },
+      "xy": [
+        113,
+        77
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R5",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio0_unused",
+        "2": "GND"
+      },
+      "xy": [
+        113,
+        69
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R6",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio1_unused",
+        "2": "GND"
+      },
+      "xy": [
+        113,
+        61
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R7",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio2_unused",
+        "2": "GND"
+      },
+      "xy": [
+        130,
+        61
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R8",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio3_unused",
+        "2": "GND"
+      },
+      "xy": [
+        130,
+        69
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R9",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio4_unused",
+        "2": "GND"
+      },
+      "xy": [
+        130,
+        77
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R10",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio5_unused",
+        "2": "GND"
+      },
+      "xy": [
+        130,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R11",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio6_unused",
+        "2": "GND"
+      },
+      "xy": [
+        147,
+        77
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R12",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio7_unused",
+        "2": "GND"
+      },
+      "xy": [
+        147,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R13",
+      "model": "4.7k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "cc1101_gdo0_tx"
+      },
+      "xy": [
+        65,
+        53
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R14",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "cc1101_cs"
+      },
+      "xy": [
+        49,
+        53
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R15",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "w5500_cs"
+      },
+      "xy": [
+        67,
+        28
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R16",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "h2_reset"
+      },
+      "xy": [
+        154,
+        30
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R17",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3",
+        "2": "h2_boot"
+      },
+      "xy": [
+        170,
+        30
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "C1",
+      "model": "22pF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "xtal1",
+        "2": "GND"
+      },
+      "xy": [
+        78,
+        72
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C2",
+      "model": "33pF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "xtal2",
+        "2": "GND"
+      },
+      "xy": [
+        78,
+        79
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C3",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        80,
+        86
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C4",
+      "model": "1uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        74,
+        90
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C5",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        60,
+        106
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C6",
+      "model": "1nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        60,
+        98
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C7",
+      "model": "1uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "h2_reset",
+        "2": "GND"
+      },
+      "xy": [
+        149,
+        31
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C8",
+      "model": "22uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+5V",
+        "2": "GND"
+      },
+      "xy": [
+        54,
+        8
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "22uF >=10V radial electrolytic, body<=5mm, pin1 positive. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C9",
+      "model": "22uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        62,
+        8
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "22uF >=10V radial electrolytic, body<=5mm, pin1 positive. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C10",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        32,
+        30
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C11",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        86,
+        18
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C12",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        176,
+        18
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C13",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        173,
+        43
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C14",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        77,
+        43
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C15",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        136,
+        130
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C16",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+5V",
+        "2": "GND"
+      },
+      "xy": [
+        75,
+        130
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C17",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        36,
+        121
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "#FLG1",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+5V_IN"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG2",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+5V"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG3",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG4",
+      "model": "PWR_FLAG",
+      "footprint": "",
+      "pins": {
+        "1": "GND"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Declared external regulated power / return",
+      "types": {
+        "1": "power_out"
+      }
+    }
+  ]
+}

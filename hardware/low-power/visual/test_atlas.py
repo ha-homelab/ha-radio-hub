@@ -47,7 +47,7 @@ class AtlasTests(unittest.TestCase):
         match = re.search(r'<script id="atlas-data" type="application/json">(.*?)</script>',
                           output['index.html'].decode(), re.S)
         packaged = json.loads(match.group(1))
-        self.assertEqual({b['id'] for b in packaged['boards']}, {'carrier', 'integrated', 'mg24-adapter'})
+        self.assertEqual({b['id'] for b in packaged['boards']}, {'carrier', 'integrated', 'mg24-adapter', 'diy'})
         for board in packaged['boards']:
             self.assertIn('overview_file', board, 'Every PCB needs its native assembly drawing')
             self.assertIn(board['overview_file'], output)
@@ -59,6 +59,25 @@ class AtlasTests(unittest.TestCase):
                 self.assertTrue(connector['pad_centers_mm'])
                 self.assertTrue({str(p['number']) for p in connector['pins']}.issubset(
                     {str(p['number']) for p in connector['pad_centers_mm']}))
+
+    def test_diy_xh_connector_and_common_net_roles(self):
+        output=builder.generate()
+        match=re.search(r'<script id="atlas-data" type="application/json">(.*?)</script>',output['index.html'].decode(),re.S)
+        boards={b['id']:b for b in json.loads(match.group(1))['boards']}
+        diy={c['ref']:c for c in boards['diy']['connectors']}
+        carrier={c['ref']:c for c in boards['carrier']['connectors']}
+        self.assertEqual(set(diy),set(carrier))
+        self.assertEqual(diy['J10']['model'],'B4B-XH-A')
+        self.assertEqual(diy['J10']['mating_model'],'XHP-4')
+        self.assertEqual(carrier['J10']['model'],'BM04B-SRSS-TB')
+        self.assertIn('not the C0 JST SH/QT',boards['diy']['wiring_note'])
+        for ref in diy:
+            current={str(p['number']):p['net'] for p in diy[ref]['pins']}
+            original={str(p['number']):p['net'] for p in carrier[ref]['pins']}
+            self.assertEqual(current,original,ref)
+        expected=sum(len(json.loads((ROOT.parent / directory / 'connectors.json').read_text())['connectors'])
+                     for directory in ['carrier','carrier/mg24-adapter','integrated','diy'])
+        self.assertEqual(sum(len(b['connectors']) for b in boards.values()),expected)
 
     def test_physical_reference_files_survive_offline_packaging(self):
         output = builder.generate()

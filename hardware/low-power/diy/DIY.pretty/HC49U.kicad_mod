@@ -1,0 +1,91 @@
+(footprint "HC49U"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -4.1 0)
+		(layer "F.SilkS")
+		(uuid "ed01fd0c-0234-581d-b580-c50b2543ef4a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "HC49U"
+		(at 0 4.1 0)
+		(layer "F.Fab")
+		(uuid "3f991d59-5988-5c5f-8710-63cf2cee0cef")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "41d72cdf-fb7b-510c-972b-004f44069ff9")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "958a87f2-7f3e-5016-bcf4-c8f03d5ec680")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -3.81 -3)
+		(end 8.69 3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "149d491d-6579-5420-a09a-5934aef68024")
+	)
+	(fp_rect
+		(start -3.31 -2.5)
+		(end 8.19 2.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "28223e8f-1ea0-5c67-bda3-5d604d46d7ee")
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 2 2)
+		(drill 0.9)
+		(layers "*.Cu")
+		(remove_unused_layers no)
+		(uuid "b81a7206-054b-5a04-8c79-6b3a3ac7880a")
+	)
+	(pad "2" thru_hole circle
+		(at 4.88 0)
+		(size 2 2)
+		(drill 0.9)
+		(layers "*.Cu")
+		(remove_unused_layers no)
+		(uuid "05fc9f6b-2c17-5cf1-a27f-277e78072cc0")
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,3911 @@
+{
+  "width_mm": 190.0,
+  "height_mm": 145.0,
+  "holes": [
+    {
+      "id": "T67.1",
+      "ref": "T67",
+      "pad": "1",
+      "x_mm": 18.0803,
+      "y_mm": 21.2208,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_mosi__1"
+    },
+    {
+      "id": "T10.1",
+      "ref": "T10",
+      "pad": "1",
+      "x_mm": 42.8675,
+      "y_mm": 36.0798,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T17.1",
+      "ref": "T17",
+      "pad": "1",
+      "x_mm": 4.3668,
+      "y_mm": 70.1635,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo2_rx__3"
+    },
+    {
+      "id": "T1.1",
+      "ref": "T1",
+      "pad": "1",
+      "x_mm": 22.5,
+      "y_mm": 92.8097,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__5"
+    },
+    {
+      "id": "T30.1",
+      "ref": "T30",
+      "pad": "1",
+      "x_mm": 31.2518,
+      "y_mm": 54.1506,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_rx__1"
+    },
+    {
+      "id": "R9.1",
+      "ref": "R9",
+      "pad": "1",
+      "x_mm": 130.0,
+      "y_mm": 77.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio4_unused__1"
+    },
+    {
+      "id": "R9.2",
+      "ref": "R9",
+      "pad": "2",
+      "x_mm": 140.16,
+      "y_mm": 77.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T41.1",
+      "ref": "T41",
+      "pad": "1",
+      "x_mm": 158.5,
+      "y_mm": 49.2112,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_rx__2"
+    },
+    {
+      "id": "C9.1",
+      "ref": "C9",
+      "pad": "1",
+      "x_mm": 62.0,
+      "y_mm": 8.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C9.2",
+      "ref": "C9",
+      "pad": "2",
+      "x_mm": 64.54,
+      "y_mm": 8.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T24.1",
+      "ref": "T24",
+      "pad": "1",
+      "x_mm": 183.16,
+      "y_mm": 30.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_boot__2"
+    },
+    {
+      "id": "T7.1",
+      "ref": "T7",
+      "pad": "1",
+      "x_mm": 29.6351,
+      "y_mm": 42.9696,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__5"
+    },
+    {
+      "id": "C8.1",
+      "ref": "C8",
+      "pad": "1",
+      "x_mm": 54.0,
+      "y_mm": 8.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+5V__1"
+    },
+    {
+      "id": "C8.2",
+      "ref": "C8",
+      "pad": "2",
+      "x_mm": 56.54,
+      "y_mm": 8.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T8.1",
+      "ref": "T8",
+      "pad": "1",
+      "x_mm": 29.6351,
+      "y_mm": 52.2198,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__7"
+    },
+    {
+      "id": "R8.1",
+      "ref": "R8",
+      "pad": "1",
+      "x_mm": 130.0,
+      "y_mm": 69.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio3_unused__1"
+    },
+    {
+      "id": "R8.2",
+      "ref": "R8",
+      "pad": "2",
+      "x_mm": 140.16,
+      "y_mm": 69.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "C3.1",
+      "ref": "C3",
+      "pad": "1",
+      "x_mm": 80.0,
+      "y_mm": 86.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C3.2",
+      "ref": "C3",
+      "pad": "2",
+      "x_mm": 80.0,
+      "y_mm": 83.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "T97.1",
+      "ref": "T97",
+      "pad": "1",
+      "x_mm": 112.097822,
+      "y_mm": 89.5,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_irq__2"
+    },
+    {
+      "id": "T89.1",
+      "ref": "T89",
+      "pad": "1",
+      "x_mm": 142.669873,
+      "y_mm": 74.5,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio6_unused__1"
+    },
+    {
+      "id": "T80.1",
+      "ref": "T80",
+      "pad": "1",
+      "x_mm": 126.057777,
+      "y_mm": 61.776457,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__8"
+    },
+    {
+      "id": "C2.1",
+      "ref": "C2",
+      "pad": "1",
+      "x_mm": 78.0,
+      "y_mm": 79.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/xtal2__1"
+    },
+    {
+      "id": "C2.2",
+      "ref": "C2",
+      "pad": "2",
+      "x_mm": 78.0,
+      "y_mm": 76.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "T58.1",
+      "ref": "T58",
+      "pad": "1",
+      "x_mm": 51.7998,
+      "y_mm": 88.4947,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__3"
+    },
+    {
+      "id": "T52.1",
+      "ref": "T52",
+      "pad": "1",
+      "x_mm": 97.5873,
+      "y_mm": 71.0485,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__4"
+    },
+    {
+      "id": "T31.1",
+      "ref": "T31",
+      "pad": "1",
+      "x_mm": 158.5,
+      "y_mm": 23.6399,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_rx__2"
+    },
+    {
+      "id": "T33.1",
+      "ref": "T33",
+      "pad": "1",
+      "x_mm": 153.5,
+      "y_mm": 13.6699,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_tx__2"
+    },
+    {
+      "id": "H3.mount",
+      "ref": "H3",
+      "pad": "",
+      "x_mm": 5.0,
+      "y_mm": 140.0,
+      "drill_mm": 3.2,
+      "electrical": false,
+      "net": ""
+    },
+    {
+      "id": "T94.1",
+      "ref": "T94",
+      "pad": "1",
+      "x_mm": 104.570127,
+      "y_mm": 72.66,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/rxb_unused__2"
+    },
+    {
+      "id": "R11.1",
+      "ref": "R11",
+      "pad": "1",
+      "x_mm": 147.0,
+      "y_mm": 77.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio6_unused__1"
+    },
+    {
+      "id": "R11.2",
+      "ref": "R11",
+      "pad": "2",
+      "x_mm": 157.16,
+      "y_mm": 77.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T11.1",
+      "ref": "T11",
+      "pad": "1",
+      "x_mm": 78.0,
+      "y_mm": 66.459998,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "C14.1",
+      "ref": "C14",
+      "pad": "1",
+      "x_mm": 77.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C14.2",
+      "ref": "C14",
+      "pad": "2",
+      "x_mm": 77.0,
+      "y_mm": 40.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T21.1",
+      "ref": "T21",
+      "pad": "1",
+      "x_mm": 103.24,
+      "y_mm": 85.4,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio0_unused__1"
+    },
+    {
+      "id": "T76.1",
+      "ref": "T76",
+      "pad": "1",
+      "x_mm": 56.28,
+      "y_mm": 24.0041,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_sclk__2"
+    },
+    {
+      "id": "T48.1",
+      "ref": "T48",
+      "pad": "1",
+      "x_mm": 4.6058,
+      "y_mm": 49.5507,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__4"
+    },
+    {
+      "id": "T2.1",
+      "ref": "T2",
+      "pad": "1",
+      "x_mm": 38.6076,
+      "y_mm": 28.709,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__1"
+    },
+    {
+      "id": "H2.mount",
+      "ref": "H2",
+      "pad": "",
+      "x_mm": 185.0,
+      "y_mm": 5.0,
+      "drill_mm": 3.2,
+      "electrical": false,
+      "net": ""
+    },
+    {
+      "id": "T75.1",
+      "ref": "T75",
+      "pad": "1",
+      "x_mm": 21.8865,
+      "y_mm": 22.6641,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_sclk__1"
+    },
+    {
+      "id": "F1.1",
+      "ref": "F1",
+      "pad": "1",
+      "x_mm": 24.0,
+      "y_mm": 12.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+5V_IN__1"
+    },
+    {
+      "id": "F1.2",
+      "ref": "F1",
+      "pad": "2",
+      "x_mm": 32.0,
+      "y_mm": 12.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+5V__1"
+    },
+    {
+      "id": "C5.1",
+      "ref": "C5",
+      "pad": "1",
+      "x_mm": 60.0,
+      "y_mm": 106.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C5.2",
+      "ref": "C5",
+      "pad": "2",
+      "x_mm": 62.54,
+      "y_mm": 106.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "T43.1",
+      "ref": "T43",
+      "pad": "1",
+      "x_mm": 62.3786,
+      "y_mm": 90.2964,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_tx__3"
+    },
+    {
+      "id": "T87.1",
+      "ref": "T87",
+      "pad": "1",
+      "x_mm": 115.511113,
+      "y_mm": 81.117714,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio5_unused__1"
+    },
+    {
+      "id": "T74.1",
+      "ref": "T74",
+      "pad": "1",
+      "x_mm": 70.0,
+      "y_mm": 13.6699,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_reset__2"
+    },
+    {
+      "id": "C15.1",
+      "ref": "C15",
+      "pad": "1",
+      "x_mm": 136.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__4"
+    },
+    {
+      "id": "C15.2",
+      "ref": "C15",
+      "pad": "2",
+      "x_mm": 136.0,
+      "y_mm": 127.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T88.1",
+      "ref": "T88",
+      "pad": "1",
+      "x_mm": 104.570127,
+      "y_mm": 67.58,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio5_unused__2"
+    },
+    {
+      "id": "T92.1",
+      "ref": "T92",
+      "pad": "1",
+      "x_mm": 114.728887,
+      "y_mm": 56.117714,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio7_unused__2"
+    },
+    {
+      "id": "R13.1",
+      "ref": "R13",
+      "pad": "1",
+      "x_mm": 65.0,
+      "y_mm": 53.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "R13.2",
+      "ref": "R13",
+      "pad": "2",
+      "x_mm": 75.16,
+      "y_mm": 53.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/cc1101_gdo0_tx__2"
+    },
+    {
+      "id": "C6.1",
+      "ref": "C6",
+      "pad": "1",
+      "x_mm": 60.0,
+      "y_mm": 98.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C6.2",
+      "ref": "C6",
+      "pad": "2",
+      "x_mm": 62.54,
+      "y_mm": 98.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "T25.1",
+      "ref": "T25",
+      "pad": "1",
+      "x_mm": 14.8038,
+      "y_mm": 63.48,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_reset__2"
+    },
+    {
+      "id": "T6.1",
+      "ref": "T6",
+      "pad": "1",
+      "x_mm": 28.1381,
+      "y_mm": 36.526,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__6"
+    },
+    {
+      "id": "J4.1",
+      "ref": "J4",
+      "pad": "1",
+      "x_mm": 55.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "J4.2",
+      "ref": "J4",
+      "pad": "2",
+      "x_mm": 57.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "J4.3",
+      "ref": "J4",
+      "pad": "3",
+      "x_mm": 60.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/w5500_sclk__2"
+    },
+    {
+      "id": "J4.4",
+      "ref": "J4",
+      "pad": "4",
+      "x_mm": 62.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/w5500_mosi__2"
+    },
+    {
+      "id": "J4.5",
+      "ref": "J4",
+      "pad": "5",
+      "x_mm": 65.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/w5500_miso__2"
+    },
+    {
+      "id": "J4.6",
+      "ref": "J4",
+      "pad": "6",
+      "x_mm": 67.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/w5500_cs__2"
+    },
+    {
+      "id": "J4.7",
+      "ref": "J4",
+      "pad": "7",
+      "x_mm": 70.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/w5500_irq__2"
+    },
+    {
+      "id": "J4.8",
+      "ref": "J4",
+      "pad": "8",
+      "x_mm": 72.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/w5500_reset__2"
+    },
+    {
+      "id": "J4.9",
+      "ref": "J4",
+      "pad": "9",
+      "x_mm": 75.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "J4.10",
+      "ref": "J4",
+      "pad": "10",
+      "x_mm": 77.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "T70.1",
+      "ref": "T70",
+      "pad": "1",
+      "x_mm": 58.351,
+      "y_mm": 25.8888,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_mosi__2"
+    },
+    {
+      "id": "R4.1",
+      "ref": "R4",
+      "pad": "1",
+      "x_mm": 113.0,
+      "y_mm": 77.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "R4.2",
+      "ref": "R4",
+      "pad": "2",
+      "x_mm": 123.16,
+      "y_mm": 77.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/rxb_unused__1"
+    },
+    {
+      "id": "T91.1",
+      "ref": "T91",
+      "pad": "1",
+      "x_mm": 142.757359,
+      "y_mm": 80.757359,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio7_unused__1"
+    },
+    {
+      "id": "T32.1",
+      "ref": "T32",
+      "pad": "1",
+      "x_mm": 14.8038,
+      "y_mm": 60.94,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_tx__1"
+    },
+    {
+      "id": "T66.1",
+      "ref": "T66",
+      "pad": "1",
+      "x_mm": 62.5,
+      "y_mm": 13.6699,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_miso__2"
+    },
+    {
+      "id": "T4.1",
+      "ref": "T4",
+      "pad": "1",
+      "x_mm": 87.515,
+      "y_mm": 77.0854,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__6"
+    },
+    {
+      "id": "T77.1",
+      "ref": "T77",
+      "pad": "1",
+      "x_mm": 95.1541,
+      "y_mm": 93.9996,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/zac93_tx__1"
+    },
+    {
+      "id": "T68.1",
+      "ref": "T68",
+      "pad": "1",
+      "x_mm": 41.4558,
+      "y_mm": 20.8591,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_mosi__3"
+    },
+    {
+      "id": "T44.1",
+      "ref": "T44",
+      "pad": "1",
+      "x_mm": 77.9975,
+      "y_mm": 57.0833,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_tx__3"
+    },
+    {
+      "id": "T90.1",
+      "ref": "T90",
+      "pad": "1",
+      "x_mm": 107.001481,
+      "y_mm": 60.728267,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio6_unused__2"
+    },
+    {
+      "id": "R2.1",
+      "ref": "R2",
+      "pad": "1",
+      "x_mm": 110.0,
+      "y_mm": 85.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "R2.2",
+      "ref": "R2",
+      "pad": "2",
+      "x_mm": 120.16,
+      "y_mm": 85.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/sc16_cs__2"
+    },
+    {
+      "id": "J8.1",
+      "ref": "J8",
+      "pad": "1",
+      "x_mm": 116.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__4"
+    },
+    {
+      "id": "J8.2",
+      "ref": "J8",
+      "pad": "2",
+      "x_mm": 118.5,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "J8.3",
+      "ref": "J8",
+      "pad": "3",
+      "x_mm": 121.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/zac93_tx__1"
+    },
+    {
+      "id": "J8.4",
+      "ref": "J8",
+      "pad": "4",
+      "x_mm": 123.5,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/zac93_rx__1"
+    },
+    {
+      "id": "J8.5",
+      "ref": "J8",
+      "pad": "5",
+      "x_mm": 126.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "U2.1",
+      "ref": "U2",
+      "pad": "1",
+      "x_mm": 67.0,
+      "y_mm": 101.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_reset__2"
+    },
+    {
+      "id": "U2.2",
+      "ref": "U2",
+      "pad": "2",
+      "x_mm": 67.0,
+      "y_mm": 103.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "U2.3",
+      "ref": "U2",
+      "pad": "3",
+      "x_mm": 67.0,
+      "y_mm": 106.08,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "unconnected-(U2-NC-Pad3)"
+    },
+    {
+      "id": "U2.4",
+      "ref": "U2",
+      "pad": "4",
+      "x_mm": 74.62,
+      "y_mm": 106.08,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "unconnected-(U2-NC-Pad4)"
+    },
+    {
+      "id": "U2.5",
+      "ref": "U2",
+      "pad": "5",
+      "x_mm": 74.62,
+      "y_mm": 103.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "U2.6",
+      "ref": "U2",
+      "pad": "6",
+      "x_mm": 74.62,
+      "y_mm": 101.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "T82.1",
+      "ref": "T82",
+      "pad": "1",
+      "x_mm": 65.0,
+      "y_mm": 49.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo0_tx__2"
+    },
+    {
+      "id": "T42.1",
+      "ref": "T42",
+      "pad": "1",
+      "x_mm": 12.2755,
+      "y_mm": 90.2964,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_tx__1"
+    },
+    {
+      "id": "T16.1",
+      "ref": "T16",
+      "pad": "1",
+      "x_mm": 37.432,
+      "y_mm": 52.1625,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo0_tx__1"
+    },
+    {
+      "id": "C13.1",
+      "ref": "C13",
+      "pad": "1",
+      "x_mm": 173.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__4"
+    },
+    {
+      "id": "C13.2",
+      "ref": "C13",
+      "pad": "2",
+      "x_mm": 173.0,
+      "y_mm": 40.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T99.1",
+      "ref": "T99",
+      "pad": "1",
+      "x_mm": 71.829629,
+      "y_mm": 102.294095,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_reset__2"
+    },
+    {
+      "id": "R5.1",
+      "ref": "R5",
+      "pad": "1",
+      "x_mm": 113.0,
+      "y_mm": 69.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio0_unused__1"
+    },
+    {
+      "id": "R5.2",
+      "ref": "R5",
+      "pad": "2",
+      "x_mm": 123.16,
+      "y_mm": 69.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__8"
+    },
+    {
+      "id": "T59.1",
+      "ref": "T59",
+      "pad": "1",
+      "x_mm": 6.5588,
+      "y_mm": 42.4228,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_cs__3"
+    },
+    {
+      "id": "C11.1",
+      "ref": "C11",
+      "pad": "1",
+      "x_mm": 86.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C11.2",
+      "ref": "C11",
+      "pad": "2",
+      "x_mm": 86.0,
+      "y_mm": 15.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T101.1",
+      "ref": "T101",
+      "pad": "1",
+      "x_mm": 82.102223,
+      "y_mm": 65.856457,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/zac93_tx__2"
+    },
+    {
+      "id": "C1.1",
+      "ref": "C1",
+      "pad": "1",
+      "x_mm": 78.0,
+      "y_mm": 72.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/xtal1__1"
+    },
+    {
+      "id": "C1.2",
+      "ref": "C1",
+      "pad": "2",
+      "x_mm": 78.0,
+      "y_mm": 69.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "C17.1",
+      "ref": "C17",
+      "pad": "1",
+      "x_mm": 36.0,
+      "y_mm": 121.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__5"
+    },
+    {
+      "id": "C17.2",
+      "ref": "C17",
+      "pad": "2",
+      "x_mm": 36.0,
+      "y_mm": 118.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "T20.1",
+      "ref": "T20",
+      "pad": "1",
+      "x_mm": 92.5284,
+      "y_mm": 27.8153,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo2_rx__3"
+    },
+    {
+      "id": "T26.1",
+      "ref": "T26",
+      "pad": "1",
+      "x_mm": 91.2102,
+      "y_mm": 61.4903,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_reset__3"
+    },
+    {
+      "id": "T47.1",
+      "ref": "T47",
+      "pad": "1",
+      "x_mm": 11.9836,
+      "y_mm": 73.667,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_irq__1"
+    },
+    {
+      "id": "J7.1",
+      "ref": "J7",
+      "pad": "1",
+      "x_mm": 50.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__1"
+    },
+    {
+      "id": "J7.2",
+      "ref": "J7",
+      "pad": "2",
+      "x_mm": 52.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "J7.3",
+      "ref": "J7",
+      "pad": "3",
+      "x_mm": 55.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/shared_spi_sclk__2"
+    },
+    {
+      "id": "J7.4",
+      "ref": "J7",
+      "pad": "4",
+      "x_mm": 57.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/shared_spi_mosi__2"
+    },
+    {
+      "id": "J7.5",
+      "ref": "J7",
+      "pad": "5",
+      "x_mm": 60.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/shared_spi_miso__1"
+    },
+    {
+      "id": "J7.6",
+      "ref": "J7",
+      "pad": "6",
+      "x_mm": 62.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/cc1101_cs__2"
+    },
+    {
+      "id": "J7.7",
+      "ref": "J7",
+      "pad": "7",
+      "x_mm": 65.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/cc1101_gdo0_tx__2"
+    },
+    {
+      "id": "J7.8",
+      "ref": "J7",
+      "pad": "8",
+      "x_mm": 67.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/cc1101_gdo2_rx__2"
+    },
+    {
+      "id": "R3.1",
+      "ref": "R3",
+      "pad": "1",
+      "x_mm": 75.0,
+      "y_mm": 111.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "R3.2",
+      "ref": "R3",
+      "pad": "2",
+      "x_mm": 85.16,
+      "y_mm": 111.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/sc16_reset__1"
+    },
+    {
+      "id": "J2.1",
+      "ref": "J2",
+      "pad": "1",
+      "x_mm": 42.0,
+      "y_mm": 12.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+5V__1"
+    },
+    {
+      "id": "J2.2",
+      "ref": "J2",
+      "pad": "2",
+      "x_mm": 44.5,
+      "y_mm": 12.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "J2.3",
+      "ref": "J2",
+      "pad": "3",
+      "x_mm": 47.0,
+      "y_mm": 12.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "T60.1",
+      "ref": "T60",
+      "pad": "1",
+      "x_mm": 14.8038,
+      "y_mm": 43.16,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_cs__1"
+    },
+    {
+      "id": "R14.1",
+      "ref": "R14",
+      "pad": "1",
+      "x_mm": 49.0,
+      "y_mm": 53.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__1"
+    },
+    {
+      "id": "R14.2",
+      "ref": "R14",
+      "pad": "2",
+      "x_mm": 59.16,
+      "y_mm": 53.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/cc1101_cs__2"
+    },
+    {
+      "id": "J3.1",
+      "ref": "J3",
+      "pad": "1",
+      "x_mm": 20.0,
+      "y_mm": 30.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__1"
+    },
+    {
+      "id": "J3.2",
+      "ref": "J3",
+      "pad": "2",
+      "x_mm": 22.54,
+      "y_mm": 30.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__6"
+    },
+    {
+      "id": "J3.3",
+      "ref": "J3",
+      "pad": "3",
+      "x_mm": 20.0,
+      "y_mm": 32.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_sclk__1"
+    },
+    {
+      "id": "J3.4",
+      "ref": "J3",
+      "pad": "4",
+      "x_mm": 22.54,
+      "y_mm": 32.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__6"
+    },
+    {
+      "id": "J3.5",
+      "ref": "J3",
+      "pad": "5",
+      "x_mm": 20.0,
+      "y_mm": 35.08,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_mosi__1"
+    },
+    {
+      "id": "J3.6",
+      "ref": "J3",
+      "pad": "6",
+      "x_mm": 22.54,
+      "y_mm": 35.08,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__6"
+    },
+    {
+      "id": "J3.7",
+      "ref": "J3",
+      "pad": "7",
+      "x_mm": 20.0,
+      "y_mm": 37.62,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_miso__1"
+    },
+    {
+      "id": "J3.8",
+      "ref": "J3",
+      "pad": "8",
+      "x_mm": 22.54,
+      "y_mm": 37.62,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__6"
+    },
+    {
+      "id": "J3.9",
+      "ref": "J3",
+      "pad": "9",
+      "x_mm": 20.0,
+      "y_mm": 40.16,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_cs__1"
+    },
+    {
+      "id": "J3.10",
+      "ref": "J3",
+      "pad": "10",
+      "x_mm": 22.54,
+      "y_mm": 40.16,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_irq__1"
+    },
+    {
+      "id": "J3.11",
+      "ref": "J3",
+      "pad": "11",
+      "x_mm": 20.0,
+      "y_mm": 42.7,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_reset__1"
+    },
+    {
+      "id": "J3.12",
+      "ref": "J3",
+      "pad": "12",
+      "x_mm": 22.54,
+      "y_mm": 42.7,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__5"
+    },
+    {
+      "id": "J3.13",
+      "ref": "J3",
+      "pad": "13",
+      "x_mm": 20.0,
+      "y_mm": 45.24,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__1"
+    },
+    {
+      "id": "J3.14",
+      "ref": "J3",
+      "pad": "14",
+      "x_mm": 22.54,
+      "y_mm": 45.24,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__5"
+    },
+    {
+      "id": "J3.15",
+      "ref": "J3",
+      "pad": "15",
+      "x_mm": 20.0,
+      "y_mm": 47.78,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__1"
+    },
+    {
+      "id": "J3.16",
+      "ref": "J3",
+      "pad": "16",
+      "x_mm": 22.54,
+      "y_mm": 47.78,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_miso__1"
+    },
+    {
+      "id": "J3.17",
+      "ref": "J3",
+      "pad": "17",
+      "x_mm": 20.0,
+      "y_mm": 50.32,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_cs__1"
+    },
+    {
+      "id": "J3.18",
+      "ref": "J3",
+      "pad": "18",
+      "x_mm": 22.54,
+      "y_mm": 50.32,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo0_tx__1"
+    },
+    {
+      "id": "J3.19",
+      "ref": "J3",
+      "pad": "19",
+      "x_mm": 20.0,
+      "y_mm": 52.86,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo2_rx__1"
+    },
+    {
+      "id": "J3.20",
+      "ref": "J3",
+      "pad": "20",
+      "x_mm": 22.54,
+      "y_mm": 52.86,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_cs__1"
+    },
+    {
+      "id": "J3.21",
+      "ref": "J3",
+      "pad": "21",
+      "x_mm": 20.0,
+      "y_mm": 55.4,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_irq__1"
+    },
+    {
+      "id": "J3.22",
+      "ref": "J3",
+      "pad": "22",
+      "x_mm": 22.54,
+      "y_mm": 55.4,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__7"
+    },
+    {
+      "id": "J3.23",
+      "ref": "J3",
+      "pad": "23",
+      "x_mm": 20.0,
+      "y_mm": 57.94,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_tx__1"
+    },
+    {
+      "id": "J3.24",
+      "ref": "J3",
+      "pad": "24",
+      "x_mm": 22.54,
+      "y_mm": 57.94,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_rx__1"
+    },
+    {
+      "id": "J3.25",
+      "ref": "J3",
+      "pad": "25",
+      "x_mm": 20.0,
+      "y_mm": 60.48,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_reset__2"
+    },
+    {
+      "id": "J3.26",
+      "ref": "J3",
+      "pad": "26",
+      "x_mm": 22.54,
+      "y_mm": 60.48,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_boot__1"
+    },
+    {
+      "id": "J3.27",
+      "ref": "J3",
+      "pad": "27",
+      "x_mm": 20.0,
+      "y_mm": 63.02,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_tx__1"
+    },
+    {
+      "id": "J3.28",
+      "ref": "J3",
+      "pad": "28",
+      "x_mm": 22.54,
+      "y_mm": 63.02,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_rx__1"
+    },
+    {
+      "id": "J3.29",
+      "ref": "J3",
+      "pad": "29",
+      "x_mm": 20.0,
+      "y_mm": 65.56,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_rts__1"
+    },
+    {
+      "id": "J3.30",
+      "ref": "J3",
+      "pad": "30",
+      "x_mm": 22.54,
+      "y_mm": 65.56,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_cts__1"
+    },
+    {
+      "id": "J3.31",
+      "ref": "J3",
+      "pad": "31",
+      "x_mm": 20.0,
+      "y_mm": 68.1,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/ld2450_tx__1"
+    },
+    {
+      "id": "J3.32",
+      "ref": "J3",
+      "pad": "32",
+      "x_mm": 22.54,
+      "y_mm": 68.1,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/ld2450_rx__1"
+    },
+    {
+      "id": "J3.33",
+      "ref": "J3",
+      "pad": "33",
+      "x_mm": 20.0,
+      "y_mm": 70.64,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/bme680_sda__1"
+    },
+    {
+      "id": "J3.34",
+      "ref": "J3",
+      "pad": "34",
+      "x_mm": 22.54,
+      "y_mm": 70.64,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/bme680_scl__1"
+    },
+    {
+      "id": "J3.35",
+      "ref": "J3",
+      "pad": "35",
+      "x_mm": 20.0,
+      "y_mm": 73.18,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "J3.36",
+      "ref": "J3",
+      "pad": "36",
+      "x_mm": 22.54,
+      "y_mm": 73.18,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "J3.37",
+      "ref": "J3",
+      "pad": "37",
+      "x_mm": 20.0,
+      "y_mm": 75.72,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "J3.38",
+      "ref": "J3",
+      "pad": "38",
+      "x_mm": 22.54,
+      "y_mm": 75.72,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "J3.39",
+      "ref": "J3",
+      "pad": "39",
+      "x_mm": 20.0,
+      "y_mm": 78.26,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__5"
+    },
+    {
+      "id": "J3.40",
+      "ref": "J3",
+      "pad": "40",
+      "x_mm": 22.54,
+      "y_mm": 78.26,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "T13.1",
+      "ref": "T13",
+      "pad": "1",
+      "x_mm": 176.0,
+      "y_mm": 12.46,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T65.1",
+      "ref": "T65",
+      "pad": "1",
+      "x_mm": 14.8038,
+      "y_mm": 40.62,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_miso__1"
+    },
+    {
+      "id": "T69.1",
+      "ref": "T69",
+      "pad": "1",
+      "x_mm": 46.5234,
+      "y_mm": 26.1104,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_mosi__3"
+    },
+    {
+      "id": "T14.1",
+      "ref": "T14",
+      "pad": "1",
+      "x_mm": 15.1961,
+      "y_mm": 112.0564,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_cs__1"
+    },
+    {
+      "id": "T45.1",
+      "ref": "T45",
+      "pad": "1",
+      "x_mm": 156.0,
+      "y_mm": 56.7042,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_tx__2"
+    },
+    {
+      "id": "J9.1",
+      "ref": "J9",
+      "pad": "1",
+      "x_mm": 57.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+5V__1"
+    },
+    {
+      "id": "J9.2",
+      "ref": "J9",
+      "pad": "2",
+      "x_mm": 59.5,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "J9.3",
+      "ref": "J9",
+      "pad": "3",
+      "x_mm": 62.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/ld2450_rx__1"
+    },
+    {
+      "id": "J9.4",
+      "ref": "J9",
+      "pad": "4",
+      "x_mm": 64.5,
+      "y_mm": 130.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/ld2450_tx__2"
+    },
+    {
+      "id": "C7.1",
+      "ref": "C7",
+      "pad": "1",
+      "x_mm": 149.0,
+      "y_mm": 31.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/h2_reset__1"
+    },
+    {
+      "id": "C7.2",
+      "ref": "C7",
+      "pad": "2",
+      "x_mm": 149.0,
+      "y_mm": 28.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "J6.1",
+      "ref": "J6",
+      "pad": "1",
+      "x_mm": 151.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "J6.2",
+      "ref": "J6",
+      "pad": "2",
+      "x_mm": 153.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "J6.3",
+      "ref": "J6",
+      "pad": "3",
+      "x_mm": 156.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/mg24_tx__2"
+    },
+    {
+      "id": "J6.4",
+      "ref": "J6",
+      "pad": "4",
+      "x_mm": 158.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/mg24_rx__2"
+    },
+    {
+      "id": "J6.5",
+      "ref": "J6",
+      "pad": "5",
+      "x_mm": 161.0,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/mg24_rts__2"
+    },
+    {
+      "id": "J6.6",
+      "ref": "J6",
+      "pad": "6",
+      "x_mm": 163.5,
+      "y_mm": 43.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/mg24_cts__2"
+    },
+    {
+      "id": "T5.1",
+      "ref": "T5",
+      "pad": "1",
+      "x_mm": 91.2602,
+      "y_mm": 77.0854,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__4"
+    },
+    {
+      "id": "T40.1",
+      "ref": "T40",
+      "pad": "1",
+      "x_mm": 40.7496,
+      "y_mm": 50.8579,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_rx__1"
+    },
+    {
+      "id": "T78.1",
+      "ref": "T78",
+      "pad": "1",
+      "x_mm": 107.87868,
+      "y_mm": 87.12132,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "T63.1",
+      "ref": "T63",
+      "pad": "1",
+      "x_mm": 43.2102,
+      "y_mm": 42.3968,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_irq__1"
+    },
+    {
+      "id": "T72.1",
+      "ref": "T72",
+      "pad": "1",
+      "x_mm": 14.8038,
+      "y_mm": 45.7,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_reset__1"
+    },
+    {
+      "id": "T55.1",
+      "ref": "T55",
+      "pad": "1",
+      "x_mm": 11.5883,
+      "y_mm": 40.3714,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__1"
+    },
+    {
+      "id": "J10.1",
+      "ref": "J10",
+      "pad": "1",
+      "x_mm": 20.0,
+      "y_mm": 121.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "J10.2",
+      "ref": "J10",
+      "pad": "2",
+      "x_mm": 22.5,
+      "y_mm": 121.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__5"
+    },
+    {
+      "id": "J10.3",
+      "ref": "J10",
+      "pad": "3",
+      "x_mm": 25.0,
+      "y_mm": 121.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/bme680_sda__1"
+    },
+    {
+      "id": "J10.4",
+      "ref": "J10",
+      "pad": "4",
+      "x_mm": 27.5,
+      "y_mm": 121.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/bme680_scl__1"
+    },
+    {
+      "id": "T86.1",
+      "ref": "T86",
+      "pad": "1",
+      "x_mm": 104.570127,
+      "y_mm": 70.12,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio4_unused__2"
+    },
+    {
+      "id": "T84.1",
+      "ref": "T84",
+      "pad": "1",
+      "x_mm": 102.99,
+      "y_mm": 75.03,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio3_unused__2"
+    },
+    {
+      "id": "T15.1",
+      "ref": "T15",
+      "pad": "1",
+      "x_mm": 62.9092,
+      "y_mm": 112.0564,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_cs__2"
+    },
+    {
+      "id": "T18.1",
+      "ref": "T18",
+      "pad": "1",
+      "x_mm": 11.0626,
+      "y_mm": 70.1635,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo2_rx__1"
+    },
+    {
+      "id": "T71.1",
+      "ref": "T71",
+      "pad": "1",
+      "x_mm": 4.331,
+      "y_mm": 45.6985,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_reset__3"
+    },
+    {
+      "id": "T23.1",
+      "ref": "T23",
+      "pad": "1",
+      "x_mm": 28.54,
+      "y_mm": 60.48,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_boot__1"
+    },
+    {
+      "id": "T61.1",
+      "ref": "T61",
+      "pad": "1",
+      "x_mm": 80.16,
+      "y_mm": 28.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_cs__2"
+    },
+    {
+      "id": "T3.1",
+      "ref": "T3",
+      "pad": "1",
+      "x_mm": 55.829,
+      "y_mm": 28.2573,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "T57.1",
+      "ref": "T57",
+      "pad": "1",
+      "x_mm": 46.3337,
+      "y_mm": 52.5192,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__2"
+    },
+    {
+      "id": "T98.1",
+      "ref": "T98",
+      "pad": "1",
+      "x_mm": 85.16,
+      "y_mm": 108.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_reset__1"
+    },
+    {
+      "id": "T36.1",
+      "ref": "T36",
+      "pad": "1",
+      "x_mm": 37.3908,
+      "y_mm": 57.3405,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_cts__1"
+    },
+    {
+      "id": "T62.1",
+      "ref": "T62",
+      "pad": "1",
+      "x_mm": 88.5991,
+      "y_mm": 27.4779,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_cs__3"
+    },
+    {
+      "id": "R15.1",
+      "ref": "R15",
+      "pad": "1",
+      "x_mm": 67.0,
+      "y_mm": 28.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "R15.2",
+      "ref": "R15",
+      "pad": "2",
+      "x_mm": 77.16,
+      "y_mm": 28.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/w5500_cs__2"
+    },
+    {
+      "id": "T93.1",
+      "ref": "T93",
+      "pad": "1",
+      "x_mm": 121.16,
+      "y_mm": 80.464102,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/rxb_unused__1"
+    },
+    {
+      "id": "T29.1",
+      "ref": "T29",
+      "pad": "1",
+      "x_mm": 167.16,
+      "y_mm": 30.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_reset__4"
+    },
+    {
+      "id": "T56.1",
+      "ref": "T56",
+      "pad": "1",
+      "x_mm": 43.4013,
+      "y_mm": 54.8409,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__3"
+    },
+    {
+      "id": "J5.1",
+      "ref": "J5",
+      "pad": "1",
+      "x_mm": 151.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "J5.2",
+      "ref": "J5",
+      "pad": "2",
+      "x_mm": 153.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "J5.3",
+      "ref": "J5",
+      "pad": "3",
+      "x_mm": 156.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/h2_tx__2"
+    },
+    {
+      "id": "J5.4",
+      "ref": "J5",
+      "pad": "4",
+      "x_mm": 158.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/h2_rx__2"
+    },
+    {
+      "id": "J5.5",
+      "ref": "J5",
+      "pad": "5",
+      "x_mm": 161.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/h2_reset__3"
+    },
+    {
+      "id": "J5.6",
+      "ref": "J5",
+      "pad": "6",
+      "x_mm": 163.5,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/h2_boot__2"
+    },
+    {
+      "id": "J5.7",
+      "ref": "J5",
+      "pad": "7",
+      "x_mm": 166.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.95,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "C16.1",
+      "ref": "C16",
+      "pad": "1",
+      "x_mm": 75.0,
+      "y_mm": 130.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+5V__1"
+    },
+    {
+      "id": "C16.2",
+      "ref": "C16",
+      "pad": "2",
+      "x_mm": 75.0,
+      "y_mm": 127.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "C10.1",
+      "ref": "C10",
+      "pad": "1",
+      "x_mm": 32.0,
+      "y_mm": 30.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__1"
+    },
+    {
+      "id": "C10.2",
+      "ref": "C10",
+      "pad": "2",
+      "x_mm": 32.0,
+      "y_mm": 27.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T38.1",
+      "ref": "T38",
+      "pad": "1",
+      "x_mm": 13.393,
+      "y_mm": 114.0392,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_rts__1"
+    },
+    {
+      "id": "T95.1",
+      "ref": "T95",
+      "pad": "1",
+      "x_mm": 116.624466,
+      "y_mm": 88.535534,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_cs__2"
+    },
+    {
+      "id": "T39.1",
+      "ref": "T39",
+      "pad": "1",
+      "x_mm": 138.1076,
+      "y_mm": 115.1429,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_rts__2"
+    },
+    {
+      "id": "C12.1",
+      "ref": "C12",
+      "pad": "1",
+      "x_mm": 176.0,
+      "y_mm": 18.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "C12.2",
+      "ref": "C12",
+      "pad": "2",
+      "x_mm": 176.0,
+      "y_mm": 15.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T9.1",
+      "ref": "T9",
+      "pad": "1",
+      "x_mm": 31.9067,
+      "y_mm": 82.7749,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__4"
+    },
+    {
+      "id": "H1.mount",
+      "ref": "H1",
+      "pad": "",
+      "x_mm": 5.0,
+      "y_mm": 5.0,
+      "drill_mm": 3.2,
+      "electrical": false,
+      "net": ""
+    },
+    {
+      "id": "T64.1",
+      "ref": "T64",
+      "pad": "1",
+      "x_mm": 77.9083,
+      "y_mm": 25.4699,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_irq__2"
+    },
+    {
+      "id": "T54.1",
+      "ref": "T54",
+      "pad": "1",
+      "x_mm": 6.4075,
+      "y_mm": 88.4947,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__4"
+    },
+    {
+      "id": "R12.1",
+      "ref": "R12",
+      "pad": "1",
+      "x_mm": 147.0,
+      "y_mm": 85.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio7_unused__1"
+    },
+    {
+      "id": "R12.2",
+      "ref": "R12",
+      "pad": "2",
+      "x_mm": 157.16,
+      "y_mm": 85.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T79.1",
+      "ref": "T79",
+      "pad": "1",
+      "x_mm": 67.0,
+      "y_mm": 111.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "T83.1",
+      "ref": "T83",
+      "pad": "1",
+      "x_mm": 124.343146,
+      "y_mm": 74.656854,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio3_unused__1"
+    },
+    {
+      "id": "R17.1",
+      "ref": "R17",
+      "pad": "1",
+      "x_mm": 170.0,
+      "y_mm": 30.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "R17.2",
+      "ref": "R17",
+      "pad": "2",
+      "x_mm": 180.16,
+      "y_mm": 30.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/h2_boot__2"
+    },
+    {
+      "id": "R1.1",
+      "ref": "R1",
+      "pad": "1",
+      "x_mm": 108.0,
+      "y_mm": 93.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__4"
+    },
+    {
+      "id": "R1.2",
+      "ref": "R1",
+      "pad": "2",
+      "x_mm": 118.16,
+      "y_mm": 93.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/sc16_irq__2"
+    },
+    {
+      "id": "T19.1",
+      "ref": "T19",
+      "pad": "1",
+      "x_mm": 70.3842,
+      "y_mm": 35.9414,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/cc1101_gdo2_rx__2"
+    },
+    {
+      "id": "T34.1",
+      "ref": "T34",
+      "pad": "1",
+      "x_mm": 15.1959,
+      "y_mm": 101.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/ld2450_tx__1"
+    },
+    {
+      "id": "R7.1",
+      "ref": "R7",
+      "pad": "1",
+      "x_mm": 130.0,
+      "y_mm": 61.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio2_unused__1"
+    },
+    {
+      "id": "R7.2",
+      "ref": "R7",
+      "pad": "2",
+      "x_mm": 140.16,
+      "y_mm": 61.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T96.1",
+      "ref": "T96",
+      "pad": "1",
+      "x_mm": 77.5,
+      "y_mm": 93.11,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_cs__3"
+    },
+    {
+      "id": "T28.1",
+      "ref": "T28",
+      "pad": "1",
+      "x_mm": 149.0,
+      "y_mm": 36.0168,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_reset__1"
+    },
+    {
+      "id": "T81.1",
+      "ref": "T81",
+      "pad": "1",
+      "x_mm": 28.3651,
+      "y_mm": 54.419505,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__7"
+    },
+    {
+      "id": "T27.1",
+      "ref": "T27",
+      "pad": "1",
+      "x_mm": 144.4034,
+      "y_mm": 35.8225,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/h2_reset__3"
+    },
+    {
+      "id": "T53.1",
+      "ref": "T53",
+      "pad": "1",
+      "x_mm": 6.4075,
+      "y_mm": 47.5002,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__4"
+    },
+    {
+      "id": "T85.1",
+      "ref": "T85",
+      "pad": "1",
+      "x_mm": 126.0,
+      "y_mm": 77.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio4_unused__1"
+    },
+    {
+      "id": "T50.1",
+      "ref": "T50",
+      "pad": "1",
+      "x_mm": 57.5,
+      "y_mm": 37.7431,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__2"
+    },
+    {
+      "id": "T12.1",
+      "ref": "T12",
+      "pad": "1",
+      "x_mm": 88.0,
+      "y_mm": 80.32,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "T73.1",
+      "ref": "T73",
+      "pad": "1",
+      "x_mm": 17.6566,
+      "y_mm": 4.4954,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/w5500_reset__3"
+    },
+    {
+      "id": "T22.1",
+      "ref": "T22",
+      "pad": "1",
+      "x_mm": 113.0,
+      "y_mm": 72.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio0_unused__1"
+    },
+    {
+      "id": "Y1.1",
+      "ref": "Y1",
+      "pad": "1",
+      "x_mm": 71.0,
+      "y_mm": 77.0,
+      "drill_mm": 0.9,
+      "electrical": true,
+      "net": "/xtal1__1"
+    },
+    {
+      "id": "Y1.2",
+      "ref": "Y1",
+      "pad": "2",
+      "x_mm": 71.0,
+      "y_mm": 72.12,
+      "drill_mm": 0.9,
+      "electrical": true,
+      "net": "/xtal2__1"
+    },
+    {
+      "id": "T46.1",
+      "ref": "T46",
+      "pad": "1",
+      "x_mm": 33.4476,
+      "y_mm": 57.2988,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_cs__1"
+    },
+    {
+      "id": "R16.1",
+      "ref": "R16",
+      "pad": "1",
+      "x_mm": 154.0,
+      "y_mm": 30.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__3"
+    },
+    {
+      "id": "R16.2",
+      "ref": "R16",
+      "pad": "2",
+      "x_mm": 164.16,
+      "y_mm": 30.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/h2_reset__4"
+    },
+    {
+      "id": "T51.1",
+      "ref": "T51",
+      "pad": "1",
+      "x_mm": 89.3787,
+      "y_mm": 36.4923,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__4"
+    },
+    {
+      "id": "R6.1",
+      "ref": "R6",
+      "pad": "1",
+      "x_mm": 113.0,
+      "y_mm": 61.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio1_unused__1"
+    },
+    {
+      "id": "R6.2",
+      "ref": "R6",
+      "pad": "2",
+      "x_mm": 123.16,
+      "y_mm": 61.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__8"
+    },
+    {
+      "id": "C4.1",
+      "ref": "C4",
+      "pad": "1",
+      "x_mm": 74.0,
+      "y_mm": 90.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/+3V3__2"
+    },
+    {
+      "id": "C4.2",
+      "ref": "C4",
+      "pad": "2",
+      "x_mm": 74.0,
+      "y_mm": 87.46,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "H4.mount",
+      "ref": "H4",
+      "pad": "",
+      "x_mm": 185.0,
+      "y_mm": 140.0,
+      "drill_mm": 3.2,
+      "electrical": false,
+      "net": ""
+    },
+    {
+      "id": "J1.1",
+      "ref": "J1",
+      "pad": "1",
+      "x_mm": 15.0,
+      "y_mm": 12.0,
+      "drill_mm": 1.0,
+      "electrical": true,
+      "net": "/+5V_IN__1"
+    },
+    {
+      "id": "J1.2",
+      "ref": "J1",
+      "pad": "2",
+      "x_mm": 17.5,
+      "y_mm": 12.0,
+      "drill_mm": 1.0,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "T35.1",
+      "ref": "T35",
+      "pad": "1",
+      "x_mm": 51.735,
+      "y_mm": 101.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/ld2450_tx__2"
+    },
+    {
+      "id": "R10.1",
+      "ref": "R10",
+      "pad": "1",
+      "x_mm": 130.0,
+      "y_mm": 85.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/gpio5_unused__1"
+    },
+    {
+      "id": "R10.2",
+      "ref": "R10",
+      "pad": "2",
+      "x_mm": 140.16,
+      "y_mm": 85.0,
+      "drill_mm": 0.8,
+      "electrical": true,
+      "net": "/GND__2"
+    },
+    {
+      "id": "T49.1",
+      "ref": "T49",
+      "pad": "1",
+      "x_mm": 14.4585,
+      "y_mm": 49.5507,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__1"
+    },
+    {
+      "id": "T37.1",
+      "ref": "T37",
+      "pad": "1",
+      "x_mm": 163.5,
+      "y_mm": 54.8667,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/mg24_cts__2"
+    },
+    {
+      "id": "U1.1",
+      "ref": "U1",
+      "pad": "1",
+      "x_mm": 85.0,
+      "y_mm": 60.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "unconnected-(U1-NC-Pad1)"
+    },
+    {
+      "id": "U1.2",
+      "ref": "U1",
+      "pad": "2",
+      "x_mm": 85.0,
+      "y_mm": 62.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "U1.3",
+      "ref": "U1",
+      "pad": "3",
+      "x_mm": 85.0,
+      "y_mm": 65.08,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/zac93_tx__2"
+    },
+    {
+      "id": "U1.4",
+      "ref": "U1",
+      "pad": "4",
+      "x_mm": 85.0,
+      "y_mm": 67.62,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/zac93_rx__1"
+    },
+    {
+      "id": "U1.5",
+      "ref": "U1",
+      "pad": "5",
+      "x_mm": 85.0,
+      "y_mm": 70.16,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_reset__1"
+    },
+    {
+      "id": "U1.6",
+      "ref": "U1",
+      "pad": "6",
+      "x_mm": 85.0,
+      "y_mm": 72.7,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/xtal1__1"
+    },
+    {
+      "id": "U1.7",
+      "ref": "U1",
+      "pad": "7",
+      "x_mm": 85.0,
+      "y_mm": 75.24,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/xtal2__1"
+    },
+    {
+      "id": "U1.8",
+      "ref": "U1",
+      "pad": "8",
+      "x_mm": 85.0,
+      "y_mm": 77.78,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/+3V3__6"
+    },
+    {
+      "id": "U1.9",
+      "ref": "U1",
+      "pad": "9",
+      "x_mm": 85.0,
+      "y_mm": 80.32,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "U1.10",
+      "ref": "U1",
+      "pad": "10",
+      "x_mm": 85.0,
+      "y_mm": 82.86,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_cs__3"
+    },
+    {
+      "id": "U1.11",
+      "ref": "U1",
+      "pad": "11",
+      "x_mm": 85.0,
+      "y_mm": 85.4,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_mosi__3"
+    },
+    {
+      "id": "U1.12",
+      "ref": "U1",
+      "pad": "12",
+      "x_mm": 85.0,
+      "y_mm": 87.94,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_miso__1"
+    },
+    {
+      "id": "U1.13",
+      "ref": "U1",
+      "pad": "13",
+      "x_mm": 85.0,
+      "y_mm": 90.48,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/shared_spi_sclk__3"
+    },
+    {
+      "id": "U1.14",
+      "ref": "U1",
+      "pad": "14",
+      "x_mm": 85.0,
+      "y_mm": 93.02,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__3"
+    },
+    {
+      "id": "U1.15",
+      "ref": "U1",
+      "pad": "15",
+      "x_mm": 100.24,
+      "y_mm": 93.02,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/sc16_irq__2"
+    },
+    {
+      "id": "U1.16",
+      "ref": "U1",
+      "pad": "16",
+      "x_mm": 100.24,
+      "y_mm": 90.48,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "U1.17",
+      "ref": "U1",
+      "pad": "17",
+      "x_mm": 100.24,
+      "y_mm": 87.94,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "unconnected-(U1-NC-Pad17)"
+    },
+    {
+      "id": "U1.18",
+      "ref": "U1",
+      "pad": "18",
+      "x_mm": 100.24,
+      "y_mm": 85.4,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio0_unused__1"
+    },
+    {
+      "id": "U1.19",
+      "ref": "U1",
+      "pad": "19",
+      "x_mm": 100.24,
+      "y_mm": 82.86,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio1_unused__1"
+    },
+    {
+      "id": "U1.20",
+      "ref": "U1",
+      "pad": "20",
+      "x_mm": 100.24,
+      "y_mm": 80.32,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio2_unused__1"
+    },
+    {
+      "id": "U1.21",
+      "ref": "U1",
+      "pad": "21",
+      "x_mm": 100.24,
+      "y_mm": 77.78,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio3_unused__2"
+    },
+    {
+      "id": "U1.22",
+      "ref": "U1",
+      "pad": "22",
+      "x_mm": 100.24,
+      "y_mm": 75.24,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/GND__1"
+    },
+    {
+      "id": "U1.23",
+      "ref": "U1",
+      "pad": "23",
+      "x_mm": 100.24,
+      "y_mm": 72.7,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "unconnected-(U1-NC-Pad23)"
+    },
+    {
+      "id": "U1.24",
+      "ref": "U1",
+      "pad": "24",
+      "x_mm": 100.24,
+      "y_mm": 70.16,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/rxb_unused__2"
+    },
+    {
+      "id": "U1.25",
+      "ref": "U1",
+      "pad": "25",
+      "x_mm": 100.24,
+      "y_mm": 67.62,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio4_unused__2"
+    },
+    {
+      "id": "U1.26",
+      "ref": "U1",
+      "pad": "26",
+      "x_mm": 100.24,
+      "y_mm": 65.08,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio5_unused__2"
+    },
+    {
+      "id": "U1.27",
+      "ref": "U1",
+      "pad": "27",
+      "x_mm": 100.24,
+      "y_mm": 62.54,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio6_unused__2"
+    },
+    {
+      "id": "U1.28",
+      "ref": "U1",
+      "pad": "28",
+      "x_mm": 100.24,
+      "y_mm": 60.0,
+      "drill_mm": 1.1,
+      "electrical": true,
+      "net": "/gpio7_unused__2"
+    }
+  ],
+  "components": [
+    {
+      "ref": "T67",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 18.0803,
+      "y_mm": 21.2208
+    },
+    {
+      "ref": "T10",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 42.8675,
+      "y_mm": 36.0798
+    },
+    {
+      "ref": "T17",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 4.3668,
+      "y_mm": 70.1635
+    },
+    {
+      "ref": "T1",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 22.5,
+      "y_mm": 92.8097
+    },
+    {
+      "ref": "T30",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 31.2518,
+      "y_mm": 54.1506
+    },
+    {
+      "ref": "R9",
+      "value": "100k",
+      "x_mm": 130.0,
+      "y_mm": 77.0
+    },
+    {
+      "ref": "T41",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 158.5,
+      "y_mm": 49.2112
+    },
+    {
+      "ref": "C9",
+      "value": "22uF",
+      "x_mm": 62.0,
+      "y_mm": 8.0
+    },
+    {
+      "ref": "T24",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 183.16,
+      "y_mm": 30.0
+    },
+    {
+      "ref": "T7",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 29.6351,
+      "y_mm": 42.9696
+    },
+    {
+      "ref": "C8",
+      "value": "22uF",
+      "x_mm": 54.0,
+      "y_mm": 8.0
+    },
+    {
+      "ref": "T8",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 29.6351,
+      "y_mm": 52.2198
+    },
+    {
+      "ref": "R8",
+      "value": "100k",
+      "x_mm": 130.0,
+      "y_mm": 69.0
+    },
+    {
+      "ref": "C3",
+      "value": "100nF",
+      "x_mm": 80.0,
+      "y_mm": 86.0
+    },
+    {
+      "ref": "T97",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 112.097822,
+      "y_mm": 89.5
+    },
+    {
+      "ref": "T89",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 142.669873,
+      "y_mm": 74.5
+    },
+    {
+      "ref": "T80",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 126.057777,
+      "y_mm": 61.776457
+    },
+    {
+      "ref": "C2",
+      "value": "33pF",
+      "x_mm": 78.0,
+      "y_mm": 79.0
+    },
+    {
+      "ref": "T58",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 51.7998,
+      "y_mm": 88.4947
+    },
+    {
+      "ref": "T52",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 97.5873,
+      "y_mm": 71.0485
+    },
+    {
+      "ref": "T31",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 158.5,
+      "y_mm": 23.6399
+    },
+    {
+      "ref": "T33",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 153.5,
+      "y_mm": 13.6699
+    },
+    {
+      "ref": "H3",
+      "value": "M3 manually drilled",
+      "x_mm": 5.0,
+      "y_mm": 140.0
+    },
+    {
+      "ref": "T94",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 104.570127,
+      "y_mm": 72.66
+    },
+    {
+      "ref": "R11",
+      "value": "100k",
+      "x_mm": 147.0,
+      "y_mm": 77.0
+    },
+    {
+      "ref": "T11",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 78.0,
+      "y_mm": 66.459998
+    },
+    {
+      "ref": "C14",
+      "value": "100nF",
+      "x_mm": 77.0,
+      "y_mm": 43.0
+    },
+    {
+      "ref": "T21",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 103.24,
+      "y_mm": 85.4
+    },
+    {
+      "ref": "T76",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 56.28,
+      "y_mm": 24.0041
+    },
+    {
+      "ref": "T48",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 4.6058,
+      "y_mm": 49.5507
+    },
+    {
+      "ref": "T2",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 38.6076,
+      "y_mm": 28.709
+    },
+    {
+      "ref": "H2",
+      "value": "M3 manually drilled",
+      "x_mm": 185.0,
+      "y_mm": 5.0
+    },
+    {
+      "ref": "T75",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 21.8865,
+      "y_mm": 22.6641
+    },
+    {
+      "ref": "F1",
+      "value": "Littelfuse 022901.5MXP",
+      "x_mm": 24.0,
+      "y_mm": 12.0
+    },
+    {
+      "ref": "C5",
+      "value": "100nF",
+      "x_mm": 60.0,
+      "y_mm": 106.0
+    },
+    {
+      "ref": "T43",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 62.3786,
+      "y_mm": 90.2964
+    },
+    {
+      "ref": "T87",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 115.511113,
+      "y_mm": 81.117714
+    },
+    {
+      "ref": "T74",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 70.0,
+      "y_mm": 13.6699
+    },
+    {
+      "ref": "C15",
+      "value": "100nF",
+      "x_mm": 136.0,
+      "y_mm": 130.0
+    },
+    {
+      "ref": "T88",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 104.570127,
+      "y_mm": 67.58
+    },
+    {
+      "ref": "T92",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 114.728887,
+      "y_mm": 56.117714
+    },
+    {
+      "ref": "R13",
+      "value": "4.7k",
+      "x_mm": 65.0,
+      "y_mm": 53.0
+    },
+    {
+      "ref": "C6",
+      "value": "1nF",
+      "x_mm": 60.0,
+      "y_mm": 98.0
+    },
+    {
+      "ref": "T25",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 14.8038,
+      "y_mm": 63.48
+    },
+    {
+      "ref": "T6",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 28.1381,
+      "y_mm": 36.526
+    },
+    {
+      "ref": "J4",
+      "value": "B10B-XH-A",
+      "x_mm": 55.0,
+      "y_mm": 18.0
+    },
+    {
+      "ref": "T70",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 58.351,
+      "y_mm": 25.8888
+    },
+    {
+      "ref": "R4",
+      "value": "10k",
+      "x_mm": 113.0,
+      "y_mm": 77.0
+    },
+    {
+      "ref": "T91",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 142.757359,
+      "y_mm": 80.757359
+    },
+    {
+      "ref": "T32",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 14.8038,
+      "y_mm": 60.94
+    },
+    {
+      "ref": "T66",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 62.5,
+      "y_mm": 13.6699
+    },
+    {
+      "ref": "T4",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 87.515,
+      "y_mm": 77.0854
+    },
+    {
+      "ref": "T77",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 95.1541,
+      "y_mm": 93.9996
+    },
+    {
+      "ref": "T68",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 41.4558,
+      "y_mm": 20.8591
+    },
+    {
+      "ref": "T44",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 77.9975,
+      "y_mm": 57.0833
+    },
+    {
+      "ref": "T90",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 107.001481,
+      "y_mm": 60.728267
+    },
+    {
+      "ref": "R2",
+      "value": "10k",
+      "x_mm": 110.0,
+      "y_mm": 85.0
+    },
+    {
+      "ref": "J8",
+      "value": "B5B-XH-A",
+      "x_mm": 116.0,
+      "y_mm": 130.0
+    },
+    {
+      "ref": "U2",
+      "value": "TPS3808G33DBVR",
+      "x_mm": 67.0,
+      "y_mm": 101.0
+    },
+    {
+      "ref": "T82",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 65.0,
+      "y_mm": 49.0
+    },
+    {
+      "ref": "T42",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 12.2755,
+      "y_mm": 90.2964
+    },
+    {
+      "ref": "T16",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 37.432,
+      "y_mm": 52.1625
+    },
+    {
+      "ref": "C13",
+      "value": "100nF",
+      "x_mm": 173.0,
+      "y_mm": 43.0
+    },
+    {
+      "ref": "T99",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 71.829629,
+      "y_mm": 102.294095
+    },
+    {
+      "ref": "R5",
+      "value": "100k",
+      "x_mm": 113.0,
+      "y_mm": 69.0
+    },
+    {
+      "ref": "T59",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 6.5588,
+      "y_mm": 42.4228
+    },
+    {
+      "ref": "C11",
+      "value": "100nF",
+      "x_mm": 86.0,
+      "y_mm": 18.0
+    },
+    {
+      "ref": "T101",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 82.102223,
+      "y_mm": 65.856457
+    },
+    {
+      "ref": "C1",
+      "value": "22pF",
+      "x_mm": 78.0,
+      "y_mm": 72.0
+    },
+    {
+      "ref": "C17",
+      "value": "100nF",
+      "x_mm": 36.0,
+      "y_mm": 121.0
+    },
+    {
+      "ref": "T20",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 92.5284,
+      "y_mm": 27.8153
+    },
+    {
+      "ref": "T26",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 91.2102,
+      "y_mm": 61.4903
+    },
+    {
+      "ref": "T47",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 11.9836,
+      "y_mm": 73.667
+    },
+    {
+      "ref": "J7",
+      "value": "B8B-XH-A",
+      "x_mm": 50.0,
+      "y_mm": 43.0
+    },
+    {
+      "ref": "R3",
+      "value": "10k",
+      "x_mm": 75.0,
+      "y_mm": 111.0
+    },
+    {
+      "ref": "J2",
+      "value": "B3B-XH-A",
+      "x_mm": 42.0,
+      "y_mm": 12.0
+    },
+    {
+      "ref": "T60",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 14.8038,
+      "y_mm": 43.16
+    },
+    {
+      "ref": "R14",
+      "value": "10k",
+      "x_mm": 49.0,
+      "y_mm": 53.0
+    },
+    {
+      "ref": "J3",
+      "value": "61204021621",
+      "x_mm": 20.0,
+      "y_mm": 30.0
+    },
+    {
+      "ref": "T13",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 176.0,
+      "y_mm": 12.46
+    },
+    {
+      "ref": "T65",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 14.8038,
+      "y_mm": 40.62
+    },
+    {
+      "ref": "T69",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 46.5234,
+      "y_mm": 26.1104
+    },
+    {
+      "ref": "T14",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 15.1961,
+      "y_mm": 112.0564
+    },
+    {
+      "ref": "T45",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 156.0,
+      "y_mm": 56.7042
+    },
+    {
+      "ref": "J9",
+      "value": "B4B-XH-A",
+      "x_mm": 57.0,
+      "y_mm": 130.0
+    },
+    {
+      "ref": "C7",
+      "value": "1uF",
+      "x_mm": 149.0,
+      "y_mm": 31.0
+    },
+    {
+      "ref": "J6",
+      "value": "B6B-XH-A",
+      "x_mm": 151.0,
+      "y_mm": 43.0
+    },
+    {
+      "ref": "T5",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 91.2602,
+      "y_mm": 77.0854
+    },
+    {
+      "ref": "T40",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 40.7496,
+      "y_mm": 50.8579
+    },
+    {
+      "ref": "T78",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 107.87868,
+      "y_mm": 87.12132
+    },
+    {
+      "ref": "T63",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 43.2102,
+      "y_mm": 42.3968
+    },
+    {
+      "ref": "T72",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 14.8038,
+      "y_mm": 45.7
+    },
+    {
+      "ref": "T55",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 11.5883,
+      "y_mm": 40.3714
+    },
+    {
+      "ref": "J10",
+      "value": "B4B-XH-A",
+      "x_mm": 20.0,
+      "y_mm": 121.0
+    },
+    {
+      "ref": "T86",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 104.570127,
+      "y_mm": 70.12
+    },
+    {
+      "ref": "T84",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 102.99,
+      "y_mm": 75.03
+    },
+    {
+      "ref": "T15",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 62.9092,
+      "y_mm": 112.0564
+    },
+    {
+      "ref": "T18",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 11.0626,
+      "y_mm": 70.1635
+    },
+    {
+      "ref": "T71",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 4.331,
+      "y_mm": 45.6985
+    },
+    {
+      "ref": "T23",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 28.54,
+      "y_mm": 60.48
+    },
+    {
+      "ref": "T61",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 80.16,
+      "y_mm": 28.0
+    },
+    {
+      "ref": "T3",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 55.829,
+      "y_mm": 28.2573
+    },
+    {
+      "ref": "T57",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 46.3337,
+      "y_mm": 52.5192
+    },
+    {
+      "ref": "T98",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 85.16,
+      "y_mm": 108.0
+    },
+    {
+      "ref": "T36",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 37.3908,
+      "y_mm": 57.3405
+    },
+    {
+      "ref": "T62",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 88.5991,
+      "y_mm": 27.4779
+    },
+    {
+      "ref": "R15",
+      "value": "10k",
+      "x_mm": 67.0,
+      "y_mm": 28.0
+    },
+    {
+      "ref": "T93",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 121.16,
+      "y_mm": 80.464102
+    },
+    {
+      "ref": "T29",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 167.16,
+      "y_mm": 30.0
+    },
+    {
+      "ref": "T56",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 43.4013,
+      "y_mm": 54.8409
+    },
+    {
+      "ref": "J5",
+      "value": "B7B-XH-A",
+      "x_mm": 151.0,
+      "y_mm": 18.0
+    },
+    {
+      "ref": "C16",
+      "value": "100nF",
+      "x_mm": 75.0,
+      "y_mm": 130.0
+    },
+    {
+      "ref": "C10",
+      "value": "100nF",
+      "x_mm": 32.0,
+      "y_mm": 30.0
+    },
+    {
+      "ref": "T38",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 13.393,
+      "y_mm": 114.0392
+    },
+    {
+      "ref": "T95",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 116.624466,
+      "y_mm": 88.535534
+    },
+    {
+      "ref": "T39",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 138.1076,
+      "y_mm": 115.1429
+    },
+    {
+      "ref": "C12",
+      "value": "100nF",
+      "x_mm": 176.0,
+      "y_mm": 18.0
+    },
+    {
+      "ref": "T9",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 31.9067,
+      "y_mm": 82.7749
+    },
+    {
+      "ref": "H1",
+      "value": "M3 manually drilled",
+      "x_mm": 5.0,
+      "y_mm": 5.0
+    },
+    {
+      "ref": "T64",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 77.9083,
+      "y_mm": 25.4699
+    },
+    {
+      "ref": "T54",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 6.4075,
+      "y_mm": 88.4947
+    },
+    {
+      "ref": "R12",
+      "value": "100k",
+      "x_mm": 147.0,
+      "y_mm": 85.0
+    },
+    {
+      "ref": "T79",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 67.0,
+      "y_mm": 111.0
+    },
+    {
+      "ref": "T83",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 124.343146,
+      "y_mm": 74.656854
+    },
+    {
+      "ref": "R17",
+      "value": "10k",
+      "x_mm": 170.0,
+      "y_mm": 30.0
+    },
+    {
+      "ref": "R1",
+      "value": "1k",
+      "x_mm": 108.0,
+      "y_mm": 93.0
+    },
+    {
+      "ref": "T19",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 70.3842,
+      "y_mm": 35.9414
+    },
+    {
+      "ref": "T34",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 15.1959,
+      "y_mm": 101.54
+    },
+    {
+      "ref": "R7",
+      "value": "100k",
+      "x_mm": 130.0,
+      "y_mm": 61.0
+    },
+    {
+      "ref": "T96",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 77.5,
+      "y_mm": 93.11
+    },
+    {
+      "ref": "T28",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 149.0,
+      "y_mm": 36.0168
+    },
+    {
+      "ref": "T81",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 28.3651,
+      "y_mm": 54.419505
+    },
+    {
+      "ref": "T27",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 144.4034,
+      "y_mm": 35.8225
+    },
+    {
+      "ref": "T53",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 6.4075,
+      "y_mm": 47.5002
+    },
+    {
+      "ref": "T85",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 126.0,
+      "y_mm": 77.0
+    },
+    {
+      "ref": "T50",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 57.5,
+      "y_mm": 37.7431
+    },
+    {
+      "ref": "T12",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 88.0,
+      "y_mm": 80.32
+    },
+    {
+      "ref": "T73",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 17.6566,
+      "y_mm": 4.4954
+    },
+    {
+      "ref": "T22",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 113.0,
+      "y_mm": 72.0
+    },
+    {
+      "ref": "Y1",
+      "value": "AB-3.6864MHZ-B2",
+      "x_mm": 71.0,
+      "y_mm": 77.0
+    },
+    {
+      "ref": "T46",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 33.4476,
+      "y_mm": 57.2988
+    },
+    {
+      "ref": "R16",
+      "value": "10k",
+      "x_mm": 154.0,
+      "y_mm": 30.0
+    },
+    {
+      "ref": "T51",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 89.3787,
+      "y_mm": 36.4923
+    },
+    {
+      "ref": "R6",
+      "value": "100k",
+      "x_mm": 113.0,
+      "y_mm": 61.0
+    },
+    {
+      "ref": "C4",
+      "value": "1uF",
+      "x_mm": 74.0,
+      "y_mm": 90.0
+    },
+    {
+      "ref": "H4",
+      "value": "M3 manually drilled",
+      "x_mm": 185.0,
+      "y_mm": 140.0
+    },
+    {
+      "ref": "J1",
+      "value": "B2B-XH-A",
+      "x_mm": 15.0,
+      "y_mm": 12.0
+    },
+    {
+      "ref": "T35",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 51.735,
+      "y_mm": 101.54
+    },
+    {
+      "ref": "R10",
+      "value": "100k",
+      "x_mm": 130.0,
+      "y_mm": 85.0
+    },
+    {
+      "ref": "T49",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 14.4585,
+      "y_mm": 49.5507
+    },
+    {
+      "ref": "T37",
+      "value": "Insulated wire terminal hole",
+      "x_mm": 163.5,
+      "y_mm": 54.8667
+    },
+    {
+      "ref": "U1",
+      "value": "SC16IS752IPW,128",
+      "x_mm": 85.0,
+      "y_mm": 60.0
+    }
+  ],
+  "minimum_track_mm": 0.6
+}

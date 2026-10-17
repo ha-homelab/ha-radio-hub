@@ -1,0 +1,3798 @@
+{
+  "revision": "LP-D0",
+  "parts": [
+    {
+      "ref": "J1",
+      "model": "B2B-XH-A",
+      "footprint": "DIY:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V_IN__1",
+        "2": "GND__1"
+      },
+      "xy": [
+        15,
+        12
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "Isolated regulated 5V input",
+      "types": {}
+    },
+    {
+      "ref": "J2",
+      "model": "B3B-XH-A",
+      "footprint": "DIY:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V__1",
+        "2": "GND__1",
+        "3": "+3V3__2"
+      },
+      "xy": [
+        42,
+        12
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "External D24V22F3 buck",
+      "types": {}
+    },
+    {
+      "ref": "J3",
+      "model": "61204021621",
+      "footprint": "DIY:Wurth_61204021621",
+      "pins": {
+        "1": "+3V3__1",
+        "2": "GND__6",
+        "3": "w5500_sclk__1",
+        "4": "GND__6",
+        "5": "w5500_mosi__1",
+        "6": "GND__6",
+        "7": "w5500_miso__1",
+        "8": "GND__6",
+        "9": "w5500_cs__1",
+        "10": "w5500_irq__1",
+        "11": "w5500_reset__1",
+        "12": "GND__5",
+        "13": "shared_spi_sclk__1",
+        "14": "GND__5",
+        "15": "shared_spi_mosi__1",
+        "16": "shared_spi_miso__1",
+        "17": "cc1101_cs__1",
+        "18": "cc1101_gdo0_tx__1",
+        "19": "cc1101_gdo2_rx__1",
+        "20": "sc16_cs__1",
+        "21": "sc16_irq__1",
+        "22": "GND__7",
+        "23": "h2_tx__1",
+        "24": "h2_rx__1",
+        "25": "h2_reset__2",
+        "26": "h2_boot__1",
+        "27": "mg24_tx__1",
+        "28": "mg24_rx__1",
+        "29": "mg24_rts__1",
+        "30": "mg24_cts__1",
+        "31": "ld2450_tx__1",
+        "32": "ld2450_rx__1",
+        "33": "bme680_sda__1",
+        "34": "bme680_scl__1",
+        "35": "GND__4",
+        "36": "GND__4",
+        "37": "GND__4",
+        "38": "GND__4",
+        "39": "+3V3__5",
+        "40": "GND__4"
+      },
+      "xy": [
+        20,
+        30
+      ],
+      "rotation": 0,
+      "source": "idc",
+      "notes": "S3 keyed 40-position IDC harness; NOT Raspberry Pi compatible",
+      "types": {}
+    },
+    {
+      "ref": "J4",
+      "model": "B10B-XH-A",
+      "footprint": "DIY:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__1",
+        "3": "w5500_sclk__2",
+        "4": "w5500_mosi__2",
+        "5": "w5500_miso__2",
+        "6": "w5500_cs__2",
+        "7": "w5500_irq__2",
+        "8": "w5500_reset__2",
+        "9": "GND__1",
+        "10": "+3V3__2"
+      },
+      "xy": [
+        55,
+        18
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "WIZ850io Ethernet module",
+      "types": {}
+    },
+    {
+      "ref": "J5",
+      "model": "B7B-XH-A",
+      "footprint": "DIY:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "GND__2",
+        "3": "h2_tx__2",
+        "4": "h2_rx__2",
+        "5": "h2_reset__3",
+        "6": "h2_boot__2",
+        "7": "GND__2"
+      },
+      "xy": [
+        151,
+        18
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "H2 Thread RCP",
+      "types": {}
+    },
+    {
+      "ref": "J6",
+      "model": "B6B-XH-A",
+      "footprint": "DIY:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "GND__2",
+        "3": "mg24_tx__2",
+        "4": "mg24_rx__2",
+        "5": "mg24_rts__2",
+        "6": "mg24_cts__2"
+      },
+      "xy": [
+        151,
+        43
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "MG24 Zigbee NCP",
+      "types": {}
+    },
+    {
+      "ref": "J7",
+      "model": "B8B-XH-A",
+      "footprint": "DIY:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3__1",
+        "2": "GND__1",
+        "3": "shared_spi_sclk__2",
+        "4": "shared_spi_mosi__2",
+        "5": "shared_spi_miso__1",
+        "6": "cc1101_cs__2",
+        "7": "cc1101_gdo0_tx__2",
+        "8": "cc1101_gdo2_rx__2"
+      },
+      "xy": [
+        50,
+        43
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "CC1101 RF module",
+      "types": {}
+    },
+    {
+      "ref": "J8",
+      "model": "B5B-XH-A",
+      "footprint": "DIY:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3__4",
+        "2": "GND__2",
+        "3": "zac93_tx__1",
+        "4": "zac93_rx__1",
+        "5": "GND__2"
+      },
+      "xy": [
+        116,
+        130
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "ZAC93 Z-Wave module",
+      "types": {}
+    },
+    {
+      "ref": "J9",
+      "model": "B4B-XH-A",
+      "footprint": "DIY:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V__1",
+        "2": "GND__3",
+        "3": "ld2450_rx__1",
+        "4": "ld2450_tx__2"
+      },
+      "xy": [
+        57,
+        130
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "LD2450 radar",
+      "types": {}
+    },
+    {
+      "ref": "J10",
+      "model": "B4B-XH-A",
+      "footprint": "DIY:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND__4",
+        "2": "+3V3__5",
+        "3": "bme680_sda__1",
+        "4": "bme680_scl__1"
+      },
+      "xy": [
+        20,
+        121
+      ],
+      "rotation": 0,
+      "source": "jst_xh",
+      "notes": "TH XH to factory STEMMA QT cable; same logical order as C0, mechanically NOT a QT socket.",
+      "types": {}
+    },
+    {
+      "ref": "F1",
+      "model": "Littelfuse 022901.5MXP",
+      "footprint": "DIY:FuseHarness",
+      "pins": {
+        "1": "+5V_IN__1",
+        "2": "+5V__1"
+      },
+      "xy": [
+        24,
+        12
+      ],
+      "rotation": 0,
+      "source": "fuse",
+      "notes": "1.5A slow-blow 2AG cartridge in external01500274Z holder. Holder leads adapt to22AWG at F1 holes; insulate splices. <=1A continuous design. Do not bridge.",
+      "types": {}
+    },
+    {
+      "ref": "U1",
+      "model": "SC16IS752IPW,128",
+      "footprint": "DIY:Adafruit1208_TSSOP28",
+      "pins": {
+        "1": null,
+        "2": "GND__1",
+        "3": "zac93_tx__2",
+        "4": "zac93_rx__1",
+        "5": "sc16_reset__1",
+        "6": "xtal1__1",
+        "7": "xtal2__1",
+        "8": "+3V3__6",
+        "9": "GND__3",
+        "10": "sc16_cs__3",
+        "11": "shared_spi_mosi__3",
+        "12": "shared_spi_miso__1",
+        "13": "shared_spi_sclk__3",
+        "14": "GND__3",
+        "15": "sc16_irq__2",
+        "16": "GND__1",
+        "17": null,
+        "18": "gpio0_unused__1",
+        "19": "gpio1_unused__1",
+        "20": "gpio2_unused__1",
+        "21": "gpio3_unused__2",
+        "22": "GND__1",
+        "23": null,
+        "24": "rxb_unused__2",
+        "25": "gpio4_unused__2",
+        "26": "gpio5_unused__2",
+        "27": "gpio6_unused__2",
+        "28": "gpio7_unused__2"
+      },
+      "xy": [
+        85,
+        60
+      ],
+      "rotation": 0,
+      "source": "adafruit1208",
+      "notes": "SC16IS752IPW,128 soldered to factory Adafruit1208 TSSOP side; pin1 adapter orientation verified from published CAD; no SOIC chip. Solder 2x14 male headers to adapter.",
+      "types": {
+        "3": "output",
+        "4": "input",
+        "5": "input",
+        "6": "input",
+        "7": "output",
+        "8": "power_in",
+        "22": "power_in",
+        "10": "input",
+        "11": "input",
+        "12": "tri_state",
+        "13": "input",
+        "15": "open_collector"
+      }
+    },
+    {
+      "ref": "U2",
+      "model": "TPS3808G33DBVR",
+      "footprint": "DIY:Adafruit1230_SOT23_6",
+      "pins": {
+        "1": "sc16_reset__2",
+        "2": "GND__3",
+        "3": null,
+        "4": null,
+        "5": "+3V3__2",
+        "6": "+3V3__2"
+      },
+      "xy": [
+        67,
+        101
+      ],
+      "rotation": 0,
+      "source": "adafruit1230",
+      "notes": "TPS3808G33DBVR soldered to factory Adafruit1230 SOT23-6 adapter, two 1x3 male headers. Do not populate reverse-side transistor footprints.",
+      "types": {
+        "1": "open_collector",
+        "2": "power_in",
+        "5": "input",
+        "6": "power_in"
+      }
+    },
+    {
+      "ref": "Y1",
+      "model": "AB-3.6864MHZ-B2",
+      "footprint": "DIY:HC49U",
+      "pins": {
+        "1": "xtal1__1",
+        "2": "xtal2__1"
+      },
+      "xy": [
+        71,
+        77
+      ],
+      "rotation": 90,
+      "source": "crystal",
+      "notes": "Through-hole HC49/U 3.6864MHz18pF; 4.88mm lead pitch; initial22/33pF loads, validate oscillation/frequency on hardware.",
+      "types": {}
+    },
+    {
+      "ref": "R1",
+      "model": "1k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__4",
+        "2": "sc16_irq__2"
+      },
+      "xy": [
+        108,
+        93
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R2",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "sc16_cs__2"
+      },
+      "xy": [
+        110,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R3",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "sc16_reset__1"
+      },
+      "xy": [
+        75,
+        111
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R4",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "rxb_unused__1"
+      },
+      "xy": [
+        113,
+        77
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R5",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio0_unused__1",
+        "2": "GND__8"
+      },
+      "xy": [
+        113,
+        69
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R6",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio1_unused__1",
+        "2": "GND__8"
+      },
+      "xy": [
+        113,
+        61
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R7",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio2_unused__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        130,
+        61
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R8",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio3_unused__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        130,
+        69
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R9",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio4_unused__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        130,
+        77
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R10",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio5_unused__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        130,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R11",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio6_unused__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        147,
+        77
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R12",
+      "model": "100k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "gpio7_unused__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        147,
+        85
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R13",
+      "model": "4.7k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "cc1101_gdo0_tx__2"
+      },
+      "xy": [
+        65,
+        53
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R14",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__1",
+        "2": "cc1101_cs__2"
+      },
+      "xy": [
+        49,
+        53
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R15",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "w5500_cs__2"
+      },
+      "xy": [
+        67,
+        28
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R16",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "h2_reset__4"
+      },
+      "xy": [
+        154,
+        30
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "R17",
+      "model": "10k",
+      "footprint": "DIY:Axial_R_P10.16",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "h2_boot__2"
+      },
+      "xy": [
+        170,
+        30
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Axial 1%0.25W resistor, body<=6.8x2.5mm, leads formed to10.16mm pitch.",
+      "types": {}
+    },
+    {
+      "ref": "C1",
+      "model": "22pF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "xtal1__1",
+        "2": "GND__1"
+      },
+      "xy": [
+        78,
+        72
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C2",
+      "model": "33pF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "xtal2__1",
+        "2": "GND__3"
+      },
+      "xy": [
+        78,
+        79
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C3",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__3"
+      },
+      "xy": [
+        80,
+        86
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C4",
+      "model": "1uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__3"
+      },
+      "xy": [
+        74,
+        90
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C5",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__3"
+      },
+      "xy": [
+        60,
+        106
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C6",
+      "model": "1nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__3"
+      },
+      "xy": [
+        60,
+        98
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C7",
+      "model": "1uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "h2_reset__1",
+        "2": "GND__2"
+      },
+      "xy": [
+        149,
+        31
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C8",
+      "model": "22uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+5V__1",
+        "2": "GND__1"
+      },
+      "xy": [
+        54,
+        8
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "22uF >=10V radial electrolytic, body<=5mm, pin1 positive. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C9",
+      "model": "22uF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__1"
+      },
+      "xy": [
+        62,
+        8
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "22uF >=10V radial electrolytic, body<=5mm, pin1 positive. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C10",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__1",
+        "2": "GND__1"
+      },
+      "xy": [
+        32,
+        30
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C11",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__1"
+      },
+      "xy": [
+        86,
+        18
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C12",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "GND__2"
+      },
+      "xy": [
+        176,
+        18
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C13",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__4",
+        "2": "GND__2"
+      },
+      "xy": [
+        173,
+        43
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C14",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "GND__1"
+      },
+      "xy": [
+        77,
+        43
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C15",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__4",
+        "2": "GND__2"
+      },
+      "xy": [
+        136,
+        130
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C16",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+5V__1",
+        "2": "GND__3"
+      },
+      "xy": [
+        75,
+        130
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "C17",
+      "model": "100nF",
+      "footprint": "DIY:Radial_C_P2.54",
+      "pins": {
+        "1": "+3V3__5",
+        "2": "GND__4"
+      },
+      "xy": [
+        36,
+        121
+      ],
+      "rotation": 90,
+      "source": null,
+      "notes": "Radial ceramic >=10V, body<=5x3mm, C0G for crystal loads; X7R otherwise. Form leads to2.54mm pitch; no adjacent lead shorts.",
+      "types": {}
+    },
+    {
+      "ref": "T1",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__5"
+      },
+      "xy": [
+        22.5,
+        92.8097
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T2",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__1"
+      },
+      "xy": [
+        38.6076,
+        28.709
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T3",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__2"
+      },
+      "xy": [
+        55.829,
+        28.2573
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T4",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__6"
+      },
+      "xy": [
+        87.515,
+        77.0854
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T5",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__4"
+      },
+      "xy": [
+        91.2602,
+        77.0854
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T6",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__6"
+      },
+      "xy": [
+        28.1381,
+        36.526
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T7",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__5"
+      },
+      "xy": [
+        29.6351,
+        42.9696
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T8",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__7"
+      },
+      "xy": [
+        29.6351,
+        52.2198
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T9",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__4"
+      },
+      "xy": [
+        31.9067,
+        82.7749
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T10",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__1"
+      },
+      "xy": [
+        42.8675,
+        36.0798
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T11",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__1"
+      },
+      "xy": [
+        78.0,
+        66.459999
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T12",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__3"
+      },
+      "xy": [
+        88.0,
+        80.32
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T13",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__2"
+      },
+      "xy": [
+        176.0,
+        12.46
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T14",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_cs__1"
+      },
+      "xy": [
+        15.1961,
+        112.0564
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T15",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_cs__2"
+      },
+      "xy": [
+        62.9092,
+        112.0564
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T16",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_gdo0_tx__1"
+      },
+      "xy": [
+        37.432,
+        52.1625
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T17",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_gdo2_rx__3"
+      },
+      "xy": [
+        4.3668,
+        70.1635
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T18",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_gdo2_rx__1"
+      },
+      "xy": [
+        11.0626,
+        70.1635
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T19",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_gdo2_rx__2"
+      },
+      "xy": [
+        70.3842,
+        35.9414
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T20",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_gdo2_rx__3"
+      },
+      "xy": [
+        92.5284,
+        27.8153
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T21",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio0_unused__1"
+      },
+      "xy": [
+        103.24,
+        85.4
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T22",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio0_unused__1"
+      },
+      "xy": [
+        113.0,
+        72.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T23",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_boot__1"
+      },
+      "xy": [
+        28.54,
+        60.48
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T24",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_boot__2"
+      },
+      "xy": [
+        183.16,
+        30.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T25",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_reset__2"
+      },
+      "xy": [
+        14.8038,
+        63.48
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T26",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_reset__3"
+      },
+      "xy": [
+        91.2102,
+        61.4903
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T27",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_reset__3"
+      },
+      "xy": [
+        144.4034,
+        35.8225
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T28",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_reset__1"
+      },
+      "xy": [
+        149.0,
+        36.0168
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T29",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_reset__4"
+      },
+      "xy": [
+        167.16,
+        30.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T30",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_rx__1"
+      },
+      "xy": [
+        31.2518,
+        54.1506
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T31",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_rx__2"
+      },
+      "xy": [
+        158.5,
+        23.6399
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T32",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_tx__1"
+      },
+      "xy": [
+        14.8038,
+        60.94
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T33",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "h2_tx__2"
+      },
+      "xy": [
+        153.5,
+        13.6699
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T34",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "ld2450_tx__1"
+      },
+      "xy": [
+        15.1959,
+        101.54
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T35",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "ld2450_tx__2"
+      },
+      "xy": [
+        51.735,
+        101.54
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T36",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_cts__1"
+      },
+      "xy": [
+        37.3908,
+        57.3405
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T37",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_cts__2"
+      },
+      "xy": [
+        163.5,
+        54.8667
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T38",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_rts__1"
+      },
+      "xy": [
+        13.393,
+        114.0392
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T39",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_rts__2"
+      },
+      "xy": [
+        138.1076,
+        115.1429
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T40",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_rx__1"
+      },
+      "xy": [
+        40.7496,
+        50.8579
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T41",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_rx__2"
+      },
+      "xy": [
+        158.5,
+        49.2112
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T42",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_tx__1"
+      },
+      "xy": [
+        12.2755,
+        90.2964
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T43",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_tx__3"
+      },
+      "xy": [
+        62.3786,
+        90.2964
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T44",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_tx__3"
+      },
+      "xy": [
+        77.9975,
+        57.0833
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T45",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "mg24_tx__2"
+      },
+      "xy": [
+        156.0,
+        56.7042
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T46",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_cs__1"
+      },
+      "xy": [
+        33.4476,
+        57.2988
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T47",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_irq__1"
+      },
+      "xy": [
+        11.9836,
+        73.667
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T48",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_mosi__4"
+      },
+      "xy": [
+        4.6058,
+        49.5507
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T49",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_mosi__1"
+      },
+      "xy": [
+        14.4585,
+        49.5507
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T50",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_mosi__2"
+      },
+      "xy": [
+        57.5,
+        37.7431
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T51",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_mosi__4"
+      },
+      "xy": [
+        89.3787,
+        36.4923
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T52",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_mosi__4"
+      },
+      "xy": [
+        97.5873,
+        71.0485
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T53",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_sclk__4"
+      },
+      "xy": [
+        6.4075,
+        47.5002
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T54",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_sclk__4"
+      },
+      "xy": [
+        6.4075,
+        88.4947
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T55",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_sclk__1"
+      },
+      "xy": [
+        11.5883,
+        40.3714
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T56",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_sclk__3"
+      },
+      "xy": [
+        43.4013,
+        54.8409
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T57",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_sclk__2"
+      },
+      "xy": [
+        46.3337,
+        52.5192
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T58",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "shared_spi_sclk__3"
+      },
+      "xy": [
+        51.7998,
+        88.4947
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T59",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_cs__3"
+      },
+      "xy": [
+        6.5588,
+        42.4228
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T60",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_cs__1"
+      },
+      "xy": [
+        14.8038,
+        43.16
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T61",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_cs__2"
+      },
+      "xy": [
+        80.16,
+        28.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T62",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_cs__3"
+      },
+      "xy": [
+        88.5991,
+        27.4779
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T63",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_irq__1"
+      },
+      "xy": [
+        43.2102,
+        42.3968
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T64",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_irq__2"
+      },
+      "xy": [
+        77.9083,
+        25.4699
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T65",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_miso__1"
+      },
+      "xy": [
+        14.8038,
+        40.62
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T66",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_miso__2"
+      },
+      "xy": [
+        62.5,
+        13.6699
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T67",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_mosi__1"
+      },
+      "xy": [
+        18.0803,
+        21.2208
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T68",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_mosi__3"
+      },
+      "xy": [
+        41.4558,
+        20.8591
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T69",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_mosi__3"
+      },
+      "xy": [
+        46.5234,
+        26.1104
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T70",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_mosi__2"
+      },
+      "xy": [
+        58.351,
+        25.8888
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T71",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_reset__3"
+      },
+      "xy": [
+        4.331,
+        45.6985
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T72",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_reset__1"
+      },
+      "xy": [
+        14.8038,
+        45.7
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T73",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_reset__3"
+      },
+      "xy": [
+        17.6566,
+        4.4954
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T74",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_reset__2"
+      },
+      "xy": [
+        70.0,
+        13.6699
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T75",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_sclk__1"
+      },
+      "xy": [
+        21.8865,
+        22.6641
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T76",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "w5500_sclk__2"
+      },
+      "xy": [
+        56.28,
+        24.0041
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T77",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "zac93_tx__1"
+      },
+      "xy": [
+        95.1541,
+        93.9996
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T78",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__3"
+      },
+      "xy": [
+        107.87868,
+        87.12132
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T79",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "+3V3__2"
+      },
+      "xy": [
+        67.0,
+        111.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T80",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__8"
+      },
+      "xy": [
+        126.057777,
+        61.776457
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T81",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "GND__7"
+      },
+      "xy": [
+        28.3651,
+        54.419505
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T82",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "cc1101_gdo0_tx__2"
+      },
+      "xy": [
+        65.0,
+        49.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T83",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio3_unused__1"
+      },
+      "xy": [
+        124.343146,
+        74.656854
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T84",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio3_unused__2"
+      },
+      "xy": [
+        102.99,
+        75.03
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T85",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio4_unused__1"
+      },
+      "xy": [
+        126.0,
+        77.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T86",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio4_unused__2"
+      },
+      "xy": [
+        104.570127,
+        70.12
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T87",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio5_unused__1"
+      },
+      "xy": [
+        115.511113,
+        81.117714
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T88",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio5_unused__2"
+      },
+      "xy": [
+        104.570127,
+        67.58
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T89",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio6_unused__1"
+      },
+      "xy": [
+        142.669873,
+        74.5
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T90",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio6_unused__2"
+      },
+      "xy": [
+        107.001481,
+        60.728267
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T91",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio7_unused__1"
+      },
+      "xy": [
+        142.757359,
+        80.757359
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T92",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "gpio7_unused__2"
+      },
+      "xy": [
+        114.728887,
+        56.117714
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T93",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "rxb_unused__1"
+      },
+      "xy": [
+        121.16,
+        80.464102
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T94",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "rxb_unused__2"
+      },
+      "xy": [
+        104.570127,
+        72.66
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T95",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_cs__2"
+      },
+      "xy": [
+        116.624466,
+        88.535534
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T96",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_cs__3"
+      },
+      "xy": [
+        77.5,
+        93.11
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T97",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_irq__2"
+      },
+      "xy": [
+        112.097822,
+        89.5
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T98",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_reset__1"
+      },
+      "xy": [
+        85.16,
+        108.0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T99",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "sc16_reset__2"
+      },
+      "xy": [
+        71.829629,
+        102.294095
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "T101",
+      "model": "Insulated wire terminal hole",
+      "footprint": "DIY:WireTerminal",
+      "pins": {
+        "1": "zac93_tx__2"
+      },
+      "xy": [
+        82.102223,
+        65.856457
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "1.1mm manually drilled, NOT plated; max2 stripped wire ends, solder underside.",
+      "types": {}
+    },
+    {
+      "ref": "W1",
+      "model": "INSULATED WIRE 142mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "mg24_cts__1",
+        "2": "mg24_cts__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T36 to T37; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W2",
+      "model": "INSULATED WIRE 140mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "mg24_rts__1",
+        "2": "mg24_rts__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T38 to T39; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W3",
+      "model": "INSULATED WIRE 133mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "mg24_rx__1",
+        "2": "mg24_rx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T40 to T41; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W4",
+      "model": "INSULATED WIRE 65mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "mg24_tx__1",
+        "2": "mg24_tx__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T42 to T43; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W5",
+      "model": "INSULATED WIRE 93mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "mg24_tx__3",
+        "2": "mg24_tx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T44 to T45; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W6",
+      "model": "INSULATED WIRE 156mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "h2_rx__1",
+        "2": "h2_rx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T30 to T31; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W7",
+      "model": "INSULATED WIRE 227mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "h2_tx__1",
+        "2": "h2_tx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T32 to T33; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W8",
+      "model": "INSULATED WIRE 124mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "h2_reset__2",
+        "2": "h2_reset__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T25 to T26; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W9",
+      "model": "INSULATED WIRE 51mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "ld2450_tx__1",
+        "2": "ld2450_tx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T34 to T35; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W10",
+      "model": "INSULATED WIRE 25mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_reset__3",
+        "2": "w5500_reset__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T71 to T72; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W11",
+      "model": "INSULATED WIRE 75mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_reset__3",
+        "2": "w5500_reset__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T73 to T74; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W12",
+      "model": "INSULATED WIRE 82mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_irq__1",
+        "2": "w5500_irq__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T63 to T64; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W13",
+      "model": "INSULATED WIRE 23mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_cs__2",
+        "2": "w5500_cs__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T61 to T62; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W14",
+      "model": "INSULATED WIRE 23mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_cs__3",
+        "2": "w5500_cs__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T59 to T60; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W15",
+      "model": "INSULATED WIRE 92mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_miso__1",
+        "2": "w5500_miso__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T65 to T66; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W16",
+      "model": "INSULATED WIRE 26mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_mosi__3",
+        "2": "w5500_mosi__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T69 to T70; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W17",
+      "model": "INSULATED WIRE 38mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_mosi__1",
+        "2": "w5500_mosi__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T67 to T68; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W18",
+      "model": "INSULATED WIRE 49mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "w5500_sclk__1",
+        "2": "w5500_sclk__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T75 to T76; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W19",
+      "model": "INSULATED WIRE 40mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "cc1101_gdo2_rx__2",
+        "2": "cc1101_gdo2_rx__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T19 to T20; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W20",
+      "model": "INSULATED WIRE 21mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "cc1101_gdo2_rx__3",
+        "2": "cc1101_gdo2_rx__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T17 to T18; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W21",
+      "model": "INSULATED WIRE 62mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "cc1101_cs__1",
+        "2": "cc1101_cs__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T14 to T15; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W22",
+      "model": "INSULATED WIRE 47mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "shared_spi_mosi__2",
+        "2": "shared_spi_mosi__4"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T50 to T51; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W23",
+      "model": "INSULATED WIRE 24mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "shared_spi_mosi__4",
+        "2": "shared_spi_mosi__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T48 to T49; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W24",
+      "model": "INSULATED WIRE 18mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "shared_spi_sclk__3",
+        "2": "shared_spi_sclk__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T56 to T57; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W25",
+      "model": "INSULATED WIRE 32mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "shared_spi_sclk__4",
+        "2": "shared_spi_sclk__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T53 to T55; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W26",
+      "model": "INSULATED WIRE 60mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "shared_spi_sclk__4",
+        "2": "shared_spi_sclk__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T54 to T58; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W27",
+      "model": "INSULATED WIRE 22mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__6",
+        "2": "GND__5"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T6 to T7; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W28",
+      "model": "INSULATED WIRE 24mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__5",
+        "2": "GND__7"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T7 to T8; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W29",
+      "model": "INSULATED WIRE 46mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__7",
+        "2": "GND__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T8 to T10; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W30",
+      "model": "INSULATED WIRE 18mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__6",
+        "2": "+3V3__4"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T4 to T5; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W31",
+      "model": "INSULATED WIRE 32mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__1",
+        "2": "+3V3__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T2 to T3; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W32",
+      "model": "INSULATED WIRE 47mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__3",
+        "2": "+3V3__4"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T78 to T5; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W33",
+      "model": "INSULATED WIRE 77mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "+3V3__6"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T3 to T4; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W34",
+      "model": "INSULATED WIRE 63mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__2",
+        "2": "+3V3__5"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T79 to T1; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W35",
+      "model": "INSULATED WIRE 50mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__1",
+        "2": "GND__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T11 to T12; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W36",
+      "model": "INSULATED WIRE 89mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__2",
+        "2": "GND__8"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T13 to T80; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W37",
+      "model": "INSULATED WIRE 43mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__4",
+        "2": "GND__7"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T9 to T81; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W38",
+      "model": "INSULATED WIRE 68mm AWG24",
+      "footprint": "",
+      "pins": {
+        "1": "GND__1",
+        "2": "GND__8"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T11 to T80; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W39",
+      "model": "INSULATED WIRE 42mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "cc1101_gdo0_tx__1",
+        "2": "cc1101_gdo0_tx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T16 to T82; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W40",
+      "model": "INSULATED WIRE 36mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "gpio3_unused__1",
+        "2": "gpio3_unused__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T83 to T84; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W41",
+      "model": "INSULATED WIRE 37mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "gpio4_unused__1",
+        "2": "gpio4_unused__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T85 to T86; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W42",
+      "model": "INSULATED WIRE 32mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "gpio5_unused__1",
+        "2": "gpio5_unused__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T87 to T88; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W43",
+      "model": "INSULATED WIRE 53mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "gpio6_unused__1",
+        "2": "gpio6_unused__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T89 to T90; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W44",
+      "model": "INSULATED WIRE 54mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "gpio7_unused__1",
+        "2": "gpio7_unused__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T91 to T92; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W45",
+      "model": "INSULATED WIRE 174mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "h2_boot__1",
+        "2": "h2_boot__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T23 to T24; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W46",
+      "model": "INSULATED WIRE 19mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "h2_reset__1",
+        "2": "h2_reset__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T28 to T27; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W47",
+      "model": "INSULATED WIRE 38mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "h2_reset__3",
+        "2": "h2_reset__4"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T27 to T29; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W48",
+      "model": "INSULATED WIRE 33mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "rxb_unused__1",
+        "2": "rxb_unused__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T93 to T94; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W49",
+      "model": "INSULATED WIRE 56mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "sc16_cs__2",
+        "2": "sc16_cs__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T95 to T96; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W50",
+      "model": "INSULATED WIRE 72mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "sc16_cs__1",
+        "2": "sc16_cs__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T46 to T96; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W51",
+      "model": "INSULATED WIRE 124mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "sc16_irq__1",
+        "2": "sc16_irq__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T47 to T97; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W52",
+      "model": "INSULATED WIRE 32mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "sc16_reset__1",
+        "2": "sc16_reset__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T98 to T99; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W53",
+      "model": "INSULATED WIRE 87mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "shared_spi_mosi__2",
+        "2": "shared_spi_mosi__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T50 to E1; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "W54",
+      "model": "INSULATED WIRE 63mm AWG26",
+      "footprint": "",
+      "pins": {
+        "1": "zac93_tx__1",
+        "2": "zac93_tx__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "T77 to T101; not fabricated copper",
+      "types": {},
+      "off_board": true
+    },
+    {
+      "ref": "#FLG1",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG2",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG3",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG4",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__4"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG5",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__5"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG6",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+3V3__6"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG7",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+5V_IN__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG8",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "+5V__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG9",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__1"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG10",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__2"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG11",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__3"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG12",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__4"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG13",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__5"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG14",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__6"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG15",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__7"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    },
+    {
+      "ref": "#FLG16",
+      "model": "Assembly power through verified wires",
+      "footprint": "",
+      "pins": {
+        "1": "GND__8"
+      },
+      "xy": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "source": null,
+      "notes": "Power flag follows independently verified assembly wire graph.",
+      "types": {
+        "1": "power_out"
+      }
+    }
+  ]
+}

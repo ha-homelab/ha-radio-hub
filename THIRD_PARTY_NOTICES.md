@@ -67,12 +67,32 @@ The copied source and local license scope are:
   [the library notice](hardware/low-power/visual/physical/source/LIBRARY-LICENSE.md).
   [The contact-reference README](hardware/low-power/visual/physical/README.md)
   and source-hash manifest identify the generated SVGs and their provenance.
+- [LP-D0 DIY library](hardware/low-power/diy/DIY.pretty/) uses adapted KiCad
+  JST-XH footprint bodies with larger through-hole lands. Its
+  [local notice](hardware/low-power/diy/NOTICE.md) and
+  [KiCad library license](hardware/low-power/diy/KICAD-LIBRARY-LICENSE.md) apply.
+  The adapter mating footprints transcribe dimensions and pin connectivity
+  from identified Adafruit drawings; the vendor adapter boards are not bundled.
 
 See the [KiCad library license and exception](https://www.kicad.org/libraries/license/)
 and the [pinned Espressif license](https://github.com/espressif/kicad-libraries/blob/dd76561812ab300351234ba6e0ec1295641796f0/LICENSE.md).
 Manufacturer dimension references do not grant rights to redistribute vendor
 logos, photographs or PDF artwork. Those materials are linked as sources,
 not bundled as project-owned artwork.
+
+## Parts-gallery images
+
+The [parts gallery](docs/parts-gallery.md) embeds selected manufacturer-hosted
+photographs and renders by URL. Adafruit, Espressif, Hi-Link, Pololu, Silvertel,
+SMLIGHT, WIZnet and Zooz retain their rights to those images; this repository
+does not grant a redistribution license for them. Each image has a source and
+credit in [the catalog metadata](hardware/parts/catalog.json). No local copies
+of those photographs are included in the build package.
+
+The local family illustrations under `hardware/parts/illustrations/` are original
+MIT-licensed project artwork. The [PCB gallery](hardware/gallery/) is rendered
+from the project's native board geometry; the footprint-library notices above
+continue to apply. Source-derived contact drawings keep their separate provenance.
 
 ## Other components
 

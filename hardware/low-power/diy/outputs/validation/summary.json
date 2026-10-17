@@ -1,0 +1,15 @@
+{
+  "logical_nets": 44,
+  "physical_copper_islands": 103,
+  "minimum_copper_clearance_mm": 0.5,
+  "verified_pins": 195,
+  "wire_links": 54,
+  "status": "PASS",
+  "erc_violations": 0,
+  "drc_violations": 0,
+  "unconnected": 0,
+  "schematic_parity": 0,
+  "bottom_only": true,
+  "plated_vias": 0,
+  "physical_validation": false
+}

@@ -17,11 +17,59 @@ enclosure readiness before choosing it over the modular reference below.
 
 **Visual wiring and custom boards:** use the [offline pin-to-pin atlas](hardware/low-power/visual/README.md)
 for the low-power design, including actual connector pad maps and part identification.
-Two PCB variants are documented separately: the [ready-module carrier](hardware/low-power/carrier/)
+Two factory-made PCB variants are documented separately: the [ready-module carrier](hardware/low-power/carrier/)
 with its MG24 daughterboard, and the [integrated radio board](hardware/low-power/integrated/). The [manufacturing and sales plan](docs/manufacturing.md) covers first
 articles, batches of 10/20, bare PCBs, assembled boards and boxed hubs.
 
+## Meet the boards
+
+**C0 module carrier — 160 × 100 mm, two layers.** Connect ready-made radio and
+controller boards through labelled harnesses. It uses the separate M0 Zigbee
+adapter shown below. [Board files and assembly BOM](hardware/low-power/carrier/).
+
+[![C0 module carrier: actual unpopulated PCB render](hardware/gallery/carrier-c0.png)](hardware/low-power/carrier/)
+
+**M0 Zigbee adapter — 60 × 40 mm, two layers.** Carries the specified
+MGM240PA22VNA3 module and exposes its serial and programming connections.
+[Board files and assembly BOM](hardware/low-power/carrier/mg24-adapter/).
+
+[![M0 MG24 adapter: actual unpopulated PCB render](hardware/gallery/mg24-m0.png)](hardware/low-power/carrier/mg24-adapter/)
+
+**I0 integrated alternative — 160 × 142 mm, four layers.** Places the S3, H2,
+MG24, Ethernet and PoE circuits on one board.
+[Board files and assembly BOM](hardware/low-power/integrated/).
+
+[![I0 integrated board: actual unpopulated PCB render](hardware/gallery/integrated-i0.png)](hardware/low-power/integrated/)
+
+These are [KiCad renders of the native PCB sources](hardware/gallery/), showing
+unpopulated boards rather than photographs of assembled hardware. All three
+still require physical validation. C0 + M0 and I0 are alternative builds;
+their shopping lists must not be added together.
+
+**D0 home-etched alternative — 190 × 145 mm, single bottom copper layer.**
+Designed for laser toner transfer, with through-hole parts, insulated wire
+links and factory-made adapters for fine-pitch chips. It still needs the M0
+radio board and external modules. [Print and assembly guide](docs/diy-pcb.md).
+
+[![D0 bottom-side native PCB render](hardware/gallery/diy-d0.png)](docs/diy-pcb.md)
+
+The D0 image is a bottom-view CAD preview. Use the guide's 1:1 PDFs for
+fabrication; the renderer's soldermask and plated-hole appearance are not
+requirements for the manually drilled, unplated board.
+
+Browse [all component pictures directly on GitHub](docs/parts-gallery.md), or use
+the [searchable parts catalog and build guide](docs/parts-catalog.md) for component
+identification, variant-specific quantities, manufacturer sources and explicitly
+labelled AliExpress searches. The [home-etched PCB guide](docs/diy-pcb.md) covers
+the separate laser-toner-transfer version and its limitations.
+
+## Enclosure concept
+
 ![Printable enclosure and external sensor pod](mechanical/generated/exploded-preview.png)
+
+The pictured enclosure belongs to the modular reference below. C0/I0/D0 assemblies
+need their own verified enclosure fit; this image is not a fit claim for the new
+boards.
 
 ## What is inside
 

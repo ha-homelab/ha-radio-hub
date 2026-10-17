@@ -1,0 +1,35 @@
+Item,Quantity,Model/specification,Purpose,Notes
+J1 mate,1,XHP-2,Isolated regulated 5V input,SXH-001T-P0.6
+J2 mate,1,XHP-3,External D24V22F3 buck,SXH-001T-P0.6
+J3 mate,1,61204023021,"S3 host harness, NOT Raspberry Pi pinout",IDC 40-conductor ribbon; AWG and insulation per mating connector datasheet
+J4 mate,1,XHP-10,WIZ850io Ethernet module,SXH-001T-P0.6
+J5 mate,1,XHP-7,H2 Thread RCP,SXH-001T-P0.6
+J6 mate,1,XHP-6,MG24 Zigbee NCP,SXH-001T-P0.6
+J7 mate,1,XHP-8,CC1101 RF module,SXH-001T-P0.6
+J8 mate,1,XHP-5,ZAC93 Z-Wave module,SXH-001T-P0.6
+J9 mate,1,XHP-4,LD2450 radar,SXH-001T-P0.6
+J10 mate,1,XHP-4,BME680 via XH-to-factory-QT cable; NOT direct QT,SXH-001T-P0.6
+XH crimp contacts,49,JST SXH-001T-P0.6,Nine XH cable housings,"Buy spare contacts; 22AWG power,26AWG logic; factory precrimp leads acceptable"
+IDC ribbon,1,40conductor1.27mm pitch per61204023021,J3 S3 harness,Keep<=50mm initially; follow all interleaved returns; NOT Pi pinout
+QT cable,1,Adafruit4210 100mm4pinJSTSH,J10 XH to BME680 QT,Cut one end and terminate XHP-4 using continuity-verified order
+SC16 adapter,1,Adafruit1208 TSSOP28/SOIC28 breakout,Factory PCB under U1,"Sold in3pack; fit SC16 to TSSOP side; not prepopulated. Row15.24mm, pitch2.54mm"
+Supervisor adapter,1,Adafruit1230 SOT23-6 breakout,Factory PCB under U2,Set contains5SOT23boards; stock fluctuates; same published CAD can be factory made. Not prepopulated
+U1 adapter pins,2,"Adafruit 400 extra-long header cut to 1x14, 0.64mm square pins",Soldered interposer to D0,Use 2 strips of the 5-pack; 7.73mm pins each side of 2.54mm insulator. Insulator rests on D0; set adapter underside 6mm above D0 and trim tails. Confirm TSSOP pin1
+U2 adapter pins,2,"Adafruit 400 extra-long header cut to 1x3, 0.64mm square pins",Soldered interposer to D0,Cut both 3-pin lengths from a third strip of same Adafruit400 5-pack; set adapter underside 6mm above D0. SOT23-6 side up; no reverse-side parts
+PoE PD module,1,Silvertel Ag97005-FL 5V,External isolated 5V source,"Fit to compatible Silvertel EvalPoE; verify output before J1. Not raw 48V, not a second source; see low-power/bom.json"
+PoE evaluation carrier,1,Silvertel EvalPoE,Factory PoE front end for bench build,Ag97005-FL ordered separately; DATA OUT to WIZ850io; excluded from D0 copper and enclosure
+3V3 buck,1,Pololu D24V22F3 / item2857,External 5V-to-3V3 regulator at J2,No second 3V3 source; test 1.5A at5V input and cooling
+S3 host assembly,1,ESP32-S3-DevKitC-1 N16R8 or verified equivalent,LP-P0 host at J3,Reuse existing only after USB-UART/LED/power isolation and GPIO48 checks; actual header locations verified before wiring
+H2 RCP assembly,1,ESP32-H2-DevKitM-1 with4MB flash,Thread radio at J5,Verify flash and isolate USB-UART TX from GPIO23; board-specific service/power wiring required
+Ethernet module,1,WIZnet WIZ850io,SPI Ethernet at J4,Verify J1/J2 module numbering; included magnetics; not a PoE PD
+RF module,1,Existing CC1101 433MHz module and matching antenna,RF at J7,Verify module revision and physical pad map; do not buy duplicate if reusing
+Z-Wave module,1,Zooz ZAC93 of the correct regional frequency,Z-Wave at J8,Reuse existing only after physical pin identification; antenna is module-specific
+Radar,1,Hi-Link LD2450,5V radar with3V3 UART at J9,Reuse existing if available; confirm harness pin order
+Environmental sensor,1,Adafruit3660 BME680 STEMMA QT breakout,I2C sensor at J10,External ventilated pod; reuse if available; QT cable counted separately
+M0 radio assembly,1,LP-M0 factory fabricated and populated MGM240PA22VNA3 adapter,Required Zigbee NCP,See carrier/mg24-adapter; not home etched; mate cable second end counted in M0 BOM
+F1 fuseholder,1,Littelfuse01500274Z in-line2AG/5x20 holder,External insulated holder for F1,16AWG factory leads; splice to22AWG tails for1.1mm F1 holes; insulate and strain-relieve. Do not omit fuse
+Single-sided blank,1,"Copper-clad FR4 >=190x145mm,1.6mm,35um copper",D0 bottom copper only,Blank margin for handling; no plated-through holes or solder mask required
+Mounting hardware,4,M3 insulating standoff and fastener set,D0 holes3.2mm at5/185x5/140,Existing C0/LP enclosure is incompatible
+Assembly consumables,1,"Flux,solder,heatshrink,cable ties,insulating sheet",Build and protect exposed copper,All jumpers insulated; wash flux suitable for cleaning; no loose copper strands
+Jumper wire AWG24,0.724m,Insulated tinned solid copper AWG24,Numbered W links; not fabricated copper,Cut lengths in jumpers.csv; includes25percent working allowance; maximum2ends/1.1mm hole; trial-fit first
+Jumper wire AWG26,3.525m,Insulated tinned solid copper AWG26,Numbered W links; not fabricated copper,Cut lengths in jumpers.csv; includes25percent working allowance; maximum2ends/1.1mm hole; trial-fit first

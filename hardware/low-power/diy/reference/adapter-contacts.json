@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "description": "Factual IC-to-header connectivity and coordinates independently extracted from manufacturer Eagle XML. No vendor artwork is copied.",
+  "checked_date": "2026-10-17",
+  "units": "mm",
+  "adapters": [
+    {
+      "product": "Adafruit 1208",
+      "fitted_ic": "SC16IS752IPW,128",
+      "footprint": "Adafruit1208_TSSOP28",
+      "source": {
+        "repository": "https://github.com/adafruit/Adafruit-SMT-Breakout-PCBs",
+        "commit": "dbd7a1928c2b668a9edf3d53277063eac4c3e938",
+        "path": "28-pin SOIC+TSSOP.brd",
+        "sha256": "0e5c355106d9531b9e28526dc643164064becfd8aef09f2118e39866ad792f87",
+        "url": "https://github.com/adafruit/Adafruit-SMT-Breakout-PCBs/blob/dbd7a1928c2b668a9edf3d53277063eac4c3e938/28-pin%20SOIC%2BTSSOP.brd"
+      },
+      "view": "Viewed from the fitted IC side, with IC/header pin1 at top-left; X right, Y down; origin at that header contact.",
+      "coordinate_transform": "Mirror Eagle front-view X for the bottom-side TSSOP, negate Eagle Y, then translate pin1 to origin.",
+      "assembly": "TSSOP side faces up, SOIC side down; do not mirror the D0 footprint or populate the SOIC side.",
+      "contacts": [
+        {
+          "ic_pin": "1",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "1",
+          "eagle_front_xy_mm": [
+            16.51,
+            34.29
+          ],
+          "position_mm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "ic_pin": "2",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "2",
+          "eagle_front_xy_mm": [
+            16.51,
+            31.75
+          ],
+          "position_mm": [
+            0.0,
+            2.54
+          ]
+        },
+        {
+          "ic_pin": "3",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "3",
+          "eagle_front_xy_mm": [
+            16.51,
+            29.21
+          ],
+          "position_mm": [
+            0.0,
+            5.08
+          ]
+        },
+        {
+          "ic_pin": "4",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "4",
+          "eagle_front_xy_mm": [
+            16.51,
+            26.67
+          ],
+          "position_mm": [
+            0.0,
+            7.62
+          ]
+        },
+        {
+          "ic_pin": "5",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "5",
+          "eagle_front_xy_mm": [
+            16.51,
+            24.13
+          ],
+          "position_mm": [
+            0.0,
+            10.16
+          ]
+        },
+        {
+          "ic_pin": "6",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "6",
+          "eagle_front_xy_mm": [
+            16.51,
+            21.59
+          ],
+          "position_mm": [
+            0.0,
+            12.7
+          ]
+        },
+        {
+          "ic_pin": "7",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "7",
+          "eagle_front_xy_mm": [
+            16.51,
+            19.05
+          ],
+          "position_mm": [
+            0.0,
+            15.24
+          ]
+        },
+        {
+          "ic_pin": "8",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "8",
+          "eagle_front_xy_mm": [
+            16.51,
+            16.51
+          ],
+          "position_mm": [
+            0.0,
+            17.78
+          ]
+        },
+        {
+          "ic_pin": "9",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "9",
+          "eagle_front_xy_mm": [
+            16.51,
+            13.97
+          ],
+          "position_mm": [
+            0.0,
+            20.32
+          ]
+        },
+        {
+          "ic_pin": "10",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "10",
+          "eagle_front_xy_mm": [
+            16.51,
+            11.43
+          ],
+          "position_mm": [
+            0.0,
+            22.86
+          ]
+        },
+        {
+          "ic_pin": "11",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "11",
+          "eagle_front_xy_mm": [
+            16.51,
+            8.89
+          ],
+          "position_mm": [
+            0.0,
+            25.4
+          ]
+        },
+        {
+          "ic_pin": "12",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "12",
+          "eagle_front_xy_mm": [
+            16.51,
+            6.35
+          ],
+          "position_mm": [
+            0.0,
+            27.94
+          ]
+        },
+        {
+          "ic_pin": "13",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "13",
+          "eagle_front_xy_mm": [
+            16.51,
+            3.81
+          ],
+          "position_mm": [
+            0.0,
+            30.48
+          ]
+        },
+        {
+          "ic_pin": "14",
+          "source_ic_element": "U$2",
+          "source_header": "JP2",
+          "source_header_pin": "14",
+          "eagle_front_xy_mm": [
+            16.51,
+            1.27
+          ],
+          "position_mm": [
+            0.0,
+            33.02
+          ]
+        },
+        {
+          "ic_pin": "15",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "14",
+          "eagle_front_xy_mm": [
+            1.27,
+            1.27
+          ],
+          "position_mm": [
+            15.24,
+            33.02
+          ]
+        },
+        {
+          "ic_pin": "16",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "13",
+          "eagle_front_xy_mm": [
+            1.27,
+            3.81
+          ],
+          "position_mm": [
+            15.24,
+            30.48
+          ]
+        },
+        {
+          "ic_pin": "17",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "12",
+          "eagle_front_xy_mm": [
+            1.27,
+            6.35
+          ],
+          "position_mm": [
+            15.24,
+            27.94
+          ]
+        },
+        {
+          "ic_pin": "18",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "11",
+          "eagle_front_xy_mm": [
+            1.27,
+            8.89
+          ],
+          "position_mm": [
+            15.24,
+            25.4
+          ]
+        },
+        {
+          "ic_pin": "19",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "10",
+          "eagle_front_xy_mm": [
+            1.27,
+            11.43
+          ],
+          "position_mm": [
+            15.24,
+            22.86
+          ]
+        },
+        {
+          "ic_pin": "20",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "9",
+          "eagle_front_xy_mm": [
+            1.27,
+            13.97
+          ],
+          "position_mm": [
+            15.24,
+            20.32
+          ]
+        },
+        {
+          "ic_pin": "21",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "8",
+          "eagle_front_xy_mm": [
+            1.27,
+            16.51
+          ],
+          "position_mm": [
+            15.24,
+            17.78
+          ]
+        },
+        {
+          "ic_pin": "22",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "7",
+          "eagle_front_xy_mm": [
+            1.27,
+            19.05
+          ],
+          "position_mm": [
+            15.24,
+            15.24
+          ]
+        },
+        {
+          "ic_pin": "23",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "6",
+          "eagle_front_xy_mm": [
+            1.27,
+            21.59
+          ],
+          "position_mm": [
+            15.24,
+            12.7
+          ]
+        },
+        {
+          "ic_pin": "24",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "5",
+          "eagle_front_xy_mm": [
+            1.27,
+            24.13
+          ],
+          "position_mm": [
+            15.24,
+            10.16
+          ]
+        },
+        {
+          "ic_pin": "25",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "4",
+          "eagle_front_xy_mm": [
+            1.27,
+            26.67
+          ],
+          "position_mm": [
+            15.24,
+            7.62
+          ]
+        },
+        {
+          "ic_pin": "26",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "3",
+          "eagle_front_xy_mm": [
+            1.27,
+            29.21
+          ],
+          "position_mm": [
+            15.24,
+            5.08
+          ]
+        },
+        {
+          "ic_pin": "27",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "2",
+          "eagle_front_xy_mm": [
+            1.27,
+            31.75
+          ],
+          "position_mm": [
+            15.24,
+            2.54
+          ]
+        },
+        {
+          "ic_pin": "28",
+          "source_ic_element": "U$2",
+          "source_header": "JP1",
+          "source_header_pin": "1",
+          "eagle_front_xy_mm": [
+            1.27,
+            34.29
+          ],
+          "position_mm": [
+            15.24,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "product": "Adafruit 1230",
+      "fitted_ic": "TPS3808G33DBVR",
+      "footprint": "Adafruit1230_SOT23_6",
+      "source": {
+        "repository": "https://github.com/adafruit/Adafruit-SMT-Breakout-PCBs",
+        "commit": "dbd7a1928c2b668a9edf3d53277063eac4c3e938",
+        "path": "6-pin SOT-23.brd",
+        "sha256": "f09add1582d0042843bfa29f87294578c49fb9986953684c94908389f351ae46",
+        "url": "https://github.com/adafruit/Adafruit-SMT-Breakout-PCBs/blob/dbd7a1928c2b668a9edf3d53277063eac4c3e938/6-pin%20SOT-23.brd"
+      },
+      "view": "Viewed from the fitted IC side, with IC/header pin1 at top-left; X right, Y down; origin at that header contact.",
+      "coordinate_transform": "Keep Eagle front-view X, negate Eagle Y, then translate pin1 to origin.",
+      "assembly": "SOT23-6 side faces up; do not populate the two reverse-side transistor footprints.",
+      "contacts": [
+        {
+          "ic_pin": "1",
+          "source_ic_element": "U$1",
+          "source_header": "JP2",
+          "source_header_pin": "1",
+          "eagle_front_xy_mm": [
+            -3.81,
+            2.54
+          ],
+          "position_mm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "ic_pin": "2",
+          "source_ic_element": "U$1",
+          "source_header": "JP2",
+          "source_header_pin": "2",
+          "eagle_front_xy_mm": [
+            -3.81,
+            0.0
+          ],
+          "position_mm": [
+            -0.0,
+            2.54
+          ]
+        },
+        {
+          "ic_pin": "3",
+          "source_ic_element": "U$1",
+          "source_header": "JP2",
+          "source_header_pin": "3",
+          "eagle_front_xy_mm": [
+            -3.81,
+            -2.54
+          ],
+          "position_mm": [
+            -0.0,
+            5.08
+          ]
+        },
+        {
+          "ic_pin": "4",
+          "source_ic_element": "U$1",
+          "source_header": "JP1",
+          "source_header_pin": "3",
+          "eagle_front_xy_mm": [
+            3.81,
+            -2.54
+          ],
+          "position_mm": [
+            7.62,
+            5.08
+          ]
+        },
+        {
+          "ic_pin": "5",
+          "source_ic_element": "U$1",
+          "source_header": "JP1",
+          "source_header_pin": "2",
+          "eagle_front_xy_mm": [
+            3.81,
+            0.0
+          ],
+          "position_mm": [
+            7.62,
+            2.54
+          ]
+        },
+        {
+          "ic_pin": "6",
+          "source_ic_element": "U$1",
+          "source_header": "JP1",
+          "source_header_pin": "1",
+          "eagle_front_xy_mm": [
+            3.81,
+            2.54
+          ],
+          "position_mm": [
+            7.62,
+            0.0
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "generator": "KiCad pcb render",
+  "kicad_version": "10.0.6",
+  "representation": "Unpopulated native PCB, not a photo or assembled-product model",
+  "appearance": "Renderer default soldermask/finish; not a fabrication specification",
+  "boards": {
+    "carrier-c0": {
+      "source": "hardware/low-power/carrier/carrier.kicad_pcb",
+      "source_sha256": "fc1a7326499bb680baeeb867183e3658800f0062f15d73369cee4d44d42e5b96",
+      "image_sha256": "8779f17a0b1ee82c721d10ad3b75c68e6a6feba41aa588b25440a1df6cad1b6a",
+      "options": [
+        "--width",
+        "1600",
+        "--height",
+        "1050",
+        "--side",
+        "top",
+        "--background",
+        "transparent",
+        "--quality",
+        "high",
+        "--perspective",
+        "--rotate",
+        "335,0,15",
+        "--zoom",
+        "0.85"
+      ],
+      "image_dimensions_px": [
+        1568,
+        1040
+      ]
+    },
+    "mg24-m0": {
+      "source": "hardware/low-power/carrier/mg24-adapter/mg24-adapter.kicad_pcb",
+      "source_sha256": "2e2a3ead49ac430dd4d2d30b132bca1802a6b100889220357d74bcd12c2373f0",
+      "image_sha256": "1c3001d8e0129e671b6404290f8b2bc37fb7477d211f808ac3c7d7a4ec04697f",
+      "options": [
+        "--width",
+        "1300",
+        "--height",
+        "950",
+        "--side",
+        "top",
+        "--background",
+        "transparent",
+        "--quality",
+        "high",
+        "--perspective",
+        "--rotate",
+        "335,0,15",
+        "--zoom",
+        "0.85"
+      ],
+      "image_dimensions_px": [
+        1288,
+        928
+      ]
+    },
+    "integrated-i0": {
+      "source": "hardware/low-power/integrated/integrated.kicad_pcb",
+      "source_sha256": "53c6c30241b1475dddfb314038a9191d3450ce5e8d7ff8db07b87f465f5b5997",
+      "image_sha256": "173711c690eeb1d59118d0a578229502aa7bbec4187351f4de6cc4e1b51dcf71",
+      "options": [
+        "--width",
+        "1600",
+        "--height",
+        "1300",
+        "--side",
+        "top",
+        "--background",
+        "transparent",
+        "--quality",
+        "high",
+        "--perspective",
+        "--rotate",
+        "335,0,15",
+        "--zoom",
+        "0.85"
+      ],
+      "image_dimensions_px": [
+        1568,
+        1288
+      ]
+    },
+    "diy-d0": {
+      "source": "hardware/low-power/diy/diy.kicad_pcb",
+      "source_sha256": "5503f4687406a5d5ea4a093d6161ff96db4e3d024f6c2653ddb8169400ac37d9",
+      "image_sha256": "f46a3047a7b18b559d5c1482e9cbcdaecc370debd5cc9b86b3cf7e99343bb28d",
+      "options": [
+        "--width",
+        "1600",
+        "--height",
+        "1250",
+        "--side",
+        "bottom",
+        "--background",
+        "transparent",
+        "--quality",
+        "high",
+        "--perspective",
+        "--rotate",
+        "335,0,15",
+        "--zoom",
+        "0.85"
+      ],
+      "image_dimensions_px": [
+        1568,
+        1232
+      ]
+    }
+  }
+}

@@ -17,6 +17,19 @@ committed sources; their checks run in the single-host job. Failure, cancellatio
 skipping of any job prevents the required gate from passing. Thread RCP changes additionally run
 the existing independent Nordic RCP build.
 
+The modular job also checks that README board renders match their native PCB
+source hashes and that the illustrated parts catalog covers every canonical
+BOM row. Catalog checks run offline: manufacturer-photo availability and
+AliExpress search results are not treated as build dependencies or verified
+offers. Local identification illustrations keep the catalog usable when a
+remote image is unavailable.
+
+The DIY carrier also has native PCB checks and an independent connectivity
+check that joins actual bottom-copper islands through the specified insulated
+wire links. The modular job checks its print-package source/output hashes,
+metric PDF dimensions and orientation regressions. These checks do not certify
+a printer, toner-transfer process or hand-assembled board.
+
 Security scanning calls `victron-venus/venus-os-ci-toolkit` at the immutable commit
 `5d827f345c66fdb493efba9c24cf79575b681fdb`: Trivy scans dependencies and secrets;
 dependency review checks pull requests. The separate CodeQL matrix covers C++,
