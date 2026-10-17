@@ -19,12 +19,13 @@ sensor accuracy or mechanical fit. See [acceptance](docs/acceptance.md).
   RCP. They never share a multiprotocol firmware or antenna.
 - Waveshare ESP32-S3-ETH-M connects by Ethernet and runs ESPHome: active Bluetooth
   proxy, the existing Zooz ZAC93 module, LD2450 radar, and BME680 on I²C.
-- The existing NodeMCU/CC1101 RF Airbridge is reused, with its original firmware
-  and HA contracts. **This compatibility module still uses Wi-Fi.** One external
-  PoE cable supplies the box, but that alone does not make this RF path wired.
-- An [experimental Ethernet RF replacement](firmware/rf-ethernet.experimental.yaml)
-  uses a second S3-ETH controller. It requires two CC1101 GDO wires and a separate
-  HA migration; it is not a drop-in replacement for the installed RF Airbridge.
+- A second S3-ETH controller runs [RF Airbridge over Ethernet](firmware/rf-ethernet.yaml)
+  with the existing CC1101. It preserves the RF Airbridge MQTT schemas, native
+  transmit actions and RM433 button events. Two separate GDO wires are required.
+  Follow the [migration and rollback guide](hardware/rf-migration.md) to transfer
+  private settings and reconnect Home Assistant to the replacement hardware.
+- The original NodeMCU firmware is retained as a Wi-Fi rollback option. The new
+  RF firmware has no Wi-Fi dependency; its physical RF acceptance remains pending.
 - A PoE+ splitter, internal Ethernet switch and fused 5 V distribution provide
   power and data. The BME680 sits in a ventilated external sensor pod.
 
@@ -44,8 +45,9 @@ flowchart LR
   P --> PI
   P --> SW
   P --> ESP
-  P --> RF[Existing NodeMCU + CC1101]
-  RF -. Wi-Fi .-> AP[Existing LAN access point]
+  SW --> RF[Second ESP32-S3-ETH-M / RF Airbridge]
+  P --> RF
+  RF --> CC[CC1101 / 433.92 MHz]
 ```
 
 ## Build the prototype
@@ -91,10 +93,13 @@ containing credentials are distributed here.
 python3 tools/check.py
 python3 -m venv .venv
 .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt
+.venv/bin/python -m unittest discover -s tests -p 'test_*.py'
 .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome
+.venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
 .venv/bin/python mechanical/build.py
 ```
 
-See [validation status](docs/validation.md) for what was actually run. Original
-code, CAD and documentation use [MIT](LICENSE); referenced third-party software,
-firmware, libraries and trademarks retain their own licenses.
+See [validation status](docs/validation.md) for what was actually run and
+[CI and approval](docs/ci.md) for shared pipelines and reviewer configuration. Original
+code, CAD and documentation use [MIT](LICENSE); see [third-party notices](THIRD_PARTY_NOTICES.md)
+for the RF Airbridge port and upstream firmware licenses.

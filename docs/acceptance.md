@@ -37,8 +37,17 @@ keys, installation QR codes, RF captures, home maps or device identities.
   by the current ESPHome transport. Test a spare device and controller backup.
 - BLE: observe a known supported BLE sensor and test an active connection; record
   coverage with all other radios transmitting. Do not infer classic audio support.
-- RF: retain original installation identity and private learned-code store, then
-  test existing receive events and transmit actions without arbitrary replay.
+- RF: keep the private source/topics/codes and original configuration backup.
+  Confirm open-drain GPIO4 with the external 4.7 kΩ pull-up; measure release and
+  RX recovery after TX. Test RC-Switch, RM433 hold suppression, Dooya TX, busy,
+  TX cooldown while RX is active, broker reconnect without replay, and no TX
+  self-echo. Verify send_failed on injected RMT failure/cooperative timeout,
+  fail-closed behavior, and explicit recovery by restart. The 30 s timer requires
+  a running event loop; measure actual driver-hang/watchdog behavior separately.
+  There is no guaranteed 30 s recovery bound or implicit success on a fault.
+- RF cutover: map the new MAC/device/unique IDs explicitly; preserve intended
+  entity IDs and update device triggers. Exercise rollback with the old board
+  powered off while the new board owns its production MQTT identity.
 - Radar: walk through known distances/zones, compare open antenna vs closed
   plastic window, check ghosts and transitions; stationary occupancy is separate.
 - BME680: verify 0x77/0x76 address, stable readings after warmup, independent ambient

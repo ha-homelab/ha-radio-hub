@@ -123,7 +123,7 @@
     }
   },
   "validation": "design_only_no_hardware_test",
-  "rf_ethernet_experimental": {
+  "rf_ethernet": {
     "board": "second Waveshare ESP32-S3-ETH-M",
     "network": "ethernet",
     "supply_voltage": 5.0,
@@ -141,6 +141,9 @@
       "camera",
       "add-on PoE module"
     ],
-    "hardware_tested": false
+    "hardware_tested": false,
+    "tx_mode": "open_drain_released_during_rx",
+    "tx_pullup_ohms": 4700,
+    "logic_voltage": 3.3
   }
 }

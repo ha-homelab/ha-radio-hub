@@ -59,7 +59,8 @@ def main() -> int:
                 if pattern.search(text):
                     errors.append(f'{relative}: credential-like content detected (value suppressed)')
     required = [
-        'README.md', 'LICENSE', 'firmware/hub-s3-eth.yaml',
+        'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'firmware/hub-s3-eth.yaml',
+        'firmware/rf-ethernet.yaml',
         'firmware/packages/ld2450.yaml', 'firmware/packages/bme680.yaml',
         'hardware/README.md', 'hardware/wiring.md', 'docs/enclosure.md',
         'docs/firmware.md', 'docs/home-assistant.md', 'docs/thread-devices.md',
@@ -74,6 +75,13 @@ def main() -> int:
             errors.append('Hardware pin map assigns an exclusive GPIO more than once')
         if any(pin['logic_voltage'] != 3.3 for pin in pins):
             errors.append('ESP32 signal map contains a non-3.3V logic domain')
+        radio = pinmap['rf_ethernet']
+        rf_pins = list(radio['pins'].values())
+        reserved = {pin['gpio'] for pin in pins if pin['role'].startswith(('w5500_', 'usb_'))}
+        if len(set(rf_pins)) != len(rf_pins) or reserved.intersection(rf_pins):
+            errors.append('RF Ethernet GPIO assignment conflicts with another radio signal, W5500 or USB')
+        if radio['logic_voltage'] != 3.3 or radio['radio_supply_voltage'] != 3.3:
+            errors.append('RF Ethernet CC1101 supply and signal domains must be 3.3V')
     if errors:
         print('\n'.join(errors), file=sys.stderr)
         return 1

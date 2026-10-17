@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        applies-to: version-updates
+        patterns: ['*']
+  - package-ecosystem: pip
+    directory: /firmware
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:15'
+      timezone: Etc/UTC
+    open-pull-requests-limit: 3
+    # ESPHome upgrades also require a reviewed rebase of the local RMT patch;
+    # its exact-version guard deliberately rejects an unreviewed version bump.
+  - package-ecosystem: pip
+    directory: /mechanical
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:30'
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    groups:
+      cad-patch-updates:
+        applies-to: version-updates
+        patterns: ['*']
+        update-types: [patch]

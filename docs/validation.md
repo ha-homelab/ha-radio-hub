@@ -9,11 +9,26 @@ from hardware acceptance; it is not a declaration that the appliance works in a 
   compilation passed. It includes W5500 Ethernet, active BLE proxy, ZAC93 UART,
   LD2450 UART and BME680 I²C. Static RAM 104,319 / 341,760 bytes; application
   942,199 bytes. Runtime heap and simultaneous load remain unmeasured.
-- Experimental Ethernet RF configuration: schema validation and full ESPHome
-  2026.9.1 / ESP-IDF 5.5.5 compilation passed after adapting API input validation
-  to ESPHome's `StringRef`. Static RAM 63,135 / 341,760 bytes; application 491,639
-  bytes. RF reception, transmitted waveforms and legacy automation compatibility
-  remain untested on hardware.
+- RF Airbridge Ethernet port: ESPHome 2026.9.1 / ESP-IDF 5.5.5 schema validation
+  and full compilation passed for the **real importer's migrated fixture with
+  15 legacy binary sensors**, custom source/topics, an RM433 slot and exact-width
+  RF codes. Static RAM: 72,991 / 341,760 bytes (21.4%); application: 699,707 /
+  8,126,464 bytes (8.6%). The standalone template also compiled. The port includes
+  legacy MQTT payloads, RM433 native events, RC-Switch/Dooya actions and the pinned
+  RMT receiver patch. Runtime heap, waveform timing and physical I/O remain unmeasured.
+- Native RF regressions exercise golden payloads, exact bit widths, RM433
+  quiet-time behavior, offline publishing, actual RMT lifecycle code with driver
+  doubles, and the YAML TX worker under delayed completion/faults. AddressSanitizer
+  and UndefinedBehaviorSanitizer runs passed: 42 RF/migration tests in the local
+  suite, including 13 importer tests. These tests do not measure physical
+  pulse timing, interrupt races on silicon, RF range or analog pin contention.
+- Offline migration tests passed for private output permissions, secret handling,
+  quoted RF codes, entity definitions, identity substitution resolution, rejected
+  custom lifecycle hooks, and receiver-filter normalization. The private wrapper
+  includes a credential-free base package so secret lookups stay beside that
+  wrapper. Schema and full compilation of that imported output passed as noted
+  above; actual household configuration was not loaded. HA registry identity is
+  deliberately not claimed to transfer.
 - Linux config renderer: positive rendering and invalid-input tests passed.
   Docker Compose parsed the rendered configuration. No local Docker daemon or
   USB hardware was available for service runtime validation.
@@ -27,8 +42,10 @@ from hardware acceptance; it is not a declaration that the appliance works in a 
 ## Reproducible CI
 
 [Prototype validation](https://github.com/ha-homelab/ha-radio-hub/actions/workflows/check.yml)
-runs offline checks, renderer tests, both ESPHome builds, CAD regeneration and a
-Linux ser2net image build. [Thread RCP build](https://github.com/ha-homelab/ha-radio-hub/actions/workflows/thread-rcp.yml)
+runs offline checks, renderer tests, RF contract/migration regressions, ESPHome
+builds, CAD regeneration and a Linux ser2net image build. RF compilation also
+uses a synthetic migration fixture with 15 legacy binary sensors rather than
+checking only the empty public template. [Thread RCP build](https://github.com/ha-homelab/ha-radio-hub/actions/workflows/thread-rcp.yml)
 builds the pinned PCA10059 USB firmware with an Arm toolchain. Read the actual
 workflow result; the existence of a workflow is not evidence it passed.
 
@@ -37,10 +54,26 @@ successfully built the pinned PCA10059 firmware on Linux. The RCP build script
 has not changed since that run. This is compiler evidence; no Nordic dongle was
 flashed and no Spinel exchange was tested.
 
+Reproduce RF validation in the pinned environment:
+
+```sh
+RF_CPP_SANITIZERS=1 python -m unittest discover -s tests -p 'test_*.py'
+python firmware/validate.py --config rf-ethernet.yaml
+python firmware/validate.py --config rf-ethernet.yaml --migration-fixture --compile
+```
+
+The fixture uses generated credentials and synthetic codes, creates an isolated
+snapshot, invokes the real importer, compiles its result and discards the binary.
+It does not load private household configuration or contact HA, MQTT or a radio.
+The migration-fixture command completed successfully locally; generated binaries
+were removed without flashing a board.
+
 ## Still requires hardware
 
 No boards were flashed or commissioned. Component/cable fit, FDM tolerances,
 insert strength, PoE startup/peak margin, temperatures, radio coexistence,
 range, correct RF waveforms, commissioning, restart recovery and sensor accuracy
-have not been measured. The full [acceptance checklist](acceptance.md) is the
-next step on a physical prototype. Existing household services were not changed.
+have not been measured. The cooperative 30 s TX wait requires a running event
+loop; stock RMT completion can block in `rmt_tx_wait_all_done(-1)`, so the software
+tests do not establish a maximum driver-hang or watchdog recovery time. The
+full [acceptance checklist](acceptance.md) is the next step on a physical prototype. Existing household services were not changed.

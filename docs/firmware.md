@@ -1,11 +1,11 @@
 # Прошивка и программная часть
 
-Основная сборка использует Raspberry Pi 4 с Linux, два независимых USB-радио и Waveshare **ESP32-S3-ETH-M** с 16 MB flash. На S3 работают Ethernet, Bluetooth proxy, LD2450, BME680 и UART-прокси существующего Zooz ZAC93. Существующий ESP8266+CC1101 остаётся самостоятельным RF-узлом. Все платы питаются от общей PoE-системы, но транспорт старого RF-узла в первом варианте остаётся Wi-Fi. Для перехода на полностью проводную связь подготовлена отдельная экспериментальная прошивка второго S3-ETH.
+Основная сборка использует Raspberry Pi 4 с Linux, два независимых USB-радио и Waveshare **ESP32-S3-ETH-M** с 16 MB flash. На S3 работают Ethernet, Bluetooth proxy, LD2450, BME680 и UART-прокси существующего Zooz ZAC93. Отдельная вторая S3-ETH-M с CC1101 обслуживает проводной RF Airbridge; прежний ESP8266 сохраняется для отката. Все платы питаются от общей PoE-системы. Перенос частной конфигурации и HA registry выполняется отдельно по инструкции миграции.
 
 ## Что действительно проверено
 
 - Основной `hub-s3-eth.yaml`: schema validation и полная компиляция ESPHome **2026.9.1**, ESP-IDF **5.5.5**, успешны. Статическая RAM 104 319 / 341 760 байт (30,5%); программа 942 199 байт. Это не измерение свободной памяти при работе BLE.
-- Экспериментальный `rf-ethernet.experimental.yaml`: schema validation и полная компиляция ESPHome **2026.9.1**, ESP-IDF **5.5.5**, успешны. Статическая RAM 63 135 / 341 760 байт (18,5%); программа 491 639 байт. Это подтверждает сборку, но не качество RF waveforms или совместимость с прежними автоматизациями.
+- RF Ethernet: schema validation и полная компиляция **реально импортированного fixture с 15 legacy binary sensors**, отдельными source/topics и RM433 slot прошли на ESPHome **2026.9.1** / ESP-IDF **5.5.5**. Статическая RAM 72 991 / 341 760 байт (21,4%); программа 699 707 байт. Пустой публичный шаблон также собран. Прошли 42 RF/migration regression-теста с ASan/UBSan. Это подтверждает программный порт и merge конфигурации, но реальные домашние файлы и плата не использовались; waveform/RX→TX→RX и физический cutover остаются отдельным этапом. Подробнее — [журнал validation](validation.md).
 - `software/render_config.py`: тесты ограничений входных данных и конфигурации прошли; Docker Compose разобрал конфигурацию успешно.
 - Ни одна реальная плата не прошивалась. Электрические соединения, совместная работа радиосетей, тепловой режим и долговременная стабильность требуют стенда.
 - Docker daemon недоступен на машине разработки: запуск контейнеров, загрузка драйверов Linux и связь с RCP локально не проверялись. ARM-сборка Thread RCP локально не выполнялась; закреплённая прошивка PCA10059 успешно собрана в [Linux GitHub CI](https://github.com/ha-homelab/ha-radio-hub/actions/runs/38992347499). Радиосвязь этим тестом не проверяется.
@@ -117,16 +117,15 @@ docker compose --env-file software/runtime/hub.env -f software/compose.yaml exec
 
 Канал 25 — начальная настройка, проверьте его относительно своего Wi-Fi/Zigbee. Не выполняйте `dataset init new` поверх уже выбранной домашней сети: сначала сохраните её credentials и импортируйте существующий dataset. Файлы dataset содержат сетевые ключи. Резервируйте Docker volume `otbr-data` и Z-Wave/Zigbee network backups в приватном хранилище; `docker compose down -v` удаляет состояние OTBR.
 
-## 5. Сохранение RF и переход на Ethernet
+## 5. RF Airbridge по Ethernet
 
-Первый вариант сохраняет работающий [rf-airbridge](https://github.com/ha-homelab/rf-airbridge) вместе с текущими локальными настройками, MQTT topics и HA-автоматизациями. Это NodeMCU ESP8266 + CC1101 433,92 MHz: SCLK14, MOSI13, MISO12, CS15, общий GDO0 GPIO4. Не копируйте публичный example поверх действующего YAML: там нет ваших entity IDs и кодов устройств. Плата получает питание в новом корпусе, но остаётся Wi-Fi-клиентом. Ни один Wi-Fi credential или RF-код из действующей установки в этот репозиторий не переносился.
+`firmware/rf-ethernet.yaml` использует отдельную **вторую S3-ETH-M** с CC1101, MQTT и native API. Сохраняются `rf/received`, `rf/received/raw`, `rf/transmit/result`, RM433 button events, `send_rf_code` и `send_dooya_code`, single worker с `busy` и 750-мс cooldown. Частные source/topics/codes и старые определения датчиков импортируются в локальный wrapper; публичный шаблон их не содержит.
 
-`firmware/rf-ethernet.experimental.yaml` реализует проводной **второй** S3-ETH-M с CC1101. W5500 pin map тот же; отдельный SPI3: SCLK7, MOSI8, MISO6, CS15; **GPIO4 TX → GDO0, GDO2 → GPIO5 RX**, 3V3 и GND. Установите подходящую антенну 433 MHz до передачи. Раздельные data pins следуют [документации CC1101 ESPHome](https://esphome.io/components/cc1101/) и не требуют ESP8266-only receiver patch старого проекта.
+RF SPI3: SCLK7, MOSI8, MISO6, CS15; GPIO4 TX → GDO0 **open-drain с внешней подтяжкой 4.7 кОм к 3,3 В**, GDO2 → GPIO5 RX. W5500 остаётся на GPIO9–14. Это отдельная RF-плата: соединение не применяется к основному S3 с LD2450. Локальный RMT receiver patch соответствует ESPHome 2026.9.1 и обеспечивает управление захватом вокруг TX; работа со штатным ESP8266 patch не предполагается.
 
 ```sh
-python firmware/validate.py --config rf-ethernet.experimental.yaml --compile
+python firmware/validate.py --config rf-ethernet.yaml
+python firmware/validate.py --config rf-ethernet.yaml --migration-fixture --compile
 ```
 
-Это самостоятельный экспериментальный API: событие `esphome.radio_hub_rf_received` для RC-switch (`protocol`, `code_decimal`), действие `send_rc_switch` с двоичной строкой, protocol 1–8 и repeats 1–10. Dooya RX декодируется в логах. Старые `rf/received` сообщения, RM433 decoder, suppression/deduplication и полная Dooya TX логика сюда не перенесены. Успешный TX означает отправку waveform, а не подтверждение приёмником.
-
-Миграция проводится на отдельном стенде: запишите эталонные RX/TX, проверьте приём после каждой передачи, сравните события с существующим узлом, портируйте необходимые контракты и протестируйте автоматизации. Затем выключите старый RF-передатчик, перенесите CC1101/антенну и только после приёмки переключите HA. Пока этот этап не пройден, основной комплект нельзя называть полностью проводным.
+Первая команда проверяет публичный шаблон, вторая запускает настоящий импортёр на синтетической конфигурации с 15 датчиками и полностью компилирует результат. Используются одноразовые секреты, ничего не прошивается. Для замены установленного узла сначала выполните [офлайн-перенос, стенд, cutover и rollback](../hardware/rf-migration.md). Сохранение `esphome.name` и API key не гарантирует прежний HA device ID/unique ID: у Ethernet-платы другой MAC. Требуются приватное сопоставление сущностей и проверка device triggers. Старый ESP8266 остаётся выключенным резервом после перехода.

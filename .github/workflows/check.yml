@@ -6,13 +6,20 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     name: check
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Audit runner network access
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Offline source and documentation checks
@@ -23,10 +30,16 @@ jobs:
         run: |
           python3 -m venv .venv
           .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt
+      - name: RF contract and migration regressions
+        env:
+          RF_CPP_SANITIZERS: "1"
+        run: .venv/bin/python -m unittest discover -s tests -p 'test_*.py'
       - name: Validate and compile the combined Ethernet sensor firmware
         run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --compile
-      - name: Validate and compile the experimental Ethernet RF firmware
-        run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.experimental.yaml --compile
+      - name: Validate and compile RF Airbridge over Ethernet
+        run: |
+          .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml
+          .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
       - name: Regenerate printable geometry and validate meshes
         run: .venv/bin/python mechanical/build.py
       - name: Build the Linux serial service image

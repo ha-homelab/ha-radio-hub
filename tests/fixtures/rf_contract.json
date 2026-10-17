@@ -1,0 +1,43 @@
+{
+  "provenance": {
+    "repository": "https://github.com/ha-homelab/rf-airbridge",
+    "commit": "c96777d0df65a7420e4883d79187f31eb1b98c9b",
+    "basis": ["docs/rx-mqtt.md", "docs/dooya-transmission.md", "packages/rf-airbridge.yaml"],
+    "privacy": "All codes are synthetic public examples; no installation captures."
+  },
+  "topics": {
+    "decoded": "rf/received",
+    "raw": "rf/received/raw",
+    "result": "rf/transmit/result"
+  },
+  "receiver_prefix": {
+    "schema": 1,
+    "source": "rf",
+    "origin": "radio",
+    "frequency_mhz": 433.92,
+    "boot_id": "0123456789abcdef"
+  },
+  "rc_switch_examples": [
+    {"value": "5", "bits": 24, "code": "000000000000000000000101", "protocol": 1, "matching_protocols": [1, 2]},
+    {"value": "18446744073709551615", "bits": 64, "code": "1111111111111111111111111111111111111111111111111111111111111111", "protocol": 8, "matching_protocols": [8]},
+    {"value": "0", "bits": 64, "code": "0000000000000000000000000000000000000000000000000000000000000000", "protocol": 3, "matching_protocols": [3]},
+    {"value": "1", "bits": 3, "code": "001", "protocol": 4, "matching_protocols": [4]}
+  ],
+  "rm433_example": {
+    "format": "rm433",
+    "encoding": "rc_switch_1",
+    "bits": 24,
+    "code": "000100100011010001010001",
+    "value": "1193041",
+    "pulse_length_us": 240,
+    "timings": [240,-720,240,-720,240,-720,720,-240,240,-720,240,-720,720,-240,240,-720,240,-720,240,-720,720,-240,720,-240,240,-720,720,-240,240,-720,240,-720,240,-720,720,-240,240,-720,720,-240,240,-720,240,-720,240,-720,720,-240,240,-4000]
+  },
+  "api": {
+    "send_rf_code": {"code": "string", "protocol": "int", "repeats": "int"},
+    "send_dooya_code": {"remote_id": "int", "channel": "int", "button": "int", "check": "int", "repeats": "int"}
+  },
+  "tx_examples": {
+    "rc_switch": {"source":"rf","format":"rc_switch","status":"send_finished","code":"00000001","protocol":1,"repeats":3,"receiver_resumed":true,"delivery_confirmed":false},
+    "dooya": {"source":"rf","format":"dooya","status":"send_finished","remote_id":1193046,"channel":1,"button":1,"check":2,"repeats":3,"receiver_resumed":true,"delivery_confirmed":false}
+  }
+}
