@@ -1,6 +1,5 @@
 """Negative controls check independently sourced external endpoint/power mappings."""
-import copy,json,unittest
-from pathlib import Path
+import json,unittest
 from validate import assert_remote_map,ROOT
 class ConnectorContract(unittest.TestCase):
     def setUp(self):

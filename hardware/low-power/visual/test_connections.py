@@ -1,5 +1,4 @@
 """Negative controls for electrical and pin-namespace mistakes in the atlas."""
-import copy
 import importlib.util
 import json
 from pathlib import Path

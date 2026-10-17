@@ -2,7 +2,7 @@
 """Generate LP-I0 native KiCad source from design.py. Run with KiCad's Python.
 The routed PCB is kept separately: regeneration produces integrated-unrouted.kicad_pcb.
 """
-import argparse, csv, json, os, re, shutil, uuid
+import argparse, csv, json, shutil, uuid
 from pathlib import Path
 import pcbnew as pcb
 from design import ROOT, parts, connectors, SOURCES
@@ -57,7 +57,7 @@ def geom(obj):
     return r,left
 for idx,obj in enumerate(parts):
     ref=obj['ref'];g,left=geom(obj);name='LP_'+ref.replace('#','')
-    xmin=-15.24;ymin=-max(1,left-1)*2.54-2.54
+    ymin=-max(1,left-1)*2.54-2.54
     sym=[f'(symbol {Q(name)} (pin_names (offset 0.508)) (in_bom {"no" if ref.startswith("#") else "yes"}) (on_board {"no" if ref.startswith("#") else "yes"})',
     f'(property "Reference" {Q(ref)} (at 0 5.08 0) (effects (font (size 1.27 1.27))))',f'(property "Value" {Q(obj["model"])} (at 0 2.54 0) (effects (font (size 1.27 1.27))))',
     f'(symbol "{name}_0_1" (rectangle (start -15.24 1.27) (end 15.24 {ymin}) (stroke (width 0.254) (type default)) (fill (type background))))',f'(symbol "{name}_1_1"']

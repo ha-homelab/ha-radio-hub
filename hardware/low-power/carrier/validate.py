@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Independent connector checks + native KiCad ERC/DRC/parity/netlist verification."""
-import argparse, copy, hashlib, json, subprocess, sys, xml.etree.ElementTree as ET
+import argparse, hashlib, json, subprocess, xml.etree.ElementTree as ET
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 ALIASES={'+5V_IN':'5v_pd','+5V':'5v_fused','+3V3':'3v3','GND':'gnd','zac93_tx':'zwave_tx','zac93_rx':'zwave_rx'}

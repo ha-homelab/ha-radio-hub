@@ -50,7 +50,7 @@ pcb.SaveBoard(str(ROOT/'integrated.kicad_pcb'),board)
 subprocess.run([args.kicad_cli,'pcb','drc','--refill-zones','--save-board','--schematic-parity','--format','json','--output',str(BUILD/'routing-check.json'),str(ROOT/'integrated.kicad_pcb')],check=True)
 # Remove only copper identified by native DRC as a dangling track. A fresh
 # native check after each pass still detects every open pad or broken net.
-for cleanup_pass in range(12):
+for _ in range(12):
  report=json.loads((BUILD/'routing-check.json').read_text())
  ids={item['uuid'] for v in report['violations'] if v['type']=='track_dangling' for item in v['items']}
  if not ids:break

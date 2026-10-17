@@ -1,4 +1,4 @@
-import copy,importlib.util,sys,unittest,json,tempfile
+import copy,importlib.util,unittest,json,tempfile
 from pathlib import Path
 spec=importlib.util.spec_from_file_location('integrated_validation',Path(__file__).with_name('validate.py'))
 v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Independent connector checks + native KiCad ERC/DRC/parity/netlist verification."""
-import argparse, copy, hashlib, json, subprocess, sys, xml.etree.ElementTree as ET
+import argparse, hashlib, json, subprocess, xml.etree.ElementTree as ET
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 def assert_contract(parts,catalog,visual,carrier):
