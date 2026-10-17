@@ -42,5 +42,7 @@ jobs:
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
       - name: Regenerate printable geometry and validate meshes
         run: .venv/bin/python mechanical/build.py
+      - name: Build the public release package from committed sources
+        run: python3 tools/package_release.py --version v0.0.0-ci --output .build/ci-release
       - name: Build the Linux serial service image
         run: docker build -t ha-radio-hub/ser2net:ci software/ser2net

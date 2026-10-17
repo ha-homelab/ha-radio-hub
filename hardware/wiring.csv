@@ -4,10 +4,10 @@ UPLINK,PS1_DATA_OUT,SW1_PORT1,Ethernet,No_power_injection_after_splitter
 PI_LAN,SW1_PORT2,U1_RJ45,Ethernet,Short_patch
 ESP_LAN,SW1_PORT3,U4_RJ45,100BASE-T,Short_patch
 5V_MAIN,PS1_DC5V,Fused_distribution,5V,Polarity_and_current_verified
-PI_POWER,Fused_distribution,U1_USB-C,5V3A_branch,Correct_USB-C_source_lead
+PI_POWER,Fused_distribution,U1_USB-C,5V3A_branch,Adafruit4536_plus_C17_3A_load_test_pending
 SW_POWER,Fused_distribution,SW1_DC_INPUT,5V1A_branch,Verify_DC_plug_polarity_and_revision
-ESP_POWER,Fused_distribution,U4_USB-C,5V1A_branch,One_power_source
-RF_POWER,Fused_distribution,U8_MICRO_USB,5V0.75A_branch,One_power_source
+ESP_POWER,Fused_distribution,U4_USB-C,5V1A_branch,FIT0993_plus_to5V_minus_toGND_one_power_source
+RF_POWER,Fused_distribution,U8_MICRO_USB,5V0.75A_branch,Compatibility_WiFi_variant_only_one_power_source
 RADAR_POWER,Fused_distribution,U6_5V,5V0.25-0.5A_branch,NOT3V3
 ZIGBEE_USB,U1_USB2_PORT1,U2_USB,USB2_DATA_AND_5V,Dedicated_Zigbee_NCP
 THREAD_USB,U1_USB2_PORT2,U3_USB,USB2_DATA_AND_5V,Dedicated_Thread_RCP
@@ -34,9 +34,9 @@ RF_CLK,U8_GPIO14_D5,U9_SCLK,3.3V_SPI,Existing_NodeMCU_CC1101_only
 RF_MOSI,U8_GPIO13_D7,U9_MOSI,3.3V_SPI,Existing_NodeMCU_CC1101_only
 RF_MISO,U9_MISO,U8_GPIO12_D6,3.3V_SPI,Existing_NodeMCU_CC1101_only
 RF_CS,U8_GPIO15_D8,U9_CS,3.3V_SPI,Existing_NodeMCU_CC1101_only
-RF_GDO0,U8_GPIO4_D2,U9_GDO0,3.3V_bidirectional,Half_duplex_shared_RX_TX
+RF_GDO0,U8_GPIO4_D2,U9_GDO0,3.3V_bidirectional,Compatibility_WiFi_variant_only_half_duplex_shared_RX_TX
 RF_ETH_LAN,SW1_PORT4,U10_RJ45,100BASE-T,Wired_RF_variant_only
-RF_ETH_POWER,Fused_distribution,U10_USB-C,5V1A_branch,Wired_RF_variant_only
+RF_ETH_POWER,Fused_distribution,U10_USB-C,5V1A_branch,FIT0993_wired_RF_only_one_power_source
 RF_ETH_3V3,U10_3V3,U9_VCC,3.3V,Wired_RF_variant_only
 RF_ETH_GND,U10_GND,U9_GND,GND,Wired_RF_variant_only
 RF_ETH_CLK,U10_GPIO7,U9_SCLK,3.3V_SPI3,Wired_RF_variant_only_no_SD_camera

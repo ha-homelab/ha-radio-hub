@@ -19,16 +19,27 @@ from hardware acceptance; it is not a declaration that the appliance works in a 
 - Native RF regressions exercise golden payloads, exact bit widths, RM433
   quiet-time behavior, offline publishing, actual RMT lifecycle code with driver
   doubles, and the YAML TX worker under delayed completion/faults. AddressSanitizer
-  and UndefinedBehaviorSanitizer runs passed: 42 RF/migration tests in the local
-  suite, including 13 importer tests. These tests do not measure physical
+  and UndefinedBehaviorSanitizer runs passed: 48 RF/migration tests in the local
+  suite, including 19 importer tests. Six additional release-package tests verify
+  committed-source selection, checksums, private-path rejection and archive use.
+  These tests do not measure physical
   pulse timing, interrupt races on silicon, RF range or analog pin contention.
 - Offline migration tests passed for private output permissions, secret handling,
   quoted RF codes, entity definitions, identity substitution resolution, rejected
   custom lifecycle hooks, and receiver-filter normalization. The private wrapper
   includes a credential-free base package so secret lookups stay beside that
   wrapper. Schema and full compilation of that imported output passed as noted
-  above; actual household configuration was not loaded. HA registry identity is
-  deliberately not claimed to transfer.
+  above. A subsequent read-only inventory also retrieved the actual installed
+  RF configuration and its 15 sensors into an ignored private directory. Its
+  upstream package and three helper headers matched the canonical source. The
+  importer now preserves its explicit API/OTA authentication settings, web server
+  and supported radio overrides while rejecting conflicting secret aliases.
+  The actual private migrated configuration also passed ESPHome 2026.9.1 schema
+  validation and full compilation: 15 legacy RF sensors, static RAM 73,247 bytes
+  (21.4%), application 697,435 bytes (8.6%). Ten configuration-mapping checks
+  passed. Its source, credentials and binaries remain in ignored private storage.
+  No board was flashed and HA was not switched; the new controller is not ready.
+  HA registry identity is deliberately not claimed to transfer.
 - Linux config renderer: positive rendering and invalid-input tests passed.
   Docker Compose parsed the rendered configuration. No local Docker daemon or
   USB hardware was available for service runtime validation.
@@ -38,6 +49,10 @@ from hardware acceptance; it is not a declaration that the appliance works in a 
 - Original source and documentation: the repository provides an offline checker
   for local links, Python/shell/JSON syntax, required assets, pin-map collisions
   and common credential patterns. This is not an exhaustive security audit.
+- Release packaging reads committed Git objects, excludes private/generated
+  installation material, rejects symlinks and records per-file SHA-256 hashes.
+  Its inventory lets the checker run in an extracted build package without
+  traversing local private configuration. This is separate from physical tests.
 
 ## Reproducible CI
 
