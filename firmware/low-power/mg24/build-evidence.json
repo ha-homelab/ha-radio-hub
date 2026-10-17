@@ -46,8 +46,13 @@
       "sha256": "b9c04af2e25dfd0c6a5db1d9af94e84428bb6ba4e46f6b53ebc7b794243e888a"
     }
   },
+  "python_inspection": {
+    "id": "python",
+    "manifest_version": "3.10.5",
+    "native_library": "libjep.jnilib"
+  },
   "build_host": "macOS arm64",
   "date": "2026-10-17",
   "linux_execution_verified": false,
-  "tests_passed": 6
+  "tests_passed": 7
 }

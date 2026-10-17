@@ -1,14 +1,21 @@
-// Compile the actual ESPHome component with a bounded FIFO/CTS model and real
-// loopback TCP. This is not a substitute for IDF or electrical validation.
-#include "zigbee_tcp.cpp"
+// Link the separately compiled ESPHome component to a bounded FIFO/CTS model
+// and real loopback TCP. This does not replace IDF or electrical validation.
+#include "zigbee_tcp.h"
+#include <esphome/core/hal.h>
+#include <driver/uart.h>
+#include <lwip/sockets.h>
 #undef bind
 #undef select
 #undef send
 #undef recv
+#include <algorithm>
+#include <atomic>
+#include <cerrno>
 #include <chrono>
 #include <csignal>
 #include <deque>
 #include <exception>
+#include <fcntl.h>
 #include <iostream>
 #include <mutex>
 #include <stdexcept>

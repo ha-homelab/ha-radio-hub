@@ -29,6 +29,7 @@ class ZigbeeTcpTest(unittest.TestCase):
             "-I", str(ROOT / "tests/native/zigbee_stubs"),
             "-I", str(ROOT / "firmware/low-power/components/zigbee_tcp"),
             str(ROOT / "tests/native/zigbee_tcp_harness.cpp"),
+            str(ROOT / "firmware/low-power/components/zigbee_tcp/zigbee_tcp.cpp"),
             "-o", str(cls.binary),
         ], check=True, timeout=60)
 

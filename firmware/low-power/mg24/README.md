@@ -7,9 +7,9 @@
 ## Зафиксированные исходники и инструменты
 
 - [Simplicity SDK v2025.6.3](https://github.com/SiliconLabs/simplicity_sdk/releases/tag/v2025.6.3), commit `b41bec3ff2485199c1a5a9995b3e649e118c1b8d`: Zigbee **8.2.3**, EZSP **18 / 0x12**. [Официальный состав версии](https://docs.silabs.com/sisdk-release-notes/2025.6.3/sisdk-release-notes-overview/).
-- SLC **6.0.15**, Java **21**, Arm GNU Toolchain **12.2.Rel1** / GCC **12.2.1**, Simplicity Commander **1.25.0 build1995**. IAR, платная лицензия и авторизация в Silicon Labs для выполненной сборки не использовались.
+- SLC **6.0.15**, Java **21**, отдельный Silicon Labs **Python adapter pack3.10.1** с native JEP и Jinja (его внутренний manifest сообщает Python3.10.5), Arm GNU Toolchain **12.2.Rel1** / GCC **12.2.1**, Simplicity Commander **1.25.0 build1995**. IAR, платная лицензия и авторизация в Silicon Labs для выполненной сборки не использовались.
 - Приложение: SDK `protocol/zigbee/app/projects/ncp/zigbee_ncp_uart_hw/zigbee_ncp_uart_hw.slcp`; загрузчик: `platform/bootloader/sample-apps/bootloader-uart-xmodem/bootloader-uart-xmodem.slcp`.
-- [config.json](config.json) — target, upstream paths и все изменённые макросы; [dependencies-linux.json](dependencies-linux.json) — прямые официальные URL, размеры и SHA256 архивов Linux x86_64. Эти четыре архива фактически скачаны и проверены; суммарно **862 218 788 bytes**. Linux runner отдельно должен подтвердить исполняемость инструментов.
+- [config.json](config.json) — target, upstream paths и все изменённые макросы; [dependencies-linux.json](dependencies-linux.json) — прямые официальные URL, размеры и SHA256 архивов Linux x86_64. Эти пять архивов фактически скачаны и проверены; суммарно **993 384 273 bytes**. Linux runner отдельно должен подтвердить исполняемость инструментов.
 
 Bootstrap проверяет SHA256 скачанного SDK-архива. При ручном `--sdk` генератор проверяет фактические `sdk_version` и `EZSP_PROTOCOL_VERSION`, но не удостоверяет Git commit всего распакованного дерева: в отчёте `source_commit_verified=false`, ожидаемый commit указан отдельно. SDK и сгенерированные vendor sources не включены в репозиторий; они загружаются отдельно со своими лицензиями. Здесь хранятся настройки, скрипты и [отчёт выполненной сборки](build-evidence.json). Хеши отчёта относятся к указанной macOS сборке, а не являются обещанием идентичных байтов на всех хостах.
 
@@ -28,7 +28,7 @@ Bootstrap проверяет SHA256 скачанного SDK-архива. Пр�
 
 ## Linux CI / локальная сборка
 
-Нужны Linux x86_64, Python3, Java21, `make`, `unzip`, `tar` с xz/bzip2 и runtime-библиотеки Commander. Bootstrap скачивает только зафиксированные архивы, проверяет размер/SHA256 перед распаковкой и требует новый каталог. Он ничего не прошивает и не устанавливает системно. На headless runner можно задать `QT_QPA_PLATFORM=offscreen`.
+Нужны Linux x86_64, Python3 для наших скриптов, Java21, `make`, `unzip`, `tar` с xz/bzip2 и runtime-библиотеки Commander. Bootstrap скачивает только зафиксированные архивы, проверяет размер/SHA256 перед распаковкой и требует новый каталог. Он ничего не прошивает и не устанавливает системно. На headless runner можно задать `QT_QPA_PLATFORM=offscreen`.
 
 Из корня репозитория:
 
@@ -37,6 +37,7 @@ python3 firmware/low-power/mg24/bootstrap_linux.py --output /tmp/mg24-tools
 python3 firmware/low-power/mg24/generate.py \
   --sdk /tmp/mg24-tools/sdk \
   --slc /tmp/mg24-tools/tools/slc_cli/slc \
+  --python-pack /tmp/mg24-tools/tools/python \
   --gcc /tmp/mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi \
   --output /tmp/mg24-build
 python3 firmware/low-power/mg24/build.py \
@@ -46,7 +47,9 @@ python3 firmware/low-power/mg24/build.py \
 python3 -m unittest discover -s firmware/low-power/mg24 -p 'test_*.py'
 ```
 
-`JAVA_HOME` должен указывать на Java21; при необходимости передать `--java-home` в `generate.py`. Для macOS установить те же версии через [публичный SLT CLI](https://docs.silabs.com/simplicity-installer-slt/latest/slt-getting-started-slt-cli/first-time-installation-setup), либо использовать официальные архивы той же платформы; затем передать абсолютные пути SLC/GCC/Commander. Это тот же генератор, а не другой проект.
+`JAVA_HOME` должен указывать на Java21; при необходимости передать `--java-home` в `generate.py`. Для macOS установить те же версии через [публичный SLT CLI](https://docs.silabs.com/simplicity-installer-slt/latest/slt-getting-started-slt-cli/first-time-installation-setup), либо использовать официальные архивы той же платформы; затем передать абсолютные пути SLC/GCC/Commander и `--python-pack` к каталогу установленного vendor Python с `apack.json` и `jep/`. Это тот же генератор, а не другой проект.
+
+SLC использует нативный JEP adapter pack, а не произвольный Python/Jinja из PATH. В исходном Linux CI этот отдельный пакет отсутствовал, из-за чего все template generators завершались сообщением `python script did not properly register a template generator`. Bootstrap теперь загружает пакет с SHA256; обязательный `--python-pack` проверяет manifest и native JEP, а генератор передаёт `--tool-path` и `--ignore-slt`. Это исключает незаметную зависимость от глобального SLT.
 
 SLC `--configuration` меняет активные макросы, но не раскрывает закомментированные pin-tool placeholders. Поэтому `generate.py` после генерации явно задаёт каждый макрос в созданных заголовках и требует ровно одно совпадение. Изменения помечены; SDK не редактируется. `build.py` повторно сверяет активные GPIO/USART/flow-control/clock macros до компиляции. Перегенерацию делать тем же скриптом в новый каталог, иначе pin-tool способен вернуть пустые назначения.
 

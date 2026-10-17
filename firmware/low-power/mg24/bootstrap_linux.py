@@ -40,7 +40,8 @@ def main():
             subprocess.run(['tar','-xf',str(dest),'-C',str(target)],check=True)
     paths = {'sdk':str(out/'sdk'), 'slc':str(out/'tools/slc_cli/slc'),
              'gcc':str(out/'tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi'),
-             'commander':str(out/'tools/commander/commander')}
+             'commander':str(out/'tools/commander/commander'),
+             'python_pack':str(out/'tools/python')}
     for name, path in paths.items():
         if not Path(path).exists():
             raise SystemExit('Missing expected '+name+' path: '+path)

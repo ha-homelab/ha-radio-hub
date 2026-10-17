@@ -126,6 +126,9 @@ def main():
               'sdk_tag':config['sdk_tag'], 'sdk_inspection':inspected_sdk,
               'target':config['target'],'ezsp_protocol_version':inspected_sdk['verified_ezsp_protocol_version'],
               'flash_ranges':ranges,'files':{}}
+    python_inspection = project/'python-inspection.json'
+    if python_inspection.is_file():
+        report['python_inspection'] = json.loads(python_inspection.read_text())
     for path in (app,boot,gbl,merged):
         report['files'][str(path.relative_to(project))] = {
             'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}

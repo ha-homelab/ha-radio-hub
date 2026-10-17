@@ -135,7 +135,8 @@ def main():
                   measurement(read_json(args.record), args.years, args.target_w))
     except (ValueError, KeyError, TypeError, OSError) as exc:
         parser.error(str(exc))
-    print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+    else:
+        print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
 
 
 if __name__ == "__main__":

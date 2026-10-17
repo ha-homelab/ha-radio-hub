@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from build import macro, srecords, verify_images
-from generate import configure_headers, inspect_sdk
+from generate import check_python_pack, configure_headers, inspect_sdk
 
 
 def record(address, payload):
@@ -13,6 +13,22 @@ def record(address, payload):
 
 
 class RecipeTests(unittest.TestCase):
+    def test_python_runtime_is_an_explicit_native_adapter_pack(self):
+        with tempfile.TemporaryDirectory() as root:
+            d=Path(root)
+            with self.assertRaisesRegex(RuntimeError,'Missing Silicon Labs'):
+                check_python_pack(d,'Linux')
+            (d/'apack.json').write_text('{"id":"other","app_version":"3.10.5"}')
+            with self.assertRaisesRegex(RuntimeError,'Expected Silicon Labs'):
+                check_python_pack(d,'Linux')
+            (d/'apack.json').write_text('{"id":"python","app_version":"3.10.5"}')
+            with self.assertRaisesRegex(RuntimeError,'Missing native JEP'):
+                check_python_pack(d,'Linux')
+            (d/'jep').mkdir();(d/'jep/jep.so').write_bytes(b'fixture')
+            self.assertEqual(check_python_pack(d,'Linux')['native_library'],'jep.so')
+            with self.assertRaisesRegex(RuntimeError,'Missing native JEP'):
+                check_python_pack(d,'Darwin')
+
     def test_sdk_inspection_checks_version_and_protocol_without_claiming_commit(self):
         with tempfile.TemporaryDirectory() as root:
             d=Path(root); header=d/'protocol/zigbee/app/util/ezsp/ezsp-protocol.h'

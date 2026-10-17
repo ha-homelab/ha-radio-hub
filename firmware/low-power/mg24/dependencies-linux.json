@@ -29,6 +29,13 @@
       "sha256": "956ae8e9e1600e492e1c4e57d271941ebf83bde6bfe23530a4e09ea300fdea32",
       "bytes": 42675064,
       "extract_to": "tools"
+    },
+    {
+      "name": "python",
+      "url": "https://updates.silabs.com/studio/v6/updates/update_site/archives/python/3.10.1/python.3.10.gtk.linux.x86_64.zip",
+      "sha256": "2c5c3c3f574b1c4f2f2fa354dffe68f8ea6ceda004fb5b03e8ca0ac13a696927",
+      "bytes": 131165485,
+      "extract_to": "tools"
     }
   ]
 }

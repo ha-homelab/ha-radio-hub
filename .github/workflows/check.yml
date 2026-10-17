@@ -130,6 +130,7 @@ jobs:
           python3 firmware/low-power/mg24/generate.py \
             --sdk "$RUNNER_TEMP/ha-radio-mg24-tools/sdk" \
             --slc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/slc_cli/slc" \
+            --python-pack "$RUNNER_TEMP/ha-radio-mg24-tools/tools/python" \
             --gcc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi" \
             --java-home /usr/lib/jvm/java-21-openjdk-amd64 \
             --output "$RUNNER_TEMP/ha-radio-mg24-build"

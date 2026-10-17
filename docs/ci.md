@@ -16,7 +16,8 @@ Security scanning calls `victron-venus/venus-os-ci-toolkit` at the immutable com
 `5d827f345c66fdb493efba9c24cf79575b681fdb`: Trivy scans dependencies and secrets;
 dependency review checks pull requests. The separate CodeQL matrix covers C++,
 Python and GitHub Actions using build mode `none`, because embedded firmware is
-built by its dedicated ESPHome job. Dependabot proposes reviewed workflow and
+built by its dedicated ESPHome job. It runs for every pull request, including
+stacked PRs whose base is another feature branch. Dependabot proposes reviewed workflow and
 Python dependency updates. Scanner failures must be investigated before merging.
 
 ## Approval and review

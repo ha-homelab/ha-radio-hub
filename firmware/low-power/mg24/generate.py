@@ -4,10 +4,25 @@ import argparse
 import json
 import os
 from pathlib import Path
+import platform
 import re
 import subprocess
 
 HERE = Path(__file__).resolve().parent
+
+
+def check_python_pack(path, system):
+    """SLC needs its native JEP adapter pack, not merely Python on PATH."""
+    manifest = path/'apack.json'
+    if not manifest.is_file():
+        raise RuntimeError('Missing Silicon Labs Python adapter pack: '+str(manifest))
+    info = json.loads(manifest.read_text())
+    if info.get('id') != 'python' or not str(info.get('app_version','')).startswith('3.10.'):
+        raise RuntimeError('Expected Silicon Labs Python3.10 adapter pack')
+    library = {'Linux':'jep.so','Darwin':'libjep.jnilib'}.get(system)
+    if library is None or not (path/'jep'/library).is_file():
+        raise RuntimeError('Missing native JEP library for '+system)
+    return {'id':info['id'],'manifest_version':info['app_version'],'native_library':library}
 
 
 def inspect_sdk(sdk, cfg):
@@ -58,6 +73,8 @@ def main():
     p.add_argument('--gcc', type=Path, required=True, help='Toolchain root containing bin/')
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--java-home', type=Path)
+    p.add_argument('--python-pack', required=True, type=Path,
+                   help='Silicon Labs Python3.10 adapter-pack directory containing apack.json and jep/')
     p.add_argument('--kind', choices=['application', 'bootloader', 'both'], default='both')
     args = p.parse_args()
     cfg = json.loads((HERE/'config.json').read_text())
@@ -68,6 +85,8 @@ def main():
         if not path.is_file():
             raise SystemExit('Missing dependency: '+str(path))
     inspected_sdk = inspect_sdk(sdk, cfg)
+    python_pack = args.python_pack.resolve()
+    inspected_python = check_python_pack(python_pack, platform.system())
     env = os.environ.copy()
     env['PATH'] = str(gcc/'bin') + os.pathsep + env['PATH']
     if args.java_home:
@@ -84,6 +103,7 @@ def main():
         raise SystemExit('Expected GCC12.2.1 from Arm12.2.Rel1, got '+gcc_version)
     out.mkdir(parents=True)
     (out/'sdk-inspection.json').write_text(json.dumps(inspected_sdk,indent=2)+'\n')
+    (out/'python-inspection.json').write_text(json.dumps(inspected_python,indent=2)+'\n')
     cli_config = out/'slc-cli.cfg'
     run([slc,'configuration','--cli-config',cli_config,'--sdk',sdk,'--gcc-toolchain',gcc])
     run([slc,'signature','trust','--cli-config',cli_config,'--sdk',sdk])
@@ -91,6 +111,7 @@ def main():
     for kind in kinds:
         item = cfg[kind]
         run([slc,'generate',sdk/item['example'],'--cli-config',cli_config,'--sdk',sdk,
+             '--tool-path',python_pack,'--ignore-slt',
              '--with',cfg['target'],'--configuration',','.join(k+':'+v for k,v in item['configuration'].items()),
              '-np','-d',out/kind,'-o','makefile'])
         configure_headers(out/kind, item)

@@ -1,7 +1,7 @@
 """Offline proof: real HA client + loopback HTTP + extracted Espressif C logic.
 No hardware, Home Assistant server, or real network dataset is contacted.
 """
-import argparse, asyncio, ctypes, json, pathlib, subprocess, sys, unittest
+import argparse, ctypes, json, pathlib, subprocess, sys, unittest
 from aiohttp import ClientSession, web
 from aiohttp.test_utils import TestServer
 from python_otbr_api import OTBR, ActiveDataSet, Timestamp
