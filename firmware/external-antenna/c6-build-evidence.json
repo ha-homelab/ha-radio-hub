@@ -43,9 +43,9 @@
     }
   },
   "recipe_sha256": {
-    "prepare_c6.py": "25b8667c8828a660c598cf303a654b77e59332c02bffb537e786ed77de24e93d",
-    "verify_c6.py": "115fa7b80278b331a2a7da4821e62da941f8c1e82d429641a5b78d5e52d87e6b",
+    "prepare_c6.py": "9ceda5d596f9f90145bea006792a8a8336d66712389513f9dcd30d15ccd5e89f",
+    "verify_c6.py": "0bee19ec63b577678def450e0ff6e40c7fbc3a65ec7ddece188308f5134dfed0",
     "pin-plan.json": "57820cf4135f2c0115f6c9c90d76404d5e44b7b4559815f532c8f1b2eb635bef",
-    "contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7"
+    "mc2_contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7"
   }
 }

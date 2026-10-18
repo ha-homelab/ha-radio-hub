@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import struct
-from contract import c6_pin_contract
+from mc2_contract import c6_pin_contract
 
 def verify(root: Path):
     pins=c6_pin_contract()
@@ -40,7 +40,7 @@ def verify(root: Path):
         data=(root/"build"/name).read_bytes()
         result["artifacts"][name]={"bytes":len(data),"sha256":hashlib.sha256(data).hexdigest()}
     result["recipe_sha256"] = {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
-                               for name in ("prepare_c6.py", "verify_c6.py", "pin-plan.json", "contract.py")}
+                               for name in ("prepare_c6.py", "verify_c6.py", "pin-plan.json", "mc2_contract.py")}
     return result
 
 if __name__=="__main__":

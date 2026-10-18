@@ -6,7 +6,7 @@ Module footprints use manufacturer hole centers; external modules use harnesses.
 import argparse, csv, json, uuid, re, math, hashlib
 from pathlib import Path
 import pcbnew as pcb
-from design import ROOT, parts, SOURCES, s3names, c6names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES, BODY_BOUNDS, RF_POUR_ONLY_KEEPOUTS, USB_SOCKET_BOUNDS_LOCAL, BOARD_OUTLINE, MOUNT_REFS, RAIL_LANDS, RAIL_COPPER_KEEPOUTS, RF_PORTS
+from design import ROOT, parts, SOURCES, s3names, c6names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES, BODY_BOUNDS, RF_POUR_ONLY_KEEPOUTS, USB_SOCKET_BOUNDS_LOCAL, BOARD_OUTLINE, MOUNT_REFS, RAIL_COPPER_KEEPOUTS, RF_PORTS
 ap=argparse.ArgumentParser(); ap.add_argument('--libraries', type=Path, required=True); a=ap.parse_args()
 LIB=a.libraries; LOCAL=ROOT/'MC2.pretty'; LOCAL.mkdir(exist_ok=True); BUILD=ROOT/'.build'; BUILD.mkdir(exist_ok=True)
 U=lambda s:str(uuid.uuid5(uuid.NAMESPACE_URL,'https://ha-radio-hub/MC2/'+s)); Q=lambda s:json.dumps(str(s))

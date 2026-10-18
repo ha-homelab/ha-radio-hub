@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Record exact design inputs and saved copper; run using KiCad's Python."""
-import json,hashlib,math
+import json,hashlib
 from pathlib import Path
 import pcbnew as p
 R=Path(__file__).resolve().parent

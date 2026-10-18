@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import subprocess
 from prepare import prepare, load_legacy
-from contract import verify_generated, verify_shared_spi_sources, verify_partitions, actual_partition_csv
+from mc2_contract import verify_generated, verify_shared_spi_sources, verify_partitions, actual_partition_csv
 
 def verify_service_gpio(source: str):
     # Check the source actually copied into the image, not just the YAML pins.
@@ -70,7 +70,7 @@ def verify(profile: Path):
                          "hardware_tested":False},
             "framework_cache_manually_modified":False,"sdk_patches_applied":False}
     result["recipe_sha256"] = {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
-                               for name in ("hub.yaml", "health.yaml", "pin-plan.json", "contract.py", "validate.py")}
+                               for name in ("hub.yaml", "health.yaml", "pin-plan.json", "mc2_contract.py", "validate.py")}
     (profile.parent/"build-result.json").write_text(json.dumps(result,indent=2)+"\n")
     return result
 

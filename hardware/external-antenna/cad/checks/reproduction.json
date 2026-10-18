@@ -10,7 +10,7 @@
   "topology_sha256": "52226b9c4061edcf11b3e694f1101e8c2a3f49332a64f87e584965aa430de288",
   "source_sha256": {
     "design.py": "084d691449c5828a200df513ae31522d2ea4a0db3925b42384ffecf75a2d2af1",
-    "generate.py": "dc2155b3d1cfa16305f77f8d324e2b336be3143b8bc522de85118a1577492be7",
+    "generate.py": "3918d1f248c95048ca95cf500e585cd56cb96110227a3689ee3dcfe413de17b4",
     "finalize.py": "c4b4e3fbcd9f860169b830b0fc621d4dff31e1fe6e00a77ffb3a716f791a968f",
     "project_rules.py": "908091b02b8f8df5462df53de3f1961919dcc73d8b4c80aba5fdac63bb4ce625",
     "routing/mc2.ses": "2daa20f97cbc14bc5efb58632b9a2a737d2e182f0e842aeee3a2f01e8ea4ecd3",
@@ -21,7 +21,7 @@
     "design.json": "4effdb41cc75bd4e7dfd41a3657338989333acd063eb9a40606264c78f2e99ce",
     "connectors.json": "b03e0ae2ce0667b7e4e57e3469d956ea5e2241c95aede80968f9214b30a9e79a",
     "BOM.csv": "04abd574c59ac2a90932b98e2c2a578e619c8ac87791385d73ad6db0dbd27e62",
-    "test_design.py": "02b174240c6bf1ffa74536555574298c5d83f9dd16484c4e7e8de3053ee0b0bc"
+    "test_design.py": "af634154dea0198bd08aff9ed656e44caf9584b12533c2c5b88e3fd545f6a26d"
   },
   "byte_identical_pcb_required": false,
   "reason": "KiCad creates new object UUIDs; exact electrical/geometric topology is compared instead"

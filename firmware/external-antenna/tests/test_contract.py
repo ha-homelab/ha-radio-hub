@@ -1,6 +1,7 @@
 """MC2 board, shared validator and preparation regressions; no hardware access."""
 import ast
-import importlib.util
+import subprocess
+import sys
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -10,6 +11,25 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ContractTests(unittest.TestCase):
+    def test_mc2_validation_ignores_a_preloaded_mc1_contract(self):
+        # Both revisions may be inspected in one process. MC1's generic module
+        # name must not make MC2 call the older two-argument verifier.
+        script = """
+import importlib
+from pathlib import Path
+import sys
+mc2 = Path(sys.argv[1])
+sys.path.insert(0, str(mc2.parent / "module-carrier"))
+legacy = importlib.import_module("contract")
+sys.path.insert(0, str(mc2))
+validator = importlib.import_module("validate")
+contract = importlib.import_module("mc2_contract")
+assert validator.verify_generated is contract.verify_generated
+assert validator.verify_generated is not legacy.verify_generated
+assert Path(contract.__file__).resolve() == mc2 / "mc2_contract.py"
+"""
+        subprocess.run([sys.executable, "-c", script, str(ROOT)], check=True)
+
     def test_hardware_and_firmware_use_identical_pins(self):
         firmware = json.loads((ROOT / 'pin-plan.json').read_text())
         hardware = json.loads((ROOT.parents[1] / 'hardware/external-antenna/cad/pin-plan.json').read_text())

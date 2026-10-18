@@ -3,7 +3,7 @@
 import argparse
 from pathlib import Path
 from prepare import load_legacy
-from contract import c6_pin_contract
+from mc2_contract import c6_pin_contract
 
 
 def prepare(output: Path, idf: Path) -> Path:

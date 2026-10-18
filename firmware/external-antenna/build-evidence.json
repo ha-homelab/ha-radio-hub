@@ -143,7 +143,7 @@
     "hub.yaml": "e7396ea6e4c43b594bc79fcb6ddecb35489a469612e40ac0069a125349b6e7da",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
     "pin-plan.json": "57820cf4135f2c0115f6c9c90d76404d5e44b7b4559815f532c8f1b2eb635bef",
-    "contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7",
-    "validate.py": "67cea45cb91f24aeb7690dcceea5fa8245d6b7b2bd60c7a08097d2f9c1e470fb"
+    "mc2_contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7",
+    "validate.py": "cf6dcebc8723f524566780e75505775a7f0b6c549f084d1815dc479f07041a3b"
   }
 }

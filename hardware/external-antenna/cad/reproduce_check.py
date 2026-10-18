@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Regenerate MC2 in a clean directory and require exact ledger/copper equality."""
-import argparse,json,subprocess,sys,tempfile,shutil,hashlib
+import argparse,json,subprocess,sys,tempfile,shutil
 from pathlib import Path
 R=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser();ap.add_argument('--python',required=True);ap.add_argument('--cli',required=True);ap.add_argument('--libraries',required=True);a=ap.parse_args()

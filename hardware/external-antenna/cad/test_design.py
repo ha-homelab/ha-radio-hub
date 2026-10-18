@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """MC2 physical-ledger, pin-contract, and native-check acceptance."""
-import json, math, hashlib
+import json, hashlib
 from pathlib import Path
-from design import parts, s3names, c6names, BOARD_W, BOARD_H
+from design import parts, s3names, BOARD_W, BOARD_H
 R=Path(__file__).resolve().parent
 D=json.loads((R/'design.json').read_text()); P={p['ref']:p for p in D['parts']}
 assert (BOARD_W,BOARD_H)==(100,100)
