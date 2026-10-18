@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-17",
+  "title": "What SMLIGHT already solves — and what it changes for MC1",
+  "lead": "Current SLZB-xU devices can run the Thread border router locally. Their ESP32-S3, W5500 and separate radio architecture supports our compact-host direction; it does not remove the host processor.",
+  "decision": "Keep S3-Nano-M as the current full-function candidate. Use SLZB-MRxU as an architecture reference and a possible finished Zigbee/Thread appliance. Prioritize recovery testing before committing the next carrier layout.",
+  "scope": "Source and compatibility review. No SMLIGHT unit was measured, flashed or tested. The existing MC1 and compact-S3 firmware builds do not establish SMLIGHT hardware parity.",
+  "findings": [
+    {
+      "title": "The architecture is already used in a finished product",
+      "text": "MRxU combines an ESP32-S3 host, W5500 Ethernet and two independent radio SoCs. MR5U uses two MG24 radios. The host still owns networking and application services; one radio serves Zigbee and the other Thread.",
+      "source": "https://smlight.tech/products/slzb-mr5u"
+    },
+    {
+      "title": "Thread over Ethernet has two different meanings",
+      "text": "Classic mode sends radio serial traffic to an OTBR process on another machine. The newer on-device mode runs the border router in the SLZB itself and exposes a REST API. Only the latter matches the location of our Thread stack.",
+      "source": "https://smlight.tech/support/manuals/books/slzb-06xmrxmrxuultima-series/page/thread-setup-network-and-usb-connection"
+    },
+    {
+      "title": "Native BLE is not our active Bluetooth proxy",
+      "text": "SLZB-OS on U/Ultima forwards advertisements to Home Assistant and supports scanning, but its manual explicitly excludes active BLE connections. Our full profile retains three active ESPHome BLE connections.",
+      "source": "https://smlight.tech/support/manuals/books/slzb-os/page/bluetooth-low-energy"
+    },
+    {
+      "title": "Less PSRAM can work, but the workload matters",
+      "text": "U-series documentation specifies 2 MB PSRAM. That weakens any claim that a local Thread border router inherently needs 8 MB. It does not measure our larger concurrent workload, and the selected Nano keeps 8 MB without adding a component.",
+      "source": "hardware-review.md"
+    },
+    {
+      "title": "A Thread failure can restart our entire host",
+      "text": "Source review of our pinned ESP-IDF/OpenThread path found that fatal RCP reset failure can reach assertion/termination and reboot the S3. The normal returned-error path keeps other services alive, but it does not cover every lower-layer failure. This is a source-identified risk, not a reproduced hardware crash.",
+      "source": "firmware-review.md"
+    }
+  ],
+  "modes": [
+    {
+      "name": "Classic SLZB + external OTBR",
+      "thread": "OTBR on HA/Linux; radio stream crosses the network",
+      "zigbee": "Separate radio required for simultaneous Zigbee",
+      "ble": "Depends on firmware; do not combine features from different images",
+      "extra": "A useful remote-radio design, but a different failure boundary"
+    },
+    {
+      "name": "SLZB-MRxU / native SLZB-OS",
+      "thread": "Local OTBR, documented beta path",
+      "zigbee": "Independent second radio; coordinator mode is distinct from Zigbee Hub mode",
+      "ble": "Advertisements only; no active connections",
+      "extra": "Finished PoE appliance; USB/add-ons depend on exact model"
+    },
+    {
+      "name": "Official SLZB ESPHome profile",
+      "thread": "Reviewed profile exports radio UARTs; external OTBR required",
+      "zigbee": "UART stream to ZHA/Zigbee2MQTT",
+      "ble": "Active ESPHome proxy",
+      "extra": "Replaces the core firmware; not an extra service inside SLZB-OS"
+    },
+    {
+      "name": "Our S3-Nano candidate",
+      "thread": "Local OTBR with H2 RCP",
+      "zigbee": "MG24 Ember NCP to ZHA/Zigbee2MQTT",
+      "ble": "Three active connections configured and compiled",
+      "extra": "Z-Wave, CC1101 RF, LD2450 and BME680; hardware concurrency untested"
+    }
+  ],
+  "improvements": [
+    {
+      "priority": "First",
+      "title": "Prove recovery, not just startup",
+      "text": "Define a deliberate response to fatal RCP failure: the pinned stack can terminate the host, and registering a no-op callback is not a fix. Then fault-inject a missing/rebooting RCP, Ethernet loss and address renewal. Check IPv6 forwarding, OMR routes, discovery and REST recovery while the other services run. Preserve the existing tested REST 404 behavior."
+    },
+    {
+      "priority": "First",
+      "title": "Measure the actual shared workload",
+      "text": "Record minimum internal heap, largest free block, PSRAM usage, task stack margins and UART/SPI service latency during concurrent traffic and OTA. Vendor RAM capacity is evidence of a different workload, not our runtime measurement."
+    },
+    {
+      "priority": "Next",
+      "title": "Keep upgrade and network state recoverable",
+      "text": "Verify Thread dataset export/import, reboot persistence, OTA health confirmation and fallback. Keep radio-update procedures separate from normal startup; do not turn every connection error into a network reset."
+    },
+    {
+      "priority": "Conditional",
+      "title": "Use an I2C GPIO expander only when it removes more hardware",
+      "text": "Ultima places slow reset/BOOT controls on TCA9555. Moving only our H2 reset and BOOT would save two native GPIO, from 21 to 19, but adds a module and an initialization dependency. Nano already fits 21; there is no demonstrated simplification yet."
+    }
+  ],
+  "buy_or_build": [
+    {
+      "title": "For a finished Zigbee + Thread appliance",
+      "text": "MRxU is a credible option to evaluate instead of manufacturing that part of the project. Preserve the chosen Zigbee host protocol and test local-OTBR firmware on the actual model. This is a change in project scope if the other functions move elsewhere."
+    },
+    {
+      "title": "For the complete ceiling hub",
+      "text": "Ultima gets closer with Z-Wave and RF options, but active BLE and the existing radar/environment/RF interfaces still need proof. Its three native UARTs can already be occupied by two radios and Z-Wave, leaving the radar needing another serial path."
+    }
+  ],
+  "sources": [
+    {
+      "label": "MR5U product architecture",
+      "url": "https://smlight.tech/products/slzb-mr5u"
+    },
+    {
+      "label": "SLZB family overview",
+      "url": "https://smlight.tech/support/manuals/books/slzb-06xmrxmrxuultima-series/page/slzb-series-overview"
+    },
+    {
+      "label": "Two Thread modes and setup",
+      "url": "https://smlight.tech/support/manuals/books/slzb-06xmrxmrxuultima-series/page/thread-setup-network-and-usb-connection"
+    },
+    {
+      "label": "SLZB-OS release notes and local-OTBR status",
+      "url": "https://smlight.tech/support/manuals/books/slzb-os/page/changelog-slzb-os"
+    },
+    {
+      "label": "Native BLE limitations and required versions",
+      "url": "https://smlight.tech/support/manuals/books/slzb-os/page/bluetooth-low-energy"
+    },
+    {
+      "label": "Our compiled full profile",
+      "url": "../compact-s3/firmware/README.md"
+    }
+  ]
+}

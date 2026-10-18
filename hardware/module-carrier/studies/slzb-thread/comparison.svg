@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="650" viewBox="0 0 1140 650" role="img" aria-labelledby="title desc">
+<title id="title">Where the Thread border router runs</title>
+<desc id="desc">Classic remote-radio mode places OTBR on another computer. New SLZB U devices and the MC1 proposal run OTBR on their ESP32 host. Their radios remain separate.</desc>
+<rect width="1140" height="650" fill="#0c1828"/>
+<g font-family="Arial,sans-serif" fill="#e4edf5">
+<text x="32" y="38" font-size="25">The important difference is the location of OTBR</text>
+<text x="32" y="67" font-size="15" fill="#adc4d5">Logical architecture · not a PCB drawing · current vendor firmware and our compiled candidate</text>
+<text x="32" y="112" font-size="19">Classic SLZB remote-radio mode</text>
+<path d="M282 177H389 M715 177H840" stroke="#8eb5c2" stroke-width="2" fill="none"/>
+<rect x="32" y="139" width="250" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<rect x="389" y="139" width="326" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<rect x="840" y="139" width="268" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<text x="47" y="183" font-size="16">Thread radio / RCP</text>
+<text x="405" y="170" font-size="19">SLZB host</text>
+<text x="405" y="197" font-size="14">Serial-to-network bridge</text>
+<text x="856" y="170" font-size="19">HA / Linux host</text>
+<text x="856" y="197" font-size="14">OTBR runs here</text>
+<text x="293" y="162" font-size="12" fill="#adc4d5">UART</text>
+<text x="733" y="162" font-size="12" fill="#adc4d5">Serial over TCP</text>
+<text x="32" y="282" font-size="19">SLZB-MRxU · native SLZB-OS</text>
+<path d="M282 347H389 M715 347H840" stroke="#8eb5c2" stroke-width="2" fill="none"/>
+<rect x="32" y="309" width="250" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<rect x="389" y="309" width="326" height="76" rx="5" fill="#1b555b" stroke="#8eb5c2"/>
+<rect x="840" y="309" width="268" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<text x="47" y="353" font-size="16">Thread + Zigbee radios</text>
+<text x="405" y="340" font-size="19">ESP32-S3 + W5500</text>
+<text x="405" y="367" font-size="14">Local OTBR · BLE advertisements</text>
+<text x="856" y="340" font-size="19">Home Assistant</text>
+<text x="856" y="367" font-size="14">REST integration + IPv6 traffic</text>
+<text x="293" y="332" font-size="12" fill="#adc4d5">Local radio links</text>
+<text x="733" y="332" font-size="12" fill="#adc4d5">Ethernet</text>
+<text x="32" y="452" font-size="19">MC1 compact-S3 candidate</text>
+<path d="M282 517H389 M715 517H840" stroke="#8eb5c2" stroke-width="2" fill="none"/>
+<rect x="32" y="479" width="250" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<rect x="389" y="479" width="326" height="76" rx="5" fill="#1b555b" stroke="#8eb5c2"/>
+<rect x="840" y="479" width="268" height="76" rx="5" fill="#26394b" stroke="#8eb5c2"/>
+<text x="47" y="523" font-size="16">H2 Thread + MG24 Zigbee</text>
+<text x="405" y="510" font-size="19">S3-Nano + W5500</text>
+<text x="405" y="537" font-size="14">Local OTBR · 3 active BLE slots</text>
+<text x="856" y="510" font-size="19">Home Assistant</text>
+<text x="856" y="537" font-size="14">Same local-BR topology</text>
+<text x="293" y="502" font-size="12" fill="#adc4d5">Local radio links</text>
+<text x="733" y="502" font-size="12" fill="#adc4d5">Ethernet</text>
+<text x="32" y="606" font-size="15" fill="#adc4d5">MRxU and MC1 keep a host plus two radio MCUs. Sharing one radio is not the simplification used here.</text>
+<text x="32" y="632" font-size="14" fill="#adc4d5">SLZB local OTBR: documented beta. MC1: full firmware compiled; hardware and concurrent operation untested.</text>
+</g></svg>
