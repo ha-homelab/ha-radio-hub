@@ -1,25 +1,25 @@
 {
-  "checked_at_utc": "2026-10-18T04:36:44.042141+00:00",
+  "checked_at_utc": "2026-10-18T04:44:06.085549+00:00",
   "result": "pass_with_conditional_mechanical_findings",
   "physical_z_qualified": false,
   "method": "Clean temporary copy; generator + committed SES + manual route; native DRC/parity/ERC and geometry/electrical tests",
   "checks": {
-    "drc_violations": 43,
+    "drc_violations": 41,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
     "erc_violations": 0,
-    "classified_mechanical_overlaps": 43,
+    "classified_mechanical_overlaps": 41,
     "unclassified_violations": 0
   },
   "source_sha256": {
-    "mc1.kicad_pcb": "87e2dbdd2d7be9daeb703dff1356812abf905cf625409c61e812d707ffb88e39",
+    "mc1.kicad_pcb": "7f8296edb0317269f6b094847edeb91a2886d2e1fc220150be1a1db43755d6ea",
     "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
     "project_rules.py": "088d9987469cee8a32241284b097551942e20072ae7ec249f9f29fc967c17720",
-    "generate.py": "704b6a6d230bf7ae9e1e770b7149dd7c1cc24ab771102204de0670c8f393487e",
-    "finalize.py": "7eb160b38f0ae17a0a8df1326bdf213e5e178a22d9b1af6219a3d47519fd11eb",
-    "apply_manual_route.py": "fd3aba5a22a8b2183f6863c6057941f5560cdec650a0e798e98865cde6502dec",
-    "validate_drc.py": "324f0f42fcd10d0ac3688447745a7f1fb0dab1614a18f29ce4f0459b79a39c1e",
-    "routing/mc1.ses": "36ef35051a32ab915c358efd0609968929afb8705fb268f9977d38d0f485cdcd",
-    "manual-route.json": "fc4e2118d8a37ce79c121a45db32c8838cba6851b23db9be983f9c8f52ae4b69"
+    "generate.py": "e4186d2de0fbf4c5fdcb9db0bb3dbe85a4e02897aee33ea0c2caa6385f474253",
+    "finalize.py": "2b7bb508fc913b87d6ea5f55b5cd3ab3a556c706989e27ad10a630d1a162fa52",
+    "apply_manual_route.py": "5b13732c14c977beecf7659f08e3183873fdb14b38c8bd5a410d56e7b6857aa3",
+    "validate_drc.py": "767958b92d6b95523fb38d78de1e6b5a1455db5ce0d2b99517527e4c52b15310",
+    "routing/mc1.ses": "ca2557d70c603d6ff06a0fa98f1e2e8b5d126f29f1ab5ac488de6610b20ffc09",
+    "manual-route.json": "fb98b625c1d92200f65a58a0f62d1604a01c33b67df860de2f54edd2ee38d160"
   }
 }

@@ -17,8 +17,9 @@ Start with the [English assembly guide](docs/module-carrier.md), the
 
 ## One board to assemble
 
-The carrier is **51 mm horizontal × 75 mm vertical, with two copper layers**:
-21.5% less area than the preceding 65 × 75 mm single-sided carrier. It uses a factory-header
+The carrier has a **57 × 75 mm overall envelope, with two copper layers**:
+a 51 × 75 mm body plus a small fourth-support ear beside Ethernet. Actual area is
+18.2% below the historical 65 × 75 mm single-sided carrier. It uses a factory-header
 **S3-Nano-M with 16 MB flash and 8 MB PSRAM**, shared Ethernet/CC1101 SPI and the
 same dedicated Thread and Zigbee radios. Initial programming is done before soldering;
 USB cable corridors are removed, while physical connector bodies remain accounted for.

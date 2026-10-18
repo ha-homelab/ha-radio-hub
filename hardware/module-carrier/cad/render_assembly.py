@@ -17,9 +17,9 @@ def render(side):
    q.append((p['xy'][0]+x*math.cos(a)+y*math.sin(a),p['xy'][1]-x*math.sin(a)+y*math.cos(a)))
   return [min(v[0] for v in q),min(v[1] for v in q),max(v[0] for v in q),max(v[1] for v in q)]
  text(45,43,'MC1 Nano · '+('FRONT / room-facing' if side=='front' else 'BACK / ceiling-facing · mirrored physical view'),27)
- text(45,79,'51 × 75 mm · two copper layers · factory male pins directly soldered · no sockets',18,'#b4c7d9')
+ text(45,79,'51 × 75 mm body + mounting ear · 57 × 75 mm bounds · no sockets',18,'#b4c7d9')
  text(45,109,'ENGINEERING PROTOTYPE — physical Z clearance remains unmeasured',15,'#f0c38b')
- box([0,0,W,H],'#16484a','#93b5b8')
+ points=' '.join(f'{xy(x,y)[0]},{xy(x,y)[1]}' for x,y in D['board']['outline_mm']);out.append(f'<polygon points="{points}" fill="#16484a" stroke="#93b5b8"/>')
  for b in D['mechanics']['rf_copper_keepouts_mm']:box(b,'#704735','#f4b073')
  for b in D['mechanics']['rf_pour_only_keepouts_mm']:box(b,'#926644','#f4b073',True)
  # Dashed reverse-side bodies explain occupied volume without pretending they are mounted here.
@@ -51,10 +51,10 @@ def render(side):
    b=[min(q['x'] for q in pads)-1.27,min(q['y'] for q in pads)-1.27,max(q['x'] for q in pads)+1.27,max(q['y'] for q in pads)+1.27];box(b,'#273548','#a4bac4');xx,yy=xy(p['xy'][0],p['xy'][1]);text(xx-10,yy+3,ref,10,anchor='end')
   elif not p['fitted']:text(*xy(p['xy'][0],p['xy'][1]-2),ref+' pads',10)
   else:
-   a,b=pads;xx,yy=xy((a['x']+b['x'])/2,(a['y']+b['y'])/2);x1,y1=xy(a['x'],a['y']);x2,y2=xy(b['x'],b['y']);bw,bh=(16,35) if abs(a['x']-b['x'])<.01 else (35,16)
-   out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#d0d7dc" stroke-width="3"/><rect x="{xx-bw/2}" y="{yy-bh/2}" width="{bw}" height="{bh}" rx="2" fill="'+('#51565e' if ref.startswith('D') else '#c8ad75')+'" stroke="#e7ddd0"/>')
-   if ref.startswith('D'):out.append(f'<line x1="{xx-7}" y1="{yy-11}" x2="{xx+7}" y2="{yy-11}" stroke="#f5ebd4" stroke-width="3"/>')
-   text(xx,y1-11,ref,10,anchor='middle')
+   a,b=pads;xx,yy=xy((a['x']+b['x'])/2,(a['y']+b['y'])/2);x1,y1=xy(a['x'],a['y']);x2,y2=xy(b['x'],b['y']);angle=math.degrees(math.atan2(y2-y1,x2-x1))
+   out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#d0d7dc" stroke-width="3"/><g transform="rotate({angle} {xx} {yy})"><rect x="{xx-19}" y="{yy-8}" width="38" height="16" rx="2" fill="'+('#51565e' if ref.startswith('D') else '#c8ad75')+'" stroke="#e7ddd0"/>')
+   if ref.startswith('D'):out.append(f'<line x1="{xx-11}" y1="{yy-7}" x2="{xx-11}" y2="{yy+7}" stroke="#f5ebd4" stroke-width="3"/>')
+   out.append('</g>');text(xx,min(y1,y2)-11,ref,10,anchor='middle')
   for q in pads:
    x,y=xy(q['x'],q['y']);n=q['number'];out.append(f'<circle cx="{x}" cy="{y}" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="{x}" cy="{y}" r="2.4" fill="#12212c"/>')
    if ref in ('U1','U2','U3','U4'):
@@ -70,7 +70,7 @@ def render(side):
   a,b=[xy(*v) for v in r['face_global_mm']];out.append(f'<line x1="{a[0]}" y1="{a[1]}" x2="{b[0]}" y2="{b[1]}" stroke="#111b22" stroke-width="7"/>');cx=sum(v[0] for v in r['face_global_mm'])/2
   x1,y1=xy(cx,H+4);x2,y2=xy(cx,H+23);out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#71e5bc" stroke-width="4" marker-end="url(#arrow)"/>');text(*xy(cx,H+29),'RJ45 OUT · 2 mm',12,'#71e5bc','middle')
  text(565,170,'Assembly and clearance contract',24)
- notes=[('16 fitted parts / 18 positions','J8/J9 are unpopulated pads, not fitted headers.'),('Front: three controller modules','Nano, H2 and XIAO retain factory male pins.'),('Back: Ethernet and all harness headers','WIZ850io, J1–J7 and all five axial parts.'),('Two-sided drawing convention','Back is mirrored; actual pad identities preserved.'),('43 intentional PTH/body projections','33 under H2; 10 under Nano. Raw DRC retained.'),('No measured Z approval yet','Gap − underside protrusion − tail/fillet ≥ 1 mm.'),('Tail/fillet target ≤ 1 mm, conditional','Do not compromise acceptable solder joints.'),('Seat factory pin spacers normally','Measure actual gap; no floating unsupported boards.'),('Assembly order is acyclic','Rear headers/axials → front modules → rear WIZ.'),('Blue outlines: retained USB sockets','No postassembly USB cable space is reserved.'),('Orange: prototype RF provisions','Keep rear parts, wires and ceiling metal clear.'),('Ceiling separation is measurement-based','Tallest rear part/plug/bend plus 5 mm allowance.')]
+ notes=[('16 fitted parts / 18 positions','J8/J9 are unpopulated pads, not fitted headers.'),('Front: three controller modules','Nano, H2 and XIAO retain factory male pins.'),('Back: Ethernet and all harness headers','WIZ850io, J1–J7 and all five axial parts.'),('Two-sided drawing convention','Back is mirrored; actual pad identities preserved.'),('41 intentional PTH/body projections','33 under H2; 6 under Nano; 2 under XIAO.'),('No measured Z approval yet','Gap − underside protrusion − tail/fillet ≥ 1 mm.'),('Tail/fillet target ≤ 1 mm, conditional','Do not compromise acceptable solder joints.'),('Seat factory pin spacers normally','Measure actual gap; no floating unsupported boards.'),('Assembly order is acyclic','Rear headers/axials → front modules → rear WIZ.'),('Blue outlines: retained USB sockets','No postassembly USB cable space is reserved.'),('Orange: prototype RF provisions','Keep rear parts, wires and ceiling metal clear.'),('Lower supports straddle the jack','5 mm behind mouth; enclosure cradle still needed.')]
  for i,(title,desc) in enumerate(notes):
   y=209+i*61;text(565,y,title,16);text(565,y+23,desc,13,'#abc2d3')
  text(45,1040,'Prototype only: verify actual module gaps, trimmed solder joints, enclosure load support and RF coexistence.',14,'#f0c38b')

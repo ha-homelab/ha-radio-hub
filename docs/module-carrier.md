@@ -12,7 +12,8 @@ coexistence still need testing on the assembled carrier.
 
 ## Construction
 
-The carrier is **51 mm horizontal × 75 mm vertical, with two copper layers**.
+The carrier has a **51 × 75 mm main body and a 6 × 27 mm right mounting ear**.
+Its overall envelope is **57 mm horizontal × 75 mm vertical**, with two copper layers.
 **Front / room-facing:** S3, H2 and MG24. **Back / ceiling-facing:** WIZ850io
 and all seven male harness headers, three axial diodes and two resistors. Factory male module pins enter plated holes
 and are soldered from the opposite face. There are **no female module sockets**.
@@ -41,8 +42,8 @@ The selected parts are:
 
 ## Compact placement and fabrication cost
 
-PCB area changes from **48.75 cm² to 38.25 cm²**, a **21.5% reduction** from the
-65 × 75 mm single-sided arrangement. It is 76.1% smaller than the original
+Actual PCB area is **39.87 cm²**, an **18.2% reduction** from the historical
+65 × 75 mm single-sided arrangement. It is 75.1% smaller than the original
 160 × 100 mm carrier. The fitted BOM remains sixteen items; no new electronics,
 female module sockets or intermediate boards are added.
 
@@ -65,8 +66,10 @@ part of the checks.** USB cable insertion space remains intentionally absent.
 
 ## Reading the stacked-board checks
 
-The unmodified KiCad DRC report contains **43 `pth_inside_courtyard` findings**:
-33 rear header pads beneath H2 and ten rear resistor/diode pads beneath S3.
+The unmodified KiCad DRC report contains **41 `pth_inside_courtyard` findings**:
+33 rear header pads beneath H2, six rear axial pads beneath S3, and two D3 pads
+beneath XIAO. D2 is outside the controller bodies. The new D3/XIAO overlap needs
+its own underside-component and trimmed-tail measurement.
 These are intentional XY projections beneath raised modules, but their physical
 height clearance is **not** established by a 2D drawing. They are retained in the
 raw report rather than hidden by smaller courtyards or a global suppression.
@@ -165,7 +168,7 @@ is retained because that cable is required in normal operation. Support the boar
 against insertion loads. Harness assumptions use narrow mating housings and
 vertical wire exits; check the purchased plugs and their bend height.
 
-The dimensions describe the PCB, not a 51 × 75 mm enclosure. Antenna overhang,
+The dimensions describe the PCB, not a 57 × 75 mm enclosure. Antenna overhang,
 RJ45, wires, solder joints and external modules require additional space. Use the
 [front assembly](../hardware/module-carrier/cad/assembly-top.svg),
 [back assembly](../hardware/module-carrier/cad/assembly-bottom.svg),
@@ -203,6 +206,52 @@ maintenance requires confirmed durable guard storage. See the
 The 16 MB Nano factory partition layout differs from the historical 8 MB image.
 Export datasets before first installation or partition migration. Application-only
 OTA normally retains the installed partition table; it does not migrate old NVS.
+
+## Free-angle component placement and routed measurements
+
+D1 uses 250° and R1 uses 10° in native CAD coordinates; D2, D3 and R2 use 0°, 180°
+and 90°. Useful orientation follows connectivity and physical clearance rather
+than a requirement to align every component horizontally or vertically. The
+back-side assembly drawing mirrors these orientations as actually viewed.
+
+Measured native track centerline length changes from **1,942.52 to 1,748.96 mm
+(−9.96%)**, with **35 → 19 vias**. The H2 branch after D2 changes from 80.85 to
+17.82 mm and the XIAO branch after D3 from 69.70 to 5.15 mm. These are named-net
+lengths, not complete incoming-supply loops. Shared 5 V and 3.3 V networks become
+longer, as do the SPI MOSI/MISO/SCK networks by approximately 6.06/11.78/6.05 mm.
+No claim is made that every path improves or that the result is globally optimal.
+All original trace-width and clearance rules remain in force.
+
+See the [full native measurements](../hardware/module-carrier/cad/routing-metrics.json)
+and [comparison](../hardware/module-carrier/routing-comparison.svg). Totals exclude
+filled pours, plated barrels, module internals and external harnesses. A shorter
+route does not replace loaded-voltage, return-path or signal-integrity validation.
+
+## Ethernet insertion load and mounting
+
+The earlier three-point arrangement put the nearest support approximately 24.5 mm
+from the RJ45 mouth center, with every support to its left. The current lower pair
+straddles the connector: **H3 (24.2, 72) and H4 (54, 72) mm**. Their support line is
+**5 mm behind the mouth at y = 77 mm**. H1 and H2 remain at (29.5, 8) and (29.5, 44).
+The small right mounting ear provides an accessible fourth hole; no screw is
+hidden under WIZ850io. Use all four supports. Moving XIAO upward by 1 mm creates
+clearance at H3 without removing its USB shell or antenna exclusions.
+
+The ear adds **162 mm², or 4.24%**, to the previous 51 × 75 mm board. Its rectangular
+fabrication envelope grows by 11.76%, from 3,825 to 4,275 mm². Actual pricing may
+follow that envelope or panel utilization rather than net laminate area. An extra
+support is an intentional mechanical improvement, not a claim of a lower quote.
+
+These dimensions improve the geometric support arrangement; they are not a
+measured stiffness or insertion-force rating. The PCB supports also do not bypass
+the WIZ module's soldered pin joints. For repeated connector use, provide a fitted
+insulating enclosure cradle/end-stop around the jack body and nearby cable strain
+relief. Establish its contacts from the actual WIZ module; do not clamp its small
+components or block the latch. The ceiling fasteners must secure into suitable
+structure rather than relying on the finish plaster alone.
+
+See the [mounting comparison](../hardware/module-carrier/studies/mounting-routing/mounting.svg)
+and [routing review](../hardware/module-carrier/studies/mounting-routing/review.md).
 
 ## Two-sided assembly and clearance
 

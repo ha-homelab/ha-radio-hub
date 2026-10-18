@@ -1,7 +1,7 @@
 {
   "result": "pass_with_conditional_mechanical_findings",
-  "native_drc_violations": 43,
-  "classified_mechanical_overlaps": 43,
+  "native_drc_violations": 41,
+  "classified_mechanical_overlaps": 41,
   "unclassified_violations": 0,
   "unconnected_items": 0,
   "schematic_parity_issues": 0,
@@ -14,8 +14,8 @@
       "pad_number": "1",
       "front_body_ref": "U1",
       "position_mm": [
-        38.0,
-        17.0
+        45.0,
+        16.0
       ]
     },
     {
@@ -23,44 +23,26 @@
       "pad_number": "2",
       "front_body_ref": "U1",
       "position_mm": [
-        38.0,
-        24.62
-      ]
-    },
-    {
-      "pad_ref": "D2",
-      "pad_number": "1",
-      "front_body_ref": "U1",
-      "position_mm": [
-        41.6,
-        17.0
-      ]
-    },
-    {
-      "pad_ref": "D2",
-      "pad_number": "2",
-      "front_body_ref": "U1",
-      "position_mm": [
-        41.6,
-        24.62
+        42.3938,
+        23.1605
       ]
     },
     {
       "pad_ref": "D3",
       "pad_number": "1",
-      "front_body_ref": "U1",
+      "front_body_ref": "U3",
       "position_mm": [
-        45.2,
-        17.0
+        17.0,
+        67.0
       ]
     },
     {
       "pad_ref": "D3",
       "pad_number": "2",
-      "front_body_ref": "U1",
+      "front_body_ref": "U3",
       "position_mm": [
-        45.2,
-        24.62
+        9.38,
+        67.0
       ]
     },
     {
@@ -365,8 +347,8 @@
       "pad_number": "1",
       "front_body_ref": "U1",
       "position_mm": [
-        38.0,
-        31.0
+        38.5,
+        30.0
       ]
     },
     {
@@ -374,8 +356,8 @@
       "pad_number": "2",
       "front_body_ref": "U1",
       "position_mm": [
-        38.0,
-        38.62
+        46.0042,
+        28.6768
       ]
     },
     {
@@ -383,8 +365,8 @@
       "pad_number": "1",
       "front_body_ref": "U1",
       "position_mm": [
-        43.0,
-        31.0
+        38.0,
+        23.5
       ]
     },
     {
@@ -392,8 +374,8 @@
       "pad_number": "2",
       "front_body_ref": "U1",
       "position_mm": [
-        43.0,
-        38.62
+        38.0,
+        15.88
       ]
     }
   ],

@@ -69,11 +69,18 @@ def assembly(current=None):
     return s+'</g></svg>'
 
 
+def board_outline(board):
+    return board.get('outline_mm') or [[0,0],[board['width_mm'],0],[board['width_mm'],board['height_mm']],[0,board['height_mm']]]
+
+def board_area(board):
+    points=board_outline(board)
+    return abs(sum(a[0]*b[1]-b[0]*a[1] for a,b in zip(points,points[1:]+points[:1])))/2
+
 def layout_comparison(current):
     """Equal-scale, side-aware bodies and pad groups from native CAD ledgers."""
     previous=json.loads((HERE/'layout-single-sided.json').read_text())
     old=previous['board']; new=current['board']
-    old_area=old['width_mm']*old['height_mm']; new_area=new['width_mm']*new['height_mm']
+    old_area=board_area(old); new_area=board_area(new)
     reduction=100*(1-new_area/old_area)
     names={'U1':'S3','U2':'H2','U3':'MG24','U4':'Ethernet'}
     colors={'U1':'#c2dded','U2':'#bbded0','U3':'#e9d9b1','U4':'#c6ced9'}
@@ -98,16 +105,29 @@ def layout_comparison(current):
         b=design['board']; w=b['width_mm']; height=b['height_mm']
         s+=text(ox,125,label,23,weight=700)
         s+=text(ox,156,f'{w:g} mm horizontal × {height:g} mm vertical',17)
-        s+=f'<rect x="{ox}" y="{oy}" width="{w*scale}" height="{height*scale}" fill="#edf2f2" stroke="#688493" stroke-width="2"/>'
+        outline=[(w-x if side=='back' else x,y) for x,y in board_outline(b)]
+        polygon=' '.join(f'{ox+x*scale:.2f},{oy+y*scale:.2f}' for x,y in outline)
+        s+=f'<polygon points="{polygon}" fill="#edf2f2" stroke="#688493" stroke-width="2"/>'
         for p in design['parts']:
             if side_of(p)!=side: continue
             ref=p['ref']; x1,y1,x2,y2=bounds_of(p)
+            if ref.startswith(('D','R')):
+                pads=sorted(p['pad_centers_mm'],key=lambda q:q['number'])
+                a,z=[(w-q['x'] if side=='back' else q['x'],q['y']) for q in pads]
+                ax,ay=ox+a[0]*scale,oy+a[1]*scale; zx,zy=ox+z[0]*scale,oy+z[1]*scale
+                s+=f'<line x1="{ax}" y1="{ay}" x2="{zx}" y2="{zy}" stroke="#8c8b78" stroke-width="2"/>'
+                f=.18
+                s+=f'<line x1="{ax+(zx-ax)*f}" y1="{ay+(zy-ay)*f}" x2="{zx-(zx-ax)*f}" y2="{zy-(zy-ay)*f}" stroke="#bd9c69" stroke-width="{2.5*scale}"/>'
+                continue
             if side=='back': x1,x2=w-x2,w-x1
             fitted=p.get('fitted',True)
             color=colors.get(ref,'#34766b' if ref.startswith('J') else '#bd9c69') if fitted else '#fff'
             s+=f'<rect x="{ox+x1*scale:.2f}" y="{oy+y1*scale:.2f}" width="{(x2-x1)*scale:.2f}" height="{(y2-y1)*scale:.2f}" rx="1" fill="{color}" stroke="#597688"/>'
             if ref in names:
                 s+=f'<text x="{ox+(x1+x2)*scale/2:.2f}" y="{oy+(y1+y2)*scale/2:.2f}" text-anchor="middle" font-size="13" fill="#193748">{names[ref]}</text>'
+        for x,y in design['mechanics'].get('mounting_holes_mm',[]):
+            if side=='back': x=w-x
+            s+=f'<circle cx="{ox+x*scale}" cy="{oy+y*scale}" r="{1.35*scale}" fill="white" stroke="#526779" stroke-width="1.3"/>'
         # Show the RJ45 aperture only on the side carrying WIZ850io.
         wiz=next(p for p in design['parts'] if p['ref']=='U4')
         if side_of(wiz)==side:
@@ -121,6 +141,27 @@ def layout_comparison(current):
     s+=text(32,599,'Views use the same scale. The ceiling-side view is mirrored, as seen when turning the board over.',19)
     s+=text(32,638,'Area saving is not a price quote. Header tails, assembly access, RF clearance and installed height remain separate checks.',17)
     return s+'</g></svg>'
+
+
+def routing_comparison(metrics):
+    old,new=metrics['baseline'],metrics['current']
+    selected=[('/+5V_H2','H2 supply after D2'),('/+5V_ZB','Zigbee supply after D3'),('/+5V_S3','S3 supply after D1'),('/+5V','Shared 5 V network'),('/+3V3','Peripheral 3.3 V network'),('/RF_CS','RF chip-select network'),('/SPI_MOSI','SPI MOSI network'),('/SPI_MISO','SPI MISO network'),('/SPI_SCK','SPI clock network')]
+    out='<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1010" viewBox="0 0 1280 1010" role="img" aria-label="Measured routed copper before and after the mounting and placement revision"><rect width="1280" height="1010" fill="white"/><g font-family="Arial,sans-serif">'
+    out+=text(32,43,'Measure the routed result, not the angle alone',30,weight=700)
+    out+=text(32,82,f"All explicit tracks: {old['total_track_length_mm']:.1f} → {new['total_track_length_mm']:.1f} mm  |  Vias: {old['total_vias']} → {new['total_vias']}",23)
+    out+=text(32,118,'Same pin map and width rules; mounting, component placement and routing revised together.',18)
+    out+='<rect x="32" y="141" width="20" height="12" fill="#a6b5c2"/><rect x="245" y="141" width="20" height="12" fill="#257c78"/>'
+    out+=text(62,154,'Previous 51 × 75',16)+text(275,154,'Current; amber = longer net',16)
+    scale=4.2
+    for i,(net,label) in enumerate(selected):
+        y=207+i*76;a=old['per_net'][net]['track_length_mm'];b=new['per_net'][net]['track_length_mm'];color='#ab671f' if b>a else '#257c78'
+        out+=text(32,y+16,label,18)
+        out+=f'<rect x="310" y="{y}" width="{a*scale}" height="12" rx="2" fill="#a6b5c2"/><rect x="310" y="{y+19}" width="{b*scale}" height="12" rx="2" fill="{color}"/>'
+        out+=text(956,y+15,f'{a:.2f} → {b:.2f} mm',18)+text(956,y+38,f'{b-a:+.2f} mm',15,color)
+    out+=text(32,918,'Totals include every branch in each named net. They are not single source-to-load distances.',18)
+    out+=text(32,948,'Copper pours, module internals, through-hole barrels and external harnesses are excluded.',18)
+    out+=text(32,978,'Shorter total routing is not proof of signal integrity or a global optimum. Full per-net data are linked in the guide.',17)
+    return out+'</g></svg>'
 
 
 def recovery_diagram():
@@ -197,15 +238,24 @@ def produce():
     b=current['board']
     dimensions=f"{b['width_mm']:g} × {b['height_mm']:g} mm"
     baseline=json.loads((HERE/'layout-baseline.json').read_text())['board']
-    area_reduction=100*(1-b['width_mm']*b['height_mm']/(baseline['width_mm']*baseline['height_mm']))
+    area_reduction=100*(1-board_area(b)/board_area(baseline))
     prior=json.loads((HERE/'layout-single-sided.json').read_text())['board']
-    previous_reduction=100*(1-b['width_mm']*b['height_mm']/(prior['width_mm']*prior['height_mm']))
+    previous_reduction=100*(1-board_area(b)/board_area(prior))
     rj45=current['mechanics']['rj45']
     direction=rj45['opening_direction'].split(' / ')[0]
     mouth=max(rj45.get('mouth_beyond_'+side+'_edge_mm',0) for side in ('left','right','top','bottom'))
     edge_access=f'RJ45 faces outward at the {direction} edge; its mouth projects {mouth:g} mm beyond the carrier.'
-    compact=f'<p>The carrier is <strong>{dimensions}</strong>, with <strong>{previous_reduction:.1f}% less PCB area</strong> than the preceding 65 × 75 mm single-sided carrier and {area_reduction:.1f}% less than the original 160 × 100 mm outline. S3, H2 and MG24 face the room. WIZ850io, all seven male harness headers, three diodes and two resistors face the ceiling. This permits selected opposite-side overlap; plated holes, solder tails, underside parts and antenna exclusions still require clearance. USB cable corridors remain absent. Program and verify each controller before soldering. Later updates use the network paths described below.</p><figure><a href="layout-comparison.svg"><img src="layout-comparison.svg" alt="Previous and compact MC1 placement at the same scale"></a><figcaption>Historical versus current placement at the same scale. <a href="layout-comparison.svg">Open comparison</a>. PCB area excludes external finished modules, cables and enclosure.</figcaption></figure>'
+    compact=f'<p>The carrier fits within <strong>{dimensions}</strong>, with <strong>{previous_reduction:.1f}% less PCB area</strong> than the historical 65 × 75 mm single-sided carrier and {area_reduction:.1f}% less than the original 160 × 100 mm outline. S3, H2 and MG24 face the room. WIZ850io, all seven male harness headers, three diodes and two resistors face the ceiling. This permits selected opposite-side overlap; plated holes, solder tails, underside parts and antenna exclusions still require clearance. USB cable corridors remain absent. Program and verify each controller before soldering. Later updates use the network paths described below.</p><figure><a href="layout-comparison.svg"><img src="layout-comparison.svg" alt="Previous and compact MC1 placement at the same scale"></a><figcaption>Historical versus current placement at the same scale. <a href="layout-comparison.svg">Open comparison</a>. Area uses the actual PCB outline, including the mounting ear; finished modules, cables and enclosure are separate.</figcaption></figure>'
     compact+='<p>Both dimensions stay within the 100 × 100 mm size ceiling used by advertised low-cost prototype offers. Component placement now uses both sides of the same two-layer PCB. Two-sided manual soldering needs an explicit assembly order; it does not require four copper layers. A smaller outline does not imply a proportional reduction in the delivered fabrication price. <a href="../../docs/module-carrier.md#compact-placement-and-fabrication-cost">Cost rationale and source offers</a>; shipping and final fabrication specifications need their own quote.</p>'
+    metrics_path=HERE/'cad/routing-metrics.json'
+    metrics=json.loads(metrics_path.read_text()) if metrics_path.exists() else None
+    mounting=''
+    if metrics:
+        a=metrics['baseline']; z=metrics['current']
+        mounting='<h3 id="mounting">Support the Ethernet end</h3><p>The 51 × 75 mm main body now has a 6 × 27 mm right ear for a fourth mounting point. H3 and H4 straddle RJ45 on a line 5 mm behind its mouth. Actual laminate area grows 4.24% from the previous two-sided board; the 57 × 75 mm bounding rectangle grows 11.76%. This is an intentional support improvement, not a lower-price claim.</p><figure><a href="studies/mounting-routing/mounting.svg"><img src="studies/mounting-routing/mounting.svg" alt="Old and new mounting points around Ethernet"></a><figcaption>Plan geometry only, not a measured bending or force rating. Use all four supports. An enclosure cradle and cable restraint must separately keep repeated mating loads off the WIZ header joints.</figcaption></figure>'
+        mounting+='<h3>Placement and routed length</h3><p>D1 is placed at 250° and R1 at 10° in native CAD coordinates. D2 and D3 move closer to their loads; the other parts retain useful cardinal orientations. Existing holes, polarity, track-width rules and firmware connections are preserved. The new D3 position also requires the documented underside-clearance check beneath XIAO.</p>'
+        mounting+='<figure><a href="routing-comparison.svg"><img src="routing-comparison.svg" alt="Per-net routed copper lengths before and after"></a><figcaption>Actual routed segment lengths. Some SPI and shared supply nets became longer; the overall reduction does not imply every path improved.</figcaption></figure><p><a href="cad/routing-metrics.json">All per-net measurements</a> · <a href="studies/mounting-routing/review.md">Routing and mounting review</a></p>'
+    drc_count=json.loads((HERE/'cad/verification.json').read_text())['checks']['drc_violations']
     page='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MC1 — one module carrier</title><style>
 :root{--ink:#193748;--muted:#5b7180;--accent:#27698e;--line:#c7d6df;--paper:#fff;--soft:#eef4f7}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf2f5;color:var(--ink);font:16px/1.6 system-ui,sans-serif}main{max-width:1260px;margin:auto;background:var(--paper);padding:36px}nav{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}a{color:var(--accent)}h1{font-size:42px;line-height:1.14;max-width:900px;margin:26px 0 18px}h2{font-size:27px;line-height:1.2;margin:40px 0 18px}h3{font-size:19px}p{max-width:1000px}.lead{font-size:20px}.eyebrow{letter-spacing:.12em;font-size:13px;font-weight:650;color:var(--muted)}.notice{padding:18px 24px;border-left:4px solid var(--accent);background:var(--soft)}.muted,figcaption{color:var(--muted)}.facts{display:flex;gap:36px;flex-wrap:wrap;padding:22px 0;border-bottom:1px solid var(--line)}.facts b{display:block;font-size:25px}.facts span{font-size:14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}figure{margin:24px 0}img{display:block;max-width:100%;height:auto}figcaption{font-size:14px;margin-top:10px}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{font-weight:650}thead{background:var(--soft)}input,button{font:inherit;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:white;color:var(--ink)}input{max-width:100%;width:480px}li{margin-bottom:10px}.sources{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}code{font-size:.9em;background:#eef2f4;padding:2px 5px}details{margin-top:22px}summary{cursor:pointer;font-weight:650}@media(max-width:700px){main{padding:20px}h1{font-size:31px}.two{display:block}.facts{gap:22px}td,th{padding:8px}nav{gap:14px}}@media print{body{background:white}main{padding:0}nav,input,button{display:none}figure{break-inside:avoid}h2{break-after:avoid}}
 </style></head><body><main>
@@ -216,22 +266,24 @@ def produce():
 <div class="facts"><div><b>__DIMENSIONS__</b><span>two-layer custom PCB</span></div><div><b>0</b><span>female module sockets</span></div><div><b>3</b><span>dedicated radio/host controllers</span></div><div><b>7</b><span>retained function groups</span></div></div>
 <h2 id="board">The selected architecture</h2><figure><img src="architecture.svg" alt="MC1 module architecture"><figcaption>Logical topology. The CAD defines physical placement; this diagram does not claim routing lengths.</figcaption></figure>
 <p>The former C0/M0, I0 and D0 paths are historical references. The all-H2 experiment was not selected because its local border-router implementation and Zigbee integration/backup behavior did not meet the compatibility priority.</p>
-<h2 id="pcb">The compact PCB</h2>__COMPACT__<p><strong>__EDGE_ACCESS__</strong> The Ethernet module is on the ceiling-facing side. Keep its plug and latch corridor clear. The electrical pin map and matching firmware are unchanged from the 65 × 75 mm revision.</p>__BOARDVIEW__<div class="two">__NATIVE__</div><p><a href="cad/board-top.svg">Top copper and silk</a> · <a href="cad/board-bottom.svg">Bottom copper and silk</a> · <a href="cad/mc1.kicad_pcb">Native two-layer PCB</a></p>__CONCEPT__
+<h2 id="pcb">The compact PCB</h2>__COMPACT__<p><strong>__EDGE_ACCESS__</strong> The Ethernet module is on the ceiling-facing side. Keep its plug and latch corridor clear. The electrical pin map and matching firmware are unchanged from the 65 × 75 mm revision.</p>__MOUNTING____BOARDVIEW__<div class="two">__NATIVE__</div><p><a href="cad/board-top.svg">Top copper and silk</a> · <a href="cad/board-bottom.svg">Bottom copper and silk</a> · <a href="cad/mc1.kicad_pcb">Native two-layer PCB</a></p>__CONCEPT__
 <h2>What changed after the SMLIGHT review</h2><p>The host and two independent radios remain. W5500 and CC1101 share one SPI bus with separate chip selects, freeing three host pins. No extra processor, GPIO expander or internal Ethernet hop is introduced. The smaller Nano retains 16 MB flash and 8 MB PSRAM. <a href="studies/slzb-thread/index.html">Source review</a> · <a href="studies/compact-s3/index.html">Host selection history</a>.</p><figure><img src="thread-recovery.svg" alt="Bounded Thread recovery with persistent quarantine"><figcaption>Recovery policy; source and model tests do not establish hardware fault-injection results. <a href="../../firmware/module-carrier/thread-recovery.md">Firmware controls and acceptance</a>.</figcaption></figure><h2>Function and compatibility contract</h2><p>These are the functions retained in the design. The last column names the hardware acceptance still required; a retained protocol is not a completed bench test.</p><div class="scroll"><table><thead><tr><th>Function</th><th>Implementation</th><th>Retained interface</th><th>Bench acceptance</th></tr></thead><tbody>__FUNCTIONS__</tbody></table></div>
 <h2 id="updates">Programming without USB service gaps</h2><p>Initial programming is performed before the modules are soldered. Subsequent S3 updates use ESPHome OTA; H2 updates pass through the S3 to its ROM UART; MG24 application updates use its existing Ember bootloader and serial bridge. See the <a href="../../firmware/module-carrier/README.md">firmware instructions and tested limits</a>.</p><div class="notice"><strong>Required H2 preparation:</strong> on the specified DevKitM-1 v1.3, remove R7 (470 Ω) before assembly to isolate the USB-UART transmitter. The carrier now uses H2 RX23 / TX24. Verify the actual board revision and load the matching RCP image; the former RX4 / TX5 image is incompatible.</div><figure><a href="network-updates.svg"><img src="network-updates.svg" alt="Preassembly programming and later network update paths"></a><figcaption>Three update paths; no permanent USB cable corridor. <a href="network-updates.svg">Open full size</a>.</figcaption></figure>
 <h2 id="wiring">Actual net endpoints</h2><p>Generated from the current MC1 CAD design source. <strong>References identify carrier pads, not arbitrary clone pin numbers.</strong> Module connector labels and physical orientation must match the CAD.</p><label for="net-search">Find a net or endpoint</label><br><input id="net-search" type="search" placeholder="Example: THREAD, U2, ZB_CTS"><p id="net-count" class="muted"></p><div class="scroll"><table><thead><tr><th>Net</th><th>Carrier endpoints</th></tr></thead><tbody id="nets">__NETS__</tbody></table></div>
 <h2 id="assembly">Two-sided direct solder mounting</h2><p>Follow the <a href="studies/two-sided/assembly-review.md">assembly and height review</a> and the exact native CAD order. Stock header height is not assumed to make opposing pins safe: measure the assembled gap and trim only while preserving sound through-hole solder joints.</p><figure><img src="direct-solder.svg" alt="Two-sided module mounting with controlled tail and underside clearance"><figcaption>Male module pins solder directly into the carrier. Check the actual spacer, trimmed solder tails and opposite-side components before assembly; no female module socket is used.</figcaption></figure><ol>__STEPS__</ol>
 <div class="notice"><strong>Power and assembly:</strong> separate the controller supply paths from the peripheral 3.3 V rail. Do not parallel regulator outputs. Carrier diode drops require loaded-rail checks. Nano receives the diode-isolated 5 V branch at VIN; VBUS and local 3V3 remain isolated. This is below its documented external VIN range and needs a loaded-rail test. Complete individual USB programming and checks before soldering; the assembled layout reserves no USB insertion space.</div>
 <h3>What is removed from manual assembly</h3><figure><img src="assembly-counts.svg" alt="BOM comparison of capacitors and resistors placed by the builder"><figcaption>Counts refer only to separately placed resistors and capacitors, not every component or solder joint in the completed hub.</figcaption></figure><details><summary>Carrier parts and module references</summary><div class="scroll"><table><thead><tr><th>Reference</th><th>Part</th><th>Assembly notes</th></tr></thead><tbody>__PARTS__</tbody></table></div></details>
-<h2 id="evidence">What has actually been checked</h2><p>The raw PCB report retains 43 intentional rear-pad/front-module courtyard overlaps. A separate exact classifier checks their identities, sides and positions and rejects every other violation. This is not a zero-DRC claim: clearance in height remains a physical measurement requirement.</p><div class="scroll"><table><thead><tr><th>Check</th><th>Result</th><th>Scope / limitation</th></tr></thead><tbody>__CHECKS__</tbody></table></div>
+<h2 id="evidence">What has actually been checked</h2><p>The raw PCB report retains __DRC_COUNT__ intentional rear-pad/front-module courtyard overlaps. A separate exact classifier checks their identities, sides and positions and rejects every other violation. This is not a zero-DRC claim: clearance in height remains a physical measurement requirement.</p><div class="scroll"><table><thead><tr><th>Check</th><th>Result</th><th>Scope / limitation</th></tr></thead><tbody>__CHECKS__</tbody></table></div>
 <p><a href="verification-summary.json">Machine-readable verification summary</a> · <a href="../../firmware/module-carrier/README.md">Firmware evidence and build instructions</a> · <a href="cad/">Native CAD and reports</a> · <a href="images/README.md">Image provenance</a></p>
 <h3>Still requires the real assembly</h3><ul>__GATES__</ul><p>One current layout reduces the choice and assembly burden. Board-specific firmware configuration and UART-transport hardening remain real work; no claim of zero software changes or guaranteed lower power is made.</p>
 <h2>Manufacturer and implementation sources</h2><div class="sources">__SOURCES__</div><p class="muted">The current MC1 documentation is in English. Old hardware images retain their original identity and provenance in the historical archive.</p>
 <script>const input=document.getElementById('net-search');const rows=Array.from(document.querySelectorAll('#nets tr'));function filter(){const q=input.value.trim().toLowerCase();let n=0;for(const row of rows){const visible=row.textContent.toLowerCase().includes(q);row.hidden=!visible;if(visible)n++;}document.getElementById('net-count').textContent=n+' of '+rows.length+' nets shown';}input.addEventListener('input',filter);filter();</script>
 </main></body></html>'''
-    for name,value in dict(DIMENSIONS=dimensions,EDGE_ACCESS=edge_access,COMPACT=compact,BOARDVIEW=boardview,NATIVE=native,CONCEPT=concept,PHOTO_LINK=photo_link,FUNCTIONS=functions,NETS=rows,STEPS=steps,PARTS=partrows,CHECKS=checks,GATES=gates,SOURCES=sources).items(): page=page.replace('__'+name+'__',value)
+    for name,value in dict(DIMENSIONS=dimensions,DRC_COUNT=str(drc_count),MOUNTING=mounting,EDGE_ACCESS=edge_access,COMPACT=compact,BOARDVIEW=boardview,NATIVE=native,CONCEPT=concept,PHOTO_LINK=photo_link,FUNCTIONS=functions,NETS=rows,STEPS=steps,PARTS=partrows,CHECKS=checks,GATES=gates,SOURCES=sources).items(): page=page.replace('__'+name+'__',value)
     wiring={'revision':'MC1','source':'cad/design.py','source_sha256':sha(HERE/'cad/design.py'),'nets':nets,'parts':parts}
-    return {'index.html':page,'architecture.svg':architecture(),'direct-solder.svg':assembly(current),'assembly-counts.svg':chart,'layout-comparison.svg':layout_comparison(current),'thread-recovery.svg':recovery_diagram(),'network-updates.svg':update_diagram(),'wiring.json':json.dumps(wiring,indent=2)+'\n'}
+    outputs={'index.html':page,'architecture.svg':architecture(),'direct-solder.svg':assembly(current),'assembly-counts.svg':chart,'layout-comparison.svg':layout_comparison(current),'thread-recovery.svg':recovery_diagram(),'network-updates.svg':update_diagram(),'wiring.json':json.dumps(wiring,indent=2)+'\n'}
+    if metrics: outputs['routing-comparison.svg']=routing_comparison(metrics)
+    return outputs
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--check',action='store_true');args=a.parse_args()

@@ -134,7 +134,7 @@ jobs:
               python3 -m unittest discover -s hardware/module-carrier/cad -p "test_*.py"
               kicad-cli sch erc --exit-code-violations --severity-all --format json --output /tmp/mc1-erc.json hardware/module-carrier/cad/mc1.kicad_sch
               # Keep the raw DRC report. The stacked MC1 prototype has exactly
-              # 43 reviewed rear-tail/front-courtyard overlaps; every other
+              # 41 reviewed rear-tail/front-courtyard overlaps; every other
               # finding still fails, and physical Z clearance remains untested.
               python3 hardware/module-carrier/cad/validate_drc.py --cli kicad-cli --report /tmp/mc1-drc.json --output /tmp/mc1-classification.json
             '

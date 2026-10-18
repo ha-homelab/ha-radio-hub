@@ -94,8 +94,13 @@ def read_board(path):
             for shape in children(fp, key):
                 if one(shape, "layer") != ["B.CrtYd" if one(fp, "layer") == ["B.Cu"] else "F.CrtYd"]:
                     continue
-                points = (one(shape, "pts") if key == "fp_poly" else
-                          [["xy", *one(shape, "start")], ["xy", *one(shape, "end")]])
+                if key == "fp_rect":
+                    x1, y1 = map(float, one(shape, "start"))
+                    x2, y2 = map(float, one(shape, "end"))
+                    points = [["xy", x, y] for x, y in ((x1,y1),(x2,y1),(x2,y2),(x1,y2))]
+                else:
+                    points = (one(shape, "pts") if key == "fp_poly" else
+                              [["xy", *one(shape, "start")], ["xy", *one(shape, "end")]])
                 courtyard.extend([list(map(float, p[1:])) for p in points if p[0] == "xy"])
         parts[ref] = {"name": fp[1], "layer": one(fp, "layer")[0],
                       "at": list(map(float, pos)), "pads": pads,
@@ -119,7 +124,40 @@ def board_bounds(path):
             max(p[0] for p in points), max(p[1] for p in points)]
 
 
-def audit_pad_containment(parts, bounds):
+def board_outline(path):
+    """Read one closed straight-sided native outline; reject unknown geometry."""
+    root = sexpr(path.read_text())
+    segments = []
+    for shape in root:
+        if not isinstance(shape, list) or not shape or not shape[0].startswith("gr_"):
+            continue
+        if one(shape, "layer") != ["Edge.Cuts"]:
+            continue
+        if shape[0] == "gr_line":
+            segments.append([tuple(map(float, one(shape, endpoint))) for endpoint in ("start", "end")])
+        elif shape[0] == "gr_rect":
+            x1,y1 = map(float, one(shape, "start")); x2,y2 = map(float, one(shape, "end"))
+            corners = [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]
+            segments.extend(zip(corners,corners[1:]+corners[:1]))
+        else:
+            raise ValueError("Unsupported native outline primitive " + shape[0])
+    if not segments:
+        raise ValueError("Missing native outline")
+    first = segments.pop(0)
+    polygon = [first[0], first[1]]
+    while segments:
+        matches = [(i, side) for i, ends in enumerate(segments) for side in (0,1)
+                   if math.dist(ends[side],polygon[-1]) < 1e-5]
+        if len(matches) != 1:
+            raise ValueError("Outline has disconnected or branched edges")
+        i, side = matches[0]
+        polygon.append(segments.pop(i)[1-side])
+    if math.dist(polygon[0],polygon[-1]) > 1e-5:
+        raise ValueError("Open native outline")
+    return polygon[:-1]
+
+
+def audit_pad_containment(parts, bounds, outline=None):
     errors = []
     for ref in PIN_SETS:
         fp = parts.get(ref)
@@ -136,31 +174,107 @@ def audit_pad_containment(parts, bounds):
             if min(gx-radius-bounds[0], gy-radius-bounds[1],
                    bounds[2]-gx-radius, bounds[3]-gy-radius) < -0.001:
                 errors.append(f"{ref}:{number} copper pad extends beyond board edge")
+            if outline is not None and (point_polygon_distance((gx,gy),outline) > 0.001 or
+                                         polygon_boundary_distance((gx,gy),outline) < radius-0.001):
+                errors.append(f"{ref}:{number} copper pad crosses actual native outline")
+    if outline is not None:
+        for ref, fp in parts.items():
+            if ref in PIN_SETS or not fp["pads"] or not all(p["kind"] == "np_thru_hole" for p in fp["pads"].values()):
+                continue
+            center = transform_points(fp, [(0,0)])[0]
+            if point_polygon_distance(center,outline) > 0.001 or polygon_boundary_distance(center,outline) < 2.5-0.001:
+                errors.append(f"5mm nylon support {ref} crosses actual native outline")
     return errors
 
 
 def audit_courtyards(parts):
-    boxes, errors = {}, []
+    polygons, errors = {}, []
     for ref, fp in parts.items():
-        points = fp["courtyard_local_points"]
-        if not points or fp["dnp"]:
+        if not fp["courtyard_local_points"] or fp["dnp"]:
             continue
-        x, y, *angles = fp["at"]
-        angle = math.radians(angles[0] if angles else 0)
-        transformed = [(x + px*math.cos(angle) + py*math.sin(angle),
-                        y - px*math.sin(angle) + py*math.cos(angle)) for px, py in points]
-        boxes[ref] = [min(p[0] for p in transformed), min(p[1] for p in transformed),
-                      max(p[0] for p in transformed), max(p[1] for p in transformed)]
-    for ref, a in boxes.items():
-        for ref2, b in boxes.items():
+        polygons[ref] = courtyard_polygon(fp)
+    for ref, a in polygons.items():
+        for ref2, b in polygons.items():
             if ref >= ref2:
                 continue
             if parts[ref]["layer"] != parts[ref2]["layer"]:
                 continue
-            if (min(a[2], b[2]) > max(a[0], b[0]) + 0.001 and
-                    min(a[3], b[3]) > max(a[1], b[1]) + 0.001):
+            if polygons_overlap(a, b):
                 errors.append(f"Native assembly courtyards overlap: {ref}/{ref2}")
     return errors
+
+
+def convex_hull(points):
+    """Convex envelope of native courtyard vertices, conservatively filling gaps."""
+    points = sorted(set(map(tuple, points)))
+    def cross(o, a, b):
+        return (a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0])
+    if len(points) < 3:
+        raise ValueError("Degenerate courtyard polygon")
+    lower, upper = [], []
+    for target, seq in ((lower, points), (upper, reversed(points))):
+        for p in seq:
+            while len(target) >= 2 and cross(target[-2], target[-1], p) <= 0:
+                target.pop()
+            target.append(p)
+    return lower[:-1] + upper[:-1]
+
+
+def transform_points(fp, points):
+    x, y, *angles = fp["at"]
+    angle = math.radians(angles[0] if angles else 0)
+    return [(x+px*math.cos(angle)+py*math.sin(angle),
+             y-px*math.sin(angle)+py*math.cos(angle)) for px, py in points]
+
+
+def courtyard_polygon(fp):
+    return convex_hull(transform_points(fp, fp["courtyard_local_points"]))
+
+
+def transformed_rectangle(fp, bounds, canonical=False):
+    if canonical and fp["layer"] == "B.Cu":
+        bounds = [bounds[0], -bounds[3], bounds[2], -bounds[1]]
+    return transform_points(fp, [(bounds[0],bounds[1]),(bounds[2],bounds[1]),
+                                 (bounds[2],bounds[3]),(bounds[0],bounds[3])])
+
+
+def polygons_overlap(a, b, tolerance=0.001):
+    """Strict convex-polygon overlap via normalized separating axes."""
+    for polygon in (a, b):
+        for p, q in zip(polygon, polygon[1:]+polygon[:1]):
+            length = math.dist(p, q)
+            if length < 1e-9:
+                continue
+            axis = (-(q[1]-p[1])/length, (q[0]-p[0])/length)
+            pa = [x*axis[0]+y*axis[1] for x,y in a]
+            pb = [x*axis[0]+y*axis[1] for x,y in b]
+            if min(max(pa),max(pb)) <= max(min(pa),min(pb))+tolerance:
+                return False
+    return True
+
+
+def point_polygon_distance(point, polygon):
+    """Distance to a filled polygon; works for a concave board outline too."""
+    x, y = point
+    inside, distance = False, float("inf")
+    for a,b in zip(polygon, polygon[1:]+polygon[:1]):
+        dx,dy = b[0]-a[0],b[1]-a[1]
+        denominator = dx*dx+dy*dy
+        t = min(1,max(0,((x-a[0])*dx+(y-a[1])*dy)/denominator)) if denominator else 0
+        distance = min(distance, math.hypot(x-a[0]-t*dx,y-a[1]-t*dy))
+        if (a[1]>y) != (b[1]>y) and x < (b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0]:
+            inside = not inside
+    return 0.0 if inside else distance
+
+
+def polygon_boundary_distance(point, polygon):
+    distances = []
+    for a,b in zip(polygon, polygon[1:]+polygon[:1]):
+        dx,dy = b[0]-a[0],b[1]-a[1]
+        denominator = dx*dx+dy*dy
+        t = min(1,max(0,((point[0]-a[0])*dx+(point[1]-a[1])*dy)/denominator)) if denominator else 0
+        distances.append(math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dy))
+    return min(distances)
 
 
 def transformed_box(fp, bounds, canonical=False):
@@ -184,19 +298,12 @@ def audit_fitted_envelopes(parts):
     Socket projections beyond PCB are rounded outward: Nano 2 mm, H2 1 mm,
     XIAO 3 mm. They are engineering allowances, not production tolerances.
     """
-    errors, boxes, sides = [], {}, {}
+    errors, polygons, sides = [], {}, {}
     for ref, fp in parts.items():
-        if fp["dnp"]:
+        if fp["dnp"] or not fp["courtyard_local_points"]:
             continue
-        points = fp["courtyard_local_points"]
-        if not points:
-            continue
-        bounds = [min(p[0] for p in points), min(p[1] for p in points),
-                  max(p[0] for p in points), max(p[1] for p in points)]
-        boxes[ref] = transformed_box(fp, bounds)
+        polygons[ref] = courtyard_polygon(fp)
         sides[ref] = fp["layer"]
-    def overlap(a, b):
-        return min(a[2], b[2]) > max(a[0], b[0]) + 0.001 and min(a[3], b[3]) > max(a[1], b[1]) + 0.001
     for ref, bounds in {
         "U1": [2, -5.81, 13.24, -3.81],
         "U2": [-1.27, 46.685, 24.13, 47.685],
@@ -204,28 +311,28 @@ def audit_fitted_envelopes(parts):
     }.items():
         if ref not in parts:
             continue
-        shell = transformed_box(parts[ref], bounds, canonical=True)
-        for other, box in boxes.items():
-            if other != ref and sides[other] == parts[ref]["layer"] and overlap(shell, box):
+        shell = transformed_rectangle(parts[ref], bounds, canonical=True)
+        for other, polygon in polygons.items():
+            if other != ref and sides[other] == parts[ref]["layer"] and polygons_overlap(shell, polygon):
                 errors.append(f"Physical USB shell {ref} intersects fitted courtyard {other}")
-        boxes[ref + "-USB"] = shell
+        polygons[ref + "-USB"] = shell
         sides[ref + "-USB"] = parts[ref]["layer"]
     for ref in (f"J{i}" for i in range(1, 8)):
         if ref not in parts:
             continue
         n = len(parts[ref]["pads"])
-        housing = transformed_box(parts[ref], [-2.75, -1.75, 2.75, (n-1)*2.54+1.75], canonical=True)
-        for other, box in boxes.items():
-            if other not in (ref, ref + "-housing") and sides[other] == parts[ref]["layer"] and overlap(housing, box):
+        housing = transformed_rectangle(parts[ref], [-2.75, -1.75, 2.75, (n-1)*2.54+1.75], canonical=True)
+        for other, polygon in polygons.items():
+            if other not in (ref, ref + "-housing") and sides[other] == parts[ref]["layer"] and polygons_overlap(housing, polygon):
                 errors.append(f"Fitted mating housing {ref} intersects {other}")
-        boxes[ref + "-housing"] = housing
+        polygons[ref + "-housing"] = housing
         sides[ref + "-housing"] = parts[ref]["layer"]
     for ref, fp in parts.items():
         if ref in PIN_SETS or not fp["pads"] or not all(p["kind"] == "np_thru_hole" for p in fp["pads"].values()):
             continue
-        support = transformed_box(fp, [-2.5, -2.5, 2.5, 2.5])
-        for other, box in boxes.items():
-            if other != ref and overlap(support, box):
+        center = transform_points(fp, [(0,0)])[0]
+        for other, polygon in polygons.items():
+            if other != ref and point_polygon_distance(center, polygon) < 2.5-0.001:
                 errors.append(f"5mm nylon support {ref} intersects {other}")
     return errors
 
@@ -308,25 +415,20 @@ def assembly_access(parts):
     opposite-side solder point. Acyclicity is necessary, not sufficient: this
     cannot establish delivered pin lengths or underside component heights.
     """
-    boxes, fitted = {}, {r: p for r, p in parts.items() if r in PIN_SETS and not p["dnp"]}
+    polygons, fitted = {}, {r: p for r, p in parts.items() if r in PIN_SETS and not p["dnp"]}
     for ref, fp in fitted.items():
-        pts = fp["courtyard_local_points"]
-        if pts:
-            boxes[ref] = transformed_box(fp, [min(p[0] for p in pts), min(p[1] for p in pts),
-                                               max(p[0] for p in pts), max(p[1] for p in pts)])
+        if fp["courtyard_local_points"]:
+            polygons[ref] = courtyard_polygon(fp)
     edges, overlaps = set(), []
     for ref, fp in fitted.items():
-        for other, box in boxes.items():
+        for other, polygon in polygons.items():
             if fp["layer"] == fitted[other]["layer"]:
                 continue
-            if ref < other and ref in boxes:
-                a = boxes[ref]
-                if min(a[2], box[2]) > max(a[0], box[0]) and min(a[3], box[3]) > max(a[1], box[1]):
-                    overlaps.append([ref, other])
+            if ref < other and ref in polygons and polygons_overlap(polygons[ref], polygon):
+                overlaps.append([ref, other])
             for pad in fp["pads"].values():
-                x, y, _, _ = transformed_box(fp, [*pad["at"], *pad["at"]])
-                r = SOLDER_ACCESS_RADIUS_MM
-                if box[0]-r < x < box[2]+r and box[1]-r < y < box[3]+r:
+                xy = transform_points(fp, [pad["at"]])[0]
+                if point_polygon_distance(xy, polygon) < SOLDER_ACCESS_RADIUS_MM:
                     edges.add((ref, other))
                     break
     remaining, order = set(fitted), []
@@ -358,14 +460,11 @@ def audit_rf_bodies(parts):
     for owner, bounds in local.items():
         if owner not in parts:
             continue
-        antenna = transformed_box(parts[owner], bounds, canonical=True)
+        antenna = transformed_rectangle(parts[owner], bounds, canonical=True)
         for ref, fp in parts.items():
             if ref == owner or fp["dnp"] or not fp["courtyard_local_points"]:
                 continue
-            pts = fp["courtyard_local_points"]
-            box = transformed_box(fp, [min(p[0] for p in pts), min(p[1] for p in pts),
-                                       max(p[0] for p in pts), max(p[1] for p in pts)])
-            if min(antenna[2], box[2]) > max(antenna[0], box[0]) and min(antenna[3], box[3]) > max(antenna[1], box[1]):
+            if polygons_overlap(antenna, courtyard_polygon(fp)):
                 errors.append(f"{ref} body overlaps {owner} antenna reservation across board sides")
     return errors
 
@@ -427,7 +526,7 @@ def audit(parts):
 
 
 def classify_drc(parts, drc):
-    """Classify the exact documented 43 tail/body projections; suppress none."""
+    """Classify the exact documented 41 tail/body projections; suppress none."""
     malformed = (not isinstance(drc, dict) or
                  any(not isinstance(drc.get(k), list) for k in ("violations", "unconnected_items", "schematic_parity")))
     if not malformed:
@@ -438,7 +537,7 @@ def classify_drc(parts, drc):
     if malformed:
         return ["Malformed native DRC report: required lists or item identifiers are missing"], {
             "native_findings": None, "classified_pth_body_projections": None,
-            "unclassified_findings": None, "missing_expected_pairs": 43,
+            "unclassified_findings": None, "missing_expected_pairs": 41,
             "suppressed_in_kicad": 0, "mechanical_clearance_qualified": False,
             "validation_error": True}
     ids = {}
@@ -447,8 +546,8 @@ def classify_drc(parts, drc):
         for number, pad in fp["pads"].items():
             ids[pad["uuid"]] = ("pad", ref, number)
     expected = set()
-    for ref in [*(f"J{i}" for i in range(1, 8)), "D1", "D2", "D3", "R1", "R2"]:
-        owner = "U2" if ref.startswith("J") else "U1"
+    for ref in [*(f"J{i}" for i in range(1, 8)), "D1", "D3", "R1", "R2"]:
+        owner = "U2" if ref.startswith("J") else ("U3" if ref == "D3" else "U1")
         for number in PIN_SETS[ref]:
             expected.add(frozenset({("pad", ref, number), ("footprint", owner)}))
     seen, errors = set(), []
@@ -472,7 +571,7 @@ def classify_drc(parts, drc):
             errors.append("Native DRC projection is stale relative to current footprint/pad positions")
         seen.add(pair)
     if seen != expected:
-        errors.append(f"Expected exact 43 documented PTH/body projections, found {len(seen)}")
+        errors.append(f"Expected exact 41 documented PTH/body projections, found {len(seen)}")
     return errors, {"native_findings": len(drc["violations"]), "classified_pth_body_projections": len(seen),
                     "unclassified_findings": len(drc["violations"])-len(seen),
                     "missing_expected_pairs": len(expected-seen), "suppressed_in_kicad": 0,
@@ -564,22 +663,42 @@ def swap_net(parts, a, b):
     ap["net"], bp["net"] = bp["net"], ap["net"]
 
 
+def geometry_regressions(parts):
+    """Known geometry counterexamples; avoid AABB approval/rejection artifacts."""
+    a = transformed_rectangle({"at":[0,0,45],"layer":"B.Cu"}, [0,-0.3,8,0.3])
+    clear = transformed_rectangle({"at":[0,1,45],"layer":"B.Cu"}, [0,-0.3,8,0.3])
+    hit = transformed_rectangle({"at":[0,0.2,45],"layer":"B.Cu"}, [0,-0.3,8,0.3])
+    result = {"diagonal_parts_clear_despite_overlapping_bounds": not polygons_overlap(a, clear),
+              "diagonal_parts_actual_collision_rejected": polygons_overlap(a, hit)}
+    concave = [(0,0),(51,0),(51,48),(57,48),(57,75),(0,75)]
+    bad = copy.deepcopy(parts)
+    bad["J9"]["at"] = [54,20,0]
+    result["pad_in_missing_flange_bbox_rejected"] = any("J9" in e for e in audit_pad_containment(bad,[0,0,57,75],concave))
+    support = next(r for r in bad if r not in PIN_SETS)
+    bad[support]["at"] = [54,49,0]
+    result["support_crossing_flange_step_rejected"] = any(support in e for e in audit_pad_containment(bad,[0,0,57,75],concave))
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--board", type=Path, default=HERE / "cad/mc1.kicad_pcb")
     parser.add_argument("--skip-evidence", action="store_true", help="For a preliminary board before final exports")
-    parser.add_argument("--self-test", action="store_true", help="Inject eighteen plausible errors in memory")
+    parser.add_argument("--self-test", action="store_true", help="Run mutation and geometry regressions in memory")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     parts = read_board(args.board)
     bounds = board_bounds(args.board)
+    outline = board_outline(args.board)
     access_errors, access = assembly_access(parts)
-    errors = audit(parts) + audit_pad_containment(parts, bounds) + audit_courtyards(parts) + audit_fitted_envelopes(parts) + access_errors + audit_rf_bodies(parts)
+    errors = audit(parts) + audit_pad_containment(parts, bounds, outline) + audit_courtyards(parts) + audit_fitted_envelopes(parts) + access_errors + audit_rf_bodies(parts)
     hashes, checks, report_hashes, classification = None, None, None, None
     if not args.skip_evidence:
         evidence_errors, hashes, checks, report_hashes, classification = evidence(args.board.parent)
         errors.extend(evidence_errors)
     mutation_results = mutations(parts, bounds) if args.self_test and not errors else {}
+    if args.self_test and not errors:
+        mutation_results.update(geometry_regressions(parts))
     if args.self_test and not errors and not args.skip_evidence:
         drc = json.loads((args.board.parent / "checks/drc.json").read_text())
         bad = copy.deepcopy(drc); bad["violations"][0]["type"] = "clearance"
@@ -610,6 +729,9 @@ def main():
         "assembly_access": access,
         "expected_pads": sum(map(len, PIN_SETS.values())),
         "native_board_bounds_mm": bounds,
+        "native_board_outline_mm": outline,
+        "native_board_area_mm2": round(abs(sum(a[0]*b[1]-b[0]*a[1] for a,b in zip(outline,outline[1:]+outline[:1])))/2, 6),
+        "native_support_centers_mm": {r: p["at"][:2] for r,p in parts.items() if r not in PIN_SETS},
         "connected_endpoint_groups": len(GROUPS),
         "connected_pads": sum(map(len, GROUPS.values())),
         "native_checks": checks,

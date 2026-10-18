@@ -1,10 +1,10 @@
-# MC1 Nano — two-sided 51 × 75 mm carrier
+# MC1 Nano — supported Ethernet edge and shorter routed wiring
 
-The carrier is **51 × 75 mm, two copper layers**: 3,825 mm², **21.54% smaller** than the preceding 65 × 75 mm single-sided layout. The three controller modules face the room. WIZ850io, all seven fitted male harness headers and the five axial parts face the ceiling. All module pins are factory male pins directly soldered into plated holes; there are no sockets or carrier SMT components. The existing H2 R7 removal prerequisite remains.
+The two-layer carrier retains a **51 × 75 mm main body plus a 6 × 27 mm lower-right mounting ear**. Its true outline area is **3,987 mm²**, with **57 × 75 mm bounding dimensions**. The ear adds162 mm² (4.24%) to the preceding51 ×75 board; fabrication quotes may use the larger bounding box, so this is not a claim of lower PCB price. The three controller modules face the room. WIZ850io, all seven fitted male harness headers and the five axial parts face the ceiling. All module pins are factory male pins directly soldered into plated holes; there are no sockets or carrier SMT components. The existing H2 R7 removal prerequisite remains.
 
 There are **16 fitted parts, 18 footprint positions, 133 plated signal/power holes and 31 connected nets**. J8/J9 remain unpopulated recovery pads. Native PCB and schematic DNP states match `fitted` in the ledger. The electrical contract and firmware pin map have not changed from the preceding layout.
 
-This is an **engineering prototype, not a fabrication release**. Native DRC reports **43 intentional opposite-side PTH/body projections**: 33 rear header pins beneath H2 and 10 rear axial pins beneath Nano. These are retained in the raw report, not suppressed. Exact classification requires zero other violations, zero unrouted items and zero schematic mismatches. **Physical Z clearance is not yet qualified.** Neither a 2D overlap classification nor electrical DRC proves that stock male-header spacers clear the opposing solder joints.
+This is an **engineering prototype, not a fabrication release**. Native DRC reports **41 intentional opposite-side PTH/body projections**: 33 rear header pins beneath H2, six axial pins beneath Nano, and two D3 pins beneath XIAO. D2 is clear of front-module bodies. These are retained in the raw report, not suppressed. Exact classification requires zero other violations, zero unrouted items and zero schematic mismatches. **Physical Z clearance is not yet qualified.** Neither a 2D overlap classification nor electrical DRC proves that stock male-header spacers clear the opposing solder joints.
 
 ## Files and geometry authority
 
@@ -14,12 +14,22 @@ Coordinates are millimetres from the front-view top-left. Back modules use a **r
 
 - U1 **Waveshare ESP32-S3-Nano-M**, front, **(49.5,39), 180°**. Body17.78 ×43.18; rows15.24 apart, pitch2.54. Antenna top, USB down. [Manufacturer dimensions and pinout](https://docs.waveshare.com/ESP32-S3-Nano).
 - U2 **ESP32-H2-DevKitM-1-N4S**, front, **(2,1.5), 0°**. Body25.40 ×48.26; rows22.86 apart. Antenna nominal y−5.475..−0.075 beyond the top edge. [Manufacturer drawing](https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf).
-- U3 **Seeed XIAO MG24 102010690**, front, **(18,57.5), 270°**. Body17.78 ×20.955; rows15.24 apart. Antenna left, USB right. [Manufacturer CAD](https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip).
+- U3 **Seeed XIAO MG24 102010690**, front, **(18,56.5), 270°**. Body17.78 ×20.955; rows15.24 apart. Antenna left, USB right. [Manufacturer CAD](https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip).
 - U4 **WIZ850io**, back, **(28.84,67.9), 0° after flip**. PCB x27.5..50.5,y49.3..74.3; opening x30.95..47.05,y77, **2 mm beyond the bottom edge**. [Manufacturer dimensions](https://docs.wiznet.io/img/products/wiz850io/wiz850io_dimension.png), [pin map](https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png).
 
-Module holes are1.10 mm in1.80 mm pads, giving0.35 mm annulus. This is a fit allowance for nominal0.64 mm square pins, not a manufacturer carrier land pattern. Three2.7 mm NPTH supports are at **(29.5,8), (29.5,44), (24.2,57.5)**; use nylon hardware no wider than5 mm and verify enclosure support under Ethernet insertion load.
+Module holes are1.10 mm in1.80 mm pads, giving0.35 mm annulus. This is a fit allowance for nominal0.64 mm square pins, not a manufacturer carrier land pattern. Four2.7 mm NPTH supports are at **(29.5,8), (29.5,44), (24.2,72), (54,72)**; use nylon hardware no wider than5 mm and verify enclosure support under Ethernet insertion load.
 
 `usb_service_envelopes_mm` is empty. Physical socket projections remain explicitly modelled: Nano2 mm, H2 1 mm, XIAO3 mm beyond their PCB edges. The seven rear harnesses use narrow5.5 mm mating-shell allowances, with vertical wire departure. Generic wide shrouded housings are not interchangeable. Removing USB cable space does not remove the socket bodies or their metal.
+
+## Mounting load path and measured routing improvement
+
+The lower support line is now at y72, **5 mm behind** the jack mouth at y77. Supports x24.2 and x54 bracket the mouth centre x39, with29.8 mm support spacing. The nearest centre-to-centre support distance falls from24.4804 to15.6224 mm; the previous closest support was19.5 mm behind the mouth and all supports lay to its left. These are geometric lever-arm comparisons, **not measured stiffness or force limits**. The two new lower supports have accessible heads on both sides; no screw is buried under WIZ.
+
+The flange stiffens the carrier support arrangement, but WIZ still attaches through its header pins. Provide an **insulating enclosure cradle/end-stop around the robust jack housing or module body**, plus cable strain relief, so insertion force has a direct path into the enclosure. Do not press on components, the latch opening, antenna areas or solder tails. Cradle dimensions and contact pads require actual assembled-height measurements; this repo does not claim an enclosure has been fabricated or load tested.
+
+The five rear axial parts are at D1(45,16),250°; D2(3,51.5),0°; D3(17,67),180°; R1(38.5,30),10°; R2(38,23.5),90°, in native post-flip rotation. D2 moves near the H2 supply pin and D3 near the XIAO supply. D1 and R1 use non-orthogonal orientations; all transformed courtyards and the2 mm solder-access graph are checked. J8/J9 remain unpopulated, moved to the front aisle at(29.5,17)/(29.5,25),0°. XIAO moves up1 mm so the lower-left support clears its physical USB socket.
+
+`routing-metrics.json` measures native copper centrelines and via count from the saved before/after boards. The final route has **1,748.9646 mm of tracks versus1,942.5231 mm**, a **9.964% reduction**, and **19 vias versus35**. The H2 post-diode supply falls80.8480→17.8231 mm; XIAO post-diode supply69.7010→5.1542 mm; RF_CS66.9491→37.9174 mm. This is a whole-route result, not a straight-line estimate or proof of global optimality. Shared SPI totals individually rise by about6–12 mm; common supply trunks also get longer. Filled ground planes, module-internal traces and external cables are excluded, and no signal-integrity or RF improvement is asserted without testing.
 
 ## Opposite-side assembly and height acceptance
 
@@ -27,11 +37,11 @@ The solder-order graph is acyclic, using a2 mm tool-access halo: **rear headers/
 
 1. Program and test loose controller boards; prepare H2 R7 as below. Measure the actual module underside-to-carrier gap when its factory plastic is normally seated, and map underside component projections.
 2. Fit rear J1–J7 and D1–D3/R1–R2. Solder from the front, trim and inspect before installing the controller boards. Leave J8/J9 empty.
-3. At **every** overlapping rear solder joint require: **measured front-module gap − local underside component height − highest tail/solder fillet ≥1.0 mm**. An initial trim target is≤1.0 mm including the fillet, **only if a sound PTH joint remains**. With1.0 mm underside protrusion that example requires3.0 mm gap; the factory spacer height is not known and is not asserted to meet it. Do not force almost-flush cuts, omit a proper fillet, float a module above its spacer, or assume a thin insulation sheet fixes the geometry. If samples fail, stop assembly and revise the spacing/layout.
+3. D3 now requires a separate XIAO underside-height check. At **every** overlapping rear solder joint require: **measured front-module gap − local underside component height − highest tail/solder fillet ≥1.0 mm**. An initial trim target is≤1.0 mm including the fillet, **only if a sound PTH joint remains**. With1.0 mm underside protrusion that example requires3.0 mm gap; the factory spacer height is not known and is not asserted to meet it. Do not force almost-flush cuts, omit a proper fillet, float a module above its spacer, or assume a thin insulation sheet fixes the geometry. If samples fail, stop assembly and revise the spacing/layout.
 4. Fit the front controllers and solder their rear rows through the clear tool lanes. Trim and inspect their tails. Fit rear WIZ last; its front solder lands are unobstructed. Check all pin tips, bodies and harness plastics on both sides.
 5. Set ceiling support height from the **measured tallest assembled rear feature, mated connector and wire bend plus5 mm** allowance. The WIZ catalog18 mm height has an unspecified datum and does not determine the standoff by itself. Maintain RF clearance from ceiling metal and wiring.
 
-The ledger records the gaps as `null` and physical qualification as pending. The43 DRC findings are a precise inventory for this measured acceptance, not a waiver of shorts or workmanship.
+The ledger records the gaps as `null` and physical qualification as pending. The41 DRC findings are a precise inventory for this measured acceptance, not a waiver of shorts or workmanship.
 
 ## H2 preparation and network maintenance
 
@@ -57,13 +67,13 @@ D1 feeds Nano JP1.15 VIN; JP1.12 VBUS and JP1.2 3V3 remain NC. D2 and D3 feed th
 
 J3 is a harness to the separate DFR0627 WK2132 module, not its footprint. IA1=IA0=1 gives register address0x70/FIFO0x71; physical UART1 is software channel0. J4 is ZAC93, J5 CC1101, J6 LD2450 and J7 BME680. Exact pin assignments are in `connectors.json`.
 
-All antenna exclusions are prototype engineering provisions. H2's nominal antenna lies beyond the carrier; Nano and XIAO ceramic ends partly overlap its projection. The XIAO retains a no-pour/no-via reservation x0..5,y64.5..73.5, with only the existing 0.25 mm ZB_RX trace allowed through x2.5..3.8,y72.48..73.5. Regression tests inspect native copper for that exception. The [Kinghelm KH5220-A36 datasheet](https://www.kinghelm.com.cn/upload/file/20230213/KH5220-A36.pdf) gives an evaluation-board example, not approval for this complete carrier. Keep enclosure metal and permanent wires away from antennas and test the assembled ceiling installation.
+All antenna exclusions are prototype engineering provisions. H2's nominal antenna lies beyond the carrier; Nano and XIAO ceramic ends partly overlap its projection. The XIAO retains a no-pour/no-via reservation x0..5,y63.5..72.5, with only the existing 0.25 mm ZB_RX trace allowed through x2.5..3.8,y71.48..72.5. Regression tests inspect native copper for that exception. The [Kinghelm KH5220-A36 datasheet](https://www.kinghelm.com.cn/upload/file/20230213/KH5220-A36.pdf) gives an evaluation-board example, not approval for this complete carrier. Keep enclosure metal and permanent wires away from antennas and test the assembled ceiling installation.
 
 Follow the staged assembly sequence above. Use current-limited initial power, verify all rails and absence of shorts, and do not hot-plug signal harnesses. Physical USB sockets remain, but there is no supported postassembly cable-insertion corridor.
 
 ## Reproduce and validate
 
-Use KiCad 10's Python with `pcbnew`, its CLI and libraries. `project_rules.py` retains 0.20 mm clearance, 0.25 mm signal / 0.80 mm power traces, 0.80/0.40 mm vias and 0.50 mm copper-to-edge minimum. No DRC severity or exclusion is relaxed. `validate_drc.py` preserves the raw report and checks an exact43-pair native UUID/ref/pad/position/side contract; any missing, extra or other finding fails. It also requires connectivity and schematic-parity lists to be present and empty. Native ERC must remain zero.
+Use KiCad 10's Python with `pcbnew`, its CLI and libraries. `project_rules.py` retains 0.20 mm clearance, 0.25 mm signal / 0.80 mm power traces, 0.80/0.40 mm vias and 0.50 mm copper-to-edge minimum. No DRC severity or exclusion is relaxed. `validate_drc.py` preserves the raw report and checks an exact41-pair native UUID/ref/pad/position/side contract; any missing, extra or other finding fails. It also requires connectivity and schematic-parity lists to be present and empty. Native ERC must remain zero.
 
 ```sh
 "$KICAD_PY" generate.py --libraries "$KICAD_LIBRARIES"
@@ -83,5 +93,7 @@ cp .build/schematic-export/mc1.svg schematic.svg
 python3 record_verification.py
 python3 reproduce_check.py --python "$KICAD_PY" --cli "$KICAD_CLI" --libraries "$KICAD_LIBRARIES"
 ```
+
+Measure any revision with `"$KICAD_PY" measure_routing.py --board mc1.kicad_pcb --output current-routing.json`. The baseline native board is preserved under `../studies/mounting-routing/baseline/`.
 
 The committed router session plus explicit manual centerlines are specific to this placement. Clean reproduction and native check counts/hashes are recorded in `checks/reproduction.json` and `verification.json`. Generic passive-terminal module symbols do not model internal regulators or establish electrical safety. No Gerbers or hardware order are included.

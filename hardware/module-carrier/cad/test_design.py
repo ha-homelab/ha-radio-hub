@@ -32,7 +32,24 @@ class CarrierTests(unittest.TestCase):
   self.assertEqual({x['pattern'] for x in ns['netclass_patterns'] if x['netclass']=='Power'},wanted)
   self.assertEqual(project['board']['design_settings'].get('drc_exclusions',[]),[])
  def test_dimensions(self):
-  self.assertEqual((D['board']['width_mm'],D['board']['height_mm'],D['board']['copper_layers']),(51,75,2))
+  self.assertEqual((D['board']['width_mm'],D['board']['height_mm'],D['board']['copper_layers']),(57,75,2))
+ def test_native_routing_metrics(self):
+  metrics=json.loads((R/'routing-metrics.json').read_text());total=0;vias=0
+  for obj in native_tree():
+   if not isinstance(obj,list):continue
+   if obj[0]=='via':vias+=1
+   if obj[0]=='segment':
+    fields={x[0]:x[1:] for x in obj[1:] if isinstance(x,list)}
+    total+=math.dist(list(map(float,fields['start'])),list(map(float,fields['end'])))
+  self.assertAlmostEqual(total,metrics['current']['total_track_length_mm'],places=2)
+  self.assertEqual(vias,metrics['current']['total_vias'])
+  self.assertLess(total,metrics['baseline']['total_track_length_mm'])
+ def test_flange_and_bracketed_mounts(self):
+  self.assertEqual(D['board']['outline_mm'],[[0,0],[51,0],[51,48],[57,48],[57,75],[0,75]])
+  self.assertEqual(D['board']['area_mm2'],3987)
+  self.assertEqual(D['mechanics']['mounting_holes_mm'],[[29.5,8],[29.5,44],[24.2,72],[54,72]])
+  mouth=D['mechanics']['rj45']['face_global_mm'];center=[sum(p[i] for p in mouth)/2 for i in (0,1)]
+  self.assertLess(24.2,center[0]);self.assertGreater(54,center[0]);self.assertEqual(center[1]-72,5)
  def test_module_row_centers(self):
   for ref,left,right,spacing in [('U1','JP1.1','JP2.15',15.24),('U2','J1.1','J3.1',22.86),('U3','1','14',15.24),('U4','J1.1','J2.1',20.32)]:
    a,b=pad(ref,left),pad(ref,right);self.assertAlmostEqual(math.dist((a['x'],a['y']),(b['x'],b['y'])),spacing,places=4)
@@ -59,7 +76,7 @@ class CarrierTests(unittest.TestCase):
  def test_carrier_holes_stay_inside_outline(self):
   for p in P.values():
    for q in p['pad_centers_mm']:
-    self.assertTrue(.5 < q['x'] < 50.5 and .5 < q['y'] < 74.5,(p['ref'],q['number']))
+    self.assertTrue(.5 < q['x'] < 56.5 and .5 < q['y'] < 74.5,(p['ref'],q['number']))
  def test_no_connected_pad_is_trapped_by_rf_track_exclusion(self):
   for p in P.values():
    for q in p['pad_centers_mm']:
@@ -67,7 +84,7 @@ class CarrierTests(unittest.TestCase):
     for x1,y1,x2,y2 in D['mechanics']['rf_copper_keepouts_mm']:
      self.assertFalse(x1<q['x']<x2 and y1<q['y']<y2,(p['ref'],q['number'],'inside track exclusion'))
  def test_xiao_rf_escape_only_routes_rx(self):
-  pocket=D['mechanics']['rf_pour_only_keepouts_mm'];self.assertEqual(pocket,[[2.5,72.48,3.8,73.5]])
+  pocket=D['mechanics']['rf_pour_only_keepouts_mm'];self.assertEqual(pocket,[[2.5,71.48,3.8,72.5]])
   native_pocket=False
   for obj in native_tree():
    if not isinstance(obj,list) or obj[0]!='zone':continue
@@ -75,7 +92,7 @@ class CarrierTests(unittest.TestCase):
    if 'polygon' not in fields or 'keepout' not in fields:continue
    pts=next(x[1:] for x in fields['polygon'] if x[0]=='pts')
    coords=[[float(p[1]),float(p[2])] for p in pts]
-   if coords==[[2.5,72.48],[3.8,72.48],[3.8,73.5],[2.5,73.5]]:
+   if coords==[[2.5,71.48],[3.8,71.48],[3.8,72.5],[2.5,72.5]]:
     k={x[0]:x[1] for x in fields['keepout']};self.assertEqual(k['tracks'],'allowed');self.assertEqual(k['vias'],'not_allowed');self.assertEqual(k['copperpour'],'not_allowed');self.assertEqual(fields['layers'],['F.Cu','B.Cu']);native_pocket=True
   self.assertTrue(native_pocket)
   # Check the actual native copper objects, not only the intended netlist.
@@ -85,10 +102,10 @@ class CarrierTests(unittest.TestCase):
    fields={x[0]:x[1:] for x in obj[1:] if isinstance(x,list)}
    if obj[0]=='via':
     x,y=map(float,fields['at']);radius=float(fields['size'][0])/2
-    self.assertFalse(x+radius>2.5 and x-radius<3.8 and y+radius>72.48 and y-radius<73.5,'Via in antenna RX pocket')
+    self.assertFalse(x+radius>2.5 and x-radius<3.8 and y+radius>71.48 and y-radius<72.5,'Via in antenna RX pocket')
    else:
     x1,y1=map(float,fields['start']);x2,y2=map(float,fields['end']);radius=float(fields['width'][0])/2
-    if max(x1,x2)+radius>2.5 and min(x1,x2)-radius<3.8 and max(y1,y2)+radius>72.48 and min(y1,y2)-radius<73.5:
+    if max(x1,x2)+radius>2.5 and min(x1,x2)-radius<3.8 and max(y1,y2)+radius>71.48 and min(y1,y2)-radius<72.5:
      self.assertEqual(fields['net'],['/ZB_RX']);self.assertEqual(float(fields['width'][0]),.25);touched+=1
   self.assertGreater(touched,0)
  def test_h2_antenna_beyond_board_edge(self):
@@ -153,7 +170,7 @@ class CarrierTests(unittest.TestCase):
   self.assertEqual(set(D['mechanics']['physical_usb_shells_mm']),{'U1','U2','U3'})
   self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U1'],[36.26,42.81,47.5,44.81])
   self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U2'],[.73,48.185,26.13,49.185])
-  self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U3'],[20.921,60.62,23.921,69.62])
+  self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U3'],[20.921,59.62,23.921,68.62])
  def test_unpopulated_recovery_pads_and_rom_uart(self):
   self.assertEqual({r for r,p in P.items() if not p['fitted']},{'J8','J9'})
   self.assertEqual(sum(p['fitted'] for p in P.values()),16)
@@ -165,7 +182,14 @@ class CarrierTests(unittest.TestCase):
    attr=next((x[1:] for x in f if isinstance(x,list) and x[0]=='attr'),[])
    self.assertEqual('dnp' in attr,ref in ('J8','J9'))
  def test_service_clearances(self):
-  def overlap(a,b):return min(a[2],b[2])>max(a[0],b[0]) and min(a[3],b[3])>max(a[1],b[1])
+  def poly(a):return [(a[0],a[1]),(a[2],a[1]),(a[2],a[3]),(a[0],a[3])] if isinstance(a[0],(int,float)) else a
+  def overlap(a,b):
+   a,b=poly(a),poly(b)
+   for p in (a,b):
+    for v,w in zip(p,p[1:]+p[:1]):
+     axis=(v[1]-w[1],w[0]-v[0]);aa=[x*axis[0]+y*axis[1] for x,y in a];bb=[x*axis[0]+y*axis[1] for x,y in b]
+     if min(max(aa),max(bb))<=max(min(aa),min(bb))+1e-9:return False
+   return True
   def native_boxes():
    out={}
    for f in native_footprints():
@@ -177,9 +201,9 @@ class CarrierTests(unittest.TestCase):
      fields={q[0]:q[1:] for q in x[1:] if isinstance(q,list)}
      if fields.get('layer') not in (['F.CrtYd'],['B.CrtYd']):continue
      coords=[]
-     for q in ['start','end']:
-      a,b=map(float,fields[q]);coords.append((pp['xy'][0]+a*math.cos(th)+b*math.sin(th),pp['xy'][1]-a*math.sin(th)+b*math.cos(th)))
-     boxes.append([min(v[0] for v in coords),min(v[1] for v in coords),max(v[0] for v in coords),max(v[1] for v in coords)])
+     a0,b0=map(float,fields['start']);a1,b1=map(float,fields['end'])
+     for a,b in [(a0,b0),(a1,b0),(a1,b1),(a0,b1)]:coords.append((pp['xy'][0]+a*math.cos(th)+b*math.sin(th),pp['xy'][1]-a*math.sin(th)+b*math.cos(th)))
+     boxes.append(coords)
     out[ref]=boxes
    return out
   boxes=native_boxes();mechanics=D['mechanics']

@@ -569,7 +569,7 @@
       "side": "front",
       "xy": [
         18,
-        57.5
+        56.5
       ],
       "rotation": 270,
       "source": "xiao",
@@ -585,106 +585,106 @@
           "number": "1",
           "net": "ZB_BOOT_SERVICE",
           "x": 18.0,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "2",
           "net": null,
           "x": 15.46,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "3",
           "net": null,
           "x": 12.92,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "4",
           "net": null,
           "x": 10.38,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "5",
           "net": "ZB_CTS",
           "x": 7.84,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "6",
           "net": "ZB_RTS",
           "x": 5.3,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "7",
           "net": "ZB_TX",
           "x": 2.76,
-          "y": 57.5,
+          "y": 56.5,
           "drill_mm": 1.1
         },
         {
           "number": "14",
           "net": "+5V_ZB",
           "x": 18.0,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         },
         {
           "number": "13",
           "net": "GND",
           "x": 15.46,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         },
         {
           "number": "12",
           "net": null,
           "x": 12.92,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         },
         {
           "number": "11",
           "net": null,
           "x": 10.38,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         },
         {
           "number": "10",
           "net": null,
           "x": 7.84,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         },
         {
           "number": "9",
           "net": null,
           "x": 5.3,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         },
         {
           "number": "8",
           "net": "ZB_RX",
           "x": 2.76,
-          "y": 72.74,
+          "y": 71.74,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
         -0.034,
-        56.23,
+        55.23,
         20.921,
-        74.01
+        73.01
       ]
     },
     {
@@ -1237,10 +1237,10 @@
       "fitted": false,
       "side": "front",
       "xy": [
-        3,
-        52.5
+        29.5,
+        17
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN.",
       "body_bounds_local_mm": null,
@@ -1248,15 +1248,15 @@
         {
           "number": "1",
           "net": "ZB_BOOT_SERVICE",
-          "x": 3.0,
-          "y": 52.5,
+          "x": 29.5,
+          "y": 17.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 5.54,
-          "y": 52.5,
+          "x": 29.5,
+          "y": 19.54,
           "drill_mm": 1.0
         }
       ],
@@ -1274,10 +1274,10 @@
       "fitted": false,
       "side": "front",
       "xy": [
-        12,
-        52.5
+        29.5,
+        25
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Normally OPEN; short GPIO0 to GND while pressing Nano RESET for nativeUSB ROM recovery.",
       "body_bounds_local_mm": null,
@@ -1285,15 +1285,15 @@
         {
           "number": "1",
           "net": "S3_BOOT_SERVICE",
-          "x": 12.0,
-          "y": 52.5,
+          "x": 29.5,
+          "y": 25.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 14.54,
-          "y": 52.5,
+          "x": 29.5,
+          "y": 27.54,
           "drill_mm": 1.0
         }
       ],

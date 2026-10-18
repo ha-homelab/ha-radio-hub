@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="930" viewBox="0 0 1240 930">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#f6c765"/></marker></defs>
+<style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:27px;font-weight:bold}.subtitle{font-size:15px;fill:#a9c0d3}.label{font-size:13px}.small{font-size:11px}.dim{font-size:12px;fill:#8ddacb}.warn{font-size:15px;fill:#f6c765}</style>
+<rect width="1240" height="930" fill="#0d1926"/>
+<text x="42" y="44" class="title">RJ45 support: carrier stiffness and connector restraint are separate</text>
+<text x="42" y="72" class="subtitle">True front view · rear WIZ shown as a projected outline · all dimensions in mm · prototype geometry</text>
+<text x="60" y="112" class="title">Previous: 51 × 75 mm</text>
+<polygon points="72.00,184.00 383.10,184.00 383.10,641.50 72.00,641.50" fill="#173b3b" stroke="#80d3be" stroke-width="2"/>
+<polygon points="270.19,448.19 270.19,178.69 384.75,178.69 384.75,448.19" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="327.5" y="313.4" text-anchor="middle" class="label">U1 front</text>
+<polygon points="73.40,147.55 234.44,147.55 234.44,480.98 73.40,480.98" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="153.9" y="314.3" text-anchor="middle" class="label">U2 front</text>
+<polygon points="68.74,523.95 202.67,523.95 202.67,638.51 68.74,638.51" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="135.7" y="581.2" text-anchor="middle" class="label">U3 front</text>
+<polygon points="239.75,484.73 380.05,484.73 380.05,637.23 239.75,637.23" fill="#1d426c" fill-opacity="0.6" stroke="#73b5ff" stroke-width="2" stroke-dasharray="6 3"/>
+<line x1="260.79" y1="653.70" x2="359.00" y2="653.70" stroke="#73b5ff" stroke-width="5"/>
+<text x="309.9" y="550.0" text-anchor="middle" class="label">WIZ / rear</text>
+<circle cx="251.9" cy="232.8" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="251.9" cy="232.8" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="270.9" y="226.8" text-anchor="start" class="small">H1 (29.5, 8)</text>
+<circle cx="251.9" cy="452.4" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="251.9" cy="452.4" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="270.9" y="446.4" text-anchor="start" class="small">H2 (29.5, 44)</text>
+<circle cx="219.6" cy="534.8" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="219.6" cy="534.8" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="238.6" y="528.8" text-anchor="start" class="small">H3 (24.2, 57.5)</text>
+<line x1="309.90" y1="739.10" x2="309.90" y2="659.80" stroke="#f6c765" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="322.1" y="708.6" class="warn">insertion force</text>
+<line x1="72.00" y1="141.30" x2="383.10" y2="141.30" stroke="#8ddacb"/>
+<line x1="72.00" y1="135.20" x2="72.00" y2="147.40" stroke="#8ddacb"/>
+<line x1="383.10" y1="135.20" x2="383.10" y2="147.40" stroke="#8ddacb"/>
+<text x="227.5" y="129.1" text-anchor="middle" class="dim">51</text>
+<line x1="47.60" y1="184.00" x2="47.60" y2="641.50" stroke="#8ddacb"/>
+<line x1="41.50" y1="184.00" x2="53.70" y2="184.00" stroke="#8ddacb"/>
+<line x1="41.50" y1="641.50" x2="53.70" y2="641.50" stroke="#8ddacb"/>
+<text x="35.4" y="421.9" text-anchor="end" class="dim">75</text>
+<text x="60" y="778" class="small">Native PCB SHA-256 87e2dbdd2d7be9da…</text>
+<text x="654" y="112" class="title">Revised: 57 × 75 bounding box</text>
+<polygon points="666.00,184.00 977.10,184.00 977.10,476.80 1013.70,476.80 1013.70,641.50 666.00,641.50" fill="#173b3b" stroke="#80d3be" stroke-width="2"/>
+<polygon points="864.19,448.19 864.19,178.69 978.75,178.69 978.75,448.19" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="921.5" y="313.4" text-anchor="middle" class="label">U1 front</text>
+<polygon points="667.40,147.55 828.44,147.55 828.44,480.98 667.40,480.98" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="747.9" y="314.3" text-anchor="middle" class="label">U2 front</text>
+<polygon points="662.74,517.85 796.67,517.85 796.67,632.41 662.74,632.41" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="729.7" y="575.1" text-anchor="middle" class="label">U3 front</text>
+<polygon points="833.75,484.73 974.05,484.73 974.05,637.23 833.75,637.23" fill="#1d426c" fill-opacity="0.6" stroke="#73b5ff" stroke-width="2" stroke-dasharray="6 3"/>
+<line x1="854.79" y1="653.70" x2="953.00" y2="653.70" stroke="#73b5ff" stroke-width="5"/>
+<text x="903.9" y="550.0" text-anchor="middle" class="label">WIZ / rear</text>
+<circle cx="846.0" cy="232.8" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="846.0" cy="232.8" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="865.0" y="226.8" text-anchor="start" class="small">H1 (29.5, 8)</text>
+<circle cx="846.0" cy="452.4" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="846.0" cy="452.4" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="865.0" y="446.4" text-anchor="start" class="small">H2 (29.5, 44)</text>
+<circle cx="813.6" cy="623.2" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="813.6" cy="623.2" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="832.6" y="617.2" text-anchor="start" class="small">H3 (24.2, 72)</text>
+<circle cx="995.4" cy="623.2" r="15.25" fill="#112532" stroke="#f6c765" stroke-width="1.5"/>
+<circle cx="995.4" cy="623.2" r="8.235" fill="#0d1926" stroke="#f6c765"/>
+<text x="976.4" y="617.2" text-anchor="end" class="small">H4 (54, 72)</text>
+<line x1="813.62" y1="623.20" x2="995.40" y2="623.20" stroke="#f6c765" stroke-dasharray="5 4"/>
+<text x="897.8" y="604.9" text-anchor="middle" class="small">lower support row</text>
+<line x1="1018.58" y1="623.20" x2="1018.58" y2="653.70" stroke="#8ddacb"/>
+<line x1="1012.48" y1="623.20" x2="1024.68" y2="623.20" stroke="#8ddacb"/>
+<line x1="1012.48" y1="653.70" x2="1024.68" y2="653.70" stroke="#8ddacb"/>
+<text x="1025.9" y="641.5" class="dim">5</text>
+<text x="1032.0" y="495.1" class="dim">6 × 27 ear</text>
+<line x1="903.90" y1="739.10" x2="903.90" y2="659.80" stroke="#f6c765" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="916.1" y="708.6" class="warn">insertion force</text>
+<line x1="666.00" y1="141.30" x2="1013.70" y2="141.30" stroke="#8ddacb"/>
+<line x1="666.00" y1="135.20" x2="666.00" y2="147.40" stroke="#8ddacb"/>
+<line x1="1013.70" y1="135.20" x2="1013.70" y2="147.40" stroke="#8ddacb"/>
+<text x="839.9" y="129.1" text-anchor="middle" class="dim">57</text>
+<line x1="641.60" y1="184.00" x2="641.60" y2="641.50" stroke="#8ddacb"/>
+<line x1="635.50" y1="184.00" x2="647.70" y2="184.00" stroke="#8ddacb"/>
+<line x1="635.50" y1="641.50" x2="647.70" y2="641.50" stroke="#8ddacb"/>
+<text x="629.4" y="421.9" text-anchor="end" class="dim">75</text>
+<text x="654" y="778" class="small">Native PCB SHA-256 7f8296edb0317269…</text>
+<text x="42" y="817" class="warn">Four carrier supports do not bypass the WIZ header solder joints.</text>
+<text x="42" y="845" class="subtitle">For repeated plugging: fit an insulating enclosure cradle / stop against a robust jack or module body surface.</text>
+<text x="42" y="870" class="subtitle">Add cable strain relief. Cradle contact faces, height and tolerances require actual-module measurements.</text>
+<text x="42" y="898" class="subtitle">Ø2.7 mounting holes · Ø5 maximum nylon support/head · no calculated stiffness or load rating claimed.</text>
+</svg>

@@ -5,8 +5,9 @@ S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into
 plated holes, with controllers on the room-facing front and Ethernet/male harness
 headers on the ceiling-facing back. Female module sockets and hand-soldered bare RF modules are excluded.
 
-Current PCB outline: **51 mm horizontal × 75 mm vertical, two copper layers**.
-Two-sided placement reduces area by 21.5% against the preceding 65 × 75 mm carrier,
+Current PCB envelope: **57 mm horizontal × 75 mm vertical, two copper layers**.
+A 6 × 27 mm ear adds a fourth support beside RJ45 to the 51 × 75 mm main body.
+Actual area is 18.2% below the historical 65 × 75 mm carrier,
 with the same seven function groups. [Equal-scale comparison](layout-comparison.svg).
 The Nano pin map, shared Ethernet/CC1101 SPI and matching active firmware replace
 the old full-size S3 assignments. The RJ45 opening remains outward-facing on the ceiling side.

@@ -1,24 +1,29 @@
 {
   "revision": "MC1-Nano",
   "date": "2026-10-17",
-  "layout_revision": "nano-two-sided-51x75",
+  "layout_revision": "nano-flange-angled-passives",
   "status": "CAD prototype verified with classified mechanical overlaps; physical height and hardware qualification outstanding",
   "hardware_tested": false,
   "checks": [
     {
       "check": "Carrier area and function preservation",
-      "result": "65 \u00d7 75 mm \u2192 51 \u00d7 75 mm; 21.5% less PCB area",
-      "scope": "All seven function groups and every pin assignment retained; 76.1% smaller than the original 160 \u00d7 100 mm. Two copper layers, four ready modules, seven fitted male headers, three diodes and two resistors. Front controllers; rear Ethernet, headers and axial parts. No female sockets."
+      "result": "51 \u00d7 75 mm body + 6 \u00d7 27 mm mounting ear; 57 \u00d7 75 mm envelope; 3,987 mm\u00b2 area",
+      "scope": "Four supports, with the lower pair straddling RJ45. Laminate +4.24% versus the previous two-sided board; bounding rectangle +11.76%. Every pin assignment, seven functions, two copper layers and sixteen fitted electronic items retained."
     },
     {
       "check": "Native KiCad 10.0.6 ERC / DRC",
-      "result": "ERC 0; raw DRC 43, exactly classified 43, unclassified 0; unrouted 0; parity 0",
-      "scope": "43 rear-PTH/front-courtyard projections remain in the unmodified native report. Exact native UUID, type, side, position and pair checks reject every other violation. Clean generator/SES/manual-route reproduction agrees. These are conditional mechanical findings, not zero DRC or physical height qualification."
+      "result": "ERC 0; raw DRC 41, exactly classified 41, unclassified 0; unrouted 0; parity 0",
+      "scope": "33 rear-header pads beneath H2, six axial pads beneath S3, two D3 pads beneath XIAO; exact native classification preserves the raw report. Clean generator/SES/manual-route reconstruction agrees. Physical height and solder quality remain unqualified."
     },
     {
       "check": "Mechanical and electrical CAD checks",
-      "result": "22 CAD tests and 27 independent mutation tests passed; 133 pads and 31 net groups audited",
-      "scope": "101 connected endpoints; native rear mirroring, both-face RF exclusions, housing fit and acyclic 2 mm solder-access halo checked. Three nylon supports. Measured residual gap \u22651 mm remains required; actual factory spacers, solder tails and underside parts untested."
+      "result": "24 CAD tests and 31 independent mutation tests; 133 pads and 31 net groups audited",
+      "scope": "True outline polygon, arbitrary-angle courtyards, native mirrored pads, four accessible supports, physical housings, RF exclusions and acyclic solder access checked. Residual gap \u22651 mm still requires real measurements, including D3 beneath XIAO. No stiffness rating is claimed."
+    },
+    {
+      "check": "Measured routing comparison",
+      "result": "1,942.5231 \u2192 1,748.9646 mm (\u22129.964%); 35 \u2192 19 vias",
+      "scope": "Explicit native track centerlines, excluding pours and internal/external wiring. Individual SPI and common supply nets become longer. Power branch routes and several peripheral nets shorten. No global-optimum or electrical-performance claim."
     },
     {
       "check": "CAD / firmware interface contracts",
@@ -47,8 +52,8 @@
     },
     {
       "check": "Images and diagrams",
-      "result": "Native front/back renders, both assembly faces, equal-scale comparison and stack section",
-      "scope": "One current 51 \u00d7 75 mm two-sided design. Previous 65 \u00d7 75 mm assets archived. Rear assembly drawing is mirrored as physically viewed. Stack illustration is qualitative; no unmeasured vertical dimensions are claimed."
+      "result": "Native front/back assembly and copper, support comparison, routing chart and stack section",
+      "scope": "Current true-outline and angled-component views regenerated. The previous three-support board is preserved as the reproducible routing baseline. Illustrations do not constitute measured vertical fit or connector-force qualification."
     }
   ],
   "evidence_files": [
@@ -61,7 +66,9 @@
     "images/screenshot-provenance.json",
     "../../firmware/module-carrier/build-evidence.json",
     "../../firmware/module-carrier/test-results.json",
-    "../../firmware/module-carrier/zigbee/build-evidence.json"
+    "../../firmware/module-carrier/zigbee/build-evidence.json",
+    "cad/routing-metrics.json",
+    "studies/mounting-routing/review.md"
   ],
   "physical_z_qualified": false
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Strictly classify the 43 intentional opposite-side PTH/body projections.
+"""Strictly classify the 41 intentional opposite-side PTH/body projections.
 
 This is NOT a KiCad suppression and NOT a physical clearance approval. The raw
 report remains unchanged. Every other native violation, missing/extra pair,
@@ -8,16 +8,16 @@ wrong native side/position, unrouted item or schematic mismatch fails.
 import argparse,json,math,re,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
-# Reviewed 51x75 placement contract. Values are native final anchors/rotations.
+# Reviewed flanged carrier placement contract. Values are native final anchors/rotations.
 BACK={
  'J1':(20,41,180,2,'U2'), 'J2':(20,29,180,4,'U2'),
  'J3':(13.5,17,180,6,'U2'), 'J4':(13.5,34,180,5,'U2'),
  'J5':(7,17,180,8,'U2'), 'J6':(7,39,180,4,'U2'),
  'J7':(20,17,180,4,'U2'),
- 'D1':(38,17,270,2,'U1'), 'D2':(41.6,17,270,2,'U1'),
- 'D3':(45.2,17,270,2,'U1'), 'R1':(38,31,270,2,'U1'),
- 'R2':(43,31,270,2,'U1')}
-FRONT={'U1':(49.5,39,180),'U2':(2,1.5,0)}
+ 'D1':(45,16,250,2,'U1'),
+ 'D3':(17,67,180,2,'U3'), 'R1':(38.5,30,10,2,'U1'),
+ 'R2':(38,23.5,90,2,'U1')}
+FRONT={'U1':(49.5,39,180),'U2':(2,1.5,0),'U3':(18,56.5,270)}
 def parse(text):
  stack=[];root=None
  for t in re.findall(r'"(?:\\.|[^"\\])*"|[()]|[^\s()]+',text):
