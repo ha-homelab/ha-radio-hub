@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Measure native track centreline lengths (not airwire estimates), excluding pours."""
-import argparse,hashlib,json,math
+import argparse,hashlib,json
 from pathlib import Path
 import pcbnew as pcb
 ap=argparse.ArgumentParser();ap.add_argument('--board',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args()

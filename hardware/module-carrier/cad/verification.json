@@ -2,7 +2,7 @@
   "revision": "MC1-Nano",
   "layout_revision": "nano-single-anchor-rails",
   "status": "engineering_prototype_not_fabrication_release",
-  "checked_at_utc": "2026-10-18T16:07:57.415946+00:00",
+  "checked_at_utc": "2026-10-18T16:15:52.265820+00:00",
   "kicad_version": "10.0.6",
   "board": {
     "width_mm": 47.5,
@@ -383,6 +383,6 @@
     "nano-pin-plan.json": "9110335d6b2865fc78964b3719e6f68022f7cf2a58079dfb8fa3fd84dba34740",
     "h2-uart-isolation.svg": "27507afa36dd4033e9dbef07037a37500bec378ca7be01468d9ba272260b8ac0",
     "routing-metrics.json": "fafc66b3b96129f89019e36fc20a7f39edeff63d002bb6f04e7ac6c12a5b0d8d",
-    "measure_routing.py": "b30046d04f989a32201a9eefa0c7978018f1726bc4ad58613b51b34c5ef6c008"
+    "measure_routing.py": "31de9aa58bdcbd00aca25195d588b1bca10459f13edc84a8311c8c05ebd2665f"
   }
 }

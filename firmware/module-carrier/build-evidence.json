@@ -250,5 +250,13 @@
       "firmware/module-carrier/validate.py": "8f155737bc99dece56ba257e3d9fbfa6055e777c39eb980d7dceb236663c8d6c",
       "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae"
     }
+  },
+  "review_followup": {
+    "date": "2026-10-18",
+    "host_tests_passed": 61,
+    "scope": "Host updater and historical preparation cleanup; runtime C++ and compiled artifacts unchanged. See test-results.json for current test source hashes.",
+    "source_sha256": {
+      "firmware/module-carrier/updates/update.py": "87c4cacc1e01d59d4ce6703c48760eb60432906ae0fe092daa976f760fbce5bf"
+    }
   }
 }

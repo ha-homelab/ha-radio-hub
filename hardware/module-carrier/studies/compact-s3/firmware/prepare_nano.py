@@ -6,7 +6,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-from prepare import ROOT, replace_once, require_historical_baseline
+from prepare_common import ROOT, replace_once, require_historical_baseline
 
 
 def prepare(output, upstream=None):

@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-18T16:07:57.091896+00:00",
+  "checked_at_utc": "2026-10-18T16:15:51.658206+00:00",
   "result": "pass_with_conditional_mechanical_findings",
   "physical_z_qualified": false,
   "method": "Clean temporary copy; generator + committed SES + manual route; native DRC/parity/ERC and geometry/electrical tests",
@@ -15,7 +15,7 @@
     "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
     "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
     "project_rules.py": "088d9987469cee8a32241284b097551942e20072ae7ec249f9f29fc967c17720",
-    "generate.py": "739301e027faa12887ca51da48052ec7de768c89347e4cad5c222f7fc339e415",
+    "generate.py": "abde4f5f4c2160eb0b27621aa30d8faafd84a72f070e3f8c5b0d228d9d38a0c1",
     "finalize.py": "f009f648aa1ca661bb4e80a81e13309e702b046910c7a9b7c53006c963064d01",
     "apply_manual_route.py": "47fea470467bfa068d39d069f556131f78d35ea7f93d1849ad1d2545bf80d9bf",
     "validate_drc.py": "1a3c0280055c6e5bc0bfa348eeab1e89992973c790378310b638c209668a1acb",

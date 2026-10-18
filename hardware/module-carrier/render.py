@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild MC1's English guide from the current CAD and review data."""
 from pathlib import Path
-import argparse, csv, hashlib, html, io, json, math, runpy
+import argparse, csv, hashlib, html, json, math, runpy
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -291,7 +291,6 @@ def produce():
     metrics=json.loads(metrics_path.read_text()) if metrics_path.exists() else None
     mounting=''
     if metrics:
-        a=metrics['baseline']; z=metrics['current']
         mounting='<h3 id="mounting">One retention hole, supported edges</h3><p>The 47.5 × 75 mm PCB retains only H3 between U2 and U3. Split enclosure rails support both long edges; H3 locates and retains the board. Removing the other three holes and moving the controllers inward reduces area by 6.9% from the preceding 51 × 75 mm board. Two copper layers, sixteen fitted electronic items and every pin assignment are retained.</p><figure><a href="../../mechanical/module-carrier/rail-mount/rail-mount.svg"><img src="../../mechanical/module-carrier/rail-mount/rail-mount.svg" alt="Single H3 retention hole and split enclosure edge supports"></a><figcaption>Load the board into an open frame, then close the retaining lips. Separate enclosure fasteners attach it to the ceiling. A jack-body stop and cable restraint must protect the WIZ header joints. The drawing defines a mounting interface; measured height, printed fit, load capacity and RF performance remain unqualified.</figcaption></figure><p><a href="../../mechanical/module-carrier/rail-mount/index.html">Rail study, assembly sequence and printable fit coupons</a>. The groove must have measured clearance; it is not a zero-clearance press fit.</p>'
         mounting+='<h3>Placement and routed length</h3><p>The entire rear is soldered first: WIZ, all seven male harness headers and the five axial parts. Front U1–U3 are fitted afterwards and soldered from the accessible rear. Opposite-side overlap is allowed; every remaining solder land and the measured height clearance must pass. D1 and R1 retain useful diagonal orientations, while S3 and H2 are brought closer together. Pin assignments, polarity and track-width rules are unchanged.</p>'
         mounting+='<figure><a href="routing-comparison.svg"><img src="routing-comparison.svg" alt="Per-net routed copper lengths before and after"></a><figcaption>Actual native track lengths, including every branch of each net. Shorter total routing does not establish that every path improved or that signal integrity is proven.</figcaption></figure><p><a href="cad/routing-metrics.json">All per-net measurements</a> · <a href="independent-review.md">Independent geometry review</a></p>'

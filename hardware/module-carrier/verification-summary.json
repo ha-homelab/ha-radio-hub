@@ -47,7 +47,7 @@
     },
     {
       "check": "Bounded Thread recovery, transport and radio update tooling",
-      "result": "56 ASan / UBSan host tests and 2 REST client tests passed",
+      "result": "61 ASan / UBSan host tests and 2 REST client tests passed",
       "scope": "RCP preflight, durable quarantine, explicit maintenance, authenticated temporary H2 UART session, image/partition checks and binary localhost tunnel. Pinned host dependencies install cleanly; both real radio images pass offline planning. Physical updates, power-loss and concurrent-load behavior remain untested."
     },
     {

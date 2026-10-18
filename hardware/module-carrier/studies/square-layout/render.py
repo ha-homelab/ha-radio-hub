@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Render the square packing study from the two actual placement ledgers."""
 import argparse
-import hashlib
 import html
 import json
 import math

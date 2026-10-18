@@ -2,7 +2,7 @@
   "date": "2026-10-18",
   "tool": "CUA in-app browser",
   "layout_revision": "nano-single-anchor-rails",
-  "index_sha256": "1166a157344321ee411dc3ceed059852cf333385bdd2d671d0ffc782d372e6cc",
+  "index_sha256": "c64fdb63d7e4cfd46628e12313520bdcd6c8be1b09829ff038a93f3facd6e457",
   "viewport_width": 1280,
   "page_scroll_width": 1280,
   "images_loaded": 17,
@@ -54,7 +54,7 @@
     "../../mechanical/module-carrier/enclosure-prototype/index.html": "44cf605ea61b10f9b4e13f48a19b9606982c70b84ec5d0606866f63cdaae9a8a",
     "cad/schematic.svg": "a420f78ee23023ee22d43ded28810221a4d51c9c1cce5167a225f9441de1205d",
     "../../mechanical/module-carrier/enclosure-prototype/enclosure.svg": "55d12942ad83b436f727944e21440bfcd9f17aa75847cbc7c89ed0445470f382",
-    "index.html": "1166a157344321ee411dc3ceed059852cf333385bdd2d671d0ffc782d372e6cc",
+    "index.html": "c64fdb63d7e4cfd46628e12313520bdcd6c8be1b09829ff038a93f3facd6e457",
     "../../mechanical/module-carrier/enclosure-prototype/print-parts.png": "58292585de69a19dd773140936ca9657a25834bfb41cb18f392a30c7c6585905",
     "images/mc1-assembled-concept.png": "c68e7db34a55a451c4f5d21ea8cdf91232b27f246098b0d102b11c1277e710c8",
     "../../mechanical/module-carrier/rail-mount/index.html": "d716414202a3e7c4520c13efebcb3256cd9d4ed1cfea5f2b60c21c7b01fe6b6d"
@@ -92,5 +92,7 @@
     "page_scroll_width": 1280,
     "images_loaded": 2,
     "all_images_loaded": true
-  }
+  },
+  "retained_capture_index_sha256": "1166a157344321ee411dc3ceed059852cf333385bdd2d671d0ffc782d372e6cc",
+  "source_change_note": "Review follow-up changed only the host-test count in the evidence table from 56 to 61. Existing captured PCB, wiring, concept and standalone-diagram regions are unchanged; their screenshots are retained from the recorded capture."
 }

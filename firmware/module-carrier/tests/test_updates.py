@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import AsyncMock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("mc1_update", ROOT / "updates/update.py")
@@ -133,3 +134,44 @@ class UpdateTunnelTests(unittest.IsolatedAsyncioTestCase):
         finally:
             local_server.close(); remote_server.close()
             await local_server.wait_closed(); await remote_server.wait_closed()
+
+
+class HubConnectionTests(unittest.IsolatedAsyncioTestCase):
+    async def test_nonpositive_attempts_are_rejected_without_connecting(self):
+        with patch.object(update, "HubAPI") as factory:
+            for attempts in (0, -1):
+                with self.subTest(attempts=attempts), self.assertRaisesRegex(ValueError, "attempts"):
+                    await update.connect_hub("test.invalid", "test-key", "00" * 6, attempts)
+            factory.assert_not_called()
+
+    async def test_success_returns_the_connected_instance(self):
+        api = AsyncMock()
+        with patch.object(update, "HubAPI", return_value=api) as factory:
+            self.assertIs(await update.connect_hub("test.invalid", "test-key", "00" * 6), api)
+        factory.assert_called_once()
+        api.connect.assert_awaited_once()
+        api.disconnect.assert_not_awaited()
+
+    async def test_retry_closes_failed_client_before_returning_success(self):
+        first, second = AsyncMock(), AsyncMock()
+        first.connect.side_effect = ConnectionError("not ready")
+        with patch.object(update, "HubAPI", side_effect=[first, second]), \
+                patch.object(update.asyncio, "sleep", new_callable=AsyncMock) as sleep:
+            self.assertIs(await update.connect_hub("test.invalid", "test-key", "00" * 6, 2), second)
+        first.disconnect.assert_awaited_once()
+        second.disconnect.assert_not_awaited()
+        sleep.assert_awaited_once_with(2)
+
+    async def test_exhaustion_preserves_last_error_and_closes_clients(self):
+        first, second = AsyncMock(), AsyncMock()
+        first.connect.side_effect = ConnectionError("not ready")
+        failure = ConnectionError("last attempt failed")
+        second.connect.side_effect = failure
+        with patch.object(update, "HubAPI", side_effect=[first, second]) as factory, \
+                patch.object(update.asyncio, "sleep", new_callable=AsyncMock):
+            with self.assertRaises(ConnectionError) as caught:
+                await update.connect_hub("test.invalid", "test-key", "00" * 6, 2)
+        self.assertIs(caught.exception, failure)
+        self.assertEqual(factory.call_count, 2)
+        first.disconnect.assert_awaited_once()
+        second.disconnect.assert_awaited_once()

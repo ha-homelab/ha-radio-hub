@@ -141,6 +141,7 @@ async def connect_hub(host, psk, mac, attempts=1):
             if attempt + 1 == attempts:
                 raise
             await asyncio.sleep(2)
+    raise ValueError("attempts must be at least 1")
 
 
 async def execute_h2(args):

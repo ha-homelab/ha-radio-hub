@@ -3,8 +3,8 @@
   "tested_date_local": "2026-10-18",
   "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
   "passed": true,
-  "tests": 56,
-  "duration_seconds": 2.763,
+  "tests": 61,
+  "duration_seconds": 2.527,
   "sanitizers": [
     "address",
     "undefined"
@@ -15,7 +15,7 @@
     "-Wextra",
     "-Werror"
   ],
-  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation. Active firmware/CAD pin-manifest parity and rejection of obsolete/swapped H2 UART assignments.",
+  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation. Active firmware/CAD pin-manifest parity and rejection of obsolete/swapped H2 UART assignments. Host connection retries reject zero/negative attempts, preserve errors and close failed clients. Historical Nano/Mini entrypoints retain their fail-closed baseline guard after import-cycle removal.",
   "source_sha256": {
     "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
     "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
@@ -25,17 +25,21 @@
     "firmware/low-power/components/low_power_otbr/update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3",
     "firmware/module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
     "firmware/module-carrier/tests/test_thread_guard.py": "908dedd5bc55be9cd11e9903fc3f7e8d2ff0cf73152d8b5e5b82162ee7338f56",
-    "firmware/module-carrier/tests/test_updates.py": "954490469249178797c26d58e4431ea95f790f6aa19dbee82ccfe21989172ca1",
+    "firmware/module-carrier/tests/test_updates.py": "0fdc65064878278a31aed0eb2f6319a37f865c737015aee17cf7ed816fe765d9",
     "firmware/module-carrier/tests/thread_guard_test.cpp": "7e1a6d6c71b6dd4b06489119d505d2546871f65017730b9184ff61ce4cce51da",
     "firmware/module-carrier/tests/transport_test.cpp": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547",
     "firmware/module-carrier/tests/update_session_test.cpp": "92943782fa5e4b0b0329a0b145fe211a04c7cd5ab8ba330490ac6a0318781ff9",
     "firmware/module-carrier/updates/requirements.txt": "395d28581bb88cbc2dd5ffdf5e2fcbef768a030d1eb33dfd7340ed1c66be9166",
-    "firmware/module-carrier/updates/update.py": "9b4ce1dec74751d93e00e762c88d86fc75cf4d990b89c9fa11d7c1c668184690",
+    "firmware/module-carrier/updates/update.py": "87c4cacc1e01d59d4ce6703c48760eb60432906ae0fe092daa976f760fbce5bf",
     "firmware/module-carrier/contract.py": "7cc229d36d3872f501f060f1d9cdf0bde97505e7726f378dffe29dcfafa83cd0",
     "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae",
     "firmware/module-carrier/tests/test_pin_contract.py": "a48d7a33315f4384059fde6b6723d845402db857889dfc7da7b7986b858ab8fc",
     "hardware/module-carrier/cad/nano-pin-plan.json": "9110335d6b2865fc78964b3719e6f68022f7cf2a58079dfb8fa3fd84dba34740",
-    "hardware/module-carrier/cad/design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
+    "hardware/module-carrier/cad/design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8",
+    "firmware/module-carrier/tests/test_study_preparation.py": "8149e5ebfa2feb4670817e083427c84a21acbed588111316321202e3146d733e",
+    "hardware/module-carrier/studies/compact-s3/firmware/prepare.py": "f077253182bf55d021401f52cf8332a69f480a13e51434720375a7b1250c51de",
+    "hardware/module-carrier/studies/compact-s3/firmware/prepare_nano.py": "0ffe7e0ff65838f8ca6f82dd75b90499f629a9dc7487b7f51decb1c5cfe1655e",
+    "hardware/module-carrier/studies/compact-s3/firmware/prepare_common.py": "8c24392b41aac827af34cdb921e5106943aaf8264344f8abef9ba9628caab266"
   },
   "additional_contract_guards": {
     "compiled_open_drain_source_verified": true,
