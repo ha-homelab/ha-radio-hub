@@ -5,14 +5,19 @@
   "hardware_tested": false,
   "checks": [
     {
+      "check": "Carrier area and electrical preservation",
+      "result": "160 x 100 mm to 100 x 90 mm; 43.75% less area",
+      "scope": "Same 17 parts and 145 pad assignments; all components on top, two copper layers, no new sockets or firmware changes"
+    },
+    {
       "check": "Native KiCad 10.0.6 ERC / DRC",
       "result": "0 violations, 0 unrouted, 0 parity issues",
       "scope": "Final native schematic and routed PCB; passive module terminals do not validate internal circuits"
     },
     {
       "check": "Mechanical and pin geometry",
-      "result": "9 tests passed; independent review checked 145 pad entries",
-      "scope": "Manufacturer-derived dimensions, net assignments and outward left-edge RJ45 opening; physical cable/enclosure fit remains untested"
+      "result": "12 tests passed; independent review checked 145 pad entries",
+      "scope": "100 x 90 mm carrier; manufacturer-derived geometry, right-edge RJ45, USB and narrow header housing allowances, three nylon supports; physical fit remains untested"
     },
     {
       "check": "CAD / firmware interface contracts",
@@ -41,8 +46,8 @@
     },
     {
       "check": "Images and diagrams",
-      "result": "Native CAD exports plus labeled generated assembly concept",
-      "scope": "Illustrations are not measurements or fabrication evidence"
+      "result": "Current native CAD renders and same-scale placement comparison",
+      "scope": "Generated compact illustration rejected for inaccurate module/connector details; retained only in history"
     }
   ],
   "evidence_files": [
@@ -52,5 +57,5 @@
     "../../firmware/module-carrier/test-results.json",
     "../../firmware/module-carrier/zigbee/build-evidence.json"
   ],
-  "layout_revision": "RJ45-left-edge"
+  "layout_revision": "compact-100x90-right-edge"
 }

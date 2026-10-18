@@ -11,6 +11,13 @@ PCB design. The [current assembly guide](module-carrier.md) and
 
 ## Why the alternatives are retained
 
+The first MC1 layout used a 160 × 100 mm outline. It was replaced by the compact
+100 × 90 mm placement with internal harness aisles and an outward-facing RJ45 at
+the right edge. The previous layout remains in Git history at commit
+`b1cb991399f88cb225378a2a8adafd9bbb7b1bb6`; its reduced
+[placement ledger](../hardware/module-carrier/layout-baseline.json) is used only
+for the same-scale comparison. It is not a second current board option.
+
 The previous C0/M0, I0 and D0 sources, measurements, build proofs and renders remain
 available to reproduce earlier work. They are historical references, not additional
 shopping lists or alternative current MC1 builds. Replacing an old board image with

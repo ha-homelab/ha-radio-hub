@@ -1,12 +1,12 @@
 {
   "revision": "MC1",
-  "layout_revision": "RJ45-left-edge",
+  "layout_revision": "compact-100x90-right-edge",
   "status": "engineering_prototype_not_fabrication_release",
-  "checked_at_utc": "2026-10-18T02:31:47.002046+00:00",
+  "checked_at_utc": "2026-10-18T02:50:50.618837+00:00",
   "kicad_version": "10.0.6",
   "board": {
-    "width_mm": 160,
-    "height_mm": 100,
+    "width_mm": 100,
+    "height_mm": 90,
     "copper_layers": 2
   },
   "checks": {
@@ -14,7 +14,7 @@
     "drc_violations": 0,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 9
+    "unit_tests_passed": 12
   },
   "assembly": {
     "fitted_through_hole_references": 17,
@@ -24,6 +24,183 @@
     "loose_axial_resistors": 2,
     "female_sockets": 0,
     "carrier_smt_components": 0
+  },
+  "mechanics": {
+    "rj45": {
+      "pcb_bounds_local_mm": [
+        -1.34,
+        -6.4,
+        21.66,
+        18.6
+      ],
+      "rj45_face_local_mm": [
+        [
+          2.11,
+          -9.1
+        ],
+        [
+          18.21,
+          -9.1
+        ]
+      ],
+      "rj45_outward_normal_local": [
+        0,
+        -1
+      ],
+      "service_corridor_global_mm": [
+        99.3,
+        63,
+        139,
+        90
+      ],
+      "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
+      "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
+      "face_global_mm": [
+        [
+          102.0,
+          69.11
+        ],
+        [
+          102.0,
+          85.21
+        ]
+      ],
+      "outward_normal_global": [
+        1.0,
+        0.0
+      ],
+      "mouth_beyond_right_edge_mm": 2.0,
+      "pcb_bounds_global_mm": [
+        74.3,
+        65.66,
+        99.3,
+        88.66
+      ],
+      "face_width_mm": 16.1,
+      "opening_direction": "right / positive X"
+    },
+    "usb_service_envelopes_mm": {
+      "U1": [
+        1.0,
+        64.34,
+        30.0,
+        94.34
+      ],
+      "U2": [
+        38.8,
+        7.315,
+        66.8,
+        37.315
+      ],
+      "U3": [
+        82.38,
+        20.921,
+        96.38,
+        50.921
+      ]
+    },
+    "header_mating_envelopes_mm": {
+      "J1": [
+        67.95,
+        33.25,
+        73.45,
+        39.29
+      ],
+      "J2": [
+        74.25,
+        21.55,
+        79.75,
+        32.67
+      ],
+      "J3": [
+        67.95,
+        39.85,
+        73.45,
+        56.05
+      ],
+      "J4": [
+        74.25,
+        39.85,
+        79.75,
+        53.51
+      ],
+      "J5": [
+        32.25,
+        21.25,
+        37.75,
+        42.53
+      ],
+      "J6": [
+        67.95,
+        21.55,
+        73.45,
+        32.67
+      ],
+      "J7": [
+        32.25,
+        45.25,
+        37.75,
+        56.37
+      ],
+      "J8": [
+        74.25,
+        33.25,
+        79.75,
+        39.29
+      ]
+    },
+    "rf_copper_keepouts_mm": [
+      [
+        0,
+        0,
+        100,
+        1.8
+      ],
+      [
+        8,
+        0,
+        25,
+        12
+      ],
+      [
+        43,
+        75,
+        62,
+        90
+      ],
+      [
+        82.8,
+        0,
+        95,
+        5
+      ],
+      [
+        38,
+        88.2,
+        67,
+        90
+      ]
+    ],
+    "mounting_holes_mm": [
+      [
+        35,
+        13
+      ],
+      [
+        35,
+        72
+      ],
+      [
+        70.7,
+        61
+      ]
+    ],
+    "mounting": {
+      "drill_mm": 2.7,
+      "hardware": "Three nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends",
+      "note": "Check enclosure support and RJ45 insertion load; support H3 is 3.6mm left of WIZ PCB."
+    },
+    "service_envelope_basis": "Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; USB 30mm axial length. Verify actual mating shells, cable bends and vertical access."
   },
   "rj45": {
     "pcb_bounds_local_mm": [
@@ -47,36 +224,36 @@
       -1
     ],
     "service_corridor_global_mm": [
-      -36,
-      61,
-      1.7,
-      88
+      99.3,
+      63,
+      139,
+      90
     ],
     "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
     "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
     "face_global_mm": [
       [
-        -1.0,
-        82.89
+        102.0,
+        69.11
       ],
       [
-        -1.0,
-        66.79
+        102.0,
+        85.21
       ]
     ],
     "outward_normal_global": [
-      -1.0,
-      -0.0
+      1.0,
+      0.0
     ],
-    "mouth_beyond_left_edge_mm": 1.0,
+    "mouth_beyond_right_edge_mm": 2.0,
     "pcb_bounds_global_mm": [
-      1.7,
-      63.34,
-      26.7,
-      86.34
+      74.3,
+      65.66,
+      99.3,
+      88.66
     ],
     "face_width_mm": 16.1,
-    "opening_direction": "left / negative X"
+    "opening_direction": "right / positive X"
   },
   "limitations": [
     "Carrier assembled hardware untested; no fabrication authorization implied",
@@ -90,15 +267,16 @@
     "New WK2132 firmware path and radio coexistence require integration validation"
   ],
   "sha256": {
-    "mc1.kicad_pcb": "66280405ca9c8d4144ea105c86d38104f921f97fb98ce5922702cdc2a23f2036",
+    "mc1.kicad_pcb": "bed9b495f92728f6f0cc000be6d5a8b31b15fdbefcee779d9cb0fd12e771e165",
+    "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
     "mc1.kicad_sch": "0d3b6aa1c8d2a7f7fd4460c0119052c7ba7d5cc6e864dd6b67d66e7716c53af1",
-    "design.json": "ab60e23c6e5f2cefc959bb20b8dbb9a798592443a44b44a2bb3ac6a8c23fd38a",
-    "routing/mc1.ses": "e9a92b258e421e34dbee17a01383ff036675e300755177fbf1773006d35e22fc",
-    "manual-route.json": "f011a48c0596426400b00d7eb871c8ff8dc396d261d52a85e2bd90c7f51f9f1f",
-    "assembly-top.svg": "4df634a68b6e3816586da8f1f00cf2686df00136453c1abe6b2c6ae42d3b58f3",
-    "board-top.svg": "1d0095cb28b4fff1bf2781ca341968cb3cf8bfb5f818f8483ebda25d5c71d2fe",
-    "board-bottom.svg": "83f5b4315a7bcfcbb70801282a5649e40d96d360ff162e356ef57ef735e3b9b0",
-    "schematic.svg": "9bb0229f0a46af2d101f765b6b3044d5d964bb8296e8fa8b8d61b6c876c3eb33",
-    "schematic.pdf": "f3be33123758489056dfdc51326dc113e06aa541d12ed792569d8f92dacde1bc"
+    "design.json": "13b3c1479fa314fdc925afb0ee2399e88935e6486a3e83451945ebf022b6a6a8",
+    "routing/mc1.ses": "3686905da26a7c72748d4739c89c59d37f62c6c54b872f7815be8114209b49c6",
+    "manual-route.json": "125ccd83ca724d6e8d3abaaab0d46b93e2439d365784bdc8c7205e1bd7ee86ef",
+    "assembly-top.svg": "0c5e168b09c8e15ab7957e22d758321d8940ed8d76ff7f3a9ac1ef5871cdbe89",
+    "board-top.svg": "d80fdab7c10434e02c02b4d1b4977757d91d83ef67eb1ad09636bd10b466bdb1",
+    "board-bottom.svg": "e7d57be45ddb1ca8d89c6ed5e2cbdeb221715f38b6a95b957cb5c8248c0a001e",
+    "schematic.svg": "36474a5a4764fdbe8cdf0066f4ac8f848eab936a1877ef7bfffa6b086529e086",
+    "schematic.pdf": "ded625cf0c990b9f78e61dd0952ab0b3361ea4f87b920c1a1850025bb775223c"
   }
 }

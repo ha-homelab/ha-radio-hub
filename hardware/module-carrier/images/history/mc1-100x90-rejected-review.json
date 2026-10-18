@@ -1,0 +1,15 @@
+{
+  "status": "Rejected illustration; not included in current visual guide",
+  "date": "2026-10-17",
+  "tool": "built-in image_gen",
+  "file": "mc1-100x90-rejected-concept.png",
+  "sha256": "42e316f24bd3e6eb0883f946481af612e71c178fa8fc03ec1b93d27c0b744e32",
+  "prompt": "../compact-layout-prompt.txt",
+  "reference_image_sha256": "766b0ba73b73f0ccfdbcff87b703201e994806ecaadb79afaaf53ae4d08a32eb",
+  "rejection_reasons": [
+    "Invented ceramic antenna bodies on S3 and H2 instead of their actual printed antenna geometry",
+    "Connector/pin details and USB port count do not reproduce the specified development boards",
+    "RJ45 physical body and overhang are exaggerated rather than the dimensioned 2 mm opening projection"
+  ],
+  "authority": "Use ../../cad/assembly-top.svg and the native KiCad files for current placement."
+}

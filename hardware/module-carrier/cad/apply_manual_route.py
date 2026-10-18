@@ -21,3 +21,6 @@ for route in data['routes']:
   t.SetNet(net);b.Add(t);count+=1
 b.BuildConnectivity();p.ZONE_FILLER(b).Fill(b.Zones());p.SaveBoard(str(R/'mc1.kicad_pcb'),b)
 print('Added',count,'route items; run native DRC')
+
+from project_rules import restore_project_rules
+restore_project_rules()

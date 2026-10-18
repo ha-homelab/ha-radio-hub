@@ -4,6 +4,11 @@ MC1 is the project's **single current custom PCB**: a carrier for finished
 S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into
 plated holes. Female module sockets and hand-soldered bare RF modules are excluded.
 
+Current PCB outline: **100 × 90 mm, two copper layers**. This reduces the former
+160 × 100 mm carrier area by 43.75%. The [placement comparison](layout-comparison.svg) uses
+the same scale for both layouts. The electrical pin contract remains unchanged;
+USB/RJ45 service corridors and external finished modules still need physical space.
+
 Use the [visual guide](index.html), [assembly instructions](../../docs/module-carrier.md),
 [CAD source](cad/), [gallery](images/README.md), and
 [matching firmware](../../firmware/module-carrier/README.md) together.

@@ -3,8 +3,8 @@
   "revision": "MC1",
   "status": "engineering_prototype_not_fabrication_release",
   "board": {
-    "width_mm": 160,
-    "height_mm": 100,
+    "width_mm": 100,
+    "height_mm": 90,
     "copper_layers": 2,
     "assembly": "Factory male pins directly soldered in PTH; no female sockets",
     "signal_track_mm": 0.25,
@@ -47,37 +47,159 @@
         -1
       ],
       "service_corridor_global_mm": [
-        -36,
-        61,
-        1.7,
-        88
+        99.3,
+        63,
+        139,
+        90
       ],
       "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
       "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
       "face_global_mm": [
         [
-          -1.0,
-          82.89
+          102.0,
+          69.11
         ],
         [
-          -1.0,
-          66.79
+          102.0,
+          85.21
         ]
       ],
       "outward_normal_global": [
-        -1.0,
-        -0.0
+        1.0,
+        0.0
       ],
-      "mouth_beyond_left_edge_mm": 1.0,
+      "mouth_beyond_right_edge_mm": 2.0,
       "pcb_bounds_global_mm": [
-        1.7,
-        63.34,
-        26.7,
-        86.34
+        74.3,
+        65.66,
+        99.3,
+        88.66
       ],
       "face_width_mm": 16.1,
-      "opening_direction": "left / negative X"
-    }
+      "opening_direction": "right / positive X"
+    },
+    "usb_service_envelopes_mm": {
+      "U1": [
+        1.0,
+        64.34,
+        30.0,
+        94.34
+      ],
+      "U2": [
+        38.8,
+        7.315,
+        66.8,
+        37.315
+      ],
+      "U3": [
+        82.38,
+        20.921,
+        96.38,
+        50.921
+      ]
+    },
+    "header_mating_envelopes_mm": {
+      "J1": [
+        67.95,
+        33.25,
+        73.45,
+        39.29
+      ],
+      "J2": [
+        74.25,
+        21.55,
+        79.75,
+        32.67
+      ],
+      "J3": [
+        67.95,
+        39.85,
+        73.45,
+        56.05
+      ],
+      "J4": [
+        74.25,
+        39.85,
+        79.75,
+        53.51
+      ],
+      "J5": [
+        32.25,
+        21.25,
+        37.75,
+        42.53
+      ],
+      "J6": [
+        67.95,
+        21.55,
+        73.45,
+        32.67
+      ],
+      "J7": [
+        32.25,
+        45.25,
+        37.75,
+        56.37
+      ],
+      "J8": [
+        74.25,
+        33.25,
+        79.75,
+        39.29
+      ]
+    },
+    "rf_copper_keepouts_mm": [
+      [
+        0,
+        0,
+        100,
+        1.8
+      ],
+      [
+        8,
+        0,
+        25,
+        12
+      ],
+      [
+        43,
+        75,
+        62,
+        90
+      ],
+      [
+        82.8,
+        0,
+        95,
+        5
+      ],
+      [
+        38,
+        88.2,
+        67,
+        90
+      ]
+    ],
+    "mounting_holes_mm": [
+      [
+        35,
+        13
+      ],
+      [
+        35,
+        72
+      ],
+      [
+        70.7,
+        61
+      ]
+    ],
+    "mounting": {
+      "drill_mm": 2.7,
+      "hardware": "Three nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends",
+      "note": "Check enclosure support and RJ45 insertion load; support H3 is 3.6mm left of WIZ PCB."
+    },
+    "service_envelope_basis": "Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; USB 30mm axial length. Verify actual mating shells, cable bends and vertical access."
   },
   "parts": [
     {
@@ -132,7 +254,7 @@
       },
       "types": {},
       "xy": [
-        44,
+        5,
         3
       ],
       "rotation": 0,
@@ -142,308 +264,308 @@
         {
           "number": "J1.1",
           "net": null,
-          "x": 44.0,
+          "x": 5.0,
           "y": 3.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": null,
-          "x": 44.0,
+          "x": 5.0,
           "y": 5.54,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": null,
-          "x": 44.0,
+          "x": 5.0,
           "y": 8.08,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": "RF_GDO0",
-          "x": 44.0,
+          "x": 5.0,
           "y": 10.62,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": "RF_GDO2",
-          "x": 44.0,
+          "x": 5.0,
           "y": 13.16,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": "RF_MISO",
-          "x": 44.0,
+          "x": 5.0,
           "y": 15.7,
           "drill_mm": 1.1
         },
         {
           "number": "J1.7",
           "net": "RF_SCK",
-          "x": 44.0,
+          "x": 5.0,
           "y": 18.24,
           "drill_mm": 1.1
         },
         {
           "number": "J1.8",
           "net": "RF_CS",
-          "x": 44.0,
+          "x": 5.0,
           "y": 20.78,
           "drill_mm": 1.1
         },
         {
           "number": "J1.9",
           "net": "ZB_CTS",
-          "x": 44.0,
+          "x": 5.0,
           "y": 23.32,
           "drill_mm": 1.1
         },
         {
           "number": "J1.10",
           "net": "ZB_RX",
-          "x": 44.0,
+          "x": 5.0,
           "y": 25.86,
           "drill_mm": 1.1
         },
         {
           "number": "J1.11",
           "net": "ZB_TX",
-          "x": 44.0,
+          "x": 5.0,
           "y": 28.4,
           "drill_mm": 1.1
         },
         {
           "number": "J1.12",
           "net": "RF_MOSI",
-          "x": 44.0,
+          "x": 5.0,
           "y": 30.94,
           "drill_mm": 1.1
         },
         {
           "number": "J1.13",
           "net": null,
-          "x": 44.0,
+          "x": 5.0,
           "y": 33.48,
           "drill_mm": 1.1
         },
         {
           "number": "J1.14",
           "net": null,
-          "x": 44.0,
+          "x": 5.0,
           "y": 36.02,
           "drill_mm": 1.1
         },
         {
           "number": "J1.15",
           "net": "ETH_RESET",
-          "x": 44.0,
+          "x": 5.0,
           "y": 38.56,
           "drill_mm": 1.1
         },
         {
           "number": "J1.16",
           "net": "ETH_INT",
-          "x": 44.0,
+          "x": 5.0,
           "y": 41.1,
           "drill_mm": 1.1
         },
         {
           "number": "J1.17",
           "net": "ETH_MOSI",
-          "x": 44.0,
+          "x": 5.0,
           "y": 43.64,
           "drill_mm": 1.1
         },
         {
           "number": "J1.18",
           "net": "ETH_MISO",
-          "x": 44.0,
+          "x": 5.0,
           "y": 46.18,
           "drill_mm": 1.1
         },
         {
           "number": "J1.19",
           "net": "ETH_SCK",
-          "x": 44.0,
+          "x": 5.0,
           "y": 48.72,
           "drill_mm": 1.1
         },
         {
           "number": "J1.20",
           "net": "ETH_CS",
-          "x": 44.0,
+          "x": 5.0,
           "y": 51.26,
           "drill_mm": 1.1
         },
         {
           "number": "J1.21",
           "net": "+5V_S3",
-          "x": 44.0,
+          "x": 5.0,
           "y": 53.8,
           "drill_mm": 1.1
         },
         {
           "number": "J1.22",
           "net": "GND",
-          "x": 44.0,
+          "x": 5.0,
           "y": 56.34,
           "drill_mm": 1.1
         },
         {
           "number": "J3.1",
           "net": "GND",
-          "x": 66.86,
+          "x": 27.86,
           "y": 3.0,
           "drill_mm": 1.1
         },
         {
           "number": "J3.2",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 5.54,
           "drill_mm": 1.1
         },
         {
           "number": "J3.3",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 8.08,
           "drill_mm": 1.1
         },
         {
           "number": "J3.4",
           "net": "I2C_SDA",
-          "x": 66.86,
+          "x": 27.86,
           "y": 10.62,
           "drill_mm": 1.1
         },
         {
           "number": "J3.5",
           "net": "I2C_SCL",
-          "x": 66.86,
+          "x": 27.86,
           "y": 13.16,
           "drill_mm": 1.1
         },
         {
           "number": "J3.6",
           "net": "THREAD_TX",
-          "x": 66.86,
+          "x": 27.86,
           "y": 15.7,
           "drill_mm": 1.1
         },
         {
           "number": "J3.7",
           "net": "THREAD_RX",
-          "x": 66.86,
+          "x": 27.86,
           "y": 18.24,
           "drill_mm": 1.1
         },
         {
           "number": "J3.8",
           "net": "RADAR_TX",
-          "x": 66.86,
+          "x": 27.86,
           "y": 20.78,
           "drill_mm": 1.1
         },
         {
           "number": "J3.9",
           "net": "RADAR_RX",
-          "x": 66.86,
+          "x": 27.86,
           "y": 23.32,
           "drill_mm": 1.1
         },
         {
           "number": "J3.10",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 25.86,
           "drill_mm": 1.1
         },
         {
           "number": "J3.11",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 28.4,
           "drill_mm": 1.1
         },
         {
           "number": "J3.12",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 30.94,
           "drill_mm": 1.1
         },
         {
           "number": "J3.13",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 33.48,
           "drill_mm": 1.1
         },
         {
           "number": "J3.14",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 36.02,
           "drill_mm": 1.1
         },
         {
           "number": "J3.15",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 38.56,
           "drill_mm": 1.1
         },
         {
           "number": "J3.16",
           "net": "THREAD_BOOT",
-          "x": 66.86,
+          "x": 27.86,
           "y": 41.1,
           "drill_mm": 1.1
         },
         {
           "number": "J3.17",
           "net": "THREAD_EN",
-          "x": 66.86,
+          "x": 27.86,
           "y": 43.64,
           "drill_mm": 1.1
         },
         {
           "number": "J3.18",
           "net": "ZB_RTS",
-          "x": 66.86,
+          "x": 27.86,
           "y": 46.18,
           "drill_mm": 1.1
         },
         {
           "number": "J3.19",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 48.72,
           "drill_mm": 1.1
         },
         {
           "number": "J3.20",
           "net": null,
-          "x": 66.86,
+          "x": 27.86,
           "y": 51.26,
           "drill_mm": 1.1
         },
         {
           "number": "J3.21",
           "net": "GND",
-          "x": 66.86,
+          "x": 27.86,
           "y": 53.8,
           "drill_mm": 1.1
         },
         {
           "number": "J3.22",
           "net": "GND",
-          "x": 66.86,
+          "x": 27.86,
           "y": 56.34,
           "drill_mm": 1.1
         }
@@ -487,221 +609,221 @@
       },
       "types": {},
       "xy": [
-        86,
-        3
+        64,
+        84
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "h2",
       "notes": "RCP RX4 TX5; native USB and UART bridge pins untouched; 3V3/VBAT NC",
       "pad_centers_mm": [
         {
           "number": "J1.1",
           "net": null,
-          "x": 86.0,
-          "y": 3.0,
+          "x": 64.0,
+          "y": 84.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": "THREAD_EN",
-          "x": 86.0,
-          "y": 5.54,
+          "x": 64.0,
+          "y": 81.46,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": null,
-          "x": 86.0,
-          "y": 8.08,
+          "x": 64.0,
+          "y": 78.92,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": null,
-          "x": 86.0,
-          "y": 10.62,
+          "x": 64.0,
+          "y": 76.38,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": null,
-          "x": 86.0,
-          "y": 13.16,
+          "x": 64.0,
+          "y": 73.84,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": null,
-          "x": 86.0,
-          "y": 15.7,
+          "x": 64.0,
+          "y": 71.3,
           "drill_mm": 1.1
         },
         {
           "number": "J1.7",
           "net": null,
-          "x": 86.0,
-          "y": 18.24,
+          "x": 64.0,
+          "y": 68.76,
           "drill_mm": 1.1
         },
         {
           "number": "J1.8",
           "net": null,
-          "x": 86.0,
-          "y": 20.78,
+          "x": 64.0,
+          "y": 66.22,
           "drill_mm": 1.1
         },
         {
           "number": "J1.9",
           "net": "THREAD_RX",
-          "x": 86.0,
-          "y": 23.32,
+          "x": 64.0,
+          "y": 63.68,
           "drill_mm": 1.1
         },
         {
           "number": "J1.10",
           "net": "THREAD_TX",
-          "x": 86.0,
-          "y": 25.86,
+          "x": 64.0,
+          "y": 61.14,
           "drill_mm": 1.1
         },
         {
           "number": "J1.11",
           "net": null,
-          "x": 86.0,
-          "y": 28.4,
+          "x": 64.0,
+          "y": 58.6,
           "drill_mm": 1.1
         },
         {
           "number": "J1.12",
           "net": null,
-          "x": 86.0,
-          "y": 30.94,
+          "x": 64.0,
+          "y": 56.06,
           "drill_mm": 1.1
         },
         {
           "number": "J1.13",
           "net": "GND",
-          "x": 86.0,
-          "y": 33.48,
+          "x": 64.0,
+          "y": 53.52,
           "drill_mm": 1.1
         },
         {
           "number": "J1.14",
           "net": "+5V_H2",
-          "x": 86.0,
-          "y": 36.02,
+          "x": 64.0,
+          "y": 50.98,
           "drill_mm": 1.1
         },
         {
           "number": "J1.15",
           "net": "GND",
-          "x": 86.0,
-          "y": 38.56,
+          "x": 64.0,
+          "y": 48.44,
           "drill_mm": 1.1
         },
         {
           "number": "J3.1",
           "net": "GND",
-          "x": 108.86,
-          "y": 3.0,
+          "x": 41.14,
+          "y": 84.0,
           "drill_mm": 1.1
         },
         {
           "number": "J3.2",
           "net": null,
-          "x": 108.86,
-          "y": 5.54,
+          "x": 41.14,
+          "y": 81.46,
           "drill_mm": 1.1
         },
         {
           "number": "J3.3",
           "net": null,
-          "x": 108.86,
-          "y": 8.08,
+          "x": 41.14,
+          "y": 78.92,
           "drill_mm": 1.1
         },
         {
           "number": "J3.4",
           "net": null,
-          "x": 108.86,
-          "y": 10.62,
+          "x": 41.14,
+          "y": 76.38,
           "drill_mm": 1.1
         },
         {
           "number": "J3.5",
           "net": null,
-          "x": 108.86,
-          "y": 13.16,
+          "x": 41.14,
+          "y": 73.84,
           "drill_mm": 1.1
         },
         {
           "number": "J3.6",
           "net": null,
-          "x": 108.86,
-          "y": 15.7,
+          "x": 41.14,
+          "y": 71.3,
           "drill_mm": 1.1
         },
         {
           "number": "J3.7",
           "net": null,
-          "x": 108.86,
-          "y": 18.24,
+          "x": 41.14,
+          "y": 68.76,
           "drill_mm": 1.1
         },
         {
           "number": "J3.8",
           "net": null,
-          "x": 108.86,
-          "y": 20.78,
+          "x": 41.14,
+          "y": 66.22,
           "drill_mm": 1.1
         },
         {
           "number": "J3.9",
           "net": null,
-          "x": 108.86,
-          "y": 23.32,
+          "x": 41.14,
+          "y": 63.68,
           "drill_mm": 1.1
         },
         {
           "number": "J3.10",
           "net": "GND",
-          "x": 108.86,
-          "y": 25.86,
+          "x": 41.14,
+          "y": 61.14,
           "drill_mm": 1.1
         },
         {
           "number": "J3.11",
           "net": "THREAD_BOOT",
-          "x": 108.86,
-          "y": 28.4,
+          "x": 41.14,
+          "y": 58.6,
           "drill_mm": 1.1
         },
         {
           "number": "J3.12",
           "net": "GND",
-          "x": 108.86,
-          "y": 30.94,
+          "x": 41.14,
+          "y": 56.06,
           "drill_mm": 1.1
         },
         {
           "number": "J3.13",
           "net": null,
-          "x": 108.86,
-          "y": 33.48,
+          "x": 41.14,
+          "y": 53.52,
           "drill_mm": 1.1
         },
         {
           "number": "J3.14",
           "net": null,
-          "x": 108.86,
-          "y": 36.02,
+          "x": 41.14,
+          "y": 50.98,
           "drill_mm": 1.1
         },
         {
           "number": "J3.15",
           "net": "GND",
-          "x": 108.86,
-          "y": 38.56,
+          "x": 41.14,
+          "y": 48.44,
           "drill_mm": 1.1
         }
       ]
@@ -728,7 +850,7 @@
       },
       "types": {},
       "xy": [
-        143,
+        97,
         18
       ],
       "rotation": 180,
@@ -738,98 +860,98 @@
         {
           "number": "1",
           "net": "ZB_BOOT_SERVICE",
-          "x": 143.0,
+          "x": 97.0,
           "y": 18.0,
           "drill_mm": 1.1
         },
         {
           "number": "2",
           "net": null,
-          "x": 143.0,
+          "x": 97.0,
           "y": 15.46,
           "drill_mm": 1.1
         },
         {
           "number": "3",
           "net": null,
-          "x": 143.0,
+          "x": 97.0,
           "y": 12.92,
           "drill_mm": 1.1
         },
         {
           "number": "4",
           "net": null,
-          "x": 143.0,
+          "x": 97.0,
           "y": 10.38,
           "drill_mm": 1.1
         },
         {
           "number": "5",
           "net": "ZB_CTS",
-          "x": 143.0,
+          "x": 97.0,
           "y": 7.84,
           "drill_mm": 1.1
         },
         {
           "number": "6",
           "net": "ZB_RTS",
-          "x": 143.0,
+          "x": 97.0,
           "y": 5.3,
           "drill_mm": 1.1
         },
         {
           "number": "7",
           "net": "ZB_TX",
-          "x": 143.0,
+          "x": 97.0,
           "y": 2.76,
           "drill_mm": 1.1
         },
         {
           "number": "14",
           "net": "+5V_ZB",
-          "x": 127.76,
+          "x": 81.76,
           "y": 18.0,
           "drill_mm": 1.1
         },
         {
           "number": "13",
           "net": "GND",
-          "x": 127.76,
+          "x": 81.76,
           "y": 15.46,
           "drill_mm": 1.1
         },
         {
           "number": "12",
           "net": null,
-          "x": 127.76,
+          "x": 81.76,
           "y": 12.92,
           "drill_mm": 1.1
         },
         {
           "number": "11",
           "net": null,
-          "x": 127.76,
+          "x": 81.76,
           "y": 10.38,
           "drill_mm": 1.1
         },
         {
           "number": "10",
           "net": null,
-          "x": 127.76,
+          "x": 81.76,
           "y": 7.84,
           "drill_mm": 1.1
         },
         {
           "number": "9",
           "net": null,
-          "x": 127.76,
+          "x": 81.76,
           "y": 5.3,
           "drill_mm": 1.1
         },
         {
           "number": "8",
           "net": "ZB_RX",
-          "x": 127.76,
+          "x": 81.76,
           "y": 2.76,
           "drill_mm": 1.1
         }
@@ -855,95 +977,95 @@
       },
       "types": {},
       "xy": [
-        8.1,
-        85
+        92.9,
+        67
       ],
-      "rotation": 90,
+      "rotation": 270,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces LEFT with mouth x=-1mm; NO PoE extraction;3.3V only",
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces RIGHT with mouth x=102mm; NO PoE extraction;3.3V only",
       "pad_centers_mm": [
         {
           "number": "J1.1",
           "net": "GND",
-          "x": 8.1,
-          "y": 85.0,
+          "x": 92.9,
+          "y": 67.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": "GND",
-          "x": 10.64,
-          "y": 85.0,
+          "x": 90.36,
+          "y": 67.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": "ETH_MOSI",
-          "x": 13.18,
-          "y": 85.0,
+          "x": 87.82,
+          "y": 67.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": "ETH_SCK",
-          "x": 15.72,
-          "y": 85.0,
+          "x": 85.28,
+          "y": 67.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": "ETH_CS",
-          "x": 18.26,
-          "y": 85.0,
+          "x": 82.74,
+          "y": 67.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": "ETH_INT",
-          "x": 20.8,
-          "y": 85.0,
+          "x": 80.2,
+          "y": 67.0,
           "drill_mm": 1.1
         },
         {
           "number": "J2.1",
           "net": "GND",
-          "x": 8.1,
-          "y": 64.68,
+          "x": 92.9,
+          "y": 87.32,
           "drill_mm": 1.1
         },
         {
           "number": "J2.2",
           "net": "+3V3",
-          "x": 10.64,
-          "y": 64.68,
+          "x": 90.36,
+          "y": 87.32,
           "drill_mm": 1.1
         },
         {
           "number": "J2.3",
           "net": "+3V3",
-          "x": 13.18,
-          "y": 64.68,
+          "x": 87.82,
+          "y": 87.32,
           "drill_mm": 1.1
         },
         {
           "number": "J2.4",
           "net": null,
-          "x": 15.72,
-          "y": 64.68,
+          "x": 85.28,
+          "y": 87.32,
           "drill_mm": 1.1
         },
         {
           "number": "J2.5",
           "net": "ETH_RESET",
-          "x": 18.26,
-          "y": 64.68,
+          "x": 82.74,
+          "y": 87.32,
           "drill_mm": 1.1
         },
         {
           "number": "J2.6",
           "net": "ETH_MISO",
-          "x": 20.8,
-          "y": 64.68,
+          "x": 80.2,
+          "y": 87.32,
           "drill_mm": 1.1
         }
       ]
@@ -958,25 +1080,25 @@
       },
       "types": {},
       "xy": [
-        13,
-        93
+        70.7,
+        35
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+5V",
-          "x": 13.0,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 35.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 15.54,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 37.54,
           "drill_mm": 1.0
         }
       ]
@@ -993,39 +1115,39 @@
       },
       "types": {},
       "xy": [
-        36,
-        93
+        77,
+        23.3
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+5V",
-          "x": 36.0,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 23.3,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 38.54,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 25.84,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "+3V3",
-          "x": 41.08,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 28.38,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "GND",
-          "x": 43.62,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 30.92,
           "drill_mm": 1.0
         }
       ]
@@ -1044,53 +1166,53 @@
       },
       "types": {},
       "xy": [
-        92,
-        93
+        70.7,
+        41.6
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "weikai",
       "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+3V3",
-          "x": 92.0,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 41.6,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 94.54,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 44.14,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "I2C_SDA",
-          "x": 97.08,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 46.68,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "I2C_SCL",
-          "x": 99.62,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 49.22,
           "drill_mm": 1.0
         },
         {
           "number": "5",
           "net": "ZWAVE_RX",
-          "x": 102.16,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 51.76,
           "drill_mm": 1.0
         },
         {
           "number": "6",
           "net": "ZWAVE_TX",
-          "x": 104.7,
-          "y": 93.0,
+          "x": 70.7,
+          "y": 54.3,
           "drill_mm": 1.0
         }
       ]
@@ -1108,46 +1230,46 @@
       },
       "types": {},
       "xy": [
-        126,
-        93
+        77,
+        41.6
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Carrier1->ZACpin1;2->pin6;3->pin9;4->pin8RX;5->pin10TX. Different from ZAC physical header layout.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+3V3",
-          "x": 126.0,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 41.6,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 128.54,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 44.14,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "GND",
-          "x": 131.08,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 46.68,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "ZWAVE_RX",
-          "x": 133.62,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 49.22,
           "drill_mm": 1.0
         },
         {
           "number": "5",
           "net": "ZWAVE_TX",
-          "x": 136.16,
-          "y": 93.0,
+          "x": 77.0,
+          "y": 51.76,
           "drill_mm": 1.0
         }
       ]
@@ -1168,67 +1290,67 @@
       },
       "types": {},
       "xy": [
-        58,
-        77
+        35,
+        23
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "3.3V; GDO0 open-drain TX with external4.7k pullup; GDO2 receiver.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+3V3",
-          "x": 58.0,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 23.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 60.54,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 25.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "RF_SCK",
-          "x": 63.08,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 28.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "RF_MOSI",
-          "x": 65.62,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 30.62,
           "drill_mm": 1.0
         },
         {
           "number": "5",
           "net": "RF_MISO",
-          "x": 68.16,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 33.16,
           "drill_mm": 1.0
         },
         {
           "number": "6",
           "net": "RF_CS",
-          "x": 70.7,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 35.7,
           "drill_mm": 1.0
         },
         {
           "number": "7",
           "net": "RF_GDO0",
-          "x": 73.24,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 38.24,
           "drill_mm": 1.0
         },
         {
           "number": "8",
           "net": "RF_GDO2",
-          "x": 75.78,
-          "y": 77.0,
+          "x": 35.0,
+          "y": 40.78,
           "drill_mm": 1.0
         }
       ]
@@ -1245,8 +1367,8 @@
       },
       "types": {},
       "xy": [
-        150,
-        57
+        70.7,
+        23.3
       ],
       "rotation": 0,
       "source": "connector",
@@ -1255,29 +1377,29 @@
         {
           "number": "1",
           "net": "+5V",
-          "x": 150.0,
-          "y": 57.0,
+          "x": 70.7,
+          "y": 23.3,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 150.0,
-          "y": 59.54,
+          "x": 70.7,
+          "y": 25.84,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "RADAR_RX",
-          "x": 150.0,
-          "y": 62.08,
+          "x": 70.7,
+          "y": 28.38,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "RADAR_TX",
-          "x": 150.0,
-          "y": 64.62,
+          "x": 70.7,
+          "y": 30.92,
           "drill_mm": 1.0
         }
       ]
@@ -1294,8 +1416,8 @@
       },
       "types": {},
       "xy": [
-        150,
-        79
+        35,
+        47
       ],
       "rotation": 0,
       "source": "connector",
@@ -1304,29 +1426,29 @@
         {
           "number": "1",
           "net": "GND",
-          "x": 150.0,
-          "y": 79.0,
+          "x": 35.0,
+          "y": 47.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "+3V3",
-          "x": 150.0,
-          "y": 81.54,
+          "x": 35.0,
+          "y": 49.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "I2C_SDA",
-          "x": 150.0,
-          "y": 84.08,
+          "x": 35.0,
+          "y": 52.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "I2C_SCL",
-          "x": 150.0,
-          "y": 86.62,
+          "x": 35.0,
+          "y": 54.62,
           "drill_mm": 1.0
         }
       ]
@@ -1341,25 +1463,25 @@
       },
       "types": {},
       "xy": [
-        44,
-        86
+        82,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+5V_S3",
-          "x": 44.0,
-          "y": 86.0,
+          "x": 82.0,
+          "y": 54.0,
           "drill_mm": 1.1
         },
         {
           "number": "2",
           "net": "+5V",
-          "x": 51.62,
-          "y": 86.0,
+          "x": 82.0,
+          "y": 61.62,
           "drill_mm": 1.1
         }
       ]
@@ -1374,25 +1496,25 @@
       },
       "types": {},
       "xy": [
-        75,
-        86
+        86,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+5V_H2",
-          "x": 75.0,
-          "y": 86.0,
+          "x": 86.0,
+          "y": 54.0,
           "drill_mm": 1.1
         },
         {
           "number": "2",
           "net": "+5V",
-          "x": 82.62,
-          "y": 86.0,
+          "x": 86.0,
+          "y": 61.62,
           "drill_mm": 1.1
         }
       ]
@@ -1407,25 +1529,25 @@
       },
       "types": {},
       "xy": [
-        130,
-        48
+        90,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+5V_ZB",
-          "x": 130.0,
-          "y": 48.0,
+          "x": 90.0,
+          "y": 54.0,
           "drill_mm": 1.1
         },
         {
           "number": "2",
           "net": "+5V",
-          "x": 137.62,
-          "y": 48.0,
+          "x": 90.0,
+          "y": 61.62,
           "drill_mm": 1.1
         }
       ]
@@ -1440,25 +1562,25 @@
       },
       "types": {},
       "xy": [
-        67,
-        68
+        94,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "resistor",
       "notes": "",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+3V3",
-          "x": 67.0,
-          "y": 68.0,
+          "x": 94.0,
+          "y": 54.0,
           "drill_mm": 0.8
         },
         {
           "number": "2",
           "net": "RF_GDO0",
-          "x": 74.62,
-          "y": 68.0,
+          "x": 94.0,
+          "y": 61.62,
           "drill_mm": 0.8
         }
       ]
@@ -1473,25 +1595,25 @@
       },
       "types": {},
       "xy": [
-        82,
-        68
+        98,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "resistor",
       "notes": "",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "+3V3",
-          "x": 82.0,
-          "y": 68.0,
+          "x": 98.0,
+          "y": 54.0,
           "drill_mm": 0.8
         },
         {
           "number": "2",
           "net": "RF_CS",
-          "x": 89.62,
-          "y": 68.0,
+          "x": 98.0,
+          "y": 61.62,
           "drill_mm": 0.8
         }
       ]
@@ -1506,25 +1628,25 @@
       },
       "types": {},
       "xy": [
-        141,
+        77,
         35
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN.",
       "pad_centers_mm": [
         {
           "number": "1",
           "net": "ZB_BOOT_SERVICE",
-          "x": 141.0,
+          "x": 77.0,
           "y": 35.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 143.54,
-          "y": 35.0,
+          "x": 77.0,
+          "y": 37.54,
           "drill_mm": 1.0
         }
       ]

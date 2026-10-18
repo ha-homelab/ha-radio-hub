@@ -1,379 +1,377 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="1130" viewBox="0 0 1520 1130">
-<rect width="1520" height="1130" fill="#0b1424"/>
-<style>text{font-family:Inter,Arial,sans-serif;fill:#e9f0fa}.muted{fill:#a7b9cc}.small{font-size:15px}.pin{font-size:10px;fill:#173c4d}.boardtext{font-size:12px;fill:#bddee2}</style>
-<text x="76.00" y="64.00" font-size="36" text-anchor="start">MC1 · one ready-module carrier</text>
-<text x="76.00" y="99.00" font-size="21" text-anchor="start" style="fill:#a7b9cc">160 × 100 mm · two copper layers · direct-solder factory male headers</text>
-<text x="76.00" y="131.00" font-size="15" text-anchor="start" style="fill:#6adcc0">ASSEMBLY VIEW — verified hole centers; external harness modules shown below</text>
-<rect x="320.00" y="170.00" width="1120.00" height="700.00" rx="10" fill="#154a4d" stroke="#7baeb2"/>
-<rect x="68.0" y="597.0" width="263.90000000000003" height="189.0" fill="#123b3d" fill-opacity="0.45" stroke="#6ee7c8" stroke-width="1.5" stroke-dasharray="8 5"/>
-<defs><marker id="out-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6ee7c8"/></marker></defs>
-<circle cx="355.0" cy="205.0" r="11.200000000000001" fill="#0b1424" stroke="#d2dee7"/>
-<circle cx="1405.0" cy="205.0" r="11.200000000000001" fill="#0b1424" stroke="#d2dee7"/>
-<circle cx="355.0" cy="835.0" r="11.200000000000001" fill="#0b1424" stroke="#d2dee7"/>
-<circle cx="1405.0" cy="835.0" r="11.200000000000001" fill="#0b1424" stroke="#d2dee7"/>
-<rect x="320.00" y="170.00" width="1120.00" height="8.40" rx="0" fill="#75503e" stroke="#eda86f"/>
-<rect x="649.00" y="170.00" width="119.00" height="84.00" rx="0" fill="#75503e" stroke="#eda86f"/>
-<rect x="943.00" y="170.00" width="119.00" height="84.00" rx="0" fill="#75503e" stroke="#eda86f"/>
-<rect x="1221.60" y="170.00" width="85.40" height="35.00" rx="0" fill="#75503e" stroke="#eda86f"/>
-<rect x="619.11" y="181.20" width="177.80" height="439.18" rx="3" fill="#d9e8dc" stroke="#f6fbfb"/>
-<text x="708.01" y="383.79" font-size="14" text-anchor="middle" style="fill:#173c4d">S3 N8R8</text>
-<text x="708.01" y="400.79" font-size="14" text-anchor="middle" style="fill:#173c4d">ESPHome host</text>
-<text x="708.01" y="417.79" font-size="14" text-anchor="middle" style="fill:#173c4d">BLE + LAN</text>
-<text x="708.01" y="612.38" font-size="13" text-anchor="middle" style="fill:#173c4d">U1</text>
-<circle cx="628.0" cy="191.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="191.0" r="2.5" fill="#102530"/>
-<text x="636.00" y="194.00" font-size="9" text-anchor="start" style="fill:#173c4d">J1.1</text>
-<circle cx="628.0" cy="208.78" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="208.78" r="2.5" fill="#102530"/>
-<text x="636.00" y="211.78" font-size="9" text-anchor="start" style="fill:#173c4d">J1.2</text>
-<circle cx="628.0" cy="226.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="226.56" r="2.5" fill="#102530"/>
-<text x="636.00" y="229.56" font-size="9" text-anchor="start" style="fill:#173c4d">J1.3</text>
-<circle cx="628.0" cy="244.33999999999997" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="244.33999999999997" r="2.5" fill="#102530"/>
-<text x="636.00" y="247.34" font-size="9" text-anchor="start" style="fill:#173c4d">J1.4</text>
-<circle cx="628.0" cy="262.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="262.12" r="2.5" fill="#102530"/>
-<text x="636.00" y="265.12" font-size="9" text-anchor="start" style="fill:#173c4d">J1.5</text>
-<circle cx="628.0" cy="279.9" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="279.9" r="2.5" fill="#102530"/>
-<text x="636.00" y="282.90" font-size="9" text-anchor="start" style="fill:#173c4d">J1.6</text>
-<circle cx="628.0" cy="297.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="297.68" r="2.5" fill="#102530"/>
-<text x="636.00" y="300.68" font-size="9" text-anchor="start" style="fill:#173c4d">J1.7</text>
-<circle cx="628.0" cy="315.46000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="315.46000000000004" r="2.5" fill="#102530"/>
-<text x="636.00" y="318.46" font-size="9" text-anchor="start" style="fill:#173c4d">J1.8</text>
-<circle cx="628.0" cy="333.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="333.24" r="2.5" fill="#102530"/>
-<text x="636.00" y="336.24" font-size="9" text-anchor="start" style="fill:#173c4d">J1.9</text>
-<circle cx="628.0" cy="351.02" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="351.02" r="2.5" fill="#102530"/>
-<text x="636.00" y="354.02" font-size="9" text-anchor="start" style="fill:#173c4d">J1.10</text>
-<circle cx="628.0" cy="368.79999999999995" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="368.79999999999995" r="2.5" fill="#102530"/>
-<text x="636.00" y="371.80" font-size="9" text-anchor="start" style="fill:#173c4d">J1.11</text>
-<circle cx="628.0" cy="386.58000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="386.58000000000004" r="2.5" fill="#102530"/>
-<text x="636.00" y="389.58" font-size="9" text-anchor="start" style="fill:#173c4d">J1.12</text>
-<circle cx="628.0" cy="404.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="404.36" r="2.5" fill="#102530"/>
-<text x="636.00" y="407.36" font-size="9" text-anchor="start" style="fill:#173c4d">J1.13</text>
-<circle cx="628.0" cy="422.14" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="422.14" r="2.5" fill="#102530"/>
-<text x="636.00" y="425.14" font-size="9" text-anchor="start" style="fill:#173c4d">J1.14</text>
-<circle cx="628.0" cy="439.92" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="439.92" r="2.5" fill="#102530"/>
-<text x="636.00" y="442.92" font-size="9" text-anchor="start" style="fill:#173c4d">J1.15</text>
-<circle cx="628.0" cy="457.7" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="457.7" r="2.5" fill="#102530"/>
-<text x="636.00" y="460.70" font-size="9" text-anchor="start" style="fill:#173c4d">J1.16</text>
-<circle cx="628.0" cy="475.48" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="475.48" r="2.5" fill="#102530"/>
-<text x="636.00" y="478.48" font-size="9" text-anchor="start" style="fill:#173c4d">J1.17</text>
-<circle cx="628.0" cy="493.26" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="493.26" r="2.5" fill="#102530"/>
-<text x="636.00" y="496.26" font-size="9" text-anchor="start" style="fill:#173c4d">J1.18</text>
-<circle cx="628.0" cy="511.03999999999996" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="511.03999999999996" r="2.5" fill="#102530"/>
-<text x="636.00" y="514.04" font-size="9" text-anchor="start" style="fill:#173c4d">J1.19</text>
-<circle cx="628.0" cy="528.8199999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="528.8199999999999" r="2.5" fill="#102530"/>
-<text x="636.00" y="531.82" font-size="9" text-anchor="start" style="fill:#173c4d">J1.20</text>
-<circle cx="628.0" cy="546.5999999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="546.5999999999999" r="2.5" fill="#102530"/>
-<text x="636.00" y="549.60" font-size="9" text-anchor="start" style="fill:#173c4d">J1.21</text>
-<circle cx="628.0" cy="564.38" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="564.38" r="2.5" fill="#102530"/>
-<text x="636.00" y="567.38" font-size="9" text-anchor="start" style="fill:#173c4d">J1.22</text>
-<circle cx="788.02" cy="191.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="191.0" r="2.5" fill="#102530"/>
-<text x="780.02" y="194.00" font-size="9" text-anchor="end" style="fill:#173c4d">J3.1</text>
-<circle cx="788.02" cy="208.78" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="208.78" r="2.5" fill="#102530"/>
-<text x="780.02" y="211.78" font-size="9" text-anchor="end" style="fill:#173c4d">J3.2</text>
-<circle cx="788.02" cy="226.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="226.56" r="2.5" fill="#102530"/>
-<text x="780.02" y="229.56" font-size="9" text-anchor="end" style="fill:#173c4d">J3.3</text>
-<circle cx="788.02" cy="244.33999999999997" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="244.33999999999997" r="2.5" fill="#102530"/>
-<text x="780.02" y="247.34" font-size="9" text-anchor="end" style="fill:#173c4d">J3.4</text>
-<circle cx="788.02" cy="262.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="262.12" r="2.5" fill="#102530"/>
-<text x="780.02" y="265.12" font-size="9" text-anchor="end" style="fill:#173c4d">J3.5</text>
-<circle cx="788.02" cy="279.9" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="279.9" r="2.5" fill="#102530"/>
-<text x="780.02" y="282.90" font-size="9" text-anchor="end" style="fill:#173c4d">J3.6</text>
-<circle cx="788.02" cy="297.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="297.68" r="2.5" fill="#102530"/>
-<text x="780.02" y="300.68" font-size="9" text-anchor="end" style="fill:#173c4d">J3.7</text>
-<circle cx="788.02" cy="315.46000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="315.46000000000004" r="2.5" fill="#102530"/>
-<text x="780.02" y="318.46" font-size="9" text-anchor="end" style="fill:#173c4d">J3.8</text>
-<circle cx="788.02" cy="333.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="333.24" r="2.5" fill="#102530"/>
-<text x="780.02" y="336.24" font-size="9" text-anchor="end" style="fill:#173c4d">J3.9</text>
-<circle cx="788.02" cy="351.02" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="351.02" r="2.5" fill="#102530"/>
-<text x="780.02" y="354.02" font-size="9" text-anchor="end" style="fill:#173c4d">J3.10</text>
-<circle cx="788.02" cy="368.79999999999995" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="368.79999999999995" r="2.5" fill="#102530"/>
-<text x="780.02" y="371.80" font-size="9" text-anchor="end" style="fill:#173c4d">J3.11</text>
-<circle cx="788.02" cy="386.58000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="386.58000000000004" r="2.5" fill="#102530"/>
-<text x="780.02" y="389.58" font-size="9" text-anchor="end" style="fill:#173c4d">J3.12</text>
-<circle cx="788.02" cy="404.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="404.36" r="2.5" fill="#102530"/>
-<text x="780.02" y="407.36" font-size="9" text-anchor="end" style="fill:#173c4d">J3.13</text>
-<circle cx="788.02" cy="422.14" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="422.14" r="2.5" fill="#102530"/>
-<text x="780.02" y="425.14" font-size="9" text-anchor="end" style="fill:#173c4d">J3.14</text>
-<circle cx="788.02" cy="439.92" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="439.92" r="2.5" fill="#102530"/>
-<text x="780.02" y="442.92" font-size="9" text-anchor="end" style="fill:#173c4d">J3.15</text>
-<circle cx="788.02" cy="457.7" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="457.7" r="2.5" fill="#102530"/>
-<text x="780.02" y="460.70" font-size="9" text-anchor="end" style="fill:#173c4d">J3.16</text>
-<circle cx="788.02" cy="475.48" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="475.48" r="2.5" fill="#102530"/>
-<text x="780.02" y="478.48" font-size="9" text-anchor="end" style="fill:#173c4d">J3.17</text>
-<circle cx="788.02" cy="493.26" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="493.26" r="2.5" fill="#102530"/>
-<text x="780.02" y="496.26" font-size="9" text-anchor="end" style="fill:#173c4d">J3.18</text>
-<circle cx="788.02" cy="511.03999999999996" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="511.03999999999996" r="2.5" fill="#102530"/>
-<text x="780.02" y="514.04" font-size="9" text-anchor="end" style="fill:#173c4d">J3.19</text>
-<circle cx="788.02" cy="528.8199999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="528.8199999999999" r="2.5" fill="#102530"/>
-<text x="780.02" y="531.82" font-size="9" text-anchor="end" style="fill:#173c4d">J3.20</text>
-<circle cx="788.02" cy="546.5999999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="546.5999999999999" r="2.5" fill="#102530"/>
-<text x="780.02" y="549.60" font-size="9" text-anchor="end" style="fill:#173c4d">J3.21</text>
-<circle cx="788.02" cy="564.38" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="788.02" cy="564.38" r="2.5" fill="#102530"/>
-<text x="780.02" y="567.38" font-size="9" text-anchor="end" style="fill:#173c4d">J3.22</text>
-<rect x="913.11" y="179.97" width="177.80" height="337.82" rx="3" fill="#d9e8dc" stroke="#f6fbfb"/>
-<text x="1002.01" y="340.38" font-size="14" text-anchor="middle" style="fill:#173c4d">ESP32-H2</text>
-<text x="1002.01" y="357.38" font-size="14" text-anchor="middle" style="fill:#173c4d">Thread RCP</text>
-<text x="1002.01" y="509.80" font-size="13" text-anchor="middle" style="fill:#173c4d">U2</text>
-<circle cx="922.0" cy="191.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="191.0" r="2.5" fill="#102530"/>
-<text x="930.00" y="194.00" font-size="9" text-anchor="start" style="fill:#173c4d">J1.1</text>
-<circle cx="922.0" cy="208.78" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="208.78" r="2.5" fill="#102530"/>
-<text x="930.00" y="211.78" font-size="9" text-anchor="start" style="fill:#173c4d">J1.2</text>
-<circle cx="922.0" cy="226.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="226.56" r="2.5" fill="#102530"/>
-<text x="930.00" y="229.56" font-size="9" text-anchor="start" style="fill:#173c4d">J1.3</text>
-<circle cx="922.0" cy="244.33999999999997" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="244.33999999999997" r="2.5" fill="#102530"/>
-<text x="930.00" y="247.34" font-size="9" text-anchor="start" style="fill:#173c4d">J1.4</text>
-<circle cx="922.0" cy="262.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="262.12" r="2.5" fill="#102530"/>
-<text x="930.00" y="265.12" font-size="9" text-anchor="start" style="fill:#173c4d">J1.5</text>
-<circle cx="922.0" cy="279.9" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="279.9" r="2.5" fill="#102530"/>
-<text x="930.00" y="282.90" font-size="9" text-anchor="start" style="fill:#173c4d">J1.6</text>
-<circle cx="922.0" cy="297.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="297.68" r="2.5" fill="#102530"/>
-<text x="930.00" y="300.68" font-size="9" text-anchor="start" style="fill:#173c4d">J1.7</text>
-<circle cx="922.0" cy="315.46000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="315.46000000000004" r="2.5" fill="#102530"/>
-<text x="930.00" y="318.46" font-size="9" text-anchor="start" style="fill:#173c4d">J1.8</text>
-<circle cx="922.0" cy="333.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="333.24" r="2.5" fill="#102530"/>
-<text x="930.00" y="336.24" font-size="9" text-anchor="start" style="fill:#173c4d">J1.9</text>
-<circle cx="922.0" cy="351.02" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="351.02" r="2.5" fill="#102530"/>
-<text x="930.00" y="354.02" font-size="9" text-anchor="start" style="fill:#173c4d">J1.10</text>
-<circle cx="922.0" cy="368.79999999999995" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="368.79999999999995" r="2.5" fill="#102530"/>
-<text x="930.00" y="371.80" font-size="9" text-anchor="start" style="fill:#173c4d">J1.11</text>
-<circle cx="922.0" cy="386.58000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="386.58000000000004" r="2.5" fill="#102530"/>
-<text x="930.00" y="389.58" font-size="9" text-anchor="start" style="fill:#173c4d">J1.12</text>
-<circle cx="922.0" cy="404.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="404.36" r="2.5" fill="#102530"/>
-<text x="930.00" y="407.36" font-size="9" text-anchor="start" style="fill:#173c4d">J1.13</text>
-<circle cx="922.0" cy="422.14" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="422.14" r="2.5" fill="#102530"/>
-<text x="930.00" y="425.14" font-size="9" text-anchor="start" style="fill:#173c4d">J1.14</text>
-<circle cx="922.0" cy="439.92" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="922.0" cy="439.92" r="2.5" fill="#102530"/>
-<text x="930.00" y="442.92" font-size="9" text-anchor="start" style="fill:#173c4d">J1.15</text>
-<circle cx="1082.02" cy="191.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="191.0" r="2.5" fill="#102530"/>
-<text x="1074.02" y="194.00" font-size="9" text-anchor="end" style="fill:#173c4d">J3.1</text>
-<circle cx="1082.02" cy="208.78" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="208.78" r="2.5" fill="#102530"/>
-<text x="1074.02" y="211.78" font-size="9" text-anchor="end" style="fill:#173c4d">J3.2</text>
-<circle cx="1082.02" cy="226.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="226.56" r="2.5" fill="#102530"/>
-<text x="1074.02" y="229.56" font-size="9" text-anchor="end" style="fill:#173c4d">J3.3</text>
-<circle cx="1082.02" cy="244.33999999999997" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="244.33999999999997" r="2.5" fill="#102530"/>
-<text x="1074.02" y="247.34" font-size="9" text-anchor="end" style="fill:#173c4d">J3.4</text>
-<circle cx="1082.02" cy="262.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="262.12" r="2.5" fill="#102530"/>
-<text x="1074.02" y="265.12" font-size="9" text-anchor="end" style="fill:#173c4d">J3.5</text>
-<circle cx="1082.02" cy="279.9" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="279.9" r="2.5" fill="#102530"/>
-<text x="1074.02" y="282.90" font-size="9" text-anchor="end" style="fill:#173c4d">J3.6</text>
-<circle cx="1082.02" cy="297.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="297.68" r="2.5" fill="#102530"/>
-<text x="1074.02" y="300.68" font-size="9" text-anchor="end" style="fill:#173c4d">J3.7</text>
-<circle cx="1082.02" cy="315.46000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="315.46000000000004" r="2.5" fill="#102530"/>
-<text x="1074.02" y="318.46" font-size="9" text-anchor="end" style="fill:#173c4d">J3.8</text>
-<circle cx="1082.02" cy="333.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="333.24" r="2.5" fill="#102530"/>
-<text x="1074.02" y="336.24" font-size="9" text-anchor="end" style="fill:#173c4d">J3.9</text>
-<circle cx="1082.02" cy="351.02" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="351.02" r="2.5" fill="#102530"/>
-<text x="1074.02" y="354.02" font-size="9" text-anchor="end" style="fill:#173c4d">J3.10</text>
-<circle cx="1082.02" cy="368.79999999999995" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="368.79999999999995" r="2.5" fill="#102530"/>
-<text x="1074.02" y="371.80" font-size="9" text-anchor="end" style="fill:#173c4d">J3.11</text>
-<circle cx="1082.02" cy="386.58000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="386.58000000000004" r="2.5" fill="#102530"/>
-<text x="1074.02" y="389.58" font-size="9" text-anchor="end" style="fill:#173c4d">J3.12</text>
-<circle cx="1082.02" cy="404.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="404.36" r="2.5" fill="#102530"/>
-<text x="1074.02" y="407.36" font-size="9" text-anchor="end" style="fill:#173c4d">J3.13</text>
-<circle cx="1082.02" cy="422.14" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="422.14" r="2.5" fill="#102530"/>
-<text x="1074.02" y="425.14" font-size="9" text-anchor="end" style="fill:#173c4d">J3.14</text>
-<circle cx="1082.02" cy="439.92" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1082.02" cy="439.92" r="2.5" fill="#102530"/>
-<text x="1074.02" y="442.92" font-size="9" text-anchor="end" style="fill:#173c4d">J3.15</text>
-<rect x="1205.43" y="169.76" width="124.46" height="146.69" rx="3" fill="#d9e8dc" stroke="#f6fbfb"/>
-<text x="1267.66" y="226.10" font-size="12" text-anchor="middle" style="fill:#173c4d">XIAO</text>
-<text x="1267.66" y="243.10" font-size="12" text-anchor="middle" style="fill:#173c4d">MG24</text>
-<text x="1267.66" y="260.10" font-size="12" text-anchor="middle" style="fill:#173c4d">Ember NCP</text>
-<text x="1267.66" y="308.45" font-size="13" text-anchor="middle" style="fill:#173c4d">U3</text>
-<circle cx="1321.0" cy="296.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="296.0" r="2.5" fill="#102530"/>
-<text x="1313.00" y="299.00" font-size="9" text-anchor="end" style="fill:#173c4d">1</text>
-<circle cx="1321.0" cy="278.22" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="278.22" r="2.5" fill="#102530"/>
-<text x="1313.00" y="281.22" font-size="9" text-anchor="end" style="fill:#173c4d">2</text>
-<circle cx="1321.0" cy="260.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="260.44" r="2.5" fill="#102530"/>
-<text x="1313.00" y="263.44" font-size="9" text-anchor="end" style="fill:#173c4d">3</text>
-<circle cx="1321.0" cy="242.66000000000003" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="242.66000000000003" r="2.5" fill="#102530"/>
-<text x="1313.00" y="245.66" font-size="9" text-anchor="end" style="fill:#173c4d">4</text>
-<circle cx="1321.0" cy="224.88" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="224.88" r="2.5" fill="#102530"/>
-<text x="1313.00" y="227.88" font-size="9" text-anchor="end" style="fill:#173c4d">5</text>
-<circle cx="1321.0" cy="207.1" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="207.1" r="2.5" fill="#102530"/>
-<text x="1313.00" y="210.10" font-size="9" text-anchor="end" style="fill:#173c4d">6</text>
-<circle cx="1321.0" cy="189.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1321.0" cy="189.32" r="2.5" fill="#102530"/>
-<text x="1313.00" y="192.32" font-size="9" text-anchor="end" style="fill:#173c4d">7</text>
-<circle cx="1214.3200000000002" cy="296.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="296.0" r="2.5" fill="#102530"/>
-<text x="1222.32" y="299.00" font-size="9" text-anchor="start" style="fill:#173c4d">14</text>
-<circle cx="1214.3200000000002" cy="278.22" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="278.22" r="2.5" fill="#102530"/>
-<text x="1222.32" y="281.22" font-size="9" text-anchor="start" style="fill:#173c4d">13</text>
-<circle cx="1214.3200000000002" cy="260.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="260.44" r="2.5" fill="#102530"/>
-<text x="1222.32" y="263.44" font-size="9" text-anchor="start" style="fill:#173c4d">12</text>
-<circle cx="1214.3200000000002" cy="242.66000000000003" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="242.66000000000003" r="2.5" fill="#102530"/>
-<text x="1222.32" y="245.66" font-size="9" text-anchor="start" style="fill:#173c4d">11</text>
-<circle cx="1214.3200000000002" cy="224.88" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="224.88" r="2.5" fill="#102530"/>
-<text x="1222.32" y="227.88" font-size="9" text-anchor="start" style="fill:#173c4d">10</text>
-<circle cx="1214.3200000000002" cy="207.1" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="207.1" r="2.5" fill="#102530"/>
-<text x="1222.32" y="210.10" font-size="9" text-anchor="start" style="fill:#173c4d">9</text>
-<circle cx="1214.3200000000002" cy="189.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1214.3200000000002" cy="189.32" r="2.5" fill="#102530"/>
-<text x="1222.32" y="192.32" font-size="9" text-anchor="start" style="fill:#173c4d">8</text>
-<rect x="331.90" y="613.38" width="175.00" height="161.00" rx="3" fill="#b2d7ee" stroke="#f6fbfb"/>
-<rect x="313.00" y="637.53" width="175.70" height="112.70" rx="3" fill="#c3cbd1" stroke="#f5f9fb"/>
-<line x1="313.0" y1="750.23" x2="313.0" y2="637.53" stroke="#101820" stroke-width="6"/>
-<text x="419.40" y="685.38" font-size="14" text-anchor="middle" style="fill:#173c4d">U4 · WIZ850io</text>
-<text x="419.40" y="702.38" font-size="14" text-anchor="middle" style="fill:#173c4d">RJ45 faces LEFT</text>
-<circle cx="376.7" cy="765.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="376.7" cy="765.0" r="2.5" fill="#102530"/>
-<text x="376.70" y="757.00" font-size="9" text-anchor="middle" style="fill:#173c4d">1</text>
-<circle cx="394.48" cy="765.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="394.48" cy="765.0" r="2.5" fill="#102530"/>
-<text x="394.48" y="757.00" font-size="9" text-anchor="middle" style="fill:#173c4d">2</text>
-<circle cx="412.26" cy="765.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="412.26" cy="765.0" r="2.5" fill="#102530"/>
-<text x="412.26" y="757.00" font-size="9" text-anchor="middle" style="fill:#173c4d">3</text>
-<circle cx="430.04" cy="765.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="430.04" cy="765.0" r="2.5" fill="#102530"/>
-<text x="430.04" y="757.00" font-size="9" text-anchor="middle" style="fill:#173c4d">4</text>
-<circle cx="447.82" cy="765.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="447.82" cy="765.0" r="2.5" fill="#102530"/>
-<text x="447.82" y="757.00" font-size="9" text-anchor="middle" style="fill:#173c4d">5</text>
-<circle cx="465.6" cy="765.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="465.6" cy="765.0" r="2.5" fill="#102530"/>
-<text x="465.60" y="757.00" font-size="9" text-anchor="middle" style="fill:#173c4d">6</text>
-<circle cx="376.7" cy="622.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="376.7" cy="622.76" r="2.5" fill="#102530"/>
-<text x="376.70" y="634.76" font-size="9" text-anchor="middle" style="fill:#173c4d">1</text>
-<circle cx="394.48" cy="622.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="394.48" cy="622.76" r="2.5" fill="#102530"/>
-<text x="394.48" y="634.76" font-size="9" text-anchor="middle" style="fill:#173c4d">2</text>
-<circle cx="412.26" cy="622.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="412.26" cy="622.76" r="2.5" fill="#102530"/>
-<text x="412.26" y="634.76" font-size="9" text-anchor="middle" style="fill:#173c4d">3</text>
-<circle cx="430.04" cy="622.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="430.04" cy="622.76" r="2.5" fill="#102530"/>
-<text x="430.04" y="634.76" font-size="9" text-anchor="middle" style="fill:#173c4d">4</text>
-<circle cx="447.82" cy="622.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="447.82" cy="622.76" r="2.5" fill="#102530"/>
-<text x="447.82" y="634.76" font-size="9" text-anchor="middle" style="fill:#173c4d">5</text>
-<circle cx="465.6" cy="622.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="465.6" cy="622.76" r="2.5" fill="#102530"/>
-<text x="465.60" y="634.76" font-size="9" text-anchor="middle" style="fill:#173c4d">6</text>
-<rect x="402.11" y="812.11" width="35.56" height="17.78" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="419.89" y="806.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J1</text>
-<circle cx="411.0" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="411.0" cy="821.0" r="2.5" fill="#102530"/>
-<text x="411.00" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="428.78" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="428.78" cy="821.0" r="2.5" fill="#102530"/>
-<text x="428.78" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<rect x="563.11" y="812.11" width="71.12" height="17.78" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="598.67" y="806.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J2</text>
-<circle cx="572.0" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="572.0" cy="821.0" r="2.5" fill="#102530"/>
-<text x="572.00" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="589.78" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="589.78" cy="821.0" r="2.5" fill="#102530"/>
-<text x="589.78" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<circle cx="607.56" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="607.56" cy="821.0" r="2.5" fill="#102530"/>
-<text x="607.56" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">3</text>
-<circle cx="625.3399999999999" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="625.3399999999999" cy="821.0" r="2.5" fill="#102530"/>
-<text x="625.34" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">4</text>
-<rect x="955.11" y="812.11" width="106.68" height="17.78" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="1008.45" y="806.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J3</text>
-<circle cx="964.0" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="964.0" cy="821.0" r="2.5" fill="#102530"/>
-<text x="964.00" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="981.7800000000001" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="981.7800000000001" cy="821.0" r="2.5" fill="#102530"/>
-<text x="981.78" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<circle cx="999.56" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="999.56" cy="821.0" r="2.5" fill="#102530"/>
-<text x="999.56" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">3</text>
-<circle cx="1017.34" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1017.34" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1017.34" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">4</text>
-<circle cx="1035.12" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1035.12" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1035.12" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">5</text>
-<circle cx="1052.9" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1052.9" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1052.90" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">6</text>
-<rect x="1193.11" y="812.11" width="88.90" height="17.78" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="1237.56" y="806.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J4</text>
-<circle cx="1202.0" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1202.0" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1202.00" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="1219.78" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1219.78" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1219.78" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<circle cx="1237.56" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1237.56" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1237.56" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">3</text>
-<circle cx="1255.3400000000001" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1255.3400000000001" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1255.34" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">4</text>
-<circle cx="1273.12" cy="821.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1273.12" cy="821.0" r="2.5" fill="#102530"/>
-<text x="1273.12" y="836.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">5</text>
-<rect x="717.11" y="700.11" width="142.24" height="17.78" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="788.23" y="694.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J5</text>
-<circle cx="726.0" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="726.0" cy="709.0" r="2.5" fill="#102530"/>
-<text x="726.00" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="743.78" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="743.78" cy="709.0" r="2.5" fill="#102530"/>
-<text x="743.78" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<circle cx="761.56" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="761.56" cy="709.0" r="2.5" fill="#102530"/>
-<text x="761.56" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">3</text>
-<circle cx="779.34" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="779.34" cy="709.0" r="2.5" fill="#102530"/>
-<text x="779.34" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">4</text>
-<circle cx="797.12" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="797.12" cy="709.0" r="2.5" fill="#102530"/>
-<text x="797.12" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">5</text>
-<circle cx="814.9000000000001" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="814.9000000000001" cy="709.0" r="2.5" fill="#102530"/>
-<text x="814.90" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">6</text>
-<circle cx="832.68" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="832.68" cy="709.0" r="2.5" fill="#102530"/>
-<text x="832.68" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">7</text>
-<circle cx="850.46" cy="709.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="850.46" cy="709.0" r="2.5" fill="#102530"/>
-<text x="850.46" y="724.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">8</text>
-<rect x="1361.11" y="560.11" width="17.78" height="71.12" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="1370.00" y="554.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J6</text>
-<circle cx="1370.0" cy="569.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="569.0" r="2.5" fill="#102530"/>
-<text x="1370.00" y="584.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="1370.0" cy="586.78" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="586.78" r="2.5" fill="#102530"/>
-<text x="1370.00" y="601.78" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<circle cx="1370.0" cy="604.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="604.56" r="2.5" fill="#102530"/>
-<text x="1370.00" y="619.56" font-size="9" text-anchor="middle" style="fill:#cce4e4">3</text>
-<circle cx="1370.0" cy="622.34" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="622.34" r="2.5" fill="#102530"/>
-<text x="1370.00" y="637.34" font-size="9" text-anchor="middle" style="fill:#cce4e4">4</text>
-<rect x="1361.11" y="714.11" width="17.78" height="71.12" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="1370.00" y="708.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J7</text>
-<circle cx="1370.0" cy="723.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="723.0" r="2.5" fill="#102530"/>
-<text x="1370.00" y="738.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="1370.0" cy="740.7800000000001" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="740.7800000000001" r="2.5" fill="#102530"/>
-<text x="1370.00" y="755.78" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<circle cx="1370.0" cy="758.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="758.56" r="2.5" fill="#102530"/>
-<text x="1370.00" y="773.56" font-size="9" text-anchor="middle" style="fill:#cce4e4">3</text>
-<circle cx="1370.0" cy="776.34" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1370.0" cy="776.34" r="2.5" fill="#102530"/>
-<text x="1370.00" y="791.34" font-size="9" text-anchor="middle" style="fill:#cce4e4">4</text>
-<line x1="628.0" y1="772.0" x2="681.3399999999999" y2="772.0" stroke="#b7bfca" stroke-width="3"/>
-<rect x="638.67" y="766.00" width="32.00" height="12.00" rx="3" fill="#5d464b" stroke="#e7ddd0"/>
-<text x="654.67" y="760.00" font-size="12" text-anchor="middle" style="fill:#def5ff">D1</text>
-<circle cx="628.0" cy="772.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="628.0" cy="772.0" r="2.5" fill="#102530"/>
-<circle cx="681.3399999999999" cy="772.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="681.3399999999999" cy="772.0" r="2.5" fill="#102530"/>
-<line x1="845.0" y1="772.0" x2="898.34" y2="772.0" stroke="#b7bfca" stroke-width="3"/>
-<rect x="855.67" y="766.00" width="32.00" height="12.00" rx="3" fill="#5d464b" stroke="#e7ddd0"/>
-<text x="871.67" y="760.00" font-size="12" text-anchor="middle" style="fill:#def5ff">D2</text>
-<circle cx="845.0" cy="772.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="845.0" cy="772.0" r="2.5" fill="#102530"/>
-<circle cx="898.34" cy="772.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="898.34" cy="772.0" r="2.5" fill="#102530"/>
-<line x1="1230.0" y1="506.0" x2="1283.3400000000001" y2="506.0" stroke="#b7bfca" stroke-width="3"/>
-<rect x="1240.67" y="500.00" width="32.00" height="12.00" rx="3" fill="#5d464b" stroke="#e7ddd0"/>
-<text x="1256.67" y="494.00" font-size="12" text-anchor="middle" style="fill:#def5ff">D3</text>
-<circle cx="1230.0" cy="506.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1230.0" cy="506.0" r="2.5" fill="#102530"/>
-<circle cx="1283.3400000000001" cy="506.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1283.3400000000001" cy="506.0" r="2.5" fill="#102530"/>
-<line x1="789.0" y1="646.0" x2="842.34" y2="646.0" stroke="#b7bfca" stroke-width="3"/>
-<rect x="799.67" y="640.00" width="32.00" height="12.00" rx="3" fill="#c9a771" stroke="#e7ddd0"/>
-<text x="815.67" y="634.00" font-size="12" text-anchor="middle" style="fill:#def5ff">R1</text>
-<circle cx="789.0" cy="646.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="789.0" cy="646.0" r="2.5" fill="#102530"/>
-<circle cx="842.34" cy="646.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="842.34" cy="646.0" r="2.5" fill="#102530"/>
-<line x1="894.0" y1="646.0" x2="947.34" y2="646.0" stroke="#b7bfca" stroke-width="3"/>
-<rect x="904.67" y="640.00" width="32.00" height="12.00" rx="3" fill="#c9a771" stroke="#e7ddd0"/>
-<text x="920.67" y="634.00" font-size="12" text-anchor="middle" style="fill:#def5ff">R2</text>
-<circle cx="894.0" cy="646.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="894.0" cy="646.0" r="2.5" fill="#102530"/>
-<circle cx="947.34" cy="646.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="947.34" cy="646.0" r="2.5" fill="#102530"/>
-<rect x="1298.11" y="406.11" width="35.56" height="17.78" rx="2" fill="#273748" stroke="#7da2b1"/>
-<text x="1315.89" y="400.11" font-size="12" text-anchor="middle" style="fill:#f2fcff">J8</text>
-<circle cx="1307.0" cy="415.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1307.0" cy="415.0" r="2.5" fill="#102530"/>
-<text x="1307.00" y="430.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">1</text>
-<circle cx="1324.78" cy="415.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="1324.78" cy="415.0" r="2.5" fill="#102530"/>
-<text x="1324.78" y="430.00" font-size="9" text-anchor="middle" style="fill:#cce4e4">2</text>
-<text x="474.00" y="373.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">No female sockets</text>
-<text x="474.00" y="401.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">No carrier SMT</text>
-<text x="474.00" y="436.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">4 mounted modules</text>
-<text x="474.00" y="464.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">8 harness/service headers</text>
-<text x="1069.00" y="590.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">Factory pins through PTH</text>
-<text x="1069.00" y="618.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">Solder on underside</text>
-<text x="1083.00" y="737.00" font-size="12" text-anchor="middle" style="fill:#c9e5e6">MCU 3V3 outputs not joined</text>
-<text x="351.50" y="625.70" font-size="9" text-anchor="middle" style="fill:#173c4d">J2</text>
-<text x="351.50" y="767.80" font-size="9" text-anchor="middle" style="fill:#173c4d">J1</text>
-<line x1="306.0" y1="693.88" x2="103.0" y2="693.88" stroke="#6ee7c8" stroke-width="4" marker-end="url(#out-arrow)"/>
-<text x="190.00" y="669.88" font-size="16" text-anchor="middle" style="fill:#6ee7c8">RJ45 CABLE OUT</text>
-<text x="190.00" y="720.88" font-size="14" text-anchor="middle" style="fill:#c8e9df">Mouth: 1.0 mm past edge</text>
-<text x="190.00" y="753.88" font-size="12" text-anchor="middle" style="fill:#a7b9cc">Keep plug / boot / latch clear</text>
-<line x1="320" y1="583.0" x2="320" y2="800.0" stroke="#f3bc79" stroke-dasharray="4 4"/>
-<text x="325.00" y="800.00" font-size="11" text-anchor="start" style="fill:#f3bc79">PCB edge</text>
-<path d="M320 892.0v10m0 -5h1120.0m0 -5v10" stroke="#a5bfd0" fill="none"/>
-<text x="880.00" y="920.00" font-size="17" text-anchor="middle" style="fill:#bcd0de">160 mm</text>
-<text x="76.00" y="956.00" font-size="22" text-anchor="start">External ready modules — harness interfaces, not fabricated on MC1</text>
-<rect x="76.00" y="982.00" width="267.00" height="73.00" rx="8" fill="#17273d" stroke="#37506b"/>
-<text x="91.00" y="1012.00" font-size="16" text-anchor="start">J1 · isolated PoE splitter</text>
-<text x="91.00" y="1038.00" font-size="14" text-anchor="start" style="fill:#a7b9cc">Fused regulated 5V + GND</text>
-<rect x="358.00" y="982.00" width="267.00" height="73.00" rx="8" fill="#17273d" stroke="#37506b"/>
-<text x="373.00" y="1012.00" font-size="16" text-anchor="start">J2 · D24V22F3 buck</text>
-<text x="373.00" y="1038.00" font-size="14" text-anchor="start" style="fill:#a7b9cc">5V in / peripheral 3.3V out</text>
-<rect x="640.00" y="982.00" width="267.00" height="73.00" rx="8" fill="#17273d" stroke="#37506b"/>
-<text x="655.00" y="1012.00" font-size="16" text-anchor="start">J3 · WK2132 DFR0627</text>
-<text x="655.00" y="1038.00" font-size="14" text-anchor="start" style="fill:#a7b9cc">3.3V · I²C · UART1</text>
-<rect x="922.00" y="982.00" width="273.00" height="73.00" rx="8" fill="#17273d" stroke="#37506b"/>
-<text x="937.00" y="1012.00" font-size="16" text-anchor="start">J4–J8 · peripherals</text>
-<text x="937.00" y="1038.00" font-size="14" text-anchor="start" style="fill:#a7b9cc">ZAC93 · RF · radar · BME · boot</text>
-<text x="76.00" y="1095.00" font-size="16" text-anchor="start" style="fill:#f0c294">Prototype: jack face / holes are dimensioned; metal body sketch is illustrative. Verify cable boot, latch and enclosure clearance.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="1160" viewBox="0 0 1290 1160">
+<rect width="1290" height="1160" fill="#0b1424"/>
+<style>text{font-family:Inter,Arial,sans-serif;fill:#e9f0fa}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6ee7c8"/></marker></defs>
+<text x="60.00" y="52.00" font-size="34" text-anchor="start" style="fill:#e9f0fa">MC1 · compact ready-module carrier</text>
+<text x="60.00" y="89.00" font-size="19" text-anchor="start" style="fill:#a7b9cc">100 × 90 mm · two layers · all components on top · factory male headers soldered directly</text>
+<text x="60.00" y="121.00" font-size="14" text-anchor="start" style="fill:#6adcc0">ENGINEERING ASSEMBLY VIEW · dimensions from manufacturer drawings · no sockets / no carrier SMT</text>
+<rect x="90.00" y="155.00" width="800.00" height="720.00" fill="#154a4d" stroke="#7baeb2"/>
+<rect x="90.00" y="155.00" width="800.00" height="14.40" fill="#75503e" stroke="#eda86f"/>
+<rect x="154.00" y="155.00" width="136.00" height="96.00" fill="#75503e" stroke="#eda86f"/>
+<rect x="434.00" y="755.00" width="152.00" height="120.00" fill="#75503e" stroke="#eda86f"/>
+<rect x="752.40" y="155.00" width="97.60" height="40.00" fill="#75503e" stroke="#eda86f"/>
+<rect x="394.00" y="860.60" width="232.00" height="14.40" fill="#75503e" stroke="#eda86f"/>
+<rect x="98.00" y="669.72" width="232.00" height="240.00" fill="#113846" stroke="#55a4cb" stroke-dasharray="6 4"/>
+<text x="214.00" y="701.72" font-size="11" text-anchor="middle" style="fill:#92c9e9">U1 USB access</text>
+<rect x="400.40" y="213.52" width="224.00" height="240.00" fill="#113846" stroke="#55a4cb" stroke-dasharray="6 4"/>
+<text x="512.40" y="245.52" font-size="11" text-anchor="middle" style="fill:#92c9e9">U2 USB access</text>
+<rect x="749.04" y="322.37" width="112.00" height="240.00" fill="#113846" stroke="#55a4cb" stroke-dasharray="6 4"/>
+<text x="805.04" y="354.37" font-size="11" text-anchor="middle" style="fill:#92c9e9">U3 USB access</text>
+<rect x="633.60" y="421.00" width="44.00" height="48.32" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="684.00" y="327.40" width="44.00" height="88.96" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="633.60" y="473.80" width="44.00" height="129.60" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="684.00" y="473.80" width="44.00" height="109.28" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="348.00" y="325.00" width="44.00" height="170.24" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="633.60" y="327.40" width="44.00" height="88.96" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="348.00" y="517.00" width="44.00" height="88.96" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<rect x="684.00" y="421.00" width="44.00" height="48.32" fill="#345258" stroke="#94afb2" stroke-dasharray="6 4"/>
+<circle cx="370.0" cy="259.0" r="20.0" fill="none" stroke="#b8d4dc" stroke-dasharray="3 3"/><circle cx="370.0" cy="259.0" r="10.8" fill="#0b1424" stroke="#e6eef5"/>
+<text x="370.00" y="291.00" font-size="11" text-anchor="middle" style="fill:#c2d5e1">H1</text>
+<circle cx="370.0" cy="731.0" r="20.0" fill="none" stroke="#b8d4dc" stroke-dasharray="3 3"/><circle cx="370.0" cy="731.0" r="10.8" fill="#0b1424" stroke="#e6eef5"/>
+<text x="370.00" y="763.00" font-size="11" text-anchor="middle" style="fill:#c2d5e1">H2</text>
+<circle cx="655.6" cy="643.0" r="20.0" fill="none" stroke="#b8d4dc" stroke-dasharray="3 3"/><circle cx="655.6" cy="643.0" r="10.8" fill="#0b1424" stroke="#e6eef5"/>
+<text x="655.60" y="675.00" font-size="11" text-anchor="middle" style="fill:#c2d5e1">H3</text>
+<rect x="119.84" y="167.80" width="203.20" height="501.92" fill="#d9e8dc" stroke="#f6fbfb"/>
+<text x="221.44" y="401.76" font-size="13" text-anchor="middle" style="fill:#173c4d">U1 · ESP32-S3</text>
+<text x="221.44" y="418.76" font-size="13" text-anchor="middle" style="fill:#173c4d">N8R8</text>
+<text x="221.44" y="435.76" font-size="13" text-anchor="middle" style="fill:#173c4d">Host / BLE / LAN</text>
+<circle cx="130.0" cy="179.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="179.0" r="2.5" fill="#102530"/>
+<text x="139.00" y="182.00" font-size="8" text-anchor="start" style="fill:#173c4d">J1.1</text>
+<circle cx="130.0" cy="199.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="199.32" r="2.5" fill="#102530"/>
+<text x="139.00" y="202.32" font-size="8" text-anchor="start" style="fill:#173c4d">J1.2</text>
+<circle cx="130.0" cy="219.64" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="219.64" r="2.5" fill="#102530"/>
+<text x="139.00" y="222.64" font-size="8" text-anchor="start" style="fill:#173c4d">J1.3</text>
+<circle cx="130.0" cy="239.95999999999998" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="239.95999999999998" r="2.5" fill="#102530"/>
+<text x="139.00" y="242.96" font-size="8" text-anchor="start" style="fill:#173c4d">J1.4</text>
+<circle cx="130.0" cy="260.28" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="260.28" r="2.5" fill="#102530"/>
+<text x="139.00" y="263.28" font-size="8" text-anchor="start" style="fill:#173c4d">J1.5</text>
+<circle cx="130.0" cy="280.6" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="280.6" r="2.5" fill="#102530"/>
+<text x="139.00" y="283.60" font-size="8" text-anchor="start" style="fill:#173c4d">J1.6</text>
+<circle cx="130.0" cy="300.91999999999996" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="300.91999999999996" r="2.5" fill="#102530"/>
+<text x="139.00" y="303.92" font-size="8" text-anchor="start" style="fill:#173c4d">J1.7</text>
+<circle cx="130.0" cy="321.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="321.24" r="2.5" fill="#102530"/>
+<text x="139.00" y="324.24" font-size="8" text-anchor="start" style="fill:#173c4d">J1.8</text>
+<circle cx="130.0" cy="341.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="341.56" r="2.5" fill="#102530"/>
+<text x="139.00" y="344.56" font-size="8" text-anchor="start" style="fill:#173c4d">J1.9</text>
+<circle cx="130.0" cy="361.88" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="361.88" r="2.5" fill="#102530"/>
+<text x="139.00" y="364.88" font-size="8" text-anchor="start" style="fill:#173c4d">J1.10</text>
+<circle cx="130.0" cy="382.2" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="382.2" r="2.5" fill="#102530"/>
+<text x="139.00" y="385.20" font-size="8" text-anchor="start" style="fill:#173c4d">J1.11</text>
+<circle cx="130.0" cy="402.52" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="402.52" r="2.5" fill="#102530"/>
+<text x="139.00" y="405.52" font-size="8" text-anchor="start" style="fill:#173c4d">J1.12</text>
+<circle cx="130.0" cy="422.84" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="422.84" r="2.5" fill="#102530"/>
+<text x="139.00" y="425.84" font-size="8" text-anchor="start" style="fill:#173c4d">J1.13</text>
+<circle cx="130.0" cy="443.16" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="443.16" r="2.5" fill="#102530"/>
+<text x="139.00" y="446.16" font-size="8" text-anchor="start" style="fill:#173c4d">J1.14</text>
+<circle cx="130.0" cy="463.48" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="463.48" r="2.5" fill="#102530"/>
+<text x="139.00" y="466.48" font-size="8" text-anchor="start" style="fill:#173c4d">J1.15</text>
+<circle cx="130.0" cy="483.8" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="483.8" r="2.5" fill="#102530"/>
+<text x="139.00" y="486.80" font-size="8" text-anchor="start" style="fill:#173c4d">J1.16</text>
+<circle cx="130.0" cy="504.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="504.12" r="2.5" fill="#102530"/>
+<text x="139.00" y="507.12" font-size="8" text-anchor="start" style="fill:#173c4d">J1.17</text>
+<circle cx="130.0" cy="524.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="524.44" r="2.5" fill="#102530"/>
+<text x="139.00" y="527.44" font-size="8" text-anchor="start" style="fill:#173c4d">J1.18</text>
+<circle cx="130.0" cy="544.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="544.76" r="2.5" fill="#102530"/>
+<text x="139.00" y="547.76" font-size="8" text-anchor="start" style="fill:#173c4d">J1.19</text>
+<circle cx="130.0" cy="565.0799999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="565.0799999999999" r="2.5" fill="#102530"/>
+<text x="139.00" y="568.08" font-size="8" text-anchor="start" style="fill:#173c4d">J1.20</text>
+<circle cx="130.0" cy="585.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="585.4" r="2.5" fill="#102530"/>
+<text x="139.00" y="588.40" font-size="8" text-anchor="start" style="fill:#173c4d">J1.21</text>
+<circle cx="130.0" cy="605.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="130.0" cy="605.72" r="2.5" fill="#102530"/>
+<text x="139.00" y="608.72" font-size="8" text-anchor="start" style="fill:#173c4d">J1.22</text>
+<circle cx="312.88" cy="179.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="179.0" r="2.5" fill="#102530"/>
+<text x="303.88" y="182.00" font-size="8" text-anchor="end" style="fill:#173c4d">J3.1</text>
+<circle cx="312.88" cy="199.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="199.32" r="2.5" fill="#102530"/>
+<text x="303.88" y="202.32" font-size="8" text-anchor="end" style="fill:#173c4d">J3.2</text>
+<circle cx="312.88" cy="219.64" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="219.64" r="2.5" fill="#102530"/>
+<text x="303.88" y="222.64" font-size="8" text-anchor="end" style="fill:#173c4d">J3.3</text>
+<circle cx="312.88" cy="239.95999999999998" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="239.95999999999998" r="2.5" fill="#102530"/>
+<text x="303.88" y="242.96" font-size="8" text-anchor="end" style="fill:#173c4d">J3.4</text>
+<circle cx="312.88" cy="260.28" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="260.28" r="2.5" fill="#102530"/>
+<text x="303.88" y="263.28" font-size="8" text-anchor="end" style="fill:#173c4d">J3.5</text>
+<circle cx="312.88" cy="280.6" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="280.6" r="2.5" fill="#102530"/>
+<text x="303.88" y="283.60" font-size="8" text-anchor="end" style="fill:#173c4d">J3.6</text>
+<circle cx="312.88" cy="300.91999999999996" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="300.91999999999996" r="2.5" fill="#102530"/>
+<text x="303.88" y="303.92" font-size="8" text-anchor="end" style="fill:#173c4d">J3.7</text>
+<circle cx="312.88" cy="321.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="321.24" r="2.5" fill="#102530"/>
+<text x="303.88" y="324.24" font-size="8" text-anchor="end" style="fill:#173c4d">J3.8</text>
+<circle cx="312.88" cy="341.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="341.56" r="2.5" fill="#102530"/>
+<text x="303.88" y="344.56" font-size="8" text-anchor="end" style="fill:#173c4d">J3.9</text>
+<circle cx="312.88" cy="361.88" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="361.88" r="2.5" fill="#102530"/>
+<text x="303.88" y="364.88" font-size="8" text-anchor="end" style="fill:#173c4d">J3.10</text>
+<circle cx="312.88" cy="382.2" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="382.2" r="2.5" fill="#102530"/>
+<text x="303.88" y="385.20" font-size="8" text-anchor="end" style="fill:#173c4d">J3.11</text>
+<circle cx="312.88" cy="402.52" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="402.52" r="2.5" fill="#102530"/>
+<text x="303.88" y="405.52" font-size="8" text-anchor="end" style="fill:#173c4d">J3.12</text>
+<circle cx="312.88" cy="422.84" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="422.84" r="2.5" fill="#102530"/>
+<text x="303.88" y="425.84" font-size="8" text-anchor="end" style="fill:#173c4d">J3.13</text>
+<circle cx="312.88" cy="443.16" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="443.16" r="2.5" fill="#102530"/>
+<text x="303.88" y="446.16" font-size="8" text-anchor="end" style="fill:#173c4d">J3.14</text>
+<circle cx="312.88" cy="463.48" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="463.48" r="2.5" fill="#102530"/>
+<text x="303.88" y="466.48" font-size="8" text-anchor="end" style="fill:#173c4d">J3.15</text>
+<circle cx="312.88" cy="483.8" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="483.8" r="2.5" fill="#102530"/>
+<text x="303.88" y="486.80" font-size="8" text-anchor="end" style="fill:#173c4d">J3.16</text>
+<circle cx="312.88" cy="504.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="504.12" r="2.5" fill="#102530"/>
+<text x="303.88" y="507.12" font-size="8" text-anchor="end" style="fill:#173c4d">J3.17</text>
+<circle cx="312.88" cy="524.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="524.44" r="2.5" fill="#102530"/>
+<text x="303.88" y="527.44" font-size="8" text-anchor="end" style="fill:#173c4d">J3.18</text>
+<circle cx="312.88" cy="544.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="544.76" r="2.5" fill="#102530"/>
+<text x="303.88" y="547.76" font-size="8" text-anchor="end" style="fill:#173c4d">J3.19</text>
+<circle cx="312.88" cy="565.0799999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="565.0799999999999" r="2.5" fill="#102530"/>
+<text x="303.88" y="568.08" font-size="8" text-anchor="end" style="fill:#173c4d">J3.20</text>
+<circle cx="312.88" cy="585.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="585.4" r="2.5" fill="#102530"/>
+<text x="303.88" y="588.40" font-size="8" text-anchor="end" style="fill:#173c4d">J3.21</text>
+<circle cx="312.88" cy="605.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="312.88" cy="605.72" r="2.5" fill="#102530"/>
+<text x="303.88" y="608.72" font-size="8" text-anchor="end" style="fill:#173c4d">J3.22</text>
+<rect x="408.96" y="453.52" width="203.20" height="386.08" fill="#d9e8dc" stroke="#f6fbfb"/>
+<text x="510.56" y="629.56" font-size="13" text-anchor="middle" style="fill:#173c4d">U2 · ESP32-H2</text>
+<text x="510.56" y="646.56" font-size="13" text-anchor="middle" style="fill:#173c4d">Thread RCP</text>
+<text x="510.56" y="663.56" font-size="13" text-anchor="middle" style="fill:#173c4d">Antenna below</text>
+<rect x="457.76" y="839.60" width="105.60" height="43.20" fill="#8d7650" stroke="#e2bf76"/>
+<circle cx="602.0" cy="827.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="827.0" r="2.5" fill="#102530"/>
+<text x="593.00" y="830.00" font-size="8" text-anchor="end" style="fill:#173c4d">J1.1</text>
+<circle cx="602.0" cy="806.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="806.68" r="2.5" fill="#102530"/>
+<text x="593.00" y="809.68" font-size="8" text-anchor="end" style="fill:#173c4d">J1.2</text>
+<circle cx="602.0" cy="786.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="786.36" r="2.5" fill="#102530"/>
+<text x="593.00" y="789.36" font-size="8" text-anchor="end" style="fill:#173c4d">J1.3</text>
+<circle cx="602.0" cy="766.04" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="766.04" r="2.5" fill="#102530"/>
+<text x="593.00" y="769.04" font-size="8" text-anchor="end" style="fill:#173c4d">J1.4</text>
+<circle cx="602.0" cy="745.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="745.72" r="2.5" fill="#102530"/>
+<text x="593.00" y="748.72" font-size="8" text-anchor="end" style="fill:#173c4d">J1.5</text>
+<circle cx="602.0" cy="725.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="725.4" r="2.5" fill="#102530"/>
+<text x="593.00" y="728.40" font-size="8" text-anchor="end" style="fill:#173c4d">J1.6</text>
+<circle cx="602.0" cy="705.08" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="705.08" r="2.5" fill="#102530"/>
+<text x="593.00" y="708.08" font-size="8" text-anchor="end" style="fill:#173c4d">J1.7</text>
+<circle cx="602.0" cy="684.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="684.76" r="2.5" fill="#102530"/>
+<text x="593.00" y="687.76" font-size="8" text-anchor="end" style="fill:#173c4d">J1.8</text>
+<circle cx="602.0" cy="664.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="664.44" r="2.5" fill="#102530"/>
+<text x="593.00" y="667.44" font-size="8" text-anchor="end" style="fill:#173c4d">J1.9</text>
+<circle cx="602.0" cy="644.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="644.12" r="2.5" fill="#102530"/>
+<text x="593.00" y="647.12" font-size="8" text-anchor="end" style="fill:#173c4d">J1.10</text>
+<circle cx="602.0" cy="623.8" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="623.8" r="2.5" fill="#102530"/>
+<text x="593.00" y="626.80" font-size="8" text-anchor="end" style="fill:#173c4d">J1.11</text>
+<circle cx="602.0" cy="603.48" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="603.48" r="2.5" fill="#102530"/>
+<text x="593.00" y="606.48" font-size="8" text-anchor="end" style="fill:#173c4d">J1.12</text>
+<circle cx="602.0" cy="583.1600000000001" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="583.1600000000001" r="2.5" fill="#102530"/>
+<text x="593.00" y="586.16" font-size="8" text-anchor="end" style="fill:#173c4d">J1.13</text>
+<circle cx="602.0" cy="562.8399999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="562.8399999999999" r="2.5" fill="#102530"/>
+<text x="593.00" y="565.84" font-size="8" text-anchor="end" style="fill:#173c4d">J1.14</text>
+<circle cx="602.0" cy="542.52" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="602.0" cy="542.52" r="2.5" fill="#102530"/>
+<text x="593.00" y="545.52" font-size="8" text-anchor="end" style="fill:#173c4d">J1.15</text>
+<circle cx="419.12" cy="827.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="827.0" r="2.5" fill="#102530"/>
+<text x="428.12" y="830.00" font-size="8" text-anchor="start" style="fill:#173c4d">J3.1</text>
+<circle cx="419.12" cy="806.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="806.68" r="2.5" fill="#102530"/>
+<text x="428.12" y="809.68" font-size="8" text-anchor="start" style="fill:#173c4d">J3.2</text>
+<circle cx="419.12" cy="786.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="786.36" r="2.5" fill="#102530"/>
+<text x="428.12" y="789.36" font-size="8" text-anchor="start" style="fill:#173c4d">J3.3</text>
+<circle cx="419.12" cy="766.04" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="766.04" r="2.5" fill="#102530"/>
+<text x="428.12" y="769.04" font-size="8" text-anchor="start" style="fill:#173c4d">J3.4</text>
+<circle cx="419.12" cy="745.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="745.72" r="2.5" fill="#102530"/>
+<text x="428.12" y="748.72" font-size="8" text-anchor="start" style="fill:#173c4d">J3.5</text>
+<circle cx="419.12" cy="725.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="725.4" r="2.5" fill="#102530"/>
+<text x="428.12" y="728.40" font-size="8" text-anchor="start" style="fill:#173c4d">J3.6</text>
+<circle cx="419.12" cy="705.08" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="705.08" r="2.5" fill="#102530"/>
+<text x="428.12" y="708.08" font-size="8" text-anchor="start" style="fill:#173c4d">J3.7</text>
+<circle cx="419.12" cy="684.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="684.76" r="2.5" fill="#102530"/>
+<text x="428.12" y="687.76" font-size="8" text-anchor="start" style="fill:#173c4d">J3.8</text>
+<circle cx="419.12" cy="664.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="664.44" r="2.5" fill="#102530"/>
+<text x="428.12" y="667.44" font-size="8" text-anchor="start" style="fill:#173c4d">J3.9</text>
+<circle cx="419.12" cy="644.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="644.12" r="2.5" fill="#102530"/>
+<text x="428.12" y="647.12" font-size="8" text-anchor="start" style="fill:#173c4d">J3.10</text>
+<circle cx="419.12" cy="623.8" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="623.8" r="2.5" fill="#102530"/>
+<text x="428.12" y="626.80" font-size="8" text-anchor="start" style="fill:#173c4d">J3.11</text>
+<circle cx="419.12" cy="603.48" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="603.48" r="2.5" fill="#102530"/>
+<text x="428.12" y="606.48" font-size="8" text-anchor="start" style="fill:#173c4d">J3.12</text>
+<circle cx="419.12" cy="583.1600000000001" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="583.1600000000001" r="2.5" fill="#102530"/>
+<text x="428.12" y="586.16" font-size="8" text-anchor="start" style="fill:#173c4d">J3.13</text>
+<circle cx="419.12" cy="562.8399999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="562.8399999999999" r="2.5" fill="#102530"/>
+<text x="428.12" y="565.84" font-size="8" text-anchor="start" style="fill:#173c4d">J3.14</text>
+<circle cx="419.12" cy="542.52" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="419.12" cy="542.52" r="2.5" fill="#102530"/>
+<text x="428.12" y="545.52" font-size="8" text-anchor="start" style="fill:#173c4d">J3.15</text>
+<rect x="733.92" y="154.73" width="142.24" height="167.64" fill="#d9e8dc" stroke="#f6fbfb"/>
+<text x="805.04" y="221.55" font-size="11" text-anchor="middle" style="fill:#173c4d">U3 · XIAO</text>
+<text x="805.04" y="238.55" font-size="11" text-anchor="middle" style="fill:#173c4d">MG24</text>
+<text x="805.04" y="255.55" font-size="11" text-anchor="middle" style="fill:#173c4d">Zigbee</text>
+<circle cx="866.0" cy="299.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="299.0" r="2.5" fill="#102530"/>
+<text x="875.00" y="302.00" font-size="8" text-anchor="start" style="fill:#173c4d">1</text>
+<circle cx="866.0" cy="278.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="278.68" r="2.5" fill="#102530"/>
+<text x="875.00" y="281.68" font-size="8" text-anchor="start" style="fill:#173c4d">2</text>
+<circle cx="866.0" cy="258.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="258.36" r="2.5" fill="#102530"/>
+<text x="875.00" y="261.36" font-size="8" text-anchor="start" style="fill:#173c4d">3</text>
+<circle cx="866.0" cy="238.04000000000002" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="238.04000000000002" r="2.5" fill="#102530"/>
+<text x="875.00" y="241.04" font-size="8" text-anchor="start" style="fill:#173c4d">4</text>
+<circle cx="866.0" cy="217.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="217.72" r="2.5" fill="#102530"/>
+<text x="875.00" y="220.72" font-size="8" text-anchor="start" style="fill:#173c4d">5</text>
+<circle cx="866.0" cy="197.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="197.4" r="2.5" fill="#102530"/>
+<text x="875.00" y="200.40" font-size="8" text-anchor="start" style="fill:#173c4d">6</text>
+<circle cx="866.0" cy="177.07999999999998" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="866.0" cy="177.07999999999998" r="2.5" fill="#102530"/>
+<text x="875.00" y="180.08" font-size="8" text-anchor="start" style="fill:#173c4d">7</text>
+<circle cx="744.08" cy="299.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="299.0" r="2.5" fill="#102530"/>
+<text x="735.08" y="302.00" font-size="8" text-anchor="end" style="fill:#173c4d">14</text>
+<circle cx="744.08" cy="278.68" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="278.68" r="2.5" fill="#102530"/>
+<text x="735.08" y="281.68" font-size="8" text-anchor="end" style="fill:#173c4d">13</text>
+<circle cx="744.08" cy="258.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="258.36" r="2.5" fill="#102530"/>
+<text x="735.08" y="261.36" font-size="8" text-anchor="end" style="fill:#173c4d">12</text>
+<circle cx="744.08" cy="238.04000000000002" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="238.04000000000002" r="2.5" fill="#102530"/>
+<text x="735.08" y="241.04" font-size="8" text-anchor="end" style="fill:#173c4d">11</text>
+<circle cx="744.08" cy="217.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="217.72" r="2.5" fill="#102530"/>
+<text x="735.08" y="220.72" font-size="8" text-anchor="end" style="fill:#173c4d">10</text>
+<circle cx="744.08" cy="197.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="197.4" r="2.5" fill="#102530"/>
+<text x="735.08" y="200.40" font-size="8" text-anchor="end" style="fill:#173c4d">9</text>
+<circle cx="744.08" cy="177.07999999999998" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="744.08" cy="177.07999999999998" r="2.5" fill="#102530"/>
+<text x="735.08" y="180.08" font-size="8" text-anchor="end" style="fill:#173c4d">8</text>
+<rect x="684.40" y="680.28" width="200.00" height="184.00" fill="#b2d7ee" stroke="#f6fbfb"/>
+<rect x="705.20" y="707.88" width="200.80" height="128.80" fill="#c3cbd1" stroke="#f5f9fb"/>
+<line x1="906.0" y1="707.88" x2="906.0" y2="836.68" stroke="#101820" stroke-width="6"/>
+<text x="784.40" y="763.78" font-size="13" text-anchor="middle" style="fill:#173c4d">U4 · WIZ850io</text>
+<text x="784.40" y="780.78" font-size="13" text-anchor="middle" style="fill:#173c4d">RJ45 right</text>
+<circle cx="833.2" cy="691.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="833.2" cy="691.0" r="2.5" fill="#102530"/>
+<text x="833.20" y="705.00" font-size="9" text-anchor="middle" style="fill:#173c4d">1</text>
+<circle cx="812.88" cy="691.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="812.88" cy="691.0" r="2.5" fill="#102530"/>
+<text x="812.88" y="705.00" font-size="9" text-anchor="middle" style="fill:#173c4d">2</text>
+<circle cx="792.56" cy="691.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="792.56" cy="691.0" r="2.5" fill="#102530"/>
+<text x="792.56" y="705.00" font-size="9" text-anchor="middle" style="fill:#173c4d">3</text>
+<circle cx="772.24" cy="691.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="772.24" cy="691.0" r="2.5" fill="#102530"/>
+<text x="772.24" y="705.00" font-size="9" text-anchor="middle" style="fill:#173c4d">4</text>
+<circle cx="751.92" cy="691.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="751.92" cy="691.0" r="2.5" fill="#102530"/>
+<text x="751.92" y="705.00" font-size="9" text-anchor="middle" style="fill:#173c4d">5</text>
+<circle cx="731.6" cy="691.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="731.6" cy="691.0" r="2.5" fill="#102530"/>
+<text x="731.60" y="705.00" font-size="9" text-anchor="middle" style="fill:#173c4d">6</text>
+<circle cx="833.2" cy="853.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="833.2" cy="853.56" r="2.5" fill="#102530"/>
+<text x="833.20" y="844.56" font-size="9" text-anchor="middle" style="fill:#173c4d">1</text>
+<circle cx="812.88" cy="853.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="812.88" cy="853.56" r="2.5" fill="#102530"/>
+<text x="812.88" y="844.56" font-size="9" text-anchor="middle" style="fill:#173c4d">2</text>
+<circle cx="792.56" cy="853.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="792.56" cy="853.56" r="2.5" fill="#102530"/>
+<text x="792.56" y="844.56" font-size="9" text-anchor="middle" style="fill:#173c4d">3</text>
+<circle cx="772.24" cy="853.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="772.24" cy="853.56" r="2.5" fill="#102530"/>
+<text x="772.24" y="844.56" font-size="9" text-anchor="middle" style="fill:#173c4d">4</text>
+<circle cx="751.92" cy="853.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="751.92" cy="853.56" r="2.5" fill="#102530"/>
+<text x="751.92" y="844.56" font-size="9" text-anchor="middle" style="fill:#173c4d">5</text>
+<circle cx="731.6" cy="853.56" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="731.6" cy="853.56" r="2.5" fill="#102530"/>
+<text x="731.60" y="844.56" font-size="9" text-anchor="middle" style="fill:#173c4d">6</text>
+<rect x="645.44" y="424.84" width="20.32" height="40.64" fill="#273748" stroke="#7da2b1"/>
+<text x="655.60" y="420.04" font-size="11" text-anchor="middle" style="fill:#fff">J1</text>
+<circle cx="655.6" cy="435.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="435.0" r="2.5" fill="#102530"/>
+<text x="667.60" y="438.00" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="655.6" cy="455.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="455.32" r="2.5" fill="#102530"/>
+<text x="667.60" y="458.32" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<rect x="695.84" y="331.24" width="20.32" height="81.28" fill="#273748" stroke="#7da2b1"/>
+<text x="706.00" y="326.44" font-size="11" text-anchor="middle" style="fill:#fff">J2</text>
+<circle cx="706.0" cy="341.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="341.4" r="2.5" fill="#102530"/>
+<text x="718.00" y="344.40" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="706.0" cy="361.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="361.72" r="2.5" fill="#102530"/>
+<text x="718.00" y="364.72" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<circle cx="706.0" cy="382.03999999999996" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="382.03999999999996" r="2.5" fill="#102530"/>
+<text x="718.00" y="385.04" font-size="8" text-anchor="start" style="fill:#e4f0f0">3</text>
+<circle cx="706.0" cy="402.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="402.36" r="2.5" fill="#102530"/>
+<text x="718.00" y="405.36" font-size="8" text-anchor="start" style="fill:#e4f0f0">4</text>
+<rect x="645.44" y="477.64" width="20.32" height="121.92" fill="#273748" stroke="#7da2b1"/>
+<text x="655.60" y="472.84" font-size="11" text-anchor="middle" style="fill:#fff">J3</text>
+<circle cx="655.6" cy="487.8" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="487.8" r="2.5" fill="#102530"/>
+<text x="667.60" y="490.80" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="655.6" cy="508.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="508.12" r="2.5" fill="#102530"/>
+<text x="667.60" y="511.12" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<circle cx="655.6" cy="528.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="528.44" r="2.5" fill="#102530"/>
+<text x="667.60" y="531.44" font-size="8" text-anchor="start" style="fill:#e4f0f0">3</text>
+<circle cx="655.6" cy="548.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="548.76" r="2.5" fill="#102530"/>
+<text x="667.60" y="551.76" font-size="8" text-anchor="start" style="fill:#e4f0f0">4</text>
+<circle cx="655.6" cy="569.0799999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="569.0799999999999" r="2.5" fill="#102530"/>
+<text x="667.60" y="572.08" font-size="8" text-anchor="start" style="fill:#e4f0f0">5</text>
+<circle cx="655.6" cy="589.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="589.4" r="2.5" fill="#102530"/>
+<text x="667.60" y="592.40" font-size="8" text-anchor="start" style="fill:#e4f0f0">6</text>
+<rect x="695.84" y="477.64" width="20.32" height="101.60" fill="#273748" stroke="#7da2b1"/>
+<text x="706.00" y="472.84" font-size="11" text-anchor="middle" style="fill:#fff">J4</text>
+<circle cx="706.0" cy="487.8" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="487.8" r="2.5" fill="#102530"/>
+<text x="718.00" y="490.80" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="706.0" cy="508.12" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="508.12" r="2.5" fill="#102530"/>
+<text x="718.00" y="511.12" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<circle cx="706.0" cy="528.44" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="528.44" r="2.5" fill="#102530"/>
+<text x="718.00" y="531.44" font-size="8" text-anchor="start" style="fill:#e4f0f0">3</text>
+<circle cx="706.0" cy="548.76" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="548.76" r="2.5" fill="#102530"/>
+<text x="718.00" y="551.76" font-size="8" text-anchor="start" style="fill:#e4f0f0">4</text>
+<circle cx="706.0" cy="569.0799999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="569.0799999999999" r="2.5" fill="#102530"/>
+<text x="718.00" y="572.08" font-size="8" text-anchor="start" style="fill:#e4f0f0">5</text>
+<rect x="359.84" y="328.84" width="20.32" height="162.56" fill="#273748" stroke="#7da2b1"/>
+<text x="370.00" y="324.04" font-size="11" text-anchor="middle" style="fill:#fff">J5</text>
+<circle cx="370.0" cy="339.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="339.0" r="2.5" fill="#102530"/>
+<text x="382.00" y="342.00" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="370.0" cy="359.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="359.32" r="2.5" fill="#102530"/>
+<text x="382.00" y="362.32" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<circle cx="370.0" cy="379.64" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="379.64" r="2.5" fill="#102530"/>
+<text x="382.00" y="382.64" font-size="8" text-anchor="start" style="fill:#e4f0f0">3</text>
+<circle cx="370.0" cy="399.96000000000004" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="399.96000000000004" r="2.5" fill="#102530"/>
+<text x="382.00" y="402.96" font-size="8" text-anchor="start" style="fill:#e4f0f0">4</text>
+<circle cx="370.0" cy="420.28" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="420.28" r="2.5" fill="#102530"/>
+<text x="382.00" y="423.28" font-size="8" text-anchor="start" style="fill:#e4f0f0">5</text>
+<circle cx="370.0" cy="440.6" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="440.6" r="2.5" fill="#102530"/>
+<text x="382.00" y="443.60" font-size="8" text-anchor="start" style="fill:#e4f0f0">6</text>
+<circle cx="370.0" cy="460.92" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="460.92" r="2.5" fill="#102530"/>
+<text x="382.00" y="463.92" font-size="8" text-anchor="start" style="fill:#e4f0f0">7</text>
+<circle cx="370.0" cy="481.24" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="481.24" r="2.5" fill="#102530"/>
+<text x="382.00" y="484.24" font-size="8" text-anchor="start" style="fill:#e4f0f0">8</text>
+<rect x="645.44" y="331.24" width="20.32" height="81.28" fill="#273748" stroke="#7da2b1"/>
+<text x="655.60" y="326.44" font-size="11" text-anchor="middle" style="fill:#fff">J6</text>
+<circle cx="655.6" cy="341.4" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="341.4" r="2.5" fill="#102530"/>
+<text x="667.60" y="344.40" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="655.6" cy="361.72" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="361.72" r="2.5" fill="#102530"/>
+<text x="667.60" y="364.72" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<circle cx="655.6" cy="382.03999999999996" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="382.03999999999996" r="2.5" fill="#102530"/>
+<text x="667.60" y="385.04" font-size="8" text-anchor="start" style="fill:#e4f0f0">3</text>
+<circle cx="655.6" cy="402.36" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="655.6" cy="402.36" r="2.5" fill="#102530"/>
+<text x="667.60" y="405.36" font-size="8" text-anchor="start" style="fill:#e4f0f0">4</text>
+<rect x="359.84" y="520.84" width="20.32" height="81.28" fill="#273748" stroke="#7da2b1"/>
+<text x="370.00" y="516.04" font-size="11" text-anchor="middle" style="fill:#fff">J7</text>
+<circle cx="370.0" cy="531.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="531.0" r="2.5" fill="#102530"/>
+<text x="382.00" y="534.00" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="370.0" cy="551.3199999999999" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="551.3199999999999" r="2.5" fill="#102530"/>
+<text x="382.00" y="554.32" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<circle cx="370.0" cy="571.64" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="571.64" r="2.5" fill="#102530"/>
+<text x="382.00" y="574.64" font-size="8" text-anchor="start" style="fill:#e4f0f0">3</text>
+<circle cx="370.0" cy="591.96" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="370.0" cy="591.96" r="2.5" fill="#102530"/>
+<text x="382.00" y="594.96" font-size="8" text-anchor="start" style="fill:#e4f0f0">4</text>
+<line x1="746.0" y1="587.0" x2="746.0" y2="647.96" stroke="#c8cbd1" stroke-width="3"/>
+<rect x="739.00" y="597.48" width="14.00" height="40.00" fill="#6d4750" stroke="#e7ddd0"/>
+<text x="746.00" y="574.00" font-size="11" text-anchor="middle" style="fill:#e9f5ff">D1</text>
+<circle cx="746.0" cy="587.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="746.0" cy="587.0" r="2.5" fill="#102530"/>
+<circle cx="746.0" cy="647.96" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="746.0" cy="647.96" r="2.5" fill="#102530"/>
+<line x1="778.0" y1="587.0" x2="778.0" y2="647.96" stroke="#c8cbd1" stroke-width="3"/>
+<rect x="771.00" y="597.48" width="14.00" height="40.00" fill="#6d4750" stroke="#e7ddd0"/>
+<text x="778.00" y="574.00" font-size="11" text-anchor="middle" style="fill:#e9f5ff">D2</text>
+<circle cx="778.0" cy="587.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="778.0" cy="587.0" r="2.5" fill="#102530"/>
+<circle cx="778.0" cy="647.96" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="778.0" cy="647.96" r="2.5" fill="#102530"/>
+<line x1="810.0" y1="587.0" x2="810.0" y2="647.96" stroke="#c8cbd1" stroke-width="3"/>
+<rect x="803.00" y="597.48" width="14.00" height="40.00" fill="#6d4750" stroke="#e7ddd0"/>
+<text x="810.00" y="574.00" font-size="11" text-anchor="middle" style="fill:#e9f5ff">D3</text>
+<circle cx="810.0" cy="587.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="810.0" cy="587.0" r="2.5" fill="#102530"/>
+<circle cx="810.0" cy="647.96" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="810.0" cy="647.96" r="2.5" fill="#102530"/>
+<line x1="842.0" y1="587.0" x2="842.0" y2="647.96" stroke="#c8cbd1" stroke-width="3"/>
+<rect x="835.00" y="597.48" width="14.00" height="40.00" fill="#c9a771" stroke="#e7ddd0"/>
+<text x="842.00" y="574.00" font-size="11" text-anchor="middle" style="fill:#e9f5ff">R1</text>
+<circle cx="842.0" cy="587.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="842.0" cy="587.0" r="2.5" fill="#102530"/>
+<circle cx="842.0" cy="647.96" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="842.0" cy="647.96" r="2.5" fill="#102530"/>
+<line x1="874.0" y1="587.0" x2="874.0" y2="647.96" stroke="#c8cbd1" stroke-width="3"/>
+<rect x="867.00" y="597.48" width="14.00" height="40.00" fill="#c9a771" stroke="#e7ddd0"/>
+<text x="874.00" y="574.00" font-size="11" text-anchor="middle" style="fill:#e9f5ff">R2</text>
+<circle cx="874.0" cy="587.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="874.0" cy="587.0" r="2.5" fill="#102530"/>
+<circle cx="874.0" cy="647.96" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="874.0" cy="647.96" r="2.5" fill="#102530"/>
+<rect x="695.84" y="424.84" width="20.32" height="40.64" fill="#273748" stroke="#7da2b1"/>
+<text x="706.00" y="420.04" font-size="11" text-anchor="middle" style="fill:#fff">J8</text>
+<circle cx="706.0" cy="435.0" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="435.0" r="2.5" fill="#102530"/>
+<text x="718.00" y="438.00" font-size="8" text-anchor="start" style="fill:#e4f0f0">1</text>
+<circle cx="706.0" cy="455.32" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="706.0" cy="455.32" r="2.5" fill="#102530"/>
+<text x="718.00" y="458.32" font-size="8" text-anchor="start" style="fill:#e4f0f0">2</text>
+<rect x="884.40" y="659.00" width="317.60" height="216.00" fill="none" stroke="#6ee7c8" stroke-dasharray="6 4"/>
+<line x1="914.0" y1="772.28" x2="1170.0" y2="772.28" stroke="#6ee7c8" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="1042.00" y="708.28" font-size="15" text-anchor="middle" style="fill:#6ee7c8">RJ45 CABLE OUT</text>
+<text x="1042.00" y="828.28" font-size="13" text-anchor="middle" style="fill:#c8e9df">Mouth: 2 mm past edge</text>
+<text x="1042.00" y="876.28" font-size="12" text-anchor="middle" style="fill:#c8e9df">Keep boot + latch clear</text>
+<text x="1042.00" y="523.00" font-size="13" text-anchor="middle" style="fill:#a7b9cc">Five axial parts on top</text>
+<path d="M90 905.0v10m0 -5h800.0m0 -5v10" stroke="#a5bfd0" fill="none"/>
+<text x="490.00" y="935.00" font-size="18" text-anchor="middle" style="fill:#bcd0de">100 mm</text>
+<text x="55.00" y="515.00" font-size="15" text-anchor="middle" style="fill:#bcd0de">90 mm</text>
+<text x="60.00" y="985.00" font-size="22" text-anchor="start" style="fill:#e9f0fa">Same 17 parts · same 145 carrier pads · 43.75% smaller area than 160 × 100 mm</text>
+<text x="60.00" y="1019.00" font-size="16" text-anchor="start" style="fill:#a7b9cc">Blue dashed: USB service allowance. Grey dashed: 5.5 mm header housing allowance.</text>
+<text x="60.00" y="1047.00" font-size="16" text-anchor="start" style="fill:#a7b9cc">Orange: RF copper exclusions. Three nylon M2.5 supports; max 5 mm standoff diameter.</text>
+<text x="60.00" y="1075.00" font-size="15" text-anchor="start" style="fill:#a7b9cc">External harness modules: isolated 5V PoE splitter, 3.3V buck, WK2132, ZAC93, CC1101, radar, BME680.</text>
+<text x="60.00" y="1116.00" font-size="15" text-anchor="start" style="fill:#f0c294">Prototype: verify cable shells, wire bend height, antenna enclosure clearance and support under RJ45 insertion load.</text>
 </svg>

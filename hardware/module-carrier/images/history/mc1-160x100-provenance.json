@@ -3,21 +3,24 @@
   "tool": "built-in image_gen",
   "mode": "Previous assembly concept edited against the corrected CAD assembly drawing",
   "date": "2026-10-17",
-  "file": "mc1-assembled-concept.png",
+  "file": "mc1-160x100-concept.png",
   "sha256": "696031917ac4cafd071a22aeadd92d37a545e52e4700fdf1c6bd19927b85baff",
   "reference_images": {
     "previous_concept": "12c74ea6a39aac8463d5303ffcaa889809c56de6572023db8b81920957e8ba37",
     "../cad/assembly-top.png": "39d763c049cc8fecd841a09983be67cafd1ec32175630b27e83837c6d3a5df83"
   },
   "prompts": [
-    "assembly-prompt.txt",
-    "assembly-edit-prompt.txt",
-    "ethernet-edge-prompt.txt"
+    "../assembly-prompt.txt",
+    "../assembly-edit-prompt.txt",
+    "../ethernet-edge-prompt.txt"
   ],
   "limitations": [
     "Not a photograph of built hardware",
     "Module bodies, connector positions and printed labels are approximate; use native CAD and assembly drawing for construction",
     "Illustrates direct-solder finished modules; no female module sockets"
   ],
-  "revision": "RJ45 opening faces outward at the left edge"
+  "revision": "RJ45 opening faces outward at the left edge",
+  "status": "Historical 160x100 concept; not current MC1 geometry",
+  "source_commit": "b1cb991399f88cb225378a2a8adafd9bbb7b1bb6",
+  "reference_note": "Reference image paths/hashes identify inputs at the historical commit, not the current files."
 }

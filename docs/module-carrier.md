@@ -18,7 +18,7 @@ it must not be substituted with a bare radio module requiring fine-pitch assembl
 
 The carrier distributes power and signals. Regulators, crystals, RF matching,
 Ethernet magnetics and module decoupling stay on their factory-assembled boards.
-The 160 × 100 mm, two-layer carrier has **two resistors and three diodes**
+The 100 × 90 mm, two-layer carrier has **two resistors and three diodes**
 as separate circuit parts, plus four mounted modules and eight harness/service
 headers. It has no builder-installed capacitor array. This reduces builder-installed small parts without pretending those
 circuits no longer exist.
@@ -54,10 +54,53 @@ The selected architecture uses:
    and gas resistance. Gas resistance is not a direct CO2 measurement.
 7. Service access, recoverable firmware updates and independent network backups.
 
+## Compact placement and fabrication cost
+
+The earlier 160 × 100 mm outline was a conservative placement envelope, not an
+electrical requirement. Widely spaced modules and a separate bottom row of
+harness headers left unnecessary board area. The compact layout uses the gaps
+between the mounted modules for those connections and turns H2 around so its
+antenna and USB access use opposite ends from S3. The same four modules, eight
+harness/service headers, five axial parts and electrical pin assignments remain.
+
+PCB area falls from **160 cm² to 90 cm²**, a **43.75% reduction**. Both board dimensions
+now fit within 100 mm. This matters independently of the area: a 110 × 80 mm board
+would still miss the size threshold advertised for low-cost prototype offers.
+As checked on 17 October 2026, [JLCPCB lists $2 for five two-layer boards no larger
+than 100 × 100 mm](https://jlcpcb.com/help/article/how-do-i-place-an-order), and
+[PCBWay advertises $5 for ten one/two-layer boards within the same dimensions](https://m.pcbway.com/activitypcb.aspx).
+These are advertised fabrication offers, **not quotes for delivered MC1 boards**.
+Thickness, copper weight, surface finish, quantity, options, taxes and shipping
+must be held constant for a price comparison. The area reduction is not a quote
+for the percentage saved on a delivered order. No manufacturing order has been placed.
+
+A 100 × 80 mm packing study required the five axial parts on the underside and
+more restrictive mounting. The selected 90 mm height preserves a single
+component side and ordinary through-hole assembly while remaining in the same
+advertised size class. Minimizing board area past that point was not worth the
+additional assembly and service restrictions.
+
+![Previous and compact placement at the same scale](../hardware/module-carrier/layout-comparison.svg)
+
+This reduces the carrier footprint, not the entire system to a 100 × 90 mm box.
+The finished PoE splitter, buck, UART bridge and peripheral modules still need
+space. Cable boots, harness bends, service plugs and the enclosure wall remain
+outside the quoted PCB dimensions. The assembly drawing identifies reserved
+access corridors; they must not be filled with wires or components merely
+because no permanent module occupies them.
+
+The compact arrangement reserves **5.5 mm-wide mating housings** on the harness
+headers and **30 mm-long USB service envelopes**. Use narrow 2.54 mm harness
+connectors with wires leaving upward; bulky shrouded housings are not covered
+by this layout. In particular, the actual XIAO board has about 0.97 mm clearance
+to the nearest reserved housing corner. Verify the chosen plugs during the dry
+fit. Three nylon M2.5 supports, with bodies no larger than 5 mm in diameter,
+fit outside the service envelopes; the right support is beside WIZ850io.
+
 ## Ethernet access
 
-U4 is rotated 90° at the lower-left edge. Its RJ45 opening faces outward to the
-left and projects 1 mm beyond the carrier edge. Keep the connector/plug/latch
+U4 is rotated 270° at the lower-right edge. Its RJ45 opening faces outward to the
+right and projects 2 mm beyond the carrier edge. Keep the connector/plug/latch
 corridor clear and provide a matching enclosure cutout. The module remains
 soldered directly to the carrier; this change does not add an extension cable
 or alter the Ethernet pinout. Use the dimensioned assembly view for orientation,

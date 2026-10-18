@@ -17,6 +17,12 @@ Start with the [English assembly guide](docs/module-carrier.md), the
 
 ## One board to assemble
 
+The carrier is **100 × 90 mm, with two copper layers**: 43.75% less PCB area than the
+earlier 160 × 100 mm layout. Harness connections sit in the gaps between modules;
+the RJ45 opening faces outward at the right edge. See the
+[same-scale placement comparison](hardware/module-carrier/layout-comparison.svg)
+and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fabrication-cost).
+
 Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
 **Male pins go directly into plated holes and are soldered from below. No female
 module sockets; no castellated-side soldering.** The power converter, UART bridge,

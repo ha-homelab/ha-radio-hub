@@ -1,7 +1,7 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "index_sha256": "da696a113e86d8ee11dfadf993498ed6fa8114500d061d46c527c4e22a2e7183",
+  "index_sha256": "350ec5efe5b72220ff075f5e8b5385e55d6710adba3a25c72d394e9dd0a50c77",
   "viewport_width": 319,
   "page_scroll_width": 319,
   "all_seven_images_loaded": true,
@@ -16,9 +16,14 @@
     "restored_empty_query": true
   },
   "screenshots": {
-    "ui-assembly.jpg": "e4a967d717c6f3ed84483cf66ef89b974ee3d04364ef4ddd2305165ddad343dc",
-    "ui-pcb.jpg": "2fe5aba4a97194aa01c2f5f1dcbfd1393fa497810f7757772b4d1df76aa3cd0a",
-    "ui-wiring.jpg": "f17bff49e27edc9f97a1700af61259541a9f4b82e20485852b660cde4966294e"
+    "ui-assembly.jpg": "20f4488e27e5d13d2e65d753e6ee1fbc1cd67900228e2196683f222fc6862515",
+    "ui-pcb.jpg": "8a6060c492afde0f21d3f868cb45c677b2c97f81db2239251aa469a3771f6b7f",
+    "ui-wiring.jpg": "3de7d4c7b79cc9f595949dd74800668d5e776ddd3dfe04c33b99b6bfe0562e96"
   },
-  "layout_revision": "RJ45-left-edge"
+  "layout_revision": "compact-100x90-right-edge",
+  "capture_notes": {
+    "ui-pcb.jpg": "Native 319 px viewport, current guide at #pcb",
+    "ui-assembly.jpg": "Full-page screenshot of the current CAD assembly SVG, captured without resizing viewport",
+    "ui-wiring.jpg": "Native 319 px viewport, ZB_CTS search result"
+  }
 }

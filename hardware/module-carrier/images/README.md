@@ -17,18 +17,27 @@ The native render manifest records the PCB and image hashes, KiCad version,
 viewpoint and pixel dimensions. Renderer colors are presentation choices, not a
 fabrication finish specification.
 
-## Generated assembly illustration
+## Current assembly view
 
-![Generated MC1 assembly concept](mc1-assembled-concept.png)
+Use the [dimensioned assembly drawing](../cad/assembly-top.svg) to see the four
+mounted modules, internal harness headers, antenna exclusions, USB access and
+outward-facing RJ45. It is generated from the same geometry as the native PCB.
+The [same-scale comparison](../layout-comparison.svg) shows the area reduction.
 
-The generated assembly concept is labeled separately. It helps show
-finished modules mounted by male pins without female sockets. It is **not** a
-photograph of a manufactured board, a dimensioned assembly drawing or evidence of
-physical fit. Pin counts, copper, small markings and component details in the
-illustration are not engineering data. Use the native CAD and connector manifest.
+## Historical and rejected illustrations
 
-The [initial prompt](assembly-prompt.txt), [mechanical correction prompt](assembly-edit-prompt.txt), [RJ45 edge correction](ethernet-edge-prompt.txt), and [generation provenance](generated-image-provenance.json) accompany the illustration. It was made with the built-in image_gen tool. No
-manufacturer photography is redistributed as project artwork.
+The earlier [160 × 100 mm concept](history/mc1-160x100-concept.png) is retained
+only as history, with its [provenance](history/mc1-160x100-provenance.json).
+It must not be used for the compact board.
+
+A new image made with the built-in image_gen tool from the compact assembly
+drawing was **rejected**: it invented antenna bodies, misrepresented connector
+details and exaggerated the RJ45 overhang. The
+[rejected image](history/mc1-100x90-rejected-concept.png),
+[prompt](compact-layout-prompt.txt) and
+[review record](history/mc1-100x90-rejected-review.json) are retained for traceability,
+but the image is not shown as a current assembly view. No manufactured-board
+photograph is available. No manufacturer photography is redistributed here.
 
 ## Screenshots
 
@@ -36,8 +45,8 @@ Browser screenshots show the rendered current MC1 visual guide. They are UI
 verification artifacts and must be refreshed when the visible guide changes.
 They do not replace the source SVGs or native PCB files.
 
-Captured views: [current PCB](ui-pcb.jpg), [assembly illustration](ui-assembly.jpg),
+Captured views: [current PCB](ui-pcb.jpg), [assembly drawing](ui-assembly.jpg),
 [net search](ui-wiring.jpg). The [screenshot record](screenshot-provenance.json)
-records the source hash, native 319 px viewport and successful search check.
+records the source hash, viewport and successful search check.
 The [migration manifest](../visual-migration.json) accounts for current and
 historical visual assets.

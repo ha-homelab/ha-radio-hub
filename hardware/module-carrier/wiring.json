@@ -1,7 +1,7 @@
 {
   "revision": "MC1",
   "source": "cad/design.py",
-  "source_sha256": "c51625e2e919e19bd2f2c4e1300839049a6a0251c75b4e76f28251407b7ef8a4",
+  "source_sha256": "80b1c1203f2e4bd9a8fbd4e4f538f5002b79745fd4ac9dcc4fc0c1e0505ca013",
   "nets": {
     "RF_GDO0": [
       "U1.J1.4",
@@ -226,7 +226,7 @@
       },
       "types": {},
       "xy": [
-        44,
+        5,
         3
       ],
       "rotation": 0,
@@ -271,10 +271,10 @@
       },
       "types": {},
       "xy": [
-        86,
-        3
+        64,
+        84
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "h2",
       "notes": "RCP RX4 TX5; native USB and UART bridge pins untouched; 3V3/VBAT NC"
     },
@@ -300,7 +300,7 @@
       },
       "types": {},
       "xy": [
-        143,
+        97,
         18
       ],
       "rotation": 180,
@@ -327,12 +327,12 @@
       },
       "types": {},
       "xy": [
-        8.1,
-        85
+        92.9,
+        67
       ],
-      "rotation": 90,
+      "rotation": 270,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces LEFT with mouth x=-1mm; NO PoE extraction;3.3V only"
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces RIGHT with mouth x=102mm; NO PoE extraction;3.3V only"
     },
     {
       "ref": "J1",
@@ -344,10 +344,10 @@
       },
       "types": {},
       "xy": [
-        13,
-        93
+        70.7,
+        35
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier."
     },
@@ -363,10 +363,10 @@
       },
       "types": {},
       "xy": [
-        36,
-        93
+        77,
+        23.3
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module."
     },
@@ -384,10 +384,10 @@
       },
       "types": {},
       "xy": [
-        92,
-        93
+        70.7,
+        41.6
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "weikai",
       "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings."
     },
@@ -404,10 +404,10 @@
       },
       "types": {},
       "xy": [
-        126,
-        93
+        77,
+        41.6
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Carrier1->ZACpin1;2->pin6;3->pin9;4->pin8RX;5->pin10TX. Different from ZAC physical header layout."
     },
@@ -427,10 +427,10 @@
       },
       "types": {},
       "xy": [
-        58,
-        77
+        35,
+        23
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "3.3V; GDO0 open-drain TX with external4.7k pullup; GDO2 receiver."
     },
@@ -446,8 +446,8 @@
       },
       "types": {},
       "xy": [
-        150,
-        57
+        70.7,
+        23.3
       ],
       "rotation": 0,
       "source": "connector",
@@ -465,8 +465,8 @@
       },
       "types": {},
       "xy": [
-        150,
-        79
+        35,
+        47
       ],
       "rotation": 0,
       "source": "connector",
@@ -482,10 +482,10 @@
       },
       "types": {},
       "xy": [
-        44,
-        86
+        82,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -499,10 +499,10 @@
       },
       "types": {},
       "xy": [
-        75,
-        86
+        86,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -516,10 +516,10 @@
       },
       "types": {},
       "xy": [
-        130,
-        48
+        90,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -533,10 +533,10 @@
       },
       "types": {},
       "xy": [
-        67,
-        68
+        94,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "resistor",
       "notes": ""
     },
@@ -550,10 +550,10 @@
       },
       "types": {},
       "xy": [
-        82,
-        68
+        98,
+        54
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "resistor",
       "notes": ""
     },
@@ -567,10 +567,10 @@
       },
       "types": {},
       "xy": [
-        141,
+        77,
         35
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN."
     }

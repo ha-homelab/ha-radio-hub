@@ -6,7 +6,7 @@ Module footprints use manufacturer hole centers; external modules use harnesses.
 import argparse, csv, json, uuid, re, math
 from pathlib import Path
 import pcbnew as pcb
-from design import ROOT, parts, connectors, SOURCES, s3names, h2names, WIZ_MECHANICS
+from design import ROOT, parts, connectors, SOURCES, s3names, h2names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES
 ap=argparse.ArgumentParser(); ap.add_argument('--libraries', type=Path, required=True); a=ap.parse_args()
 LIB=a.libraries; LOCAL=ROOT/'MC1.pretty'; LOCAL.mkdir(exist_ok=True); BUILD=ROOT/'.build'; BUILD.mkdir(exist_ok=True)
 U=lambda s:str(uuid.uuid5(uuid.NAMESPACE_URL,'https://ha-radio-hub/MC1/'+s)); Q=lambda s:json.dumps(str(s))
@@ -21,7 +21,7 @@ def module_fp(name,pads,rect,description):
         lines.append(f'(fp_line (start {xx} {max(1,y1)}) (end {xx} {y2-1}) (stroke (width 0.12) (type solid)) (layer "F.SilkS"))')
     for num,x,y in pads:
         shape='rect' if num in ['J1.1','1'] else 'circle'
-        lines.append(f'(pad {Q(num)} thru_hole {shape} (at {x} {y}) (size 1.9 1.9) (drill 1.1) (layers "*.Cu" "*.Mask"))')
+        lines.append(f'(pad {Q(num)} thru_hole {shape} (at {x} {y}) (size 1.8 1.8) (drill 1.1) (layers "*.Cu" "*.Mask"))')
     lines.append(')');(LOCAL/(name+'.kicad_mod')).write_text('\n'.join(lines)+'\n')
 module_fp('S3_DevKitC1_v11',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J3',22.86)] for i in range(22)],(-1.27,-1.40,24.13,61.34),'Official Espressif v1.1 dimension PDF;22.86mm row spacing;2.54mm pitch;factory male headers;direct solder;1.1mm carrier finished hole is design allowance, not factory hole size')
 module_fp('H2_DevKitM1',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J3',22.86)] for i in range(15)],(-1.27,-1.575,24.13,46.685),'Official Espressif v1.2 dimension PDF;22.86 rowspacing;2.54 pitch;antenna extends5.4mm beyond PCBtop;direct factory male headers')
@@ -88,19 +88,20 @@ for p in parts:
     assert {x.GetNumber() for x in fp.Pads()}==set(p['pins']),p['ref']
     for pad in fp.Pads():
         if p['pins'][pad.GetNumber()]:pad.SetNet(nets[p['pins'][pad.GetNumber()]])
-    fp.Reference().SetTextSize(pcb.VECTOR2I(pcb.FromMM(.9),pcb.FromMM(.9)));fp.Reference().SetTextThickness(pcb.FromMM(.15));fp.Value().SetVisible(False);board.Add(fp)
-for p,q in [((0,0),(160,0)),((160,0),(160,100)),((160,100),(0,100)),((0,100),(0,0))]:
+    fp.Reference().SetTextSize(pcb.VECTOR2I(pcb.FromMM(.9),pcb.FromMM(.9)));fp.Reference().SetTextThickness(pcb.FromMM(.15));fp.Value().SetVisible(False)
+    refpos={'U1':(16,40),'U2':(52,63),'U3':(89.5,12),'U4':(86.8,78),'J1':(68.1,35),'J2':(79.4,23.3),'J3':(68.1,41.6),'J4':(79.4,41.6),'J5':(32.5,23),'J6':(68.1,23.3),'J7':(32.5,47),'J8':(79.4,35)}
+    rx,ry=refpos.get(p['ref'],(p['xy'][0],51.6));fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(rx),pcb.FromMM(ry)));fp.Reference().SetTextAngle(pcb.EDA_ANGLE(0,pcb.DEGREES_T));board.Add(fp)
+for p,q in [((0,0),(BOARD_W,0)),((BOARD_W,0),(BOARD_W,BOARD_H)),((BOARD_W,BOARD_H),(0,BOARD_H)),((0,BOARD_H),(0,0))]:
     s=pcb.PCB_SHAPE();s.SetShape(pcb.SHAPE_T_SEGMENT);s.SetStart(pcb.VECTOR2I(pcb.FromMM(p[0]),pcb.FromMM(p[1])));s.SetEnd(pcb.VECTOR2I(pcb.FromMM(q[0]),pcb.FromMM(q[1])));s.SetLayer(pcb.Edge_Cuts);s.SetWidth(pcb.FromMM(.05));board.Add(s)
-for i,(x,y) in enumerate([(5,5),(155,5),(5,95),(155,95)],1):
-    fp=pcb.FOOTPRINT(board);fp.SetReference('H'+str(i));fp.SetValue('M3 NPTH');fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));fp.Reference().SetVisible(False);fp.Value().SetVisible(False);fp.SetAttributes(pcb.FP_EXCLUDE_FROM_BOM|pcb.FP_EXCLUDE_FROM_POS_FILES|pcb.FP_BOARD_ONLY)
-    pd=pcb.PAD(fp);pd.SetAttribute(pcb.PAD_ATTRIB_NPTH);pd.SetShape(pcb.PAD_SHAPE_CIRCLE);pd.SetSize(pcb.VECTOR2I(pcb.FromMM(3.2),pcb.FromMM(3.2)));pd.SetDrillSize(pcb.VECTOR2I(pcb.FromMM(3.2),pcb.FromMM(3.2)));pd.SetLayerSet(pcb.LSET.AllCuMask());fp.Add(pd);board.Add(fp)
-for txt,x,y,size in [('MC1 / MODULE CARRIER',24,12,1),('ENGINEERING PROTOTYPE',24,15,.9),('160 x 100 / 2 LAYERS',24,18,.8),('NO SOCKETS / NO SMT',23,22,.9),('FUSED 5V ONLY',23,96,.8),('3V3 BUCK',44,96,.8),('WK2132',98,96,.8),('ZAC93',132,96,.8),('CC1101',66,81,.8),('RADAR',149,52,.8),('BME680',149,74,.8),('D0 / GND',141,38,.8),('PROGRAM BEFORE SOLDERING',107,73,.9),('POWERED SERVICE + VBUS BLOCKER',109,76,.8),('MCU 3V3 OUTPUTS ISOLATED',109,79,.8)]:
+for i,(x,y) in enumerate(MOUNT_HOLES,1):
+    fp=pcb.FOOTPRINT(board);fp.SetReference('H'+str(i));fp.SetValue('M2.5 NYLON NPTH');fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));fp.Reference().SetVisible(False);fp.Value().SetVisible(False);fp.SetAttributes(pcb.FP_EXCLUDE_FROM_BOM|pcb.FP_EXCLUDE_FROM_POS_FILES|pcb.FP_BOARD_ONLY)
+    pd=pcb.PAD(fp);pd.SetAttribute(pcb.PAD_ATTRIB_NPTH);pd.SetShape(pcb.PAD_SHAPE_CIRCLE);pd.SetSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetDrillSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetLayerSet(pcb.LSET.AllCuMask());fp.Add(pd);board.Add(fp)
+for txt,x,y,size in [('MC1 / 100 x 90',18,79,.9),('DIRECT SOLDER',18,82,.9),('NYLON M2.5',18,85,.9)]:
     t=pcb.PCB_TEXT(board);t.SetText(txt);t.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(size),pcb.FromMM(size)));t.SetTextThickness(pcb.FromMM(.13));t.SetLayer(pcb.F_SilkS);board.Add(t)
-# No copper pours underneath/on top of antenna end. The antenna tips extend
-# over the top edge; keep first 1.2mm of carrier copper-free. All pads start y>=2.76.
-# Conservative RF keepouts between the factory header rows; no copper/tracks/vias.
-# Rectangles stop short of the header pads and extend to the carrier edge.
-for bounds in [(0,0,160,1.2),(47,0,64,12),(89,0,106,12),(128.8,0,141,5)]:
+# RF antenna exclusions: top S3/XIAO and opposed bottom H2. The top
+# 1.8mm strip stays below the first row of pad copper. Inter-row exclusions
+# reach the relevant edge without covering the factory header copper.
+for bounds in RF_KEEPOUTS:
     zone=pcb.ZONE(board);zone.SetIsRuleArea(True);zone.SetLayerSet(pcb.LSET.AllCuMask());zone.SetDoNotAllowZoneFills(True);zone.SetDoNotAllowTracks(True);zone.SetDoNotAllowVias(True);zone.SetDoNotAllowPads(False);zone.SetDoNotAllowFootprints(False)
     outline=zone.Outline();outline.NewOutline();x1,y1,x2,y2=bounds
     for x,y in [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]:outline.Append(pcb.FromMM(x),pcb.FromMM(y))
@@ -109,7 +110,7 @@ for bounds in [(0,0,160,1.2),(47,0,64,12),(89,0,106,12),(128.8,0,141,5)]:
 x1,y1,x2,y2=WIZ_MECHANICS['service_corridor_global_mm']
 for aa,bb in [((x1,y1),(x2,y1)),((x2,y1),(x2,y2)),((x2,y2),(x1,y2)),((x1,y2),(x1,y1))]:
     sh=pcb.PCB_SHAPE();sh.SetShape(pcb.SHAPE_T_SEGMENT);sh.SetStart(pcb.VECTOR2I(pcb.FromMM(aa[0]),pcb.FromMM(aa[1])));sh.SetEnd(pcb.VECTOR2I(pcb.FromMM(bb[0]),pcb.FromMM(bb[1])));sh.SetLayer(pcb.Dwgs_User);sh.SetWidth(pcb.FromMM(.2));board.Add(sh)
-t=pcb.PCB_TEXT(board);t.SetText('RJ45 OUT / PLUG + LATCH CLEARANCE');t.SetPosition(pcb.VECTOR2I(pcb.FromMM(-17),pcb.FromMM(59)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(1),pcb.FromMM(1)));t.SetTextThickness(pcb.FromMM(.15));t.SetLayer(pcb.Dwgs_User);board.Add(t)
+t=pcb.PCB_TEXT(board);t.SetText('RJ45 OUT / PLUG + LATCH CLEARANCE');t.SetPosition(pcb.VECTOR2I(pcb.FromMM(119),pcb.FromMM(61)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(1),pcb.FromMM(1)));t.SetTextThickness(pcb.FromMM(.15));t.SetLayer(pcb.Dwgs_User);board.Add(t)
 board.BuildListOfNets();board.BuildConnectivity();pcb.SaveBoard(str(BUILD/'mc1-unrouted.kicad_pcb'),board);pcb.ExportSpecctraDSN(board,str(BUILD/'mc1.dsn'))
 # All high-current supply nets get 0.8mm traces rather than default signal width.
 dsn=BUILD/'mc1.dsn';s=dsn.read_text().replace('(width 200)','(width 250)').replace('(clearance 50 (type smd_smd))','(clearance 200 (type smd_smd))').replace('600:300','800:400').replace('(circle F.Cu 600)','(circle F.Cu 800)').replace('(circle B.Cu 600)','(circle B.Cu 800)')
@@ -128,15 +129,19 @@ def transform(v):return [round(u4['xy'][0]+v[0]*math.cos(ang)+v[1]*math.sin(ang)
 rj45=dict(WIZ_MECHANICS)
 rj45['face_global_mm']=[transform(v) for v in WIZ_MECHANICS['rj45_face_local_mm']]
 rj45['outward_normal_global']=[round(-math.sin(ang),4),round(-math.cos(ang),4)]
-rj45['mouth_beyond_left_edge_mm']=-rj45['face_global_mm'][0][0]
+rj45['mouth_beyond_right_edge_mm']=round(rj45['face_global_mm'][0][0]-BOARD_W,4)
 bb=WIZ_MECHANICS['pcb_bounds_local_mm'];bc=[transform(bb[:2]),transform(bb[2:])];rj45['pcb_bounds_global_mm']=[min(v[0] for v in bc),min(v[1] for v in bc),max(v[0] for v in bc),max(v[1] for v in bc)]
 rj45['face_width_mm']=16.10
-rj45['opening_direction']='left / negative X'
-metadata=dict(schema_version=1,revision='MC1',status='engineering_prototype_not_fabrication_release',board=dict(width_mm=160,height_mm=100,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"rj45":rj45},parts=ledger)
+rj45['opening_direction']='right / positive X'
+headers={}
+for p in ledger:
+    if p['ref'].startswith('J'):
+        pads=p['pad_centers_mm'];headers[p['ref']]=[min(p['x'] for p in pads)-2.75,min(p['y'] for p in pads)-1.75,max(p['x'] for p in pads)+2.75,max(p['y'] for p in pads)+1.75]
+metadata=dict(schema_version=1,revision='MC1',status='engineering_prototype_not_fabrication_release',board=dict(width_mm=BOARD_W,height_mm=BOARD_H,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting":{"drill_mm":2.7,"hardware":"Three nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends", "note":"Check enclosure support and RJ45 insertion load; support H3 is 3.6mm left of WIZ PCB."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; USB 30mm axial length. Verify actual mating shells, cable bends and vertical access."},parts=ledger)
 (ROOT/'design.json').write_text(json.dumps(metadata,indent=2)+'\n');(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC1',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
 with (ROOT/'BOM.csv').open('w',newline='') as f:
-    w=csv.writer(f);w.writerow(['Reference','Quantity','Part / module','Carrier footprint','Assembly note','Source']);
-    for p in parts:w.writerow([p['ref'],1,p['model'],p['footprint'],p['notes'],SOURCES.get(p['source'],'')])
-project={'meta':{'filename':'mc1.kicad_pro','version':1},'board':{'design_settings':{'rules':{'min_clearance':.2,'min_track_width':.2,'min_via_diameter':.8,'min_through_hole_diameter':.4,'min_copper_edge_clearance':.25}}},'net_settings':{'classes':[{'name':'Default','clearance':.2,'track_width':.25,'via_diameter':.8,'via_drill':.4},{'name':'Power','clearance':.2,'track_width':.8,'via_diameter':.8,'via_drill':.4}],'netclass_patterns':[{'netclass':'Power','pattern':'/'+n} for n in power]}}
-(ROOT/'mc1.kicad_pro').write_text(json.dumps(project,indent=2)+'\n')
-print(f'MC1 generated: {len(parts)} THT footprints, {len(nets)} connected nets; 160x100mm, 2 copper layers')
+    w=csv.writer(f);w.writerow(['Reference','Quantity','Part / module','Carrier footprint','Side','Assembly note','Source']);
+    for p in parts:w.writerow([p['ref'],1,p['model'],p['footprint'],'Top',p['notes'],SOURCES.get(p['source'],'')])
+from project_rules import restore_project_rules
+restore_project_rules(ROOT)
+print(f'MC1 generated: {len(parts)} THT footprints, {len(nets)} connected nets; 100x90mm, 2 copper layers')

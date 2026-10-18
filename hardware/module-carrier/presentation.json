@@ -15,7 +15,7 @@
   ],
   "assembly_steps": [
     "Match exact module revisions to the drawings. Program each module before permanent assembly.",
-    "Dry-fit the male pins in the plated holes. Check USB access and antenna keepouts.",
+    "Dry-fit the male pins in the plated holes. Check the compact layout against actual module bodies, plugged USB/RJ45 connectors, vertical harness plugs and antenna keepouts.",
     "Fit the listed through-hole parts, then solder module pins from the underside. No female module sockets.",
     "Wire the finished isolated power and UART modules and the existing radios/sensors to the labeled carrier connectors.",
     "Check polarity, continuity and loaded rail voltages before connecting the full assembly.",

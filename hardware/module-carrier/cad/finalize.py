@@ -3,6 +3,7 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import pcbnew as pcb
+from design import BOARD_W, BOARD_H
 ROOT=Path(__file__).resolve().parent
 board=pcb.LoadBoard(str(ROOT/'.build/mc1-unrouted.kicad_pcb'))
 ses=ROOT/'.build/mc1.ses'
@@ -27,11 +28,20 @@ for f in board.GetFootprints():
     if f.GetReference()=='U4':
         for pd in f.Pads():
             if pd.GetNetname()=='/GND':pd.SetLocalZoneConnection(pcb.ZONE_CONNECTION_FULL)
-# Two ground pours, no plane under the top RF exclusion strip.
+# Three crowded GND pads use their routed 0.8mm return rather than a starved
+# thermal island. Keep the pad-to-plane clearance; the GND traces join the plane.
+for f in board.GetFootprints():
+    for pd in f.Pads():
+        if (f.GetReference(),pd.GetNumber()) in [('U1','J1.22'),('J5','2'),('U2','J3.12')]:
+            pd.SetLocalZoneConnection(pcb.ZONE_CONNECTION_NONE)
+# Two ground pours, no plane under the RF exclusion strips.
 for layer in [pcb.F_Cu,pcb.B_Cu]:
     z=pcb.ZONE(board);z.SetLayer(layer);z.SetNet(next(n for n in board.GetNetInfo().NetsByNetcode().values() if n.GetNetname()=='/GND'));z.SetLocalClearance(pcb.FromMM(.25));z.SetMinThickness(pcb.FromMM(.2));z.SetPadConnection(pcb.ZONE_CONNECTION_THERMAL);z.SetThermalReliefGap(pcb.FromMM(.25));z.SetThermalReliefSpokeWidth(pcb.FromMM(.35));z.SetIslandRemovalMode(0)
     po=z.Outline();po.NewOutline()
-    for x,y in [(1,1.5),(159,1.5),(159,99),(1,99)]:po.Append(pcb.FromMM(x),pcb.FromMM(y))
+    for x,y in [(1,1.8),(BOARD_W-1,1.8),(BOARD_W-1,BOARD_H-1),(1,BOARD_H-1)]:po.Append(pcb.FromMM(x),pcb.FromMM(y))
     board.Add(z)
 board.BuildListOfNets();board.BuildConnectivity();pcb.ZONE_FILLER(board).Fill(board.Zones());pcb.SaveBoard(str(ROOT/'mc1.kicad_pcb'),board)
 print('Imported final routing:',len(list(board.GetTracks())),'track/via items')
+
+from project_rules import restore_project_rules
+restore_project_rules()
