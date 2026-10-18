@@ -1,0 +1,137 @@
+# MC1: Waveshare ESP32-S3-Nano-M, 16 MB flash / 8 MB PSRAM.
+substitutions:
+  build_jobs: "4"
+  bme680_address: "0x77"
+  rf_airbridge_path: ..
+  rf_source: module_carrier
+  rf_cs_pin: GPIO6
+  rf_received_topic: build-only/rf/received
+  rf_raw_topic: build-only/rf/raw
+  rf_transmit_result_topic: build-only/rf/result
+
+esphome:
+  name: module-carrier-hub
+  min_version: 2026.9.1
+  compile_process_limit: ${build_jobs}
+
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  cpu_frequency: 160MHz
+  framework:
+    type: esp-idf
+    version: 5.5.5
+
+psram:
+  mode: octal
+  speed: 80MHz
+  ignore_not_found: false
+
+ethernet:
+  type: W5500
+  spi_id: cc1101_spi
+  cs_pin: GPIO14
+  interrupt_pin: GPIO10
+  reset_pin: GPIO9
+  clock_speed: 10MHz
+
+network:
+  enable_ipv6: true
+  min_ipv6_addr_count: 0
+
+logger:
+  level: INFO
+  hardware_uart: USB_SERIAL_JTAG
+  baud_rate: 0
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+  reboot_timeout: 0s
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+external_components:
+  - source:
+      type: local
+      path: ../low-power/components
+    components: [low_power_otbr, low_power_ethernet, zigbee_tcp]
+  - source:
+      type: local
+      path: components
+    components: [wk2132_uart]
+
+low_power_ethernet:
+
+low_power_otbr:
+  id: thread_border_router
+  server_component_path: ../low-power/generated/esp_ot_br_server
+  tx_pin: GPIO43
+  rx_pin: GPIO44
+  reset_pin: GPIO47
+  boot_pin: GPIO48
+  rest_port: 8081
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 320ms
+    window: 30ms
+    active: true
+bluetooth_proxy:
+  active: true
+  connection_slots: 3
+
+uart:
+  - id: radar_uart
+    tx_pin: GPIO8
+    rx_pin: GPIO38
+    baud_rate: 256000
+    rx_buffer_size: 1024
+
+ld2450:
+  id: radar
+  uart_id: radar_uart
+
+i2c:
+  id: expansion_bus
+  sda: GPIO1
+  scl: GPIO2
+  frequency: 400kHz
+
+spi:
+  id: cc1101_spi
+  interface: spi2
+  clk_pin: GPIO13
+  mosi_pin: GPIO11
+  miso_pin: GPIO12
+
+packages:
+  rf: !include ../packages/rf-airbridge.yaml
+  environment: !include ../packages/bme680.yaml
+  radar: !include ../packages/ld2450.yaml
+  health: !include health.yaml
+
+# Factory DFR0627 module at 3.3 V, IA1=1 and IA0=1. UART1 only.
+wk2132_uart:
+  id: uart_zwave
+  i2c_id: expansion_bus
+  address: 0x70
+
+zwave_proxy:
+  id: zwave_radio
+  uart_id: uart_zwave
+
+# Ember EZSP/ASH four-wire 115200 8N1. MG24 owns Zigbee; S3 transports bytes.
+zigbee_tcp:
+  tx_pin: GPIO17
+  rx_pin: GPIO18
+  rts_pin: GPIO7
+  cts_pin: GPIO21
+  port: 6638

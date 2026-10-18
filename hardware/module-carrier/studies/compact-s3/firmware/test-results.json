@@ -1,0 +1,62 @@
+{
+  "tests_passed": 14,
+  "hardware_tested": false,
+  "checks": [
+    {
+      "test": "accept actual generated Nano profile and SDK",
+      "passed": true
+    },
+    {
+      "test": "wrong H2 UART pins",
+      "passed": true
+    },
+    {
+      "test": "wrong shared SPI parent",
+      "passed": true
+    },
+    {
+      "test": "runtime CC reset",
+      "passed": true
+    },
+    {
+      "test": "runtime CC reconfigure",
+      "passed": true
+    },
+    {
+      "test": "startup priority override",
+      "passed": true
+    },
+    {
+      "test": "unexpected second native UART",
+      "passed": true
+    },
+    {
+      "test": "loss of RF TX open drain",
+      "passed": true
+    },
+    {
+      "test": "loss of IPv6 forwarding",
+      "passed": true
+    },
+    {
+      "test": "wrong PSRAM bus mode",
+      "passed": true
+    },
+    {
+      "test": "OTA image fits both partitions",
+      "passed": true
+    },
+    {
+      "test": "OTA image exceeds slot",
+      "passed": true
+    },
+    {
+      "test": "second OTA slot missing",
+      "passed": true
+    },
+    {
+      "test": "partition exceeds installed flash",
+      "passed": true
+    }
+  ]
+}

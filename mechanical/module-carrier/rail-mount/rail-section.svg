@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1020" viewBox="0 0 1320 1020" role="img" aria-label="Split edge support: fit is measured, never zero-clearance.">
+<style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:28px;font-weight:bold}.sub{font-size:17px;fill:#b5c9d9}.label{font-size:16px}.small{font-size:13px}.strong{font-weight:bold}.green{fill:#91e1bb}.warn{fill:#f6c765}</style>
+<rect width="1320" height="1020" fill="#0e1b29"/>
+<text x="36" y="46" class="title">Split edge support: fit is measured, never zero-clearance.</text>
+<text x="36" y="80" class="sub">Illustrative left-edge section. Dimensions shown are trial settings; the actual PCB thickness is unknown.</text>
+<rect x="208" y="595" width="227.5" height="168" fill="#216b65" stroke="#b3d6dd" stroke-width="1.5"/>
+<rect x="208" y="525" width="168" height="70" fill="#216b65" stroke="#b3d6dd" stroke-width="1.5"/>
+<rect x="208" y="287" width="227.5" height="168" fill="#326489" stroke="#b3d6dd" stroke-width="1.5"/>
+<rect x="208" y="455" width="168" height="70" fill="#326489" stroke="#b3d6dd" stroke-width="1.5"/>
+<rect x="390" y="483" width="224" height="112" fill="#d8b55b" stroke="#b3d6dd" stroke-width="1.5"/>
+<text x="370" y="165" class="label" text-anchor="middle">Second case half: removable retaining lip</text>
+<text x="420" y="815" class="label" text-anchor="middle">First case half: support ledge</text>
+<text x="645" y="520" class="label strong" text-anchor="start">PCB</text>
+<path d="M676 455.0V595m-7 0h14M669 455.0h14" stroke="#91e1bb" fill="none"/>
+<text x="697" y="525" class="label green" text-anchor="start">h = 2 mm</text>
+<text x="810" y="184" class="label strong" text-anchor="start">Local interface only</text>
+<text x="810" y="226" class="sub" text-anchor="start">Illustrated nominal PCB: 1.6 mm.</text>
+<text x="810" y="258" class="sub" text-anchor="start">Illustrated slot: 2 mm, not a selected fit.</text>
+<text x="810" y="290" class="sub" text-anchor="start">Nominal free height: 0.40 mm total.</text>
+<text x="810" y="342" class="sub" text-anchor="start">Nominal lip here: 0.65 mm; max 0.85.</text>
+<text x="810" y="374" class="sub" text-anchor="start">Side clearance trial: 0.2 mm per edge.</text>
+<text x="810" y="406" class="sub" text-anchor="start">Reserve XY motion; do not assume H3 locates it.</text>
+<text x="810" y="458" class="sub" text-anchor="start">1.6 mm ±10% gives 1.44…1.76 mm.</text>
+<text x="810" y="490" class="sub" text-anchor="start">At 1.76 mm, trial 1.8 / 2.0 / 2.2 slots</text>
+<text x="810" y="522" class="sub" text-anchor="start">leave only 0.04 / 0.24 / 0.44 mm total.</text>
+<text x="810" y="574" class="sub" text-anchor="start">Printer error, finish and warpage consume this.</text>
+<text x="810" y="606" class="sub" text-anchor="start">Measure a coupon with the actual board edge.</text>
+<text x="810" y="638" class="sub" text-anchor="start">No material or fit has been qualified.</text>
+<text x="36" y="881" class="label warn" text-anchor="start">Front and rear component cavities: UNKNOWN. Model each from measured tallest features and connector / cable envelopes.</text>
+<text x="36" y="920" class="sub" text-anchor="start">The 2.4 mm lip / wall and 0.2 mm side-clearance values are editable examples, not strength or tolerance guarantees.</text>
+<text x="36" y="959" class="sub" text-anchor="start">Case attachment bosses, lid depth and the H3 support stack are deliberately not invented in this section.</text>
+</svg>

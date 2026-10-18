@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-10-18T03:49:44.878060+00:00",
+  "tool": "CUA in-app browser",
+  "viewport_width": 319,
+  "page_scroll_width": 319,
+  "diagram_loaded": true,
+  "entrypoint": {
+    "path": "../compact-s3/index.html",
+    "sha256": "826622277bd2fa351e1f01662b084d860e9ffa88194143a70cc968c282e5c36d",
+    "link_clicked": true
+  },
+  "source_sha256": {
+    "index.html": "7d33a839304de8b7ddb93d0d08a02f031d713898c6176f9f3819bbba8091eda2",
+    "comparison.svg": "b66d4cb0a5ad975e1d51ef663741ff56ef4248cf17d3060721bb11fc309d8105",
+    "decision.json": "5a3697db03382afe6a4dcf4ca5130c600ee1f71dc259745be6642a1adb5a76f0",
+    "hardware-review.md": "12edef9784163c924f5d3118451a721a30115667881a27c92013e969f907142c",
+    "firmware-review.md": "92dc6798d1597714d3c988bbd98c9d6d120fe3e9813632bbd4fcb8fbcb66beb5",
+    "compatibility-review.md": "671bd64a6ba8d8e98f19cc56b15417d297a07589774e8234e1f227f03b6fe3d2"
+  },
+  "screenshots": {
+    "comparison-preview.png": "1a77ad9506413232afb20b70ae726045803f1a84e233fb04e72e8586c42116c4"
+  },
+  "local_links": {
+    "checked": 23,
+    "missing": []
+  },
+  "scope": "Documentation and source review; no new runtime test or hardware measurements."
+}

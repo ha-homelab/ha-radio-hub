@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="920" viewBox="0 0 1320 920" role="img" aria-label="Mounting successor: four point supports → edge support plus one retainer.">
+<style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:28px;font-weight:bold}.sub{font-size:17px;fill:#b5c9d9}.label{font-size:16px}.small{font-size:13px}.strong{font-weight:bold}.green{fill:#91e1bb}.warn{fill:#f6c765}</style>
+<rect width="1320" height="920" fill="#0e1b29"/>
+<text x="36" y="46" class="title">Mounting successor: four point supports → edge support plus one retainer.</text>
+<text x="36" y="80" class="sub">Equal-scale native plan outlines. The mechanical load path changes; reduced PCB area is not a strength test.</text>
+<text x="60" y="136" class="label strong" text-anchor="start">Historical: 51 × 75 mm</text>
+<polygon points="110.000,180.000 416.000,180.000 416.000,630.000 110.000,630.000" fill="#193e3b" stroke="#80d3be" stroke-width="2"/>
+<polygon points="304.940,439.860 304.940,174.780 417.620,174.780 417.620,439.860" fill="#355260" fill-opacity="0.55" stroke="#91abbc" stroke-dasharray="4 4"/>
+<polygon points="111.380,144.150 269.780,144.150 269.780,472.110 111.380,472.110" fill="#355260" fill-opacity="0.55" stroke="#91abbc" stroke-dasharray="4 4"/>
+<polygon points="108.380,509.274 221.060,509.274 221.060,641.004 108.380,641.004" fill="#355260" fill-opacity="0.55" stroke="#91abbc" stroke-dasharray="4 4"/>
+<polygon points="239.000,475.800 377.000,475.800 377.000,625.800 239.000,625.800" fill="#1b4774" fill-opacity="0.65" stroke="#73b5ff" stroke-dasharray="6 3"/>
+<circle cx="218.0" cy="492.18" r="15" fill="#0e1b29" stroke="#91e1bb" stroke-width="2"/>
+<text x="218" y="469.18" class="small" text-anchor="middle">H3</text>
+<circle cx="287.0" cy="228.0" r="15" fill="#0e1b29" stroke="#91e1bb" stroke-width="2"/>
+<text x="287" y="205" class="small" text-anchor="middle">H1</text>
+<circle cx="398.0" cy="612.0" r="15" fill="#0e1b29" stroke="#91e1bb" stroke-width="2"/>
+<text x="398" y="589" class="small" text-anchor="middle">H4</text>
+<circle cx="287.0" cy="444.0" r="15" fill="#0e1b29" stroke="#91e1bb" stroke-width="2"/>
+<text x="287" y="421" class="small" text-anchor="middle">H2</text>
+<text x="60" y="692" class="sub" text-anchor="start">4 PCB mounting points; no edge support</text>
+<text x="715" y="136" class="label strong" text-anchor="start">Current: 47.5 × 75 mm</text>
+<polygon points="765.000,180.000 1050.000,180.000 1050.000,630.000 765.000,630.000" fill="#193e3b" stroke="#80d3be" stroke-width="2"/>
+<polygon points="930.360,439.860 930.360,174.780 1043.040,174.780 1043.040,439.860" fill="#355260" fill-opacity="0.55" stroke="#91abbc" stroke-dasharray="4 4"/>
+<polygon points="769.800,144.150 928.200,144.150 928.200,472.110 769.800,472.110" fill="#355260" fill-opacity="0.55" stroke="#91abbc" stroke-dasharray="4 4"/>
+<polygon points="763.380,509.274 876.060,509.274 876.060,641.004 763.380,641.004" fill="#355260" fill-opacity="0.55" stroke="#91abbc" stroke-dasharray="4 4"/>
+<polygon points="894.000,475.800 1032.000,475.800 1032.000,625.800 894.000,625.800" fill="#1b4774" fill-opacity="0.65" stroke="#73b5ff" stroke-dasharray="6 3"/>
+<circle cx="873.0" cy="492.18" r="15" fill="#0e1b29" stroke="#91e1bb" stroke-width="2"/>
+<text x="873" y="469.18" class="small" text-anchor="middle">H3</text>
+<rect x="765" y="270" width="5.1" height="237" fill="#f6c765" stroke="#fff0ba"/>
+<rect x="1042.8" y="228" width="7.2" height="396" fill="#f6c765" stroke="#fff0ba"/>
+<text x="715" y="692" class="sub" text-anchor="start">H3 retention; two discontinuous edge lands</text>
+<text x="36" y="755" class="label green" text-anchor="start">PCB area 3825 → 3562.5 mm² (-6.86%); still two copper layers.</text>
+<text x="36" y="804" class="label warn" text-anchor="start">Printed rails replace three PCB supports; they do not remove the need to fasten the enclosure itself.</text>
+<text x="36" y="848" class="sub" text-anchor="start">An independent jack stop / cradle and cable strain relief are still required to protect WIZ solder joints.</text>
+</svg>

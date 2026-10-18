@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-17",
+  "tool": "CUA in-app browser",
+  "index_sha256": "350ec5efe5b72220ff075f5e8b5385e55d6710adba3a25c72d394e9dd0a50c77",
+  "viewport_width": 319,
+  "page_scroll_width": 319,
+  "all_seven_images_loaded": true,
+  "wiring_test": {
+    "query": "ZB_CTS",
+    "visible_count": 1,
+    "total_nets": 33,
+    "endpoints": [
+      "U1.J1.9",
+      "U3.5"
+    ],
+    "restored_empty_query": true
+  },
+  "screenshots": {
+    "ui-assembly.jpg": "20f4488e27e5d13d2e65d753e6ee1fbc1cd67900228e2196683f222fc6862515",
+    "ui-pcb.jpg": "8a6060c492afde0f21d3f868cb45c677b2c97f81db2239251aa469a3771f6b7f",
+    "ui-wiring.jpg": "3de7d4c7b79cc9f595949dd74800668d5e776ddd3dfe04c33b99b6bfe0562e96"
+  },
+  "layout_revision": "compact-100x90-right-edge",
+  "capture_notes": {
+    "ui-pcb.jpg": "Native 319 px viewport, current guide at #pcb",
+    "ui-assembly.jpg": "Full-page screenshot of the current CAD assembly SVG, captured without resizing viewport",
+    "ui-wiring.jpg": "Native 319 px viewport, ZB_CTS search result"
+  }
+}

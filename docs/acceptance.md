@@ -1,5 +1,10 @@
 # Prototype acceptance record
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
+For an MC1 build, use the [current assembly acceptance sequence](module-carrier.md#assembly-acceptance), [firmware qualification gates](../firmware/module-carrier/README.md#qualification-gates) and [enclosure prototype instructions](../mechanical/module-carrier/enclosure-prototype/README.md). The Pi/S3-ETH checks below remain a historical worksheet.
+
 Record actual values, part revisions and firmware commits in a **private** copy.
 Every item below starts **not physically tested**. Do not publish network datasets,
 keys, installation QR codes, RF captures, home maps or device identities.

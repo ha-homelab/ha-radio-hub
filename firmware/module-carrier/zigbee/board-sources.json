@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-17",
+  "arduino_commit": "868660a857077dbdf757c7e9ded96e20fa84e50c",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/SiliconLabsSoftware/arduino/868660a857077dbdf757c7e9ded96e20fa84e50c/variants/xiao_mg24/zigbee/config/sl_clock_manager_oscillator_config.h",
+      "sha256": "bf535afdf0a6b3a83d1d67fa3797e999e28d0133950f9433af0ad7a3ee2039b7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SiliconLabsSoftware/arduino/868660a857077dbdf757c7e9ded96e20fa84e50c/variants/xiao_mg24/zigbee/config/sl_device_init_dcdc_config.h",
+      "sha256": "2756e1ad6562c323718cbb084c8d7f259843bb3a6d50fa4b326411b1be87d286"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SiliconLabsSoftware/arduino/868660a857077dbdf757c7e9ded96e20fa84e50c/variants/xiao_mg24/pins_arduino.h",
+      "sha256": "042f71bc3af77f7a7463eec57506219f6d65ef8d84df0d5112463b9d99523e3c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SiliconLabsSoftware/arduino/868660a857077dbdf757c7e9ded96e20fa84e50c/platform.txt",
+      "sha256": "e7b23deed8331992258b10f959a3993bb12da544da276317884cf1b3803e983b"
+    },
+    {
+      "url": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MGM240S_KICAD_Prj.pdf",
+      "sha256": "9061b13e67add7d567629a264517d04af2dfa71df156d3e27b188f21becc088f",
+      "pages": "4 power, 5 CMSIS-DAP, 6 MCU/RF, 7 headers (one-based PDF pages)"
+    }
+  ],
+  "notes": [
+    "HFXO CTUNE 95 and LFXO CTUNE 44 use official board configuration, not generic module defaults.",
+    "Antenna RF1 = onboard ceramic: PB04 low, PB05 high.",
+    "This provenance records consulted sources, not a hardware measurement."
+  ]
+}

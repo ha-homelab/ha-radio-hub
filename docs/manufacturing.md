@@ -1,5 +1,10 @@
 # Manufacturing and selling small batches
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
+For the active board, use the [MC1 cost review](../hardware/module-carrier/cost-review/README.md) and [MC1 BOM](../hardware/module-carrier/cad/BOM.csv). MC1 is one 47.5 × 75 mm, two-layer carrier with manual assembly. The historical C0/M0 and I0 totals below do not apply to it.
+
 Reviewed **2026-10-17**. This is a sourcing and pilot plan, not a quotation, sales
 forecast or authorization to place an order. Both PCB architectures and all
 three delivery formats are in scope. No manufacturer has quoted production

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="430" viewBox="0 0 1100 430" role="img" aria-labelledby="title desc">
+<title id="title">Preserved MC1 architecture with a compact S3</title><desc id="desc">Ethernet connects directly to S3 over SPI. Separate Thread and Zigbee radios retain their host protocols. Peripheral connections remain on S3.</desc>
+<rect width="1100" height="430" fill="#0c1828"/><g font-family="Arial,sans-serif" fill="#e4edf5">
+<text x="35" y="40" font-size="25">Keep Ethernet on the host</text><text x="35" y="68" fill="#adc4d5" font-size="15">Preferred topology: no additional microcontroller, no new inter-processor network protocol</text>
+<g stroke="#8eb5c2" stroke-width="2" fill="none"><path d="M260 201H420M690 173H820M690 229H820M520 253V324H530M460 253V367H600M350 201V329H320"/></g>
+<g fill="#26394b" stroke="#8eb5c2"><rect x="40" y="159" width="220" height="84" rx="5"/><rect x="820" y="130" width="240" height="84" rx="5"/><rect x="820" y="226" width="240" height="84" rx="5"/><rect x="40" y="295" width="280" height="92" rx="5"/></g>
+<rect x="420" y="135" width="270" height="118" rx="5" fill="#1b555b" stroke="#8bd6c7"/>
+<text x="70" y="192" font-size="20">WIZ850io / W5500</text><text x="70" y="218" font-size="15">RJ45 at carrier edge</text>
+<text x="448" y="172" font-size="22">Compact ESP32-S3</text><text x="448" y="199" font-size="15">Ethernet · local Thread BR</text><text x="448" y="225" font-size="15">BLE proxy · application services</text>
+<text x="843" y="164" font-size="20">Existing H2</text><text x="843" y="191" font-size="15">Thread RCP · Spinel UART</text>
+<text x="843" y="260" font-size="20">Existing XIAO MG24</text><text x="843" y="287" font-size="15">Zigbee NCP · Ember UART</text>
+<text x="62" y="329" font-size="20">CC1101</text><text x="62" y="356" font-size="15">Shared SPI, separate CS + GDO</text>
+<text x="543" y="329" font-size="17">LD2450 · dedicated UART</text><text x="613" y="373" font-size="17">BME680 + WK2132 / Z-Wave · I²C</text>
+<text x="284" y="190" font-size="14" fill="#adc4d5">Shared SPI</text><text x="709" y="161" font-size="14" fill="#adc4d5">UART</text><text x="709" y="250" font-size="14" fill="#adc4d5">UART</text>
+<text x="35" y="413" fill="#adc4d5" font-size="14">Logical connections only. RF, power, service clearance and PCB routing require a separate physical review.</text></g></svg>

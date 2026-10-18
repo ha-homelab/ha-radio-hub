@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-10-18T03:00:33.278869+00:00",
+  "result": "pass",
+  "method": "Clean temporary copy; generator + committed SES + manual route; native DRC/parity/ERC and geometry/electrical tests",
+  "checks": {
+    "drc_violations": 0,
+    "unconnected_items": 0,
+    "schematic_parity_issues": 0,
+    "erc_violations": 0
+  },
+  "source_sha256": {
+    "mc1.kicad_pcb": "13231210a06514157f1b79a213726bd7527dd9c4148dc4b06b5e97061856a305",
+    "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
+    "project_rules.py": "088d9987469cee8a32241284b097551942e20072ae7ec249f9f29fc967c17720",
+    "generate.py": "cb07c6b480ae96ed4daba1a140ec05cdf9bbba3523bb5b56adf1144e18245f95",
+    "finalize.py": "69e7586efd36565f6a44cfbc3dabf5c47db918545834ac9c125a4f2ac0cbc274",
+    "apply_manual_route.py": "a5bb226a10fcad91b73bd4ed692b7fd436f85b6ea0f098a816713bd19e4b2feb",
+    "routing/mc1.ses": "ebaf10853594575fa30afebf9eac5f564272c3692cd91fe90bd961f1aac16245",
+    "manual-route.json": "c1cfe89831dcf5bfc0b427ec5c2b4017237ccf47a09e8691c9e1807b25822188"
+  }
+}

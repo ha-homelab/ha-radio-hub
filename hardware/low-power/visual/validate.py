@@ -22,10 +22,23 @@ def block(text, name):
     return re.split(r"(?m)^[a-zA-Z][a-zA-Z0-9_]*:", tail, maxsplit=1)[0]
 
 
-def gpio(text, key):
+def gpio(text, key, substitutions=None):
+    if substitutions is not None:
+        text = re.sub(r"\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}",
+                      lambda m: substitutions.get(m.group(1), m.group(0)), text)
     match = re.search(rf"(?m)^\s+{re.escape(key)}:\s*GPIO(\d+)\s*$", text)
     require(match is not None, f"Missing firmware GPIO field {key}")
     return int(match.group(1))
+
+
+def pin_substitutions(*sources):
+    """Resolve literal pin defaults, then the target's overrides; not arbitrary YAML."""
+    result = {}
+    for source in sources:
+        if re.search(r"(?m)^substitutions:\s*$", source):
+            for name, value in re.findall(r"(?m)^\s+(\w+):\s*(GPIO\d+)\s*$", block(source, 'substitutions')):
+                result[name] = value
+    return result
 
 
 def validate(data, root=ROOT):
@@ -134,7 +147,7 @@ def validate(data, root=ROOT):
         for field,role in keys.items():require(gpio(block(hub,section),field)==roles[role],f'Firmware mismatch {section}.{field}')
     require('crystal_frequency: 3686400' in block(hub,'sc16is752_uart'), 'SC16 firmware crystal mismatch')
     rf = (root/'firmware/packages/rf-airbridge.yaml').read_text()
-    require(gpio(block(rf,'cc1101'),'cs_pin') == roles['cc1101_cs'], 'RF CS mismatch')
+    require(gpio(block(rf,'cc1101'),'cs_pin', pin_substitutions(rf, proof, hub)) == roles['cc1101_cs'], 'RF CS mismatch')
     require(gpio(block(rf,'remote_receiver'),'pin') == roles['cc1101_gdo2_rx'], 'RF RX mismatch')
     tx=block(rf,'remote_transmitter')
     require(gpio(tx,'number') == roles['cc1101_gdo0_tx'] and 'open_drain: true' in tx and 'eot_level: false' in tx, 'RF transmitter drive contract changed')

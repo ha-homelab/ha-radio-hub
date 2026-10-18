@@ -1,0 +1,169 @@
+{
+  "title": "H2 Quartet: finished modules on a through-hole carrier",
+  "review_date": "2026-10-17",
+  "status": "historical experiment, not selected; MC1 is the current design; component compile only",
+  "priority": "Minimize builder-installed discrete parts; extra height and firmware work are acceptable.",
+  "mounting": {
+    "method": "Factory male pins soldered directly into plated carrier holes",
+    "female_socket_quantity": 0,
+    "castellated_side_soldering": false
+  },
+  "h2_board": {
+    "model": "Waveshare ESP32-H2-Zero-M",
+    "sku": "32260",
+    "flash_mb": 4,
+    "headers": "factory soldered",
+    "usb": "native; no USB-UART bridge",
+    "quantity": 4,
+    "unit_usd_assumption": 5,
+    "subtotal_usd_assumption": 20
+  },
+  "gateway_gpio": {
+    "spi_sclk": 4,
+    "spi_mosi": 5,
+    "spi_miso": 0,
+    "w5500_cs": 1,
+    "w5500_irq": 10,
+    "cc1101_cs": 13,
+    "cc1101_tx_gdo0": 2,
+    "cc1101_rx_gdo2": 3,
+    "peripheral_cs": 14,
+    "peripheral_ready": 11,
+    "radio_b_tx": 24,
+    "radio_b_rx": 23,
+    "zigbee_tx": 12,
+    "zigbee_rx": 22
+  },
+  "peripheral_gpio": {
+    "spi_sclk": 4,
+    "spi_mosi": 5,
+    "spi_miso": 0,
+    "spi_cs": 1,
+    "ready": 10,
+    "radar_tx": 24,
+    "radar_rx": 23,
+    "zwave_tx": 12,
+    "zwave_rx": 22,
+    "bme_sda": 2,
+    "bme_scl": 3
+  },
+  "reserved_gpio": [
+    8,
+    9,
+    25,
+    26,
+    27
+  ],
+  "uart": {
+    "thread_baud": 460800,
+    "zigbee_baud": 115200,
+    "radar_baud": 256000,
+    "zwave_baud": 115200,
+    "zigbee_flow_control": "none; two-wire candidate"
+  },
+  "roles": [
+    [
+      "A",
+      "Gateway",
+      "Ethernet, BLE, CC1101; Thread host/BR requires a port"
+    ],
+    [
+      "B",
+      "Thread",
+      "Dedicated Thread RCP; UART to A"
+    ],
+    [
+      "C",
+      "Zigbee",
+      "ZBOSS NCP; UART to A; experimental host integration"
+    ],
+    [
+      "D",
+      "Peripherals",
+      "SPI slave; LD2450 + ZAC93 UARTs; BME680 I2C; radio off"
+    ]
+  ],
+  "assembly_counts_from_existing_boms": {
+    "carrier": {
+      "J": 10,
+      "F": 1,
+      "U": 2,
+      "Y": 1,
+      "R": 17,
+      "C": 17
+    },
+    "carrier/mg24-adapter": {
+      "U": 1,
+      "J": 2,
+      "R": 1,
+      "C": 3
+    },
+    "integrated": {
+      "U": 9,
+      "J": 8,
+      "Y": 2,
+      "C": 44,
+      "R": 35,
+      "F": 2,
+      "D": 2,
+      "S": 4
+    }
+  },
+  "sizing_not_measurements": {
+    "uart_combined_bytes_per_second_one_direction": 37120,
+    "proposed_spi_hz": 4000000,
+    "spi_raw_bytes_per_second_per_direction": 500000
+  },
+  "not_in_h2_subtotal": [
+    "W5500 module",
+    "PoE splitter",
+    "power converter",
+    "peripheral modules",
+    "carrier and off-board connectors",
+    "shipping and taxes"
+  ],
+  "open_gates": [
+    "H2 local Thread BR build and platform port",
+    "full runtime memory",
+    "Zigbee backup and host compatibility",
+    "SPI transport implementation and arbitration",
+    "physical footprints, power transients, radio coexistence"
+  ],
+  "sources": [
+    [
+      "H2-Zero-M manufacturer documentation",
+      "https://docs.waveshare.com/ESP32-H2-Zero"
+    ],
+    [
+      "H2-Zero schematic",
+      "https://files.waveshare.com/wiki/ESP32-H2-Zero/ESP32-H2-Zero-Schematic.pdf"
+    ],
+    [
+      "ESP-IDF 5.5.5 OpenThread link rules",
+      "https://github.com/espressif/esp-idf/blob/v5.5.5/components/openthread/CMakeLists.txt"
+    ],
+    [
+      "Published Thread libraries",
+      "https://github.com/espressif/esp-thread-lib/tree/33209823e559560f54dcd41cbf3dbdd27f46d569"
+    ],
+    [
+      "ZBOSS support in Zigbee2MQTT",
+      "https://www.zigbee2mqtt.io/guide/adapters/zboss.html"
+    ],
+    [
+      "H2 coordinator firmware",
+      "https://github.com/tostmann/esp-coordinator"
+    ],
+    [
+      "Zephyr OpenThread BR sample",
+      "https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/net/openthread/border_router"
+    ]
+  ],
+  "compile_probe": {
+    "status": "compile_success",
+    "scope": "ESP32-H2 + W5500 + ESPHome active BLE proxy, 3 connections; placeholder GPIOs; no Thread, Zigbee, RF, sensors, API encryption or OTA service; no hardware exercised",
+    "static_ram_used": 106302,
+    "static_ram_report_capacity": 258000,
+    "application_binary_bytes": 1061120
+  }
+}

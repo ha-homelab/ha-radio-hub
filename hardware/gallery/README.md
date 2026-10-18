@@ -1,5 +1,8 @@
 # Native PCB gallery
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 These PNGs are ray-traced by **KiCad from the committed PCB files**. They show
 unpopulated boards: module bodies, connectors, cables and other fitted parts are
 not modelled. The displayed soldermask and finish are renderer defaults, not an

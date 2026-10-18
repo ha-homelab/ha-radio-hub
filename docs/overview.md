@@ -1,8 +1,13 @@
 # Home Assistant radio hub with a single PoE input
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 This page introduces the original modular Pi-based reference. For the current
-minimum-energy development and its custom PCBs, start with the
-[single-S3 design](low-power.md) and [visual wiring atlas](../hardware/low-power/visual/README.md).
+MC1 implementation, start with the [documentation index](README.md) and
+[assembly guide](module-carrier.md). The [single-S3 study](low-power.md) and
+[earlier wiring atlas](../hardware/low-power/visual/README.md) are intermediate
+historical work, not MC1 build instructions.
 
 This project provides a prototype build: software and models are checked separately
 from physical acceptance tests. The complete electronics have not been assembled

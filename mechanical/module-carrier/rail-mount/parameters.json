@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "fit_study_not_complete_enclosure",
+  "units": "mm",
+  "pcb_nominal_thickness_mm": 1.6,
+  "pcb_actual_thickness_mm": null,
+  "pcb_actual_width_mm": null,
+  "pcb_fabrication_thickness_tolerance_fraction": 0.1,
+  "trial_slot_heights_mm": [
+    1.8,
+    2.0,
+    2.2
+  ],
+  "selected_slot_height_mm": null,
+  "front_component_projection_measured_mm": null,
+  "rear_component_projection_measured_mm": null,
+  "case_internal_height_mm": null,
+  "case_attachment_coordinates_mm": null,
+  "interface": {
+    "preview_slot_height_mm": 2.0,
+    "trial_side_clearance_per_edge_mm": 0.2,
+    "wall_mm": 2.4,
+    "lip_thickness_mm": 2.4,
+    "exploded_lid_lift_mm": 8.0,
+    "trial_edge_displacement_budget_mm": {
+      "x": 0.2,
+      "y": 0.2
+    },
+    "displacement_budget_basis": "Illustrative bound at every contact point, including translation, rotation and manufacturing error; actual locating features and measurements must establish it."
+  },
+  "coupon": {
+    "length_mm": 18.0,
+    "handling_base_width_mm": 8.0,
+    "wall_mm": 3.0,
+    "base_mm": 2.0,
+    "upper_lip_mm": 2.0,
+    "engagement_mm": 1.2
+  },
+  "sources": {
+    "pcb_thickness": "https://jlcpcb.com/capabilities/pcb-capabilities/",
+    "fdm_fit": "https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135",
+    "h2_housing": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32h2/pcb-layout-design.html"
+  },
+  "actual_side_clearance_per_edge_mm": null,
+  "actual_max_edge_excursion_mm": null
+}

@@ -1,0 +1,126 @@
+{
+  "status": "fit_coupons_only_not_full_enclosure",
+  "units": "mm",
+  "native_source": {
+    "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+    "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
+  },
+  "parameters": {
+    "schema_version": 1,
+    "status": "fit_study_not_complete_enclosure",
+    "units": "mm",
+    "pcb_nominal_thickness_mm": 1.6,
+    "pcb_actual_thickness_mm": null,
+    "pcb_actual_width_mm": null,
+    "pcb_fabrication_thickness_tolerance_fraction": 0.1,
+    "trial_slot_heights_mm": [
+      1.8,
+      2.0,
+      2.2
+    ],
+    "selected_slot_height_mm": null,
+    "front_component_projection_measured_mm": null,
+    "rear_component_projection_measured_mm": null,
+    "case_internal_height_mm": null,
+    "case_attachment_coordinates_mm": null,
+    "interface": {
+      "preview_slot_height_mm": 2.0,
+      "trial_side_clearance_per_edge_mm": 0.2,
+      "wall_mm": 2.4,
+      "lip_thickness_mm": 2.4,
+      "exploded_lid_lift_mm": 8.0,
+      "trial_edge_displacement_budget_mm": {
+        "x": 0.2,
+        "y": 0.2
+      },
+      "displacement_budget_basis": "Illustrative bound at every contact point, including translation, rotation and manufacturing error; actual locating features and measurements must establish it."
+    },
+    "coupon": {
+      "length_mm": 18.0,
+      "handling_base_width_mm": 8.0,
+      "wall_mm": 3.0,
+      "base_mm": 2.0,
+      "upper_lip_mm": 2.0,
+      "engagement_mm": 1.2
+    },
+    "sources": {
+      "pcb_thickness": "https://jlcpcb.com/capabilities/pcb-capabilities/",
+      "fdm_fit": "https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135",
+      "h2_housing": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32h2/pcb-layout-design.html"
+    },
+    "actual_side_clearance_per_edge_mm": null,
+    "actual_max_edge_excursion_mm": null
+  },
+  "generator_sha256": "26a67a308fec5f14a5178804d960ae59daa9d1397374f40d576c8f48a41d481a",
+  "csg_helper_sha256": "b76e5b11da6b80a6dc48b12d20c854758338b5507b50163d0bc72d0d15b929f7",
+  "parts": {
+    "fit-gap-1p8": {
+      "nominal_slot_mm": 1.8,
+      "identification_notches": 1,
+      "watertight": true,
+      "connected_bodies": 1,
+      "volume_mm3": 534.000025,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          5.8,
+          18.0,
+          8.0
+        ]
+      ],
+      "sha256": "fd4e3cc0f39b31bbaefd8d50bc6c2fb2388a767e3189c2bff223230945d60697"
+    },
+    "fit-gap-2p0": {
+      "nominal_slot_mm": 2.0,
+      "identification_notches": 2,
+      "watertight": true,
+      "connected_bodies": 1,
+      "volume_mm3": 542.399993,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          18.0,
+          8.0
+        ]
+      ],
+      "sha256": "fa062287ea35e29ade03326400280246f11889f358dd61108b376de1e41fbcd8"
+    },
+    "fit-gap-2p2": {
+      "nominal_slot_mm": 2.2,
+      "identification_notches": 3,
+      "watertight": true,
+      "connected_bodies": 1,
+      "volume_mm3": 550.799984,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.2,
+          18.0,
+          8.0
+        ]
+      ],
+      "sha256": "911af4e7fc72985ea397a6287df95101241fa218e3868c2c0bf29151ae149b40"
+    }
+  },
+  "not_tested": [
+    "printed fit",
+    "board thickness and bow",
+    "module / cable heights",
+    "rail strength and creep",
+    "RF or thermal behavior",
+    "jack insertion load"
+  ]
+}

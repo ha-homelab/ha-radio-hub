@@ -1,0 +1,134 @@
+{
+  "status": "printable_engineering_prototype_not_fit_qualified",
+  "units": "mm",
+  "native_source_sha256": {
+    "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+    "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
+  },
+  "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
+  "generator_sha256": "94a3cf8f9af7ad79857fee07747a8c713d210348301d1c20c8f132124e2326dd",
+  "test_source_sha256": "a5c2100d5c56af3785764be6d514ed1f8dd1fd85759edbbe9c0e2af66feea2cb",
+  "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
+  "parameters_sha256": "51e32289168813f8fa6a73c0c8af7a1a1020445143e4137c0e8a8915b1dea9b5",
+  "outer_dimensions_mm": [
+    84.3,
+    121.8,
+    57.4
+  ],
+  "installed_height_including_frame_mm": 61.4,
+  "h2_antenna_to_top_end_wall_mm": 15.525,
+  "pcb_rear_surface_z_mm": 28.4,
+  "lid_inside_z_mm": 55.0,
+  "rail_bands_mm": [
+    [
+      0,
+      27.0,
+      0.6499999999999999,
+      54.3
+    ],
+    [
+      46.5,
+      27.0,
+      47.5,
+      73.8
+    ]
+  ],
+  "physical_tests_performed": false,
+  "parts": {
+    "base": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 86918.641,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          84.3,
+          121.8,
+          55.0
+        ]
+      ],
+      "sha256": "81dffde92753bf2b4236e40c41f156a51044fba340804e7224f9a62acf9ef1c5"
+    },
+    "cover": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 53720.759,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          84.3,
+          121.8,
+          27.0
+        ]
+      ],
+      "sha256": "92f6b40f2c057163a4a8f89b133167063bcac0a8315cc7c9f046acf993feeeab"
+    },
+    "jack-stop-trial": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 1169.28,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          22.0,
+          10.0,
+          16.0
+        ]
+      ],
+      "sha256": "240063b0b0577184410081164e4893d0414fbaf140427d4388be29af0761ce25"
+    },
+    "ceiling-spacing-frame": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 17360.305,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          84.3,
+          121.8,
+          4.0
+        ]
+      ],
+      "sha256": "f211931aa82f32ffb4bd63eef946cc2c8c02b2c78a06195737cc2ad5be3edf43"
+    }
+  },
+  "excluded_devices": "Carrier U1-U4 and its headers/passives only. PoE splitter, buck, DFR0627, radios and sensor modules remain external.",
+  "limitations": [
+    "No measured module or mated-cable Z envelopes",
+    "No tested rail fit, case closure or loading",
+    "Jack stop contact is a parameterized placeholder until cage is measured",
+    "No RF/thermal/material qualification",
+    "No claim that ventilation rate is sufficient",
+    "No complete-system housing: external modules remain external"
+  ],
+  "generated_sha256": {
+    "assembly.scad": "274027cce63e0c7c48d562daf3963469c94299d9a0bf9c458f57a0ba16dcfa96",
+    "base.scad": "da71d3e4f446d873993faac45d4b1478b7e216848e07425f571207e13bc85c6e",
+    "base.stl": "81dffde92753bf2b4236e40c41f156a51044fba340804e7224f9a62acf9ef1c5",
+    "ceiling-spacing-frame.scad": "887549458a70abcbb7d17a75b6bc51987c6106ba857982ff9d27a424f7ebacde",
+    "ceiling-spacing-frame.stl": "f211931aa82f32ffb4bd63eef946cc2c8c02b2c78a06195737cc2ad5be3edf43",
+    "cover.scad": "0c2d9b788aa618a265160367b408535caf706be8f968567411b02ea5119f4757",
+    "cover.stl": "92f6b40f2c057163a4a8f89b133167063bcac0a8315cc7c9f046acf993feeeab",
+    "enclosure.svg": "55d12942ad83b436f727944e21440bfcd9f17aa75847cbc7c89ed0445470f382",
+    "index.html": "44cf605ea61b10f9b4e13f48a19b9606982c70b84ec5d0606866f63cdaae9a8a",
+    "jack-stop-trial.scad": "34c95559b74d5d89c43e2c2bb0231dc4144904158ce8565230d98de3d676652e",
+    "jack-stop-trial.stl": "240063b0b0577184410081164e4893d0414fbaf140427d4388be29af0761ce25",
+    "print-parts.png": "58292585de69a19dd773140936ca9657a25834bfb41cb18f392a30c7c6585905"
+  }
+}

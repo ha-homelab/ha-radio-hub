@@ -1,0 +1,32 @@
+# Software compilation probe only. GPIOs are placeholders, not a wiring release.
+esphome:
+  name: h2-ble-ethernet-proof
+  compile_process_limit: 2
+esp32:
+  board: esp32-h2-devkitm-1
+  flash_size: 4MB
+  framework:
+    type: esp-idf
+    version: 5.5.5
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+  baud_rate: 0
+ethernet:
+  type: W5500
+  clk_pin: GPIO4
+  mosi_pin: GPIO5
+  miso_pin: GPIO2
+  cs_pin: GPIO1
+  interrupt_pin: GPIO3
+  reset_pin: GPIO10
+  clock_speed: 10MHz
+api:
+  reboot_timeout: 0s
+esp32_ble_tracker:
+  scan_parameters:
+    active: true
+    interval: 320ms
+    window: 30ms
+bluetooth_proxy:
+  active: true
+  connection_slots: 3

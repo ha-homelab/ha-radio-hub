@@ -1,5 +1,8 @@
 # LP-C0 low-voltage module carrier
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 **This is a routed, electrically connected prototype PCB, not a production release.** The native KiCad 10 project includes a schematic, a two-layer PCB, a machine-readable connector map, assembly data and prototype Gerbers. The board passes native ERC, DRC, the unconnected-item check and schematic parity. It has not been fabricated, populated, powered or RF-tested. No radio pairing, PoE interoperability, long-run reliability or 3 W AC energy target is established by these CAD checks.
 
 Open [carrier.kicad_pro](carrier.kicad_pro) in KiCad 10. The ready-to-review [schematic PDF](outputs/schematic.pdf), [assembly drawing](outputs/assembly-top.svg) and [top copper drawing](outputs/board-top.svg) are generated from the native files. The [validation summary](outputs/validation/summary.json) states the actual check results. [Prototype fabrication files](outputs/prototype-gerbers.zip) are for engineering review and a first article only.

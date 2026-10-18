@@ -1,5 +1,10 @@
 # HA Radio Hub enclosure — DRAFT V0
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
+The current [MC1 carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md) and [split-rail fit coupons](../mechanical/module-carrier/rail-mount/README.md) replace this Pi-era geometry. The new housing covers the carrier only; external power, bridge, radios and sensors need separate accommodation.
+
 The model is ready for a test print, but has **not yet been validated by assembling the actual parts**. The STL files are checked for watertight meshes, consistent face winding, and one connected body. These checks do not prove connector clearance, radio performance, cooling, or the accuracy of a particular printer.
 
 ![Exploded view generated from the actual STL files](../mechanical/generated/exploded-preview.png)

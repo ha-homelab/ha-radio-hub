@@ -1,0 +1,203 @@
+{
+  "status": "separate_geometry_study_not_active_design",
+  "board_mm": [
+    100,
+    100
+  ],
+  "copper_layers": 2,
+  "area_mm2": 10000,
+  "active_area_mm2": 9000,
+  "area_increase_percent": 11.11111111111111,
+  "modules": {
+    "U1": {
+      "anchor_mm": [
+        74,
+        3
+      ],
+      "rotation_deg": 0,
+      "pcb_body_bounds_mm": [
+        72.73,
+        1.6,
+        98.13,
+        64.34
+      ]
+    },
+    "U2": {
+      "anchor_mm": [
+        62,
+        52
+      ],
+      "rotation_deg": 180,
+      "pcb_body_bounds_mm": [
+        37.87,
+        5.315,
+        63.27,
+        53.575
+      ]
+    },
+    "U3": {
+      "anchor_mm": [
+        18,
+        59
+      ],
+      "rotation_deg": 270,
+      "pcb_body_bounds_mm": [
+        -0.034,
+        57.73,
+        20.921,
+        75.51
+      ]
+    },
+    "U4": {
+      "anchor_mm": [
+        60.7,
+        92.9
+      ],
+      "rotation_deg": 180,
+      "pcb_body_bounds_mm": [
+        39.04,
+        74.3,
+        62.04,
+        99.3
+      ]
+    }
+  },
+  "part_count": 17,
+  "pad_count": 145,
+  "connected_pad_count": 103,
+  "connector_removal_required": false,
+  "new_electronic_parts": 0,
+  "assembly_side": "all top",
+  "usb_service_envelopes_mm": {
+    "U1": [
+      70,
+      64.34,
+      99,
+      94.34
+    ],
+    "U2": [
+      36.8,
+      -24.685,
+      64.8,
+      5.315
+    ],
+    "U3": [
+      20.921,
+      59.62,
+      50.921,
+      73.62
+    ]
+  },
+  "header_housing_envelopes_mm": {
+    "J1": [
+      4.25,
+      34.25,
+      9.75,
+      40.29
+    ],
+    "J2": [
+      15.25,
+      41.25,
+      20.75,
+      52.37
+    ],
+    "J3": [
+      15.25,
+      11.25,
+      20.75,
+      27.45
+    ],
+    "J4": [
+      26.25,
+      11.25,
+      31.75,
+      24.91
+    ],
+    "J5": [
+      4.25,
+      11.25,
+      9.75,
+      32.53
+    ],
+    "J6": [
+      15.25,
+      29.25,
+      20.75,
+      40.37
+    ],
+    "J7": [
+      26.25,
+      25.75,
+      31.75,
+      36.87
+    ],
+    "J8": [
+      4.25,
+      42.25,
+      9.75,
+      48.29
+    ]
+  },
+  "antenna_bounds_mm": {
+    "H2": [
+      43.97,
+      53.575,
+      57.17,
+      58.975
+    ],
+    "XIAO_MG24": [
+      -0.0339,
+      67.6996,
+      1.9661,
+      72.8996
+    ]
+  },
+  "clearances_mm": {
+    "H2_antenna_to_WIZ_PCB": 15.325,
+    "H2_antenna_to_S3_PCB_lateral": 15.56,
+    "H2_antenna_to_XIAO_PCB_lateral": 23.049,
+    "XIAO_USB_envelope_to_H2_antenna": 0.645,
+    "XIAO_USB_envelope_to_WIZ_PCB": 0.68,
+    "XIAO_USB_envelope_to_WIZ_courtyard": 0.18
+  },
+  "rf_copper_keepouts_mm": [
+    [
+      0,
+      0,
+      100,
+      1.8
+    ],
+    [
+      77,
+      0,
+      94,
+      12
+    ],
+    [
+      28.9,
+      53.5,
+      72.3,
+      74.0
+    ],
+    [
+      0,
+      64,
+      5,
+      73.1
+    ]
+  ],
+  "limitations": [
+    "H2 antenna is internal; geometric spacing and copper keepout require RF bench confirmation",
+    "XIAO USB envelope is narrow; measure actual shell and vertical cable exit",
+    "Temporary XIAO USB cable enters H2 RF clearance; no permanent pigtail there",
+    "See service-review.md for corrected XIAO VIN/VBUS/SAMD11 programming power",
+    "Enclosure, nylon supports, insertion force, module pin fit and thermal operation untested"
+  ],
+  "rejected_placement": {
+    "XIAO_anchor_mm": [
+      18,
+      52
+    ],
+    "reason": "30x14mm USB envelope overlaps H2 PCB and antenna; lowering to y59 resolves the declared envelope collision"
+  }
+}

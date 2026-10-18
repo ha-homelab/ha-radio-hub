@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="760" viewBox="0 0 1320 760" role="img" aria-label="Assembly: complete the electronics, then load the open support frame.">
+<style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:28px;font-weight:bold}.sub{font-size:17px;fill:#b5c9d9}.label{font-size:16px}.small{font-size:13px}.strong{font-weight:bold}.green{fill:#91e1bb}.warn{fill:#f6c765}</style>
+<rect width="1320" height="760" fill="#0e1b29"/>
+<text x="36" y="46" class="title">Assembly: complete the electronics, then load the open support frame.</text>
+<text x="36" y="80" class="sub">All rear parts are soldered before the three front controllers. Enclosure closure never requires sliding the populated PCB.</text>
+<rect x="36" y="138" width="298" height="458" fill="#173246" stroke="#476678" rx="12"/>
+<circle cx="76" cy="184" r="23" fill="#216b65"/>
+<text x="76" y="191" class="label strong" text-anchor="middle">1</text>
+<text x="54" y="246" class="label strong" text-anchor="start">Assemble the carrier</text>
+<text x="54" y="295" class="small" text-anchor="start">Program loose modules; perform</text>
+<text x="54" y="318" class="small" text-anchor="start">H2 preparation.</text>
+<text x="54" y="360" class="small" text-anchor="start">Fit all 13 rear parts, including</text>
+<text x="54" y="383" class="small" text-anchor="start">WIZ.</text>
+<text x="54" y="425" class="small" text-anchor="start">Solder, trim and inspect from</text>
+<text x="54" y="448" class="small" text-anchor="start">the front.</text>
+<text x="54" y="490" class="small" text-anchor="start">Then fit and solder the 3 front</text>
+<text x="54" y="513" class="small" text-anchor="start">controllers.</text>
+<rect x="356" y="138" width="298" height="458" fill="#173246" stroke="#476678" rx="12"/>
+<circle cx="396" cy="184" r="23" fill="#216b65"/>
+<text x="396" y="191" class="label strong" text-anchor="middle">2</text>
+<text x="374" y="246" class="label strong" text-anchor="start">Measure and calibrate</text>
+<text x="374" y="295" class="small" text-anchor="start">Measure actual PCB edge</text>
+<text x="374" y="318" class="small" text-anchor="start">thickness and bow.</text>
+<text x="374" y="360" class="small" text-anchor="start">Print 1.8 / 2.0 / 2.2 mm gap</text>
+<text x="374" y="383" class="small" text-anchor="start">coupons.</text>
+<text x="374" y="425" class="small" text-anchor="start">Use the same material,</text>
+<text x="374" y="448" class="small" text-anchor="start">orientation and settings.</text>
+<text x="374" y="490" class="small" text-anchor="start">Confirm fit using bare offcut /</text>
+<text x="374" y="513" class="small" text-anchor="start">unobstructed edge.</text>
+<rect x="676" y="138" width="298" height="458" fill="#173246" stroke="#476678" rx="12"/>
+<circle cx="716" cy="184" r="23" fill="#216b65"/>
+<text x="716" y="191" class="label strong" text-anchor="middle">3</text>
+<text x="694" y="246" class="label strong" text-anchor="start">Lower into open ledges</text>
+<text x="694" y="295" class="small" text-anchor="start">Leave the second case half</text>
+<text x="694" y="318" class="small" text-anchor="start">completely removed.</text>
+<text x="694" y="360" class="small" text-anchor="start">Lower the populated PCB normal</text>
+<text x="694" y="383" class="small" text-anchor="start">to its plane.</text>
+<text x="694" y="425" class="small" text-anchor="start">Contact only the reviewed edge</text>
+<text x="694" y="448" class="small" text-anchor="start">bands.</text>
+<text x="694" y="490" class="small" text-anchor="start">Check solder tails, antennas and</text>
+<text x="694" y="513" class="small" text-anchor="start">cables.</text>
+<rect x="996" y="138" width="298" height="458" fill="#173246" stroke="#476678" rx="12"/>
+<circle cx="1036" cy="184" r="23" fill="#216b65"/>
+<text x="1036" y="191" class="label strong" text-anchor="middle">4</text>
+<text x="1014" y="246" class="label strong" text-anchor="start">Retain and close</text>
+<text x="1014" y="295" class="small" text-anchor="start">Retain H3 without bowing or</text>
+<text x="1014" y="318" class="small" text-anchor="start">crushing the PCB.</text>
+<text x="1014" y="360" class="small" text-anchor="start">Close upper lips against case</text>
+<text x="1014" y="383" class="small" text-anchor="start">hard stops.</text>
+<text x="1014" y="425" class="small" text-anchor="start">Secure case halves independently</text>
+<text x="1014" y="448" class="small" text-anchor="start">of the PCB.</text>
+<text x="1014" y="490" class="small" text-anchor="start">Fit the jack stop and strain</text>
+<text x="1014" y="513" class="small" text-anchor="start">relief; test loads.</text>
+<text x="36" y="645" class="label warn" text-anchor="start">No final shell or overall height is supplied: those require the actual front/rear module, connector and cable measurements.</text>
+<text x="36" y="694" class="sub" text-anchor="start">Fit coupons establish local clearance only. They do not establish rail stiffness, creep life, thermal performance or RF compatibility.</text>
+</svg>

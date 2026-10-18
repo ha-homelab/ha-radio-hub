@@ -1,0 +1,104 @@
+{
+  "revision": "MC1",
+  "decision_date": "2026-10-18",
+  "title": "One carrier. Finished modules. Familiar protocols.",
+  "status": "Engineering prototype; no physical assembly or RF/power qualification",
+  "choice": "Preserve functions and Home Assistant compatibility; identical H2 controllers are not required.",
+  "functions": [
+    {
+      "name": "Thread",
+      "implementation": "Local S3 border router + dedicated H2 RCP",
+      "retained": "IPv6, multicast, HA REST integration",
+      "test": "Commissioning, RCP failure/retry, persistent dataset and concurrent traffic"
+    },
+    {
+      "name": "Zigbee",
+      "implementation": "XIAO MG24, board-specific Ember NCP",
+      "retained": "Ember/EZSP family, RTS/CTS, normal ZHA / Zigbee2MQTT path",
+      "test": "Pairing, backup/restore, antenna switch and flow control"
+    },
+    {
+      "name": "Bluetooth",
+      "implementation": "S3 active ESPHome proxy",
+      "retained": "Advertisements and three active BLE connection slots",
+      "test": "Simultaneous connections with other radios"
+    },
+    {
+      "name": "Z-Wave",
+      "implementation": "Existing ZAC93 through WK2132 UART bridge",
+      "retained": "Regional radio and Z-Wave proxy interface",
+      "test": "Lossless byte forwarding, errors, resets and full-size frames"
+    },
+    {
+      "name": "433 MHz RF",
+      "implementation": "Existing CC1101, S3 hardware-timed I/O",
+      "retained": "RF Airbridge MQTT, native transmit and receive events",
+      "test": "Physical timing, reception and transmit regression"
+    },
+    {
+      "name": "Presence",
+      "implementation": "Existing LD2450 on native UART",
+      "retained": "Measurements, configuration and control",
+      "test": "Target tracking and all control actions"
+    },
+    {
+      "name": "Environment",
+      "implementation": "BME680 in external ventilated pod",
+      "retained": "Temperature, humidity, pressure, gas resistance",
+      "test": "I2C stability and thermal bias"
+    }
+  ],
+  "assembly_steps": [
+    "Identify the exact modules and male header geometry; pre-program and test every controller before soldering.",
+    "On H2 DevKitM-1 v1.3, remove R7 and verify USB-UART TX isolation. Retain the matching RX23/TX24 image.",
+    "Temporarily wire all functions and network updates. The two-sided relocation does not change the pin map or firmware.",
+    "Dry-fit both faces and measure factory spacer gaps, underside parts, opposing tail heights and ceiling-facing plug clearance.",
+    "Complete the entire ceiling-facing back first: WIZ850io, J1\u2013J7, D1\u2013D3 and R1\u2013R2. Solder from the front, then trim, inspect and electrically check all joints while visible. Leave J8/J9 unpopulated.",
+    "Only then fit front U1\u2013U3 and solder their pins from the rear. Every front-module solder land must remain accessible with the rear already populated. Deep opposite-side overlap is permitted after the access and measured-clearance checks.",
+    "Inspect and test every rail and net for continuity and unwanted contact, including after gentle connector loading. Check loaded Nano VIN and 3V3.",
+    "Print the rail coupons and measure the populated stack first. On the bench, fit and adjust the base floor hardware and the separate jack stop; underside screw-head projection must be at most 3 mm. Install the 4 mm ceiling spacing frame before mounting the base. Load the PCB normally into the open edge supports, retain it at H3, then close the cover against its hard stops. Provide cable restraint without loading the WIZ header joints.",
+    "Commission all services together and verify network updates, interrupted updates, power cycling, thermal behavior and RF range before mounting permanently."
+  ],
+  "manufacturing_claim": "One current custom PCB layout; finished vendor modules and external harnesses are still separate physical parts.",
+  "unproven": [
+    "Factory pin spacing in Z, trimmed solder-tail height and opposing underside-component clearance",
+    "Soldering access and practical assembly order on purchased module variants",
+    "Printed rail fit, actual solder growth, jack-load support, housing thermal creep and fit of the generated full enclosure",
+    "Loaded Nano VIN operation below the documented external 6 V minimum",
+    "H2 R7 isolation, boot straps and network flashing on actual hardware",
+    "MG24 update interruption and recovery on actual hardware",
+    "RF coexistence, ceiling clearance, range and simultaneous workload reliability",
+    "End-to-end commissioning and network backup/restore"
+  ],
+  "sources": [
+    [
+      "Waveshare ESP32-S3-Nano",
+      "https://www.waveshare.com/wiki/ESP32-S3-Nano"
+    ],
+    [
+      "Nano schematic",
+      "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf"
+    ],
+    [
+      "H2 DevKitM-1",
+      "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html"
+    ],
+    [
+      "XIAO MG24",
+      "https://wiki.seeedstudio.com/xiao_mg24_getting_started/"
+    ],
+    [
+      "WIZ850io",
+      "https://docs.wiznet.io/Product/ioModule/WIZ850io"
+    ],
+    [
+      "DFR0627",
+      "https://wiki.dfrobot.com/dfr0627"
+    ],
+    [
+      "WeiKai ESPHome driver",
+      "https://esphome.io/components/weikai/"
+    ]
+  ],
+  "layout_revision": "nano-single-anchor-rails"
+}

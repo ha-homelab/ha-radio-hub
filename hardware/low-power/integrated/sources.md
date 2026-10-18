@@ -1,5 +1,8 @@
 # LP-I0 source and footprint record
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 Checked on 2026-10-17. Dimensions are millimetres, viewed from the **PCB component side** unless explicitly stated otherwise. Public source drawings remain the property of their publishers; they are linked here rather than redistributed. The current release gate requires independent review against the latest manufacturer revision.
 
 - **ESP32-S3-WROOM-1-N16R8:** [Espressif datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf), module pad numbers. The `RF_Module:ESP32-S3-WROOM-1` land pattern is from the KiCad 10.0.6 distribution. Native USB is on GPIO19/20; module pads13/14. Flash/PSRAM pins are not general-purpose connections.

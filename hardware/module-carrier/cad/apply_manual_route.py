@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Apply explicit remaining centerlines, then refill ground. Native DRC is required.
+Each route's points are in millimetres, layer0=F.Cu/layer1=B.Cu. Stored routes
+are specific to the frozen placement and router session, not new layouts.
+"""
+import json,argparse
+from pathlib import Path
+import pcbnew as p
+R=Path(__file__).resolve().parent
+ap=argparse.ArgumentParser();ap.add_argument('--routes',type=Path,default=R/'manual-route.json');args=ap.parse_args()
+b=p.LoadBoard(str(R/'mc1.kicad_pcb'));data=json.loads(args.routes.read_text());count=0
+for route in data['routes']:
+ net=b.FindNet(route['net'])
+ if net is None or net.GetNetname()!=route['net']:raise SystemExit('Missing native route net '+route['net'])
+ for endpoints in route.get('remove_segments',[]):
+  found=[]
+  for track in b.GetTracks():
+   if isinstance(track,p.PCB_VIA) or track.GetNetCode()!=net.GetNetCode():continue
+   actual={tuple(round(p.ToMM(v),4) for v in (pt.x,pt.y)) for pt in [track.GetStart(),track.GetEnd()]}
+   if actual=={tuple(pt) for pt in endpoints}:found.append(track)
+  if len(found)!=1:raise SystemExit('Exact segment replacement must match one native track')
+  b.Delete(found[0])
+ if route.get('replace_existing'):
+  for t in list(b.GetTracks()):
+   if t.GetNetCode()==net.GetNetCode():b.Delete(t)
+ elif any(t.GetNetCode()==net.GetNetCode() and not isinstance(t,p.PCB_VIA) and {tuple(round(p.ToMM(v),4) for v in (t.GetStart().x,t.GetStart().y)),tuple(round(p.ToMM(v),4) for v in (t.GetEnd().x,t.GetEnd().y))}=={tuple(route['points'][0][:2]),tuple(route['points'][1][:2])} for t in b.GetTracks()):raise SystemExit('Manual route already applied; refusing duplicate')
+ a=route['points'];a[0][:2]=route['start'];a[-1][:2]=route['end']
+ for v,w in zip(a,a[1:]):
+  if v[2]!=w[2]:
+   t=p.PCB_VIA(b);t.SetPosition(p.VECTOR2I(p.FromMM(v[0]),p.FromMM(v[1])));t.SetWidth(p.FromMM(.8));t.SetDrill(p.FromMM(.4));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu)
+  else:
+   t=p.PCB_TRACK(b);t.SetStart(p.VECTOR2I(p.FromMM(v[0]),p.FromMM(v[1])));t.SetEnd(p.VECTOR2I(p.FromMM(w[0]),p.FromMM(w[1])));t.SetWidth(p.FromMM(route.get('width_mm',.25)));t.SetLayer(p.F_Cu if v[2]==0 else p.B_Cu)
+  t.SetNet(net);b.Add(t);count+=1
+b.BuildConnectivity();p.ZONE_FILLER(b).Fill(b.Zones());p.SaveBoard(str(R/'mc1.kicad_pcb'),b)
+print('Added',count,'route items; run native DRC')
+
+from project_rules import restore_project_rules
+restore_project_rules()

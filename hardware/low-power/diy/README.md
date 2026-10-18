@@ -1,5 +1,8 @@
 # LP-D0: single-sided, wire-assisted DIY carrier
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 LP-D0 is a prototype for laser toner transfer and manual drilling. It implements the LP-P0 electrical contract on a 190 × 145 mm low-voltage backplane. The required assembly includes bottom copper **and insulated wire links**. It is not a one-layer redesign of the RF modules themselves, and no assembled D0 has been electrically tested yet.
 
 The board accepts only isolated, regulated 5 V. The PoE front end and Pololu D24V22F3 regulator stay external. Never connect an Ethernet PoE pair or 48 V to this PCB. The nominal design ceiling remains 1 A at the 5 V input; actual startup voltage drop and temperature must be measured.

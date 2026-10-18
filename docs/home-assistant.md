@@ -1,5 +1,8 @@
 # Connecting to Home Assistant
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 The appliance appears in HA through standard integrations. Its logical networks remain independent: Zigbee through ZHA, Thread through OTBR, Matter through Matter Server, Bluetooth and sensors through ESPHome, and Z-Wave through the existing Z-Wave JS driver. A second Home Assistant instance on the Pi is not required.
 
 ## Zigbee

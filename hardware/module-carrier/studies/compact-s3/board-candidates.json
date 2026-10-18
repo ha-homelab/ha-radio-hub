@@ -1,0 +1,491 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-17",
+  "status": "Research and pin-fit audit, not a completed compact carrier or hardware acceptance record",
+  "baseline": {
+    "name": "Espressif ESP32-S3-DevKitC-1 v1.1 N8R8",
+    "body_mm": {
+      "width": 25.4,
+      "length": 62.74
+    },
+    "app_gpio_count": 24,
+    "flash_mb": 8,
+    "psram_mb": 8
+  },
+  "requirements": {
+    "dedicated_spi_app_gpio": 24,
+    "shared_spi_app_gpio": 21,
+    "usb_gpio_preserved": [
+      19,
+      20
+    ],
+    "forbidden": [
+      "Female module sockets",
+      "Underside flying signal wires",
+      "New loose SMD assembly"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "lolin-s3-mini",
+      "name": "LOLIN S3 MINI v1.0.0 / ESP32-S3FH4R2",
+      "body_mm": {
+        "width": 25.4,
+        "length": 34.3
+      },
+      "body_area_mm2": 871.22,
+      "flash_mb": 4,
+      "psram_mb": 2,
+      "pth_gpio": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        21,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        43,
+        44
+      ],
+      "pth_gpio_count": 27,
+      "excluded_strapping_gpio": [
+        3
+      ],
+      "non_strapping_pth_gpio_count": 26,
+      "native_usb_gpio": [
+        19,
+        20
+      ],
+      "sources": {
+        "overview": "https://www.wemos.cc/en/latest/s3/s3_mini.html",
+        "schematic": "https://www.wemos.cc/en/latest/_static/files/sch_s3_mini_v1.0.0.pdf",
+        "dimension": "https://www.wemos.cc/en/latest/_static/files/dim_s3_mini_v1.0.0.pdf"
+      },
+      "recommendation": "Lower-software-change comparison: retains two SPI buses but reduces memory; runtime and OTA qualification required.",
+      "assembly": "Four 1x8 ordinary PTH male-header rows; factory pre-soldered full-header variant not verified. No underside signal wires.",
+      "header_total_positions": 32,
+      "header_pitch_mm": 2.54,
+      "outer_header_row_spacing_mm": 22.86,
+      "header_pin_order": {
+        "J2": [
+          "EN",
+          "GPIO2",
+          "GPIO4",
+          "GPIO12",
+          "GPIO13",
+          "GPIO11",
+          "GPIO10",
+          "3V3"
+        ],
+        "J5": [
+          "GPIO1",
+          "GPIO3",
+          "GPIO5",
+          "GPIO6",
+          "GPIO7",
+          "GPIO8",
+          "GPIO9",
+          "GPIO14"
+        ],
+        "J4": [
+          "GPIO33",
+          "GPIO37",
+          "GPIO38",
+          "GPIO34",
+          "GPIO21",
+          "GPIO17",
+          "GND",
+          "GPIO15"
+        ],
+        "J3": [
+          "GPIO43",
+          "GPIO44",
+          "GPIO36",
+          "GPIO35",
+          "GPIO18",
+          "GPIO16",
+          "GND",
+          "VBUS"
+        ]
+      },
+      "preserved_rom_uart_gpio": [
+        43,
+        44
+      ],
+      "recommended_app_gpio": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        21,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "recommended_app_gpio_count": 24,
+      "two_spi_pin_fit": true,
+      "shared_spi_pin_fit": true,
+      "psram_bus": "Quad; GPIO33-38 are exposed and usable on this exact FH4R2 variant.",
+      "regulator": "ME6211C33; 500mA IC maximum is not a board continuous-current allowance.",
+      "power": "Header VBUS directly joins USB VBUS; retain source isolation. Do not tie local 3V3 output to peripheral 3V3.",
+      "antenna": "Printed PCB antenna opposite USB-C; provide edge location and manufacturer-based copper/metal clearance.",
+      "service": "Native USB-C, onboard EN reset and GPIO0 boot buttons; no active USB-UART bridge.",
+      "qualification": [
+        "Runtime 2MB PSRAM and internal-heap headroom under all enabled features",
+        "4MB flash OTA slot and future image headroom",
+        "5V input after carrier diode: regulator dropout, temperature, brownout",
+        "Full 32-pin header fit, row positions and solder access against physical sample"
+      ],
+      "body_area_reduction_vs_baseline_percent": 45.33
+    },
+    {
+      "id": "waveshare-s3-nano",
+      "name": "Waveshare ESP32-S3-Nano-M / ESP32-S3R8",
+      "body_mm": {
+        "width": 17.78,
+        "length": 43.18
+      },
+      "body_area_mm2": 767.74,
+      "flash_mb": 16,
+      "psram_mb": 8,
+      "pth_gpio": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        21,
+        38,
+        43,
+        44,
+        46,
+        47,
+        48
+      ],
+      "pth_gpio_count": 24,
+      "excluded_strapping_gpio": [
+        0,
+        3,
+        46
+      ],
+      "non_strapping_pth_gpio_count": 21,
+      "native_usb_gpio": [
+        19,
+        20
+      ],
+      "sources": {
+        "overview": "https://docs.waveshare.com/ESP32-S3-Nano",
+        "product": "https://www.waveshare.com/product/esp32-s3-nano.htm",
+        "schematic": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
+        "dimension": "https://docs.waveshare.com/assets/images/ESP32-S3-Nano-details-size-d435914d61a0d43a84a1c96664de73b1.webp",
+        "pinout": "https://docs.waveshare.com/assets/images/ESP32-S3-Nano-details-inter-1-c806cf5e83bb5f6f6f71fc5bad2239c7.webp"
+      },
+      "recommendation": "Selected next prototype: preserves8MBPSRAM, factorymaleheaders; sharedSPI, boot and power qualification required before replacement carrier adoption.",
+      "assembly": "Factory male-header Nano-M option, two 1x15 PTH rows; solder directly to carrier.",
+      "header_total_positions": 30,
+      "header_pitch_mm": 2.54,
+      "header_row_spacing_mm": 15.24,
+      "header_pin_order": {
+        "JP1_pins_1_to_15": [
+          "GPIO48",
+          "3V3",
+          "GPIO46",
+          "GPIO1",
+          "GPIO2",
+          "GPIO3",
+          "GPIO4",
+          "GPIO11",
+          "GPIO12",
+          "GPIO13",
+          "GPIO14",
+          "VBUS",
+          "GPIO0",
+          "GND",
+          "VIN"
+        ],
+        "JP2_pins_1_to_15": [
+          "GPIO43",
+          "GPIO44",
+          "EN",
+          "GND",
+          "GPIO5",
+          "GPIO6",
+          "GPIO7",
+          "GPIO8",
+          "GPIO9",
+          "GPIO10",
+          "GPIO17",
+          "GPIO18",
+          "GPIO21",
+          "GPIO38",
+          "GPIO47"
+        ]
+      },
+      "recommended_app_gpio": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        21,
+        38,
+        43,
+        44,
+        47,
+        48
+      ],
+      "recommended_app_gpio_count": 21,
+      "two_spi_pin_fit": false,
+      "shared_spi_pin_fit": true,
+      "psram_bus": "Octal; do not use unavailable memory pins.",
+      "regulator": "MP2322GQH 3.3V buck, rated 1A at IC level; actual board load and thermal margin unmeasured.",
+      "power": "Proposed unchanged-part-count input: isolated5V bus -> existing carrier branch Schottky -> JP1.15 VIN -> onboard MP2322 -> local3V3. Leave JP1.12 VBUS unconnected on carrier. USB reaches VIN through onboard D3, so the two input diodes OR the sources. This uses the same rail normally fed below5V by USB, but differs from advertised6-21V externalVIN range; loaded voltage/brownout/thermal verification required.",
+      "antenna": "Ceramic antenna opposite USB-C.",
+      "service": "Native USB-C; no UART bridge. Keep EN button and B1/GPIO0 accessible. GPIO43 ROM boot TX must be treated as an output into a tolerant UART RX, not a quiet generic output or driven input.",
+      "qualification": [
+        "Shared W5500/CC1101 SPI cold start, reset sequencing, tri-state MISO and concurrent operation",
+        "GPIO43 ROM boot output and downstream UART framing/resynchronization",
+        "GPIO48 onboard LED MOSFET load on selected signal",
+        "No spare non-strapping application GPIO remain",
+        "Physical Nano-M header direction, fit and service envelope",
+        "5V bus through existing branch diode into VIN: test minimum input, maximum simultaneous load, ripple, thermal rise and brownout; do not use regulator3V3 outputs in parallel"
+      ],
+      "body_area_reduction_vs_baseline_percent": 51.82,
+      "power_plan": {
+        "carrier_input_pin": "JP1.15 VIN",
+        "carrier_5v_path": [
+          "isolated5V",
+          "existing MC1 branch Schottky",
+          "VIN",
+          "MP2322",
+          "local3V3"
+        ],
+        "usb_path": [
+          "USB VBUS",
+          "onboard D3 PMEG6020",
+          "VIN",
+          "MP2322",
+          "local3V3"
+        ],
+        "leave_carrier_nc": [
+          "JP1.12 VBUS",
+          "JP1.2 3V3"
+        ],
+        "additional_components": 0,
+        "vendor_advertised_vin_range_v": [
+          6,
+          21
+        ],
+        "mp2322_chip_operating_range_v": [
+          3,
+          22
+        ],
+        "qualification_required": true,
+        "reason": "5V less one Schottky drop is outside vendor-advertised externalVIN range, although onboardUSB powers this same rail through one diode."
+      }
+    },
+    {
+      "id": "waveshare-s3-tiny-n8r8",
+      "name": "Waveshare ESP32-S3-Tiny-N8R8",
+      "body_mm": {
+        "width": 18,
+        "length": 23.5
+      },
+      "body_area_mm2": 423.0,
+      "flash_mb": 8,
+      "psram_mb": 8,
+      "pth_gpio": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        43,
+        44
+      ],
+      "pth_gpio_count": 20,
+      "excluded_strapping_gpio": [
+        3
+      ],
+      "non_strapping_pth_gpio_count": 19,
+      "native_usb_gpio": [
+        19,
+        20
+      ],
+      "sources": {
+        "overview": "https://docs.waveshare.com/ESP32-S3-Tiny",
+        "product": "https://www.waveshare.net/shop/ESP32-S3-Tiny-N8R8-Kit.htm",
+        "pinout": "https://docs.waveshare.com/assets/images/ESP32-S3-Tiny-details-inter-fc4d043c04724600472e4ce8f10429a7.webp",
+        "dimension": "https://docs.waveshare.com/assets/images/ESP32-S3-Tiny-details-1-3cb57dcb7847e1db49d2faee9722d6df.webp"
+      },
+      "recommendation": "Reject as direct-header host for this architecture: only20 edge-hole GPIO, fewer than21 even before strap exclusions.",
+      "assembly": "23 edge-hole positions on three edges:20 GPIO+5V+3V3+GND. Remaining advertised GPIO use underside pads; those are excluded.",
+      "header_total_positions": 23,
+      "header_pitch_mm": 2.54,
+      "two_spi_pin_fit": false,
+      "shared_spi_pin_fit": false,
+      "regulator": "ME6217C33M5G; vendor800mA IC maximum, not guaranteed board spare current.",
+      "antenna": "Ceramic antenna on upper short edge.",
+      "service": "USB-C plus BOOT/RESET on separate18x18mm adapter through8-pin0.5mm FPC. Service adapter and bend clearance are additional envelope.",
+      "memory_variant_note": "N8R8 memory verified by specific product option; generic family page still describes4MB/2MB base variant. Exact N8R8 underside map is not used in the pin-fit decision.",
+      "body_area_reduction_vs_baseline_percent": 73.46
+    },
+    {
+      "id": "waveshare-s3-zero-n8r8",
+      "name": "Waveshare ESP32-S3-Zero-N8R8-M",
+      "body_mm": {
+        "width": 18,
+        "length": 23.5
+      },
+      "body_area_mm2": 423.0,
+      "flash_mb": 8,
+      "psram_mb": 8,
+      "pth_gpio": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        43,
+        44
+      ],
+      "pth_gpio_count": 15,
+      "excluded_strapping_gpio": [
+        3
+      ],
+      "non_strapping_pth_gpio_count": 14,
+      "native_usb_gpio": [
+        19,
+        20
+      ],
+      "sources": {
+        "overview": "https://docs.waveshare.com/ESP32-S3-Zero",
+        "product": "https://www.waveshare.com/product/esp32-s3-zero.htm?sku=25081",
+        "pinout": "https://docs.waveshare.com/assets/images/ESP32-S3-Zero-Pinout-10a4868b32f9da9005e87b2d9d84574e.webp",
+        "dimension": "https://docs.waveshare.com/assets/images/Esp32-S3-Zero-Size-b56afa84e292cd9d532df8b52376fcb2.webp",
+        "schematic": "https://files.waveshare.com/wiki/ESP32-S3-Zero/ESP32-S3-Zero-Sch.pdf"
+      },
+      "recommendation": "Reject as direct-header host:15 PTHGPIO cannot carry21 application signals.",
+      "assembly": "Factory male-header N8R8-M SKU33549;18 pins=15 GPIO+5V+3V3+GND. Additional small top/bottom solder pads do not qualify.",
+      "header_total_positions": 18,
+      "header_pitch_mm": 2.54,
+      "two_spi_pin_fit": false,
+      "shared_spi_pin_fit": false,
+      "regulator": "ME6217C33M5G; vendor800mA IC maximum.",
+      "power": "Vendor3.7-6V input at5V pad; verify source isolation for service.",
+      "antenna": "Ceramic antenna opposite USB-C.",
+      "service": "Native USB-C, BOOT and RESET buttons, no active UART bridge.",
+      "memory_variant_note": "N8R8-M specific option8MBflash/8MBPSRAM; generic base-board page also describes4MB/2MB.",
+      "body_area_reduction_vs_baseline_percent": 73.46
+    }
+  ],
+  "other_checked": {
+    "waveshare_s3_dev_kit_n8r8_m": {
+      "body_mm": [
+        25.4,
+        63.3
+      ],
+      "conclusion": "No body shrink versus existing DevKitC-1; not selected.",
+      "source": "https://docs.waveshare.com/assets/images/ESP32-S3-DEV-KIT-N8R8-details-size-de1bb65d3985c613f06a65417479c2c5.webp"
+    },
+    "lolin_s3_full": {
+      "body_mm": [
+        25.4,
+        65.3
+      ],
+      "conclusion": "No body shrink.",
+      "source": "https://www.wemos.cc/en/latest/s3/s3.html"
+    }
+  },
+  "mechanical_limit": "Body rectangles exclude cable plugs, antenna keepouts, underside protrusions, header plastic and carrier routing. No smaller carrier dimension is proven by these rectangles.",
+  "selected_next_prototype": "waveshare-s3-nano",
+  "selection_reason": "Preserves8MBPSRAM, increasesflash to16MB, and offers factorymaleheaders; sharedSPI and boot/powerqualification accepted for prototype.",
+  "source_files_sha256": {
+    "mini-sch.pdf": "23e49e9d7904eb2d9480b0707a19c46c8dddfdeed53dd8085e3f620d3edf4270",
+    "mini-dim.pdf": "110f14d19c7f16ef2b0ad5771d56ec8877782129b68fca6be161faf95fe0770c",
+    "nano-sch.pdf": "2da93c3246913781aa454845dc89b8a134e66a4f23e8addaa5b89d5e5b6e7a1c",
+    "nano-dim.webp": "227d02f7b6bc79d790292b9a3edaf82393ea85ef1e8d91b051edf135160d8f7e",
+    "nano-pin.webp": "c33bb3f3f5ccb9c26f3979d3d9e80e1a0e6e840ed0f509233b46c20d48a005db",
+    "tiny-pin.webp": "23a8bd9f469d612283eee8a5b0fc759965da5751f41a7830b0741988389eb675",
+    "tiny-dim.webp": "504c0fa6b2decc8354ec9b81a074bbbb509cd96fe68175b7b21286ed77bf80ef",
+    "zero-pin.webp": "0df7f252e55d66721df03cd248f02cec854ba2e6f04af637d33372fa570a1947",
+    "zero-dim.webp": "36f7e6052a823dd51b31d19adb3a20339345222ba16bf675a1e4c44dbf6c34b2"
+  }
+}

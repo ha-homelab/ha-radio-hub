@@ -1,0 +1,306 @@
+{
+  "checked_at_utc": "2026-10-18T16:15:56.067668+00:00",
+  "board": "mc1.kicad_pcb",
+  "board_sha256": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+  "audit_script_sha256": "4e6eec953cac85eaaff6bb28a646ba118b4f6f7feae55643a28f0e0a45b76b46",
+  "manufacturer_sources": {
+    "nano": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
+    "h2": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
+    "xiao": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip",
+    "wiz": "https://docs.wiznet.io/Product/Modules/Ethernet-Modules/WIZ850io"
+  },
+  "electronic_references": 18,
+  "fitted_electronic_references": 16,
+  "fitted_side_counts": {
+    "F.Cu": 3,
+    "B.Cu": 13
+  },
+  "assembly_access": {
+    "solder_access_radius_mm": 2.0,
+    "required_assembly_order": "All fitted rear parts, including WIZ, then all front controllers",
+    "solder_before_install_edges": [
+      [
+        "D1",
+        "U1"
+      ],
+      [
+        "D2",
+        "U2"
+      ],
+      [
+        "D2",
+        "U3"
+      ],
+      [
+        "D3",
+        "U3"
+      ],
+      [
+        "J1",
+        "U2"
+      ],
+      [
+        "J2",
+        "U2"
+      ],
+      [
+        "J3",
+        "U2"
+      ],
+      [
+        "J4",
+        "U2"
+      ],
+      [
+        "J5",
+        "U2"
+      ],
+      [
+        "J6",
+        "U2"
+      ],
+      [
+        "J7",
+        "U2"
+      ],
+      [
+        "R1",
+        "U1"
+      ],
+      [
+        "R2",
+        "U1"
+      ]
+    ],
+    "candidate_solder_order": [
+      "D1",
+      "D2",
+      "D3",
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "J6",
+      "J7",
+      "R1",
+      "R2",
+      "U4",
+      "U1",
+      "U2",
+      "U3"
+    ],
+    "cycle_members": [],
+    "front_lands_blocked_by_fitted_rear_parts": [],
+    "usb_shell_solder_copper_projections_requiring_z_check": [],
+    "obstacles_checked": "Native courtyards, physical USB shells and fitted harness housings",
+    "opposite_side_body_overlaps_requiring_measured_z_clearance": [
+      [
+        "J7",
+        "U2"
+      ],
+      [
+        "J4",
+        "U2"
+      ],
+      [
+        "J3",
+        "U2"
+      ],
+      [
+        "J6",
+        "U2"
+      ],
+      [
+        "R1",
+        "U1"
+      ],
+      [
+        "R2",
+        "U1"
+      ],
+      [
+        "J5",
+        "U2"
+      ],
+      [
+        "D3",
+        "U3"
+      ],
+      [
+        "J1",
+        "U2"
+      ],
+      [
+        "D1",
+        "U1"
+      ],
+      [
+        "J2",
+        "U2"
+      ]
+    ],
+    "minimum_measured_conductor_clearance_mm": 1.0,
+    "z_qualified": false,
+    "limitation": "Rear-first access does not prove delivered tail length, module spacing, underside clearance or physical fit."
+  },
+  "rail_contact_review": {
+    "lands": {
+      "left": {
+        "bounds_mm": [
+          0,
+          15,
+          0.85,
+          54.5
+        ],
+        "closest_body": [
+          "U2",
+          "USB shell"
+        ],
+        "body_separation_mm": 0.45,
+        "closest_pad": [
+          "U2",
+          "J1.10"
+        ],
+        "copper_separation_mm": 0.82,
+        "after_reserved_fillet_mm": 0.32
+      },
+      "right": {
+        "bounds_mm": [
+          46.3,
+          8,
+          47.5,
+          74
+        ],
+        "closest_body": [
+          "U1",
+          "body"
+        ],
+        "body_separation_mm": 0.46,
+        "closest_pad": [
+          "U1",
+          "JP1.13"
+        ],
+        "copper_separation_mm": 0.83,
+        "after_reserved_fillet_mm": 0.33
+      }
+    },
+    "solder_growth_reserved_mm": 0.5,
+    "minimum_residual_margin_mm": 0.3,
+    "h2_antenna_to_nearest_contact_land_mm": 16.436488,
+    "loading": "Open-loading split capture; no populated-board sliding groove",
+    "z_fit_force_and_enclosure_rf_qualified": false,
+    "limit": "Only contact lands audited. Full wall/lid geometry, actual fillets, underside heights, wire bends and load-bearing jack cradle still require measured checks."
+  },
+  "expected_pads": 133,
+  "native_board_bounds_mm": [
+    0.0,
+    0.0,
+    47.5,
+    75.0
+  ],
+  "native_board_outline_mm": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      47.5,
+      0.0
+    ],
+    [
+      47.5,
+      75.0
+    ],
+    [
+      0.0,
+      75.0
+    ]
+  ],
+  "native_board_area_mm2": 3562.5,
+  "native_support_centers_mm": {
+    "H3": [
+      18.0,
+      52.03
+    ]
+  },
+  "connected_endpoint_groups": 31,
+  "connected_pads": 101,
+  "native_checks": {
+    "erc_violations": 0,
+    "drc_violations": 41,
+    "unconnected_items": 0,
+    "schematic_parity_issues": 0,
+    "unit_tests_passed": 25,
+    "classified_mechanical_overlaps": 41,
+    "unclassified_violations": 0
+  },
+  "native_report_sha256": {
+    "checks/drc.json": "2030645878de68662f4fcc53f3c37cca4bde70c2cc58726c0abd74278acb6dc6",
+    "checks/erc.json": "719b4fb6a1e97b183c1a8e82b797eb2ccebf99ae09445f2b8dcb3b0acced544a"
+  },
+  "drc_classification": {
+    "native_findings": 41,
+    "classified_pth_body_projections": 41,
+    "unclassified_findings": 0,
+    "missing_expected_pairs": 0,
+    "suppressed_in_kicad": 0,
+    "mechanical_clearance_qualified": false,
+    "meaning": "Exact planned projections only; retained raw DRC errors require measured Z clearance before fabrication release."
+  },
+  "manifest_hashes_checked": 19,
+  "mutations_detected": {
+    "thread_tx_rx_swap": true,
+    "zigbee_flow_control_swap": true,
+    "shared_spi_split": true,
+    "nano_vbus_connected": true,
+    "regulator_outputs_joined": true,
+    "supply_diode_short": true,
+    "missing_manual_boot": true,
+    "nano_reversed_row": true,
+    "passive_on_wrong_side": true,
+    "header_outside_board": true,
+    "overlapping_diodes": true,
+    "fitted_service_header": true,
+    "physical_usb_collision": true,
+    "unmirrored_back_module_pad": true,
+    "header_on_wrong_side": true,
+    "pth_missing_back_copper": true,
+    "cyclic_solder_order": true,
+    "back_header_under_antenna": true,
+    "diagonal_parts_clear_despite_overlapping_bounds": true,
+    "diagonal_parts_actual_collision_rejected": true,
+    "pad_in_missing_flange_bbox_rejected": true,
+    "support_crossing_flange_step_rejected": true,
+    "inside_pad_with_insufficient_edge_clearance_rejected": true,
+    "rear_first_rejects_acyclic_sequence": true,
+    "usb_shell_outside_courtyard_creates_dependency": true,
+    "usb_shell_records_solder_projection_z_gate": true,
+    "rail_front_body_or_fillet_clearance_rejected": true,
+    "rail_rear_passive_rejected": true,
+    "rail_usb_projection_rejected": true,
+    "rail_extra_mount_rejected": true,
+    "rail_missing_retainer_rejected": true,
+    "rail_copper_only_approval_rejected_by_fillet": true,
+    "rail_h2_housing_margin_rejected": true,
+    "rail_absent_native_exclusion_rejected": true,
+    "rail_permissive_native_exclusion_rejected": true,
+    "rail_rear_crossing_trace_rejected": true,
+    "rail_via_high_spot_rejected": true,
+    "rail_ground_pour_rejected": true,
+    "rail_boundary_touch_without_interior_copper_allowed": true,
+    "drc_other_type_not_excused": true,
+    "drc_missing_expected_pair": true,
+    "drc_wrong_body_not_excused": true,
+    "drc_missing_list_violations": true,
+    "drc_missing_list_unconnected_items": true,
+    "drc_missing_list_schematic_parity": true,
+    "drc_extra_violation_not_excused": true,
+    "drc_stale_body_position": true,
+    "drc_stale_pad_position": true
+  },
+  "errors": [],
+  "passed": true,
+  "fabrication_release": false,
+  "limits": "Prototype consistency audit, not fabrication approval. Raw PTH/courtyard errors remain classified but unqualified pending measured Z clearance. No physical fit, power, RF, USB or runtime test."
+}

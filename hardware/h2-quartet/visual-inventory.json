@@ -1,0 +1,1309 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-17",
+  "repository_head_at_scan": "fe2b5879663f98789868961fc7e64eb0df61b8dd",
+  "purpose": "Inventory for consolidating competing build variants into one canonical Q1 carrier. No listed migration action is asserted complete.",
+  "mounting_constraints": {
+    "female_module_socket_quantity": 0,
+    "castellated_side_soldering": false,
+    "method": "factory male module headers directly soldered through carrier; underside joints",
+    "extra_thickness_acceptable": true
+  },
+  "scan_scope": [
+    "hardware",
+    "mechanical"
+  ],
+  "asset_extensions": [
+    ".glb",
+    ".jpeg",
+    ".jpg",
+    ".pdf",
+    ".png",
+    ".stl",
+    ".svg",
+    ".webp"
+  ],
+  "counts": {
+    "visual_assets": 93,
+    "entrypoints": 44
+  },
+  "entrypoints": [
+    {
+      "path": "README.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/manufacturing.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/overview.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/releases.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/low-power-enclosure.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/h2-simplification.md",
+      "required_action": "revise_to_final_Q1_choice_and_keep_unproven_gates_visible",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/validation.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/parts-catalog.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/h2-quartet-function-audit.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/manufacturing-rfq.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/home-assistant.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/firmware.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/parts-gallery.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/enclosure.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/diy-pcb.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/low-power.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/overview.ru.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "docs/acceptance.md",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/antennas.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/gallery/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/h2-quartet/index.html",
+      "required_action": "revise_to_final_Q1_choice_and_keep_unproven_gates_visible",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/mg24-adapter/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/sources.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/vendor/LICENSE-espressif.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/vendor/LICENSE-kicad-footprints.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/index.html",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/source/LIBRARY-LICENSE.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/viewer.template.html",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/index.html",
+      "required_action": "revise_current_navigation_or_regenerate_with_Q1_and_legacy_labels",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/power.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/procurement.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/rf-migration.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/sources.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/wiring.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/diy/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/README.md",
+      "required_action": "explicit_legacy_scope_and_link_current_Q1_entrypoint",
+      "action_state": "proposed_not_applied"
+    }
+  ],
+  "visual_assets": [
+    {
+      "path": "hardware/gallery/carrier-c0.png",
+      "type": "png",
+      "group": "legacy_board_gallery",
+      "required_action": "archive_label_do_not_relabel_as_Q1",
+      "generator": "hardware/gallery/render.py",
+      "current_direct_references": [
+        "README.md",
+        "docs/parts-catalog.md",
+        "hardware/gallery/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/gallery/diy-d0.png",
+      "type": "png",
+      "group": "legacy_board_gallery",
+      "required_action": "archive_label_do_not_relabel_as_Q1",
+      "generator": "hardware/gallery/render.py",
+      "current_direct_references": [
+        "README.md",
+        "docs/parts-catalog.md",
+        "hardware/gallery/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/gallery/integrated-i0.png",
+      "type": "png",
+      "group": "legacy_board_gallery",
+      "required_action": "archive_label_do_not_relabel_as_Q1",
+      "generator": "hardware/gallery/render.py",
+      "current_direct_references": [
+        "README.md",
+        "docs/parts-catalog.md",
+        "hardware/gallery/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/gallery/mg24-m0.png",
+      "type": "png",
+      "group": "legacy_board_gallery",
+      "required_action": "archive_label_do_not_relabel_as_Q1",
+      "generator": "hardware/gallery/render.py",
+      "current_direct_references": [
+        "README.md",
+        "docs/parts-catalog.md",
+        "hardware/gallery/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/h2-quartet/architecture.svg",
+      "type": "svg",
+      "group": "quartet_candidate",
+      "required_action": "regenerate_after_Q1_choice",
+      "generator": "hardware/h2-quartet/render.py",
+      "current_direct_references": [
+        "docs/h2-simplification.md",
+        "hardware/h2-quartet/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/h2-quartet/carrier-concept.svg",
+      "type": "svg",
+      "group": "quartet_candidate",
+      "required_action": "regenerate_after_Q1_choice",
+      "generator": "hardware/h2-quartet/render.py",
+      "current_direct_references": [
+        "hardware/h2-quartet/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/h2-quartet/preview.jpg",
+      "type": "jpg",
+      "group": "quartet_candidate",
+      "required_action": "regenerate_after_Q1_choice",
+      "generator": "hardware/h2-quartet/render.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/mg24-adapter/outputs/assembly-top.svg",
+      "type": "svg",
+      "group": "M0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/mg24-adapter/export.py",
+      "current_direct_references": [
+        "hardware/low-power/carrier/mg24-adapter/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/mg24-adapter/outputs/board-top.svg",
+      "type": "svg",
+      "group": "M0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/mg24-adapter/export.py",
+      "current_direct_references": [
+        "hardware/low-power/carrier/mg24-adapter/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/mg24-adapter/outputs/gerbers/mg24-adapter-NPTH-drl_map.pdf",
+      "type": "pdf",
+      "group": "M0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/mg24-adapter/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/mg24-adapter/outputs/gerbers/mg24-adapter-PTH-drl_map.pdf",
+      "type": "pdf",
+      "group": "M0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/mg24-adapter/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/mg24-adapter/outputs/schematic.pdf",
+      "type": "pdf",
+      "group": "M0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/mg24-adapter/export.py",
+      "current_direct_references": [
+        "hardware/low-power/carrier/mg24-adapter/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/outputs/assembly-top.svg",
+      "type": "svg",
+      "group": "C0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/export.py",
+      "current_direct_references": [
+        "hardware/low-power/carrier/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/outputs/board-top.svg",
+      "type": "svg",
+      "group": "C0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/export.py",
+      "current_direct_references": [
+        "hardware/low-power/carrier/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/outputs/gerbers/carrier-NPTH-drl_map.pdf",
+      "type": "pdf",
+      "group": "C0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/outputs/gerbers/carrier-PTH-drl_map.pdf",
+      "type": "pdf",
+      "group": "C0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/carrier/outputs/schematic.pdf",
+      "type": "pdf",
+      "group": "C0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/carrier/export.py",
+      "current_direct_references": [
+        "hardware/low-power/carrier/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/outputs/assembly-schematic.pdf",
+      "type": "pdf",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/outputs/assembly-top.svg",
+      "type": "svg",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/print/assembly.pdf",
+      "type": "pdf",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [
+        "docs/diy-pcb.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/print/calibration.pdf",
+      "type": "pdf",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [
+        "docs/diy-pcb.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/print/copper-native.svg",
+      "type": "svg",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/print/drilling.pdf",
+      "type": "pdf",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [
+        "docs/diy-pcb.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/diy/print/toner-transfer.pdf",
+      "type": "pdf",
+      "group": "D0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/diy/export.py",
+      "current_direct_references": [
+        "docs/diy-pcb.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/fabrication/assembly-top.svg",
+      "type": "svg",
+      "group": "I0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/integrated/finish.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/fabrication/board-top.svg",
+      "type": "svg",
+      "group": "I0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/integrated/finish.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/integrated/fabrication/schematic.pdf",
+      "type": "pdf",
+      "group": "I0",
+      "required_action": "archive_with_source_and_provenance",
+      "generator": "hardware/low-power/integrated/finish.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/bme680-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/buck-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/carrier-assembly.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/cc1101-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/diy-assembly.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/h2-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/h2-contacts.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/integrated-assembly.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/ld2450-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/mg24-adapter-assembly.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/mg24-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/mg24-contacts.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/pd-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/pololu-contacts.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/s3-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/s3-contacts.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/sc16-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/service-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/supervisor-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/w5500-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/wiz850io-contacts.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/generated/zac93-connections.svg",
+      "type": "svg",
+      "group": "legacy_pin_atlas",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": "hardware/low-power/visual/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/generated/h2-contacts.svg",
+      "type": "svg",
+      "group": "legacy_bare_module_contact_reference",
+      "required_action": "retain_as_legacy_reference_not_Q1_header_map",
+      "generator": "hardware/low-power/visual/physical/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/low-power/visual/physical/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/generated/mg24-contacts.svg",
+      "type": "svg",
+      "group": "legacy_bare_module_contact_reference",
+      "required_action": "retain_as_legacy_reference_not_Q1_header_map",
+      "generator": "hardware/low-power/visual/physical/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/low-power/visual/physical/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/generated/pololu-contacts.svg",
+      "type": "svg",
+      "group": "legacy_bare_module_contact_reference",
+      "required_action": "retain_as_legacy_reference_not_Q1_header_map",
+      "generator": "hardware/low-power/visual/physical/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/physical/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/generated/s3-contacts.svg",
+      "type": "svg",
+      "group": "legacy_bare_module_contact_reference",
+      "required_action": "retain_as_legacy_reference_not_Q1_header_map",
+      "generator": "hardware/low-power/visual/physical/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/low-power/visual/physical/README.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/low-power/visual/physical/generated/wiz850io-contacts.svg",
+      "type": "svg",
+      "group": "legacy_bare_module_contact_reference",
+      "required_action": "retain_as_legacy_reference_not_Q1_header_map",
+      "generator": "hardware/low-power/visual/physical/build.py",
+      "current_direct_references": [
+        "hardware/low-power/visual/physical/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/antenna.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/cable.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/capacitor-electrolytic.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/capacitor-radial.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/capacitor.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/connector.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/crystal-through-hole.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/crystal.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/diode.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/enclosure.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/fuse.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/hardware.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/ic.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/inductor.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/module.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/resistor-axial.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/resistor.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/switch.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/parts/illustrations/tool.svg",
+      "type": "svg",
+      "group": "generic_part_art",
+      "required_action": "retain_if_caption_matches_selected_part",
+      "generator": "hardware/parts/build.py",
+      "current_direct_references": [
+        "docs/parts-gallery.md",
+        "hardware/parts/index.html"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "hardware/wiring.svg",
+      "type": "svg",
+      "group": "legacy_modular_wiring",
+      "required_action": "archive_and_link_Q1_replacement",
+      "generator": null,
+      "current_direct_references": [
+        "README.md",
+        "hardware/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/antenna_blank.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/assembly.glb",
+      "type": "glb",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/base.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/bme680_pod_base.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [
+        "docs/low-power-enclosure.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/bme680_pod_lid.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [
+        "docs/low-power-enclosure.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/deck.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/exploded-preview.png",
+      "type": "png",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [
+        "README.md",
+        "docs/enclosure.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/fit_coupon.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/layout-plan.png",
+      "type": "png",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [
+        "docs/enclosure.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/lid.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/generated/radar_carrier.stl",
+      "type": "stl",
+      "group": "legacy_Pi_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/assembly.glb",
+      "type": "glb",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [
+        "mechanical/low-power/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/carrier_fit_blank.stl",
+      "type": "stl",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/exploded-preview.png",
+      "type": "png",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [
+        "docs/low-power-enclosure.md",
+        "mechanical/low-power/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/fit_coupon.stl",
+      "type": "stl",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/layout-plan.png",
+      "type": "png",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [
+        "docs/low-power-enclosure.md",
+        "mechanical/low-power/README.md"
+      ],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/mockup_base.stl",
+      "type": "stl",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/mockup_lid.stl",
+      "type": "stl",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    },
+    {
+      "path": "mechanical/low-power/generated/radar_holder.stl",
+      "type": "stl",
+      "group": "legacy_low_power_enclosure",
+      "required_action": "archive_no_Q1_fit_claim",
+      "generator": "mechanical/low-power/build.py",
+      "current_direct_references": [],
+      "action_state": "proposed_not_applied"
+    }
+  ],
+  "related_release_families": [
+    {
+      "paths": [
+        "hardware/low-power/carrier/outputs/",
+        "hardware/low-power/carrier/mg24-adapter/outputs/",
+        "hardware/low-power/integrated/fabrication/",
+        "hardware/low-power/diy/outputs/",
+        "hardware/low-power/diy/print/"
+      ],
+      "action": "Archive legacy export families intact; never rename their Gerber ZIPs, drill files or PDFs as Q1"
+    },
+    {
+      "paths": [
+        "hardware/parts/catalog.json",
+        "hardware/parts/inventory.json",
+        "hardware/parts/build.py"
+      ],
+      "action": "Add final Q1 canonical inventory and explicit legacy classifications before regenerating HTML and Markdown galleries"
+    },
+    {
+      "paths": [
+        "hardware/gallery/provenance.json",
+        "hardware/low-power/visual/generated/manifest.json",
+        "hardware/low-power/visual/physical/generated/manifest.json",
+        "mechanical/low-power/generated/mesh-report.json",
+        "mechanical/generated/mesh-report.json"
+      ],
+      "action": "Preserve old provenance; create new provenance for actual Q1 CAD exports and enclosure rather than rebinding old outputs"
+    },
+    {
+      "paths": [
+        "hardware/low-power/pinmap.json",
+        "hardware/low-power/wiring.csv",
+        "hardware/low-power/bom.json",
+        "hardware/low-power/manufacturing-options.json"
+      ],
+      "action": "Keep as legacy contracts or explicitly supersede; current firmware/pin atlas/BOM must all use final Q1 map"
+    }
+  ],
+  "remote_image_policy": "Manufacturer images in hardware/parts/catalog.json remain remote copyrighted source references. Reuse only when caption/model matches Q1; do not substitute a bare-module pad diagram for factory header geometry.",
+  "required_new_views": [
+    "Q1 module-populated top view from frozen footprint layout",
+    "Q1 underside solder/pin-1 view",
+    "Q1 function/data and power diagrams",
+    "Q1 exact module-header/contact sheets",
+    "Q1 USB and power-isolation service view",
+    "Q1 assembly sequence",
+    "Q1 enclosure section with module/header heights and antenna keepouts"
+  ],
+  "limitations": [
+    "Static references capture direct Markdown and HTML links only; dynamic generator/template references are represented by the generator and release-family fields.",
+    "Snapshot inventory includes current uncommitted H2 candidate visuals; later generated Q1 outputs require a final rescan.",
+    "This file does not establish hardware function, mechanical fit or that any legacy asset has already been archived."
+  ]
+}

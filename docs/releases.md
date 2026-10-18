@@ -1,5 +1,10 @@
 # Downloadable build package
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
+Use the [current MC1 documentation](README.md), [hardware source](../hardware/module-carrier/README.md), [firmware](../firmware/module-carrier/README.md) and [carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md) for MC1. The release and packaging instructions below describe the original Pi assembly; those archives are not a current MC1 manufacturing or deployment release.
+
 Use the newest engineering prerelease from
 [GitHub Releases](https://github.com/ha-homelab/ha-radio-hub/releases). The original
 `v0.1.0` archive predates the complete RF Ethernet port; use `v0.2.0` or later for

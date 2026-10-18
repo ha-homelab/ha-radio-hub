@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="1100" viewBox="0 0 1220 1100">
+<rect width="100%" height="100%" fill="#0c1423"/>
+<style>text{font-family:Arial,sans-serif}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71e5bc"/></marker></defs>
+<text x="45.00" y="43.00" fill="#e8f0fb" font-size="27" text-anchor="start">MC1 Nano · FRONT / room-facing</text>
+<text x="45.00" y="79.00" fill="#b4c7d9" font-size="18" text-anchor="start">47.5 × 75 mm carrier · H3 retainer + enclosure rails · no sockets</text>
+<text x="45.00" y="109.00" fill="#f0c38b" font-size="15" text-anchor="start">ENGINEERING PROTOTYPE — physical Z clearance remains unmeasured</text>
+<polygon points="80,160 460.0,160 460.0,760 80,760" fill="#16484a" stroke="#93b5b8"/>
+<rect x="80" y="280" width="6.799999999999997" height="316.0" fill="#584373" stroke="#c0a9df"/>
+<rect x="450.4" y="224" width="9.600000000000023" height="528" fill="#584373" stroke="#c0a9df"/>
+<rect x="292.56" y="160" width="156.0" height="14.400000000000006" fill="#704735" stroke="#f4b073"/>
+<rect x="324.56" y="160" width="80.0" height="48" fill="#704735" stroke="#f4b073"/>
+<rect x="84.56" y="160" width="232.0" height="3.1999999999999886" fill="#704735" stroke="#f4b073"/>
+<rect x="124.56" y="160" width="144.0" height="92.0" fill="#704735" stroke="#f4b073"/>
+<rect x="148.0" y="730.4" width="63.84" height="29.600000000000023" fill="#704735" stroke="#f4b073"/>
+<rect x="211.84" y="750.4" width="8.159999999999997" height="9.600000000000023" fill="#704735" stroke="#f4b073"/>
+<rect x="211.84" y="730.4" width="8.159999999999997" height="9.600000000000023" fill="#704735" stroke="#f4b073"/>
+<rect x="211.84" y="740.0" width="8.159999999999997" height="10.399999999999977" fill="#926644" stroke="#f4b073" stroke-dasharray="5 4"/>
+<rect x="252.0" y="554.4" width="184.0" height="200.0" fill="none" stroke="#688b98" stroke-dasharray="5 4"/>
+<text x="344.00" y="654.40" fill="#8eaab5" font-size="11" text-anchor="middle">WIZ850io on reverse</text>
+<circle cx="224" cy="576.24" r="20" fill="none" stroke="#c4d3df" stroke-dasharray="3 3"/><circle cx="224" cy="576.24" r="10.8" fill="#0c1423" stroke="#e8f0fb"/>
+<text x="237.00" y="580.24" fill="#e8f0fb" font-size="9" text-anchor="start">H3</text>
+<rect x="304.48" y="157.04" width="142.24" height="345.44000000000005" fill="#d7e8dd" stroke="#f8faf8"/>
+<rect x="353.36000000000007" y="157.04000000000002" width="40.80000000000001" height="18.95999999999998" fill="#987c4f" stroke="#e6c989"/>
+<text x="375.60" y="312.76" fill="#173b47" font-size="12" text-anchor="middle">U1 · NANO</text>
+<text x="375.60" y="329.76" fill="#173b47" font-size="12" text-anchor="middle">S3 · 16M / 8M</text>
+<text x="375.60" y="346.76" fill="#173b47" font-size="12" text-anchor="middle">ANT ↑  USB ↓</text>
+<circle cx="436.56" cy="472.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="472.0" r="2.4" fill="#12212c"/>
+<text x="427.56" y="475.00" fill="#173b47" font-size="8" text-anchor="end">1</text>
+<circle cx="436.56" cy="451.68" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="451.68" r="2.4" fill="#12212c"/>
+<text x="427.56" y="454.68" fill="#173b47" font-size="8" text-anchor="end">2</text>
+<circle cx="436.56" cy="431.36" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="431.36" r="2.4" fill="#12212c"/>
+<text x="427.56" y="434.36" fill="#173b47" font-size="8" text-anchor="end">3</text>
+<circle cx="436.56" cy="411.03999999999996" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="411.03999999999996" r="2.4" fill="#12212c"/>
+<text x="427.56" y="414.04" fill="#173b47" font-size="8" text-anchor="end">4</text>
+<circle cx="436.56" cy="390.72" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="390.72" r="2.4" fill="#12212c"/>
+<text x="427.56" y="393.72" fill="#173b47" font-size="8" text-anchor="end">5</text>
+<circle cx="436.56" cy="370.4" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="370.4" r="2.4" fill="#12212c"/>
+<text x="427.56" y="373.40" fill="#173b47" font-size="8" text-anchor="end">6</text>
+<circle cx="436.56" cy="350.08000000000004" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="350.08000000000004" r="2.4" fill="#12212c"/>
+<text x="427.56" y="353.08" fill="#173b47" font-size="8" text-anchor="end">7</text>
+<circle cx="436.56" cy="329.76" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="329.76" r="2.4" fill="#12212c"/>
+<text x="427.56" y="332.76" fill="#173b47" font-size="8" text-anchor="end">8</text>
+<circle cx="436.56" cy="309.44" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="309.44" r="2.4" fill="#12212c"/>
+<text x="427.56" y="312.44" fill="#173b47" font-size="8" text-anchor="end">9</text>
+<circle cx="436.56" cy="289.12" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="289.12" r="2.4" fill="#12212c"/>
+<text x="427.56" y="292.12" fill="#173b47" font-size="8" text-anchor="end">10</text>
+<circle cx="436.56" cy="268.8" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="268.8" r="2.4" fill="#12212c"/>
+<text x="427.56" y="271.80" fill="#173b47" font-size="8" text-anchor="end">11</text>
+<circle cx="436.56" cy="248.48000000000002" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="248.48000000000002" r="2.4" fill="#12212c"/>
+<text x="427.56" y="251.48" fill="#173b47" font-size="8" text-anchor="end">12</text>
+<circle cx="436.56" cy="228.16" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="228.16" r="2.4" fill="#12212c"/>
+<text x="427.56" y="231.16" fill="#173b47" font-size="8" text-anchor="end">13</text>
+<circle cx="436.56" cy="207.84" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="207.84" r="2.4" fill="#12212c"/>
+<text x="427.56" y="210.84" fill="#173b47" font-size="8" text-anchor="end">14</text>
+<circle cx="436.56" cy="187.52" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="436.56" cy="187.52" r="2.4" fill="#12212c"/>
+<text x="427.56" y="190.52" fill="#173b47" font-size="8" text-anchor="end">15</text>
+<circle cx="314.64" cy="472.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="472.0" r="2.4" fill="#12212c"/>
+<text x="323.64" y="475.00" fill="#173b47" font-size="8" text-anchor="start">15</text>
+<circle cx="314.64" cy="451.68" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="451.68" r="2.4" fill="#12212c"/>
+<text x="323.64" y="454.68" fill="#173b47" font-size="8" text-anchor="start">14</text>
+<circle cx="314.64" cy="431.36" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="431.36" r="2.4" fill="#12212c"/>
+<text x="323.64" y="434.36" fill="#173b47" font-size="8" text-anchor="start">13</text>
+<circle cx="314.64" cy="411.03999999999996" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="411.03999999999996" r="2.4" fill="#12212c"/>
+<text x="323.64" y="414.04" fill="#173b47" font-size="8" text-anchor="start">12</text>
+<circle cx="314.64" cy="390.72" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="390.72" r="2.4" fill="#12212c"/>
+<text x="323.64" y="393.72" fill="#173b47" font-size="8" text-anchor="start">11</text>
+<circle cx="314.64" cy="370.4" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="370.4" r="2.4" fill="#12212c"/>
+<text x="323.64" y="373.40" fill="#173b47" font-size="8" text-anchor="start">10</text>
+<circle cx="314.64" cy="350.08000000000004" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="350.08000000000004" r="2.4" fill="#12212c"/>
+<text x="323.64" y="353.08" fill="#173b47" font-size="8" text-anchor="start">9</text>
+<circle cx="314.64" cy="329.76" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="329.76" r="2.4" fill="#12212c"/>
+<text x="323.64" y="332.76" fill="#173b47" font-size="8" text-anchor="start">8</text>
+<circle cx="314.64" cy="309.44" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="309.44" r="2.4" fill="#12212c"/>
+<text x="323.64" y="312.44" fill="#173b47" font-size="8" text-anchor="start">7</text>
+<circle cx="314.64" cy="289.12" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="289.12" r="2.4" fill="#12212c"/>
+<text x="323.64" y="292.12" fill="#173b47" font-size="8" text-anchor="start">6</text>
+<circle cx="314.64" cy="268.8" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="268.8" r="2.4" fill="#12212c"/>
+<text x="323.64" y="271.80" fill="#173b47" font-size="8" text-anchor="start">5</text>
+<circle cx="314.64" cy="248.48000000000002" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="248.48000000000002" r="2.4" fill="#12212c"/>
+<text x="323.64" y="251.48" fill="#173b47" font-size="8" text-anchor="start">4</text>
+<circle cx="314.64" cy="228.16" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="228.16" r="2.4" fill="#12212c"/>
+<text x="323.64" y="231.16" fill="#173b47" font-size="8" text-anchor="start">3</text>
+<circle cx="314.64" cy="207.84" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="207.84" r="2.4" fill="#12212c"/>
+<text x="323.64" y="210.84" fill="#173b47" font-size="8" text-anchor="start">2</text>
+<circle cx="314.64" cy="187.52" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="314.64" cy="187.52" r="2.4" fill="#12212c"/>
+<text x="323.64" y="190.52" fill="#173b47" font-size="8" text-anchor="start">1</text>
+<rect x="90.4" y="159.4" width="203.20000000000002" height="386.08000000000004" fill="#d7e8dd" stroke="#f8faf8"/>
+<rect x="139.2" y="116.2" width="105.60000000000002" height="43.2" fill="#987c4f" stroke="#e6c989"/>
+<text x="192.00" y="335.44" fill="#173b47" font-size="12" text-anchor="middle">U2 · H2</text>
+<text x="192.00" y="352.44" fill="#173b47" font-size="12" text-anchor="middle">Thread RCP</text>
+<text x="192.00" y="369.44" fill="#173b47" font-size="12" text-anchor="middle">ANT ↑ USB ↓</text>
+<circle cx="100.56" cy="172.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="172.0" r="2.4" fill="#12212c"/>
+<text x="109.56" y="175.00" fill="#173b47" font-size="8" text-anchor="start">1</text>
+<circle cx="100.56" cy="192.32" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="192.32" r="2.4" fill="#12212c"/>
+<text x="109.56" y="195.32" fill="#173b47" font-size="8" text-anchor="start">2</text>
+<circle cx="100.56" cy="212.64" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="212.64" r="2.4" fill="#12212c"/>
+<text x="109.56" y="215.64" fill="#173b47" font-size="8" text-anchor="start">3</text>
+<circle cx="100.56" cy="232.95999999999998" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="232.95999999999998" r="2.4" fill="#12212c"/>
+<text x="109.56" y="235.96" fill="#173b47" font-size="8" text-anchor="start">4</text>
+<circle cx="100.56" cy="253.28" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="253.28" r="2.4" fill="#12212c"/>
+<text x="109.56" y="256.28" fill="#173b47" font-size="8" text-anchor="start">5</text>
+<circle cx="100.56" cy="273.6" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="273.6" r="2.4" fill="#12212c"/>
+<text x="109.56" y="276.60" fill="#173b47" font-size="8" text-anchor="start">6</text>
+<circle cx="100.56" cy="293.91999999999996" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="293.91999999999996" r="2.4" fill="#12212c"/>
+<text x="109.56" y="296.92" fill="#173b47" font-size="8" text-anchor="start">7</text>
+<circle cx="100.56" cy="314.24" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="314.24" r="2.4" fill="#12212c"/>
+<text x="109.56" y="317.24" fill="#173b47" font-size="8" text-anchor="start">8</text>
+<circle cx="100.56" cy="334.56" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="334.56" r="2.4" fill="#12212c"/>
+<text x="109.56" y="337.56" fill="#173b47" font-size="8" text-anchor="start">9</text>
+<circle cx="100.56" cy="354.88" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="354.88" r="2.4" fill="#12212c"/>
+<text x="109.56" y="357.88" fill="#173b47" font-size="8" text-anchor="start">10</text>
+<circle cx="100.56" cy="375.2" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="375.2" r="2.4" fill="#12212c"/>
+<text x="109.56" y="378.20" fill="#173b47" font-size="8" text-anchor="start">11</text>
+<circle cx="100.56" cy="395.52" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="395.52" r="2.4" fill="#12212c"/>
+<text x="109.56" y="398.52" fill="#173b47" font-size="8" text-anchor="start">12</text>
+<circle cx="100.56" cy="415.84000000000003" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="415.84000000000003" r="2.4" fill="#12212c"/>
+<text x="109.56" y="418.84" fill="#173b47" font-size="8" text-anchor="start">13</text>
+<circle cx="100.56" cy="436.16" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="436.16" r="2.4" fill="#12212c"/>
+<text x="109.56" y="439.16" fill="#173b47" font-size="8" text-anchor="start">14</text>
+<circle cx="100.56" cy="456.48" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="100.56" cy="456.48" r="2.4" fill="#12212c"/>
+<text x="109.56" y="459.48" fill="#173b47" font-size="8" text-anchor="start">15</text>
+<circle cx="283.44" cy="172.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="172.0" r="2.4" fill="#12212c"/>
+<text x="274.44" y="175.00" fill="#173b47" font-size="8" text-anchor="end">1</text>
+<circle cx="283.44" cy="192.32" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="192.32" r="2.4" fill="#12212c"/>
+<text x="274.44" y="195.32" fill="#173b47" font-size="8" text-anchor="end">2</text>
+<circle cx="283.44" cy="212.64" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="212.64" r="2.4" fill="#12212c"/>
+<text x="274.44" y="215.64" fill="#173b47" font-size="8" text-anchor="end">3</text>
+<circle cx="283.44" cy="232.95999999999998" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="232.95999999999998" r="2.4" fill="#12212c"/>
+<text x="274.44" y="235.96" fill="#173b47" font-size="8" text-anchor="end">4</text>
+<circle cx="283.44" cy="253.28" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="253.28" r="2.4" fill="#12212c"/>
+<text x="274.44" y="256.28" fill="#173b47" font-size="8" text-anchor="end">5</text>
+<circle cx="283.44" cy="273.6" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="273.6" r="2.4" fill="#12212c"/>
+<text x="274.44" y="276.60" fill="#173b47" font-size="8" text-anchor="end">6</text>
+<circle cx="283.44" cy="293.91999999999996" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="293.91999999999996" r="2.4" fill="#12212c"/>
+<text x="274.44" y="296.92" fill="#173b47" font-size="8" text-anchor="end">7</text>
+<circle cx="283.44" cy="314.24" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="314.24" r="2.4" fill="#12212c"/>
+<text x="274.44" y="317.24" fill="#173b47" font-size="8" text-anchor="end">8</text>
+<circle cx="283.44" cy="334.56" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="334.56" r="2.4" fill="#12212c"/>
+<text x="274.44" y="337.56" fill="#173b47" font-size="8" text-anchor="end">9</text>
+<circle cx="283.44" cy="354.88" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="354.88" r="2.4" fill="#12212c"/>
+<text x="274.44" y="357.88" fill="#173b47" font-size="8" text-anchor="end">10</text>
+<circle cx="283.44" cy="375.2" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="375.2" r="2.4" fill="#12212c"/>
+<text x="274.44" y="378.20" fill="#173b47" font-size="8" text-anchor="end">11</text>
+<circle cx="283.44" cy="395.52" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="395.52" r="2.4" fill="#12212c"/>
+<text x="274.44" y="398.52" fill="#173b47" font-size="8" text-anchor="end">12</text>
+<circle cx="283.44" cy="415.84000000000003" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="415.84000000000003" r="2.4" fill="#12212c"/>
+<text x="274.44" y="418.84" fill="#173b47" font-size="8" text-anchor="end">13</text>
+<circle cx="283.44" cy="436.16" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="436.16" r="2.4" fill="#12212c"/>
+<text x="274.44" y="439.16" fill="#173b47" font-size="8" text-anchor="end">14</text>
+<circle cx="283.44" cy="456.48" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="283.44" cy="456.48" r="2.4" fill="#12212c"/>
+<text x="274.44" y="459.48" fill="#173b47" font-size="8" text-anchor="end">15</text>
+<rect x="81.84" y="603.0319999999999" width="142.24" height="167.6400000000001" fill="#d7e8dd" stroke="#f8faf8"/>
+<rect x="161.6" y="754.672" width="41.599999999999994" height="16.0" fill="#987c4f" stroke="#e6c989"/>
+<text x="152.96" y="669.85" fill="#173b47" font-size="10" text-anchor="middle">U3 · MG24</text>
+<text x="152.96" y="686.85" fill="#173b47" font-size="10" text-anchor="middle">Zigbee NCP</text>
+<text x="152.96" y="703.85" fill="#173b47" font-size="10" text-anchor="middle">ANT ↓ USB ↑</text>
+<circle cx="92.0" cy="626.4" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="626.4" r="2.4" fill="#12212c"/>
+<text x="101.00" y="629.40" fill="#173b47" font-size="8" text-anchor="start">1</text>
+<circle cx="92.0" cy="646.72" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="646.72" r="2.4" fill="#12212c"/>
+<text x="101.00" y="649.72" fill="#173b47" font-size="8" text-anchor="start">2</text>
+<circle cx="92.0" cy="667.04" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="667.04" r="2.4" fill="#12212c"/>
+<text x="101.00" y="670.04" fill="#173b47" font-size="8" text-anchor="start">3</text>
+<circle cx="92.0" cy="687.36" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="687.36" r="2.4" fill="#12212c"/>
+<text x="101.00" y="690.36" fill="#173b47" font-size="8" text-anchor="start">4</text>
+<circle cx="92.0" cy="707.68" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="707.68" r="2.4" fill="#12212c"/>
+<text x="101.00" y="710.68" fill="#173b47" font-size="8" text-anchor="start">5</text>
+<circle cx="92.0" cy="728.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="728.0" r="2.4" fill="#12212c"/>
+<text x="101.00" y="731.00" fill="#173b47" font-size="8" text-anchor="start">6</text>
+<circle cx="92.0" cy="748.32" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="92.0" cy="748.32" r="2.4" fill="#12212c"/>
+<text x="101.00" y="751.32" fill="#173b47" font-size="8" text-anchor="start">7</text>
+<circle cx="213.92" cy="626.4" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="626.4" r="2.4" fill="#12212c"/>
+<text x="204.92" y="629.40" fill="#173b47" font-size="8" text-anchor="end">14</text>
+<circle cx="213.92" cy="646.72" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="646.72" r="2.4" fill="#12212c"/>
+<text x="204.92" y="649.72" fill="#173b47" font-size="8" text-anchor="end">13</text>
+<circle cx="213.92" cy="667.04" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="667.04" r="2.4" fill="#12212c"/>
+<text x="204.92" y="670.04" fill="#173b47" font-size="8" text-anchor="end">12</text>
+<circle cx="213.92" cy="687.36" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="687.36" r="2.4" fill="#12212c"/>
+<text x="204.92" y="690.36" fill="#173b47" font-size="8" text-anchor="end">11</text>
+<circle cx="213.92" cy="707.68" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="707.68" r="2.4" fill="#12212c"/>
+<text x="204.92" y="710.68" fill="#173b47" font-size="8" text-anchor="end">10</text>
+<circle cx="213.92" cy="728.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="728.0" r="2.4" fill="#12212c"/>
+<text x="204.92" y="731.00" fill="#173b47" font-size="8" text-anchor="end">9</text>
+<circle cx="213.92" cy="748.32" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="213.92" cy="748.32" r="2.4" fill="#12212c"/>
+<text x="204.92" y="751.32" fill="#173b47" font-size="8" text-anchor="end">8</text>
+<text x="322.16" y="560.00" fill="#e8f0fb" font-size="10" text-anchor="middle">J8</text>
+<circle cx="312.0" cy="536.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="312.0" cy="536.0" r="2.4" fill="#12212c"/>
+<text x="320.00" y="539.00" fill="#e3eff4" font-size="8" text-anchor="start">1</text>
+<circle cx="332.32" cy="536.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="332.32" cy="536.0" r="2.4" fill="#12212c"/>
+<text x="340.32" y="539.00" fill="#e3eff4" font-size="8" text-anchor="start">2</text>
+<text x="386.16" y="560.00" fill="#e8f0fb" font-size="10" text-anchor="middle">J9</text>
+<circle cx="376.0" cy="536.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="376.0" cy="536.0" r="2.4" fill="#12212c"/>
+<text x="384.00" y="539.00" fill="#e3eff4" font-size="8" text-anchor="start">1</text>
+<circle cx="396.32" cy="536.0" r="5.3" fill="#d4ad58" stroke="#f1d797"/><circle cx="396.32" cy="536.0" r="2.4" fill="#12212c"/>
+<text x="404.32" y="539.00" fill="#e3eff4" font-size="8" text-anchor="start">2</text>
+<rect x="330.64" y="502.48" width="89.92000000000002" height="16.0" fill="#153d50" stroke="#73b5dc" stroke-dasharray="5 4"/>
+<rect x="90.4" y="545.48" width="203.20000000000002" height="8.0" fill="#153d50" stroke="#73b5dc" stroke-dasharray="5 4"/>
+<rect x="116.96000000000001" y="579.0319999999999" width="71.99999999999997" height="24.0" fill="#153d50" stroke="#73b5dc" stroke-dasharray="5 4"/>
+<text x="565.00" y="170.00" fill="#e8f0fb" font-size="24" text-anchor="start">Assembly and clearance contract</text>
+<text x="565.00" y="209.00" fill="#e8f0fb" font-size="16" text-anchor="start">16 fitted parts / 18 positions</text>
+<text x="565.00" y="232.00" fill="#abc2d3" font-size="13" text-anchor="start">J8/J9 are unpopulated pads, not fitted headers.</text>
+<text x="565.00" y="270.00" fill="#e8f0fb" font-size="16" text-anchor="start">Front: three controller modules</text>
+<text x="565.00" y="293.00" fill="#abc2d3" font-size="13" text-anchor="start">Nano, H2 and XIAO retain factory male pins.</text>
+<text x="565.00" y="331.00" fill="#e8f0fb" font-size="16" text-anchor="start">Back: Ethernet and all harness headers</text>
+<text x="565.00" y="354.00" fill="#abc2d3" font-size="13" text-anchor="start">WIZ850io, J1–J7 and all five axial parts.</text>
+<text x="565.00" y="392.00" fill="#e8f0fb" font-size="16" text-anchor="start">Two-sided drawing convention</text>
+<text x="565.00" y="415.00" fill="#abc2d3" font-size="13" text-anchor="start">Back is mirrored; actual pad identities preserved.</text>
+<text x="565.00" y="453.00" fill="#e8f0fb" font-size="16" text-anchor="start">41 intentional PTH/body projections</text>
+<text x="565.00" y="476.00" fill="#abc2d3" font-size="13" text-anchor="start">33 under H2; 6 under Nano; 2 under XIAO.</text>
+<text x="565.00" y="514.00" fill="#e8f0fb" font-size="16" text-anchor="start">No measured Z approval yet</text>
+<text x="565.00" y="537.00" fill="#abc2d3" font-size="13" text-anchor="start">Gap − underside protrusion − tail/fillet ≥ 1 mm.</text>
+<text x="565.00" y="575.00" fill="#e8f0fb" font-size="16" text-anchor="start">Tail/fillet target ≤ 1 mm, conditional</text>
+<text x="565.00" y="598.00" fill="#abc2d3" font-size="13" text-anchor="start">Do not compromise acceptable solder joints.</text>
+<text x="565.00" y="636.00" fill="#e8f0fb" font-size="16" text-anchor="start">Seat factory pin spacers normally</text>
+<text x="565.00" y="659.00" fill="#abc2d3" font-size="13" text-anchor="start">Measure actual gap; no floating unsupported boards.</text>
+<text x="565.00" y="697.00" fill="#e8f0fb" font-size="16" text-anchor="start">All rear components first</text>
+<text x="565.00" y="720.00" fill="#abc2d3" font-size="13" text-anchor="start">WIZ + headers + axials, then front modules.</text>
+<text x="565.00" y="758.00" fill="#e8f0fb" font-size="16" text-anchor="start">Blue outlines: retained USB sockets</text>
+<text x="565.00" y="781.00" fill="#abc2d3" font-size="13" text-anchor="start">No postassembly USB cable space is reserved.</text>
+<text x="565.00" y="819.00" fill="#e8f0fb" font-size="16" text-anchor="start">Orange: prototype RF provisions</text>
+<text x="565.00" y="842.00" fill="#abc2d3" font-size="13" text-anchor="start">Keep rear parts, wires and ceiling metal clear.</text>
+<text x="565.00" y="880.00" fill="#e8f0fb" font-size="16" text-anchor="start">One H3 retainer + two edge rail bands</text>
+<text x="565.00" y="903.00" fill="#abc2d3" font-size="13" text-anchor="start">Split enclosure supports PCB; jack cradle needed.</text>
+<text x="45.00" y="1040.00" fill="#f0c38b" font-size="14" text-anchor="start">Prototype only: verify actual module gaps, trimmed solder joints, enclosure load support and RF coexistence.</text>
+</svg>

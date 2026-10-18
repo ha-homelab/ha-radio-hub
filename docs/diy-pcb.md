@@ -1,5 +1,8 @@
 # Make the low-voltage DIY carrier with toner transfer
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 This is a separate single-sided carrier for home fabrication, not a simplified print of the factory boards. Its copper artwork, drilling and assembly sheets are generated from its native KiCad board. The design has not been etched, drilled, assembled or powered in hardware; CAD checks and a correct PDF cannot establish toner adhesion, drill accuracy or electrical performance.
 
 The LP-D0 board outline is **190 x 145 mm**. This is the PCB size, not an enclosure size. It does not fit the existing 190 x 145 mm outer-size concept enclosure; the adapters, headers, wire loops and external modules also need a new placement and clearance check.

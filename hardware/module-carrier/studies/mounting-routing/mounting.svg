@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060" role="img" aria-label="Historical mounting ear and four-hole rectangular carrier support geometry">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#f6c765"/></marker></defs>
+<style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:28px;font-weight:bold}.panel{font-size:23px;font-weight:bold}.subtitle{font-size:16px;fill:#b5c9d9}.label{font-size:14px}.small{font-size:12px}.dim{font-size:15px;fill:#8ddacb}.warn{font-size:17px;fill:#f6c765}.strong{font-weight:bold}</style>
+<rect width="1400" height="1060" fill="#0d1926"/>
+<text x="36" y="44" class="title">Historical study: remove the ear, retain four holes.</text>
+<text x="36" y="76" class="subtitle">Equal scale · front view · dashed bodies are front modules; blue WIZ is projected from the rear · dimensions in mm</text>
+<path d="M700 110V792" stroke="#385064"/>
+
+<text x="34" y="118" class="panel">Historical: local mounting ear</text>
+<text x="34.00" y="148.00" class="subtitle" text-anchor="start">57 × 75 bounding box · 3987 mm² laminate</text>
+<polygon points="74.00,191.00 369.80,191.00 369.80,469.40 404.60,469.40 404.60,626.00 74.00,626.00" fill="#173b3b" stroke="#80d3be" stroke-width="2"/>
+<polygon points="262.44,442.20 262.44,185.95 371.37,185.95 371.37,442.20" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="316.90" y="314.08" class="label" text-anchor="middle">U1 Nano</text>
+<polygon points="75.33,156.34 228.45,156.34 228.45,473.37 75.33,473.37" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="151.89" y="314.86" class="label" text-anchor="middle">U2 H2</text>
+<polygon points="70.90,508.43 198.24,508.43 198.24,617.36 70.90,617.36" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="134.57" y="562.90" class="label" text-anchor="middle">U3 XIAO</text>
+<polygon points="233.50,476.94 366.90,476.94 366.90,621.94 233.50,621.94" fill="#1d426c" fill-opacity="0.6" stroke="#73b5ff" stroke-width="2" stroke-dasharray="6 3"/>
+<text x="300.20" y="549.44" class="label" text-anchor="middle">WIZ / rear</text>
+<line x1="253.51" y1="637.60" x2="346.89" y2="637.60" stroke="#73b5ff" stroke-width="5"/>
+<circle cx="245.10" cy="237.40" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="245.10" cy="237.40" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="245.10" y="219.40" class="small strong" text-anchor="middle">H1</text>
+<circle cx="245.10" cy="446.20" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="245.10" cy="446.20" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="245.10" y="428.20" class="small strong" text-anchor="middle">H2</text>
+<circle cx="214.36" cy="608.60" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="214.36" cy="608.60" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="214.36" y="590.60" class="small strong" text-anchor="middle">H3</text>
+<circle cx="387.20" cy="608.60" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="387.20" cy="608.60" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="387.20" y="590.60" class="small strong" text-anchor="middle">H4</text>
+<line x1="214.36" y1="608.60" x2="300.20" y2="637.60" stroke="#f6c765" stroke-opacity="0.7" stroke-dasharray="3 4"/>
+<line x1="387.20" y1="608.60" x2="300.20" y2="637.60" stroke="#f6c765" stroke-opacity="0.7" stroke-dasharray="3 4"/>
+<line x1="214.36" y1="608.60" x2="387.20" y2="608.60" stroke="#8ddacb" stroke-dasharray="6 3"/>
+<line x1="300.20" y1="718.80" x2="300.20" y2="646.30" stroke="#f6c765" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="300.20" y="740.80" class="small" text-anchor="middle">Example plug-in direction</text>
+<text x="444.00" y="218.00" class="label strong" text-anchor="start">Mounting coordinates</text>
+<text x="444.00" y="246.00" class="label" text-anchor="start">H1  (29.5, 8)</text>
+<text x="444.00" y="271.00" class="label" text-anchor="start">H2  (29.5, 44)</text>
+<text x="444.00" y="296.00" class="label" text-anchor="start">H3  (24.2, 72)</text>
+<text x="444.00" y="321.00" class="label" text-anchor="start">H4  (54, 72)</text>
+<text x="444.00" y="367.00" class="label strong" text-anchor="start">Mouth (39, 77)</text>
+<text x="444.00" y="404.00" class="dim" text-anchor="start">H3: distance 15.62</text>
+<text x="444.00" y="429.00" class="small" text-anchor="start">axial setback 5.00</text>
+<text x="444.00" y="472.00" class="dim" text-anchor="start">H4: distance 15.81</text>
+<text x="444.00" y="497.00" class="small" text-anchor="start">axial setback 5.00</text>
+<text x="444.00" y="567.00" class="subtitle" text-anchor="start">Both lower supports</text>
+<text x="444.00" y="592.00" class="subtitle" text-anchor="start">lie on one 5 mm row.</text>
+<text x="34.00" y="753.00" class="small" text-anchor="start">Native PCB SHA-256 7f8296edb0317269f6b0…</text>
+<text x="34.00" y="778.00" class="subtitle" text-anchor="start">Historical geometry, not current assembly.</text>
+<text x="734" y="118" class="panel">Historical: four-hole rectangle</text>
+<text x="734.00" y="148.00" class="subtitle" text-anchor="start">51 × 75 bounding box · 3825 mm² laminate</text>
+<polygon points="774.00,191.00 1069.80,191.00 1069.80,626.00 774.00,626.00" fill="#173b3b" stroke="#80d3be" stroke-width="2"/>
+<polygon points="962.44,442.20 962.44,185.95 1071.37,185.95 1071.37,442.20" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="1016.90" y="314.08" class="label" text-anchor="middle">U1 Nano</text>
+<polygon points="775.33,156.34 928.45,156.34 928.45,473.37 775.33,473.37" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="851.89" y="314.86" class="label" text-anchor="middle">U2 H2</text>
+<polygon points="772.43,509.30 881.36,509.30 881.36,636.64 772.43,636.64" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
+<text x="826.90" y="572.97" class="label" text-anchor="middle">U3 XIAO</text>
+<polygon points="898.70,476.94 1032.10,476.94 1032.10,621.94 898.70,621.94" fill="#1d426c" fill-opacity="0.6" stroke="#73b5ff" stroke-width="2" stroke-dasharray="6 3"/>
+<text x="965.40" y="549.44" class="label" text-anchor="middle">WIZ / rear</text>
+<line x1="918.71" y1="637.60" x2="1012.09" y2="637.60" stroke="#73b5ff" stroke-width="5"/>
+<circle cx="945.10" cy="237.40" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="945.10" cy="237.40" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="945.10" y="219.40" class="small strong" text-anchor="middle">H1</text>
+<circle cx="945.10" cy="446.20" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="945.10" cy="446.20" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="945.10" y="428.20" class="small strong" text-anchor="middle">H2</text>
+<circle cx="878.40" cy="492.77" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="878.40" cy="492.77" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="878.40" y="474.77" class="small strong" text-anchor="middle">H3</text>
+<circle cx="1052.40" cy="608.60" r="14.5" fill="#112532" stroke="#f6c765" stroke-width="1.7"/>
+<circle cx="1052.40" cy="608.60" r="7.83" fill="#0d1926" stroke="#f6c765"/>
+<text x="1052.40" y="590.60" class="small strong" text-anchor="middle">H4</text>
+<line x1="878.40" y1="492.77" x2="965.40" y2="637.60" stroke="#f6c765" stroke-opacity="0.7" stroke-dasharray="3 4"/>
+<line x1="1052.40" y1="608.60" x2="965.40" y2="637.60" stroke="#f6c765" stroke-opacity="0.7" stroke-dasharray="3 4"/>
+<line x1="965.40" y1="718.80" x2="965.40" y2="646.30" stroke="#f6c765" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="965.40" y="740.80" class="small" text-anchor="middle">Example plug-in direction</text>
+<text x="1144.00" y="218.00" class="label strong" text-anchor="start">Mounting coordinates</text>
+<text x="1144.00" y="246.00" class="label" text-anchor="start">H1  (29.5, 8)</text>
+<text x="1144.00" y="271.00" class="label" text-anchor="start">H2  (29.5, 44)</text>
+<text x="1144.00" y="296.00" class="label" text-anchor="start">H3  (18, 52.03)</text>
+<text x="1144.00" y="321.00" class="label" text-anchor="start">H4  (48, 72)</text>
+<text x="1144.00" y="367.00" class="label strong" text-anchor="start">Mouth (33, 77)</text>
+<text x="1144.00" y="404.00" class="dim" text-anchor="start">H3: distance 29.13</text>
+<text x="1144.00" y="429.00" class="small" text-anchor="start">axial setback 24.97</text>
+<text x="1144.00" y="472.00" class="dim" text-anchor="start">H4: distance 15.81</text>
+<text x="1144.00" y="497.00" class="small" text-anchor="start">axial setback 5.00</text>
+<text x="1144.00" y="567.00" class="subtitle" text-anchor="start">H3 occupies the gap</text>
+<text x="1144.00" y="592.00" class="subtitle" text-anchor="start">between H2 and XIAO.</text>
+<text x="1144.00" y="632.00" class="warn" text-anchor="start">The support geometry</text>
+<text x="1144.00" y="657.00" class="warn" text-anchor="start">is now staggered.</text>
+<text x="734.00" y="753.00" class="small" text-anchor="start">Native PCB SHA-256 b33c3ff2b299e826cb11…</text>
+<text x="734.00" y="778.00" class="subtitle" text-anchor="start">All 13 rear parts first → then 3 front modules.</text>
+<text x="36" y="826" class="dim">Bounding rectangle -10.53% · actual laminate -4.06% · same two copper layers</text>
+<text x="36" y="861" class="warn">A smaller outline does not establish equal stiffness or a connector load rating.</text>
+<text x="36" y="897" class="subtitle">Dashed mouth-to-support lines are distances, not measured load paths. The former symmetric support row is gone.</text>
+<text x="36" y="927" class="subtitle">Both historical versions use four supports. The current single-anchor design is documented in the rail-mount study.</text>
+<text x="36" y="957" class="subtitle">Ø2.7 mounting holes · Ø5 maximum nylon support/head · actual vertical clearance and enclosure fit still require measurement.</text>
+<text x="36" y="994" class="small">Earlier 51 × 75 mm three-support layout remains in baseline/. Ear-layout source is preserved in ear-baseline/.</text>
+<text x="36" y="1022" class="small">These are reproducible plan-view drawings from native CAD, not photographs or hardware test results.</text>
+</svg>

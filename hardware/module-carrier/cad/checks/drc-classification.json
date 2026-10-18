@@ -1,0 +1,383 @@
+{
+  "result": "pass_with_conditional_mechanical_findings",
+  "native_drc_violations": 41,
+  "classified_mechanical_overlaps": 41,
+  "unclassified_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "physical_z_qualified": false,
+  "acceptance": "Only electrical/routing and exact intended 2D projection classification; measured Z clearance and solderability remain pending",
+  "errors": [],
+  "classified": [
+    {
+      "pad_ref": "D1",
+      "pad_number": "1",
+      "front_body_ref": "U1",
+      "position_mm": [
+        40.07,
+        16.0
+      ]
+    },
+    {
+      "pad_ref": "D1",
+      "pad_number": "2",
+      "front_body_ref": "U1",
+      "position_mm": [
+        37.4638,
+        23.1605
+      ]
+    },
+    {
+      "pad_ref": "D3",
+      "pad_number": "1",
+      "front_body_ref": "U3",
+      "position_mm": [
+        12.5,
+        65.0
+      ]
+    },
+    {
+      "pad_ref": "D3",
+      "pad_number": "2",
+      "front_body_ref": "U3",
+      "position_mm": [
+        4.88,
+        65.0
+      ]
+    },
+    {
+      "pad_ref": "J1",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        41.0
+      ]
+    },
+    {
+      "pad_ref": "J1",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        43.54
+      ]
+    },
+    {
+      "pad_ref": "J2",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        29.0
+      ]
+    },
+    {
+      "pad_ref": "J2",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        31.54
+      ]
+    },
+    {
+      "pad_ref": "J2",
+      "pad_number": "3",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        34.08
+      ]
+    },
+    {
+      "pad_ref": "J2",
+      "pad_number": "4",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        36.62
+      ]
+    },
+    {
+      "pad_ref": "J3",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        17.0
+      ]
+    },
+    {
+      "pad_ref": "J3",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        19.54
+      ]
+    },
+    {
+      "pad_ref": "J3",
+      "pad_number": "3",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        22.08
+      ]
+    },
+    {
+      "pad_ref": "J3",
+      "pad_number": "4",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        24.62
+      ]
+    },
+    {
+      "pad_ref": "J3",
+      "pad_number": "5",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        27.16
+      ]
+    },
+    {
+      "pad_ref": "J3",
+      "pad_number": "6",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        29.7
+      ]
+    },
+    {
+      "pad_ref": "J4",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        34.0
+      ]
+    },
+    {
+      "pad_ref": "J4",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        36.54
+      ]
+    },
+    {
+      "pad_ref": "J4",
+      "pad_number": "3",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        39.08
+      ]
+    },
+    {
+      "pad_ref": "J4",
+      "pad_number": "4",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        41.62
+      ]
+    },
+    {
+      "pad_ref": "J4",
+      "pad_number": "5",
+      "front_body_ref": "U2",
+      "position_mm": [
+        14.07,
+        44.16
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        17.0
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        19.54
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "3",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        22.08
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "4",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        24.62
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "5",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        27.16
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "6",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        29.7
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "7",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        32.24
+      ]
+    },
+    {
+      "pad_ref": "J5",
+      "pad_number": "8",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        34.78
+      ]
+    },
+    {
+      "pad_ref": "J6",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        39.0
+      ]
+    },
+    {
+      "pad_ref": "J6",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        41.54
+      ]
+    },
+    {
+      "pad_ref": "J6",
+      "pad_number": "3",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        44.08
+      ]
+    },
+    {
+      "pad_ref": "J6",
+      "pad_number": "4",
+      "front_body_ref": "U2",
+      "position_mm": [
+        7.57,
+        46.62
+      ]
+    },
+    {
+      "pad_ref": "J7",
+      "pad_number": "1",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        17.0
+      ]
+    },
+    {
+      "pad_ref": "J7",
+      "pad_number": "2",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        19.54
+      ]
+    },
+    {
+      "pad_ref": "J7",
+      "pad_number": "3",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        22.08
+      ]
+    },
+    {
+      "pad_ref": "J7",
+      "pad_number": "4",
+      "front_body_ref": "U2",
+      "position_mm": [
+        20.57,
+        24.62
+      ]
+    },
+    {
+      "pad_ref": "R1",
+      "pad_number": "1",
+      "front_body_ref": "U1",
+      "position_mm": [
+        33.57,
+        30.0
+      ]
+    },
+    {
+      "pad_ref": "R1",
+      "pad_number": "2",
+      "front_body_ref": "U1",
+      "position_mm": [
+        41.0742,
+        28.6768
+      ]
+    },
+    {
+      "pad_ref": "R2",
+      "pad_number": "1",
+      "front_body_ref": "U1",
+      "position_mm": [
+        33.07,
+        23.5
+      ]
+    },
+    {
+      "pad_ref": "R2",
+      "pad_number": "2",
+      "front_body_ref": "U1",
+      "position_mm": [
+        33.07,
+        15.88
+      ]
+    }
+  ],
+  "unclassified": []
+}
