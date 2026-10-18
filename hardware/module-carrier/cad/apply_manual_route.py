@@ -10,7 +10,8 @@ R=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser();ap.add_argument('--routes',type=Path,default=R/'manual-route.json');args=ap.parse_args()
 b=p.LoadBoard(str(R/'mc1.kicad_pcb'));data=json.loads(args.routes.read_text());count=0
 for route in data['routes']:
- net=next(n for n in b.GetNetInfo().NetsByNetcode().values() if n.GetNetname()==route['net'])
+ net=b.FindNet(route['net'])
+ if net is None or net.GetNetname()!=route['net']:raise SystemExit('Missing native route net '+route['net'])
  for endpoints in route.get('remove_segments',[]):
   found=[]
   for track in b.GetTracks():
@@ -18,10 +19,10 @@ for route in data['routes']:
    actual={tuple(round(p.ToMM(v),4) for v in (pt.x,pt.y)) for pt in [track.GetStart(),track.GetEnd()]}
    if actual=={tuple(pt) for pt in endpoints}:found.append(track)
   if len(found)!=1:raise SystemExit('Exact segment replacement must match one native track')
-  b.Remove(found[0])
+  b.Delete(found[0])
  if route.get('replace_existing'):
   for t in list(b.GetTracks()):
-   if t.GetNetCode()==net.GetNetCode():b.Remove(t)
+   if t.GetNetCode()==net.GetNetCode():b.Delete(t)
  elif any(t.GetNetCode()==net.GetNetCode() and not isinstance(t,p.PCB_VIA) and {tuple(round(p.ToMM(v),4) for v in (t.GetStart().x,t.GetStart().y)),tuple(round(p.ToMM(v),4) for v in (t.GetEnd().x,t.GetEnd().y))}=={tuple(route['points'][0][:2]),tuple(route['points'][1][:2])} for t in b.GetTracks()):raise SystemExit('Manual route already applied; refusing duplicate')
  a=route['points'];a[0][:2]=route['start'];a[-1][:2]=route['end']
  for v,w in zip(a,a[1:]):

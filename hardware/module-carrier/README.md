@@ -5,10 +5,10 @@ S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into
 plated holes, with controllers on the room-facing front and Ethernet/male harness
 headers on the ceiling-facing back. Female module sockets and hand-soldered bare RF modules are excluded.
 
-Current PCB envelope: **51 mm horizontal × 75 mm vertical, two copper layers**.
-The rectangular board retains four supports without the former ear; WIZ moves
-6 mm toward the center and XIAO rotates to make room.
-Actual area is 21.5% below the historical 65 × 75 mm carrier,
+Current PCB envelope: **47.5 mm horizontal × 75 mm vertical, two copper layers**.
+H3 is the sole PCB retention hole. Split enclosure rails support the long edges;
+a separate jack stop and cable restraint protect the WIZ header joints.
+Actual area is 6.9% below the preceding four-hole board and 26.9% below the historical 65 × 75 mm carrier,
 with the same seven function groups. [Equal-scale comparison](layout-comparison.svg).
 The Nano pin map, shared Ethernet/CC1101 SPI and matching active firmware replace
 the old full-size S3 assignments. The RJ45 opening remains outward-facing on the ceiling side.
@@ -19,7 +19,8 @@ The five axial parts also mount on the back. Solder the entire back first,
 including WIZ, inspect its joints, then fit and solder front U1–U3. Use both assembly drawings and the
 [clearance and soldering study](studies/two-sided/assembly-review.md).
 
-Use the [visual guide](index.html), [assembly instructions](../../docs/module-carrier.md),
+Use the [single-anchor rail study](../../mechanical/module-carrier/rail-mount/README.md),
+[visual guide](index.html), [assembly instructions](../../docs/module-carrier.md),
 [CAD source](cad/), [gallery](images/README.md), and
 [matching firmware](../../firmware/module-carrier/README.md) together.
 

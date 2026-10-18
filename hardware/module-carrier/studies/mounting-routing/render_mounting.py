@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare the immutable ear layout with the current native carrier geometry."""
+"""Historical comparison: immutable ear layout versus four-hole rectangular carrier."""
 from pathlib import Path
 import argparse
 import hashlib
@@ -43,11 +43,11 @@ def snapshot(path):
 def render(board):
     previous = snapshot(HERE / 'ear-baseline/mc1.kicad_pcb')
     current = snapshot(board)
-    out = ['''<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060" role="img" aria-label="Historical mounting ear and current rectangular carrier support geometry">
+    out = ['''<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060" role="img" aria-label="Historical mounting ear and four-hole rectangular carrier support geometry">
 <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#f6c765"/></marker></defs>
 <style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:28px;font-weight:bold}.panel{font-size:23px;font-weight:bold}.subtitle{font-size:16px;fill:#b5c9d9}.label{font-size:14px}.small{font-size:12px}.dim{font-size:15px;fill:#8ddacb}.warn{font-size:17px;fill:#f6c765}.strong{font-weight:bold}</style>
 <rect width="1400" height="1060" fill="#0d1926"/>
-<text x="36" y="44" class="title">Remove the mounting ear. Preserve a buildable assembly order.</text>
+<text x="36" y="44" class="title">Historical study: remove the ear, retain four holes.</text>
 <text x="36" y="76" class="subtitle">Equal scale · front view · dashed bodies are front modules; blue WIZ is projected from the rear · dimensions in mm</text>
 <path d="M700 110V792" stroke="#385064"/>
 ''']
@@ -55,7 +55,7 @@ def render(board):
     for number, data in enumerate((previous, current)):
         panel_x = 34 + number*700
         ox = panel_x+40
-        title = 'Historical: local mounting ear' if number == 0 else 'Current: no mounting ear'
+        title = 'Historical: local mounting ear' if number == 0 else 'Historical: four-hole rectangle'
         out.append(f'<text x="{panel_x}" y="118" class="panel">{title}</text>')
         def point(p): return (ox+p[0]*scale, oy+p[1]*scale)
         def text(x,y,value,css='label',anchor='start'):
@@ -122,7 +122,7 @@ def render(board):
     out += [f'<text x="36" y="826" class="dim">Bounding rectangle {bbox_change:+.2f}% · actual laminate {area_change:+.2f}% · same two copper layers</text>',
 '''<text x="36" y="861" class="warn">A smaller outline does not establish equal stiffness or a connector load rating.</text>
 <text x="36" y="897" class="subtitle">Dashed mouth-to-support lines are distances, not measured load paths. The former symmetric support row is gone.</text>
-<text x="36" y="927" class="subtitle">Use all four supports. An enclosure cradle / stop and cable strain relief must separately protect the WIZ header joints.</text>
+<text x="36" y="927" class="subtitle">Both historical versions use four supports. The current single-anchor design is documented in the rail-mount study.</text>
 <text x="36" y="957" class="subtitle">Ø2.7 mounting holes · Ø5 maximum nylon support/head · actual vertical clearance and enclosure fit still require measurement.</text>
 <text x="36" y="994" class="small">Earlier 51 × 75 mm three-support layout remains in baseline/. Ear-layout source is preserved in ear-baseline/.</text>
 <text x="36" y="1022" class="small">These are reproducible plan-view drawings from native CAD, not photographs or hardware test results.</text>
@@ -132,7 +132,7 @@ def render(board):
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--board',type=Path,default=CARRIER/'cad/mc1.kicad_pcb')
+    parser.add_argument('--board',type=Path,default=CARRIER.parents[1]/'mechanical/module-carrier/rail-mount/baseline/mc1.kicad_pcb')
     parser.add_argument('--output',type=Path,default=HERE/'mounting.svg')
     parser.add_argument('--check',action='store_true')
     args=parser.parse_args()

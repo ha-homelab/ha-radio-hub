@@ -1,280 +1,7 @@
 {
-  "baseline_commit": "af287e4",
-  "baseline_source": "../studies/mounting-routing/ear-baseline/mc1.kicad_pcb",
+  "baseline_commit": "c3c8107",
+  "baseline_source": "../../../mechanical/module-carrier/rail-mount/baseline/mc1.kicad_pcb",
   "baseline": {
-    "board_sha256": "7f8296edb0317269f6b094847edeb91a2886d2e1fc220150be1a1db43755d6ea",
-    "measurement": "Native routed copper centreline lengths; vias counted separately; filled zones and module internal traces excluded",
-    "total_track_length_mm": 1748.9646,
-    "total_vias": 19,
-    "total_segments": 350,
-    "per_net": {
-      "/+3V3": {
-        "track_length_mm": 144.4114,
-        "via_count": 1,
-        "segment_count": 29,
-        "by_layer_mm": {
-          "F.Cu": 86.9078,
-          "B.Cu": 57.5037
-        }
-      },
-      "/+5V": {
-        "track_length_mm": 103.4429,
-        "via_count": 0,
-        "segment_count": 24,
-        "by_layer_mm": {
-          "F.Cu": 28.0329,
-          "B.Cu": 75.41
-        }
-      },
-      "/+5V_H2": {
-        "track_length_mm": 17.8231,
-        "via_count": 0,
-        "segment_count": 3,
-        "by_layer_mm": {
-          "F.Cu": 17.8231
-        }
-      },
-      "/+5V_S3": {
-        "track_length_mm": 14.8316,
-        "via_count": 0,
-        "segment_count": 4,
-        "by_layer_mm": {
-          "F.Cu": 14.8316
-        }
-      },
-      "/+5V_ZB": {
-        "track_length_mm": 5.1542,
-        "via_count": 0,
-        "segment_count": 2,
-        "by_layer_mm": {
-          "F.Cu": 5.1542
-        }
-      },
-      "/ETH_CS": {
-        "track_length_mm": 59.2616,
-        "via_count": 2,
-        "segment_count": 5,
-        "by_layer_mm": {
-          "F.Cu": 48.0562,
-          "B.Cu": 11.2054
-        }
-      },
-      "/ETH_INT": {
-        "track_length_mm": 31.145,
-        "via_count": 0,
-        "segment_count": 3,
-        "by_layer_mm": {
-          "F.Cu": 31.145
-        }
-      },
-      "/ETH_RESET": {
-        "track_length_mm": 40.1518,
-        "via_count": 0,
-        "segment_count": 3,
-        "by_layer_mm": {
-          "F.Cu": 40.1518
-        }
-      },
-      "/GND": {
-        "track_length_mm": 209.18,
-        "via_count": 2,
-        "segment_count": 59,
-        "by_layer_mm": {
-          "F.Cu": 64.4965,
-          "B.Cu": 144.6835
-        }
-      },
-      "/I2C_SCL": {
-        "track_length_mm": 60.102,
-        "via_count": 1,
-        "segment_count": 15,
-        "by_layer_mm": {
-          "F.Cu": 12.0719,
-          "B.Cu": 48.0301
-        }
-      },
-      "/I2C_SDA": {
-        "track_length_mm": 58.7709,
-        "via_count": 1,
-        "segment_count": 8,
-        "by_layer_mm": {
-          "F.Cu": 21.3612,
-          "B.Cu": 37.4097
-        }
-      },
-      "/RADAR_RX": {
-        "track_length_mm": 41.5433,
-        "via_count": 1,
-        "segment_count": 9,
-        "by_layer_mm": {
-          "F.Cu": 10.4725,
-          "B.Cu": 31.0707
-        }
-      },
-      "/RADAR_TX": {
-        "track_length_mm": 39.0331,
-        "via_count": 1,
-        "segment_count": 13,
-        "by_layer_mm": {
-          "F.Cu": 5.8253,
-          "B.Cu": 33.2078
-        }
-      },
-      "/RF_CS": {
-        "track_length_mm": 37.9174,
-        "via_count": 0,
-        "segment_count": 12,
-        "by_layer_mm": {
-          "B.Cu": 37.9174
-        }
-      },
-      "/RF_GDO0": {
-        "track_length_mm": 62.4593,
-        "via_count": 0,
-        "segment_count": 17,
-        "by_layer_mm": {
-          "B.Cu": 62.4593
-        }
-      },
-      "/RF_GDO2": {
-        "track_length_mm": 38.6312,
-        "via_count": 1,
-        "segment_count": 8,
-        "by_layer_mm": {
-          "F.Cu": 8.8587,
-          "B.Cu": 29.7725
-        }
-      },
-      "/S3_BOOT_SERVICE": {
-        "track_length_mm": 27.5155,
-        "via_count": 0,
-        "segment_count": 4,
-        "by_layer_mm": {
-          "B.Cu": 27.5155
-        }
-      },
-      "/SPI_MISO": {
-        "track_length_mm": 102.9214,
-        "via_count": 2,
-        "segment_count": 13,
-        "by_layer_mm": {
-          "F.Cu": 46.3002,
-          "B.Cu": 56.6211
-        }
-      },
-      "/SPI_MOSI": {
-        "track_length_mm": 123.7659,
-        "via_count": 0,
-        "segment_count": 17,
-        "by_layer_mm": {
-          "F.Cu": 123.7659
-        }
-      },
-      "/SPI_SCK": {
-        "track_length_mm": 113.1223,
-        "via_count": 1,
-        "segment_count": 15,
-        "by_layer_mm": {
-          "F.Cu": 100.3284,
-          "B.Cu": 12.7939
-        }
-      },
-      "/THREAD_BOOT": {
-        "track_length_mm": 45.884,
-        "via_count": 1,
-        "segment_count": 6,
-        "by_layer_mm": {
-          "F.Cu": 16.9312,
-          "B.Cu": 28.9528
-        }
-      },
-      "/THREAD_EN": {
-        "track_length_mm": 63.3694,
-        "via_count": 2,
-        "segment_count": 13,
-        "by_layer_mm": {
-          "F.Cu": 23.1004,
-          "B.Cu": 40.2691
-        }
-      },
-      "/THREAD_RX": {
-        "track_length_mm": 10.7006,
-        "via_count": 0,
-        "segment_count": 2,
-        "by_layer_mm": {
-          "B.Cu": 10.7006
-        }
-      },
-      "/THREAD_TX": {
-        "track_length_mm": 10.4313,
-        "via_count": 1,
-        "segment_count": 2,
-        "by_layer_mm": {
-          "F.Cu": 7.3121,
-          "B.Cu": 3.1192
-        }
-      },
-      "/ZB_BOOT_SERVICE": {
-        "track_length_mm": 45.7691,
-        "via_count": 0,
-        "segment_count": 13,
-        "by_layer_mm": {
-          "F.Cu": 45.7691
-        }
-      },
-      "/ZB_CTS": {
-        "track_length_mm": 59.8028,
-        "via_count": 1,
-        "segment_count": 14,
-        "by_layer_mm": {
-          "F.Cu": 50.5055,
-          "B.Cu": 9.2973
-        }
-      },
-      "/ZB_RTS": {
-        "track_length_mm": 40.8072,
-        "via_count": 0,
-        "segment_count": 10,
-        "by_layer_mm": {
-          "B.Cu": 40.8072
-        }
-      },
-      "/ZB_RX": {
-        "track_length_mm": 66.858,
-        "via_count": 1,
-        "segment_count": 13,
-        "by_layer_mm": {
-          "F.Cu": 46.8745,
-          "B.Cu": 19.9835
-        }
-      },
-      "/ZB_TX": {
-        "track_length_mm": 43.2597,
-        "via_count": 0,
-        "segment_count": 8,
-        "by_layer_mm": {
-          "B.Cu": 43.2597
-        }
-      },
-      "/ZWAVE_RX": {
-        "track_length_mm": 15.4493,
-        "via_count": 0,
-        "segment_count": 3,
-        "by_layer_mm": {
-          "F.Cu": 15.4493
-        }
-      },
-      "/ZWAVE_TX": {
-        "track_length_mm": 15.4493,
-        "via_count": 0,
-        "segment_count": 3,
-        "by_layer_mm": {
-          "F.Cu": 15.4493
-        }
-      }
-    }
-  },
-  "current": {
     "board_sha256": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
     "measurement": "Native routed copper centreline lengths; vias counted separately; filled zones and module internal traces excluded",
     "total_track_length_mm": 1736.7132,
@@ -546,183 +273,446 @@
       }
     }
   },
-  "delta": {
-    "track_length_mm": -12.2514,
-    "track_reduction_percent": 0.7005,
-    "via_count": -1,
+  "current": {
+    "board_sha256": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+    "measurement": "Native routed copper centreline lengths; vias counted separately; filled zones and module internal traces excluded",
+    "total_track_length_mm": 1612.1049,
+    "total_vias": 24,
+    "total_segments": 383,
     "per_net": {
       "/+3V3": {
-        "track_length_mm": -28.974,
-        "via_count": 0
+        "track_length_mm": 101.0815,
+        "via_count": 0,
+        "segment_count": 26,
+        "by_layer_mm": {
+          "F.Cu": 30.7931,
+          "B.Cu": 70.2884
+        }
       },
       "/+5V": {
-        "track_length_mm": 1.597,
-        "via_count": 1
+        "track_length_mm": 93.6726,
+        "via_count": 1,
+        "segment_count": 22,
+        "by_layer_mm": {
+          "F.Cu": 67.6209,
+          "B.Cu": 26.0517
+        }
       },
       "/+5V_H2": {
-        "track_length_mm": -0.7,
+        "track_length_mm": 17.3682,
+        "via_count": 0,
+        "segment_count": 3,
+        "by_layer_mm": {
+          "F.Cu": 17.3682
+        }
+      },
+      "/+5V_S3": {
+        "track_length_mm": 14.424,
+        "via_count": 0,
+        "segment_count": 2,
+        "by_layer_mm": {
+          "F.Cu": 14.424
+        }
+      },
+      "/+5V_ZB": {
+        "track_length_mm": 8.4563,
+        "via_count": 0,
+        "segment_count": 2,
+        "by_layer_mm": {
+          "B.Cu": 8.4563
+        }
+      },
+      "/ETH_CS": {
+        "track_length_mm": 56.4515,
+        "via_count": 0,
+        "segment_count": 6,
+        "by_layer_mm": {
+          "F.Cu": 56.4515
+        }
+      },
+      "/ETH_INT": {
+        "track_length_mm": 33.5516,
+        "via_count": 0,
+        "segment_count": 9,
+        "by_layer_mm": {
+          "F.Cu": 33.5516
+        }
+      },
+      "/ETH_RESET": {
+        "track_length_mm": 41.1577,
+        "via_count": 1,
+        "segment_count": 6,
+        "by_layer_mm": {
+          "F.Cu": 25.0643,
+          "B.Cu": 16.0934
+        }
+      },
+      "/GND": {
+        "track_length_mm": 217.3964,
+        "via_count": 0,
+        "segment_count": 58,
+        "by_layer_mm": {
+          "F.Cu": 63.2801,
+          "B.Cu": 154.1164
+        }
+      },
+      "/I2C_SCL": {
+        "track_length_mm": 34.0125,
+        "via_count": 0,
+        "segment_count": 8,
+        "by_layer_mm": {
+          "B.Cu": 34.0125
+        }
+      },
+      "/I2C_SDA": {
+        "track_length_mm": 53.4052,
+        "via_count": 2,
+        "segment_count": 28,
+        "by_layer_mm": {
+          "F.Cu": 28.0701,
+          "B.Cu": 25.3351
+        }
+      },
+      "/RADAR_RX": {
+        "track_length_mm": 49.4801,
+        "via_count": 3,
+        "segment_count": 10,
+        "by_layer_mm": {
+          "F.Cu": 20.8291,
+          "B.Cu": 28.6511
+        }
+      },
+      "/RADAR_TX": {
+        "track_length_mm": 29.1918,
+        "via_count": 1,
+        "segment_count": 10,
+        "by_layer_mm": {
+          "F.Cu": 22.55,
+          "B.Cu": 6.6418
+        }
+      },
+      "/RF_CS": {
+        "track_length_mm": 32.8854,
+        "via_count": 0,
+        "segment_count": 9,
+        "by_layer_mm": {
+          "B.Cu": 32.8854
+        }
+      },
+      "/RF_GDO0": {
+        "track_length_mm": 56.1715,
+        "via_count": 7,
+        "segment_count": 15,
+        "by_layer_mm": {
+          "F.Cu": 27.5105,
+          "B.Cu": 28.661
+        }
+      },
+      "/RF_GDO2": {
+        "track_length_mm": 44.5659,
+        "via_count": 0,
+        "segment_count": 5,
+        "by_layer_mm": {
+          "B.Cu": 44.5659
+        }
+      },
+      "/S3_BOOT_SERVICE": {
+        "track_length_mm": 41.6156,
+        "via_count": 0,
+        "segment_count": 6,
+        "by_layer_mm": {
+          "F.Cu": 41.6156
+        }
+      },
+      "/SPI_MISO": {
+        "track_length_mm": 85.8292,
+        "via_count": 0,
+        "segment_count": 18,
+        "by_layer_mm": {
+          "F.Cu": 37.5239,
+          "B.Cu": 48.3053
+        }
+      },
+      "/SPI_MOSI": {
+        "track_length_mm": 117.8771,
+        "via_count": 3,
+        "segment_count": 21,
+        "by_layer_mm": {
+          "F.Cu": 61.7258,
+          "B.Cu": 56.1512
+        }
+      },
+      "/SPI_SCK": {
+        "track_length_mm": 95.054,
+        "via_count": 2,
+        "segment_count": 18,
+        "by_layer_mm": {
+          "F.Cu": 37.2016,
+          "B.Cu": 57.8524
+        }
+      },
+      "/THREAD_BOOT": {
+        "track_length_mm": 25.3889,
+        "via_count": 0,
+        "segment_count": 5,
+        "by_layer_mm": {
+          "B.Cu": 25.3889
+        }
+      },
+      "/THREAD_EN": {
+        "track_length_mm": 53.8631,
+        "via_count": 3,
+        "segment_count": 26,
+        "by_layer_mm": {
+          "F.Cu": 33.6688,
+          "B.Cu": 20.1943
+        }
+      },
+      "/THREAD_RX": {
+        "track_length_mm": 8.8689,
+        "via_count": 0,
+        "segment_count": 10,
+        "by_layer_mm": {
+          "F.Cu": 8.8689
+        }
+      },
+      "/THREAD_TX": {
+        "track_length_mm": 4.7036,
+        "via_count": 0,
+        "segment_count": 2,
+        "by_layer_mm": {
+          "F.Cu": 4.7036
+        }
+      },
+      "/ZB_BOOT_SERVICE": {
+        "track_length_mm": 32.1806,
+        "via_count": 0,
+        "segment_count": 5,
+        "by_layer_mm": {
+          "B.Cu": 32.1806
+        }
+      },
+      "/ZB_CTS": {
+        "track_length_mm": 62.47,
+        "via_count": 0,
+        "segment_count": 10,
+        "by_layer_mm": {
+          "F.Cu": 62.47
+        }
+      },
+      "/ZB_RTS": {
+        "track_length_mm": 57.9155,
+        "via_count": 0,
+        "segment_count": 12,
+        "by_layer_mm": {
+          "F.Cu": 57.9155
+        }
+      },
+      "/ZB_RX": {
+        "track_length_mm": 57.1104,
+        "via_count": 1,
+        "segment_count": 15,
+        "by_layer_mm": {
+          "F.Cu": 28.5307,
+          "B.Cu": 28.5796
+        }
+      },
+      "/ZB_TX": {
+        "track_length_mm": 53.6876,
+        "via_count": 0,
+        "segment_count": 7,
+        "by_layer_mm": {
+          "F.Cu": 53.6876
+        }
+      },
+      "/ZWAVE_RX": {
+        "track_length_mm": 16.4447,
+        "via_count": 0,
+        "segment_count": 5,
+        "by_layer_mm": {
+          "F.Cu": 16.4447
+        }
+      },
+      "/ZWAVE_TX": {
+        "track_length_mm": 15.8235,
+        "via_count": 0,
+        "segment_count": 4,
+        "by_layer_mm": {
+          "F.Cu": 15.8235
+        }
+      }
+    }
+  },
+  "delta": {
+    "track_length_mm": -124.6083,
+    "track_length_percent": -7.1749,
+    "track_reduction_percent": 7.1749,
+    "via_count": 6,
+    "vias": 6,
+    "segments": 33,
+    "per_net": {
+      "/+3V3": {
+        "track_length_mm": -14.3559,
+        "via_count": -1
+      },
+      "/+5V": {
+        "track_length_mm": -11.3673,
+        "via_count": 0
+      },
+      "/+5V_H2": {
+        "track_length_mm": 0.2451,
         "via_count": 0
       },
       "/+5V_S3": {
-        "track_length_mm": -0.4076,
+        "track_length_mm": 0.0,
         "via_count": 0
       },
       "/+5V_ZB": {
-        "track_length_mm": 3.3021,
+        "track_length_mm": 0.0,
         "via_count": 0
       },
       "/ETH_CS": {
-        "track_length_mm": -3.9519,
-        "via_count": -2
-      },
-      "/ETH_INT": {
-        "track_length_mm": 9.2215,
-        "via_count": 1
-      },
-      "/ETH_RESET": {
-        "track_length_mm": -2.2982,
+        "track_length_mm": 1.1418,
         "via_count": 0
       },
+      "/ETH_INT": {
+        "track_length_mm": -6.8149,
+        "via_count": -1
+      },
+      "/ETH_RESET": {
+        "track_length_mm": 3.3041,
+        "via_count": 1
+      },
       "/GND": {
-        "track_length_mm": -13.5419,
+        "track_length_mm": 21.7583,
         "via_count": -1
       },
       "/I2C_SCL": {
-        "track_length_mm": 8.0944,
-        "via_count": 0
-      },
-      "/I2C_SDA": {
-        "track_length_mm": -10.142,
-        "via_count": 0
-      },
-      "/RADAR_RX": {
-        "track_length_mm": 4.8785,
-        "via_count": 0
-      },
-      "/RADAR_TX": {
-        "track_length_mm": -7.1289,
+        "track_length_mm": -34.1839,
         "via_count": -1
       },
+      "/I2C_SDA": {
+        "track_length_mm": 4.7763,
+        "via_count": 1
+      },
+      "/RADAR_RX": {
+        "track_length_mm": 3.0583,
+        "via_count": 2
+      },
+      "/RADAR_TX": {
+        "track_length_mm": -2.7124,
+        "via_count": 1
+      },
       "/RF_CS": {
-        "track_length_mm": -0.0181,
+        "track_length_mm": -5.0139,
         "via_count": 0
       },
       "/RF_GDO0": {
-        "track_length_mm": -8.836,
-        "via_count": 1
+        "track_length_mm": 2.5482,
+        "via_count": 6
       },
       "/RF_GDO2": {
-        "track_length_mm": 5.8339,
-        "via_count": -1
+        "track_length_mm": 0.1008,
+        "via_count": 0
       },
       "/S3_BOOT_SERVICE": {
-        "track_length_mm": 0.0,
+        "track_length_mm": 14.1001,
         "via_count": 0
       },
       "/SPI_MISO": {
-        "track_length_mm": -0.0156,
-        "via_count": 1
+        "track_length_mm": -17.0766,
+        "via_count": -3
       },
       "/SPI_MOSI": {
-        "track_length_mm": -20.4067,
-        "via_count": 1
+        "track_length_mm": 14.5179,
+        "via_count": 2
       },
       "/SPI_SCK": {
-        "track_length_mm": -5.1837,
-        "via_count": -1
+        "track_length_mm": -12.8846,
+        "via_count": 2
       },
       "/THREAD_BOOT": {
-        "track_length_mm": -6.7821,
-        "via_count": -1
+        "track_length_mm": -13.713,
+        "via_count": 0
       },
       "/THREAD_EN": {
-        "track_length_mm": 19.625,
-        "via_count": -1
+        "track_length_mm": -29.1313,
+        "via_count": 2
       },
       "/THREAD_RX": {
-        "track_length_mm": 0.0,
+        "track_length_mm": -1.8317,
         "via_count": 0
       },
       "/THREAD_TX": {
-        "track_length_mm": -0.8328,
-        "via_count": 0
+        "track_length_mm": -4.8949,
+        "via_count": -1
       },
       "/ZB_BOOT_SERVICE": {
-        "track_length_mm": 18.8641,
+        "track_length_mm": -32.4526,
         "via_count": 0
       },
       "/ZB_CTS": {
-        "track_length_mm": 6.347,
-        "via_count": 1
+        "track_length_mm": -3.6798,
+        "via_count": -2
       },
       "/ZB_RTS": {
-        "track_length_mm": 16.546,
+        "track_length_mm": 0.5623,
         "via_count": 0
       },
       "/ZB_RX": {
-        "track_length_mm": -14.194,
-        "via_count": 1
+        "track_length_mm": 4.4464,
+        "via_count": -1
       },
       "/ZB_TX": {
-        "track_length_mm": 16.8527,
+        "track_length_mm": -6.4248,
         "via_count": 0
       },
       "/ZWAVE_RX": {
-        "track_length_mm": 0.0,
+        "track_length_mm": 0.9954,
         "via_count": 0
       },
       "/ZWAVE_TX": {
-        "track_length_mm": -0.0001,
+        "track_length_mm": 0.3743,
         "via_count": 0
       }
-    },
-    "track_length_percent": -0.7005,
-    "vias": -1,
-    "segments": 0
+    }
   },
   "mounting": {
-    "baseline_mouth_center_mm": [
-      39,
-      77
-    ],
-    "baseline_nearest_support_mm": [
-      24.2,
-      72
-    ],
-    "baseline_nearest_support_distance_mm": 15.6218,
     "current_mouth_center_mm": [
       33,
       77
     ],
-    "current_lower_supports_mm": [
-      [
-        18,
-        52.03
-      ],
-      [
-        48,
-        72
-      ]
+    "current_retainer_ref": "H3",
+    "current_retainer_mm": [
+      18,
+      52.03
     ],
-    "current_nearest_support_distance_mm": 15.8114,
-    "current_support_offsets_from_mouth_mm": [
-      [
-        -15,
-        -24.97
-      ],
-      [
-        15,
-        -5
-      ]
+    "current_enclosure_rail_lands": [
+      {
+        "id": "left",
+        "bounds_mm": [
+          0,
+          15,
+          0.85,
+          54.5
+        ]
+      },
+      {
+        "id": "right",
+        "bounds_mm": [
+          46.3,
+          8,
+          47.5,
+          74
+        ]
+      }
     ],
-    "supports_bracket_mouth_in_x": true,
-    "supports_share_lower_row": false,
-    "mechanical_limit": "Plan-view geometry only; no measured stiffness or force. No claim that nearest support is closer. Enclosure jack cradle/end-stop and local Z verification remain required."
+    "mechanical_limit": "H3 retains the PCB in a split enclosure. Segmented edge lips distribute support and a separate insulating RJ45 cradle/end-stop carries insertion load. Geometry only: actual fillets, print fit, stiffness, force and Z clearances remain unqualified."
   },
   "limitations": [
     "One validated route, not a global optimum.",
     "Net totals include branches but exclude ground pours, module internal wiring and harnesses.",
-    "Individual nets can increase.",
+    "Total centreline length decreases, but vias increase from 18 to 24 and individual nets can increase.",
     "Neither shorter tracks nor fewer vias establishes RF, signal-integrity or mechanical performance."
   ]
 }

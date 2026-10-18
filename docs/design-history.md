@@ -66,3 +66,17 @@ explicitly **the complete back first, then the front**. Rear-first solder access
 and unchanged electrical connectivity are checked separately from physical
 height and insertion-force qualification. The former ear layout is preserved
 under the mounting study.
+
+## Single-anchor split-rail revision
+
+The current `nano-single-anchor-rails` revision is **47.5 × 75 mm**. It removes
+H1, H2 and H4, retains H3 between U2 and U3, and uses split enclosure rails for
+edge support. The PCB is 6.86% smaller than the previous four-hole 51 × 75 mm
+rectangle. S3 and H2 move closer together; narrow clear edge lands remain for
+the enclosure lips. All back components are still soldered before the front.
+No sockets, new electronics, pin-map or firmware changes are introduced.
+
+The [preceding four-hole native board](../mechanical/module-carrier/rail-mount/baseline/README.md)
+is immutable comparison evidence. The [new mounting study](../mechanical/module-carrier/rail-mount/README.md)
+defines a split support interface and fit coupons; actual enclosure height,
+jack support, printed tolerances, RF behavior and load capacity remain unqualified.

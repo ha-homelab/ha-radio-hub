@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-18T05:12:15.740124+00:00",
+  "checked_at_utc": "2026-10-18T05:33:38.105566+00:00",
   "board": "mc1.kicad_pcb",
-  "board_sha256": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
-  "audit_script_sha256": "fe63f54429a8ec687a4ab5a41da51d012ff15f39699907adca20f649bb94fc77",
+  "board_sha256": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+  "audit_script_sha256": "4e6eec953cac85eaaff6bb28a646ba118b4f6f7feae55643a28f0e0a45b76b46",
   "manufacturer_sources": {
     "nano": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
     "h2": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
@@ -96,31 +96,7 @@
     "obstacles_checked": "Native courtyards, physical USB shells and fitted harness housings",
     "opposite_side_body_overlaps_requiring_measured_z_clearance": [
       [
-        "R2",
-        "U1"
-      ],
-      [
-        "D3",
-        "U3"
-      ],
-      [
-        "J3",
-        "U2"
-      ],
-      [
-        "D1",
-        "U1"
-      ],
-      [
         "J7",
-        "U2"
-      ],
-      [
-        "R1",
-        "U1"
-      ],
-      [
-        "J6",
         "U2"
       ],
       [
@@ -128,15 +104,39 @@
         "U2"
       ],
       [
-        "J2",
+        "J3",
         "U2"
+      ],
+      [
+        "J6",
+        "U2"
+      ],
+      [
+        "R1",
+        "U1"
+      ],
+      [
+        "R2",
+        "U1"
+      ],
+      [
+        "J5",
+        "U2"
+      ],
+      [
+        "D3",
+        "U3"
       ],
       [
         "J1",
         "U2"
       ],
       [
-        "J5",
+        "D1",
+        "U1"
+      ],
+      [
+        "J2",
         "U2"
       ]
     ],
@@ -144,11 +144,59 @@
     "z_qualified": false,
     "limitation": "Rear-first access does not prove delivered tail length, module spacing, underside clearance or physical fit."
   },
+  "rail_contact_review": {
+    "lands": {
+      "left": {
+        "bounds_mm": [
+          0,
+          15,
+          0.85,
+          54.5
+        ],
+        "closest_body": [
+          "U2",
+          "USB shell"
+        ],
+        "body_separation_mm": 0.45,
+        "closest_pad": [
+          "U2",
+          "J1.10"
+        ],
+        "copper_separation_mm": 0.82,
+        "after_reserved_fillet_mm": 0.32
+      },
+      "right": {
+        "bounds_mm": [
+          46.3,
+          8,
+          47.5,
+          74
+        ],
+        "closest_body": [
+          "U1",
+          "body"
+        ],
+        "body_separation_mm": 0.46,
+        "closest_pad": [
+          "U1",
+          "JP1.13"
+        ],
+        "copper_separation_mm": 0.83,
+        "after_reserved_fillet_mm": 0.33
+      }
+    },
+    "solder_growth_reserved_mm": 0.5,
+    "minimum_residual_margin_mm": 0.3,
+    "h2_antenna_to_nearest_contact_land_mm": 16.436488,
+    "loading": "Open-loading split capture; no populated-board sliding groove",
+    "z_fit_force_and_enclosure_rf_qualified": false,
+    "limit": "Only contact lands audited. Full wall/lid geometry, actual fillets, underside heights, wire bends and load-bearing jack cradle still require measured checks."
+  },
   "expected_pads": 133,
   "native_board_bounds_mm": [
     0.0,
     0.0,
-    51.0,
+    47.5,
     75.0
   ],
   "native_board_outline_mm": [
@@ -157,11 +205,11 @@
       0.0
     ],
     [
-      51.0,
+      47.5,
       0.0
     ],
     [
-      51.0,
+      47.5,
       75.0
     ],
     [
@@ -169,23 +217,11 @@
       75.0
     ]
   ],
-  "native_board_area_mm2": 3825.0,
+  "native_board_area_mm2": 3562.5,
   "native_support_centers_mm": {
     "H3": [
       18.0,
       52.03
-    ],
-    "H1": [
-      29.5,
-      8.0
-    ],
-    "H4": [
-      48.0,
-      72.0
-    ],
-    "H2": [
-      29.5,
-      44.0
     ]
   },
   "connected_endpoint_groups": 31,
@@ -195,13 +231,13 @@
     "drc_violations": 41,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 24,
+    "unit_tests_passed": 25,
     "classified_mechanical_overlaps": 41,
     "unclassified_violations": 0
   },
   "native_report_sha256": {
-    "checks/drc.json": "7b124317ca194257c03180875289970934f697c502a9e49d232946b40094f95a",
-    "checks/erc.json": "b9db6ebd345359c5bc5d47d577b081fdc7ea0a673463ee08477c5e295448ec93"
+    "checks/drc.json": "ffec2b154580ad7db0c1f739c606a8d6bee8b01af993316d318a42e4dc1cc2ce",
+    "checks/erc.json": "058f11158b184d78e6215104fbc841813df5eed4d73dcd5e1363f9c2fac20b83"
   },
   "drc_classification": {
     "native_findings": 41,
@@ -240,6 +276,19 @@
     "rear_first_rejects_acyclic_sequence": true,
     "usb_shell_outside_courtyard_creates_dependency": true,
     "usb_shell_records_solder_projection_z_gate": true,
+    "rail_front_body_or_fillet_clearance_rejected": true,
+    "rail_rear_passive_rejected": true,
+    "rail_usb_projection_rejected": true,
+    "rail_extra_mount_rejected": true,
+    "rail_missing_retainer_rejected": true,
+    "rail_copper_only_approval_rejected_by_fillet": true,
+    "rail_h2_housing_margin_rejected": true,
+    "rail_absent_native_exclusion_rejected": true,
+    "rail_permissive_native_exclusion_rejected": true,
+    "rail_rear_crossing_trace_rejected": true,
+    "rail_via_high_spot_rejected": true,
+    "rail_ground_pour_rejected": true,
+    "rail_boundary_touch_without_interior_copper_allowed": true,
     "drc_other_type_not_excused": true,
     "drc_missing_expected_pair": true,
     "drc_wrong_body_not_excused": true,

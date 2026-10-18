@@ -1,0 +1,56 @@
+{
+  "layout_revision": "nano-single-anchor-rails",
+  "source_sha256": {
+    "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+    "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
+  },
+  "board_width_mm": 47.5,
+  "board_height_mm": 75.0,
+  "contact_bands": [
+    {
+      "id": "left",
+      "bounds_mm": [
+        0,
+        15,
+        0.85,
+        54.5
+      ]
+    },
+    {
+      "id": "right",
+      "bounds_mm": [
+        46.3,
+        8,
+        47.5,
+        74
+      ]
+    }
+  ],
+  "retainer": {
+    "H3": [
+      18.0,
+      52.03
+    ]
+  },
+  "nominal_lip_bands_mm": [
+    [
+      0,
+      15.2,
+      0.6499999999999999,
+      54.3
+    ],
+    [
+      46.5,
+      8.2,
+      47.5,
+      73.8
+    ]
+  ],
+  "trial_edge_displacement_budget_mm": {
+    "x": 0.2,
+    "y": 0.2
+  },
+  "status": "unqualified_interface_and_fit_coupon_study",
+  "pcb_actual_thickness_mm": null,
+  "case_internal_height_mm": null
+}

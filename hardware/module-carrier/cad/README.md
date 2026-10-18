@@ -1,6 +1,8 @@
-# MC1 Nano — centered Ethernet and rear-first assembly
+# MC1 Nano — one PCB retainer and enclosure edge support
 
-The two-layer carrier is a **51 × 75 mm rectangle**, area **3,825 mm²**. Centering WIZ and rotating XIAO removes the previous 6 × 27 mm mounting ear: 162 mm² less area (4.06%) and a 51 mm rather than 57 mm bounding width. No lower fabrication price is guaranteed. The three controller modules face the room. WIZ850io, all seven fitted male harness headers and the five axial parts face the ceiling. All rear components, including WIZ, are soldered first; the front controllers follow. Factory male pins are directly soldered into plated holes, with no sockets or carrier SMT components. The existing H2 R7 removal prerequisite remains.
+The two-layer carrier is a **47.5 × 75 mm rectangle**, area **3,562.5 mm²**, with one **H3** retention hole. It is 3.5 mm narrower and 6.86% smaller than the preceding 51 × 75 mm four-hole carrier. Two reserved edge-contact bands let a split printed enclosure support the PCB; H3 retains it in the enclosure. Removing screws alone does not establish adequate support. No lower fabrication price or measured stiffness is claimed.
+
+Three controller modules face the room. WIZ850io, all seven fitted male harness headers and five axial parts face the ceiling. All rear components, including WIZ, are soldered before the front controllers. Factory male pins remain directly soldered into plated holes; there are no sockets or carrier SMT components. H2 R7 removal remains required before assembly.
 
 There are **16 fitted parts, 18 footprint positions, 133 plated signal/power holes and 31 connected nets**. J8/J9 remain unpopulated recovery pads. Native PCB and schematic DNP states match `fitted` in the ledger. The electrical contract and firmware pin map have not changed from the preceding layout.
 
@@ -12,26 +14,33 @@ Open `mc1.kicad_pro` in KiCad 10. `design.py` generates the native board/schemat
 
 Coordinates are millimetres from the front-view top-left. Back modules use a **real native KiCad flip**; their canonical local Y is reflected before the listed rotation. Never reuse front-side pad numbering on a back footprint without that reflection.
 
-- U1 **Waveshare ESP32-S3-Nano-M**, front, **(49.5,39), 180°**. Body17.78 ×43.18; rows15.24 apart, pitch2.54. Antenna top, USB down. [Manufacturer dimensions and pinout](https://docs.waveshare.com/ESP32-S3-Nano).
-- U2 **ESP32-H2-DevKitM-1-N4S**, front, **(2,1.5), 0°**. Body25.40 ×48.26; rows22.86 apart. Antenna nominal y−5.475..−0.075 beyond the top edge. [Manufacturer drawing](https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf).
+- U1 **Waveshare ESP32-S3-Nano-M**, front, **(44.57,39), 180°**. Body17.78 ×43.18; rows15.24 apart, pitch2.54. Antenna top, USB down. [Manufacturer dimensions and pinout](https://docs.waveshare.com/ESP32-S3-Nano).
+- U2 **ESP32-H2-DevKitM-1-N4S**, front, **(2.57,1.5), 0°**. Body25.40 ×48.26; rows22.86 apart. Antenna nominal y−5.475..−0.075 beyond the top edge. [Manufacturer drawing](https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf).
 - U3 **Seeed XIAO MG24 102010690**, front, **(1.5,58.3), 0°**. Body17.78 ×20.955; rows15.24 apart. Antenna bottom, USB up. [Manufacturer CAD](https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip).
 - U4 **WIZ850io**, back, **(22.84,67.9), 0° after flip**. PCB x21.5..44.5,y49.3..74.3; opening x24.95..41.05,y77, **2 mm beyond the bottom edge**. [Manufacturer dimensions](https://docs.wiznet.io/img/products/wiz850io/wiz850io_dimension.png), [pin map](https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png).
 
-Module holes are1.10 mm in1.80 mm pads, giving0.35 mm annulus. This is a fit allowance for nominal0.64 mm square pins, not a manufacturer carrier land pattern. Four2.7 mm NPTH supports are at **H1(29.5,8), H2(29.5,44), H3(18,52.03), H4(48,72)**; use nylon hardware no wider than5 mm and verify enclosure support under Ethernet insertion load.
+Module holes are1.10 mm in1.80 mm pads, giving0.35 mm annulus. This is a fit allowance for nominal0.64 mm square pins, not a manufacturer carrier land pattern. The only 2.7 mm NPTH retention hole is **H3(18,52.03)**. Its identity is preserved; H1/H2/H4 are absent. Use nylon hardware no wider than 5 mm. This screw retains the PCB in a supported enclosure; it is not the sole structural support or a ceiling attachment.
 
 `usb_service_envelopes_mm` is empty. Physical socket projections remain explicitly modelled: Nano2 mm, H2 1 mm, XIAO3 mm beyond their PCB edges. The seven rear harnesses use narrow5.5 mm mating-shell allowances, with vertical wire departure. Generic wide shrouded housings are not interchangeable. Removing USB cable space does not remove the socket bodies or their metal.
 
-## Mounting geometry and measured routing
+## Enclosure edge contacts and routing
 
-H3 is in the gap **between H2 and XIAO**. H4 is beside the lower-right corner of WIZ, within the rectangular outline. Both heads remain accessible; no screw is hidden under WIZ. The mouth centre moves from (39,77) to **(33,77)**. The nearest support distance changes from 15.6218 mm to **15.8114 mm**; it does not become shorter. The two lower supports are staggered rather than a common row. H4 is 5 mm behind the mouth and 15 mm to its right; H3 is 24.97 mm behind and 15 mm to its left. These are geometric comparisons, **not stiffness or force measurements**.
+The carrier reserves these **contact lands on both faces**:
 
-The gap support has approximately 0.345 mm clearance to the conservative H2 USB shell, 0.349 mm to the XIAO courtyard and 0.5 mm to the WIZ courtyard. H4 has 0.5 mm to the WIZ courtyard and carrier edge when using a 5 mm head. These tight allowances require checking the actual nylon hardware and module shells.
+- Left: **x0–0.85, y15–54.5 mm**.
+- Right: **x46.3–47.5, y8–74 mm** (1.2 mm deep).
 
-WIZ still attaches through its header pins. Provide an **insulating enclosure cradle/end-stop around the robust jack housing or module body**, plus cable strain relief, so insertion force has a direct path into the enclosure. Do not press on components, the latch opening, antenna areas or solder tails. Cradle dimensions and contacts require actual assembled-height measurements; the enclosure has not been fabricated or load tested.
+These are interrupted edge lips in a split enclosure, not a continuous slide-in groove. Load the assembled PCB normally to its plane into an open shell, then close the retaining half. A continuous groove would interfere with the H2/XIAO module edges, antennas, USB shells or their solder tails. Do not extrapolate the lands beyond their stated ends. The left lip starts farther down the H2 edge to keep the case contact away from its antenna; this does not establish full RF qualification of the enclosure.
 
-The five rear axial parts are D1(45,16),250°; D2(3,50.8),0°; D3(12.5,65),180°; R1(38.5,30),10°; R2(38,23.5),90°, in native post-flip rotation. Their net assignments remain unchanged. J8/J9 remain unpopulated front-side pads at (29.5,17)/(29.5,25),0°.
+Native keepouts exclude **tracks, pads, vias and poured copper on both layers** from larger strips: left x0–1.3/y14.7–54.8 and right x46–47.5/y7.7–74.3 mm. This leaves flat, solder-free lands. The nominal part-body clearances to the lips are 0.45 mm left and 0.46 mm right. Nearest pad copper is 0.82/0.83 mm away. Allowing 0.5 mm outward solder growth leaves **0.32/0.33 mm** nominal residual. These are engineering allowances, not measurements of delivered modules, joints or printed plastic. Inspect actual fillets and test the enclosure fit; never grind a sound joint or force the PCB into a tight groove.
 
-`routing-metrics.json` compares the actual saved ear board at **af287e4** with this routed rectangle, excluding pours, module-internal traces and external harnesses. The route has **1,736.7132 mm** of track versus **1,748.9646 mm**, 12.2514 mm (0.7005%) less; **18 vias versus 19**. Individual nets can become longer. This is one validated route, not proof of global optimality or better signal/RF performance.
+The groove opening must use measured PCB thickness and printer-specific clearance. It must not clamp module bodies, exposed pads or pin ends. Do not infer a ready-to-print enclosure height from this 2D carrier. H3 needs access after the PCB is placed; the case-to-ceiling attachment is a separate structural design.
+
+WIZ still attaches through its header pins. An **insulating enclosure cradle/end-stop around the robust jack housing or module body**, plus cable strain relief, should carry insertion force into the enclosure. Do not press on components, the latch opening, antenna areas or solder tails. No stiffness, insertion-force or drop testing has been completed.
+
+The three Nano-side axial parts move left with Nano: D1(40.07,16),250°; R1(33.57,30),10°; R2(33.07,23.5),90°. D2(3,50.8),0° and D3(12.5,65),180° remain. H2 and all seven rear harness headers move right 0.57 mm. J8/J9 are horizontal unpopulated front pads at (29,47)/(37,47),90°. All signal and supply assignments are unchanged.
+
+`routing-metrics.json` compares native saved copper against the preceding four-hole carrier at **c3c8107**. It excludes pours, module-internal wiring and external harnesses. Routed centreline length decreases from **1736.7132 mm to 1612.1049 mm (7.17%)**, while vias increase from **18 to 24**. No straight-line or globally optimal wiring claim is made, and individual nets can become longer.
 
 ## Opposite-side assembly and height acceptance
 
@@ -96,6 +105,6 @@ python3 record_verification.py
 python3 reproduce_check.py --python "$KICAD_PY" --cli "$KICAD_CLI" --libraries "$KICAD_LIBRARIES"
 ```
 
-Measure any revision with `"$KICAD_PY" measure_routing.py --board mc1.kicad_pcb --output current-routing.json`. The baseline native board is preserved under `../studies/mounting-routing/ear-baseline/`.
+Measure any revision with `"$KICAD_PY" measure_routing.py --board mc1.kicad_pcb --output current-routing.json`. The baseline native board is preserved under `../../../mechanical/module-carrier/rail-mount/baseline/`.
 
 The committed router session plus explicit manual centerlines are specific to this placement. Clean reproduction and native check counts/hashes are recorded in `checks/reproduction.json` and `verification.json`. Generic passive-terminal module symbols do not model internal regulators or establish electrical safety. No Gerbers or hardware order are included.

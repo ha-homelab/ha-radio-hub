@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060" role="img" aria-label="Historical mounting ear and current rectangular carrier support geometry">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060" role="img" aria-label="Historical mounting ear and four-hole rectangular carrier support geometry">
 <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#f6c765"/></marker></defs>
 <style>text{font-family:Arial,sans-serif;fill:#dce8f2}.title{font-size:28px;font-weight:bold}.panel{font-size:23px;font-weight:bold}.subtitle{font-size:16px;fill:#b5c9d9}.label{font-size:14px}.small{font-size:12px}.dim{font-size:15px;fill:#8ddacb}.warn{font-size:17px;fill:#f6c765}.strong{font-weight:bold}</style>
 <rect width="1400" height="1060" fill="#0d1926"/>
-<text x="36" y="44" class="title">Remove the mounting ear. Preserve a buildable assembly order.</text>
+<text x="36" y="44" class="title">Historical study: remove the ear, retain four holes.</text>
 <text x="36" y="76" class="subtitle">Equal scale · front view · dashed bodies are front modules; blue WIZ is projected from the rear · dimensions in mm</text>
 <path d="M700 110V792" stroke="#385064"/>
 
@@ -49,7 +49,7 @@
 <text x="444.00" y="592.00" class="subtitle" text-anchor="start">lie on one 5 mm row.</text>
 <text x="34.00" y="753.00" class="small" text-anchor="start">Native PCB SHA-256 7f8296edb0317269f6b0…</text>
 <text x="34.00" y="778.00" class="subtitle" text-anchor="start">Historical geometry, not current assembly.</text>
-<text x="734" y="118" class="panel">Current: no mounting ear</text>
+<text x="734" y="118" class="panel">Historical: four-hole rectangle</text>
 <text x="734.00" y="148.00" class="subtitle" text-anchor="start">51 × 75 bounding box · 3825 mm² laminate</text>
 <polygon points="774.00,191.00 1069.80,191.00 1069.80,626.00 774.00,626.00" fill="#173b3b" stroke="#80d3be" stroke-width="2"/>
 <polygon points="962.44,442.20 962.44,185.95 1071.37,185.95 1071.37,442.20" fill="#294751" fill-opacity="0.7" stroke="#91abbc" stroke-dasharray="4 4"/>
@@ -96,7 +96,7 @@
 <text x="36" y="826" class="dim">Bounding rectangle -10.53% · actual laminate -4.06% · same two copper layers</text>
 <text x="36" y="861" class="warn">A smaller outline does not establish equal stiffness or a connector load rating.</text>
 <text x="36" y="897" class="subtitle">Dashed mouth-to-support lines are distances, not measured load paths. The former symmetric support row is gone.</text>
-<text x="36" y="927" class="subtitle">Use all four supports. An enclosure cradle / stop and cable strain relief must separately protect the WIZ header joints.</text>
+<text x="36" y="927" class="subtitle">Both historical versions use four supports. The current single-anchor design is documented in the rail-mount study.</text>
 <text x="36" y="957" class="subtitle">Ø2.7 mounting holes · Ø5 maximum nylon support/head · actual vertical clearance and enclosure fit still require measurement.</text>
 <text x="36" y="994" class="small">Earlier 51 × 75 mm three-support layout remains in baseline/. Ear-layout source is preserved in ear-baseline/.</text>
 <text x="36" y="1022" class="small">These are reproducible plan-view drawings from native CAD, not photographs or hardware test results.</text>

@@ -1,8 +1,8 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "layout_revision": "nano-centered-rear-first",
-  "index_sha256": "9f56bad0c597489e8310fb120012471e27da02e8c770ba5a1326e5200462f088",
+  "layout_revision": "nano-single-anchor-rails",
+  "index_sha256": "618f02b9ce88ce1e3927673187361dcc81090c7145c40de15289ad697f92b21c",
   "viewport_width": 586,
   "page_scroll_width": 586,
   "images_loaded": 12,
@@ -19,41 +19,54 @@
     "viewport_width": 586
   },
   "screenshots": {
-    "ui-pcb.jpg": "6ec8301db5dca73f4e51a72c2d34b5100e5b872cf5d7ee04814a89b3c903ceba",
-    "ui-assembly.jpg": "9fc95cf91229c142edcfbc266f4b885e50d6db4c484967585387cb830d9c20b4",
-    "ui-wiring.jpg": "dbd0f47440d009680d71fdc907ac94f65886a3846c7ceab8668f645ef16293a4",
+    "ui-pcb.jpg": "f8037ef7b8daf9452f87508d7bf9f3a38c82f78a2d03d1fb0caf4c1c3bdba23a",
+    "ui-assembly.jpg": "5f3a0201f7ddc82f433cdcd679625c05ba073cfa0a53b22b6d77bc2ecd7d452c",
+    "ui-wiring.jpg": "ec6bc60c997adaaaff9e8883c35c052b4b3cde92ed33b9aeddcd47840a1fe154",
     "ui-architecture.jpg": "9acb2bf12d98d048e89b9e7e07e8c6efbfb8c4e007385eb27257ee51ecb2e65c",
     "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5",
     "ui-updates.jpg": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2",
-    "ui-assembly-back.jpg": "d64b5e9165827a06a0fc5fd2630c928d2de3ad6c8997cf491e7ab1c511b9e717",
-    "ui-comparison.jpg": "07242a0e3132957bed19db2d1a6ac206fc5b394255078a6def0971aa25c23cd9",
-    "ui-stack.jpg": "29de7e92eb1d139bb3e3e39e55c866975f1e3f4a5ba1f4558039847ddf32bc8f",
-    "ui-mounting.jpg": "2a4722e5dab8b17555b31e4c70b34c025b9a1b29dfbd9e19ab3b2b6097d58300",
-    "ui-routing.jpg": "1bfb6cf3ace7e466a9b9db464695f2656ec55509a104ad9ac22d6ba8b7a5ee5e"
+    "ui-assembly-back.jpg": "15a7b04d395be3d9238999bf952685f10c74efc6e14eba55036d03b5b028bb54",
+    "ui-comparison.jpg": "26930946ad72dd6d5f763a5ff3de8f1bd3b50a9f428a1c920523fd1059cc7132",
+    "ui-stack.jpg": "9f527d3a33e25c51b2c51e8d11b207c1baf71c9557bdb74037636a022dd0a068",
+    "ui-mounting.jpg": "792d9f3afc1d3ce5a7ce6d7f06a0a54d815934c86de601166be978e71a01927c",
+    "ui-routing.jpg": "89d33f8ef3833b2385dd24d4a4e0a2d6de6e7504b98f27e3dda450005b1fa2d6",
+    "ui-rail-study.jpg": "2691f3a770f9761381b0df97a2f2a1a18b4e7582043ca42fc31e8aa566d19e34"
   },
   "source_sha256": {
-    "cad/assembly-top.svg": "b617f349ce97547d07b4f50bacc6c28c6281e05832f3143c394a509a5c3fee3f",
+    "cad/assembly-top.svg": "0f6620715d1aafe50bfafe39c9f164508ae948e714a1be0d1b88c8714c8737a7",
     "architecture.svg": "f18cfa0a8e29ce45cd5623ebeab8b7c7422f8819d2f9173f7bc4110657985e82",
     "thread-recovery.svg": "f05b56daa4d2c2b55187d5d09c6d9930d37853f634505eefb02e512983c19334",
     "network-updates.svg": "a91a33093589e2d074e4ab0c888298dd9e8200526707cc908eaa51c15901b629",
-    "wiring.json": "d6d8498d581b93ed83d026d1fcbcd030222f9c763afdc635777f906e59b6b3a5",
-    "cad/assembly-bottom.svg": "5ea85d3837dae6334233603317af0b3acebebe3e1bfb8269530d0c061a7fad9b",
-    "layout-comparison.svg": "0c81acc1de5fd1e580815c0400d3439d5c34901391a00c8ad6a8c0bc5cd21bc9",
-    "direct-solder.svg": "c263538f8bd76f1bd95a2d7169cb337181c4d7b82f3f2974be6e6aea3dbe8e45",
-    "studies/mounting-routing/mounting.svg": "ce21669b30f5e9ed350959dce502908e589e41d9e0515259c484dd1f692e6a07",
-    "routing-comparison.svg": "3f7e26062de1dfb9577126c0a290ab5a9beeb4e2e2d2411d58fec4498a09326c"
+    "wiring.json": "3a5586a96b120aae8f1ebf04142060388a5c5986fd9a840fc431e3464bb862f9",
+    "cad/assembly-bottom.svg": "3211c8c51881465bf024d0a01dc1ac35afc42f73199b81a19dab6e888b678035",
+    "layout-comparison.svg": "a150369b7bb7cf5aba30ae8de5c991e2b46fdeb772146f6e1e73b7b28ec80562",
+    "direct-solder.svg": "aece70df462f8502049129f98647ee4ef2c5210f699462606a4631fadf1b9e39",
+    "routing-comparison.svg": "4116b420481370c8c1e93bc2f7628156e3e2a342ac02cf4e6704250a6ba65a5c",
+    "../../mechanical/module-carrier/rail-mount/rail-mount.svg": "c77300ddd2df7da43ee199d33e70ebad69f892a03312e4a7c1f930f64626340c",
+    "../../mechanical/module-carrier/rail-mount/rail-section.svg": "fea236e77993d84173761f40c3b2966d58f7583d98a06dfdb9b18cd51bfeaf6c",
+    "../../mechanical/module-carrier/rail-mount/assembly-sequence.svg": "819762afeff2106f44bbcc4886cbf3e9d3ad01c4bb8af804335960d37d6a1429",
+    "../../mechanical/module-carrier/rail-mount/mounting-comparison.svg": "951c27f29bdd4563503f55352130f27d0a880e9c6ae72e65f69e1182b0eed257"
   },
   "capture_notes": {
-    "ui-pcb.jpg": "Current rectangular 51 × 75 mm layout, 586 px native viewport, PCB section; no viewport override.",
-    "ui-assembly.jpg": "Final front assembly SVG, with vertical XIAO, four supports and corrected J8/J9 labels.",
+    "ui-pcb.jpg": "Current 47.5 \u00d7 75 single-H3 carrier, native 586 px viewport; no viewport override.",
+    "ui-assembly.jpg": "Current front SVG, H3 only, rail lands, corrected recovery pad labels; full document capture.",
     "ui-wiring.jpg": "586 px native viewport; THREAD_RX shows one of 31 nets; search restored.",
     "ui-architecture.jpg": "Retained screenshot; architecture SVG source hash unchanged.",
     "ui-recovery.jpg": "Retained screenshot of unchanged recovery SVG; source SHA256 unchanged.",
     "ui-updates.jpg": "Retained screenshot; network-updates SVG source hash unchanged.",
-    "ui-assembly-back.jpg": "Final mirrored back assembly SVG with centered WIZ, male headers and all five axial parts.",
-    "ui-comparison.jpg": "Current no-ear rectangular layout and historical single-sided carrier at equal scale.",
-    "ui-stack.jpg": "Updated qualitative stack section explicitly states entire rear before front.",
-    "ui-mounting.jpg": "Full-page immediate ear baseline versus no-ear carrier; final native board hash and staggered supports.",
-    "ui-routing.jpg": "Full-page native route comparison with the immediate ear baseline."
+    "ui-assembly-back.jpg": "Current mirrored rear SVG, H3 only, WIZ and male harnesses; full document capture.",
+    "ui-comparison.jpg": "Current 47.5 \u00d7 75 versus historical 65 \u00d7 75, both sides at equal scale.",
+    "ui-stack.jpg": "Updated section identifies split support, retains all-rear-first sequence.",
+    "ui-mounting.jpg": "Current native-derived single-anchor rail contact plan, maximum inward reach and source hash.",
+    "ui-routing.jpg": "Current native routed comparison against c3c8107 four-hole rectangle.",
+    "ui-rail-study.jpg": "Standalone rail study HTML, 586 px viewport, 4 of 4 SVGs loaded, no horizontal overflow."
+  },
+  "rail_study": {
+    "page": "../../mechanical/module-carrier/rail-mount/index.html",
+    "page_sha256": "d716414202a3e7c4520c13efebcb3256cd9d4ed1cfea5f2b60c21c7b01fe6b6d",
+    "viewport_width": 586,
+    "page_scroll_width": 586,
+    "images_loaded": 4,
+    "all_images_loaded": true
   }
 }

@@ -1,0 +1,74 @@
+{
+  "status": "digital_geometry_checked_physical_fit_unqualified",
+  "native_source_sha256": {
+    "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+    "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
+  },
+  "layout_revision": "nano-single-anchor-rails",
+  "generator_sha256": "eee2b1c1bd93b40d722e895f6a2c3b81f990e0eff7c740e698e25c64abfd4681",
+  "parameters_sha256": "5f047ee65625fb9fc0cc8f87d3fb69e039da774ad6bb2722f8a12a5592bd1f57",
+  "unit_test_source_sha256": "973b2becd95961a6e53e089c761d0ee942918972e25ba175df98e2fbdbf1c0af",
+  "cad_reader_sha256": "4e6eec953cac85eaaff6bb28a646ba118b4f6f7feae55643a28f0e0a45b76b46",
+  "csg_helper_sha256": "b76e5b11da6b80a6dc48b12d20c854758338b5507b50163d0bc72d0d15b929f7",
+  "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
+  "historical_native_sha256": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
+  "native_checks": {
+    "only_pcb_retainer": "H3",
+    "dimensions_match_ledger": true,
+    "contact_lands_within_outline": true
+  },
+  "modeled_movement": {
+    "status": "assumed_not_measured",
+    "pointwise_displacement_budget_mm": {
+      "x": 0.2,
+      "y": 0.2
+    },
+    "nominal_lip_bands_mm": [
+      [
+        0,
+        15.2,
+        0.6499999999999999,
+        54.3
+      ],
+      [
+        46.5,
+        8.2,
+        47.5,
+        73.8
+      ]
+    ],
+    "includes_translation_rotation_and_manufacturing_error": true
+  },
+  "mesh_checks": {
+    "coupon_count": 3,
+    "all_watertight": true,
+    "all_consistently_oriented": true,
+    "all_single_positive_volume_solids": true
+  },
+  "unit_test_command": "python -m unittest discover -s mechanical/module-carrier/rail-mount -p 'test_*.py'",
+  "physical_tests_performed": false,
+  "complete_enclosure_supplied": false,
+  "not_tested": [
+    "printed fit",
+    "board thickness and bow",
+    "module / cable heights",
+    "rail strength and creep",
+    "RF or thermal behavior",
+    "jack insertion load",
+    "actual in-plane displacement including rotation"
+  ],
+  "generated_sha256": {
+    "assembly-sequence.svg": "819762afeff2106f44bbcc4886cbf3e9d3ad01c4bb8af804335960d37d6a1429",
+    "fit-coupons.scad": "088a910824873232c2f8e53e5916ffbafa0225b033b1eb47c170aa9da473bf3b",
+    "fit-gap-1p8.stl": "fd4e3cc0f39b31bbaefd8d50bc6c2fb2388a767e3189c2bff223230945d60697",
+    "fit-gap-2p0.stl": "fa062287ea35e29ade03326400280246f11889f358dd61108b376de1e41fbcd8",
+    "fit-gap-2p2.stl": "911af4e7fc72985ea397a6287df95101241fa218e3868c2c0bf29151ae149b40",
+    "index.html": "d716414202a3e7c4520c13efebcb3256cd9d4ed1cfea5f2b60c21c7b01fe6b6d",
+    "mesh-report.json": "9a4abf6aca1ff3327c00e5c51dfc8a8b4c3e58720431c00f44471f81f4081d15",
+    "mounting-comparison.svg": "951c27f29bdd4563503f55352130f27d0a880e9c6ae72e65f69e1182b0eed257",
+    "native-inputs.json": "4e9df8fc2929ef73fca3bb3fe4377b76c159c8ff95b9a186919827fbcc156fa1",
+    "rail-interface.scad": "7865ab1018d0ab351c0f16cb1386259946714e655581c801123a8a9f0d074ca4",
+    "rail-mount.svg": "c77300ddd2df7da43ee199d33e70ebad69f892a03312e4a7c1f930f64626340c",
+    "rail-section.svg": "fea236e77993d84173761f40c3b2966d58f7583d98a06dfdb9b18cd51bfeaf6c"
+  }
+}

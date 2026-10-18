@@ -12,9 +12,11 @@ coexistence still need testing on the assembled carrier.
 
 ## Construction
 
-The carrier is a **51 mm horizontal × 75 mm vertical rectangle**, with two copper layers.
-WIZ moves 6 mm toward the center and XIAO rotates; the former mounting ear is removed.
-Four mounting points remain, including one between U2 and U3.
+The carrier is a **47.5 mm horizontal × 75 mm vertical rectangle**, with two copper layers.
+H3, between U2 and U3, is the sole PCB retention hole. The other three holes
+are removed, S3 moves inward and H2 moves slightly away from the left edge.
+Split enclosure rails support the long edges and resist bending; H3 locates
+and retains the board. Enclosure-to-ceiling fasteners are separate.
 **Front / room-facing:** S3, H2 and MG24. **Back / ceiling-facing:** WIZ850io
 and all seven male harness headers, three axial diodes and two resistors. Factory male module pins enter plated holes
 and are soldered from the opposite face. There are **no female module sockets**.
@@ -43,8 +45,9 @@ The selected parts are:
 
 ## Compact placement and fabrication cost
 
-Actual PCB area is **38.25 cm²**, a **21.5% reduction** from the historical
-65 × 75 mm single-sided arrangement. It is 76.1% smaller than the original
+Actual PCB area is **35.625 cm²**, a **6.86% reduction** from the preceding
+51 × 75 mm four-hole board and **26.9% below** the historical
+65 × 75 mm single-sided arrangement. It is 77.7% smaller than the original
 160 × 100 mm carrier. The fitted BOM remains sixteen items; no new electronics,
 female module sockets or intermediate boards are added.
 
@@ -172,7 +175,7 @@ is retained because that cable is required in normal operation. Support the boar
 against insertion loads. Harness assumptions use narrow mating housings and
 vertical wire exits; check the purchased plugs and their bend height.
 
-The dimensions describe the PCB, not a 51 × 75 mm enclosure. Antenna overhang,
+The dimensions describe the PCB, not a 47.5 × 75 mm enclosure. Antenna overhang,
 RJ45, wires, solder joints and external modules require additional space. Use the
 [front assembly](../hardware/module-carrier/cad/assembly-top.svg),
 [back assembly](../hardware/module-carrier/cad/assembly-bottom.svg),
@@ -218,17 +221,22 @@ and 90°. Useful orientation follows connectivity and physical clearance rather
 than a requirement to align every component horizontally or vertically. The
 back-side assembly drawing mirrors these orientations as actually viewed.
 
-Relative to the immediately preceding ear layout, native track centerline length
-changes from **1,748.96 to 1,736.71 mm (−0.70%)**, with **19 → 18 vias**.
-The H2 branch after D2 changes from 17.82 to 17.12 mm; the XIAO branch after D3
-grows from 5.15 to 8.46 mm. Shared 5 V grows from 103.44 to 105.04 mm, while
-the peripheral 3.3 V network shortens from 144.41 to 115.44 mm.
-SPI MOSI/MISO/SCK totals change from 123.77/102.92/113.12 to
-103.36/102.91/107.94 mm; their via counts change from 0/2/1 to 1/3/0.
+Relative to the immediately preceding four-hole 51 × 75 mm layout, native track
+centerline length changes from **1,736.71 to 1,612.10 mm (-7.17%)**,
+with **18 → 24 vias**. The more compact board has shorter total copper but more
+layer transitions; this is not an across-the-board signal-integrity improvement.
+
+- Post-diode H2 supply: 17.12 → 17.37 mm; 0 → 0 vias.
+- Post-diode XIAO supply: 8.46 → 8.46 mm; 0 → 0 vias.
+- Shared 5 V: 105.04 → 93.67 mm; 1 → 1 vias.
+- Peripheral 3.3 V: 115.44 → 101.08 mm; 1 → 0 vias.
+- SPI MOSI: 103.36 → 117.88 mm; 1 → 3 vias.
+- SPI MISO: 102.91 → 85.83 mm; 3 → 0 vias.
+- SPI clock: 107.94 → 95.05 mm; 0 → 2 vias.
+
 These are complete named-net lengths, including branches, not complete supply
-loops or individual source-to-receiver distances. Shorter net length with an
-extra layer change is a tradeoff, not automatic signal-integrity improvement.
-All original trace-width and clearance rules remain in force.
+loops or individual source-to-receiver distances. Original trace-width and
+clearance rules remain in force; the flat rail lands add copper exclusions.
 
 See the [full native measurements](../hardware/module-carrier/cad/routing-metrics.json)
 and [comparison](../hardware/module-carrier/routing-comparison.svg). Totals exclude
@@ -237,34 +245,47 @@ route does not replace loaded-voltage, return-path or signal-integrity validatio
 
 ## Ethernet insertion load and mounting
 
-The current support centers are **H1 (29.5, 8), H2 (29.5, 44),
-H3 (18, 52.03) and H4 (48, 72) mm** in the front-view coordinate system.
-H3 occupies the gap between U2 (H2) and U3 (XIAO); H4 is beside the Ethernet end.
-WIZ moves 6 mm left, with its mouth centered at **(33, 77) mm**. The rear view
-mirrors these coordinates. Use nylon M2.5 hardware with **at most 5 mm** body/head
-diameter; larger washers or heads require a new fit check.
+Only **H3 (18, 52.03) mm**, in the gap between U2 and U3, remains in the PCB.
+Use nylon M2.5 retention hardware with **at most 5 mm** body/head diameter.
+The RJ45 mouth remains centered at **(33, 77) mm**, opening 2 mm beyond the
+bottom edge. These are front-view coordinates; the back drawing is mirrored.
 
-The rectangle removes **162 mm² (4.1%)** of actual PCB area relative to the ear
-version and reduces the bounding fabrication rectangle by **10.5%**, from
-57 × 75 to 51 × 75 mm. This does not establish the price quoted by a fabricator.
-No additional electronic parts or female sockets are introduced.
+The split enclosure captures **both PCB faces at selected edge lands**. The
+left contact is x = 0–0.85 mm, y = 15–54.5 mm; the right contact is
+x = 46.3–47.5 mm, y = 8–74 mm. Wider no-copper strips keep tracks, pads, vias
+and pours away from these contacts. Rail ends avoid the controller antenna
+regions. The PCB is loaded normal to its plane into the open lower frame;
+the upper lips close over it afterwards. A closed sliding groove is not assumed
+safe for projecting antennas, pins or the H3 boss.
 
-The two lower supports no longer form the previous horizontal row behind the
-jack. Moving WIZ inward permits a simpler outline and the requested gap support;
-it does **not** by itself prove equal or improved stiffness. The modeled gap
-around the H3 support is narrow (about 0.35 mm to the nearest reserved geometry),
-so use the specified hardware and verify purchased module dimensions.
+The rails distribute bending load; **H3 is not a cantilever supporting the
+whole board**. A separate enclosure end-stop/cradle at the WIZ jack body and
+nearby cable strain relief must take repeated mating load off the WIZ header
+joints. Establish those contacts from the purchased module, leaving its small
+components and latch clear. The enclosure's own ceiling fasteners are separate
+from the PCB retention screw and need suitable structural anchorage.
 
-These dimensions describe support placement, not a measured stiffness or
-insertion-force rating. The PCB supports also do not bypass
-the WIZ module's soldered pin joints. For repeated connector use, provide a fitted
-insulating enclosure cradle/end-stop around the jack body and nearby cable strain
-relief. Establish its contacts from the actual WIZ module; do not clamp its small
-components or block the latch. The ceiling fasteners must secure into suitable
-structure rather than relying on the finish plaster alone.
+A close fit needs clearance, not a press fit. Print the provided **1.8 / 2.0 /
+2.2 mm groove coupons** and measure the actual PCB. These are trial dimensions,
+not a selected production fit. JLCPCB specifies ±10% thickness tolerance for
+boards at least 1 mm thick; nominal 1.6 mm can therefore span 1.44–1.76 mm before
+considering printer accuracy. Prusa likewise advises clearance for mating parts.
+[PCB thickness capability](https://jlcpcb.com/capabilities/pcb-capabilities/),
+[printing guidance](https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135).
 
-See the [mounting comparison](../hardware/module-carrier/studies/mounting-routing/mounting.svg)
-and [routing review](../hardware/module-carrier/studies/mounting-routing/review.md).
+The narrow rail lands have been checked in XY, including a modeled 0.5 mm
+solder-fillet expansion outside the pad. Actual fillets, header heights,
+printed fit, insertion loads and thermal creep remain physical checks. The
+study defines the board-to-enclosure interface, **not a finished enclosure**;
+rear height and external-module/cable space remain unmeasured. No force rating
+or RF performance equivalence is claimed. Espressif recommends a 15 mm housing
+clearance around the H2 PCB antenna and end-product RF testing; the entire
+housing, not merely its rail contact patch, must be assessed against that
+recommendation. [H2 antenna guidance](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32h2/pcb-layout-design.html#general-principles-of-pcb-layout-for-modules-positioning-a-module-on-a-base-board).
+
+See the [rail mounting study and fit coupons](../mechanical/module-carrier/rail-mount/README.md).
+The [former four-hole comparison](../hardware/module-carrier/studies/mounting-routing/mounting.svg)
+is retained as history.
 
 ## Two-sided assembly and clearance
 

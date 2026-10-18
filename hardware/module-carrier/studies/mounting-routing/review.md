@@ -1,8 +1,12 @@
-# Rectangular carrier and rear-first assembly
+# Historical four-hole carrier and rear-first assembly
 
-The current native layout is **`nano-centered-rear-first`**: a rectangular **51 × 75 mm** carrier, with no mounting ear. WIZ moves 6 mm left from the preceding layout, XIAO rotates into the lower-left position, and a support fits between H2 and XIAO. All firmware pin assignments, two copper layers and the direct-solder factory male headers are retained. This is a geometric and routing review; hardware strength, clearances and signal integrity remain unmeasured.
+This review describes the `c3c8107` four-hole board. It is superseded by the
+[current single-H3 rail mounting study](../../../../mechanical/module-carrier/rail-mount/README.md).
+All dimensions and measurements below are historical.
 
-The immediate comparison is the [ear layout saved from `af287e4`](ear-baseline/README.md). The [older three-support `6873b00` layout](baseline/README.md) remains a separate historical reference. The [equal-scale mounting drawing](mounting.svg) compares the ear baseline with the current native board.
+The reviewed native layout was **`nano-centered-rear-first`**: a rectangular **51 × 75 mm** carrier, with no mounting ear. WIZ moves 6 mm left from the preceding layout, XIAO rotates into the lower-left position, and a support fits between H2 and XIAO. All firmware pin assignments, two copper layers and the direct-solder factory male headers are retained. This is a geometric and routing review; hardware strength, clearances and signal integrity remain unmeasured.
+
+The immediate comparison is the [ear layout saved from `af287e4`](ear-baseline/README.md). The [older three-support `6873b00` layout](baseline/README.md) remains a separate historical reference. The [equal-scale mounting drawing](mounting.svg) compares the ear baseline with the saved four-hole native board.
 
 ## Current placement and assembly order
 
@@ -32,7 +36,7 @@ Supporting the **carrier** does not automatically unload the WIZ module's twelve
 
 ## Current routing, compared with the ear baseline
 
-The [native routing ledger](../../cad/routing-metrics.json) records **1,748.9646 → 1,736.7132 mm of explicit track centerline (−0.7005%)**, **19 → 18 vias**, and 350 segments in both revisions. These totals exclude filled copper, plated-hole barrels, internal module wiring and external harnesses. Branched-net totals are not individual source-to-receiver path lengths.
+The [saved native routing ledger](../../../../mechanical/module-carrier/rail-mount/baseline/routing-metrics.json) records **1,748.9646 → 1,736.7132 mm of explicit track centerline (−0.7005%)**, **19 → 18 vias**, and 350 segments in both revisions. These totals exclude filled copper, plated-hole barrels, internal module wiring and external harnesses. Branched-net totals are not individual source-to-receiver path lengths.
 
 - MOSI falls **123.7659 → 103.3592 mm**, but gains a via: zero → one. SCK falls **113.1223 → 107.9386 mm**, with one → zero vias. MISO is nearly unchanged at **102.9214 → 102.9058 mm**, while its vias rise from two to three.
 - Ethernet CS falls **59.2616 → 55.3097 mm**, with two → zero vias. The total-length improvement therefore does not mean every SPI metric improves.

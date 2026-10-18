@@ -33,6 +33,19 @@ USB_SHELL_BOUNDS = {
     "U2": [-1.27, 46.685, 24.13, 47.685],
     "U3": [3.12, -5.921, 12.12, -2.921],
 }
+# Source drawing body bounds, distinct from the larger native courtyards.
+MODULE_BODY_BOUNDS = {
+    "U1": [-1.27, -3.81, 16.51, 39.37],
+    "U2": [-1.27, -1.575, 24.13, 46.685],
+    "U3": [-1.27, -2.921, 16.51, 18.034],
+    "U4": [-1.34, -6.4, 21.66, 18.6],
+}
+RAIL_LANDS = {"left": [0, 15, 0.85, 54.5], "right": [46.3, 8, 47.5, 74]}
+# These deliberately exceed the contact lands; no copper or exposed via may
+# become a high spot beneath a printed ledge on either face.
+RAIL_COPPER_EXCLUSIONS = [[0, 14.7, 1.3, 54.8], [46, 7.7, 47.5, 74.3]]
+RAIL_MARGIN_MM = 0.3
+SOLDER_FILLET_ALLOWANCE_MM = 0.5  # An inspection envelope, not a measured fillet.
 
 
 def sexpr(text):
@@ -348,6 +361,151 @@ def audit_fitted_envelopes(parts):
         for other, polygon in polygons.items():
             if other != ref and point_polygon_distance(center, polygon) < 2.5-0.001:
                 errors.append(f"5mm nylon support {ref} intersects {other}")
+    return errors
+
+
+def rectangle(bounds):
+    x1,y1,x2,y2 = bounds
+    return [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]
+
+
+def polygon_distance(a, b):
+    """Filled simple-polygon separation, including crossing edges."""
+    for p,q in zip(a,a[1:]+a[:1]):
+        for r,s in zip(b,b[1:]+b[:1]):
+            cross = lambda u,v,w: (v[0]-u[0])*(w[1]-u[1])-(v[1]-u[1])*(w[0]-u[0])
+            if cross(p,q,r)*cross(p,q,s) < 0 and cross(r,s,p)*cross(r,s,q) < 0:
+                return 0.0
+    return min([point_polygon_distance(p,b) for p in a] +
+               [point_polygon_distance(p,a) for p in b])
+
+
+def native_pad_clearance(fp, pad, polygon):
+    point = transform_points(fp,[pad["at"]])[0]
+    if pad["shape"] == "circle":
+        return point_polygon_distance(point,polygon)-max(pad["size"])/2
+    sx,sy = pad["size"]
+    # Bounding rectangle is conservative for oval and rounded-rectangle pads.
+    copper = transformed_rectangle({"at":[*point,pad.get("angle",0)],"layer":"F.Cu"},
+                                   [-sx/2,-sy/2,sx/2,sy/2])
+    return polygon_distance(copper,polygon)
+
+
+def audit_rail_contacts(parts, bounds, lands=None):
+    """Nominal two-face rail fit with explicit solder-growth allowance.
+
+    Plastic may overlap a courtyard margin, but never the source-derived body,
+    a shell/housing, or the reserved solder envelope. This is not a Z/fit proof.
+    """
+    lands = RAIL_LANDS if lands is None else lands
+    errors, result = [], {}
+    if bounds != [0.0,0.0,47.5,75.0]:
+        errors.append("Rail layout must have the selected 47.5 x 75 mm outline")
+    supports = {r:p for r,p in parts.items() if r not in PIN_SETS}
+    if set(supports) != {"H3"} or any(abs(a-b)>1e-5 for a,b in
+            zip(supports.get("H3",{}).get("at",[])[:2], [18,52.03])):
+        errors.append("Rail layout requires only H3 at (18,52.03)")
+    h3_pads=list(supports.get("H3",{}).get("pads",{}).values())
+    if (len(h3_pads)!=1 or h3_pads[0]["kind"]!="np_thru_hole" or
+            abs(h3_pads[0]["drill"]-2.7)>1e-5):
+        errors.append("H3 must retain the 2.7 mm non-plated retainer hole")
+    obstacles = []
+    for ref,fp in parts.items():
+        if fp["dnp"] or ref not in PIN_SETS:
+            continue
+        poly = (transformed_rectangle(fp,MODULE_BODY_BOUNDS[ref],canonical=True)
+                if ref in MODULE_BODY_BOUNDS else courtyard_polygon(fp))
+        obstacles.append((ref,"body" if ref in MODULE_BODY_BOUNDS else "courtyard",poly))
+        if ref in USB_SHELL_BOUNDS:
+            obstacles.append((ref,"USB shell",transformed_rectangle(fp,USB_SHELL_BOUNDS[ref],canonical=True)))
+        if ref in {f"J{i}" for i in range(1,8)}:
+            n=len(fp["pads"])
+            obstacles.append((ref,"mated housing",transformed_rectangle(fp,
+                [-2.75,-1.75,2.75,(n-1)*2.54+1.75],canonical=True)))
+    # The jack shell projects beyond the WIZ module PCB.
+    obstacles.append(("U4","RJ45 shell",transformed_rectangle(parts["U4"],
+        [2.11,-9.1,18.21,-6.4],canonical=True)))
+    for name, box in lands.items():
+        poly = rectangle(box)
+        body_dist = sorted((polygon_distance(poly,p),r,kind) for r,kind,p in obstacles)
+        pad_dist = sorted((native_pad_clearance(fp,pad,poly),r,pn)
+            for r,fp in parts.items() for pn,pad in fp["pads"].items()
+            if pad["kind"] == "thru_hole")
+        support_dist = min((point_polygon_distance(fp["at"][:2],poly)-2.5
+                            for fp in supports.values()),default=0)
+        for distance,ref,kind in body_dist:
+            if distance < RAIL_MARGIN_MM-1e-5:
+                errors.append(f"{name} rail too close to {ref} {kind}: {distance:.4f} mm")
+        for distance,ref,pn in pad_dist:
+            if distance-SOLDER_FILLET_ALLOWANCE_MM < RAIL_MARGIN_MM-1e-5:
+                errors.append(f"{name} rail insufficient solder margin at {ref}.{pn}: {distance:.4f} mm copper separation")
+        if support_dist < RAIL_MARGIN_MM-1e-5:
+            errors.append(f"{name} rail overlaps 5 mm H3 support clearance")
+        result[name] = {"bounds_mm":box,"closest_body":body_dist[0][1:],
+            "body_separation_mm":round(body_dist[0][0],6),
+            "closest_pad":pad_dist[0][1:],"copper_separation_mm":round(pad_dist[0][0],6),
+            "after_reserved_fillet_mm":round(pad_dist[0][0]-SOLDER_FILLET_ALLOWANCE_MM,6)}
+    h2_ant = transformed_rectangle(parts["U2"],[4.83,-6.975,18.03,-1.575],canonical=True)
+    h2_rail_distance = min(polygon_distance(h2_ant,rectangle(b)) for b in lands.values())
+    if h2_rail_distance < 15-1e-5:
+        errors.append("A rail enters the H2 antenna 15 mm housing-clearance recommendation")
+    return errors,{"lands":result,"solder_growth_reserved_mm":SOLDER_FILLET_ALLOWANCE_MM,
+        "minimum_residual_margin_mm":RAIL_MARGIN_MM,
+        "h2_antenna_to_nearest_contact_land_mm":round(h2_rail_distance,6),
+        "loading":"Open-loading split capture; no populated-board sliding groove",
+        "z_fit_force_and_enclosure_rf_qualified":False,
+        "limit":"Only contact lands audited. Full wall/lid geometry, actual fillets, underside heights, wire bends and load-bearing jack cradle still require measured checks."}
+
+
+def audit_rail_copper(root, parts):
+    """Check both-layer native keepouts and actual routed/fill geometry."""
+    errors=[]
+    for box in RAIL_COPPER_EXCLUSIONS:
+        poly=rectangle(box)
+        coverage=set()
+        for zone in children(root,"zone"):
+            keepout=one(zone,"keepout")
+            if not keepout:
+                continue
+            points=[tuple(map(float,p[1:])) for p in one(["polygon",*one(zone,"polygon")],"pts")]
+            # Corner containment alone must not bless a concave or self-crossed
+            # keepout with an unprotected interior. Current rails use rectangles.
+            bbox=[min(p[0] for p in points),min(p[1] for p in points),
+                  max(p[0] for p in points),max(p[1] for p in points)]
+            if len(points)!=4 or set(points)!=set(rectangle(bbox)) or polygons_overlap(
+                    [points[0],points[1],points[2]], [points[0],points[2],points[3]]):
+                continue
+            if any(point_polygon_distance(p,points)>1e-5 for p in poly):
+                continue
+            if not all(one(["keepout",*keepout],k)==["not_allowed"] for k in ("tracks","vias","pads","copperpour")):
+                continue
+            coverage.update(one(zone,"layers") or one(zone,"layer") or [])
+        if not {"F.Cu","B.Cu"}.issubset(coverage):
+            errors.append(f"Missing full both-face copper exclusion for rail {box}")
+        for ref,fp in parts.items():
+            for pn,pad in fp["pads"].items():
+                if pad["kind"] == "thru_hole" and native_pad_clearance(fp,pad,poly)<1e-5:
+                    errors.append(f"Rail copper exclusion contains pad {ref}.{pn}")
+        for item in children(root,"segment"):
+            line=[tuple(map(float,one(item,k))) for k in ("start","end")]
+            if polygon_distance(line,poly)<float(one(item,"width")[0])/2-1e-5:
+                errors.append("Routed trace enters rail copper exclusion")
+        for via in children(root,"via"):
+            point=tuple(map(float,one(via,"at")))
+            if point_polygon_distance(point,poly)<float(one(via,"size")[0])/2-1e-5:
+                errors.append("Via enters rail copper exclusion")
+        if children(root,"arc"):
+            errors.append("Rail copper audit does not support native track arcs")
+        for zone in children(root,"zone"):
+            if one(zone,"keepout"):
+                continue
+            for filled in children(zone,"filled_polygon"):
+                points=[tuple(map(float,p[1:])) for p in one(filled,"pts")]
+                # KiCad may terminate a pour exactly on a keepout boundary.
+                # Reject area inside it, not a shared zero-area boundary.
+                interior=rectangle([box[0]+1e-5,box[1]+1e-5,box[2]-1e-5,box[3]-1e-5])
+                if polygon_distance(points,interior)<1e-6:
+                    errors.append("Filled copper enters rail exclusion")
     return errors
 
 
@@ -744,6 +902,41 @@ def geometry_regressions(parts):
     return result
 
 
+def rail_regressions(parts, root, bounds):
+    result={}
+    bad=copy.deepcopy(parts); bad["U2"]["at"][0]-=0.2
+    result["rail_front_body_or_fillet_clearance_rejected"]=bool(audit_rail_contacts(bad,bounds)[0])
+    bad=copy.deepcopy(parts); bad["D2"]["at"]=[1.2,50.8,0]
+    result["rail_rear_passive_rejected"]=bool(audit_rail_contacts(bad,bounds)[0])
+    bad=copy.deepcopy(parts); bad["U3"]["at"]=[-3,58.3,0]
+    result["rail_usb_projection_rejected"]=bool(audit_rail_contacts(bad,bounds)[0])
+    bad=copy.deepcopy(parts); bad["H1"]=copy.deepcopy(bad["H3"])
+    result["rail_extra_mount_rejected"]=bool(audit_rail_contacts(bad,bounds)[0])
+    bad=copy.deepcopy(parts); bad.pop("H3")
+    result["rail_missing_retainer_rejected"]=bool(audit_rail_contacts(bad,bounds)[0])
+    bad=copy.deepcopy(RAIL_LANDS); bad["left"][2]=1.0
+    result["rail_copper_only_approval_rejected_by_fillet"]=bool(audit_rail_contacts(parts,bounds,bad)[0])
+    bad=copy.deepcopy(RAIL_LANDS); bad["left"][1]=12
+    result["rail_h2_housing_margin_rejected"]=bool(audit_rail_contacts(parts,bounds,bad)[0])
+    bad=[n for n in copy.deepcopy(root) if not (isinstance(n,list) and n and n[0]=="zone" and one(n,"keepout"))]
+    result["rail_absent_native_exclusion_rejected"]=bool(audit_rail_copper(bad,parts))
+    bad=copy.deepcopy(root)
+    for zone in children(bad,"zone"):
+        for field in children(zone,"keepout"):
+            for flag in children(field,"vias"):
+                flag[1]="allowed"
+    result["rail_permissive_native_exclusion_rejected"]=bool(audit_rail_copper(bad,parts))
+    bad=copy.deepcopy(root); bad.append(["segment",["start","-1","20"],["end","3","20"],["width","0.25"],["layer","B.Cu"]])
+    result["rail_rear_crossing_trace_rejected"]=bool(audit_rail_copper(bad,parts))
+    bad=copy.deepcopy(root); bad.append(["via",["at","0.8","20"],["size","0.6"],["layers","F.Cu","B.Cu"]])
+    result["rail_via_high_spot_rejected"]=bool(audit_rail_copper(bad,parts))
+    bad=copy.deepcopy(root); bad.append(["zone",["layer","F.Cu"],["filled_polygon",["layer","F.Cu"],["pts",["xy","0.2","20"],["xy","1","20"],["xy","1","21"],["xy","0.2","21"]]]])
+    result["rail_ground_pour_rejected"]=bool(audit_rail_copper(bad,parts))
+    touching=copy.deepcopy(root); touching.append(["zone",["layer","F.Cu"],["filled_polygon",["layer","F.Cu"],["pts",["xy","1.3","20"],["xy","1.5","20"],["xy","1.5","21"],["xy","1.3","21"]]]])
+    result["rail_boundary_touch_without_interior_copper_allowed"]=not audit_rail_copper(touching,parts)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--board", type=Path, default=HERE / "cad/mc1.kicad_pcb")
@@ -754,8 +947,10 @@ def main():
     parts = read_board(args.board)
     bounds = board_bounds(args.board)
     outline = board_outline(args.board)
+    root = sexpr(args.board.read_text())
     access_errors, access = assembly_access(parts)
-    errors = audit(parts) + audit_pad_containment(parts, bounds, outline) + audit_courtyards(parts) + audit_fitted_envelopes(parts) + access_errors + audit_rf_bodies(parts)
+    rail_errors, rail_report = audit_rail_contacts(parts,bounds)
+    errors = audit(parts) + audit_pad_containment(parts, bounds, outline) + audit_courtyards(parts) + audit_fitted_envelopes(parts) + access_errors + audit_rf_bodies(parts) + rail_errors + audit_rail_copper(root,parts)
     hashes, checks, report_hashes, classification = None, None, None, None
     if not args.skip_evidence:
         evidence_errors, hashes, checks, report_hashes, classification = evidence(args.board.parent)
@@ -763,6 +958,7 @@ def main():
     mutation_results = mutations(parts, bounds) if args.self_test and not errors else {}
     if args.self_test and not errors:
         mutation_results.update(geometry_regressions(parts))
+        mutation_results.update(rail_regressions(parts,root,bounds))
     if args.self_test and not errors and not args.skip_evidence:
         drc = json.loads((args.board.parent / "checks/drc.json").read_text())
         bad = copy.deepcopy(drc); bad["violations"][0]["type"] = "clearance"
@@ -791,6 +987,7 @@ def main():
         "fitted_electronic_references": sum(not parts[ref]["dnp"] for ref in PIN_SETS if ref in parts),
         "fitted_side_counts": dict(Counter(parts[ref]["layer"] for ref in PIN_SETS if ref in parts and not parts[ref]["dnp"])),
         "assembly_access": access,
+        "rail_contact_review": rail_report,
         "expected_pads": sum(map(len, PIN_SETS.values())),
         "native_board_bounds_mm": bounds,
         "native_board_outline_mm": outline,

@@ -42,7 +42,7 @@
       "fitted": true,
       "side": "front",
       "xy": [
-        49.5,
+        44.57,
         39
       ],
       "rotation": 180,
@@ -58,218 +58,218 @@
         {
           "number": "JP1.1",
           "net": "THREAD_BOOT",
-          "x": 49.5,
+          "x": 44.57,
           "y": 39.0,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.2",
           "net": null,
-          "x": 49.5,
+          "x": 44.57,
           "y": 36.46,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.3",
           "net": null,
-          "x": 49.5,
+          "x": 44.57,
           "y": 33.92,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.4",
           "net": "I2C_SDA",
-          "x": 49.5,
+          "x": 44.57,
           "y": 31.38,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.5",
           "net": "I2C_SCL",
-          "x": 49.5,
+          "x": 44.57,
           "y": 28.84,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.6",
           "net": null,
-          "x": 49.5,
+          "x": 44.57,
           "y": 26.3,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.7",
           "net": "RF_GDO0",
-          "x": 49.5,
+          "x": 44.57,
           "y": 23.76,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.8",
           "net": "SPI_MOSI",
-          "x": 49.5,
+          "x": 44.57,
           "y": 21.22,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.9",
           "net": "SPI_MISO",
-          "x": 49.5,
+          "x": 44.57,
           "y": 18.68,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.10",
           "net": "SPI_SCK",
-          "x": 49.5,
+          "x": 44.57,
           "y": 16.14,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.11",
           "net": "ETH_CS",
-          "x": 49.5,
+          "x": 44.57,
           "y": 13.6,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.12",
           "net": null,
-          "x": 49.5,
+          "x": 44.57,
           "y": 11.06,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.13",
           "net": "S3_BOOT_SERVICE",
-          "x": 49.5,
+          "x": 44.57,
           "y": 8.52,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.14",
           "net": "GND",
-          "x": 49.5,
+          "x": 44.57,
           "y": 5.98,
           "drill_mm": 1.1
         },
         {
           "number": "JP1.15",
           "net": "+5V_S3",
-          "x": 49.5,
+          "x": 44.57,
           "y": 3.44,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.15",
           "net": "THREAD_EN",
-          "x": 34.26,
+          "x": 29.33,
           "y": 39.0,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.14",
           "net": "RADAR_TX",
-          "x": 34.26,
+          "x": 29.33,
           "y": 36.46,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.13",
           "net": "ZB_RTS",
-          "x": 34.26,
+          "x": 29.33,
           "y": 33.92,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.12",
           "net": "ZB_TX",
-          "x": 34.26,
+          "x": 29.33,
           "y": 31.38,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.11",
           "net": "ZB_RX",
-          "x": 34.26,
+          "x": 29.33,
           "y": 28.84,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.10",
           "net": "ETH_INT",
-          "x": 34.26,
+          "x": 29.33,
           "y": 26.3,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.9",
           "net": "ETH_RESET",
-          "x": 34.26,
+          "x": 29.33,
           "y": 23.76,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.8",
           "net": "RADAR_RX",
-          "x": 34.26,
+          "x": 29.33,
           "y": 21.22,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.7",
           "net": "ZB_CTS",
-          "x": 34.26,
+          "x": 29.33,
           "y": 18.68,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.6",
           "net": "RF_CS",
-          "x": 34.26,
+          "x": 29.33,
           "y": 16.14,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.5",
           "net": "RF_GDO2",
-          "x": 34.26,
+          "x": 29.33,
           "y": 13.6,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.4",
           "net": "GND",
-          "x": 34.26,
+          "x": 29.33,
           "y": 11.06,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.3",
           "net": null,
-          "x": 34.26,
+          "x": 29.33,
           "y": 8.52,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.2",
           "net": "THREAD_TX",
-          "x": 34.26,
+          "x": 29.33,
           "y": 5.98,
           "drill_mm": 1.1
         },
         {
           "number": "JP2.1",
           "net": "THREAD_RX",
-          "x": 34.26,
+          "x": 29.33,
           "y": 3.44,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
-        32.99,
+        28.06,
         -0.37,
-        50.77,
+        45.84,
         42.81
       ]
     },
@@ -313,7 +313,7 @@
       "fitted": true,
       "side": "front",
       "xy": [
-        2,
+        2.57,
         1.5
       ],
       "rotation": 0,
@@ -329,218 +329,218 @@
         {
           "number": "J1.1",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 1.5,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": "THREAD_EN",
-          "x": 2.0,
+          "x": 2.57,
           "y": 4.04,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 6.58,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 9.12,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 11.66,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 14.2,
           "drill_mm": 1.1
         },
         {
           "number": "J1.7",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 16.74,
           "drill_mm": 1.1
         },
         {
           "number": "J1.8",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 19.28,
           "drill_mm": 1.1
         },
         {
           "number": "J1.9",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 21.82,
           "drill_mm": 1.1
         },
         {
           "number": "J1.10",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 24.36,
           "drill_mm": 1.1
         },
         {
           "number": "J1.11",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 26.9,
           "drill_mm": 1.1
         },
         {
           "number": "J1.12",
           "net": null,
-          "x": 2.0,
+          "x": 2.57,
           "y": 29.44,
           "drill_mm": 1.1
         },
         {
           "number": "J1.13",
           "net": "GND",
-          "x": 2.0,
+          "x": 2.57,
           "y": 31.98,
           "drill_mm": 1.1
         },
         {
           "number": "J1.14",
           "net": "+5V_H2",
-          "x": 2.0,
+          "x": 2.57,
           "y": 34.52,
           "drill_mm": 1.1
         },
         {
           "number": "J1.15",
           "net": "GND",
-          "x": 2.0,
+          "x": 2.57,
           "y": 37.06,
           "drill_mm": 1.1
         },
         {
           "number": "J3.1",
           "net": "GND",
-          "x": 24.86,
+          "x": 25.43,
           "y": 1.5,
           "drill_mm": 1.1
         },
         {
           "number": "J3.2",
           "net": "THREAD_TX",
-          "x": 24.86,
+          "x": 25.43,
           "y": 4.04,
           "drill_mm": 1.1
         },
         {
           "number": "J3.3",
           "net": "THREAD_RX",
-          "x": 24.86,
+          "x": 25.43,
           "y": 6.58,
           "drill_mm": 1.1
         },
         {
           "number": "J3.4",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 9.12,
           "drill_mm": 1.1
         },
         {
           "number": "J3.5",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 11.66,
           "drill_mm": 1.1
         },
         {
           "number": "J3.6",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 14.2,
           "drill_mm": 1.1
         },
         {
           "number": "J3.7",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 16.74,
           "drill_mm": 1.1
         },
         {
           "number": "J3.8",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 19.28,
           "drill_mm": 1.1
         },
         {
           "number": "J3.9",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 21.82,
           "drill_mm": 1.1
         },
         {
           "number": "J3.10",
           "net": "GND",
-          "x": 24.86,
+          "x": 25.43,
           "y": 24.36,
           "drill_mm": 1.1
         },
         {
           "number": "J3.11",
           "net": "THREAD_BOOT",
-          "x": 24.86,
+          "x": 25.43,
           "y": 26.9,
           "drill_mm": 1.1
         },
         {
           "number": "J3.12",
           "net": "GND",
-          "x": 24.86,
+          "x": 25.43,
           "y": 29.44,
           "drill_mm": 1.1
         },
         {
           "number": "J3.13",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 31.98,
           "drill_mm": 1.1
         },
         {
           "number": "J3.14",
           "net": null,
-          "x": 24.86,
+          "x": 25.43,
           "y": 34.52,
           "drill_mm": 1.1
         },
         {
           "number": "J3.15",
           "net": "GND",
-          "x": 24.86,
+          "x": 25.43,
           "y": 37.06,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
-        0.73,
+        1.3,
         -0.075,
-        26.13,
+        26.7,
         48.185
       ]
     },
@@ -826,7 +826,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        20,
+        20.57,
         41
       ],
       "rotation": 180,
@@ -837,14 +837,14 @@
         {
           "number": "1",
           "net": "+5V",
-          "x": 20.0,
+          "x": 20.57,
           "y": 41.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 20.0,
+          "x": 20.57,
           "y": 43.54,
           "drill_mm": 1.0
         }
@@ -865,7 +865,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        20,
+        20.57,
         29
       ],
       "rotation": 180,
@@ -876,28 +876,28 @@
         {
           "number": "1",
           "net": "+5V",
-          "x": 20.0,
+          "x": 20.57,
           "y": 29.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 20.0,
+          "x": 20.57,
           "y": 31.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "+3V3",
-          "x": 20.0,
+          "x": 20.57,
           "y": 34.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "GND",
-          "x": 20.0,
+          "x": 20.57,
           "y": 36.62,
           "drill_mm": 1.0
         }
@@ -920,7 +920,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        13.5,
+        14.07,
         17
       ],
       "rotation": 180,
@@ -931,42 +931,42 @@
         {
           "number": "1",
           "net": "+3V3",
-          "x": 13.5,
+          "x": 14.07,
           "y": 17.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 13.5,
+          "x": 14.07,
           "y": 19.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "I2C_SDA",
-          "x": 13.5,
+          "x": 14.07,
           "y": 22.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "I2C_SCL",
-          "x": 13.5,
+          "x": 14.07,
           "y": 24.62,
           "drill_mm": 1.0
         },
         {
           "number": "5",
           "net": "ZWAVE_RX",
-          "x": 13.5,
+          "x": 14.07,
           "y": 27.16,
           "drill_mm": 1.0
         },
         {
           "number": "6",
           "net": "ZWAVE_TX",
-          "x": 13.5,
+          "x": 14.07,
           "y": 29.7,
           "drill_mm": 1.0
         }
@@ -988,7 +988,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        13.5,
+        14.07,
         34
       ],
       "rotation": 180,
@@ -999,35 +999,35 @@
         {
           "number": "1",
           "net": "+3V3",
-          "x": 13.5,
+          "x": 14.07,
           "y": 34.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 13.5,
+          "x": 14.07,
           "y": 36.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "GND",
-          "x": 13.5,
+          "x": 14.07,
           "y": 39.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "ZWAVE_RX",
-          "x": 13.5,
+          "x": 14.07,
           "y": 41.62,
           "drill_mm": 1.0
         },
         {
           "number": "5",
           "net": "ZWAVE_TX",
-          "x": 13.5,
+          "x": 14.07,
           "y": 44.16,
           "drill_mm": 1.0
         }
@@ -1052,7 +1052,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        7,
+        7.57,
         17
       ],
       "rotation": 180,
@@ -1063,56 +1063,56 @@
         {
           "number": "1",
           "net": "+3V3",
-          "x": 7.0,
+          "x": 7.57,
           "y": 17.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 7.0,
+          "x": 7.57,
           "y": 19.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "SPI_SCK",
-          "x": 7.0,
+          "x": 7.57,
           "y": 22.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "SPI_MOSI",
-          "x": 7.0,
+          "x": 7.57,
           "y": 24.62,
           "drill_mm": 1.0
         },
         {
           "number": "5",
           "net": "SPI_MISO",
-          "x": 7.0,
+          "x": 7.57,
           "y": 27.16,
           "drill_mm": 1.0
         },
         {
           "number": "6",
           "net": "RF_CS",
-          "x": 7.0,
+          "x": 7.57,
           "y": 29.7,
           "drill_mm": 1.0
         },
         {
           "number": "7",
           "net": "RF_GDO0",
-          "x": 7.0,
+          "x": 7.57,
           "y": 32.24,
           "drill_mm": 1.0
         },
         {
           "number": "8",
           "net": "RF_GDO2",
-          "x": 7.0,
+          "x": 7.57,
           "y": 34.78,
           "drill_mm": 1.0
         }
@@ -1133,7 +1133,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        7,
+        7.57,
         39
       ],
       "rotation": 180,
@@ -1144,28 +1144,28 @@
         {
           "number": "1",
           "net": "+5V",
-          "x": 7.0,
+          "x": 7.57,
           "y": 39.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 7.0,
+          "x": 7.57,
           "y": 41.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "RADAR_RX",
-          "x": 7.0,
+          "x": 7.57,
           "y": 44.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "RADAR_TX",
-          "x": 7.0,
+          "x": 7.57,
           "y": 46.62,
           "drill_mm": 1.0
         }
@@ -1186,7 +1186,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        20,
+        20.57,
         17
       ],
       "rotation": 180,
@@ -1197,28 +1197,28 @@
         {
           "number": "1",
           "net": "GND",
-          "x": 20.0,
+          "x": 20.57,
           "y": 17.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "+3V3",
-          "x": 20.0,
+          "x": 20.57,
           "y": 19.54,
           "drill_mm": 1.0
         },
         {
           "number": "3",
           "net": "I2C_SDA",
-          "x": 20.0,
+          "x": 20.57,
           "y": 22.08,
           "drill_mm": 1.0
         },
         {
           "number": "4",
           "net": "I2C_SCL",
-          "x": 20.0,
+          "x": 20.57,
           "y": 24.62,
           "drill_mm": 1.0
         }
@@ -1237,10 +1237,10 @@
       "fitted": false,
       "side": "front",
       "xy": [
-        29.5,
-        17
+        29,
+        47
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN.",
       "body_bounds_local_mm": null,
@@ -1248,15 +1248,15 @@
         {
           "number": "1",
           "net": "ZB_BOOT_SERVICE",
-          "x": 29.5,
-          "y": 17.0,
+          "x": 29.0,
+          "y": 47.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 29.5,
-          "y": 19.54,
+          "x": 31.54,
+          "y": 47.0,
           "drill_mm": 1.0
         }
       ],
@@ -1274,10 +1274,10 @@
       "fitted": false,
       "side": "front",
       "xy": [
-        29.5,
-        25
+        37,
+        47
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Normally OPEN; short GPIO0 to GND while pressing Nano RESET for nativeUSB ROM recovery.",
       "body_bounds_local_mm": null,
@@ -1285,15 +1285,15 @@
         {
           "number": "1",
           "net": "S3_BOOT_SERVICE",
-          "x": 29.5,
-          "y": 25.0,
+          "x": 37.0,
+          "y": 47.0,
           "drill_mm": 1.0
         },
         {
           "number": "2",
           "net": "GND",
-          "x": 29.5,
-          "y": 27.54,
+          "x": 39.54,
+          "y": 47.0,
           "drill_mm": 1.0
         }
       ],

@@ -17,9 +17,9 @@ Start with the [English assembly guide](docs/module-carrier.md), the
 
 ## One board to assemble
 
-The carrier is a **51 × 75 mm rectangle with two copper layers**.
-WIZ850io moves toward the center and XIAO rotates to remove the mounting ear,
-while retaining four supports. Actual area is 21.5% below the historical
+The carrier is a **47.5 × 75 mm rectangle with two copper layers**.
+One H3 retention hole remains; split enclosure rails support both long edges.
+The PCB is 6.9% smaller than the preceding four-hole board and 26.9% below the historical
 65 × 75 mm single-sided carrier. It uses a factory-header
 **S3-Nano-M with 16 MB flash and 8 MB PSRAM**, shared Ethernet/CC1101 SPI and the
 same dedicated Thread and Zigbee radios. Initial programming is done before soldering;

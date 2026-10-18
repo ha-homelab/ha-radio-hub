@@ -3,7 +3,7 @@
   "date": "2026-10-17",
   "active_design": "MC1",
   "applied": true,
-  "interpretation": "One current rectangular 51 × 75 mm MC1 carrier, centered rear WIZ and vertical XIAO, four supports with no ear. Every rear component is soldered before the front. The former ear and earlier three-support layouts remain historical comparison sources.",
+  "interpretation": "One current rectangular 47.5 \u00d7 75 mm MC1 carrier, with H3 retention only, split enclosure edge support and centered rear WIZ. All rear components are soldered before the front. Former four-hole, ear and three-support layouts remain historical sources. Native CAD and interface drawings are not physical-fit or RF approval.",
   "legacy_source_inventory": "hardware/h2-quartet/visual-inventory.json",
   "updated_entrypoints": [
     "docs/manufacturing.md",
@@ -617,6 +617,11 @@
       "path": "hardware/module-carrier/studies/mounting-routing/baseline/mc1-board-top.png",
       "sha256": "1d80d6c6451ff435ae29f0d8fcf24721a90054074004ca3b03979476a8ee5445",
       "status": "historical_three_support_baseline"
+    },
+    {
+      "path": "hardware/module-carrier/studies/mounting-routing/mounting.svg",
+      "sha256": "fdd600739627c687efffa043b3e3812e6040d9ecfed349d14648db01a4d4f5b4",
+      "status": "historical_four_hole_mounting_comparison"
     }
   ],
   "current_assets": [
@@ -632,67 +637,67 @@
     },
     {
       "path": "hardware/module-carrier/cad/assembly-top.png",
-      "sha256": "04a2a8ab0f30ec4cc29e220d575873303a1c5094040269649e3554734f14d7f8",
+      "sha256": "98004df02de09a1b96274b4803e546ae3b45f75394420241a4097aedd663ef3e",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/assembly-top.svg",
-      "sha256": "b617f349ce97547d07b4f50bacc6c28c6281e05832f3143c394a509a5c3fee3f",
+      "sha256": "0f6620715d1aafe50bfafe39c9f164508ae948e714a1be0d1b88c8714c8737a7",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/board-bottom.svg",
-      "sha256": "079809db5b766711650bfb91f8797817d74ba2745e2f11bb8a395f873e1be0d6",
+      "sha256": "bf949c187437a7a08c5467780c922931586424d8a0e58060116f85a2a7de4560",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/board-top.svg",
-      "sha256": "3c98d10c7fd056456bb6d3d827e2d0675cf3cab1e4cae44ebbb03726dd7f1e94",
+      "sha256": "7e7aa14bcc779a714f90db3e5597d4577adf9b1c2f4e3e7317a5a408145cf74c",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/schematic.pdf",
-      "sha256": "04f03a2c457bc4e7448f641d7effe27afe7bc0a11259a8597a12dc45f86ffd70",
+      "sha256": "94c07dec716b333bf992a0a92384e74e8c84f3e9b67cf02c7d93e10c280ca013",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/schematic.svg",
-      "sha256": "3ac623bc1ffff278f3d6a5f875b0105c4f1f444c7e0986f7b504bbe3433011c0",
+      "sha256": "d92a3a051671c1c451ebc3b1f8f8c77d447ab0e3f04ad80a671df8132c69a5ff",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/direct-solder.svg",
-      "sha256": "c263538f8bd76f1bd95a2d7169cb337181c4d7b82f3f2974be6e6aea3dbe8e45",
+      "sha256": "aece70df462f8502049129f98647ee4ef2c5210f699462606a4631fadf1b9e39",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/images/mc1-board-bottom.png",
-      "sha256": "544737f9d589be31dd75186f5a0e2f28a4c859501fa977625000c620b4defcb2",
+      "sha256": "d943b6725470662ddb408496ae6e0e49357d45aa69b409dd9ca1bb57acf96854",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/images/mc1-board-top.png",
-      "sha256": "bd5aac53a5a570d4635c4c230ddee41487c5ebab12856795594b89c7d9fb0b65",
+      "sha256": "db5e6b4433c12eeeabf3d799998d565ac9818cb692f00f314716f2fae968ae54",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/images/ui-assembly.jpg",
-      "sha256": "9fc95cf91229c142edcfbc266f4b885e50d6db4c484967585387cb830d9c20b4",
+      "sha256": "5f3a0201f7ddc82f433cdcd679625c05ba073cfa0a53b22b6d77bc2ecd7d452c",
       "kind": "browser_screenshot"
     },
     {
       "path": "hardware/module-carrier/images/ui-pcb.jpg",
-      "sha256": "6ec8301db5dca73f4e51a72c2d34b5100e5b872cf5d7ee04814a89b3c903ceba",
+      "sha256": "f8037ef7b8daf9452f87508d7bf9f3a38c82f78a2d03d1fb0caf4c1c3bdba23a",
       "kind": "browser_screenshot"
     },
     {
       "path": "hardware/module-carrier/images/ui-wiring.jpg",
-      "sha256": "dbd0f47440d009680d71fdc907ac94f65886a3846c7ceab8668f645ef16293a4",
+      "sha256": "ec6bc60c997adaaaff9e8883c35c052b4b3cde92ed33b9aeddcd47840a1fe154",
       "kind": "browser_screenshot"
     },
     {
       "path": "hardware/module-carrier/layout-comparison.svg",
-      "sha256": "0c81acc1de5fd1e580815c0400d3439d5c34901391a00c8ad6a8c0bc5cd21bc9",
+      "sha256": "a150369b7bb7cf5aba30ae8de5c991e2b46fdeb772146f6e1e73b7b28ec80562",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
@@ -728,52 +733,72 @@
     {
       "path": "hardware/module-carrier/cad/assembly-bottom.svg",
       "kind": "native_CAD_or_deterministic_diagram",
-      "sha256": "5ea85d3837dae6334233603317af0b3acebebe3e1bfb8269530d0c061a7fad9b"
+      "sha256": "3211c8c51881465bf024d0a01dc1ac35afc42f73199b81a19dab6e888b678035"
     },
     {
       "path": "hardware/module-carrier/cad/assembly-bottom.png",
       "kind": "native_CAD_or_deterministic_diagram",
-      "sha256": "db3af55116c80a805a43282cbe87004d240533a436a815794e943cdc20c9a800"
+      "sha256": "4116e14566690414f4fb9876e42fd463c1835abf5d623499fefd5614729d55d0"
     },
     {
       "path": "hardware/module-carrier/images/ui-assembly-back.jpg",
       "kind": "browser_screenshot",
-      "sha256": "d64b5e9165827a06a0fc5fd2630c928d2de3ad6c8997cf491e7ab1c511b9e717"
+      "sha256": "15a7b04d395be3d9238999bf952685f10c74efc6e14eba55036d03b5b028bb54"
     },
     {
       "path": "hardware/module-carrier/images/ui-comparison.jpg",
       "kind": "browser_screenshot",
-      "sha256": "07242a0e3132957bed19db2d1a6ac206fc5b394255078a6def0971aa25c23cd9"
+      "sha256": "26930946ad72dd6d5f763a5ff3de8f1bd3b50a9f428a1c920523fd1059cc7132"
     },
     {
       "path": "hardware/module-carrier/images/ui-stack.jpg",
       "kind": "browser_screenshot",
-      "sha256": "29de7e92eb1d139bb3e3e39e55c866975f1e3f4a5ba1f4558039847ddf32bc8f"
-    },
-    {
-      "path": "hardware/module-carrier/studies/mounting-routing/mounting.svg",
-      "kind": "native_CAD_or_deterministic_diagram",
-      "sha256": "ce21669b30f5e9ed350959dce502908e589e41d9e0515259c484dd1f692e6a07"
+      "sha256": "9f527d3a33e25c51b2c51e8d11b207c1baf71c9557bdb74037636a022dd0a068"
     },
     {
       "path": "hardware/module-carrier/routing-comparison.svg",
       "kind": "native_CAD_or_deterministic_diagram",
-      "sha256": "3f7e26062de1dfb9577126c0a290ab5a9beeb4e2e2d2411d58fec4498a09326c"
+      "sha256": "4116b420481370c8c1e93bc2f7628156e3e2a342ac02cf4e6704250a6ba65a5c"
     },
     {
       "path": "hardware/module-carrier/images/ui-mounting.jpg",
       "kind": "browser_screenshot",
-      "sha256": "2a4722e5dab8b17555b31e4c70b34c025b9a1b29dfbd9e19ab3b2b6097d58300"
+      "sha256": "792d9f3afc1d3ce5a7ce6d7f06a0a54d815934c86de601166be978e71a01927c"
     },
     {
       "path": "hardware/module-carrier/images/ui-routing.jpg",
       "kind": "browser_screenshot",
-      "sha256": "1bfb6cf3ace7e466a9b9db464695f2656ec55509a104ad9ac22d6ba8b7a5ee5e"
+      "sha256": "89d33f8ef3833b2385dd24d4a4e0a2d6de6e7504b98f27e3dda450005b1fa2d6"
+    },
+    {
+      "path": "mechanical/module-carrier/rail-mount/rail-mount.svg",
+      "kind": "native_CAD_or_deterministic_diagram",
+      "sha256": "c77300ddd2df7da43ee199d33e70ebad69f892a03312e4a7c1f930f64626340c"
+    },
+    {
+      "path": "mechanical/module-carrier/rail-mount/rail-section.svg",
+      "kind": "native_CAD_or_deterministic_diagram",
+      "sha256": "fea236e77993d84173761f40c3b2966d58f7583d98a06dfdb9b18cd51bfeaf6c"
+    },
+    {
+      "path": "mechanical/module-carrier/rail-mount/assembly-sequence.svg",
+      "kind": "native_CAD_or_deterministic_diagram",
+      "sha256": "819762afeff2106f44bbcc4886cbf3e9d3ad01c4bb8af804335960d37d6a1429"
+    },
+    {
+      "path": "mechanical/module-carrier/rail-mount/mounting-comparison.svg",
+      "kind": "native_CAD_or_deterministic_diagram",
+      "sha256": "951c27f29bdd4563503f55352130f27d0a880e9c6ae72e65f69e1182b0eed257"
+    },
+    {
+      "path": "hardware/module-carrier/images/ui-rail-study.jpg",
+      "kind": "browser_screenshot",
+      "sha256": "2691f3a770f9761381b0df97a2f2a1a18b4e7582043ca42fc31e8aa566d19e34"
     }
   ],
   "counts": {
-    "current_assets": 30,
-    "historical_assets": 114
+    "current_assets": 34,
+    "historical_assets": 115
   },
-  "layout_revision": "nano-centered-rear-first"
+  "layout_revision": "nano-single-anchor-rails"
 }

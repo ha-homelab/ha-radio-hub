@@ -1,11 +1,11 @@
 {
   "revision": "MC1-Nano",
-  "layout_revision": "nano-centered-rear-first",
+  "layout_revision": "nano-single-anchor-rails",
   "status": "engineering_prototype_not_fabrication_release",
-  "checked_at_utc": "2026-10-18T05:12:05.398024+00:00",
+  "checked_at_utc": "2026-10-18T05:33:24.021993+00:00",
   "kicad_version": "10.0.6",
   "board": {
-    "width_mm": 51,
+    "width_mm": 47.5,
     "height_mm": 75,
     "outline_mm": [
       [
@@ -13,11 +13,11 @@
         0
       ],
       [
-        51,
+        47.5,
         0
       ],
       [
-        51,
+        47.5,
         75
       ],
       [
@@ -25,7 +25,7 @@
         75
       ]
     ],
-    "area_mm2": 3825.0,
+    "area_mm2": 3562.5,
     "copper_layers": 2,
     "assembly": "Factory male pins directly soldered in PTH; no female sockets",
     "signal_track_mm": 0.25,
@@ -38,7 +38,7 @@
     "drc_violations": 41,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 24,
+    "unit_tests_passed": 25,
     "classified_mechanical_overlaps": 41,
     "unclassified_violations": 0
   },
@@ -132,15 +132,15 @@
     "usb_service_envelopes_mm": {},
     "physical_usb_shells_mm": {
       "U1": [
-        36.26,
+        31.33,
         42.81,
-        47.5,
+        42.57,
         44.81
       ],
       "U2": [
-        0.73,
+        1.3,
         48.185,
-        26.13,
+        26.7,
         49.185
       ],
       "U3": [
@@ -152,71 +152,71 @@
     },
     "header_mating_envelopes_mm": {
       "J1": [
-        17.25,
+        17.82,
         39.25,
-        22.75,
+        23.32,
         45.29
       ],
       "J2": [
-        17.25,
+        17.82,
         27.25,
-        22.75,
+        23.32,
         38.37
       ],
       "J3": [
-        10.75,
+        11.32,
         15.25,
-        16.25,
+        16.82,
         31.45
       ],
       "J4": [
-        10.75,
+        11.32,
         32.25,
-        16.25,
+        16.82,
         45.91
       ],
       "J5": [
-        4.25,
+        4.82,
         15.25,
-        9.75,
+        10.32,
         36.53
       ],
       "J6": [
-        4.25,
+        4.82,
         37.25,
-        9.75,
+        10.32,
         48.37
       ],
       "J7": [
-        17.25,
+        17.82,
         15.25,
-        22.75,
+        23.32,
         26.37
       ]
     },
     "rf_copper_keepouts_mm": [
       [
-        31.5,
+        26.57,
         0,
-        51,
+        46.07,
         1.8
       ],
       [
-        35.5,
+        30.57,
         0,
-        45.5,
+        40.57,
         6
       ],
       [
+        0.57,
         0,
-        0,
-        29,
+        29.57,
         0.4
       ],
       [
-        5,
+        5.57,
         0,
-        23,
+        23.57,
         11.5
       ],
       [
@@ -248,26 +248,53 @@
     ],
     "mounting_holes_mm": [
       [
-        29.5,
-        8
-      ],
-      [
-        29.5,
-        44
-      ],
-      [
         18,
         52.03
-      ],
-      [
-        48,
-        72
       ]
     ],
+    "mounting_hole_refs": [
+      "H3"
+    ],
+    "enclosure_rail_lands": [
+      {
+        "id": "left",
+        "bounds_mm": [
+          0,
+          15,
+          0.85,
+          54.5
+        ]
+      },
+      {
+        "id": "right",
+        "bounds_mm": [
+          46.3,
+          8,
+          47.5,
+          74
+        ]
+      }
+    ],
+    "rail_copper_keepouts_mm": [
+      [
+        0,
+        14.7,
+        1.3,
+        54.8
+      ],
+      [
+        46,
+        7.7,
+        47.5,
+        74.3
+      ]
+    ],
+    "rail_part_margin_mm": 0.3,
+    "rail_solder_overhang_allowance_mm": 0.5,
     "mounting": {
       "drill_mm": 2.7,
-      "hardware": "Four nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends",
-      "note": "Check enclosure support and RJ45 insertion load; H3 lies between H2 and XIAO; H4 supports the right side of the jack; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."
+      "hardware": "One H3 nylon M2.5 PCB retainer, 5mm maximum body; enclosure edges provide distributed support",
+      "note": "Check enclosure support and RJ45 insertion load; H3 lies between H2 and XIAO; split enclosure rail lands support both long edges; not a continuous slide-in groove; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."
     },
     "service_envelope_basis": "Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."
   },
@@ -327,7 +354,7 @@
   "limitations": [
     "Carrier assembled hardware untested; no fabrication authorization implied",
     "Exact factory male pin fit and installed-board revision must be physically checked",
-    "USB cable shells and underside module components require clearance checks",
+    "Retained USB shells, underside components, rail lips and actual solder fillets require clearance checks",
     "RJ45 plug boot, latch, bend radius and enclosure wall clearance require a physical check; reserved service rectangle is an engineering allowance",
     "Power headroom, thermal behavior and I/O backpower isolation require bench verification",
     "External PoE splitter, 3.3V buck, WK2132 and peripheral harnesses are separate finished modules",
@@ -338,24 +365,24 @@
     "USB connectors remain physically present, but postassembly cable insertion is intentionally not supported"
   ],
   "sha256": {
-    "mc1.kicad_pcb": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
+    "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
     "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
     "mc1.kicad_sch": "6f68a2e97da8d15943a6e1be25ceb3beb71b72989c6851d826bae8d1e722f3b6",
-    "design.json": "3ec66d88aa3c61b0f6fb72e5d2c45840be7dddcc6e5587b213107c57966d3d68",
-    "routing/mc1.ses": "d21b93448420059240fa8e5fd6099a6504b3193a89411b7a052ffa255a974d66",
-    "manual-route.json": "80d910853726ab47cf6b6a3316173373df7ef227fd6d31cb5abd773a474afe3c",
-    "assembly-top.svg": "b617f349ce97547d07b4f50bacc6c28c6281e05832f3143c394a509a5c3fee3f",
-    "assembly-bottom.svg": "5ea85d3837dae6334233603317af0b3acebebe3e1bfb8269530d0c061a7fad9b",
-    "validate_drc.py": "0abb4020bdf7a7fba35c126f754bcef516ac721dc6241ff186127b97067ca424",
-    "checks/drc.json": "7b124317ca194257c03180875289970934f697c502a9e49d232946b40094f95a",
-    "checks/drc-classification.json": "1c039733c8e5cba321398f73667b8b216e0ecdcfc904d7779ba51c83861d8061",
-    "board-top.svg": "3c98d10c7fd056456bb6d3d827e2d0675cf3cab1e4cae44ebbb03726dd7f1e94",
-    "board-bottom.svg": "079809db5b766711650bfb91f8797817d74ba2745e2f11bb8a395f873e1be0d6",
-    "schematic.svg": "3ac623bc1ffff278f3d6a5f875b0105c4f1f444c7e0986f7b504bbe3433011c0",
-    "schematic.pdf": "04f03a2c457bc4e7448f641d7effe27afe7bc0a11259a8597a12dc45f86ffd70",
+    "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8",
+    "routing/mc1.ses": "7b7149a739dac125deece97e759c3f6093c4d53a25aa7cd133d62e964c731197",
+    "manual-route.json": "34c47e2a15167afb430924e8691c909779d82837135390f00dd66aafc394237a",
+    "assembly-top.svg": "0f6620715d1aafe50bfafe39c9f164508ae948e714a1be0d1b88c8714c8737a7",
+    "assembly-bottom.svg": "3211c8c51881465bf024d0a01dc1ac35afc42f73199b81a19dab6e888b678035",
+    "validate_drc.py": "1a3c0280055c6e5bc0bfa348eeab1e89992973c790378310b638c209668a1acb",
+    "checks/drc.json": "ffec2b154580ad7db0c1f739c606a8d6bee8b01af993316d318a42e4dc1cc2ce",
+    "checks/drc-classification.json": "22dbf649879a85443fa230d7330e5bc9bf946aaaae37e9cbd8f2995ba167ae43",
+    "board-top.svg": "7e7aa14bcc779a714f90db3e5597d4577adf9b1c2f4e3e7317a5a408145cf74c",
+    "board-bottom.svg": "bf949c187437a7a08c5467780c922931586424d8a0e58060116f85a2a7de4560",
+    "schematic.svg": "d92a3a051671c1c451ebc3b1f8f8c77d447ab0e3f04ad80a671df8132c69a5ff",
+    "schematic.pdf": "94c07dec716b333bf992a0a92384e74e8c84f3e9b67cf02c7d93e10c280ca013",
     "nano-pin-plan.json": "a4f0479d9ce86fc42bad8c8787a68706a9beb14b5ca8453ba4ca307c0fd2ca07",
     "h2-uart-isolation.svg": "27507afa36dd4033e9dbef07037a37500bec378ca7be01468d9ba272260b8ac0",
-    "routing-metrics.json": "3d1b13ab42b664b54d90f39cf018a0f8c793de8e0717294d2542ee9afd824d4b",
+    "routing-metrics.json": "fafc66b3b96129f89019e36fc20a7f39edeff63d002bb6f04e7ac6c12a5b0d8d",
     "measure_routing.py": "b30046d04f989a32201a9eefa0c7978018f1726bc4ad58613b51b34c5ef6c008"
   }
 }

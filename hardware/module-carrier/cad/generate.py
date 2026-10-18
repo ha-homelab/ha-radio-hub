@@ -6,7 +6,7 @@ Module footprints use manufacturer hole centers; external modules use harnesses.
 import argparse, csv, json, uuid, re, math
 from pathlib import Path
 import pcbnew as pcb
-from design import ROOT, parts, connectors, SOURCES, s3names, h2names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES, BODY_BOUNDS, RF_POUR_ONLY_KEEPOUTS, USB_SOCKET_BOUNDS_LOCAL, BOARD_OUTLINE
+from design import ROOT, parts, connectors, SOURCES, s3names, h2names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES, BODY_BOUNDS, RF_POUR_ONLY_KEEPOUTS, USB_SOCKET_BOUNDS_LOCAL, BOARD_OUTLINE, MOUNT_REFS, RAIL_LANDS, RAIL_COPPER_KEEPOUTS
 ap=argparse.ArgumentParser(); ap.add_argument('--libraries', type=Path, required=True); a=ap.parse_args()
 LIB=a.libraries; LOCAL=ROOT/'MC1.pretty'; LOCAL.mkdir(exist_ok=True); BUILD=ROOT/'.build'; BUILD.mkdir(exist_ok=True)
 U=lambda s:str(uuid.uuid5(uuid.NAMESPACE_URL,'https://ha-radio-hub/MC1/'+s)); Q=lambda s:json.dumps(str(s))
@@ -110,9 +110,9 @@ for p in parts:
 for p,q in zip(BOARD_OUTLINE,BOARD_OUTLINE[1:]+BOARD_OUTLINE[:1]):
     s=pcb.PCB_SHAPE();s.SetShape(pcb.SHAPE_T_SEGMENT);s.SetStart(pcb.VECTOR2I(pcb.FromMM(p[0]),pcb.FromMM(p[1])));s.SetEnd(pcb.VECTOR2I(pcb.FromMM(q[0]),pcb.FromMM(q[1])));s.SetLayer(pcb.Edge_Cuts);s.SetWidth(pcb.FromMM(.05));board.Add(s)
 for i,(x,y) in enumerate(MOUNT_HOLES,1):
-    fp=pcb.FOOTPRINT(board);fp.SetReference('H'+str(i));fp.SetValue('M2.5 NYLON NPTH');fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));fp.Reference().SetVisible(False);fp.Value().SetVisible(False);fp.SetAttributes(pcb.FP_EXCLUDE_FROM_BOM|pcb.FP_EXCLUDE_FROM_POS_FILES|pcb.FP_BOARD_ONLY)
+    fp=pcb.FOOTPRINT(board);fp.SetReference(MOUNT_REFS[i-1]);fp.SetValue('M2.5 NYLON NPTH');fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));fp.Reference().SetVisible(False);fp.Value().SetVisible(False);fp.SetAttributes(pcb.FP_EXCLUDE_FROM_BOM|pcb.FP_EXCLUDE_FROM_POS_FILES|pcb.FP_BOARD_ONLY)
     pd=pcb.PAD(fp);pd.SetAttribute(pcb.PAD_ATTRIB_NPTH);pd.SetShape(pcb.PAD_SHAPE_CIRCLE);pd.SetSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetDrillSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetLayerSet(pcb.LSET.AllCuMask());fp.Add(pd);board.Add(fp)
-for txt,x,y,size in [('MC1 NANO',29.5,33,.8),(f'{BOARD_W} x {BOARD_H}',29.5,36,.8)]:
+for txt,x,y,size in [('MC1 NANO',34,56,.8),(f'{BOARD_W} x {BOARD_H}',34,59,.8)]:
     t=pcb.PCB_TEXT(board);t.SetText(txt);t.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(size),pcb.FromMM(size)));t.SetTextThickness(pcb.FromMM(.13));t.SetLayer(pcb.F_SilkS);board.Add(t)
 # RF exclusions: Nano/H2 at the top edge; XIAO at the bottom edge.
 # Inter-row exclusions reach the edge without trapping the connected pads.
@@ -128,6 +128,12 @@ for x1,y1,x2,y2 in RF_POUR_ONLY_KEEPOUTS:
     outline=zone.Outline();outline.NewOutline()
     for x,y in [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]:outline.Append(pcb.FromMM(x),pcb.FromMM(y))
     board.Add(zone)
+# Flat enclosure contact lands: no copper, through-pads or vias under rail lips.
+for x1,y1,x2,y2 in RAIL_COPPER_KEEPOUTS:
+    z=pcb.ZONE(board);z.SetIsRuleArea(True);z.SetLayerSet(pcb.LSET.AllCuMask());z.SetDoNotAllowZoneFills(True);z.SetDoNotAllowTracks(True);z.SetDoNotAllowVias(True);z.SetDoNotAllowPads(True);z.SetDoNotAllowFootprints(False)
+    po=z.Outline();po.NewOutline()
+    for x,y in [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]:po.Append(pcb.FromMM(x),pcb.FromMM(y))
+    board.Add(z)
 # External cable/service corridor: mechanical reservation, not a PCB cutout.
 x1,y1,x2,y2=WIZ_MECHANICS['service_corridor_global_mm']
 for aa,bb in [((x1,y1),(x2,y1)),((x2,y1),(x2,y2)),((x2,y2),(x1,y2)),((x1,y2),(x1,y1))]:
@@ -192,7 +198,7 @@ for ref,box in USB_SOCKET_BOUNDS_LOCAL.items():
     p=next(p for p in ledger if p['ref']==ref);theta=math.radians(p['rotation']);cx,cy=p['xy'];pts=[]
     for x,y in [(box[0],box[1]),(box[2],box[3])]:pts.append((cx+x*math.cos(theta)+y*math.sin(theta),cy-x*math.sin(theta)+y*math.cos(theta)))
     physical_shells[ref]=[round(min(v[0] for v in pts),4),round(min(v[1] for v in pts),4),round(max(v[0] for v in pts),4),round(max(v[1] for v in pts),4)]
-metadata=dict(schema_version=1,revision='MC1-Nano',status='engineering_prototype_not_fabrication_release',layout_revision='nano-centered-rear-first',assembly_prerequisites=['Remove H2 USB-UART TX series R7 before soldering module; v1.3 470ohm; verify exact board revision and continuity. H2 RCP and ROM use RX23/TX24.','Initial programming before assembly; no postassembly USB insertion access is reserved.'],board=dict(width_mm=BOARD_W,height_mm=BOARD_H,outline_mm=BOARD_OUTLINE,area_mm2=abs(sum(a[0]*b[1]-b[0]*a[1] for a,b in zip(BOARD_OUTLINE,BOARD_OUTLINE[1:]+BOARD_OUTLINE[:1])))/2,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"stack":stack,"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"physical_usb_shells_mm":physical_shells,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"rf_pour_only_keepouts_mm":RF_POUR_ONLY_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting":{"drill_mm":2.7,"hardware":"Four nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends", "note":"Check enclosure support and RJ45 insertion load; H3 lies between H2 and XIAO; H4 supports the right side of the jack; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."},parts=ledger)
+metadata=dict(schema_version=1,revision='MC1-Nano',status='engineering_prototype_not_fabrication_release',layout_revision='nano-single-anchor-rails',assembly_prerequisites=['Remove H2 USB-UART TX series R7 before soldering module; v1.3 470ohm; verify exact board revision and continuity. H2 RCP and ROM use RX23/TX24.','Initial programming before assembly; no postassembly USB insertion access is reserved.'],board=dict(width_mm=BOARD_W,height_mm=BOARD_H,outline_mm=BOARD_OUTLINE,area_mm2=abs(sum(a[0]*b[1]-b[0]*a[1] for a,b in zip(BOARD_OUTLINE,BOARD_OUTLINE[1:]+BOARD_OUTLINE[:1])))/2,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"stack":stack,"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"physical_usb_shells_mm":physical_shells,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"rf_pour_only_keepouts_mm":RF_POUR_ONLY_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting_hole_refs":MOUNT_REFS,"enclosure_rail_lands":RAIL_LANDS,"rail_copper_keepouts_mm":RAIL_COPPER_KEEPOUTS,"rail_part_margin_mm":0.3,"rail_solder_overhang_allowance_mm":0.5,"mounting":{"drill_mm":2.7,"hardware":"One H3 nylon M2.5 PCB retainer, 5mm maximum body; enclosure edges provide distributed support", "note":"Check enclosure support and RJ45 insertion load; H3 lies between H2 and XIAO; split enclosure rail lands support both long edges; not a continuous slide-in groove; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."},parts=ledger)
 (ROOT/'design.json').write_text(json.dumps(metadata,indent=2)+'\n');(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC1-Nano',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
 with (ROOT/'BOM.csv').open('w',newline='') as f:
     w=csv.writer(f);w.writerow(['Reference','Quantity','Fitted','Part / module','Carrier footprint','Side','Assembly note','Source']);

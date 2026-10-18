@@ -33,7 +33,8 @@
       "J5",
       "J6",
       "J7"
-    ]
+    ],
+    "mounting": "One H3 PCB retention hole plus split enclosure edge capture; separate enclosure ceiling attachment and WIZ jack stop"
   },
   "historical_designs": [
     {
@@ -73,7 +74,7 @@
     }
   ],
   "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
-  "active_layout_revision": "nano-centered-rear-first",
+  "active_layout_revision": "nano-single-anchor-rails",
   "active_host": "Waveshare ESP32-S3-Nano-M",
   "active_memory": {
     "flash_mb": 16,
