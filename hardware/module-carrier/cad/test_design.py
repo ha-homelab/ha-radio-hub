@@ -32,16 +32,16 @@ class CarrierTests(unittest.TestCase):
   self.assertEqual({x['pattern'] for x in ns['netclass_patterns'] if x['netclass']=='Power'},wanted)
   self.assertEqual(project['board']['design_settings'].get('drc_exclusions',[]),[])
  def test_dimensions(self):
-  self.assertEqual((D['board']['width_mm'],D['board']['height_mm'],D['board']['copper_layers']),(65,75,2))
+  self.assertEqual((D['board']['width_mm'],D['board']['height_mm'],D['board']['copper_layers']),(51,75,2))
  def test_module_row_centers(self):
   for ref,left,right,spacing in [('U1','JP1.1','JP2.15',15.24),('U2','J1.1','J3.1',22.86),('U3','1','14',15.24),('U4','J1.1','J2.1',20.32)]:
    a,b=pad(ref,left),pad(ref,right);self.assertAlmostEqual(math.dist((a['x'],a['y']),(b['x'],b['y'])),spacing,places=4)
  def test_rj45_faces_out_of_bottom_edge(self):
-  p=P['U4'];self.assertEqual(p['rotation'],180);self.assertEqual(p['xy'],[61,67.9])
+  p=P['U4'];self.assertEqual(p['rotation'],0);self.assertEqual(p['xy'],[28.84,67.9])
   g=D['mechanics']['rj45'];self.assertEqual(g['outward_normal_global'],[0.0,1.0])
-  self.assertEqual(g['face_global_mm'],[[58.89,77.0],[42.79,77.0]])
+  self.assertEqual(g['face_global_mm'],[[30.95,77.0],[47.05,77.0]])
   self.assertAlmostEqual(g['mouth_beyond_bottom_edge_mm'],2.0)
-  self.assertTrue(all(0<q['x']<65 and 0<q['y']<75 for q in p['pad_centers_mm']))
+  self.assertTrue(all(0<q['x']<51 and 0<q['y']<75 for q in p['pad_centers_mm']))
   x1,y1,x2,y2=g['service_corridor_global_mm']
   for r in P.values():
    if r['ref']=='U4':continue
@@ -49,17 +49,17 @@ class CarrierTests(unittest.TestCase):
  def test_native_rj45_footprint_matches_edge_contract(self):
   f=next(f for f in native_footprints() if any(isinstance(p,list) and p[:3]==['property','Reference','U4'] for p in f))
   at=next(x for x in f if isinstance(x,list) and x[0]=='at')
-  self.assertEqual([float(at[1]),float(at[2]),float(at[3])%360],[61.0,67.9,180.0])
+  self.assertEqual([float(at[1]),float(at[2]),(float(at[3]) if len(at)>3 else 0)%360],[28.84,67.9,0.0])
   face_found=False
   for x in f:
    if not isinstance(x,list) or x[0]!='fp_line':continue
    fields={y[0]:y[1:] for y in x[1:] if isinstance(y,list)}
-   if fields.get('layer')==['F.Fab'] and fields.get('start')==['2.11','-9.1'] and fields.get('end')==['18.21','-9.1']:face_found=True
+   if fields.get('layer')==['B.Fab'] and fields.get('start')==['2.11','9.1'] and fields.get('end')==['18.21','9.1']:face_found=True
   self.assertTrue(face_found,'Native footprint must mark the verified RJ45 face')
  def test_carrier_holes_stay_inside_outline(self):
   for p in P.values():
    for q in p['pad_centers_mm']:
-    self.assertTrue(.5 < q['x'] < 64.5 and .5 < q['y'] < 74.5,(p['ref'],q['number']))
+    self.assertTrue(.5 < q['x'] < 50.5 and .5 < q['y'] < 74.5,(p['ref'],q['number']))
  def test_no_connected_pad_is_trapped_by_rf_track_exclusion(self):
   for p in P.values():
    for q in p['pad_centers_mm']:
@@ -147,11 +147,11 @@ class CarrierTests(unittest.TestCase):
  def test_nano_footprint_pin_direction(self):
   # JP1 increments USB->antenna, JP2 numbering reverses on opposite row.
   a,b,c=pad('U1','JP1.1'),pad('U1','JP1.15'),pad('U1','JP2.15')
-  self.assertEqual((a['x'],a['y']),(62.5,39));self.assertEqual((b['x'],b['y']),(62.5,3.44));self.assertEqual((c['x'],c['y']),(47.26,39))
+  self.assertEqual((a['x'],a['y']),(49.5,39));self.assertEqual((b['x'],b['y']),(49.5,3.44));self.assertEqual((c['x'],c['y']),(34.26,39))
  def test_no_usb_cable_gaps_but_physical_shells_retained(self):
   self.assertEqual(D['mechanics']['usb_service_envelopes_mm'],{})
   self.assertEqual(set(D['mechanics']['physical_usb_shells_mm']),{'U1','U2','U3'})
-  self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U1'],[49.26,42.81,60.5,44.81])
+  self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U1'],[36.26,42.81,47.5,44.81])
   self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U2'],[.73,48.185,26.13,49.185])
   self.assertEqual(D['mechanics']['physical_usb_shells_mm']['U3'],[20.921,60.62,23.921,69.62])
  def test_unpopulated_recovery_pads_and_rom_uart(self):
@@ -175,7 +175,7 @@ class CarrierTests(unittest.TestCase):
     for x in f:
      if not isinstance(x,list) or x[0]!='fp_rect':continue
      fields={q[0]:q[1:] for q in x[1:] if isinstance(q,list)}
-     if fields.get('layer')!=['F.CrtYd']:continue
+     if fields.get('layer') not in (['F.CrtYd'],['B.CrtYd']):continue
      coords=[]
      for q in ['start','end']:
       a,b=map(float,fields[q]);coords.append((pp['xy'][0]+a*math.cos(th)+b*math.sin(th),pp['xy'][1]-a*math.sin(th)+b*math.cos(th)))
@@ -185,24 +185,66 @@ class CarrierTests(unittest.TestCase):
   boxes=native_boxes();mechanics=D['mechanics']
   for ref,bs in boxes.items():
    for ref2,cs in boxes.items():
-    if ref>=ref2:continue
+    if ref>=ref2 or P[ref]['side']!=P[ref2]['side']:continue
     for b in bs:
      for c in cs:self.assertFalse(overlap(b,c),f'{ref} courtyard hits {ref2}')
+  # If B would hide A's solder lands, A must be soldered before B.
+  edges={r:set() for r,p in P.items() if p['fitted']}
+  for a in edges:
+   for b in edges:
+    if P[a]['side']==P[b]['side']:continue
+    for q in P[a]['pad_centers_mm']:
+     halo=[q['x']-2,q['y']-2,q['x']+2,q['y']+2]
+     if any(overlap(halo,bb) for bb in boxes[b]):edges[a].add(b)
+  pending={r:set(e) for r,e in edges.items()};order=[]
+  while pending:
+   ready=[r for r in pending if not any(r in e for e in pending.values())]
+   self.assertTrue(ready,'Circular opposite-side solder obstruction')
+   order.extend(ready)
+   for r in ready:pending.pop(r)
+  self.assertLess(order.index('J5'),order.index('U2'))
+  self.assertLess(order.index('D1'),order.index('U1'))
   for ref,a in mechanics['header_mating_envelopes_mm'].items():
    for ref2,bs in boxes.items():
-    if ref==ref2:continue
+    if ref==ref2 or P[ref]['side']!=P[ref2]['side']:continue
     for b in bs:self.assertFalse(overlap(a,b),f'{ref} mating shell hits {ref2}')
    for ref2,b in mechanics['header_mating_envelopes_mm'].items():
     if ref!=ref2:self.assertFalse(overlap(a,b),f'{ref} shell hits {ref2} shell')
   for ref,a in mechanics['physical_usb_shells_mm'].items():
    for ref2,bs in boxes.items():
-    if ref==ref2:continue
+    if ref==ref2 or P[ref]['side']!=P[ref2]['side']:continue
     for b in bs:self.assertFalse(overlap(a,b),f'{ref} USB hits {ref2}')
-   for ref2,b in mechanics['header_mating_envelopes_mm'].items():self.assertFalse(overlap(a,b),f'{ref} USB hits {ref2} shell')
+   for ref2,b in mechanics['header_mating_envelopes_mm'].items():
+    if P[ref]['side']==P[ref2]['side']:self.assertFalse(overlap(a,b),f'{ref} USB hits {ref2} shell')
    for x,y in mechanics['mounting_holes_mm']:self.assertFalse(overlap(a,[x-2.5,y-2.5,x+2.5,y+2.5]),f'{ref} USB hits support')
   for x,y in mechanics['mounting_holes_mm']:
    a=[x-2.5,y-2.5,x+2.5,y+2.5]
    for ref,bs in boxes.items():
     for b in bs:self.assertFalse(overlap(a,b),f'support hits {ref}')
    for ref,b in mechanics['header_mating_envelopes_mm'].items():self.assertFalse(overlap(a,b),f'support hits {ref} shell')
+ def test_two_sided_placement_and_stack(self):
+  for r,p in P.items():
+   expected='front' if r in ('U1','U2','U3','J8','J9') else 'back'
+   self.assertEqual(p['side'],expected)
+   f=next(f for f in native_footprints() if any(isinstance(q,list) and q[:3]==['property','Reference',r] for q in f))
+   self.assertIn(['layer','F.Cu' if expected=='front' else 'B.Cu'],f)
+  stack=D['mechanics']['stack']
+  self.assertEqual(stack['opposing_metal_clearance_min_mm'],1)
+  self.assertEqual(stack['trimmed_tail_and_solder_max_mm'],1)
+  self.assertIsNone(stack['front_module_gap_measured_mm'])
+ def test_exact_drc_classification_and_mutations(self):
+  from validate_drc import classify
+  import copy
+  report=json.loads((R/'checks/drc.json').read_text());native=(R/'mc1.kicad_pcb').read_text()
+  self.assertEqual(classify(report,native)['result'],'pass_with_conditional_mechanical_findings')
+  mutations=[]
+  x=copy.deepcopy(report);x['violations'].pop();mutations.append(x)
+  x=copy.deepcopy(report);x['violations'].append(copy.deepcopy(x['violations'][0]));mutations.append(x)
+  x=copy.deepcopy(report);x['violations'][0]['type']='clearance';mutations.append(x)
+  x=copy.deepcopy(report);x['violations'][0]['items'][0]['pos']['x']+=.1;mutations.append(x)
+  x=copy.deepcopy(report);x['unconnected_items']=[{}];mutations.append(x)
+  x=copy.deepcopy(report);x['schematic_parity']=[{}];mutations.append(x)
+  for key in ('violations','unconnected_items','schematic_parity'):
+   x=copy.deepcopy(report);del x[key];mutations.append(x)
+  for x in mutations:self.assertEqual(classify(x,native)['result'],'fail')
 if __name__=='__main__':unittest.main(verbosity=2)

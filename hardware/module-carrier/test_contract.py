@@ -121,6 +121,21 @@ class Contract(unittest.TestCase):
         self.assertNotEqual(PARTS['J3']['pins']['5'], PARTS['J3']['pins']['6'])
         self.assertIn('address: 0x70', section('wk2132_uart'))
 
+    def test_two_sided_revision_retains_every_electrical_assignment(self):
+        previous = json.loads((HERE / 'layout-single-sided.json').read_text())
+        before = {p['ref']: p['pins'] for p in previous['parts']}
+        after = {ref: p['pins'] for ref, p in PARTS.items()}
+        self.assertEqual(after, before)
+
+    def test_ceiling_harnesses_are_male_and_opposite_to_controllers(self):
+        def side(part):
+            return 'back' if part.get('side', 'front') in ('back', 'bottom', 'B.Cu') else 'front'
+        for ref in ('U1', 'U2', 'U3'):
+            self.assertEqual(side(PARTS[ref]), 'front', ref)
+        for ref in ('U4', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7'):
+            self.assertEqual(side(PARTS[ref]), 'back', ref)
+            self.assertNotIn('Socket', PARTS[ref]['footprint'], ref)
+
     def test_mounted_modules_use_through_holes_without_sockets(self):
         for ref in ('U1','U2','U3','U4'):
             fp = PARTS[ref]['footprint'].split(':')[1]

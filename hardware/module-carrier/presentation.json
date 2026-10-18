@@ -49,24 +49,25 @@
     }
   ],
   "assembly_steps": [
-    "Identify all module revisions and match them to the drawings before soldering.",
-    "On H2 DevKitM-1 v1.3, remove R7 (470 ohm) with power disconnected; verify USB-UART TX isolation. Use the matched RX23/TX24 RCP image.",
-    "Program and verify each loose controller: Nano native USB, H2 native USB Serial/JTAG, and XIAO onboard debug probe with its initial bootloader plus NCP image.",
-    "Temporarily wire and test the network update paths before permanently soldering the modules.",
-    "Dry-fit physical module and USB bodies, seven mating harness plugs, supports and antenna exclusions. No USB cable corridors are reserved.",
-    "Fit seven harness headers and five axial parts. Leave J8 and J9 unpopulated. Solder factory male module pins from underneath; follow physical pad numbers, especially Nano JP2.",
-    "Connect the isolated power and external ready modules to the labeled harnesses. Leave local regulator outputs and Nano VBUS isolated from carrier rails.",
-    "Check polarity, continuity and loaded rail voltages. Verify Nano VIN/3V3 with concurrent radio traffic.",
-    "Commission each service, then test simultaneous operation, network updates, power loss and recovery in the intended enclosure."
+    "Identify the exact modules and male header geometry; pre-program and test every controller before soldering.",
+    "On H2 DevKitM-1 v1.3, remove R7 and verify USB-UART TX isolation. Retain the matching RX23/TX24 image.",
+    "Temporarily wire all functions and network updates. The two-sided relocation does not change the pin map or firmware.",
+    "Dry-fit both faces and measure factory spacer gaps, underside parts, opposing tail heights and ceiling-facing plug clearance.",
+    "Follow the CAD solder-access order. Complete, trim and inspect every joint before another module covers it; leave J8/J9 unpopulated.",
+    "Mount controller boards on the room-facing front; fit WIZ850io, all seven male harness headers, D1–D3 and R1–R2 on the ceiling-facing back. Read each side’s own pin-numbered drawing.",
+    "Inspect and test every rail and net for continuity and unwanted contact, including after gentle connector loading. Check loaded Nano VIN and 3V3.",
+    "Use insulating supports sized for the measured rear projection and cables; keep antenna zones free of rear hardware, wires and ceiling metal.",
+    "Commission all services together and verify network updates, interrupted updates, power cycling, thermal behavior and RF range before mounting permanently."
   ],
   "manufacturing_claim": "One current custom PCB layout; finished vendor modules and external harnesses are still separate physical parts.",
   "unproven": [
-    "Nano loaded VIN operation below the documented external 6 V minimum",
-    "Physical module/connector fit and antenna spacing",
+    "Factory pin spacing in Z, trimmed solder-tail height and opposing underside-component clearance",
+    "Soldering access and practical assembly order on purchased module variants",
+    "Loaded Nano VIN operation below the documented external 6 V minimum",
     "H2 R7 isolation, boot straps and network flashing on actual hardware",
-    "MG24 bootloader updates and interrupted-transfer recovery on hardware",
-    "RF coexistence, range and simultaneous workload reliability",
-    "End-to-end ZHA / Thread / Z-Wave commissioning and network backup/restore"
+    "MG24 update interruption and recovery on actual hardware",
+    "RF coexistence, ceiling clearance, range and simultaneous workload reliability",
+    "End-to-end commissioning and network backup/restore"
   ],
   "sources": [
     [
@@ -98,5 +99,5 @@
       "https://esphome.io/components/weikai/"
     ]
   ],
-  "layout_revision": "nano-network-updates-65x75"
+  "layout_revision": "nano-two-sided-51x75"
 }

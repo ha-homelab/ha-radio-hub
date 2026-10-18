@@ -25,6 +25,8 @@ SOURCES = {
     "xiao": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip",
     "wiz": "https://docs.wiznet.io/Product/Modules/Ethernet-Modules/WIZ850io",
 }
+REAR_REFS = {"U4", *(f"J{i}" for i in range(1, 8)), "D1", "D2", "D3", "R1", "R2"}
+SOLDER_ACCESS_RADIUS_MM = 2.0
 
 
 def sexpr(text):
@@ -84,11 +86,13 @@ def read_board(path):
                 "drill": float(one(p, "drill")[0]),
                 "net": (one(p, "net") or [""])[-1],
                 "type": (one(p, "pintype") or [""])[0],
+                "layers": one(p, "layers") or [],
+                "uuid": (one(p, "uuid") or [""])[0],
             }
         courtyard = []
         for key in ("fp_rect", "fp_line", "fp_poly"):
             for shape in children(fp, key):
-                if one(shape, "layer") != ["F.CrtYd"]:
+                if one(shape, "layer") != ["B.CrtYd" if one(fp, "layer") == ["B.Cu"] else "F.CrtYd"]:
                     continue
                 points = (one(shape, "pts") if key == "fp_poly" else
                           [["xy", *one(shape, "start")], ["xy", *one(shape, "end")]])
@@ -96,6 +100,7 @@ def read_board(path):
         parts[ref] = {"name": fp[1], "layer": one(fp, "layer")[0],
                       "at": list(map(float, pos)), "pads": pads,
                       "dnp": "dnp" in (one(fp, "attr") or []),
+                      "uuid": (one(fp, "uuid") or [""])[0],
                       "courtyard_local_points": courtyard}
     return parts
 
@@ -138,7 +143,7 @@ def audit_courtyards(parts):
     boxes, errors = {}, []
     for ref, fp in parts.items():
         points = fp["courtyard_local_points"]
-        if not points:
+        if not points or fp["dnp"]:
             continue
         x, y, *angles = fp["at"]
         angle = math.radians(angles[0] if angles else 0)
@@ -150,13 +155,19 @@ def audit_courtyards(parts):
         for ref2, b in boxes.items():
             if ref >= ref2:
                 continue
+            if parts[ref]["layer"] != parts[ref2]["layer"]:
+                continue
             if (min(a[2], b[2]) > max(a[0], b[0]) + 0.001 and
                     min(a[3], b[3]) > max(a[1], b[1]) + 0.001):
                 errors.append(f"Native assembly courtyards overlap: {ref}/{ref2}")
     return errors
 
 
-def transformed_box(fp, bounds):
+def transformed_box(fp, bounds, canonical=False):
+    # Native B.Cu primitives already have local Y negated by KiCad Flip.
+    # Bounds from a manufacturer top-view drawing need that reflection here.
+    if canonical and fp["layer"] == "B.Cu":
+        bounds = [bounds[0], -bounds[3], bounds[2], -bounds[1]]
     x, y, *angles = fp["at"]
     angle = math.radians(angles[0] if angles else 0)
     points = [(x + px*math.cos(angle) + py*math.sin(angle),
@@ -173,7 +184,7 @@ def audit_fitted_envelopes(parts):
     Socket projections beyond PCB are rounded outward: Nano 2 mm, H2 1 mm,
     XIAO 3 mm. They are engineering allowances, not production tolerances.
     """
-    errors, boxes = [], {}
+    errors, boxes, sides = [], {}, {}
     for ref, fp in parts.items():
         if fp["dnp"]:
             continue
@@ -183,6 +194,7 @@ def audit_fitted_envelopes(parts):
         bounds = [min(p[0] for p in points), min(p[1] for p in points),
                   max(p[0] for p in points), max(p[1] for p in points)]
         boxes[ref] = transformed_box(fp, bounds)
+        sides[ref] = fp["layer"]
     def overlap(a, b):
         return min(a[2], b[2]) > max(a[0], b[0]) + 0.001 and min(a[3], b[3]) > max(a[1], b[1]) + 0.001
     for ref, bounds in {
@@ -192,20 +204,22 @@ def audit_fitted_envelopes(parts):
     }.items():
         if ref not in parts:
             continue
-        shell = transformed_box(parts[ref], bounds)
+        shell = transformed_box(parts[ref], bounds, canonical=True)
         for other, box in boxes.items():
-            if other != ref and overlap(shell, box):
+            if other != ref and sides[other] == parts[ref]["layer"] and overlap(shell, box):
                 errors.append(f"Physical USB shell {ref} intersects fitted courtyard {other}")
         boxes[ref + "-USB"] = shell
+        sides[ref + "-USB"] = parts[ref]["layer"]
     for ref in (f"J{i}" for i in range(1, 8)):
         if ref not in parts:
             continue
         n = len(parts[ref]["pads"])
-        housing = transformed_box(parts[ref], [-2.75, -1.75, 2.75, (n-1)*2.54+1.75])
+        housing = transformed_box(parts[ref], [-2.75, -1.75, 2.75, (n-1)*2.54+1.75], canonical=True)
         for other, box in boxes.items():
-            if other not in (ref, ref + "-housing") and overlap(housing, box):
+            if other not in (ref, ref + "-housing") and sides[other] == parts[ref]["layer"] and overlap(housing, box):
                 errors.append(f"Fitted mating housing {ref} intersects {other}")
         boxes[ref + "-housing"] = housing
+        sides[ref + "-housing"] = parts[ref]["layer"]
     for ref, fp in parts.items():
         if ref in PIN_SETS or not fp["pads"] or not all(p["kind"] == "np_thru_hole" for p in fp["pads"].values()):
             continue
@@ -280,7 +294,80 @@ def expected_xy(ref, number):
     if ref == "U4":
         row, n = number.split(".")
         return [0.0 if row == "J1" else 20.32, (int(n) - 1) * 2.54]
+    if ref.startswith("J"):
+        return [0.0, (int(number) - 1) * 2.54]
+    if ref.startswith(("D", "R")):
+        return [(int(number) - 1) * 7.62, 0.0]
     return None
+
+
+def assembly_access(parts):
+    """Conservative solder-order graph, plus overlaps needing physical Z checks.
+
+    A -> B means solder A before installing B, because B would hide A's
+    opposite-side solder point. Acyclicity is necessary, not sufficient: this
+    cannot establish delivered pin lengths or underside component heights.
+    """
+    boxes, fitted = {}, {r: p for r, p in parts.items() if r in PIN_SETS and not p["dnp"]}
+    for ref, fp in fitted.items():
+        pts = fp["courtyard_local_points"]
+        if pts:
+            boxes[ref] = transformed_box(fp, [min(p[0] for p in pts), min(p[1] for p in pts),
+                                               max(p[0] for p in pts), max(p[1] for p in pts)])
+    edges, overlaps = set(), []
+    for ref, fp in fitted.items():
+        for other, box in boxes.items():
+            if fp["layer"] == fitted[other]["layer"]:
+                continue
+            if ref < other and ref in boxes:
+                a = boxes[ref]
+                if min(a[2], box[2]) > max(a[0], box[0]) and min(a[3], box[3]) > max(a[1], box[1]):
+                    overlaps.append([ref, other])
+            for pad in fp["pads"].values():
+                x, y, _, _ = transformed_box(fp, [*pad["at"], *pad["at"]])
+                r = SOLDER_ACCESS_RADIUS_MM
+                if box[0]-r < x < box[2]+r and box[1]-r < y < box[3]+r:
+                    edges.add((ref, other))
+                    break
+    remaining, order = set(fitted), []
+    while remaining:
+        ready = sorted((r for r in remaining if not any(b == r and a in remaining for a, b in edges)),
+                       key=lambda r: (fitted[r]["layer"] != "B.Cu", r))
+        if not ready:
+            break
+        order.extend(ready); remaining.difference_update(ready)
+    errors = []
+    if remaining:
+        errors.append("Cyclic opposite-side solder access: " + ", ".join(sorted(remaining)))
+    return errors, {"solder_access_radius_mm": SOLDER_ACCESS_RADIUS_MM,
+                    "solder_before_install_edges": [list(e) for e in sorted(edges)],
+                    "candidate_solder_order": order,
+                    "cycle_members": sorted(remaining),
+                    "opposite_side_body_overlaps_requiring_measured_z_clearance": overlaps,
+                    "minimum_measured_conductor_clearance_mm": 1.0,
+                    "z_qualified": False,
+                    "limitation": "Requires measured tail/solder height, module standoff and underside components; an acyclic graph does not prove physical fit."}
+
+
+def audit_rf_bodies(parts):
+    # Geometric antenna reservations from manufacturer board geometry and the
+    # reviewed edge allowance. These are not a claim of RF qualification.
+    local = {"U1": [4, 33, 14, 39.37], "U2": [3, -6.975, 21, 10],
+             "U3": [7, 13, 16, 18.034]}
+    errors = []
+    for owner, bounds in local.items():
+        if owner not in parts:
+            continue
+        antenna = transformed_box(parts[owner], bounds, canonical=True)
+        for ref, fp in parts.items():
+            if ref == owner or fp["dnp"] or not fp["courtyard_local_points"]:
+                continue
+            pts = fp["courtyard_local_points"]
+            box = transformed_box(fp, [min(p[0] for p in pts), min(p[1] for p in pts),
+                                       max(p[0] for p in pts), max(p[1] for p in pts)])
+            if min(antenna[2], box[2]) > max(antenna[0], box[0]) and min(antenna[3], box[3]) > max(antenna[1], box[1]):
+                errors.append(f"{ref} body overlaps {owner} antenna reservation across board sides")
+    return errors
 
 
 def audit(parts):
@@ -291,17 +378,22 @@ def audit(parts):
         fp = parts[ref]
         if fp["dnp"] != (ref in {"J8", "J9"}):
             errors.append(f"{ref} fitted/DNP state differs from compact assembly contract")
-        if fp["layer"] != "F.Cu":
-            errors.append(f"{ref} is not mounted on top")
+        expected_layer = "B.Cu" if ref in REAR_REFS else "F.Cu"
+        if fp["layer"] != expected_layer:
+            errors.append(f"{ref} is not mounted on required side {expected_layer}")
         if set(fp["pads"]) != expected:
             errors.append(f"{ref} header pin set differs")
         for number, p in fp["pads"].items():
             if p["kind"] != "thru_hole":
                 errors.append(f"{ref}:{number} is not a plated through-hole")
+            if "*.Cu" not in p["layers"] and not {"F.Cu", "B.Cu"}.issubset(p["layers"]):
+                errors.append(f"{ref}:{number} does not connect copper on both sides")
             xy = expected_xy(ref, number)
+            if xy is not None and fp["layer"] == "B.Cu":
+                xy = [xy[0], -xy[1]]
             if xy is not None and math.dist(xy, p["at"]) > 0.001:
                 errors.append(f"{ref}:{number} manufacturer hole position differs")
-            if xy is not None and (abs(p["drill"] - 1.1) > 0.001 or min(p["size"]) < 1.8):
+            if ref.startswith("U") and xy is not None and (abs(p["drill"] - 1.1) > 0.001 or min(p["size"]) < 1.8):
                 errors.append(f"{ref}:{number} module pin hole/pad allowance differs")
     for ref, fp in parts.items():
         if ref not in PIN_SETS and any(p["kind"] != "np_thru_hole" or p["net"] for p in fp["pads"].values()):
@@ -334,6 +426,60 @@ def audit(parts):
     return errors
 
 
+def classify_drc(parts, drc):
+    """Classify the exact documented 43 tail/body projections; suppress none."""
+    malformed = (not isinstance(drc, dict) or
+                 any(not isinstance(drc.get(k), list) for k in ("violations", "unconnected_items", "schematic_parity")))
+    if not malformed:
+        malformed = any(not isinstance(v, dict) or not isinstance(v.get("items"), list) or
+                        not isinstance(v.get("type"), str) or not isinstance(v.get("severity"), str) or
+                        any(not isinstance(i, dict) or not isinstance(i.get("uuid"), str) for i in v["items"])
+                        for v in drc["violations"])
+    if malformed:
+        return ["Malformed native DRC report: required lists or item identifiers are missing"], {
+            "native_findings": None, "classified_pth_body_projections": None,
+            "unclassified_findings": None, "missing_expected_pairs": 43,
+            "suppressed_in_kicad": 0, "mechanical_clearance_qualified": False,
+            "validation_error": True}
+    ids = {}
+    for ref, fp in parts.items():
+        ids[fp["uuid"]] = ("footprint", ref)
+        for number, pad in fp["pads"].items():
+            ids[pad["uuid"]] = ("pad", ref, number)
+    expected = set()
+    for ref in [*(f"J{i}" for i in range(1, 8)), "D1", "D2", "D3", "R1", "R2"]:
+        owner = "U2" if ref.startswith("J") else "U1"
+        for number in PIN_SETS[ref]:
+            expected.add(frozenset({("pad", ref, number), ("footprint", owner)}))
+    seen, errors = set(), []
+    for item in drc["violations"]:
+        pair = frozenset(ids.get(i["uuid"], ("unknown", i["uuid"])) for i in item["items"])
+        if (item["type"] != "pth_inside_courtyard" or item["severity"] != "error" or
+                pair not in expected or pair in seen):
+            errors.append("Unclassified native DRC finding: " + item["type"] + " " + repr(sorted(pair)))
+            continue
+        pad_id = next(i for i in pair if i[0] == "pad")
+        fp_id = next(i for i in pair if i[0] == "footprint")
+        if parts[pad_id[1]]["layer"] != "B.Cu" or parts[fp_id[1]]["layer"] != "F.Cu":
+            errors.append("Classified PTH projection no longer has expected rear/front sides")
+        pad_fp, owner = parts[pad_id[1]], parts[fp_id[1]]
+        xy = pad_fp["pads"][pad_id[2]]["at"]
+        x, y, _, _ = transformed_box(pad_fp, [*xy, *xy])
+        pts = owner["courtyard_local_points"]
+        box = transformed_box(owner, [min(p[0] for p in pts), min(p[1] for p in pts),
+                                      max(p[0] for p in pts), max(p[1] for p in pts)])
+        if not (box[0] <= x <= box[2] and box[1] <= y <= box[3]):
+            errors.append("Native DRC projection is stale relative to current footprint/pad positions")
+        seen.add(pair)
+    if seen != expected:
+        errors.append(f"Expected exact 43 documented PTH/body projections, found {len(seen)}")
+    return errors, {"native_findings": len(drc["violations"]), "classified_pth_body_projections": len(seen),
+                    "unclassified_findings": len(drc["violations"])-len(seen),
+                    "missing_expected_pairs": len(expected-seen), "suppressed_in_kicad": 0,
+                    "mechanical_clearance_qualified": False,
+                    "meaning": "Exact planned projections only; retained raw DRC errors require measured Z clearance before fabrication release."}
+
+
 def evidence(cad):
     manifest = json.loads((cad / "verification.json").read_text())
     errors = []
@@ -342,10 +488,16 @@ def evidence(cad):
         if actual != expected:
             errors.append(f"Verification hash mismatch: {name}")
     checks = manifest["checks"]
-    for key in ("erc_violations", "drc_violations", "unconnected_items", "schematic_parity_issues"):
+    for key in ("erc_violations", "unconnected_items", "schematic_parity_issues"):
         if checks[key] != 0:
             errors.append(f"Native check {key}={checks[key]}")
     drc = json.loads((cad / "checks/drc.json").read_text())
+    classification_errors, classification = classify_drc(read_board(cad / "mc1.kicad_pcb"), drc)
+    errors.extend(classification_errors)
+    if classification.get("validation_error"):
+        report_hashes = {name: hashlib.sha256((cad / name).read_bytes()).hexdigest()
+                         for name in ("checks/drc.json", "checks/erc.json")}
+        return errors, len(manifest["sha256"]), checks, report_hashes, classification
     erc = json.loads((cad / "checks/erc.json").read_text())
     actual = {
         "erc_violations": sum(len(s["violations"]) for s in erc["sheets"]),
@@ -358,11 +510,20 @@ def evidence(cad):
             errors.append(f"Native report/manifest mismatch: {key}")
     report_hashes = {name: hashlib.sha256((cad / name).read_bytes()).hexdigest()
                      for name in ("checks/drc.json", "checks/erc.json")}
-    return errors, len(manifest["sha256"]), checks, report_hashes
+    return errors, len(manifest["sha256"]), checks, report_hashes, classification
 
 
 def mutations(parts, bounds):
     """Prove the independent audit catches plausible assembly/netlist mistakes."""
+    def invade_usb(p):
+        b = transformed_box(p["U1"], [2, -5.81, 13.24, -3.81], canonical=True)
+        p["R2"].update(at=[(b[0]+b[2])/2, (b[1]+b[3])/2, 0.0], layer="F.Cu")
+    def solder_cycle(p):
+        x, y = p["U2"]["at"][:2]
+        p["U4"].update(at=[x+1, y+25, 0.0])
+    def invade_rf(p):
+        b = transformed_box(p["U1"], [4, 33, 14, 39.37], canonical=True)
+        p["J5"].update(at=[(b[0]+b[2])/2, (b[1]+b[3])/2, 0.0])
     cases = {
         "thread_tx_rx_swap": lambda p: swap_net(p, ("U2", "J3.3"), ("U2", "J3.2")),
         "zigbee_flow_control_swap": lambda p: swap_net(p, ("U3", "5"), ("U3", "6")),
@@ -372,17 +533,29 @@ def mutations(parts, bounds):
         "supply_diode_short": lambda p: p["D1"]["pads"]["1"].update(net=p["D1"]["pads"]["2"]["net"]),
         "missing_manual_boot": lambda p: p.pop("J9"),
         "nano_reversed_row": lambda p: p["U1"]["pads"]["JP2.1"].update(at=[15.24, 0.0]),
-        "underside_component": lambda p: p["R1"].update(layer="B.Cu"),
+        "passive_on_wrong_side": lambda p: p["R1"].update(layer="F.Cu"),
         "header_outside_board": lambda p: p["J5"].update(at=[-10.0, -10.0, 0.0]),
         "overlapping_diodes": lambda p: p["D2"].update(at=list(p["D1"]["at"])),
         "fitted_service_header": lambda p: p["J9"].update(dnp=False),
-        "physical_usb_collision": lambda p: p["R2"].update(at=[49.0, 45.8, 0.0]),
+        "physical_usb_collision": invade_usb,
+        "unmirrored_back_module_pad": lambda p: p["U4"]["pads"]["J1.2"].update(at=[0.0, 2.54]),
+        "header_on_wrong_side": lambda p: p["J5"].update(layer="F.Cu"),
+        "pth_missing_back_copper": lambda p: p["J5"]["pads"]["1"].update(layers=["F.Cu", "F.Mask"]),
+        "cyclic_solder_order": solder_cycle,
+        "back_header_under_antenna": invade_rf,
     }
     result = {}
     for name, change in cases.items():
         mutated = copy.deepcopy(parts)
         change(mutated)
-        result[name] = bool(audit(mutated) + audit_pad_containment(mutated, bounds) + audit_courtyards(mutated) + audit_fitted_envelopes(mutated))
+        if name == "physical_usb_collision":
+            result[name] = bool(audit_fitted_envelopes(mutated))
+        elif name == "cyclic_solder_order":
+            result[name] = bool(assembly_access(mutated)[0])
+        elif name == "back_header_under_antenna":
+            result[name] = bool(audit_rf_bodies(mutated))
+        else:
+            result[name] = bool(audit(mutated) + audit_pad_containment(mutated, bounds) + audit_courtyards(mutated) + audit_fitted_envelopes(mutated) + assembly_access(mutated)[0] + audit_rf_bodies(mutated))
     return result
 
 
@@ -395,17 +568,35 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--board", type=Path, default=HERE / "cad/mc1.kicad_pcb")
     parser.add_argument("--skip-evidence", action="store_true", help="For a preliminary board before final exports")
-    parser.add_argument("--self-test", action="store_true", help="Inject thirteen plausible errors in memory")
+    parser.add_argument("--self-test", action="store_true", help="Inject eighteen plausible errors in memory")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     parts = read_board(args.board)
     bounds = board_bounds(args.board)
-    errors = audit(parts) + audit_pad_containment(parts, bounds) + audit_courtyards(parts) + audit_fitted_envelopes(parts)
-    hashes, checks, report_hashes = None, None, None
+    access_errors, access = assembly_access(parts)
+    errors = audit(parts) + audit_pad_containment(parts, bounds) + audit_courtyards(parts) + audit_fitted_envelopes(parts) + access_errors + audit_rf_bodies(parts)
+    hashes, checks, report_hashes, classification = None, None, None, None
     if not args.skip_evidence:
-        evidence_errors, hashes, checks, report_hashes = evidence(args.board.parent)
+        evidence_errors, hashes, checks, report_hashes, classification = evidence(args.board.parent)
         errors.extend(evidence_errors)
     mutation_results = mutations(parts, bounds) if args.self_test and not errors else {}
+    if args.self_test and not errors and not args.skip_evidence:
+        drc = json.loads((args.board.parent / "checks/drc.json").read_text())
+        bad = copy.deepcopy(drc); bad["violations"][0]["type"] = "clearance"
+        mutation_results["drc_other_type_not_excused"] = bool(classify_drc(parts, bad)[0])
+        bad = copy.deepcopy(drc); bad["violations"].pop()
+        mutation_results["drc_missing_expected_pair"] = bool(classify_drc(parts, bad)[0])
+        bad = copy.deepcopy(drc); bad["violations"][0]["items"][1]["uuid"] = parts["U3"]["uuid"]
+        mutation_results["drc_wrong_body_not_excused"] = bool(classify_drc(parts, bad)[0])
+        for key in ("violations", "unconnected_items", "schematic_parity"):
+            bad = copy.deepcopy(drc); bad.pop(key)
+            mutation_results["drc_missing_list_" + key] = bool(classify_drc(parts, bad)[0])
+        bad = copy.deepcopy(drc); bad["violations"].append(copy.deepcopy(bad["violations"][0]))
+        mutation_results["drc_extra_violation_not_excused"] = bool(classify_drc(parts, bad)[0])
+        bad_parts = copy.deepcopy(parts); bad_parts["U1"]["at"][0] += 100
+        mutation_results["drc_stale_body_position"] = bool(classify_drc(bad_parts, drc)[0])
+        bad_parts = copy.deepcopy(parts); bad_parts["D1"]["pads"]["1"]["at"][0] += 100
+        mutation_results["drc_stale_pad_position"] = bool(classify_drc(bad_parts, drc)[0])
     errors.extend(f"Mutation not detected: {k}" for k, detected in mutation_results.items() if not detected)
     result = {
         "checked_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -415,17 +606,21 @@ def main():
         "manufacturer_sources": SOURCES,
         "electronic_references": len(PIN_SETS),
         "fitted_electronic_references": sum(not parts[ref]["dnp"] for ref in PIN_SETS if ref in parts),
+        "fitted_side_counts": dict(Counter(parts[ref]["layer"] for ref in PIN_SETS if ref in parts and not parts[ref]["dnp"])),
+        "assembly_access": access,
         "expected_pads": sum(map(len, PIN_SETS.values())),
         "native_board_bounds_mm": bounds,
         "connected_endpoint_groups": len(GROUPS),
         "connected_pads": sum(map(len, GROUPS.values())),
         "native_checks": checks,
         "native_report_sha256": report_hashes,
+        "drc_classification": classification,
         "manifest_hashes_checked": hashes,
         "mutations_detected": mutation_results,
         "errors": errors,
         "passed": not errors,
-        "limits": "Read-only net-assignment and module-hole audit. DRC supplies route continuity. No physical fit, power, RF, USB or runtime test.",
+        "fabrication_release": False,
+        "limits": "Prototype consistency audit, not fabrication approval. Raw PTH/courtyard errors remain classified but unqualified pending measured Z clearance. No physical fit, power, RF, USB or runtime test.",
     }
     text = json.dumps(result, indent=2) + "\n"
     if args.output:

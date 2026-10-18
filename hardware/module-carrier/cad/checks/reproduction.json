@@ -1,21 +1,25 @@
 {
-  "checked_at_utc": "2026-10-18T04:21:46.877169+00:00",
-  "result": "pass",
+  "checked_at_utc": "2026-10-18T04:36:44.042141+00:00",
+  "result": "pass_with_conditional_mechanical_findings",
+  "physical_z_qualified": false,
   "method": "Clean temporary copy; generator + committed SES + manual route; native DRC/parity/ERC and geometry/electrical tests",
   "checks": {
-    "drc_violations": 0,
+    "drc_violations": 43,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "erc_violations": 0
+    "erc_violations": 0,
+    "classified_mechanical_overlaps": 43,
+    "unclassified_violations": 0
   },
   "source_sha256": {
-    "mc1.kicad_pcb": "cd28bc7a3875a8776e82679640d4388aaa7d5d4e21d166d6cca9cae9079c1fb1",
+    "mc1.kicad_pcb": "87e2dbdd2d7be9daeb703dff1356812abf905cf625409c61e812d707ffb88e39",
     "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
     "project_rules.py": "088d9987469cee8a32241284b097551942e20072ae7ec249f9f29fc967c17720",
-    "generate.py": "f73542f61f84b7c16177e1ec59d29c1422cd559fe47b250965c55f2e8d07f340",
-    "finalize.py": "f3056f7d1fdbde18988c12b5467f157bfc89f06cb4b727e55fe3a197b6995b71",
+    "generate.py": "704b6a6d230bf7ae9e1e770b7149dd7c1cc24ab771102204de0670c8f393487e",
+    "finalize.py": "7eb160b38f0ae17a0a8df1326bdf213e5e178a22d9b1af6219a3d47519fd11eb",
     "apply_manual_route.py": "fd3aba5a22a8b2183f6863c6057941f5560cdec650a0e798e98865cde6502dec",
-    "routing/mc1.ses": "6ca156be85cb25de8eb2a87a5350fc910db1ae11a8c042de13b17d12cc1cfb5e",
-    "manual-route.json": "2aee341b00a477d223c485120d919aef6cb8126ffc01145ea77ec2175ab551d7"
+    "validate_drc.py": "324f0f42fcd10d0ac3688447745a7f1fb0dab1614a18f29ce4f0459b79a39c1e",
+    "routing/mc1.ses": "36ef35051a32ab915c358efd0609968929afb8705fb268f9977d38d0f485cdcd",
+    "manual-route.json": "fc4e2118d8a37ce79c121a45db32c8838cba6851b23db9be983f9c8f52ae4b69"
   }
 }

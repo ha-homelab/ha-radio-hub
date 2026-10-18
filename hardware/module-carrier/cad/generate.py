@@ -87,7 +87,10 @@ for p in parts:
     for n in p['pins'].values():
         if n is not None and n not in nets:nets[n]=pcb.NETINFO_ITEM(board,n);board.Add(nets[n])
 for p in parts:
-    fp=pcb.FootprintLoad(str(LOCAL),p['footprint'].split(':')[1]);fp.SetReference(p['ref']);fp.SetValue(p['model']);fp.SetFPID(pcb.LIB_ID('MC1',p['footprint'].split(':')[1]));fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(p['xy'][0]),pcb.FromMM(p['xy'][1])));fp.SetOrientationDegrees(p['rotation']);fp.SetPath(pcb.KIID_PATH('/'+rootid+'/'+U('symbol/'+p['ref'])))
+    fp=pcb.FootprintLoad(str(LOCAL),p['footprint'].split(':')[1]);fp.SetReference(p['ref']);fp.SetValue(p['model']);fp.SetFPID(pcb.LIB_ID('MC1',p['footprint'].split(':')[1]));fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(p['xy'][0]),pcb.FromMM(p['xy'][1])));
+    board.Add(fp)
+    if p['side']=='back':fp.Flip(fp.GetPosition(),False)
+    fp.SetOrientationDegrees(p['rotation']);fp.SetPath(pcb.KIID_PATH('/'+rootid+'/'+U('symbol/'+p['ref'])))
     assert {x.GetNumber() for x in fp.Pads()}==set(p['pins']),p['ref']
     if not p['fitted']:fp.SetAttributes(fp.GetAttributes() | pcb.FP_DNP)
     for pad in fp.Pads():
@@ -95,20 +98,20 @@ for p in parts:
     fp.Reference().SetTextSize(pcb.VECTOR2I(pcb.FromMM(.9),pcb.FromMM(.9)));fp.Reference().SetTextThickness(pcb.FromMM(.15));fp.Value().SetVisible(False)
     rx,ry=p['xy'][0],p['xy'][1]-2.1
     if p['ref'].startswith('D'):rx=p['xy'][0]
-    if p['ref']=='U1':rx,ry=55,21
-    elif p['ref']=='U2':rx,ry=13,24
+    if p['ref']=='U1':rx,ry=42,21
+    elif p['ref']=='U2':rx,ry=10,12.5
     elif p['ref']=='U3':rx,ry=10,64
-    elif p['ref']=='U4':rx,ry=51,61
+    elif p['ref']=='U4':rx,ry=39,61
     for item in fp.GraphicalItems():
-        if hasattr(item,'GetText') and item.GetText()=='K':item.SetLayer(pcb.F_Fab)
-    fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(rx),pcb.FromMM(ry)));fp.Reference().SetTextAngle(pcb.EDA_ANGLE(0,pcb.DEGREES_T));board.Add(fp)
+        if hasattr(item,'GetText') and item.GetText()=='K':item.SetLayer(pcb.B_Fab if p['side']=='back' else pcb.F_Fab)
+    fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(rx),pcb.FromMM(ry)));fp.Reference().SetTextAngle(pcb.EDA_ANGLE(0,pcb.DEGREES_T))
 
 for p,q in [((0,0),(BOARD_W,0)),((BOARD_W,0),(BOARD_W,BOARD_H)),((BOARD_W,BOARD_H),(0,BOARD_H)),((0,BOARD_H),(0,0))]:
     s=pcb.PCB_SHAPE();s.SetShape(pcb.SHAPE_T_SEGMENT);s.SetStart(pcb.VECTOR2I(pcb.FromMM(p[0]),pcb.FromMM(p[1])));s.SetEnd(pcb.VECTOR2I(pcb.FromMM(q[0]),pcb.FromMM(q[1])));s.SetLayer(pcb.Edge_Cuts);s.SetWidth(pcb.FromMM(.05));board.Add(s)
 for i,(x,y) in enumerate(MOUNT_HOLES,1):
     fp=pcb.FOOTPRINT(board);fp.SetReference('H'+str(i));fp.SetValue('M2.5 NYLON NPTH');fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));fp.Reference().SetVisible(False);fp.Value().SetVisible(False);fp.SetAttributes(pcb.FP_EXCLUDE_FROM_BOM|pcb.FP_EXCLUDE_FROM_POS_FILES|pcb.FP_BOARD_ONLY)
     pd=pcb.PAD(fp);pd.SetAttribute(pcb.PAD_ATTRIB_NPTH);pd.SetShape(pcb.PAD_SHAPE_CIRCLE);pd.SetSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetDrillSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetLayerSet(pcb.LSET.AllCuMask());fp.Add(pd);board.Add(fp)
-for txt,x,y,size in [('MC1 NANO',35,10,.9),(f'{BOARD_W} x {BOARD_H}',35,13,.9)]:
+for txt,x,y,size in [('MC1 NANO',29.5,13,.8),(f'{BOARD_W} x {BOARD_H}',29.5,16,.8)]:
     t=pcb.PCB_TEXT(board);t.SetText(txt);t.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(size),pcb.FromMM(size)));t.SetTextThickness(pcb.FromMM(.13));t.SetLayer(pcb.F_SilkS);board.Add(t)
 # RF exclusions: Nano/H2 at the top edge; XIAO at the left edge.
 # Inter-row exclusions reach the edge without trapping the connected pads.
@@ -143,10 +146,12 @@ ledger=[]
 for p in parts:
     fp=next(f for f in board.GetFootprints() if f.GetReference()==p['ref']);r=dict(p);r['body_bounds_local_mm']=BODY_BOUNDS.get(p['ref']);r['pad_centers_mm']=[dict(number=pd.GetNumber(),net=p['pins'][pd.GetNumber()],x=round(pcb.ToMM(pd.GetPosition().x),4),y=round(pcb.ToMM(pd.GetPosition().y),4),drill_mm=round(pcb.ToMM(pd.GetDrillSize().x),4)) for pd in fp.Pads()];ledger.append(r)
 u4=next(p for p in parts if p['ref']=='U4');ang=math.radians(u4['rotation'])
-def transform(v):return [round(u4['xy'][0]+v[0]*math.cos(ang)+v[1]*math.sin(ang),4),round(u4['xy'][1]-v[0]*math.sin(ang)+v[1]*math.cos(ang),4)]
+def transform(v):
+    x,y=v;y=-y if u4['side']=='back' else y
+    return [round(u4['xy'][0]+x*math.cos(ang)+y*math.sin(ang),4),round(u4['xy'][1]-x*math.sin(ang)+y*math.cos(ang),4)]
 rj45=dict(WIZ_MECHANICS)
 rj45['face_global_mm']=[transform(v) for v in WIZ_MECHANICS['rj45_face_local_mm']]
-rj45['outward_normal_global']=[round(-math.sin(ang),4),round(-math.cos(ang),4)]
+rj45['outward_normal_global']=[round(math.sin(ang),4),round(math.cos(ang),4)] if u4['side']=='back' else [round(-math.sin(ang),4),round(-math.cos(ang),4)]
 rj45['mouth_beyond_bottom_edge_mm']=round(rj45['face_global_mm'][0][1]-BOARD_H,4)
 bb=WIZ_MECHANICS['pcb_bounds_local_mm'];bc=[transform(bb[:2]),transform(bb[2:])];rj45['pcb_bounds_global_mm']=[min(v[0] for v in bc),min(v[1] for v in bc),max(v[0] for v in bc),max(v[1] for v in bc)]
 rj45['face_width_mm']=16.10
@@ -155,16 +160,40 @@ headers={}
 for p in ledger:
     if p['ref'].startswith('J') and p['fitted']:
         pads=p['pad_centers_mm'];horiz=p['rotation']%180!=0;dx,dy=(1.75,2.75) if horiz else (2.75,1.75);headers[p['ref']]=[min(p['x'] for p in pads)-dx,min(p['y'] for p in pads)-dy,max(p['x'] for p in pads)+dx,max(p['y'] for p in pads)+dy]
+def global_bounds(p,rect):
+    th=math.radians(p['rotation']);cx,cy=p['xy'];points=[]
+    for x,y in [rect[:2],rect[2:]]:
+        if p['side']=='back':y=-y
+        points.append((cx+x*math.cos(th)+y*math.sin(th),cy-x*math.sin(th)+y*math.cos(th)))
+    return [round(min(v[0] for v in points),4),round(min(v[1] for v in points),4),round(max(v[0] for v in points),4),round(max(v[1] for v in points),4)]
+for p in ledger:
+    p['body_bounds_global_mm']=global_bounds(p,p['body_bounds_local_mm']) if p['body_bounds_local_mm'] else None
+stack={
+ 'carrier_nominal_thickness_mm':1.6,
+ 'front_module_gap_measured_mm':None,
+ 'rear_module_gap_measured_mm':None,
+ 'opposing_metal_clearance_min_mm':1.0,
+ 'trimmed_tail_and_solder_max_mm':1.0,
+ 'underside_height_example_limit_mm':1.0,
+ 'front_gap_required_for_example_mm':3.0,
+ 'acceptance_formula':'Measured module gap - maximum local underside protrusion - opposing solder/tail height >= 1.0 mm at every overlap',
+ 'seating':'Factory header plastic seated normally; do not assume its height. Reject/adjust assembly if measured clearance fails; no floating unspaced modules.',
+ 'ceiling_clearance_above_tallest_rear_feature_mm':5.0,
+ 'ceiling_standoff_required':'Measured tallest rear component/mated connector/wire bend height plus 5 mm; WIZ catalog18 mm datum is unspecified',
+ 'assembly_order':['Rear J1-J7 and D1-D3/R1-R2: solder from front, trim and inspect','Front U1-U3: insert, solder accessible rear rows, trim and inspect','Rear U4: solder from front; its front lands remain clear'],
+ 'solder_access_halo_mm':2.0,
+ 'status':'Geometric prototype; all Z dimensions and trimmed-tail fit require actual module measurement before assembly approval'
+}
 physical_shells={}
 for ref,box in USB_SOCKET_BOUNDS_LOCAL.items():
     p=next(p for p in ledger if p['ref']==ref);theta=math.radians(p['rotation']);cx,cy=p['xy'];pts=[]
     for x,y in [(box[0],box[1]),(box[2],box[3])]:pts.append((cx+x*math.cos(theta)+y*math.sin(theta),cy-x*math.sin(theta)+y*math.cos(theta)))
     physical_shells[ref]=[round(min(v[0] for v in pts),4),round(min(v[1] for v in pts),4),round(max(v[0] for v in pts),4),round(max(v[1] for v in pts),4)]
-metadata=dict(schema_version=1,revision='MC1-Nano',status='engineering_prototype_not_fabrication_release',layout_revision='nano-network-updates-65x75',assembly_prerequisites=['Remove H2 USB-UART TX series R7 before soldering module; v1.3 470ohm; verify exact board revision and continuity. H2 RCP and ROM use RX23/TX24.','Initial programming before assembly; no postassembly USB insertion access is reserved.'],board=dict(width_mm=BOARD_W,height_mm=BOARD_H,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"physical_usb_shells_mm":physical_shells,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"rf_pour_only_keepouts_mm":RF_POUR_ONLY_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting":{"drill_mm":2.7,"hardware":"Three nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends", "note":"Check enclosure support and RJ45 insertion load; support H3 is left of WIZ PCB."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."},parts=ledger)
+metadata=dict(schema_version=1,revision='MC1-Nano',status='engineering_prototype_not_fabrication_release',layout_revision='nano-two-sided-51x75',assembly_prerequisites=['Remove H2 USB-UART TX series R7 before soldering module; v1.3 470ohm; verify exact board revision and continuity. H2 RCP and ROM use RX23/TX24.','Initial programming before assembly; no postassembly USB insertion access is reserved.'],board=dict(width_mm=BOARD_W,height_mm=BOARD_H,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"stack":stack,"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"physical_usb_shells_mm":physical_shells,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"rf_pour_only_keepouts_mm":RF_POUR_ONLY_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting":{"drill_mm":2.7,"hardware":"Three nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends", "note":"Check enclosure support and RJ45 insertion load; support H3 is between the XIAO and WIZ footprints."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."},parts=ledger)
 (ROOT/'design.json').write_text(json.dumps(metadata,indent=2)+'\n');(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC1-Nano',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
 with (ROOT/'BOM.csv').open('w',newline='') as f:
     w=csv.writer(f);w.writerow(['Reference','Quantity','Fitted','Part / module','Carrier footprint','Side','Assembly note','Source']);
-    for p in parts:w.writerow([p['ref'],int(p['fitted']),str(p['fitted']).lower(),p['model'],p['footprint'],'Top',p['notes'],SOURCES.get(p['source'],'')])
+    for p in parts:w.writerow([p['ref'],int(p['fitted']),str(p['fitted']).lower(),p['model'],p['footprint'],p['side'].capitalize(),p['notes'],SOURCES.get(p['source'],'')])
 from project_rules import restore_project_rules
 restore_project_rules(ROOT)
 print(f'MC1 generated: {len(parts)} THT footprints, {len(nets)} connected nets; {BOARD_W}x{BOARD_H}mm, 2 copper layers')

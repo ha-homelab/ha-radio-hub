@@ -1,29 +1,29 @@
 {
   "revision": "MC1-Nano",
   "date": "2026-10-17",
-  "layout_revision": "nano-network-updates-65x75",
-  "status": "Software and CAD verified; hardware qualification outstanding",
+  "layout_revision": "nano-two-sided-51x75",
+  "status": "CAD prototype verified with classified mechanical overlaps; physical height and hardware qualification outstanding",
   "hardware_tested": false,
   "checks": [
     {
       "check": "Carrier area and function preservation",
-      "result": "80 × 90 mm → 65 × 75 mm; 32.3% less PCB area",
-      "scope": "Seven function groups retained; 69.5% smaller than the original 160 × 100 mm carrier. Two copper layers, four ready modules, seven fitted headers, three diodes and two resistors. J8/J9 are unpopulated recovery pads. No female sockets."
+      "result": "65 \u00d7 75 mm \u2192 51 \u00d7 75 mm; 21.5% less PCB area",
+      "scope": "All seven function groups and every pin assignment retained; 76.1% smaller than the original 160 \u00d7 100 mm. Two copper layers, four ready modules, seven fitted male headers, three diodes and two resistors. Front controllers; rear Ethernet, headers and axial parts. No female sockets."
     },
     {
       "check": "Native KiCad 10.0.6 ERC / DRC",
-      "result": "0 violations, 0 unrouted, 0 parity issues",
-      "scope": "Final native schematic and routed PCB; clean reproduction from generator, committed SES and manual route passed. Module terminals do not validate internal circuits."
+      "result": "ERC 0; raw DRC 43, exactly classified 43, unclassified 0; unrouted 0; parity 0",
+      "scope": "43 rear-PTH/front-courtyard projections remain in the unmodified native report. Exact native UUID, type, side, position and pair checks reject every other violation. Clean generator/SES/manual-route reproduction agrees. These are conditional mechanical findings, not zero DRC or physical height qualification."
     },
     {
       "check": "Mechanical and electrical CAD checks",
-      "result": "20 tests passed; independent audit of 133 pads and 31 net groups passed",
-      "scope": "101 connected endpoints; 13 intentional corruptions detected. Bottom-edge RJ45; H2 antenna beyond carrier FR4. USB cable corridors removed; physical shells, narrow header housings and nylon supports checked geometrically. Actual fit remains untested."
+      "result": "22 CAD tests and 27 independent mutation tests passed; 133 pads and 31 net groups audited",
+      "scope": "101 connected endpoints; native rear mirroring, both-face RF exclusions, housing fit and acyclic 2 mm solder-access halo checked. Three nylon supports. Measured residual gap \u22651 mm remains required; actual factory spacers, solder tails and underside parts untested."
     },
     {
       "check": "CAD / firmware interface contracts",
-      "result": "13 tests passed",
-      "scope": "21 S3 GPIOs; shared W5500/CC1101 SPI; three UARTs; MG24 flow control; power isolation; H2 ROM UART23/24; unpopulated recovery pads and fitted count."
+      "result": "15 contract tests passed",
+      "scope": "Every pin assignment identical to the saved 65 \u00d7 75 mm ledger; explicit front/back and no-socket checks. Existing shared SPI, three UARTs, flow control, power isolation and H2 ROM UART23/24 retained."
     },
     {
       "check": "Complete S3 firmware",
@@ -47,13 +47,14 @@
     },
     {
       "check": "Images and diagrams",
-      "result": "Regenerated native top/bottom renders, assembly and equal-scale comparison",
-      "scope": "One current 65 × 75 mm design. Earlier layouts and inaccurate generated concepts are historical. Assembly illustration uses native CAD geometry. Network-update diagram and assembly instructions explain initial programming and later updates."
+      "result": "Native front/back renders, both assembly faces, equal-scale comparison and stack section",
+      "scope": "One current 51 \u00d7 75 mm two-sided design. Previous 65 \u00d7 75 mm assets archived. Rear assembly drawing is mirrored as physically viewed. Stack illustration is qualitative; no unmeasured vertical dimensions are claimed."
     }
   ],
   "evidence_files": [
     "cad/verification.json",
     "cad/checks/reproduction.json",
+    "cad/checks/drc-classification.json",
     "independent-review.md",
     "independent-audit.json",
     "images/native-render-provenance.json",
@@ -61,5 +62,6 @@
     "../../firmware/module-carrier/build-evidence.json",
     "../../firmware/module-carrier/test-results.json",
     "../../firmware/module-carrier/zigbee/build-evidence.json"
-  ]
+  ],
+  "physical_z_qualified": false
 }

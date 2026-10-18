@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-18T04:21:57.885105+00:00",
+  "checked_at_utc": "2026-10-18T04:37:37.402789+00:00",
   "board": "mc1.kicad_pcb",
-  "board_sha256": "cd28bc7a3875a8776e82679640d4388aaa7d5d4e21d166d6cca9cae9079c1fb1",
-  "audit_script_sha256": "b6151825d50bb8fbd0e43c70bfd3518618835b3e37d8cd002dd84a4120a45ba1",
+  "board_sha256": "87e2dbdd2d7be9daeb703dff1356812abf905cf625409c61e812d707ffb88e39",
+  "audit_script_sha256": "873cc673afdd54efcd2800a7bc3502586bc658fc7549be1837a35a121a80ee28",
   "manufacturer_sources": {
     "nano": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
     "h2": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
@@ -11,27 +11,167 @@
   },
   "electronic_references": 18,
   "fitted_electronic_references": 16,
+  "fitted_side_counts": {
+    "F.Cu": 3,
+    "B.Cu": 13
+  },
+  "assembly_access": {
+    "solder_access_radius_mm": 2.0,
+    "solder_before_install_edges": [
+      [
+        "D1",
+        "U1"
+      ],
+      [
+        "D2",
+        "U1"
+      ],
+      [
+        "D3",
+        "U1"
+      ],
+      [
+        "J1",
+        "U2"
+      ],
+      [
+        "J2",
+        "U2"
+      ],
+      [
+        "J3",
+        "U2"
+      ],
+      [
+        "J4",
+        "U2"
+      ],
+      [
+        "J5",
+        "U2"
+      ],
+      [
+        "J6",
+        "U2"
+      ],
+      [
+        "J7",
+        "U2"
+      ],
+      [
+        "R1",
+        "U1"
+      ],
+      [
+        "R2",
+        "U1"
+      ]
+    ],
+    "candidate_solder_order": [
+      "D1",
+      "D2",
+      "D3",
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "J6",
+      "J7",
+      "R1",
+      "R2",
+      "U4",
+      "U3",
+      "U1",
+      "U2"
+    ],
+    "cycle_members": [],
+    "opposite_side_body_overlaps_requiring_measured_z_clearance": [
+      [
+        "J2",
+        "U2"
+      ],
+      [
+        "J3",
+        "U2"
+      ],
+      [
+        "J7",
+        "U2"
+      ],
+      [
+        "J5",
+        "U2"
+      ],
+      [
+        "D2",
+        "U1"
+      ],
+      [
+        "D1",
+        "U1"
+      ],
+      [
+        "J6",
+        "U2"
+      ],
+      [
+        "J4",
+        "U2"
+      ],
+      [
+        "J1",
+        "U2"
+      ],
+      [
+        "R2",
+        "U1"
+      ],
+      [
+        "R1",
+        "U1"
+      ],
+      [
+        "D3",
+        "U1"
+      ]
+    ],
+    "minimum_measured_conductor_clearance_mm": 1.0,
+    "z_qualified": false,
+    "limitation": "Requires measured tail/solder height, module standoff and underside components; an acyclic graph does not prove physical fit."
+  },
   "expected_pads": 133,
   "native_board_bounds_mm": [
     0.0,
     0.0,
-    65.0,
+    51.0,
     75.0
   ],
   "connected_endpoint_groups": 31,
   "connected_pads": 101,
   "native_checks": {
     "erc_violations": 0,
-    "drc_violations": 0,
+    "drc_violations": 43,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 20
+    "unit_tests_passed": 22,
+    "classified_mechanical_overlaps": 43,
+    "unclassified_violations": 0
   },
   "native_report_sha256": {
-    "checks/drc.json": "74493535238026d56670d5037788a105de30cee81d081728076711fd02637bd6",
-    "checks/erc.json": "1cb1cf38870c62b481dbfc74c75194882eaeb0c6a9cbb3836c88479e2479b61c"
+    "checks/drc.json": "6d7154b9ce9529accc175652d007505d8bfe232981bb12a31b4524e2c918aba8",
+    "checks/erc.json": "9d5b9e71c4008b8c52affc17030c325077e4eea5597994c74c3ed3f9d0535c1b"
   },
-  "manifest_hashes_checked": 13,
+  "drc_classification": {
+    "native_findings": 43,
+    "classified_pth_body_projections": 43,
+    "unclassified_findings": 0,
+    "missing_expected_pairs": 0,
+    "suppressed_in_kicad": 0,
+    "mechanical_clearance_qualified": false,
+    "meaning": "Exact planned projections only; retained raw DRC errors require measured Z clearance before fabrication release."
+  },
+  "manifest_hashes_checked": 17,
   "mutations_detected": {
     "thread_tx_rx_swap": true,
     "zigbee_flow_control_swap": true,
@@ -41,13 +181,28 @@
     "supply_diode_short": true,
     "missing_manual_boot": true,
     "nano_reversed_row": true,
-    "underside_component": true,
+    "passive_on_wrong_side": true,
     "header_outside_board": true,
     "overlapping_diodes": true,
     "fitted_service_header": true,
-    "physical_usb_collision": true
+    "physical_usb_collision": true,
+    "unmirrored_back_module_pad": true,
+    "header_on_wrong_side": true,
+    "pth_missing_back_copper": true,
+    "cyclic_solder_order": true,
+    "back_header_under_antenna": true,
+    "drc_other_type_not_excused": true,
+    "drc_missing_expected_pair": true,
+    "drc_wrong_body_not_excused": true,
+    "drc_missing_list_violations": true,
+    "drc_missing_list_unconnected_items": true,
+    "drc_missing_list_schematic_parity": true,
+    "drc_extra_violation_not_excused": true,
+    "drc_stale_body_position": true,
+    "drc_stale_pad_position": true
   },
   "errors": [],
   "passed": true,
-  "limits": "Read-only net-assignment and module-hole audit. DRC supplies route continuity. No physical fit, power, RF, USB or runtime test."
+  "fabrication_release": false,
+  "limits": "Prototype consistency audit, not fabrication approval. Raw PTH/courtyard errors remain classified but unqualified pending measured Z clearance. No physical fit, power, RF, USB or runtime test."
 }

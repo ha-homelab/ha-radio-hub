@@ -17,16 +17,23 @@ The native render manifest records the PCB and image hashes, KiCad version,
 viewpoint and pixel dimensions. Renderer colors are presentation choices, not a
 fabrication finish specification.
 
-## Current assembly view
+## Current assembly views
 
-The current version uses the S3-Nano-M host on an 65 × 75 mm carrier, with RJ45 facing the bottom edge.
+The current version uses the S3-Nano-M host on a 51 × 75 mm carrier, with
+controllers facing the room and Ethernet/male harness pins facing the ceiling.
 
-Use the [dimensioned assembly drawing](../cad/assembly-top.svg) to see the four
-mounted modules, internal harness headers, antenna exclusions, physical USB shells and
-outward-facing RJ45. It is generated from the same geometry as the native PCB.
-The [same-scale comparison](../layout-comparison.svg) shows the area reduction.
+The [room-facing drawing](../cad/assembly-top.svg) shows the three controllers.
+The [ceiling-facing drawing](../cad/assembly-bottom.svg) shows Ethernet and the
+male harness headers; it is mirrored as seen from the back. Both are generated
+from native CAD geometry with physical pad numbers. The
+[same-scale comparison](../layout-comparison.svg) shows the area reduction, and
+[section principle](../direct-solder.svg) explains the opposing-tail clearance.
 
 ## Historical and rejected illustrations
+
+The preceding 65 × 75 mm single-sided layout is archived under
+[single-sided-65x75](history/single-sided-65x75/). Its original reports and images
+retain their historical meaning.
 
 The preceding 80 × 90 mm USB-service layout is archived under
 [usb-service-80x90](history/usb-service-80x90/). Its large cable corridors are no
@@ -55,7 +62,8 @@ verification artifacts and must be refreshed when the visible guide changes.
 They do not replace the source SVGs or native PCB files.
 
 Captured views: [current PCB](ui-pcb.jpg), [assembly drawing](ui-assembly.jpg),
-[net search](ui-wiring.jpg), [module architecture](ui-architecture.jpg), and
+[ceiling-facing assembly](ui-assembly-back.jpg), [assembly section](ui-stack.jpg),
+[size comparison](ui-comparison.jpg), [net search](ui-wiring.jpg), [module architecture](ui-architecture.jpg), and
 [Thread recovery](ui-recovery.jpg), and [network updates](ui-updates.jpg). The [screenshot record](screenshot-provenance.json)
 records the source hash, viewport and successful search check.
 The [migration manifest](../visual-migration.json) accounts for current and

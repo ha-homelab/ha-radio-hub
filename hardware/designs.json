@@ -7,7 +7,7 @@
   "priority": "Preserve functions and Home Assistant compatibility using finished modules on one direct-solder carrier.",
   "assembly": {
     "female_module_sockets": 0,
-    "method": "Male module pins enter plated carrier holes and are soldered on the underside.",
+    "method": "Factory male module pins enter plated holes directly. Controllers face the room; Ethernet and male harness headers face the ceiling. Solder joints lie on the opposite face and require a checked access order.",
     "castellated_side_soldering": false,
     "additional_height_accepted": true,
     "module_header_solder_joints": 86,
@@ -15,7 +15,25 @@
     "fitted_harness_headers": 7,
     "fitted_references": 16,
     "usb_cable_service_space": false,
-    "h2_preparation": "DevKitM-1 schematic v1.3: remove R7 (470 ohm) to isolate CP2102N TX; use H2 RX23/TX24"
+    "h2_preparation": "DevKitM-1 schematic v1.3: remove R7 (470 ohm) to isolate CP2102N TX; use H2 RX23/TX24",
+    "component_sides": 2,
+    "front_modules": [
+      "U1",
+      "U2",
+      "U3"
+    ],
+    "back_modules": [
+      "U4"
+    ],
+    "back_male_harness_headers": [
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "J6",
+      "J7"
+    ]
   },
   "historical_designs": [
     {
@@ -55,7 +73,7 @@
     }
   ],
   "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
-  "active_layout_revision": "nano-network-updates-65x75",
+  "active_layout_revision": "nano-two-sided-51x75",
   "active_host": "Waveshare ESP32-S3-Nano-M",
   "active_memory": {
     "flash_mb": 16,

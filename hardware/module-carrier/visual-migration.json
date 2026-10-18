@@ -3,7 +3,7 @@
   "date": "2026-10-17",
   "active_design": "MC1",
   "applied": true,
-  "interpretation": "One current 65 × 75 mm MC1 Nano visual set. Previous 80 × 90 mm USB-service, full-size-S3 layouts and rejected generated concepts are historical, not alternative current builds.",
+  "interpretation": "One current 51 \u00d7 75 mm two-sided MC1 Nano visual set. The prior 65 \u00d7 75 mm single-sided board and earlier layouts remain historical references, not alternative current builds.",
   "legacy_source_inventory": "hardware/h2-quartet/visual-inventory.json",
   "updated_entrypoints": [
     "docs/manufacturing.md",
@@ -562,6 +562,41 @@
       "path": "hardware/module-carrier/images/history/usb-service-80x90/ui-assembly.jpg",
       "sha256": "9d4907373d545ca387d5095ed0293ce96ea206bbc8c244b4e81de620003326de",
       "status": "retired_80x90_USB_service_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/assembly-top.png",
+      "sha256": "73760355bc6dba63f081d34da08f2f6f695a8ca90fd421eb27cdd020c4fd6833",
+      "status": "retired_65x75_single_sided_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/assembly-top.svg",
+      "sha256": "a8d46537681e68cb7e62e23e8c837b9df84bd62ea8d3d978f90ab631ea07da74",
+      "status": "retired_65x75_single_sided_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/mc1-board-bottom.png",
+      "sha256": "b12fb236369a8c29272e59322b2a647f040029b4ba72d55707a8c8d84eff1b7e",
+      "status": "retired_65x75_single_sided_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/mc1-board-top.png",
+      "sha256": "557c64a29b40c5edb5937d62d594dd695e3c7be8c8d7108046d666b2263d3f14",
+      "status": "retired_65x75_single_sided_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/ui-assembly.jpg",
+      "sha256": "ad3100c59a595d20a224269d2087e31923fb558fbf8f1b0ecd5b699b1c8e1043",
+      "status": "retired_65x75_single_sided_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/ui-pcb.jpg",
+      "sha256": "91df2728293ffb9b2baed7ad4c765a9048c30bbd73848d9a1a5dac2c76837035",
+      "status": "retired_65x75_single_sided_carrier"
+    },
+    {
+      "path": "hardware/module-carrier/images/history/single-sided-65x75/ui-wiring.jpg",
+      "sha256": "5b5149d49bddc64cad72d3b8e9a83a4fe0770005c2a3cff66678d8673bb92712",
+      "status": "retired_65x75_single_sided_carrier"
     }
   ],
   "current_assets": [
@@ -577,67 +612,67 @@
     },
     {
       "path": "hardware/module-carrier/cad/assembly-top.png",
-      "sha256": "73760355bc6dba63f081d34da08f2f6f695a8ca90fd421eb27cdd020c4fd6833",
+      "sha256": "cfbc927be43ef469c3e0693e38bbe30f6c34a7ad864317cd023a3681bd7cf56a",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/assembly-top.svg",
-      "sha256": "a8d46537681e68cb7e62e23e8c837b9df84bd62ea8d3d978f90ab631ea07da74",
+      "sha256": "72595e48d954e36ea5a61755c9c94e27309bec4251b230631492092ee02fa12f",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/board-bottom.svg",
-      "sha256": "dd0aa687648a2879fa10a1a0b31c8add547fd2aede22dbc1accaab6cc1e5dd60",
+      "sha256": "e546b937b9b554bd7a85eea1738d6340e51ddca876f7e0c4735d05ecebcc7fc2",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/board-top.svg",
-      "sha256": "8938d8a54d6e9f6a89862b44af0cbb82e78563b7ab8e68ad6a956ecb3525fc13",
+      "sha256": "f7b13eb19bbbef5c59a321f5bc2a0d42c45f0f8857772c61ba4d12d1d8bbc828",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/schematic.pdf",
-      "sha256": "2d4f538909ae00a17677629ac8e27629a578a5c9be6df3512ac25c87964d6814",
+      "sha256": "b759c59d3ced3e22caeeecc86e93f3c4d6fb5baa19cc1182d8ec0c7edca80e44",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/cad/schematic.svg",
-      "sha256": "0f2cabd307b03f59b3e9805d7ddaf0611958404dbbd64a015ee5e2af59a354b3",
+      "sha256": "66c0389af3aa0c0fefa94289138042669293f0671343c4d5cbea97042f15c042",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/direct-solder.svg",
-      "sha256": "65f07f7811e312deacc11207b72eef0a9744ba4804773143272bed52f9cc2534",
+      "sha256": "39bd7b5dcf592e61e70f9e112339035a4b51ba7321816531dd8466164d907a4c",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/images/mc1-board-bottom.png",
-      "sha256": "b12fb236369a8c29272e59322b2a647f040029b4ba72d55707a8c8d84eff1b7e",
+      "sha256": "c37d1d5a8c1425b4ee8e2f9408c10051f8ef0c52159a7aca08fabda75ead7106",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/images/mc1-board-top.png",
-      "sha256": "557c64a29b40c5edb5937d62d594dd695e3c7be8c8d7108046d666b2263d3f14",
+      "sha256": "1d80d6c6451ff435ae29f0d8fcf24721a90054074004ca3b03979476a8ee5445",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
       "path": "hardware/module-carrier/images/ui-assembly.jpg",
-      "sha256": "ad3100c59a595d20a224269d2087e31923fb558fbf8f1b0ecd5b699b1c8e1043",
+      "sha256": "7fdbcacc9c90f35b41099fde4c70e333e7650c3a48ed023d840846d9598fba39",
       "kind": "browser_screenshot"
     },
     {
       "path": "hardware/module-carrier/images/ui-pcb.jpg",
-      "sha256": "91df2728293ffb9b2baed7ad4c765a9048c30bbd73848d9a1a5dac2c76837035",
+      "sha256": "2533f5e277c2f278b69ff87679644efd1c04cd1dcf58923f1db8664fccfec700",
       "kind": "browser_screenshot"
     },
     {
       "path": "hardware/module-carrier/images/ui-wiring.jpg",
-      "sha256": "5b5149d49bddc64cad72d3b8e9a83a4fe0770005c2a3cff66678d8673bb92712",
+      "sha256": "b159d88c98a90da31629964224bece0d58ccfb8a3abd9f44601ade6dc544a467",
       "kind": "browser_screenshot"
     },
     {
       "path": "hardware/module-carrier/layout-comparison.svg",
-      "sha256": "69afbcdfc38ce42b661995154efb2bf556bec06b2f58c5baf85367effd6ac5e1",
+      "sha256": "a4c181c5a22f1607c75e837a32d95280060ae181b0118225d8cb902307ba087d",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {
@@ -669,11 +704,36 @@
       "path": "hardware/module-carrier/images/ui-updates.jpg",
       "kind": "browser_screenshot",
       "sha256": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2"
+    },
+    {
+      "path": "hardware/module-carrier/cad/assembly-bottom.svg",
+      "kind": "native_CAD_or_deterministic_diagram",
+      "sha256": "a7585ea03abf1db55a8a3f29bdef4a0147900dec69ab0ca1336013a764c54d62"
+    },
+    {
+      "path": "hardware/module-carrier/cad/assembly-bottom.png",
+      "kind": "native_CAD_or_deterministic_diagram",
+      "sha256": "6a81b333b51fb96a29b530761e6199908ae0527116c8cb418ffdc5bd67315764"
+    },
+    {
+      "path": "hardware/module-carrier/images/ui-assembly-back.jpg",
+      "kind": "browser_screenshot",
+      "sha256": "300b172711a793a81c61d6714a57b6243ecc6030fe9ba529f9339779d766e7dc"
+    },
+    {
+      "path": "hardware/module-carrier/images/ui-comparison.jpg",
+      "kind": "browser_screenshot",
+      "sha256": "475e04436517610b4959c7f28d6f4fb87b6c35b4980c6321651f8a3d60ee324d"
+    },
+    {
+      "path": "hardware/module-carrier/images/ui-stack.jpg",
+      "kind": "browser_screenshot",
+      "sha256": "3a0054c2e1294a20cd3c49dad7205338dd8e8d3e992da0d76f16efddf31ea72c"
     }
   ],
   "counts": {
-    "current_assets": 21,
-    "historical_assets": 103
+    "current_assets": 26,
+    "historical_assets": 110
   },
-  "layout_revision": "nano-network-updates-65x75"
+  "layout_revision": "nano-two-sided-51x75"
 }

@@ -1,11 +1,11 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "layout_revision": "nano-network-updates-65x75",
-  "index_sha256": "d2abfc28dfc92dff44adac9cc5d0028d754dba7ea554610b3c6ec767390c798e",
-  "viewport_width": 319,
-  "page_scroll_width": 319,
-  "images_loaded": 9,
+  "layout_revision": "nano-two-sided-51x75",
+  "index_sha256": "bc324e7995ab0697622ab9478feb6bf8fbdfcd4c4db6a29fcb230dc7a03ec9dd",
+  "viewport_width": 586,
+  "page_scroll_width": 586,
+  "images_loaded": 10,
   "all_images_loaded": true,
   "wiring_test": {
     "query": "THREAD_RX",
@@ -15,29 +15,39 @@
       "U1.JP2.1",
       "U2.J3.3"
     ],
-    "restored_empty_query": true
+    "restored_empty_query": true,
+    "viewport_width": 319
   },
   "screenshots": {
-    "ui-pcb.jpg": "91df2728293ffb9b2baed7ad4c765a9048c30bbd73848d9a1a5dac2c76837035",
-    "ui-assembly.jpg": "ad3100c59a595d20a224269d2087e31923fb558fbf8f1b0ecd5b699b1c8e1043",
-    "ui-wiring.jpg": "5b5149d49bddc64cad72d3b8e9a83a4fe0770005c2a3cff66678d8673bb92712",
+    "ui-pcb.jpg": "2533f5e277c2f278b69ff87679644efd1c04cd1dcf58923f1db8664fccfec700",
+    "ui-assembly.jpg": "7fdbcacc9c90f35b41099fde4c70e333e7650c3a48ed023d840846d9598fba39",
+    "ui-wiring.jpg": "b159d88c98a90da31629964224bece0d58ccfb8a3abd9f44601ade6dc544a467",
     "ui-architecture.jpg": "9acb2bf12d98d048e89b9e7e07e8c6efbfb8c4e007385eb27257ee51ecb2e65c",
     "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5",
-    "ui-updates.jpg": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2"
+    "ui-updates.jpg": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2",
+    "ui-assembly-back.jpg": "300b172711a793a81c61d6714a57b6243ecc6030fe9ba529f9339779d766e7dc",
+    "ui-comparison.jpg": "475e04436517610b4959c7f28d6f4fb87b6c35b4980c6321651f8a3d60ee324d",
+    "ui-stack.jpg": "3a0054c2e1294a20cd3c49dad7205338dd8e8d3e992da0d76f16efddf31ea72c"
   },
   "source_sha256": {
-    "cad/assembly-top.svg": "a8d46537681e68cb7e62e23e8c837b9df84bd62ea8d3d978f90ab631ea07da74",
+    "cad/assembly-top.svg": "72595e48d954e36ea5a61755c9c94e27309bec4251b230631492092ee02fa12f",
     "architecture.svg": "f18cfa0a8e29ce45cd5623ebeab8b7c7422f8819d2f9173f7bc4110657985e82",
     "thread-recovery.svg": "f05b56daa4d2c2b55187d5d09c6d9930d37853f634505eefb02e512983c19334",
     "network-updates.svg": "a91a33093589e2d074e4ab0c888298dd9e8200526707cc908eaa51c15901b629",
-    "wiring.json": "3444a2cd12f72b7b730635147b5825e5c484236d182001b2c22d4aa8538d3e72"
+    "wiring.json": "789644f4e71f5c2357fb43bd4e5731225a5f5f2f3b78d9eec5823ddb8c7d3432",
+    "cad/assembly-bottom.svg": "a7585ea03abf1db55a8a3f29bdef4a0147900dec69ab0ca1336013a764c54d62",
+    "layout-comparison.svg": "a4c181c5a22f1607c75e837a32d95280060ae181b0118225d8cb902307ba087d",
+    "direct-solder.svg": "39bd7b5dcf592e61e70f9e112339035a4b51ba7321816531dd8466164d907a4c"
   },
   "capture_notes": {
-    "ui-pcb.jpg": "Native 319 px viewport, current guide at #pcb",
-    "ui-assembly.jpg": "Full-page current native CAD assembly SVG; no viewport override",
-    "ui-wiring.jpg": "Native 319 px viewport, THREAD_RX search result on final CAD; all 31 nets restored after capture.",
-    "ui-architecture.jpg": "Full-size standalone architecture SVG clip; no viewport override",
+    "ui-pcb.jpg": "Final 586 px native viewport; no viewport override; page at #pcb.",
+    "ui-assembly.jpg": "Full-page final front assembly SVG; no viewport override.",
+    "ui-wiring.jpg": "319 px native viewport; THREAD_RX shows one of 31 nets, U1.JP2.1 and U2.J3.3. Search restored afterward.",
+    "ui-architecture.jpg": "Retained screenshot; architecture SVG source hash unchanged.",
     "ui-recovery.jpg": "Retained screenshot of unchanged recovery SVG; source SHA256 unchanged.",
-    "ui-updates.jpg": "Full-size standalone network-updates.svg clip; no viewport override."
+    "ui-updates.jpg": "Retained screenshot; network-updates SVG source hash unchanged.",
+    "ui-assembly-back.jpg": "Full-page final mirrored rear assembly SVG; labels inspected; no viewport override.",
+    "ui-comparison.jpg": "Full-page equal-scale three-view SVG; no viewport override.",
+    "ui-stack.jpg": "Full-page final qualitative cross-section SVG; no viewport override."
   }
 }

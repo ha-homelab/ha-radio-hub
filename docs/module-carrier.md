@@ -1,10 +1,10 @@
-# MC1 — compact carrier, network updates
+# MC1 — two-sided carrier for ceiling mounting
 
 The current carrier uses **Waveshare ESP32-S3-Nano-M, ESP32-H2-DevKitM-1,
 Seeed XIAO MG24 and WIZ850io**. It retains the seven application groups and their
-Home Assistant interfaces. The new layout removes the three USB cable corridors:
-program and verify the loose modules before permanent soldering, then perform
-normal updates over Ethernet.
+Home Assistant interfaces. The two-sided layout puts controllers toward the room and Ethernet/harness pins
+toward the ceiling. Program and verify the loose modules before permanent
+soldering, then perform normal updates over Ethernet. No USB cable corridor is reserved.
 
 **Engineering prototype:** native CAD, firmware builds and host tests are separate
 from physical qualification. Module fit, power margins, update recovery and radio
@@ -12,9 +12,11 @@ coexistence still need testing on the assembled carrier.
 
 ## Construction
 
-The carrier is **65 mm horizontal × 75 mm vertical, with two copper layers**.
-All fitted components are on top. Factory male module pins enter plated holes and
-are soldered underneath. There are **no female module sockets**.
+The carrier is **51 mm horizontal × 75 mm vertical, with two copper layers**.
+**Front / room-facing:** S3, H2 and MG24. **Back / ceiling-facing:** WIZ850io
+and all seven male harness headers, three axial diodes and two resistors. Factory male module pins enter plated holes
+and are soldered from the opposite face. There are **no female module sockets**.
+Two-sided component placement still uses only two copper layers.
 
 The fitted parts are four complete modules, **seven harness headers**, three axial
 diodes and two resistors: **16 fitted references**. J8 and J9 remain as normally
@@ -39,25 +41,42 @@ The selected parts are:
 
 ## Compact placement and fabrication cost
 
-PCB area changes from **72 cm² to 48.75 cm²**, a **32.3% reduction** from the
-80 × 90 mm layout with USB cable clearance. It is 69.5% smaller than the original
-160 × 100 mm carrier. Two fitted recovery headers are removed from the BOM.
+PCB area changes from **48.75 cm² to 38.25 cm²**, a **21.5% reduction** from the
+65 × 75 mm single-sided arrangement. It is 76.1% smaller than the original
+160 × 100 mm carrier. The fitted BOM remains sixteen items; no new electronics,
+female module sockets or intermediate boards are added.
 
-![Previous USB-clearance layout and current carrier](../hardware/module-carrier/layout-comparison.svg)
+![Previous front side and both current sides at equal scale](../hardware/module-carrier/layout-comparison.svg)
 
 This is not a claim of a proportional reduction in the invoice. Both sizes remain
 inside the 100 × 100 mm class advertised in [JLCPCB's standard prototype offer](https://jlcpcb.com/ads/pcb-prototype)
 and [PCBWay's prototype page](https://www.pcbway.com/pcb_prototype/2_Layer_pcb/100x100mm.html)
 (checked 17 October 2026). An offer may charge the same base price for either size;
-quantity, finish, shipping and taxes need an actual quote. The demonstrable savings
-are board area and two purchased headers. The H2 preparation step adds a small
-manual rework operation and must be included in the assembly effort.
+quantity, finish, shipping and taxes need an actual quote. Two-sided **manual
+assembly** adds turning, tail trimming and staged inspection, even though the
+bare board still uses the same two copper layers and fabrication rules.
 
-The smaller size is achieved by rearranging modules and placing harness headers
-in the central aisle. **Physical USB connector bodies remain accounted for.**
-Only insertion space for plugs and cables is removed. Copper clearances, plated
-hole dimensions, antenna exclusions and support clearances are checked separately.
-The new arrangement does not establish equal RF range by geometry alone.
+The smaller size is achieved by using both faces and allowing selected bodies to
+share an XY projection. Through-holes still pass through both faces, so side changes
+do not permit overlapping drill holes or arbitrary crossing of solder tails.
+The Ethernet and controller bodies avoid a mutual obstruction of their solder
+joints. **Physical USB bodies, antenna exclusions and support clearances remain
+part of the checks.** USB cable insertion space remains intentionally absent.
+
+## Reading the stacked-board checks
+
+The unmodified KiCad DRC report contains **43 `pth_inside_courtyard` findings**:
+33 rear header pads beneath H2 and ten rear resistor/diode pads beneath S3.
+These are intentional XY projections beneath raised modules, but their physical
+height clearance is **not** established by a 2D drawing. They are retained in the
+raw report rather than hidden by smaller courtyards or a global suppression.
+
+A separate strict classifier requires exactly those native pad/body pairs and
+rejects additional, missing, duplicate, wrong-side or moved findings, along with
+all other violations, unrouted connections and schematic mismatches. A passing
+prototype check therefore means **all findings accounted for**, not “zero DRC”
+or approval to fabricate an unmeasured assembly. The measured-height acceptance
+rule below remains required.
 
 ## Functions and interfaces
 
@@ -138,15 +157,18 @@ Keep harnesses, metal, foil and enclosure parts away from antenna ends. Ceiling
 mounting does not remove near-field interaction with the carrier or metal lath.
 Radio range and simultaneous operation must be tested in the intended enclosure.
 
-WIZ850io sits at the lower right with **RJ45 facing outward at the bottom edge**.
+WIZ850io occupies the lower region on the **ceiling-facing back**, with its
+RJ45 opening toward the edge. Backside drawings mirror the horizontal coordinates;
+use their physical pad numbers rather than copying a front-view pin order.
 Its mouth projects **2 mm beyond the carrier**. The Ethernet plug/latch corridor
 is retained because that cable is required in normal operation. Support the board
 against insertion loads. Harness assumptions use narrow mating housings and
 vertical wire exits; check the purchased plugs and their bend height.
 
-The dimensions describe the PCB, not a 65 × 75 mm enclosure. Antenna overhang,
+The dimensions describe the PCB, not a 51 × 75 mm enclosure. Antenna overhang,
 RJ45, wires, solder joints and external modules require additional space. Use the
-[dimensioned assembly](../hardware/module-carrier/cad/assembly-top.svg),
+[front assembly](../hardware/module-carrier/cad/assembly-top.svg),
+[back assembly](../hardware/module-carrier/cad/assembly-bottom.svg),
 [top copper/silk](../hardware/module-carrier/cad/board-top.svg) and
 [bottom copper/silk](../hardware/module-carrier/cad/board-bottom.svg). Native renders
 show actual PCB sources; they are not photographs of manufactured hardware.
@@ -182,14 +204,44 @@ The 16 MB Nano factory partition layout differs from the historical 8 MB image.
 Export datasets before first installation or partition migration. Application-only
 OTA normally retains the installed partition table; it does not migrate old NVS.
 
+## Two-sided assembly and clearance
+
+A factory plastic spacer provides a gap; it does not establish that a protruding
+pin cannot reach the opposite module. For any overlapping area, measure:
+
+- **g:** carrier surface to the opposing module PCB underside.
+- **h:** the greatest component or factory solder protrusion below that module.
+- **p:** the greatest carrier-side pin tail or solder protrusion beneath it.
+
+The remaining separation is **g − h − p**. The acceptance target is **at least
+1.0 mm**, including assembly tolerance and connector load. A tail plus solder
+height of at most 1.0 mm is an initial trimming target, not a substitute for
+measuring the complete stack; retain a sound through-hole solder joint.
+Do not count solder mask as a mechanical spacer. Any illustrative pin/spacer
+numbers in the study are assumptions until the actual modules are measured.
+
+![Two-sided assembly and clearance principle](../hardware/module-carrier/direct-solder.svg)
+
+The [assembly study](../hardware/module-carrier/studies/two-sided/assembly-review.md)
+explains tail trimming, access to the second soldering face and ceiling height.
+Use the native CAD's access order, not a blanket “all modules first” sequence.
+Inspect and electrically test each joint before it becomes covered. Neither the
+factory headers nor the change of side makes short-circuit probability zero.
+
+Ceiling-side hardware needs insulating supports. Set the stand-off from the
+**measured** tallest assembled rear part, mating plugs and cable bends, with the
+**5 mm additional clearance** to the ceiling or enclosure. The RJ45 must remain accessible
+for insertion and latch release; do not press the jack against plaster or metal.
+
 ## Assembly acceptance
 
 1. Identify module revisions, remove the specified H2 R7 and inspect isolation.
    Program all three controllers while loose using the matching images.
 2. Temporarily connect and verify Ethernet, every function and each network update
-   path. Confirm the actual module shells, mating plugs and antenna clearances fit.
-3. Fit seven harness headers and five axial parts. Leave J8/J9 unpopulated. Solder
-   factory module pins from underneath and inspect polarity, bridges and continuity.
+   path. Confirm module shells, male headers, mating plugs and antenna clearance.
+3. Measure both-sided overlap clearances and dry-run the solder-access order.
+   Fit, solder, trim and inspect in that order; leave J8/J9 unpopulated. Read the
+   back drawing as a mirrored physical view, not a new pin-number assignment.
 4. Measure the isolated 5 V, peripheral 3.3 V and controller rails under load.
 5. Commission each service, then test Thread, three BLE connections, Zigbee,
    Z-Wave, RF and radar together. Record heap, errors, power and temperature.

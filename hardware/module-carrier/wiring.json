@@ -1,7 +1,7 @@
 {
   "revision": "MC1",
   "source": "cad/design.py",
-  "source_sha256": "3c9adf27b305f3e39ae02dc88d2d0819162df3458c36efedec8e929cfee3f5a1",
+  "source_sha256": "987b982ba182947a3127f1bdf51df349052924196779406c09e2e0e03316dc37",
   "nets": {
     "THREAD_BOOT": [
       "U1.JP1.1",
@@ -206,8 +206,9 @@
       },
       "types": {},
       "fitted": true,
+      "side": "front",
       "xy": [
-        62.5,
+        49.5,
         39
       ],
       "rotation": 180,
@@ -252,6 +253,7 @@
       },
       "types": {},
       "fitted": true,
+      "side": "front",
       "xy": [
         2,
         1.5
@@ -282,6 +284,7 @@
       },
       "types": {},
       "fitted": true,
+      "side": "front",
       "xy": [
         18,
         57.5
@@ -310,11 +313,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        61,
+        28.84,
         67.9
       ],
-      "rotation": 180,
+      "rotation": 0,
       "source": "wiz",
       "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces BOTTOM with mouth y=77mm; NO PoE extraction;3.3V only"
     },
@@ -328,11 +332,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        42.5,
-        42.99
+        20,
+        41
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "connector",
       "notes": "Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier."
     },
@@ -348,11 +353,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        42.5,
-        30.87
+        20,
+        29
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "connector",
       "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module."
     },
@@ -370,11 +376,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        36.25,
-        18.75
+        13.5,
+        17
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "weikai",
       "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings."
     },
@@ -391,11 +398,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        36.25,
-        35.95
+        13.5,
+        34
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "connector",
       "notes": "Carrier1->ZACpin1;2->pin6;3->pin9;4->pin8RX;5->pin10TX. Different from ZAC physical header layout."
     },
@@ -415,11 +423,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        30,
-        18.75
+        7,
+        17
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "connector",
       "notes": "3.3V; GDO0 open-drain TX with external4.7k pullup; GDO2 receiver."
     },
@@ -435,11 +444,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        30,
-        41.03
+        7,
+        39
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "connector",
       "notes": "Carrier3->radarRX;carrier4<-radarTX;5V supply;3.3V data."
     },
@@ -455,11 +465,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        42.5,
-        18.75
+        20,
+        17
       ],
-      "rotation": 0,
+      "rotation": 180,
       "source": "connector",
       "notes": "External pod,1GND2VDD3SDA4SCL;I2C pullups on modules;do notaddunreviewedpullups."
     },
@@ -473,9 +484,10 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        26,
-        58.5
+        38,
+        17
       ],
       "rotation": 270,
       "source": "diode",
@@ -491,9 +503,10 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        29.6,
-        58.5
+        41.6,
+        17
       ],
       "rotation": 270,
       "source": "diode",
@@ -509,9 +522,10 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        33.2,
-        58.5
+        45.2,
+        17
       ],
       "rotation": 270,
       "source": "diode",
@@ -527,9 +541,10 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        36.8,
-        58.5
+        38,
+        31
       ],
       "rotation": 270,
       "source": "resistor",
@@ -545,11 +560,12 @@
       },
       "types": {},
       "fitted": true,
+      "side": "back",
       "xy": [
-        49,
-        46.8
+        43,
+        31
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "resistor",
       "notes": ""
     },
@@ -563,6 +579,7 @@
       },
       "types": {},
       "fitted": false,
+      "side": "front",
       "xy": [
         3,
         52.5
@@ -581,6 +598,7 @@
       },
       "types": {},
       "fitted": false,
+      "side": "front",
       "xy": [
         12,
         52.5

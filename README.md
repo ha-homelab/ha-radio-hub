@@ -17,19 +17,20 @@ Start with the [English assembly guide](docs/module-carrier.md), the
 
 ## One board to assemble
 
-The carrier is **65 mm horizontal × 75 mm vertical, with two copper layers**:
-32.3% less area than the preceding 80 × 90 mm carrier. It uses a factory-header
+The carrier is **51 mm horizontal × 75 mm vertical, with two copper layers**:
+21.5% less area than the preceding 65 × 75 mm single-sided carrier. It uses a factory-header
 **S3-Nano-M with 16 MB flash and 8 MB PSRAM**, shared Ethernet/CC1101 SPI and the
 same dedicated Thread and Zigbee radios. Initial programming is done before soldering;
 USB cable corridors are removed, while physical connector bodies remain accounted for.
-Seven fitted harness headers occupy the central aisle;
-RJ45 faces outward at the bottom edge. See the
+Seven male harness headers and the Ethernet module sit on the ceiling-facing
+back; the controllers face the room. RJ45 opens outward at the board edge. See the
 [same-scale comparison](hardware/module-carrier/layout-comparison.svg)
 and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fabrication-cost).
 
 Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
-**Male pins go directly into plated holes and are soldered from below. No female
-module sockets; no castellated-side soldering.** The power converter, UART bridge,
+**Male pins go directly into plated holes and are soldered on the opposite face.
+No female module sockets; no castellated-side soldering.** A checked assembly
+order and measured clearance prevent opposing leads from touching module undersides. The power converter, UART bridge,
 existing radios and sensors are finished modules with documented connections.
 
 The H2 DevKitM-1 v1.3 needs one preparation step: remove R7 to isolate its USB-UART

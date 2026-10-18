@@ -13,12 +13,17 @@ PCB design. The [current assembly guide](module-carrier.md) and
 
 The first MC1 layout used a 160 × 100 mm outline, followed by a 100 × 90 mm
 full-size S3 carrier, then an 80 × 90 mm Nano carrier with USB cable corridors.
-The current **65 × 75 mm Nano carrier** removes those corridors, keeps physical
-USB shells, and uses preassembly programming plus network update paths. It retains
-shared SPI, separate radio SoCs, factory male headers and bottom-edge RJ45.
-J8/J9 become unpopulated recovery pads. H2 RX23/TX24 plus the documented R7
-removal replace the preceding RX4/TX5 wiring so its standard ROM loader is reachable.
-Previous snapshots are historical; use the firmware matching the current board.
+The subsequent **65 × 75 mm Nano carrier** removed those corridors, retained
+physical USB shells and implemented preassembly programming plus network updates.
+It introduced H2 RX23/TX24 and the documented R7 removal so the standard ROM
+loader is reachable, while retaining shared SPI and independent radio controllers.
+
+The current **51 × 75 mm two-sided carrier** places S3/H2/MG24 toward the room
+and WIZ850io, male harness headers and five axial parts toward the ceiling.
+Its electrical pin assignments and firmware are unchanged from the 65 × 75 mm
+revision. Staged solder access and measured opposing-tail clearance are now
+explicit assembly requirements. Previous snapshots are historical; use the
+current front and back drawings together.
 
 The previous C0/M0, I0 and D0 sources, measurements, build proofs and renders remain
 available to reproduce earlier work. They are historical references, not additional
