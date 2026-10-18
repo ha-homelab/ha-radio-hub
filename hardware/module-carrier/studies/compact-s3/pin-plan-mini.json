@@ -1,0 +1,136 @@
+{
+  "status": "Full ESPHome/ESP-IDF compile and generated-pin validation passed; not hardware tested",
+  "board": "LOLIN S3 Mini v1.0.0",
+  "soc": "ESP32-S3FH4R2",
+  "flash_bytes": 4194304,
+  "psram_bytes": 2097152,
+  "psram_mode": "quad",
+  "physical_attachment": "Through-hole header rows; factory-pin availability must be verified with supplier",
+  "source": "https://www.wemos.cc/en/latest/_static/files/sch_s3_mini_v1.0.0.pdf",
+  "spi_bus_sharing": false,
+  "application_gpio_count": 24,
+  "assignments": {
+    "ethernet_sck": {
+      "gpio": 13,
+      "header_pin": "J2.5"
+    },
+    "ethernet_mosi": {
+      "gpio": 11,
+      "header_pin": "J2.6"
+    },
+    "ethernet_miso": {
+      "gpio": 12,
+      "header_pin": "J2.4"
+    },
+    "ethernet_cs": {
+      "gpio": 14,
+      "header_pin": "J5.8"
+    },
+    "ethernet_irq": {
+      "gpio": 10,
+      "header_pin": "J2.7"
+    },
+    "ethernet_reset": {
+      "gpio": 9,
+      "header_pin": "J5.7"
+    },
+    "cc1101_sck": {
+      "gpio": 7,
+      "header_pin": "J5.5"
+    },
+    "cc1101_mosi": {
+      "gpio": 8,
+      "header_pin": "J5.6"
+    },
+    "cc1101_miso": {
+      "gpio": 6,
+      "header_pin": "J5.4"
+    },
+    "cc1101_cs": {
+      "gpio": 15,
+      "header_pin": "J4.8"
+    },
+    "cc1101_gdo0_tx": {
+      "gpio": 4,
+      "header_pin": "J2.3"
+    },
+    "cc1101_gdo2_rx": {
+      "gpio": 5,
+      "header_pin": "J5.3"
+    },
+    "zigbee_tx": {
+      "gpio": 17,
+      "header_pin": "J4.6"
+    },
+    "zigbee_rx": {
+      "gpio": 18,
+      "header_pin": "J3.5"
+    },
+    "zigbee_rts": {
+      "gpio": 16,
+      "header_pin": "J3.6"
+    },
+    "zigbee_cts": {
+      "gpio": 21,
+      "header_pin": "J4.5"
+    },
+    "i2c_sda": {
+      "gpio": 1,
+      "header_pin": "J5.1"
+    },
+    "i2c_scl": {
+      "gpio": 2,
+      "header_pin": "J2.2"
+    },
+    "thread_tx": {
+      "gpio": 33,
+      "header_pin": "J4.1"
+    },
+    "thread_rx": {
+      "gpio": 34,
+      "header_pin": "J4.4"
+    },
+    "thread_reset": {
+      "gpio": 37,
+      "header_pin": "J4.2"
+    },
+    "thread_boot": {
+      "gpio": 38,
+      "header_pin": "J4.3"
+    },
+    "radar_tx": {
+      "gpio": 35,
+      "header_pin": "J3.4"
+    },
+    "radar_rx": {
+      "gpio": 36,
+      "header_pin": "J3.3"
+    }
+  },
+  "reserved": {
+    "native_usb_dm": 19,
+    "native_usb_dp": 20,
+    "onboard_boot_button": 0,
+    "unused_strap": 3,
+    "onboard_rgb_led": 47,
+    "unused_rom_uart_tx": 43,
+    "unused_rom_uart_rx": 44
+  },
+  "external_controller_contract": {
+    "h2": {
+      "rx": 4,
+      "tx": 5,
+      "baud": 460800,
+      "reset": "EN",
+      "boot": 9
+    },
+    "xiao_mg24": {
+      "rx": "D7 / PC07",
+      "tx": "D6 / PC06",
+      "cts": "D4 / PC04",
+      "rts": "D5 / PC05",
+      "baud": 115200
+    }
+  },
+  "caveat": "GPIO33\u201337 are available on FH4R2 quad-PSRAM; do not apply to an octal-PSRAM S3 variant."
+}

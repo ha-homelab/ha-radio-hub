@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "scope": "Engineering comparison; not a replacement PCB or a hardware acceptance record",
+  "constraints": [
+    "Preserve local Thread border routing, active BLE, standard Ember Zigbee host compatibility, Z-Wave, CC1101, LD2450 and BME680",
+    "Use finished modules with male pins soldered into the carrier",
+    "No female module sockets, underside flying wires or new bare-component assembly",
+    "Keep the Ethernet jack accessible at the carrier edge"
+  ],
+  "options": [
+    {
+      "id": "direct-separate-spi",
+      "label": "Compact S3, two SPI buses",
+      "host_application_gpio": 24,
+      "new_inter_mcu_protocol": false,
+      "ethernet_owner": "S3",
+      "tradeoff": "Preserves current bus separation, but needs 24 accessible application pins in addition to service and power connections."
+    },
+    {
+      "id": "direct-shared-spi",
+      "label": "Compact S3, shared SPI",
+      "host_application_gpio": 21,
+      "new_inter_mcu_protocol": false,
+      "ethernet_owner": "S3",
+      "tradeoff": "Shares clock, MOSI and MISO between W5500 and CC1101, with separate chip-select signals. Requires electrical and concurrent-load qualification."
+    },
+    {
+      "id": "h2-multiplexed-ethernet",
+      "label": "H2 Ethernet intermediary",
+      "host_application_gpio_minimum": 18,
+      "new_inter_mcu_protocol": true,
+      "ethernet_owner": "H2",
+      "tradeoff": "The 18-pin lower bound assumes Ethernet shares the existing H2 serial connection. A separate UART adds 2 to 4 host pins. W5500 and RJ45 remain present. Existing RCP firmware does not provide this network transport."
+    },
+    {
+      "id": "mg24-multiplexed-ethernet",
+      "label": "MG24 Ethernet intermediary",
+      "host_application_gpio_minimum": 18,
+      "new_inter_mcu_protocol": true,
+      "ethernet_owner": "MG24",
+      "tradeoff": "The 18-pin lower bound assumes Ethernet shares the existing Ember serial connection. Requires a new transport and preservation of the standard external Zigbee interface. W5500 and RJ45 remain present."
+    }
+  ],
+  "gpio_scope": "Distinct host application GPIO only. Excludes supply, ground, native USB and boot/reset service signals. A lower bound is not a completed pin assignment.",
+  "intermediary_requirements": [
+    "Carry the IPv6 and multicast traffic needed by the local Thread border router; a simple IPv4 TCP socket proxy is not equivalent",
+    "Implement framing, backpressure, bounded queues, scheduling and reconnection on both processors",
+    "Separate network startup from radio startup: the current S3 starts the Thread RCP only after Ethernet connects",
+    "Revalidate recovery and updates when restarting the radio processor also interrupts the network path"
+  ],
+  "memory_note": "The installed S3 has 8 MB PSRAM. Runtime capacity has not been measured. This is not evidence that every function requires 8 MB or that a 2 MB candidate cannot work.",
+  "sources": [
+    "../../../../firmware/module-carrier/hub.yaml",
+    "../../../../firmware/module-carrier/build-evidence.json",
+    "../../../../firmware/low-power/components/low_power_otbr/low_power_otbr.cpp"
+  ]
+}

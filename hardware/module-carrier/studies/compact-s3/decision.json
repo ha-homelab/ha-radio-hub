@@ -1,0 +1,135 @@
+{
+  "title": "A smaller S3, with the same 8 MB of PSRAM.",
+  "lead": "Select the Waveshare ESP32-S3-Nano-M as the next compact-host prototype. Keep Ethernet, the local Thread border router and application services on S3; keep the existing H2 and MG24 radio roles.",
+  "decision": "The Nano-M provides factory male headers, 16 MB flash and 8 MB PSRAM in a 43.18 × 17.78 mm body. Shared SPI reduces the required application signals from 24 to 21. No Ethernet intermediary or extra processor is required.",
+  "limitation": "This selects a module and implementation path, not a fabrication-ready replacement PCB. The new carrier dimensions, routing, loaded power rails, boot behavior and simultaneous radio/network performance remain to be qualified.",
+  "assembly_note": "The Nano-M uses two 15-pin rows at 2.54 mm pitch, 15.24 mm apart. Solder its factory male pins directly into the carrier. Retain the H2 and XIAO factory-pin attachment and the edge-facing WIZ850io. No female module sockets or underside signal wires are introduced.",
+  "shared_spi_note": "ESPHome 2026.9.1 supports ethernet.spi_id on an existing hardware SPI bus. W5500 and CC1101 share clock/MOSI/MISO, but retain separate chip selects and their existing IRQ/reset/GDO signals. Normal SPI transactions are bus-locked. CC1101 performs an unguarded manual reset only during initial setup in this profile: SPI priority 1000, CC1101 priority 600, Ethernet priority 250. Do not add a runtime CC1101 reset or change that ordering without locking the complete reset sequence or stopping Ethernet first. Bench-test MISO release, startup and concurrent Ethernet/RF traffic.",
+  "memory_note": "The selected Nano preserves the existing 8 MB PSRAM capacity and increases flash from 8 MB to 16 MB. The LOLIN Mini comparison offers 4 MB flash / 2 MB PSRAM: it can carry the original two-bus pin map, but needs reduced-capacity and OTA qualification. Neither the old nor new capacity is a measurement of peak runtime use. Static RAM and image-size checks do not establish concurrent-load stability.",
+  "comparison": [
+    {
+      "board": "Existing S3-DevKitC-1 N8R8",
+      "size": "62.74 × 25.40 mm",
+      "memory": "8 MB / 8 MB",
+      "assembly": "44-position through-hole headers",
+      "decision": "Baseline; active carrier remains unchanged"
+    },
+    {
+      "board": "Waveshare S3-Nano-M",
+      "size": "43.18 × 17.78 mm",
+      "memory": "16 MB / 8 MB",
+      "assembly": "30 factory male pins; 21 non-strapping GPIO",
+      "decision": "Selected study: shared SPI; no spare non-strapping GPIO"
+    },
+    {
+      "board": "LOLIN S3 Mini v1.0.0",
+      "size": "34.30 × 25.40 mm",
+      "memory": "4 MB / 2 MB",
+      "assembly": "32 through-hole positions; 24 selected GPIO",
+      "decision": "Lower-change firmware comparison; reduced memory capacity"
+    },
+    {
+      "board": "Waveshare S3-Tiny-N8R8",
+      "size": "23.50 × 18.00 mm",
+      "memory": "8 MB / 8 MB",
+      "assembly": "Only 20 edge-hole GPIO; 19 after strap exclusion",
+      "decision": "Rejected for this pin-only assembly: other advertised GPIO are on bottom pads"
+    },
+    {
+      "board": "Waveshare S3-Zero-N8R8-M",
+      "size": "23.50 × 18.00 mm",
+      "memory": "8 MB / 8 MB",
+      "assembly": "Only 15 header GPIO; 14 after strap exclusion",
+      "decision": "Rejected: insufficient direct-header signals"
+    }
+  ],
+  "outlines": [
+    {
+      "short_name": "Current S3 DevKit",
+      "width_mm": 25.4,
+      "height_mm": 62.74,
+      "memory": "8 MB flash / 8 MB PSRAM",
+      "footnote": "Baseline module body"
+    },
+    {
+      "short_name": "LOLIN S3 Mini",
+      "width_mm": 25.4,
+      "height_mm": 34.3,
+      "memory": "4 MB flash / 2 MB PSRAM",
+      "footnote": "45.33% less module area; less memory"
+    },
+    {
+      "short_name": "S3-Nano-M",
+      "width_mm": 17.78,
+      "height_mm": 43.18,
+      "memory": "16 MB flash / 8 MB PSRAM",
+      "footnote": "51.82% less module area; selected study",
+      "preferred": true
+    }
+  ],
+  "steps": [
+    {
+      "title": "Complete firmware port compiled successfully.",
+      "detail": "The isolated Nano profile maps all 21 signals, shares the existing hardware SPI bus, and retains three UARTs and all application functions. Full ESPHome 2026.9.1 / ESP-IDF 5.5.5 compilation, generated C++, runtime-source identity and both OTA partitions pass verification. Hardware operation remains untested; deployment configuration is unchanged."
+    },
+    {
+      "title": "Prepare the module and carrier interface.",
+      "detail": "Measure the actual Nano-M, factory headers and underside protrusions. Provide accessible GPIO0-to-GND boot contacts and EN reset access. GPIO43 feeds H2 RX; the host resets H2 before starting Spinel. GPIO48 drives only the slow open-drain H2 BOOT line."
+    },
+    {
+      "title": "Verify the power path before PCB integration.",
+      "detail": "Proposed feed: existing regulated isolated 5 V → existing branch Schottky diode → Nano VIN. Leave Nano VBUS and local 3V3 off the carrier supply rails. Its onboard USB-to-VIN diode provides the other source path. This is a schematic-level inference: the vendor labels external VIN 6–21 V although USB feeds the same buck input at a lower voltage. Measure loaded VIN, 3V3, thermal behavior and all service-power combinations before approving it."
+    },
+    {
+      "title": "Repack and route one replacement carrier.",
+      "detail": "Place the smaller S3 with its ceramic antenna at an outside edge, improve H2 antenna placement, put harness connectors between modules, and keep RJ45 facing out. Account for service plugs, antenna keepouts, mounting and two-layer routing before declaring new board dimensions or cost savings."
+    },
+    {
+      "title": "Qualify simultaneous operation and recovery.",
+      "detail": "Test cold boot, brownout recovery, Ethernet reconnect and OTA together with Thread traffic, three BLE connections, Zigbee, Z-Wave, radar and RF transmit/receive. Measure internal/external heap, stack margins and shared-SPI latency. Adopt the new carrier only after these checks."
+    }
+  ],
+  "validation": [
+    "Independent hardware and firmware reviews agree on the Nano 21-signal direct-header allocation.",
+    "The selected map leaves GPIO0, GPIO3, GPIO46 and native USB GPIO19/20 outside the application wiring.",
+    "Manufacturer schematic and dimensions confirm the two 15-pin rows, 2.54 mm pitch and 15.24 mm row spacing.",
+    "Nano full build passed: 1,717,232-byte OTA image; two 8,126,464-byte app slots with 6,409,232 bytes of margin each; static RAM 161,579 bytes. Runtime peak heap has not been measured.",
+    "Mini comparison full build passed: 1,714,976-byte OTA image; two 1,835,008-byte app slots with only 120,032 bytes of margin each; static RAM 159,259 bytes. Its 2 MB PSRAM capacity still requires runtime qualification.",
+    "All 14 Nano verifier mutation tests pass. Generated code retains the GPIO map, three BLE connection slots, UART ownership, shared SPI and required IPv6/Thread/PSRAM settings. Runtime C/C++ sources match the existing implementation.",
+    "No new carrier PCB has been routed or physically tested; existing MC1 checks apply only to the existing design."
+  ],
+  "sources": [
+    {
+      "label": "Waveshare S3-Nano specifications and resources",
+      "url": "https://docs.waveshare.com/ESP32-S3-Nano"
+    },
+    {
+      "label": "Waveshare S3-Nano-M factory-header product option",
+      "url": "https://www.waveshare.com/product/esp32-s3-nano.htm"
+    },
+    {
+      "label": "Waveshare S3-Nano schematic",
+      "url": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf"
+    },
+    {
+      "label": "LOLIN S3 Mini specifications",
+      "url": "https://www.wemos.cc/en/latest/s3/s3_mini.html"
+    },
+    {
+      "label": "ESPHome 2026.9.1 Ethernet configuration and shared-bus validation",
+      "url": "https://github.com/esphome/esphome/blob/2026.9.1/esphome/components/ethernet/__init__.py"
+    },
+    {
+      "label": "ESPHome 2026.9.1 SPI transaction implementation",
+      "url": "https://github.com/esphome/esphome/blob/2026.9.1/esphome/components/spi/spi_esp_idf.cpp"
+    },
+    {
+      "label": "Espressif antenna placement guidance",
+      "url": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/pcb-layout-design.html"
+    },
+    {
+      "label": "MPS MP2322 original regulator datasheet",
+      "url": "https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2322/"
+    }
+  ]
+}

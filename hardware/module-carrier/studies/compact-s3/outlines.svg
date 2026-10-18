@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="600" viewBox="0 0 1100 600" role="img" aria-labelledby="title desc">
+<title id="title">S3 module outline comparison in millimetres</title>
+<desc id="desc">Same-scale rectangular board outlines. These show module dimensions, not a routed carrier or connector clearance.</desc>
+<rect width="1100" height="600" fill="#0c1828"/>
+<g font-family="Arial,sans-serif">
+<text x="35" y="40" fill="#e4edf5" font-size="25">Smaller host module, unchanged radio roles</text>
+<text x="35" y="70" fill="#adc4d5" font-size="15">Same scale · dimensions in mm · outlines only, no new PCB placement or routing</text>
+<text x="55" y="110" fill="#e4edf5" font-size="19">Current S3 DevKit</text>
+<text x="55" y="132" fill="#adc4d5" font-size="14">8 MB flash / 8 MB PSRAM</text>
+<rect x="55" y="145" width="129.54" height="319.97" fill="#26394b" stroke="#9ebfc8"/>
+<text x="194.54" y="304.99" fill="#adc4d5" font-size="16">62.74 mm</text>
+<text x="55" y="491.97" fill="#adc4d5" font-size="16">25.4 mm wide</text>
+<text x="55" y="510" fill="#e4edf5" font-size="16">1,593.6 mm² module area</text>
+<text x="55" y="535" fill="#adc4d5" font-size="14">Baseline module body</text>
+<text x="405" y="110" fill="#e4edf5" font-size="19">LOLIN S3 Mini</text>
+<text x="405" y="132" fill="#adc4d5" font-size="14">4 MB flash / 2 MB PSRAM</text>
+<rect x="405" y="145" width="129.54" height="174.93" fill="#26394b" stroke="#9ebfc8"/>
+<text x="544.54" y="232.46" fill="#adc4d5" font-size="16">34.3 mm</text>
+<text x="405" y="346.93" fill="#adc4d5" font-size="16">25.4 mm wide</text>
+<text x="405" y="510" fill="#e4edf5" font-size="16">871.2 mm² module area</text>
+<text x="405" y="535" fill="#adc4d5" font-size="14">45.33% less module area; less memory</text>
+<text x="755" y="110" fill="#e4edf5" font-size="19">S3-Nano-M</text>
+<text x="755" y="132" fill="#adc4d5" font-size="14">16 MB flash / 8 MB PSRAM</text>
+<rect x="755" y="145" width="90.68" height="220.22" fill="#1b555b" stroke="#9ebfc8"/>
+<text x="855.68" y="255.11" fill="#adc4d5" font-size="16">43.18 mm</text>
+<text x="755" y="392.22" fill="#adc4d5" font-size="16">17.78 mm wide</text>
+<text x="755" y="510" fill="#e4edf5" font-size="16">767.7 mm² module area</text>
+<text x="755" y="535" fill="#adc4d5" font-size="14">51.82% less module area; selected study</text>
+<text x="35" y="578" fill="#adc4d5" font-size="14">Carrier area and fabrication price cannot be inferred from module-area reduction alone.</text>
+</g></svg>

@@ -1,0 +1,151 @@
+{
+  "board": "nano",
+  "compiled": true,
+  "hardware_tested": false,
+  "uploaded": false,
+  "peak_heap_measured": false,
+  "stack_high_water_measured": false,
+  "runtime_cpp_modified": false,
+  "framework_cache_manually_modified": false,
+  "upstream_rest_commit": "29a2345e3f0c61bba9307f3daea5ed0c94388ed3",
+  "configured_flash_bytes": 16777216,
+  "expected_module_psram_bytes": 8388608,
+  "tool_versions": {
+    "ESPHome": "2026.9.1",
+    "ESP-IDF": "5.5.5",
+    "compiler": "xtensa-esp-elf-gcc (crosstool-NG esp-14.2.0_20260121) 14.2.0"
+  },
+  "generated": {
+    "all_assigned_gpio_verified": true,
+    "unique_gpio": 21,
+    "ble_slots": 3,
+    "native_uart_ownership": {
+      "0": "LD2450",
+      "1": "MG24",
+      "2": "H2"
+    },
+    "shared_spi": true,
+    "runtime_cc1101_reset_absent": true
+  },
+  "sdkconfig_verified": {
+    "CONFIG_OPENTHREAD_FTD": "y",
+    "CONFIG_OPENTHREAD_COMMISSIONER": "y",
+    "CONFIG_OPENTHREAD_JOINER": "y",
+    "CONFIG_VFS_SUPPORT_IO": "y",
+    "CONFIG_VFS_SUPPORT_DIR": "y",
+    "CONFIG_VFS_SUPPORT_SELECT": "y",
+    "CONFIG_OPENTHREAD_RADIO_SPINEL_UART": "y",
+    "CONFIG_OPENTHREAD_BORDER_ROUTER": "y",
+    "CONFIG_OPENTHREAD_BORDER_AGENT_ENABLE": "y",
+    "CONFIG_LWIP_IPV6": "y",
+    "CONFIG_LWIP_IPV6_FORWARD": "y",
+    "CONFIG_LWIP_IPV6_NUM_ADDRESSES": "12",
+    "CONFIG_LWIP_HOOK_IP6_INPUT_CUSTOM": "y",
+    "CONFIG_LWIP_HOOK_IP6_SELECT_SRC_ADDR_CUSTOM": "y",
+    "CONFIG_LWIP_FORCE_ROUTER_FORWARDING": "y",
+    "CONFIG_MDNS_MULTIPLE_INSTANCE": "y",
+    "CONFIG_BT_BLUEDROID_ENABLED": "y",
+    "CONFIG_SPIRAM_MODE_OCT": "y",
+    "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
+    "CONFIG_ESPTOOLPY_FLASHSIZE": "\"16MB\"",
+    "CONFIG_SPIRAM_USE_CAPS_ALLOC": "y",
+    "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y",
+    "CONFIG_FREERTOS_HZ": "1000",
+    "CONFIG_OPENTHREAD_NUM_MESSAGE_BUFFERS": "1024"
+  },
+  "unchanged_runtime_source_sha256": {
+    "firmware/low-power/components/low_power_ethernet/low_power_ethernet.cpp": "87bfaa2ed5b97eb3c6027583ee54e0b9b56d5edfcdd4d49395a024d81cefd34d",
+    "firmware/low-power/components/low_power_ethernet/low_power_ethernet.h": "3d3898a5b60e0e284b58c5594c0788ae1c0d102c665852a580fb128e2a9b3658",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "92492effbb5ce3621ffcec84bb6a906c5afd71da4c2a53a360a2161fc0625961",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "dcfbaca903d5110c62962a0190094ac8932ac20c0446af49b43280634a8ea4ae",
+    "firmware/low-power/components/sc16is752_uart/registers.h": "c29b304552163344e0d7d2abda3bf345ef1e869af252eb6471585e95c2372b25",
+    "firmware/low-power/components/sc16is752_uart/sc16is752_uart.cpp": "ac6643f6dfcfc5214969ba47df445495a12ec0eb2364e33435ef9cdc84742ef8",
+    "firmware/low-power/components/sc16is752_uart/sc16is752_uart.h": "378535713a87cee68ff9b50082fe0cd229f6f4d3307d6f66b937ab3e146bee82",
+    "firmware/low-power/components/zigbee_tcp/zigbee_tcp.cpp": "18b4fb6c9375e2295efeb21ba7f5f156d2ffae0a4531731744e39647477e40d2",
+    "firmware/low-power/components/zigbee_tcp/zigbee_tcp.h": "2aa8c5c7211944ecafa2602049e91445acee3b86c6472d1d436526264bf3cbf5",
+    "firmware/module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+    "firmware/module-carrier/components/wk2132_uart/wk2132_uart.cpp": "a08286a74f64d4ee7b55316ee73c3dce33c76bb5e6684c8bcda23a8bd65bed81",
+    "firmware/module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+    "firmware/components/remote_receiver/remote_receiver.cpp": "ec1f90286309b35234f85feb285d49a9dea8db883c8fd6e29c98e90be5456fee",
+    "firmware/components/remote_receiver/remote_receiver.h": "af40a5bcd03c5cb1477b0cff0cdea0ad7c1be247c407df8f044fe77f2427d03b",
+    "firmware/components/remote_receiver/remote_receiver_rmt.cpp": "137eb4f8d1b4b009bf57d1c655bf29525de958fbd56456fb1fd8c2db6aaf3050",
+    "firmware/include/rf_receiver.h": "6db5cfd138d61665733277fb9f974787e21d01b55cbc930f9b5e1062faa9789e",
+    "firmware/include/rf_tx_validation.h": "5565abfa93694466c26f709ba90541556b4af3916906cb6063482e080795bb09",
+    "firmware/include/rm433_protocol.h": "34b975b3df1b74efcc0bee5df53333f25306163c09ef1a21076358b238949264"
+  },
+  "source_sha256": {
+    "generated_main": "0f7757e1e968a3adcfcfd4c8285764643c2e4c1eda0d5929e35adabcd9d00422",
+    "profile": "26da02943cc772f8956310ce949a4410e88a3cd7acd9effa13f9d4c77dbda0f3",
+    "prepare_manifest": "0d60a3e1c0050cb8545bb39d1a1ca60c7840bf147f8250ef64ffd945508e8cf9"
+  },
+  "shared_spi_source_sha256": {
+    "core/component.h": "5455c08357a62ab7851ca00730226251a7587c18a816e898a429f16edc20e354",
+    "core/component.cpp": "1505845475a53b7effce459b7a91058d17c22cd5d0fb5bec3f7c4f23ec0ccb16",
+    "components/ethernet/ethernet_component.h": "0866a3872805ed8756f11a41e4fe1e3fcd8fea6a3387beac360a97ba4740727b",
+    "components/ethernet/ethernet_component_esp32.cpp": "8546fa078109c73bdc8295c3c8846489f3cf04eb17a9c9e0197719a96949ba94",
+    "components/spi/spi_esp_idf.cpp": "d6b7ef40fbae80cfbae8b508c034d5e6e399d6c2578bbf5d1b84218e447ff87d",
+    "components/spi/spi.h": "2219df88c87051dff6ad59d8a6cff4fea5bcc035efe2cf42bd5942ffac98851d",
+    "components/cc1101/cc1101.cpp": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+    "components/cc1101/cc1101.h": "34a95c3df32f8782366f4208f4a312f904bdff63d2a20bfeab38633e36f48788"
+  },
+  "artifacts": {
+    "compact-s3-nano-hub.bin": {
+      "bytes": 1717232,
+      "sha256": "9a39f297980e3b25fa1cb4c9ad5968554eab59a16dc385d97fa626912a3e1a05"
+    },
+    "firmware.factory.bin": {
+      "bytes": 1782768,
+      "sha256": "b0f7d9718610d6effa3fbba9dad65bb1fed0c7f6a4b50b7dedffd34546aea5ba"
+    },
+    "firmware.ota.bin": {
+      "bytes": 1717232,
+      "sha256": "9a39f297980e3b25fa1cb4c9ad5968554eab59a16dc385d97fa626912a3e1a05"
+    }
+  },
+  "partitions": [
+    {
+      "name": "otadata",
+      "type": "data",
+      "subtype": "0",
+      "offset": 36864,
+      "bytes": 8192
+    },
+    {
+      "name": "phy_init",
+      "type": "data",
+      "subtype": "1",
+      "offset": 45056,
+      "bytes": 4096
+    },
+    {
+      "name": "app0",
+      "type": "app",
+      "subtype": "ota_0",
+      "offset": 65536,
+      "bytes": 8126464,
+      "image_margin_bytes": 6409232
+    },
+    {
+      "name": "app1",
+      "type": "app",
+      "subtype": "ota_1",
+      "offset": 8192000,
+      "bytes": 8126464,
+      "image_margin_bytes": 6409232
+    },
+    {
+      "name": "nvs",
+      "type": "data",
+      "subtype": "2",
+      "offset": 16318464,
+      "bytes": 458752
+    }
+  ],
+  "partition_table_sha256": "1a0727f7935aff03694457fb7f5c76e289a7b0f71017b8c649e4ae9e4034028f",
+  "linked_memory": {
+    "image_unpadded_bytes": 1717123,
+    "static_ram_bytes": 161579,
+    "linker_ram_bytes": 341760,
+    "runtime_heap_or_stack_measurement": false
+  }
+}

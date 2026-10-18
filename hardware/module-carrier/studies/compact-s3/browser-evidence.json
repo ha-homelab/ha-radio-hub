@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-10-18T03:45:51.381377+00:00",
+  "tool": "CUA in-app browser",
+  "viewport_width": 319,
+  "page_scroll_width": 319,
+  "images": [
+    {
+      "src": "outlines.svg",
+      "loaded": true
+    },
+    {
+      "src": "architecture.svg",
+      "loaded": true
+    }
+  ],
+  "entrypoint": {
+    "path": "../square-layout/index.html",
+    "sha256": "63898e14fb5e2d8df939b852503c0957a2aeac7344b2ef024bbf34a85462cbf0",
+    "compact_review_link_clicked": true
+  },
+  "source_sha256": {
+    "index.html": "d2e1d614709a286f8456ba38a33937b8bdcd68c3b64b5fd9a9a403ca9c173ba6",
+    "outlines.svg": "e522e77cc6b96b7c78f0a9ce36d90f3ecba110ccc9b6834d1c23c9278f16f353",
+    "architecture.svg": "5b3ef29501b7f9ffc74642497577f6d7b3590df69a67ed41b481ef8cde326c70",
+    "decision.json": "c21919f0c2b4d0c76343f77d10bd684b6be116d60f536493068e5f5a0cdf8381",
+    "pin-plan.json": "a4f0479d9ce86fc42bad8c8787a68706a9beb14b5ca8453ba4ca307c0fd2ca07",
+    "firmware/build-evidence-nano.json": "6f3df1772a39758d1d8bcc8cc0fe24a85c504f6f87c764ad013f10053e4d5feb",
+    "firmware/build-evidence-mini.json": "bcf2639f082a8be4f1b66e894039e43118af6f48dff75724c7b9b7c6d84425ed"
+  },
+  "screenshots": {
+    "outlines-preview.png": "65bfe310fb5df76baa4aaf379e556c24da0046c8f578e454ad1db941c5421f0a",
+    "architecture-preview.png": "64658c1d9cdbcfea3734801cea71173e39c2da657b2fb6ecebc2a53676bb9b0e"
+  },
+  "local_link_check": {
+    "checked": 50,
+    "missing": []
+  },
+  "notes": [
+    "The final HTML visibly reports both completed builds and their actual OTA margins.",
+    "The shared-SPI disclosure opens correctly.",
+    "PNG previews are browser captures of the generated SVGs at their declared size, not product photographs.",
+    "A new carrier has not been routed or physically tested."
+  ]
+}
