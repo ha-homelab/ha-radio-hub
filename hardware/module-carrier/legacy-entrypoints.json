@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-17",
-  "purpose": "Historical pages explicitly linked to the one current MC1 design; original third-party license texts untouched.",
+  "date": "2026-10-18",
+  "purpose": "Historical pages link to the active MC2 design; MC1 sources remain as regression and existing-board references.",
   "updated_markdown": [
     "docs/manufacturing.md",
     "docs/overview.md",

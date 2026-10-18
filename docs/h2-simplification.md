@@ -1,7 +1,7 @@
 # H2 Quartet: assemble finished modules, not an integrated PCB
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 **Decision, 2026-10-17:** prototype a hub from four identical, assembled **Waveshare ESP32-H2-Zero-M** boards and one assembled W5500 Ethernet module. Optimize the number of parts the builder must solder, the number of different spare modules, and the wiring. Additional firmware work is acceptable. This is an architectural experiment, **not a complete working firmware or a fabrication release**.
 

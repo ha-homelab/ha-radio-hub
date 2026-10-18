@@ -1,7 +1,7 @@
 # LP-I0 integrated radio hub PCB
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../../../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 LP-I0 is an **engineering prototype, not a fabrication release or a qualified product**. It combines the ESP32-S3-WROOM-1-N16R8 host, ESP32-H2-MINI-1-H4S Thread RCP, MGM240PA22VNA3 Zigbee NCP, W5500 Ethernet, SC16IS752 UART expander and power supply on one board. CC1101, ZAC93, LD2450 and BME680 remain connected through keyed harnesses. The current low-power firmware pin assignments are preserved.
 

@@ -1,48 +1,64 @@
 {
   "schema_version": 1,
-  "decision_date": "2026-10-17",
-  "active_design": "MC1",
+  "decision_date": "2026-10-18",
+  "documentation_review_date": "2026-10-18",
+  "active_design": "MC2",
   "active_custom_pcb_count": 1,
-  "active_directory": "hardware/module-carrier",
-  "priority": "Preserve functions and Home Assistant compatibility using finished modules on one direct-solder carrier.",
+  "active_directory": "hardware/external-antenna",
+  "priority": "Preserve local Home Assistant functions with three independent external 2.4 GHz antennas and direct-solder finished modules.",
+  "active_layout_revision": "MC2-A",
+  "active_host": "ESP32-S3-DevKitC-1U-N8R8",
+  "active_memory": {
+    "flash_mb": 8,
+    "psram_mb": 8
+  },
+  "active_thread_rcp": "Unexpected Maker TinyC6-U-01",
+  "active_pcb": {
+    "width_mm": 100,
+    "height_mm": 100,
+    "copper_layers": 2,
+    "nominal_thickness_mm": 1.6,
+    "layout_revision": "MC2-A"
+  },
   "assembly": {
     "female_module_sockets": 0,
-    "method": "Factory male module pins enter plated holes directly. Controllers face the room; Ethernet and male harness headers face the ceiling. Solder joints lie on the opposite face and require a checked access order.",
+    "method": "All components face front; male module pins enter plated holes and solder on the back. TinyC6 headers require through-hole assembly first.",
     "castellated_side_soldering": false,
-    "additional_height_accepted": true,
-    "module_header_solder_joints": 86,
-    "new_recovery_contact": "J8 and J9: unpopulated local recovery pads, normally open",
-    "fitted_harness_headers": 7,
-    "fitted_references": 16,
+    "component_sides": 1,
     "usb_cable_service_space": false,
-    "h2_preparation": "DevKitM-1 schematic v1.3: remove R7 (470 ohm) to isolate CP2102N TX; use H2 RX23/TX24",
-    "component_sides": 2,
-    "front_modules": [
-      "U1",
-      "U2",
-      "U3"
+    "initial_programming": "Program each loose controller before mounting; use the revision-specific network updater after assembly.",
+    "thread_preparation": "TinyC6-U-01 native USB, no H2 USB-UART resistor removal."
+  },
+  "active_enclosure": {
+    "status": "carrier-only engineering prototype; physical fit, force, thermal and RF qualification outstanding",
+    "shell_envelope_mm": [
+      190,
+      160,
+      58
     ],
-    "back_modules": [
-      "U4"
+    "required_ceiling_spacing_frame_mm": 4,
+    "installed_depth_mm": 62,
+    "print_parts": [
+      "base",
+      "cover",
+      "ceiling-spacing-frame",
+      "cable-bar",
+      "bulkhead-fit-coupon"
     ],
-    "back_male_harness_headers": [
-      "J1",
-      "J2",
-      "J3",
-      "J4",
-      "J5",
-      "J6",
-      "J7"
-    ],
-    "mounting": "One H3 PCB retention hole plus split enclosure edge capture; separate enclosure ceiling attachment and WIZ jack stop",
-    "back_axial_parts": [
-      "D1",
-      "D2",
-      "D3",
-      "R1",
-      "R2"
-    ],
-    "sequence": "Program loose controllers; solder, trim and inspect all 13 rear parts before fitting the 3 front controllers. Measure residual overlap clearances."
+    "antenna_bulkhead_pitch_mm": 65,
+    "antenna_mount": "Three independent standard-SMA bulkheads in fixed base wall; separate 150 mm U.FL-compatible pigtails.",
+    "scope": "Carrier and antenna feeds only; power modules, UART bridge, Z-Wave, CC1101, radar and BME680 require separate accommodation."
+  },
+  "current_references": {
+    "documentation": "docs/README.md",
+    "assembly": "docs/external-antennas.md",
+    "visual": "hardware/external-antenna/index.html",
+    "schematic": "hardware/external-antenna/cad/schematic.svg",
+    "wiring": "hardware/external-antenna/cad/connectors.json",
+    "firmware": "firmware/external-antenna/README.md",
+    "enclosure_prototype": "mechanical/module-carrier/external-antenna-prototype/README.md",
+    "rf_bom": "hardware/external-antenna/rf-bom.json",
+    "coverage_acceptance": "docs/rf-commissioning.md"
   },
   "historical_designs": [
     {
@@ -79,58 +95,14 @@
       "id": "H2-Quartet",
       "directory": "hardware/h2-quartet",
       "status": "rejected_for_compatibility_priority"
+    },
+    {
+      "id": "MC1",
+      "directory": "hardware/module-carrier",
+      "status": "historical_reference",
+      "last_layout": "nano-single-anchor-rails",
+      "reason": "MC2 selects factory external-antenna S3/C6 modules and an explicit external MG24 image; MC1 geometry and firmware remain separate."
     }
   ],
-  "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
-  "active_layout_revision": "nano-single-anchor-rails",
-  "active_host": "Waveshare ESP32-S3-Nano-M",
-  "active_memory": {
-    "flash_mb": 16,
-    "psram_mb": 8
-  },
-  "documentation_review_date": "2026-10-18",
-  "active_pcb": {
-    "width_mm": 47.5,
-    "height_mm": 75,
-    "copper_layers": 2,
-    "nominal_thickness_mm": 1.6,
-    "layout_revision": "nano-single-anchor-rails",
-    "pcb_retention_holes": [
-      "H3"
-    ]
-  },
-  "current_references": {
-    "documentation": "docs/README.md",
-    "assembly": "docs/module-carrier.md",
-    "cost_review": "hardware/module-carrier/cost-review/README.md",
-    "schematic": "hardware/module-carrier/cad/schematic.svg",
-    "wiring": "hardware/module-carrier/wiring.json",
-    "firmware": "firmware/module-carrier/README.md",
-    "enclosure_prototype": "mechanical/module-carrier/enclosure-prototype/README.md",
-    "rail_fit_coupons": "mechanical/module-carrier/rail-mount/README.md",
-    "external_harness_svg": "hardware/module-carrier/harness-connections.svg"
-  },
-  "active_enclosure": {
-    "status": "carrier-only engineering prototype; physical fit, force, thermal and RF qualification outstanding",
-    "shell_envelope_mm": [
-      84.3,
-      121.8,
-      57.4
-    ],
-    "required_ceiling_spacing_frame_mm": 4.0,
-    "installed_depth_mm": 61.4,
-    "print_parts": [
-      "base",
-      "cover",
-      "jack-stop-trial",
-      "ceiling-spacing-frame"
-    ],
-    "floor_hardware_installation": "Install and adjust on the bench before ceiling attachment; measured underside projection including washers must not exceed 3 mm.",
-    "jack_stop": "Contact coordinates are unqualified; adjust to measured metal cage without component or latch contact before use.",
-    "nominal_cavity_mm": {
-      "rear": 26.0,
-      "front": 25.0
-    },
-    "cavity_heights_measured": false
-  }
+  "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates."
 }

@@ -1,7 +1,7 @@
 # LP-D0: single-sided, wire-assisted DIY carrier
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../../../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 LP-D0 is a prototype for laser toner transfer and manual drilling. It implements the LP-P0 electrical contract on a 190 × 145 mm low-voltage backplane. The required assembly includes bottom copper **and insulated wire links**. It is not a one-layer redesign of the RF modules themselves, and no assembled D0 has been electrically tested yet.
 

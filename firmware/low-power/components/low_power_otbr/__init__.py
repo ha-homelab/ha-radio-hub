@@ -36,8 +36,8 @@ def final_validate(config):
         raise cv.Invalid("network.enable_ipv6 must be true for the Thread backbone")
     uarts = full.get("uart", [])
     radar_pins = [(u.get("tx_pin", {}).get("number"), u.get("rx_pin", {}).get("number")) for u in uarts]
-    if radar_pins not in [[(39, 40)], [(8, 38)]]:
-        raise cv.Invalid("Only LD2450 on legacy GPIO39/40 or Nano GPIO8/38 may use ESPHome native UART; UART1/2 belong to Zigbee/H2")
+    if radar_pins not in [[(39, 40)], [(8, 38)], [(8, 40)]]:
+        raise cv.Invalid("Only LD2450 on legacy GPIO39/40, MC1 GPIO8/38 or MC2 GPIO8/40 may use ESPHome native UART; UART1/2 belong to Zigbee/Thread RCP")
     if full.get("logger", {}).get("baud_rate", 0) != 0:
         raise cv.Invalid("UART logging must be disabled; use the native USB console")
     return config

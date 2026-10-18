@@ -1,0 +1,169 @@
+{
+  "status": "MC2 external-antenna engineering prototype; firmware and physical validation pending",
+  "board": "ESP32-S3-DevKitC-1U-N8R8",
+  "soc": "ESP32-S3",
+  "flash_bytes": 8388608,
+  "psram_bytes": 8388608,
+  "psram_mode": "octal",
+  "physical_attachment": "Factory male headers solder directly into MC2 plated holes; official DevKitC-1 has two 22-pin rows",
+  "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+  "spi_bus_sharing": true,
+  "application_gpio_count": 21,
+  "assignments": {
+    "ethernet_sck": {
+      "gpio": 13,
+      "header_pin": "J1.19"
+    },
+    "ethernet_mosi": {
+      "gpio": 11,
+      "header_pin": "J1.17"
+    },
+    "ethernet_miso": {
+      "gpio": 12,
+      "header_pin": "J1.18"
+    },
+    "ethernet_cs": {
+      "gpio": 14,
+      "header_pin": "J1.20"
+    },
+    "ethernet_irq": {
+      "gpio": 10,
+      "header_pin": "J1.16"
+    },
+    "ethernet_reset": {
+      "gpio": 9,
+      "header_pin": "J1.15"
+    },
+    "cc1101_sck": {
+      "gpio": 13,
+      "header_pin": "J1.19"
+    },
+    "cc1101_mosi": {
+      "gpio": 11,
+      "header_pin": "J1.17"
+    },
+    "cc1101_miso": {
+      "gpio": 12,
+      "header_pin": "J1.18"
+    },
+    "cc1101_cs": {
+      "gpio": 6,
+      "header_pin": "J1.6"
+    },
+    "cc1101_gdo0_tx": {
+      "gpio": 4,
+      "header_pin": "J1.4"
+    },
+    "cc1101_gdo2_rx": {
+      "gpio": 5,
+      "header_pin": "J1.5"
+    },
+    "zigbee_tx": {
+      "gpio": 17,
+      "header_pin": "J1.10"
+    },
+    "zigbee_rx": {
+      "gpio": 18,
+      "header_pin": "J1.11"
+    },
+    "zigbee_rts": {
+      "gpio": 7,
+      "header_pin": "J1.7"
+    },
+    "zigbee_cts": {
+      "gpio": 21,
+      "header_pin": "J3.18"
+    },
+    "i2c_sda": {
+      "gpio": 1,
+      "header_pin": "J3.4"
+    },
+    "i2c_scl": {
+      "gpio": 2,
+      "header_pin": "J3.5"
+    },
+    "thread_tx": {
+      "gpio": 15,
+      "header_pin": "J1.8"
+    },
+    "thread_rx": {
+      "gpio": 16,
+      "header_pin": "J1.9"
+    },
+    "thread_reset": {
+      "gpio": 47,
+      "header_pin": "J3.17"
+    },
+    "thread_boot": {
+      "gpio": 39,
+      "header_pin": "J3.9"
+    },
+    "radar_tx": {
+      "gpio": 8,
+      "header_pin": "J1.12"
+    },
+    "radar_rx": {
+      "gpio": 40,
+      "header_pin": "J3.8"
+    }
+  },
+  "reserved": {
+    "native_usb_dm": 19,
+    "native_usb_dp": 20,
+    "boot_recovery_header": 0,
+    "unused_straps": [
+      3,
+      45,
+      46
+    ],
+    "onboard_usb_uart": [
+      43,
+      44
+    ],
+    "onboard_rgb_led_revision_dependent": [
+      38,
+      48
+    ],
+    "octal_psram": [
+      35,
+      36,
+      37
+    ]
+  },
+  "external_controller_contract": {
+    "xiao_mg24": {
+      "rx": "D7 / PC07",
+      "tx": "D6 / PC06",
+      "cts": "D4 / PC04",
+      "rts": "D5 / PC05",
+      "baud": 115200
+    },
+    "c6": {
+      "rx": 17,
+      "tx": 16,
+      "baud": 460800,
+      "reset": "EN",
+      "boot": 9,
+      "board": "Unexpected Maker TinyC6-U-01",
+      "header_pins": {
+        "rx": "12",
+        "tx": "13",
+        "reset": "15",
+        "boot": "11",
+        "5V": "3",
+        "GND": [
+          "2",
+          "14"
+        ]
+      },
+      "download_strap": {
+        "gpio": 8,
+        "level": 1,
+        "pullup_ohms": 10000,
+        "rail": "C6_LOCAL_3V3",
+        "header_pin": "10"
+      }
+    }
+  },
+  "caveat": "S3 GPIO43/44 reserved for factory USB-UART bridge; GPIO38/48 reserved for either RGB LED revision; GPIO35/36/37 reserved for octal PSRAM. TinyC6-U-01 uses native USB only, no bridge output fights ROM RX17. C6 radio fixed to its factory U.FL connector; not the upcoming TinyC6[D]."
+}

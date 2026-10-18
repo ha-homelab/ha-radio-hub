@@ -1,0 +1,9 @@
+state,position,protocol,device,firmware,antenna,pigtail_mm,channel,power_setting,orientation,doors,load,test,attempts,successes,latency_p95_ms,unexpected_disconnects,max_report_gap_s,rssi_dbm,observation_hours,result,notes
+open_bench,reference,Zigbee,,,,,,,,,single_radio,commands,,,,,,,,not_run,
+closed_enclosure,reference,Zigbee,,,,,,,,,combined,commands,,,,,,,,not_run,
+installed,farthest_room,Zigbee,,,,,,,,,combined,commands,,,,,,,,not_run,
+installed,farthest_room,Thread,,,,,,,,,combined,commands,,,,,,,,not_run,
+installed,farthest_room,BLE,,,,,,,,,combined,advertisements,,,,,,,,not_run,
+installed,farthest_room,BLE,,,,,,,,,combined,GATT,,,,,,,,not_run,
+installed,critical_sensor,all,,,,,,,,,normal_use,72_hour_soak,,,,,,,,not_run,
+installed,central_hub,all,,,,,,,,,combined,PoE_restart,,,,,,,,not_run,

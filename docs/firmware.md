@@ -1,7 +1,7 @@
 # Firmware and software
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 Use the [MC1 firmware and build instructions](../firmware/module-carrier/README.md), [matched GPIO plan](../firmware/module-carrier/pin-plan.json) and [network update guide](../firmware/module-carrier/updates/README.md) for the current hardware. The Pi and S3-ETH instructions below belong to the original assembly.
 

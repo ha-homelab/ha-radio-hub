@@ -2,8 +2,13 @@
 from pathlib import Path
 import tempfile
 import unittest
+import shutil
+import subprocess
+import json
 
-from build import macro, srecords, verify_images
+from antenna import configuration, header, artifact_prefix
+
+from build import macro, srecords, verify_images, check_configuration
 from generate import check_python_pack, configure_headers, inspect_sdk, configure_board
 
 
@@ -13,6 +18,54 @@ def record(address, payload):
 
 
 class RecipeTests(unittest.TestCase):
+    def test_mismatched_antenna_header_cannot_be_built_or_relabelled(self):
+        with tempfile.TemporaryDirectory() as root:
+            d = Path(root)
+            (d/'application/autogen').mkdir(parents=True)
+            (d/'application/autogen/sl_event_handler.c').write_text('  sl_gpio_init();\n')
+            configure_board(d/'application', 'external')
+            cfg = {'antenna': configuration('external'),
+                   'application': {'configuration': {}}, 'bootloader': {'configuration': {}}}
+            (d/'input-config.json').write_text(json.dumps(cfg))
+            check_configuration(d, cfg)
+            (d/'application/autogen/mc1_antenna_config.h').write_text(header('onboard'))
+            with self.assertRaisesRegex(ValueError, 'antenna selection'):
+                check_configuration(d, cfg)
+
+    def test_unknown_antenna_mode_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Unknown XIAO'):
+            configuration('auto')
+
+    def test_compiled_board_initialization_selects_each_physical_path(self):
+        """Execute the real board init with a GPIO stub, rather than matching text."""
+        compiler = shutil.which('cc')
+        self.assertIsNotNone(compiler, 'Host C compiler required for board-init regression')
+        with tempfile.TemporaryDirectory() as root:
+            d = Path(root)
+            shutil.copyfile(Path(__file__).with_name('mc1_board_init.h'), d/'mc1_board_init.h')
+            (d/'em_gpio.h').write_text('enum {gpioPortA, gpioPortB, gpioModePushPull};\n'
+                'void GPIO_PinModeSet(int port, int pin, int mode, int level);\n')
+            (d/'test.c').write_text('#include <assert.h>\n#include "mc1_board_init.h"\n'
+                'static int n;\n'
+                'void GPIO_PinModeSet(int port, int pin, int mode, int level) {\n'
+                'assert(mode == gpioModePushPull);\n'
+                'if(n==0) { assert(port==gpioPortB && pin==4 && level==EXPECTED_SELECT); }\n'
+                'if(n==1) { assert(port==gpioPortB && pin==5 && level==1); }\n'
+                'if(n==2) { assert(port==gpioPortA && pin==6 && level==1); }\n'
+                'if(n==3) { assert(port==gpioPortA && pin==7 && level==1); }\n'
+                '++n; }\nint main(void) { mc1_xiao_board_init(); assert(n==4); }\n')
+            for mode, expected in [('onboard', 0), ('external', 1)]:
+                (d/'mc1_antenna_config.h').write_text(header(mode))
+                subprocess.run([compiler, '-Wall', '-Wextra', '-Werror', '-DEXPECTED_SELECT='+str(expected),
+                                str(d/'test.c'), '-o', str(d/'test')], check=True)
+                subprocess.run([str(d/'test')], check=True)
+                self.assertEqual(configuration(mode)['select_level'], expected)
+                self.assertTrue(artifact_prefix(mode).endswith('-'+mode))
+            (d/'mc1_antenna_config.h').write_text('#define MC1_ANTENNA_EXTERNAL 2\n')
+            result = subprocess.run([compiler, '-DEXPECTED_SELECT=2', str(d/'test.c'), '-o', str(d/'test')],
+                                    capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+
     def test_board_initialization_is_inserted_in_driver_phase(self):
         with tempfile.TemporaryDirectory() as root:
             d = Path(root)
@@ -22,6 +75,17 @@ class RecipeTests(unittest.TestCase):
             configure_board(d)
             self.assertIn('  sl_gpio_init();\n  mc1_xiao_board_init();', source.read_text())
             self.assertTrue((d/'autogen/mc1_board_init.h').is_file())
+            self.assertEqual((d/'autogen/mc1_antenna_config.h').read_text(), header('onboard'))
+
+    def test_external_selection_is_generated_without_modifying_shared_source(self):
+        with tempfile.TemporaryDirectory() as root:
+            d = Path(root)
+            (d/'autogen').mkdir()
+            (d/'autogen/sl_event_handler.c').write_text('  sl_gpio_init();\n')
+            configure_board(d, 'external')
+            self.assertEqual((d/'autogen/mc1_antenna_config.h').read_text(), header('external'))
+            self.assertEqual((d/'autogen/mc1_board_init.h').read_bytes(),
+                             Path(__file__).with_name('mc1_board_init.h').read_bytes())
 
     def test_changed_generator_template_cannot_silently_omit_radio_switch(self):
         with tempfile.TemporaryDirectory() as root:

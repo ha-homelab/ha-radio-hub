@@ -1,103 +1,65 @@
-# HA Radio Hub — MC1
+# HA Radio Hub — MC2
 
-**One current design: a carrier for finished modules.** MC1 keeps a local S3
-Thread Border Router, an independent Ember Zigbee coordinator, active Bluetooth
-proxy, Z-Wave, 433 MHz RF, radar and environmental sensing behind one Ethernet
-uplink. It replaces the competing carrier/integrated construction paths.
+**Three independent external antennas: Zigbee, Thread and Bluetooth.** MC2 keeps
+a local ESP32-S3 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
+Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
+100 × 100 mm carrier holds finished modules with direct-solder male headers.
 
-**Status: engineering prototype.** Software builds, CAD checks and renderings
-are evidence for their specific checks, not proof of electrical operation,
-RF range, power consumption or mechanical fit.
+**Engineering prototype.** Source builds and CAD checks are not measurements of
+coverage, power consumption, mechanical fit or radio certification. The
+1,000 ft² house coverage target still requires testing.
 
-Start with the [current documentation index](docs/README.md), the
-[English assembly guide](docs/module-carrier.md), the
-[interactive visual guide](hardware/module-carrier/index.html), and the
-[current hardware files](hardware/module-carrier/README.md).
+Start with the [assembly guide](docs/external-antennas.md),
+[visual wiring guide](hardware/external-antenna/index.html),
+[documentation index](docs/README.md) and
+[hardware files](hardware/external-antenna/README.md).
 
-![MC1 front: room-facing controllers](hardware/module-carrier/cad/assembly-top.png)
+![MC2 independent antenna paths](hardware/external-antenna/antenna-paths.svg)
 
-![MC1 back: ceiling-facing Ethernet, male headers and axial parts](hardware/module-carrier/cad/assembly-bottom.png)
+## Selected hardware
 
-## One board to assemble
+- **ESP32-S3-DevKitC-1U-N8R8:** factory external antenna, 8 MB flash and 8 MB
+  octal PSRAM; Ethernet host and active BLE proxy.
+- **Unexpected Maker TinyC6-U-01:** external U.FL Thread RCP, 8 MB flash,
+  native USB and ordinary header-accessible recovery pins. Its two loose headers
+  require through-hole soldering. Availability was backorder/on-request when
+  checked on 18 October 2026; verify the exact SKU before ordering.
+- **Seeed XIAO MG24:** Ember NCP with explicit external-antenna firmware.
+- **WIZnet WIZ850io:** shared-SPI Ethernet; retain the isolated PoE splitter and
+  regulated low-voltage supply from the battery-fed PoE switch.
+- **Three TE ANT-2.4-LCW-SMA antennas and three Amphenol 095-902-545-150 cables:**
+  separate 50 Ω paths, standard SMA bulkheads, no combiner.
 
-The carrier is a **47.5 × 75 mm rectangle with two copper layers**.
-One H3 retention hole remains; split enclosure rails support both long edges.
-The PCB is 6.9% smaller than the preceding four-hole board and 26.9% below the historical
-65 × 75 mm single-sided carrier. It uses a factory-header
-**S3-Nano-M with 16 MB flash and 8 MB PSRAM**, shared Ethernet/CC1101 SPI and the
-same dedicated Thread and Zigbee radios. Initial programming is done before soldering;
-USB cable corridors are removed, while physical connector bodies remain accounted for.
-Seven male harness headers and the Ethernet module sit on the ceiling-facing
-back; the controllers face the room. RJ45 opens outward at the board edge. See the
-[same-scale comparison](hardware/module-carrier/layout-comparison.svg)
-and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fabrication-cost).
-The [current cost review](hardware/module-carrier/cost-review/README.md) separates
-bare PCB fabrication, mounted-module materials and the external parts still needed.
-Its 17 October 2026 reference is **$5.20 for five bare PCBs** (provisional calculator
-estimate) and **$55–57 in materials per populated carrier**, allocating one PCB
-from that lot. Delivery, tax, labor, enclosure and external modules are excluded;
-this is not a complete-hub price.
+The existing WK2132 bridge, ZAC93, band-matched CC1101/433.92 MHz antenna, radar,
+environment sensor and power modules remain off-board. The
+[carrier BOM](hardware/external-antenna/cad/BOM.csv) and
+[antenna BOM](hardware/external-antenna/rf-bom.json) accompany the assembly guide;
+neither is a complete single-box shopping list on its own.
 
-Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
-**Male pins go directly into plated holes and are soldered on the opposite face.
-No female module sockets; no castellated-side soldering.** Solder the entire back first, including WIZ, then fit the front controllers.
-Check measured clearance to prevent opposing leads from touching module undersides. The power converter, UART bridge,
-existing radios and sensors are finished modules with documented connections.
+![MC2 carrier, all components on the front](hardware/external-antenna/cad/assembly-top.svg)
 
-The selected **H2 DevKitM-1-N4S**, with schematic v1.3, needs one preparation
-step: remove R7 to isolate its USB-UART transmitter. Its matched RCP and host updater use RX23/TX24. J8/J9 are unpopulated
-recovery pads; no headers are fitted there. See the assembly guide before soldering.
+![MC2 carrier-only enclosure with three external antennas](mechanical/module-carrier/external-antenna-prototype/assembly-preview.png)
 
-The carrier does not duplicate the modules' regulators, crystals, RF matching
-or decoupling arrays. There is no separate M0 radio adapter to manufacture and
-no second integrated-radio PCB option to choose.
+## Build and inspect
 
-## Preserve the interfaces
+- [Native CAD, schematic and connector map](hardware/external-antenna/README.md).
+- [Firmware builds and initial programming](firmware/external-antenna/README.md).
+- [Verified-target network update workflow](firmware/external-antenna/updates/README.md).
+- [Five printable parts and connector fit coupon](mechanical/module-carrier/external-antenna-prototype/README.md).
+- [Digital verification and remaining physical checks](hardware/external-antenna/validation.md).
+- [RF commissioning procedure](docs/rf-commissioning.md) and
+  [results sheet](hardware/external-antenna/coverage-results.csv).
 
-- S3 hosts the local Thread BR and application services; H2 is its dedicated RCP.
-  Failed Thread startup is quarantined; terminal faults allow one controlled restart
-  rather than a repeating boot loop. Explicit retry and health diagnostics are exposed.
-- XIAO MG24 runs board-specific Ember NCP firmware, preserving the ZHA/
-  Zigbee2MQTT protocol family and hardware UART flow control.
-- Active BLE proxy, RF Airbridge contracts, ZAC93 Z-Wave, LD2450 controls and
-  BME680 measurements remain in scope.
-- A finished WK2132 UART bridge replaces the loose SC16 circuit. Its transport
-  is validated for message length, queueing and I/O error behavior before use.
+The new **carrier-only** enclosure has a nominal 190 × 160 × 58 mm shell plus
+4 mm ceiling frame. Three bulkheads stay on its fixed base; the lid can be
+removed without moving their coax. The 65 mm adjacent pitch and 150 mm cable
+routes require a physical fit and coexistence test. Other modules need separate
+accommodation. CAD renderings are not photographs of manufactured hardware.
 
-See [MC1 firmware](firmware/module-carrier/README.md) for exact build evidence
-and remaining commissioning work. This is not a claim that old binary images
-can be flashed onto different boards unchanged.
-
-## Current visuals and CAD
-
-- [MC1 visual guide and wiring search](hardware/module-carrier/index.html)
-- [Native KiCad source and verification](hardware/module-carrier/cad/)
-- [Circuit schematic](hardware/module-carrier/cad/schematic.svg) and [pin-by-pin wiring](hardware/module-carrier/wiring.json)
-- [Carrier enclosure prototype](mechanical/module-carrier/enclosure-prototype/README.md) and [rail-fit coupons](mechanical/module-carrier/rail-mount/README.md)
-- [Current board gallery](hardware/module-carrier/images/README.md)
-- [One-design registry](hardware/designs.json)
-
-The carrier enclosure prototype has an **84.3 × 121.8 × 57.4 mm** trial envelope
-and four printable parts: base, cover, ceiling spacing frame and adjustable
-trial jack stop. Installed depth is **61.4 mm** with the required 4 mm frame. It
-covers the carrier; the off-board power, bridge, radios and sensors still need separate
-accommodation. Install floor hardware on the bench before mounting the base;
-underside projections must measure no more than 3 mm. Its printed fit, component
-heights and jack contact need measurement.
-
-Renders are labeled by origin. A generated illustration is not a photograph of
-a manufactured assembly and is not a source for pin numbering.
-
-## Earlier work
-
-C0/M0, I0, D0, the original Pi-based assembly and the all-H2 experiment are
-retained as [engineering history](docs/design-history.md). Their images,
-footprints, pin maps and enclosures must not be mixed into an MC1 build.
-
-The [H2 parity audit](docs/h2-quartet-function-audit.md) explains why identical
-H2 controllers were not selected: local BR software and Zigbee integration/
-backup behavior would require material changes. Using finished modules delivers
-the assembly simplification independently of making all processors identical.
+MC1 is retained as [engineering history](docs/design-history.md) and a regression
+target. Its Nano/H2 firmware, 16 MB partition table and compact enclosure do not
+fit MC2. The [design registry](hardware/designs.json) identifies the one active
+revision. Do not mix images, pin maps or prices between revisions.
 
 ## Project information
 
@@ -108,5 +70,5 @@ are distributed. See [infrastructure](docs/infrastructure.md),
 [security](SECURITY.md), [license](LICENSE) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 
-Run `python3 tools/check.py` for offline document/source checks. MC1-specific
-generation and validation commands are in its hardware and firmware guides.
+Run `python3 tools/check.py` for offline document/source checks. Hardware,
+firmware and mechanical guides list their reproducible validation commands.

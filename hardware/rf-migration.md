@@ -1,7 +1,7 @@
 # RF Airbridge → Ethernet: configuration migration and HA cutover
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 The wired branch uses a **dedicated Waveshare ESP32-S3-ETH-M + CC1101** and `firmware/rf-ethernet.yaml`. The original ESP8266 board remains ready for rollback. This guide covers preparation **without access to the live network**; flashing commands and HA changes are performed separately after bench testing. Current compilation and test status is recorded in [validation.md](../docs/validation.md).
 

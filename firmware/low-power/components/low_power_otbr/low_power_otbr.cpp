@@ -162,7 +162,7 @@ void LowPowerOTBR::pause_for_service() {
   xSemaphoreGive(guard_mutex_);
   if (!saved) { ESP_LOGE(TAG, "Maintenance pause refused: guard write could not be verified"); return; }
   terminal_started_ = true;
-  ESP_LOGW(TAG, "Durable maintenance pause saved; restarting hub once before H2 service");
+  ESP_LOGW(TAG, "Durable maintenance pause saved; restarting hub once before RCP service");
   esp_restart();
 }
 void LowPowerOTBR::quarantine_(ThreadFault fault) {
@@ -189,7 +189,7 @@ void LowPowerOTBR::launch_task(void *arg) {
   vTaskDelete(nullptr);
 }
 void LowPowerOTBR::reset_radio_() {
-  // BOOT and EN are released open-drain; onboard H2 service remains possible.
+  // BOOT and EN are released open-drain; onboard RCP service remains possible.
   gpio_set_level(static_cast<gpio_num_t>(boot_), 1);
   gpio_set_direction(static_cast<gpio_num_t>(boot_), GPIO_MODE_OUTPUT_OD);
   gpio_set_level(static_cast<gpio_num_t>(reset_), 0);
@@ -316,6 +316,6 @@ void LowPowerOTBR::launch_() {
   ESP_LOGI(TAG, "Thread REST ready on port %d", LOW_POWER_OTBR_REST_PORT);
 }
 void LowPowerOTBR::dump_config() {
-  ESP_LOGCONFIG(TAG, "Thread BR: H2 UART2 460800, REST %d, status %s, fault %s", LOW_POWER_OTBR_REST_PORT, status(), fault());
+  ESP_LOGCONFIG(TAG, "Thread BR: RCP UART2 460800, REST %d, status %s, fault %s", LOW_POWER_OTBR_REST_PORT, status(), fault());
 }
 }

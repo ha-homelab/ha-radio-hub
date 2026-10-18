@@ -1,0 +1,103 @@
+# Diagnostics remain available when the Thread stack is quarantined.
+debug:
+  update_interval: 30s
+
+text_sensor:
+  - platform: template
+    name: C6 UART Update State
+    entity_category: diagnostic
+    update_interval: 2s
+    lambda: return {id(thread_border_router).update_status()};
+  - platform: debug
+    reset_reason:
+      name: Hub Reset Reason
+  - platform: template
+    name: Thread State
+    entity_category: diagnostic
+    update_interval: 5s
+    lambda: return {id(thread_border_router).status()};
+  - platform: template
+    name: Thread Last Fault
+    entity_category: diagnostic
+    update_interval: 5s
+    lambda: return {id(thread_border_router).fault()};
+
+binary_sensor:
+  - platform: template
+    name: Thread Guard Durable
+    entity_category: diagnostic
+    lambda: return id(thread_border_router).guard_durable();
+  - platform: template
+    name: Thread Quarantined
+    entity_category: diagnostic
+    lambda: return id(thread_border_router).quarantined();
+
+switch:
+  - platform: template
+    name: Pause Thread for C6 Service
+    entity_category: config
+    lambda: return false;
+    turn_on_action:
+      - lambda: id(thread_border_router).pause_for_service();
+  - platform: template
+    name: Retry Quarantined Thread
+    entity_category: config
+    lambda: return false;
+    turn_on_action:
+      - lambda: id(thread_border_router).retry();
+
+api:
+  actions:
+    - action: arm_c6_uart_update
+      variables:
+        token: string
+      then:
+        - lambda: id(thread_border_router).arm_uart_update(token);
+    - action: cancel_c6_uart_update
+      then:
+        - lambda: id(thread_border_router).cancel_uart_update();
+    - action: pause_thread_for_c6_service
+      then:
+        - lambda: id(thread_border_router).pause_for_service();
+    - action: retry_quarantined_thread
+      then:
+        - lambda: id(thread_border_router).retry();
+
+sensor:
+  - platform: debug
+    free:
+      name: Hub Internal Free Heap
+    block:
+      name: Hub Largest Heap Block
+    min_free:
+      name: Hub Minimum Free Heap
+    psram:
+      name: Hub Free PSRAM
+    loop_time:
+      name: Hub Longest Loop
+  - platform: uptime
+    name: Hub Uptime
+  - platform: template
+    name: Thread Fault Count
+    accuracy_decimals: 0
+    entity_category: diagnostic
+    update_interval: 5s
+    lambda: return id(thread_border_router).fault_count();
+  - platform: template
+    name: Thread Retry Count
+    accuracy_decimals: 0
+    entity_category: diagnostic
+    update_interval: 5s
+    lambda: return id(thread_border_router).retry_count();
+  - platform: template
+    name: Thread RCP Reset Count
+    accuracy_decimals: 0
+    entity_category: diagnostic
+    update_interval: 5s
+    lambda: return id(thread_border_router).reset_count();
+  - platform: template
+    name: Thread Device Role
+    accuracy_decimals: 0
+    entity_category: diagnostic
+    update_interval: 5s
+    lambda: return id(thread_border_router).role();

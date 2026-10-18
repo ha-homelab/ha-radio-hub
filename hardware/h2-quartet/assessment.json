@@ -1,7 +1,7 @@
 {
   "title": "H2 Quartet: finished modules on a through-hole carrier",
   "review_date": "2026-10-17",
-  "status": "historical experiment, not selected; MC1 is the current design; component compile only",
+  "status": "historical experiment, not selected; MC2 is the current design; component compile only",
   "priority": "Minimize builder-installed discrete parts; extra height and firmware work are acceptable.",
   "mounting": {
     "method": "Factory male pins soldered directly into plated carrier holes",

@@ -1,7 +1,7 @@
 # LP-I0 source and footprint record
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../../../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 Checked on 2026-10-17. Dimensions are millimetres, viewed from the **PCB component side** unless explicitly stated otherwise. Public source drawings remain the property of their publishers; they are linked here rather than redistributed. The current release gate requires independent review against the latest manufacturer revision.
 

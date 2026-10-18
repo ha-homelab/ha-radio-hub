@@ -1,5 +1,8 @@
 # MC1 — two-sided carrier for ceiling mounting
 
+> **Historical MC1 revision.** The current [MC2 external-antenna build](external-antennas.md) uses different modules, pins, flash layout and housing. Keep this material with MC1 boards only.
+
+
 The current carrier uses **Waveshare ESP32-S3-Nano-M, ESP32-H2-DevKitM-1-N4S,
 Seeed XIAO MG24 and WIZ850io**. It retains the seven application groups and their
 Home Assistant interfaces. The two-sided layout puts controllers toward the room and Ethernet/harness pins

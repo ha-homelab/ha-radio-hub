@@ -8,6 +8,7 @@ import platform
 import re
 import subprocess
 import shutil
+from antenna import MODES, configuration as antenna_configuration, header as antenna_header
 
 HERE = Path(__file__).resolve().parent
 
@@ -67,7 +68,8 @@ def configure_headers(directory, item):
         path.write_text('// Modified by ha-radio-hub generate.py; see config.json.\n'+text)
 
 
-def configure_board(directory):
+def configure_board(directory, antenna="onboard"):
+    generated_header = antenna_header(antenna)
     """Install RF selection before stack startup without editing vendor sources."""
     path = directory/'autogen/sl_event_handler.c'
     text = path.read_text()
@@ -78,6 +80,7 @@ def configure_board(directory):
     text = '#include "mc1_board_init.h"\n'+text
     path.write_text(text)
     shutil.copyfile(HERE/'mc1_board_init.h', directory/'autogen/mc1_board_init.h')
+    (directory/'autogen/mc1_antenna_config.h').write_text(generated_header)
 
 
 def main():
@@ -90,8 +93,11 @@ def main():
     p.add_argument('--python-pack', required=True, type=Path,
                    help='Silicon Labs Python3.10 adapter-pack directory containing apack.json and jep/')
     p.add_argument('--kind', choices=['application', 'bootloader', 'both'], default='both')
+    p.add_argument('--antenna', choices=MODES, default='onboard',
+                   help='RF path: onboard retains existing MC1 behavior; external selects RF2/U.FL')
     args = p.parse_args()
     cfg = json.loads((HERE/'config.json').read_text())
+    cfg['antenna'] = antenna_configuration(args.antenna)
     sdk, slc, gcc, out = [x.resolve() for x in (args.sdk, args.slc, args.gcc, args.output)]
     if out.exists():
         raise SystemExit('Output already exists; choose an empty new output path.')
@@ -130,7 +136,7 @@ def main():
              '-np','-d',out/kind,'-o','makefile'])
         configure_headers(out/kind, item)
         if kind == "application":
-            configure_board(out/kind)
+            configure_board(out/kind, args.antenna)
     (out/'input-config.json').write_text(json.dumps(cfg,indent=2)+'\n')
 
 

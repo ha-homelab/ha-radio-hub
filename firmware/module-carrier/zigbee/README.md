@@ -2,7 +2,7 @@
 
 This is the MC1 carrier's dedicated Zigbee coordinator firmware for the **Seeed Studio XIAO MG24 Pre-Soldered, SKU 102010690**, using **EFR32MG24B220F1536IM48**. It replaces the M0 bare-module assembly while retaining the existing Ember host protocol. It is not the M0 MGM240P image and is not the community XIAO image that communicates through the onboard USB serial bridge.
 
-**Build and offline validation passed. Hardware commissioning is still required.** Actual compiled images were produced locally; the repository publishes their checksums in [build-evidence.json](build-evidence.json), plus source and build recipes. Generated images remain ignored. No radio, USB programmer, Home Assistant installation or production Zigbee network was accessed during this build.
+**Build and offline validation passed. Hardware commissioning is still required.** The original onboard image evidence is retained unchanged in `build-evidence.json`. Fresh revised-recipe builds passed for [onboard](build-evidence-onboard.json) and [external](build-evidence-external.json) paths, with explicit mode-labelled images. Actual compiled images were produced locally; the repository publishes their checksums in [build-evidence.json](build-evidence.json), plus source and build recipes. Generated images remain ignored. No radio, USB programmer, Home Assistant installation or production Zigbee network was accessed during this build.
 
 ## Electrical and software contract
 
@@ -25,7 +25,7 @@ The application uses **Simplicity SDK 2025.6.3, EmberZNet 8.2.3, EZSP18**. The u
 
 1. Route UART and flow-control signals to the four factory header pins above.
 2. Configure the fitted **39 MHz HFXO** with **CTUNE 95** and **32.768 kHz LFXO** with **CTUNE 44**; select HFXO and LFXO as their clock sources. Manufacturing calibration remains enabled, as in the official board configuration. Use the MCU's DC/DC converter, bypass disabled, peak-current override **9**. These values follow [Silicon Labs' XIAO Zigbee configuration](https://github.com/SiliconLabsSoftware/arduino/tree/868660a857077dbdf757c7e9ded96e20fa84e50c/variants/xiao_mg24/zigbee/config), not the older generic CTUNE 140 recipe. Clock frequency, tuning and RF performance still need board measurements.
-3. Immediately after GPIO driver initialization, before the radio stack starts, [mc1_board_init.h](mc1_board_init.h) drives **PB04 low** to select **RF1/onboard ceramic antenna**, then **PB05 high** to power its FM8625H RF switch. **PB04 high selects the U.FL antenna**; this firmware deliberately selects the ceramic antenna. See [Seeed's schematic, MCU/RF sheet](https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MGM240S_KICAD_Prj.pdf).
+3. Immediately after GPIO driver initialization, before the radio stack starts, [mc1_board_init.h](mc1_board_init.h) selects the antenna from the generated build configuration and drives **PB05 high** to power its FM8625H RF switch. **`--antenna onboard` drives PB04 low** (RF1/ceramic, retained MC1 default). **`--antenna external` drives PB04 high** (RF2/U.FL, required for MC2). Connect the correct 2.4 GHz antenna before running an external image. There is no automatic selection or software diversity. See [Seeed's schematic, MCU/RF sheet](https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MGM240S_KICAD_Prj.pdf).
 4. Keep onboard SPI flash deselected with **PA06 high**, and the active-low user LED off with **PA07 high**. Disable PTI. The NCP uses internal flash for its network state; the extra external flash is not required.
 
 The bootloader never starts the radio. It uses the SDK's boot clock path and the same UART/header assignment, with PC00 entry. The application reestablishes the antenna selection after every restart. The four carrier UART nets do not connect to onboard SAMD11's **PA08/PA09** serial nets. The XIAO USB CDC port is therefore **not a second Zigbee serial interface** in this build; USB remains the onboard CMSIS-DAP programming/debugging connection.
@@ -42,7 +42,7 @@ Set the following shell variables to their installed locations, then run from th
 python3 firmware/module-carrier/zigbee/generate.py \
   --sdk "$SISDK_DIR" --slc "$SLC_BIN" --gcc "$ARM_GCC_DIR" \
   --python-pack "$SILABS_PYTHON_PACK" --java-home "$JAVA21_DIR" \
-  --output "$MC1_BUILD_DIR"
+  --antenna onboard --output "$MC1_BUILD_DIR"
 
 python3 firmware/module-carrier/zigbee/build.py \
   --project "$MC1_BUILD_DIR" --gcc "$ARM_GCC_DIR" \
@@ -51,11 +51,13 @@ python3 firmware/module-carrier/zigbee/build.py \
 python3 -m unittest discover -s firmware/module-carrier/zigbee -p test_recipe.py -v
 ```
 
-The build checks the generated macros and board-initialization hook before compiling. It verifies S-record checksums, Cortex-M vectors, separate bootloader/application ranges, the exact merged image, and GBL/Intel HEX conversion roundtrips. Its report records recipe and image SHA-256 hashes. SDK version/protocol headers are checked; an unpacked SDK's complete Git identity is not attested by this check. Nine SDK-independent tests cover malformed images, unsafe substitution, omitted/duplicate macros, native Python runtime validation and the required RF initialization hook.
+For the external-antenna revision, use `--antenna external` and a separate output directory. The build report records `antenna.mode`, RF path and both GPIO levels. The build checks that the generated antenna header agrees with the report input and rejects mismatches. A label change alone cannot convert a ceramic image into an external image.
+
+The build checks the generated macros and board-initialization hook before compiling. It verifies S-record checksums, Cortex-M vectors, separate bootloader/application ranges, the exact merged image, and GBL/Intel HEX conversion roundtrips. Its report records recipe and image SHA-256 hashes. SDK version/protocol headers are checked; an unpacked SDK's complete Git identity is not attested by this check. Thirteen SDK-independent tests cover malformed images, unsafe substitution, omitted/duplicate macros, native Python runtime validation the required RF initialization hook, both executed GPIO sequences, and rejection of a mismatched antenna configuration.
 
 ## Initial programming and recovery
 
-The initial image includes a **24 KiB reserved bootloader region** and the NCP application starting at **0x08006000**. The build produces `artifacts/mc1-xiao-mg24-initial.hex` for initial SWD programming and `artifacts/mc1-xiao-mg24-ncp.gbl` for subsequent application updates through the Gecko UART bootloader. Their SHA-256 hashes are in the build report. Do not substitute the M0 images or the community PA08/PA09 software-flow-control image.
+The initial image includes a **24 KiB reserved bootloader region** and the NCP application starting at **0x08006000**. The build produces `artifacts/mc1-xiao-mg24-onboard-initial.hex` (or `mc1-xiao-mg24-external-initial.hex`) for initial SWD programming and `artifacts/mc1-xiao-mg24-onboard-ncp.gbl` (or `mc1-xiao-mg24-external-ncp.gbl`) for subsequent application updates through the Gecko UART bootloader. Their SHA-256 hashes are in the build report. Do not substitute the M0 images or the community PA08/PA09 software-flow-control image.
 
 Perform initial programming before soldering. For normal updates after assembly, use the [checked Ethernet update procedure](../updates/README.md#mg24-application-gbl-update): it requests the bootloader through EZSP and uploads the application GBL through existing TCP6638. It does not require a USB plug or another host GPIO. That path still needs an intact bootloader and either a responsive NCP or an already-running loader; the local/SWD procedures below cover other recovery cases.
 

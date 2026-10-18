@@ -1,13 +1,19 @@
 # One current design, retained engineering history
 
+On 18 October 2026 **MC2-A** became the current design: a 100 × 100 mm carrier
+with factory external-antenna S3/C6 modules and external-mode XIAO MG24 firmware.
+It retains local services while separating all three 2.4 GHz antenna feeds.
+MC1 remains historical and continues to have regression checks. Its last
+47.5 × 75 mm layout, Nano 16 MB flash target and H2 pin map are not MC2.
+
 On 17 October 2026 the project chose **MC1: one carrier for finished modules**.
 The decision prioritizes existing functions and Home Assistant compatibility over
 using identical ESP32-H2 processors everywhere. Factory male module pins are
 soldered directly into plated carrier holes; female module sockets are excluded.
 
 The [design registry](../hardware/designs.json) identifies the only active custom
-PCB design. The [current assembly guide](module-carrier.md) and
-[current visual guide](../hardware/module-carrier/index.html) are the starting points.
+PCB design. The [current assembly guide](external-antennas.md) and
+[current visual guide](../hardware/external-antenna/index.html) are the starting points.
 
 ## Why the alternatives are retained
 
@@ -69,7 +75,7 @@ under the mounting study.
 
 ## Single-anchor split-rail revision
 
-The current `nano-single-anchor-rails` revision is **47.5 × 75 mm**. It removes
+The final MC1 `nano-single-anchor-rails` revision is **47.5 × 75 mm**. It removes
 H1, H2 and H4, retains H3 between U2 and U3, and uses split enclosure rails for
 edge support. The PCB is 6.86% smaller than the previous four-hole 51 × 75 mm
 rectangle. S3 and H2 move closer together; narrow clear edge lands remain for
