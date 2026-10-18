@@ -2,6 +2,8 @@
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+import tempfile
 import unittest
 
 HERE=Path(__file__).resolve().parent
@@ -20,6 +22,21 @@ class ConnectionTests(unittest.TestCase):
         with self.assertRaises(ValueError): module.validate(self.data)
     def test_model_and_firmware_match(self):
         self.assertEqual(module.validate(self.data)['firmware_roles'],26)
+    def test_changed_rf_cs_substitution_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            for name in ['hardware/low-power/pinmap.json','firmware/low-power/proof.yaml',
+                         'firmware/low-power/hub.yaml','firmware/packages/rf-airbridge.yaml',
+                         'firmware/low-power/mg24/config.json']:
+                path=root/name
+                path.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(module.ROOT/name,path)
+            path=root/'firmware/packages/rf-airbridge.yaml'
+            source=path.read_text()
+            self.assertIn('rf_cs_pin: GPIO15',source)
+            path.write_text(source.replace('rf_cs_pin: GPIO15','rf_cs_pin: GPIO6'))
+            with self.assertRaisesRegex(ValueError,'RF CS mismatch'):
+                module.validate(self.data,root=root)
     def test_invented_module_header_is_rejected(self):
         self.pin('cc1101','GDO2')['physical']['position']='7'
         self.bad()

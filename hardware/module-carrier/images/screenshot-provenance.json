@@ -1,40 +1,43 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "layout_revision": "nano-shared-spi-bottom-edge",
-  "index_sha256": "7158db78d265af4a36e8e15fda40693d0bef8f59ef91184ed35dd46976e5b597",
+  "layout_revision": "nano-network-updates-65x75",
+  "index_sha256": "d2abfc28dfc92dff44adac9cc5d0028d754dba7ea554610b3c6ec767390c798e",
   "viewport_width": 319,
   "page_scroll_width": 319,
-  "images_loaded": 8,
+  "images_loaded": 9,
   "all_images_loaded": true,
   "wiring_test": {
-    "query": "ZB_CTS",
+    "query": "THREAD_RX",
     "visible_count": 1,
     "total_nets": 31,
     "endpoints": [
-      "U1.JP2.7",
-      "U3.5"
+      "U1.JP2.1",
+      "U2.J3.3"
     ],
     "restored_empty_query": true
   },
   "screenshots": {
-    "ui-pcb.jpg": "796a1a255f49e44d4051abdd30e66370e170538b5dc40290874683f6743e198b",
-    "ui-assembly.jpg": "9d4907373d545ca387d5095ed0293ce96ea206bbc8c244b4e81de620003326de",
-    "ui-wiring.jpg": "22013d9eea9402905ff1f7ac8016ef78ed8de68a20201cca1112c93c79a69b7e",
-    "ui-architecture.jpg": "7b71f70258a687112e06c1ae6f72a2934547d58880565d12993ed28cc6af3a5d",
-    "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5"
+    "ui-pcb.jpg": "91df2728293ffb9b2baed7ad4c765a9048c30bbd73848d9a1a5dac2c76837035",
+    "ui-assembly.jpg": "ad3100c59a595d20a224269d2087e31923fb558fbf8f1b0ecd5b699b1c8e1043",
+    "ui-wiring.jpg": "5b5149d49bddc64cad72d3b8e9a83a4fe0770005c2a3cff66678d8673bb92712",
+    "ui-architecture.jpg": "9acb2bf12d98d048e89b9e7e07e8c6efbfb8c4e007385eb27257ee51ecb2e65c",
+    "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5",
+    "ui-updates.jpg": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2"
   },
   "source_sha256": {
-    "cad/assembly-top.svg": "380fb5b3354a49967e75974ecf79458e8fdc32df852d609d651537cdaa592d25",
-    "architecture.svg": "c1058b4f460873e5a1a66a55b6888ef5b4534c4b62dc1f61f002b1d29a7b35c2",
+    "cad/assembly-top.svg": "a8d46537681e68cb7e62e23e8c837b9df84bd62ea8d3d978f90ab631ea07da74",
+    "architecture.svg": "f18cfa0a8e29ce45cd5623ebeab8b7c7422f8819d2f9173f7bc4110657985e82",
     "thread-recovery.svg": "f05b56daa4d2c2b55187d5d09c6d9930d37853f634505eefb02e512983c19334",
-    "wiring.json": "eda2bf3d61fb6ed3615d8420d5a5056ea157f027f47bf1b6e8aa5452ca7899ab"
+    "network-updates.svg": "a91a33093589e2d074e4ab0c888298dd9e8200526707cc908eaa51c15901b629",
+    "wiring.json": "3444a2cd12f72b7b730635147b5825e5c484236d182001b2c22d4aa8538d3e72"
   },
   "capture_notes": {
     "ui-pcb.jpg": "Native 319 px viewport, current guide at #pcb",
     "ui-assembly.jpg": "Full-page current native CAD assembly SVG; no viewport override",
-    "ui-wiring.jpg": "Native 319 px viewport, ZB_CTS search result",
+    "ui-wiring.jpg": "Native 319 px viewport, THREAD_RX search result on final CAD; all 31 nets restored after capture.",
     "ui-architecture.jpg": "Full-size standalone architecture SVG clip; no viewport override",
-    "ui-recovery.jpg": "Full-size standalone recovery SVG clip; no viewport override"
+    "ui-recovery.jpg": "Retained screenshot of unchanged recovery SVG; source SHA256 unchanged.",
+    "ui-updates.jpg": "Full-size standalone network-updates.svg clip; no viewport override."
   }
 }

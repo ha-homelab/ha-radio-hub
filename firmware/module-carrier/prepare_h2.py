@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare IDF5.5.5 H2 RCP with carrier RX4/TX5, keeping USB-UART23/24 free."""
+"""Prepare H2 RCP on ROM UART23/24; carrier isolates DevKit USB bridge R7."""
 import argparse
 from pathlib import Path
 from prepare import load_legacy
@@ -8,11 +8,9 @@ def prepare(output: Path,idf: Path) -> Path:
     result=load_legacy("prepare_h2").prepare(output,idf)
     path=result/"sdkconfig.defaults"
     text=path.read_text()
-    for old,new in (("CONFIG_OPENTHREAD_UART_RX_PIN=23","CONFIG_OPENTHREAD_UART_RX_PIN=4"),
-                    ("CONFIG_OPENTHREAD_UART_TX_PIN=24","CONFIG_OPENTHREAD_UART_TX_PIN=5")):
-        if text.count(old)!=1:
+    for setting in ("CONFIG_OPENTHREAD_UART_RX_PIN=23", "CONFIG_OPENTHREAD_UART_TX_PIN=24"):
+        if text.count(setting)!=1:
             raise RuntimeError("Pinned RCP defaults changed")
-        text=text.replace(old,new)
     path.write_text(text)
     return result
 

@@ -1,7 +1,7 @@
 {
   "revision": "MC1",
   "source": "cad/design.py",
-  "source_sha256": "e5155f92cfd939b797d097d1c3cbb6874a4271929c4333d1d73b136c91af9588",
+  "source_sha256": "3c9adf27b305f3e39ae02dc88d2d0819162df3458c36efedec8e929cfee3f5a1",
   "nets": {
     "THREAD_BOOT": [
       "U1.JP1.1",
@@ -76,11 +76,11 @@
     ],
     "THREAD_RX": [
       "U1.JP2.1",
-      "U2.J1.9"
+      "U2.J3.3"
     ],
     "THREAD_TX": [
       "U1.JP2.2",
-      "U2.J1.10"
+      "U2.J3.2"
     ],
     "RF_GDO2": [
       "U1.JP2.5",
@@ -205,11 +205,12 @@
         "JP2.15": "THREAD_EN"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        39,
-        2
+        62.5,
+        39
       ],
-      "rotation": 270,
+      "rotation": 180,
       "source": "s3",
       "notes": "Factory male pins direct solder; JP1.15 VIN via D1; VBUS/3V3 NC; nativeUSB19/20; GPIO0 service; sharedSPI; no sockets"
     },
@@ -226,16 +227,16 @@
         "J1.6": null,
         "J1.7": null,
         "J1.8": null,
-        "J1.9": "THREAD_RX",
-        "J1.10": "THREAD_TX",
+        "J1.9": null,
+        "J1.10": null,
         "J1.11": null,
         "J1.12": null,
         "J1.13": "GND",
         "J1.14": "+5V_H2",
         "J1.15": "GND",
         "J3.1": "GND",
-        "J3.2": null,
-        "J3.3": null,
+        "J3.2": "THREAD_TX",
+        "J3.3": "THREAD_RX",
         "J3.4": null,
         "J3.5": null,
         "J3.6": null,
@@ -250,13 +251,14 @@
         "J3.15": "GND"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        78.5,
-        28
+        2,
+        1.5
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "h2",
-      "notes": "RCP RX4 TX5; native USB and UART bridge pins untouched; 3V3/VBAT NC"
+      "notes": "RCP/ROM RX23 TX24; remove USB-UART TX series R7 before assembly; native USB retained; 3V3/VBAT NC"
     },
     {
       "ref": "U3",
@@ -279,9 +281,10 @@
         "14": "+5V_ZB"
       },
       "types": {},
+      "fitted": true,
       "xy": [
         18,
-        70
+        57.5
       ],
       "rotation": 270,
       "source": "xiao",
@@ -306,13 +309,14 @@
         "J2.6": "SPI_MISO"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        76,
-        82.9
+        61,
+        67.9
       ],
       "rotation": 180,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces BOTTOM with mouth y=92mm; NO PoE extraction;3.3V only"
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces BOTTOM with mouth y=77mm; NO PoE extraction;3.3V only"
     },
     {
       "ref": "J1",
@@ -323,11 +327,12 @@
         "2": "GND"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        17,
-        62.5
+        42.5,
+        42.99
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier."
     },
@@ -342,11 +347,12 @@
         "4": "GND"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        3,
-        62.5
+        42.5,
+        30.87
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module."
     },
@@ -363,11 +369,12 @@
         "6": "ZWAVE_TX"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        27,
-        56.5
+        36.25,
+        18.75
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "weikai",
       "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings."
     },
@@ -383,11 +390,12 @@
         "5": "ZWAVE_TX"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        46,
-        56.5
+        36.25,
+        35.95
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Carrier1->ZACpin1;2->pin6;3->pin9;4->pin8RX;5->pin10TX. Different from ZAC physical header layout."
     },
@@ -406,11 +414,12 @@
         "8": "RF_GDO2"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        3,
-        56.5
+        30,
+        18.75
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "3.3V; GDO0 open-drain TX with external4.7k pullup; GDO2 receiver."
     },
@@ -425,11 +434,12 @@
         "4": "RADAR_TX"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        26,
-        62.5
+        30,
+        41.03
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "Carrier3->radarRX;carrier4<-radarTX;5V supply;3.3V data."
     },
@@ -444,11 +454,12 @@
         "4": "I2C_SCL"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        63,
-        56.5
+        42.5,
+        18.75
       ],
-      "rotation": 90,
+      "rotation": 0,
       "source": "connector",
       "notes": "External pod,1GND2VDD3SDA4SCL;I2C pullups on modules;do notaddunreviewedpullups."
     },
@@ -461,11 +472,12 @@
         "2": "+5V"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        23,
-        87
+        26,
+        58.5
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -478,11 +490,12 @@
         "2": "+5V"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        33.6,
-        87
+        29.6,
+        58.5
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -495,11 +508,12 @@
         "2": "+5V"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        44.2,
-        87
+        33.2,
+        58.5
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -512,11 +526,12 @@
         "2": "RF_GDO0"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        25,
-        67.5
+        36.8,
+        58.5
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "resistor",
       "notes": ""
     },
@@ -529,9 +544,10 @@
         "2": "RF_CS"
       },
       "types": {},
+      "fitted": true,
       "xy": [
-        39,
-        67.5
+        49,
+        46.8
       ],
       "rotation": 0,
       "source": "resistor",
@@ -539,16 +555,17 @@
     },
     {
       "ref": "J8",
-      "model": "XIAO BOOT service short to GND",
+      "model": "XIAO BOOT unpopulated service pads",
       "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
       "pins": {
         "1": "ZB_BOOT_SERVICE",
         "2": "GND"
       },
       "types": {},
+      "fitted": false,
       "xy": [
-        40,
-        62.5
+        3,
+        52.5
       ],
       "rotation": 90,
       "source": "connector",
@@ -556,16 +573,17 @@
     },
     {
       "ref": "J9",
-      "model": "Nano GPIO0 BOOT service short to GND",
+      "model": "Nano BOOT unpopulated service pads",
       "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
       "pins": {
         "1": "S3_BOOT_SERVICE",
         "2": "GND"
       },
       "types": {},
+      "fitted": false,
       "xy": [
-        48,
-        62.5
+        12,
+        52.5
       ],
       "rotation": 90,
       "source": "connector",

@@ -1,14 +1,14 @@
 {
   "revision": "MC1-Nano",
   "date": "2026-10-17",
-  "layout_revision": "nano-shared-spi-bottom-edge",
+  "layout_revision": "nano-network-updates-65x75",
   "status": "Software and CAD verified; hardware qualification outstanding",
   "hardware_tested": false,
   "checks": [
     {
       "check": "Carrier area and function preservation",
-      "result": "100 × 90 mm → 80 × 90 mm; 20% less PCB area",
-      "scope": "Seven function groups retained; 55% smaller than the original 160 × 100 mm carrier. Two copper layers, four ready modules, nine headers, three diodes and two resistors. No female sockets."
+      "result": "80 × 90 mm → 65 × 75 mm; 32.3% less PCB area",
+      "scope": "Seven function groups retained; 69.5% smaller than the original 160 × 100 mm carrier. Two copper layers, four ready modules, seven fitted headers, three diodes and two resistors. J8/J9 are unpopulated recovery pads. No female sockets."
     },
     {
       "check": "Native KiCad 10.0.6 ERC / DRC",
@@ -17,28 +17,28 @@
     },
     {
       "check": "Mechanical and electrical CAD checks",
-      "result": "18 tests passed; independent audit of 133 pads and 31 net groups passed",
-      "scope": "101 connected endpoints; 11 intentional corruptions detected. Bottom-edge RJ45; H2 antenna beyond carrier FR4. USB and header service allowances remain subject to physical fit."
+      "result": "20 tests passed; independent audit of 133 pads and 31 net groups passed",
+      "scope": "101 connected endpoints; 13 intentional corruptions detected. Bottom-edge RJ45; H2 antenna beyond carrier FR4. USB cable corridors removed; physical shells, narrow header housings and nylon supports checked geometrically. Actual fit remains untested."
     },
     {
       "check": "CAD / firmware interface contracts",
-      "result": "11 tests passed",
-      "scope": "21 S3 GPIOs; shared W5500/CC1101 SPI with distinct chip selects; three UARTs; native USB; MG24 hardware flow control; power isolation; BOOT service."
+      "result": "13 tests passed",
+      "scope": "21 S3 GPIOs; shared W5500/CC1101 SPI; three UARTs; MG24 flow control; power isolation; H2 ROM UART23/24; unpopulated recovery pads and fitted count."
     },
     {
       "check": "Complete S3 firmware",
-      "result": "Compiled: 1,728,512-byte OTA image; 163,563 bytes static RAM",
-      "scope": "ESPHome 2026.9.1 / IDF 5.5.5. Nano 16 MB flash, 8 MB octal PSRAM and three active BLE slots. Each new OTA slot has 6,397,952 bytes of margin. Static RAM is not runtime free heap."
+      "result": "Compiled: 1,731,456-byte OTA image; 163,795 bytes static RAM",
+      "scope": "ESPHome 2026.9.1 / IDF 5.5.5. Nano 16 MB flash, 8 MB octal PSRAM and three active BLE slots. Each OTA slot has 6,395,008 bytes of margin. Static RAM is not runtime free heap."
     },
     {
-      "check": "Bounded Thread recovery and WK2132 transport",
-      "result": "41 ASan / UBSan host tests and 2 REST client tests passed",
-      "scope": "RCP preflight, durable quarantine, deliberate retry and maintenance pause. A terminal Thread fault may cause one whole-host restart. Physical reset, power-loss, radio and concurrent-load behavior remain untested."
+      "check": "Bounded Thread recovery, transport and radio update tooling",
+      "result": "55 ASan / UBSan host tests and 2 REST client tests passed",
+      "scope": "RCP preflight, durable quarantine, explicit maintenance, authenticated temporary H2 UART session, image/partition checks and binary localhost tunnel. Pinned host dependencies install cleanly; both real radio images pass offline planning. Physical updates, power-loss and concurrent-load behavior remain untested."
     },
     {
       "check": "H2 Thread RCP",
-      "result": "Retained verified build: 208,928 bytes; RX4 / TX5",
-      "scope": "IDF 5.5.5 RCP image unchanged. New S3 GPIO43/44 and open-drain GPIO47/48 control are checked against the generated firmware and native CAD."
+      "result": "Rebuilt and verified: 208,928 bytes; RX23 / TX24",
+      "scope": "IDF 5.5.5 RCP uses the same pins as the ROM loader. H2 DevKitM-1 v1.3 R7 removal is required to isolate CP2102N TX; verify the purchased revision and continuity. Initial programming uses native USB J4 before assembly."
     },
     {
       "check": "XIAO MG24 Ember NCP + bootloader",
@@ -47,8 +47,8 @@
     },
     {
       "check": "Images and diagrams",
-      "result": "Regenerated native top/bottom renders and same-scale placement comparison",
-      "scope": "One current 80 × 90 mm Nano design. Earlier layouts and inaccurate generated concepts are explicitly historical. Assembly illustration uses native CAD geometry."
+      "result": "Regenerated native top/bottom renders, assembly and equal-scale comparison",
+      "scope": "One current 65 × 75 mm design. Earlier layouts and inaccurate generated concepts are historical. Assembly illustration uses native CAD geometry. Network-update diagram and assembly instructions explain initial programming and later updates."
     }
   ],
   "evidence_files": [

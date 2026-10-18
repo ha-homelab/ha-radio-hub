@@ -77,7 +77,7 @@ class Contract(unittest.TestCase):
 
     def test_native_usb_and_unused_straps_are_free(self):
         for names, part, reserved in [(DESIGN['s3names'], PARTS['U1'], ['19','20','3','46']),
-                                      (DESIGN['h2names'], PARTS['U2'], ['23','24','26','27'])]:
+                                      (DESIGN['h2names'], PARTS['U2'], ['4','5','26','27'])]:
             for row, labels in names.items():
                 for i, label in enumerate(labels, 1):
                     if label in reserved:
@@ -101,6 +101,19 @@ class Contract(unittest.TestCase):
         self.assertEqual(len(services), 1)
         self.assertEqual(DESIGN['s3nets']['43'], 'THREAD_RX')
         self.assertEqual(DESIGN['s3nets']['44'], 'THREAD_TX')
+
+    def test_h2_rom_uart_matches_the_carrier(self):
+        self.assertEqual(PARTS['U2']['pins']['J3.3'], 'THREAD_RX')
+        self.assertEqual(PARTS['U2']['pins']['J3.2'], 'THREAD_TX')
+        self.assertIsNone(PARTS['U2']['pins']['J1.9'])
+        self.assertIsNone(PARTS['U2']['pins']['J1.10'])
+
+    def test_compact_assembly_has_no_usb_cable_corridors(self):
+        self.assertEqual(DESIGN['USB_ENVELOPES'], {})
+        self.assertLess(DESIGN['BOARD_W'] * DESIGN['BOARD_H'], 80 * 90)
+        self.assertFalse(PARTS['J8']['fitted'])
+        self.assertFalse(PARTS['J9']['fitted'])
+        self.assertEqual(sum(p.get('fitted', True) for p in PARTS.values()), 16)
 
     def test_external_uart_matches_zac93_direction(self):
         self.assertEqual(PARTS['J3']['pins']['5'], PARTS['J4']['pins']['4'])

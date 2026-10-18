@@ -12,10 +12,13 @@ PCB design. The [current assembly guide](module-carrier.md) and
 ## Why the alternatives are retained
 
 The first MC1 layout used a 160 × 100 mm outline, followed by a 100 × 90 mm
-full-size S3 carrier. The current **80 × 90 mm Nano carrier** implements the
-compact-S3 and SMLIGHT review recommendations: shared SPI, separate radio SoCs,
-factory male headers and outward-facing bottom RJ45. Previous snapshots are
-historical; their S3 pin assignments do not match the current firmware.
+full-size S3 carrier, then an 80 × 90 mm Nano carrier with USB cable corridors.
+The current **65 × 75 mm Nano carrier** removes those corridors, keeps physical
+USB shells, and uses preassembly programming plus network update paths. It retains
+shared SPI, separate radio SoCs, factory male headers and bottom-edge RJ45.
+J8/J9 become unpopulated recovery pads. H2 RX23/TX24 plus the documented R7
+removal replace the preceding RX4/TX5 wiring so its standard ROM loader is reachable.
+Previous snapshots are historical; use the firmware matching the current board.
 
 The previous C0/M0, I0 and D0 sources, measurements, build proofs and renders remain
 available to reproduce earlier work. They are historical references, not additional

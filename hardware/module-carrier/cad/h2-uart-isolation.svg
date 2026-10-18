@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="670" viewBox="0 0 1200 670">
+<rect width="1200" height="670" fill="#101b2a"/>
+<style>text{font-family:Arial,sans-serif;fill:#eaf0f6}.title{font-size:29px}.label{font-size:20px}.note{font-size:17px}.wire{stroke:#7ddbd2;stroke-width:4;fill:none}.box{fill:#203447;stroke:#8ea5bd;stroke-width:2}</style>
+<text x="40" y="48" class="title">H2 ROM UART access — isolate the built-in bridge before assembly</text>
+<text x="40" y="80" class="note">Logical circuit diagram derived from Espressif DevKitM-1 v1.3 schematic; this is not a physical component locator.</text>
+<rect x="40" y="185" width="255" height="200" rx="10" class="box"/>
+<text x="65" y="222" class="label">Main S3 Nano</text><text x="65" y="265" class="label">GPIO43 TX</text><text x="65" y="332" class="label">GPIO44 RX</text>
+<rect x="895" y="185" width="265" height="200" rx="10" class="box"/>
+<text x="920" y="222" class="label">ESP32-H2</text><text x="920" y="265" class="label">GPIO23 / RX / J3.3</text><text x="920" y="332" class="label">GPIO24 / TX / J3.2</text>
+<path d="M295 258 H895 M895 326 H295" class="wire"/>
+<text x="405" y="240" class="note">Application RCP and ROM loader share these two wires</text>
+<rect x="420" y="415" width="340" height="110" rx="10" class="box"/>
+<text x="440" y="446" class="label">Onboard CP2102N USB-UART</text>
+<text x="440" y="475" class="note">VDD and REGIN ← VCC_3V3</text>
+<text x="440" y="504" class="note">Still powered when USB is unplugged</text>
+<path d="M485 415 V388 H800 V355 M800 296 V258" class="wire"/>
+<rect x="777" y="299" width="46" height="54" fill="#5b303c" stroke="#ffaeae" stroke-width="2"/>
+<path d="M770 289 L832 363 M832 289 L770 363" stroke="#ff8f98" stroke-width="5"/>
+<text x="837" y="310" class="note">R7: remove</text><text x="837" y="336" class="note">470 Ω in v1.3</text>
+<path d="M685 415 V355 H855 V326" stroke="#8ea5bd" stroke-width="2" fill="none"/>
+<text x="590" y="375" class="note">R9 / bridge RX stays connected</text>
+<text x="40" y="570" class="note">1. Identify the exact board revision and verify the R7 path by continuity with power disconnected.</text>
+<text x="40" y="598" class="note">2. Remove only the TX-series R7; verify an open circuit from CP2102N TXD to H2 RX23.</text>
+<text x="40" y="626" class="note">3. Program and test through native H2 USB before mounting. The USB-UART port can no longer program H2.</text>
+<text x="40" y="654" class="note">Host EN47 / BOOT48 remain open-drain. J5 is a module-current jumper, not a bridge-disable jumper.</text>
+</svg>

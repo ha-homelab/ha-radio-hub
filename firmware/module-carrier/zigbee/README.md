@@ -8,7 +8,7 @@ This is the MC1 carrier's dedicated Zigbee coordinator firmware for the **Seeed 
 
 - XIAO **D6 / PC06 / TX** goes to S3 **GPIO18 / RX**.
 - XIAO **D7 / PC07 / RX** comes from S3 **GPIO17 / TX**.
-- XIAO **D4 / PC04 / CTS** comes from S3 **GPIO16 / RTS**.
+- XIAO **D4 / PC04 / CTS** comes from S3 **GPIO7 / RTS**.
 - XIAO **D5 / PC05 / RTS** goes to S3 **GPIO21 / CTS**.
 - **115200 baud, eight data bits, no parity, one stop bit, hardware RTS/CTS**. All signals are 3.3 V logic. USART0 is routed to these pins in both application and bootloader.
 - XIAO **D0 / PC00** is the active-low bootloader entry input. MC1 J8 exposes D0 and ground for a temporary service jumper. Leave J8 open for normal operation.
@@ -56,6 +56,8 @@ The build checks the generated macros and board-initialization hook before compi
 ## Initial programming and recovery
 
 The initial image includes a **24 KiB reserved bootloader region** and the NCP application starting at **0x08006000**. The build produces `artifacts/mc1-xiao-mg24-initial.hex` for initial SWD programming and `artifacts/mc1-xiao-mg24-ncp.gbl` for subsequent application updates through the Gecko UART bootloader. Their SHA-256 hashes are in the build report. Do not substitute the M0 images or the community PA08/PA09 software-flow-control image.
+
+Perform initial programming before soldering. For normal updates after assembly, use the [checked Ethernet update procedure](../updates/README.md#mg24-application-gbl-update): it requests the bootloader through EZSP and uploads the application GBL through existing TCP6638. It does not require a USB plug or another host GPIO. That path still needs an intact bootloader and either a responsive NCP or an already-running loader; the local/SWD procedures below cover other recovery cases.
 
 1. Attach a USB data cable to the **XIAO** USB-C port. Its onboard SAMD11 supplies CMSIS-DAP. Prefer initial programming before soldering. For service after assembly, keep the complete carrier normally powered and use a board-specific, bench-verified service-power procedure. **SAMD11 requires USB VBUS:** a VBUS-blocking cable does not power its regulator from the factory 5 V header. Verify the onboard/carrier diode isolation, rail voltages, absence of backfeed and enumeration with the intended powered-USB connection, as explained in the [XIAO service review](../../../hardware/module-carrier/studies/square-layout/service-review.md#xiaos-programming-probe-needs-usb-vbus). Do not power only the XIAO while its connected S3 is unpowered.
 2. Use the **Silicon Labs Arduino package's OpenOCD 0.12.0-arduino1-static**, including its `target/efm32s2_g23.cfg`. Generic OpenOCD distributions may lack this target. The [official upload recipe](https://github.com/SiliconLabsSoftware/arduino/blob/868660a857077dbdf757c7e9ded96e20fa84e50c/platform.txt) uses that target for this board.

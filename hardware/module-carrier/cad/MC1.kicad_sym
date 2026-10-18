@@ -226,7 +226,7 @@
 ))
 (symbol "Module_J8" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
 (property "Reference" "J8" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
-(property "Value" "XIAO BOOT service short to GND" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+(property "Value" "XIAO BOOT unpopulated service pads" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
 (symbol "Module_J8_0_1" (rectangle (start -15.24 1.27) (end 15.24 -5.08) (stroke (width 0.254) (type default)) (fill (type background))))
 (symbol "Module_J8_1_1"
 (pin passive line (at -20.32 0.0 0) (length 5.08) (name "ZB_BOOT_SERVICE" (effects (font (size 0.8 0.8)))) (number "1" (effects (font (size 1 1)))))
@@ -234,7 +234,7 @@
 ))
 (symbol "Module_J9" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
 (property "Reference" "J9" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
-(property "Value" "Nano GPIO0 BOOT service short to GND" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+(property "Value" "Nano BOOT unpopulated service pads" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
 (symbol "Module_J9_0_1" (rectangle (start -15.24 1.27) (end 15.24 -5.08) (stroke (width 0.254) (type default)) (fill (type background))))
 (symbol "Module_J9_1_1"
 (pin passive line (at -20.32 0.0 0) (length 5.08) (name "S3_BOOT_SERVICE" (effects (font (size 0.8 0.8)))) (number "1" (effects (font (size 1 1)))))

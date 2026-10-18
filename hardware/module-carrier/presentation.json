@@ -49,24 +49,24 @@
     }
   ],
   "assembly_steps": [
-    "Match exact module revisions to the drawings. Program each module before permanent assembly.",
-    "Use the factory-header ESP32-S3-Nano-M. Its JP2 numbering runs opposite to the visual row order; follow physical pad numbers, not an assumed left-to-right sequence.",
-    "Dry-fit the male pins in the plated holes. Check the compact layout against actual module bodies, plugged USB/RJ45 connectors, vertical harness plugs and antenna keepouts.",
-    "Fit the listed through-hole parts, then solder module pins from the underside. No female module sockets.",
-    "Wire the finished isolated power and UART modules and the existing radios/sensors to the labeled carrier connectors.",
-    "Feed the Nano through the carrier diode to VIN, leaving Nano VBUS and 3V3 disconnected from carrier rails. Confirm loaded VIN and 3V3, including concurrent radio activity. Keep the GPIO0 recovery contacts accessible.",
-    "Check polarity, continuity and loaded rail voltages before connecting the full assembly.",
-    "For later H2 USB programming, activate Pause Thread for H2 Service, then verify maintenance state and Thread Guard Durable before flashing. Explicit retry resumes normal operation.",
-    "Commission one function at a time, then test all functions together including power loss and recovery."
+    "Identify all module revisions and match them to the drawings before soldering.",
+    "On H2 DevKitM-1 v1.3, remove R7 (470 ohm) with power disconnected; verify USB-UART TX isolation. Use the matched RX23/TX24 RCP image.",
+    "Program and verify each loose controller: Nano native USB, H2 native USB Serial/JTAG, and XIAO onboard debug probe with its initial bootloader plus NCP image.",
+    "Temporarily wire and test the network update paths before permanently soldering the modules.",
+    "Dry-fit physical module and USB bodies, seven mating harness plugs, supports and antenna exclusions. No USB cable corridors are reserved.",
+    "Fit seven harness headers and five axial parts. Leave J8 and J9 unpopulated. Solder factory male module pins from underneath; follow physical pad numbers, especially Nano JP2.",
+    "Connect the isolated power and external ready modules to the labeled harnesses. Leave local regulator outputs and Nano VBUS isolated from carrier rails.",
+    "Check polarity, continuity and loaded rail voltages. Verify Nano VIN/3V3 with concurrent radio traffic.",
+    "Commission each service, then test simultaneous operation, network updates, power loss and recovery in the intended enclosure."
   ],
   "manufacturing_claim": "One current custom PCB layout; finished vendor modules and external harnesses are still separate physical parts.",
   "unproven": [
-    "Nano VIN operation below the documented external 6 V minimum, including branch-diode loss and simultaneous-load transients",
-    "USB/back-power isolation in the real assembly",
-    "Mechanical fit and antenna spacing",
-    "RF coexistence and range",
-    "End-to-end ZHA / Thread / Z-Wave commissioning",
-    "Simultaneous workload reliability"
+    "Nano loaded VIN operation below the documented external 6 V minimum",
+    "Physical module/connector fit and antenna spacing",
+    "H2 R7 isolation, boot straps and network flashing on actual hardware",
+    "MG24 bootloader updates and interrupted-transfer recovery on hardware",
+    "RF coexistence, range and simultaneous workload reliability",
+    "End-to-end ZHA / Thread / Z-Wave commissioning and network backup/restore"
   ],
   "sources": [
     [
@@ -98,5 +98,5 @@
       "https://esphome.io/components/weikai/"
     ]
   ],
-  "layout_revision": "nano-shared-spi"
+  "layout_revision": "nano-network-updates-65x75"
 }

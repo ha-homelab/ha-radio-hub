@@ -4,11 +4,14 @@ MC1 is the project's **single current custom PCB**: a carrier for finished
 S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into
 plated holes. Female module sockets and hand-soldered bare RF modules are excluded.
 
-Current PCB outline: **80 mm horizontal × 90 mm vertical, two copper layers**.
-The Nano host reduces area by 20% against the preceding 100 × 90 mm carrier,
+Current PCB outline: **65 mm horizontal × 75 mm vertical, two copper layers**.
+Removing USB cable corridors reduces area by 32.3% against the preceding 80 × 90 mm carrier,
 with the same seven function groups. [Equal-scale comparison](layout-comparison.svg).
 The Nano pin map, shared Ethernet/CC1101 SPI and matching active firmware replace
 the old full-size S3 assignments. The RJ45 opening is at the bottom edge.
+Physical USB shells remain included in the fit checks. Program before soldering;
+normal updates use the network. H2 v1.3 requires R7 isolation and RX23/TX24 firmware.
+Seven headers are fitted; J8/J9 remain unpopulated local recovery pads.
 
 Use the [visual guide](index.html), [assembly instructions](../../docs/module-carrier.md),
 [CAD source](cad/), [gallery](images/README.md), and

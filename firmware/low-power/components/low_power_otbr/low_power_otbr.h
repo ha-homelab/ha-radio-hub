@@ -2,6 +2,8 @@
 #include "esphome/core/component.h"
 #include "thread_guard.h"
 #include <atomic>
+#include <array>
+#include <string>
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "nvs.h"
@@ -17,6 +19,9 @@ class LowPowerOTBR : public Component {
   void set_pins(int tx, int rx, int reset, int boot) { tx_ = tx; rx_ = rx; reset_ = reset; boot_ = boot; }
   void retry();
   void pause_for_service();
+  void arm_uart_update(const std::string &token);
+  void cancel_uart_update() { update_cancel_ = true; }
+  const char *update_status() const;
   const char *status() const;
   const char *fault() const { return fault_name(static_cast<ThreadFault>(fault_.load())); }
   bool quarantined() const { return quarantined_.load(); }
@@ -32,6 +37,8 @@ class LowPowerOTBR : public Component {
   static void reset_failed();
   static void incompatible();
   static void state_changed(uint32_t flags, void *context);
+  static void update_task(void *arg);
+  void run_uart_update_();
   void launch_();
   ThreadFault preflight_();
   void reset_radio_();
@@ -47,5 +54,8 @@ class LowPowerOTBR : public Component {
   ThreadGuard guard_{};
   std::atomic<bool> quarantined_{false}, terminal_started_{false}, online_{false}, durable_{false};
   std::atomic<uint32_t> phase_{0}, fault_{0}, faults_{0}, retries_{0}, resets_{0}, role_{0};
+  std::atomic<uint32_t> update_phase_{0};
+  std::atomic<bool> update_cancel_{false};
+  std::array<char, 32> update_token_{};
 };
 }

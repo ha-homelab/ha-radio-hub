@@ -27,7 +27,7 @@ def verify_service_gpio(source: str):
     if "GPIO_MODE_OUTPUT)" in source:
         raise RuntimeError("Push-pull control found in H2 service source")
     return {"reset_gpio":47,"boot_gpio":48,"mode":"open_drain",
-            "idle_level":1,"reset_low_ms":10,"h2_firmware_update_supported":False,
+            "idle_level":1,"reset_low_ms":10,"h2_firmware_update_supported":True,
             "source_sha256":hashlib.sha256(source.encode()).hexdigest()}
 
 def verify(profile: Path):
@@ -57,13 +57,16 @@ def verify(profile: Path):
     sizes=json.loads((root/"build/esp_idf_size.json").read_text())
     ram=sizes["memory_types"].get("DRAM") or sizes["memory_types"].get("DIRAM")
     source_hashes={}
-    for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h"):
+    for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.9.1","esp_idf":"5.5.5",
             "sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "partitions":partitions,"thread_source_sha256":source_hashes,
             "linked_memory":{"static_ram_bytes":ram["used"],"linker_ram_bytes":ram["size"],"runtime_measured":False},
+            "h2_update":{"transport":"authenticated temporary TCP6639 to ROM UART", "baud":115200,
+                         "requires_durable_maintenance":True,"max_arm_ms":60000,"max_session_ms":600000,
+                         "hardware_tested":False},
             "framework_cache_manually_modified":False,"sdk_patches_applied":False}
     (profile.parent/"build-result.json").write_text(json.dumps(result,indent=2)+"\n")
     return result

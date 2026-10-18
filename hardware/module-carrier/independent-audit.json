@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-18T04:00:39.261295+00:00",
+  "checked_at_utc": "2026-10-18T04:21:57.885105+00:00",
   "board": "mc1.kicad_pcb",
-  "board_sha256": "057a7b642679e39965cc45b57765e67d7230496f94db0e204b7836f4750fdb4a",
-  "audit_script_sha256": "200904070e86393d1608424cefe920b2550ae3dc2ba70960d5bb10842cfd95e1",
+  "board_sha256": "cd28bc7a3875a8776e82679640d4388aaa7d5d4e21d166d6cca9cae9079c1fb1",
+  "audit_script_sha256": "b6151825d50bb8fbd0e43c70bfd3518618835b3e37d8cd002dd84a4120a45ba1",
   "manufacturer_sources": {
     "nano": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
     "h2": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
@@ -10,12 +10,13 @@
     "wiz": "https://docs.wiznet.io/Product/Modules/Ethernet-Modules/WIZ850io"
   },
   "electronic_references": 18,
+  "fitted_electronic_references": 16,
   "expected_pads": 133,
   "native_board_bounds_mm": [
     0.0,
     0.0,
-    80.0,
-    90.0
+    65.0,
+    75.0
   ],
   "connected_endpoint_groups": 31,
   "connected_pads": 101,
@@ -24,13 +25,13 @@
     "drc_violations": 0,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 18
+    "unit_tests_passed": 20
   },
   "native_report_sha256": {
-    "checks/drc.json": "b59cf826028e748075a69beec9d5d2078b9bb71722352d280964269c3c21637a",
-    "checks/erc.json": "a4ef4ebc6acaa77eaf8396696c96f1220e34e8d4abbd63e4e873571dd7584b02"
+    "checks/drc.json": "74493535238026d56670d5037788a105de30cee81d081728076711fd02637bd6",
+    "checks/erc.json": "1cb1cf38870c62b481dbfc74c75194882eaeb0c6a9cbb3836c88479e2479b61c"
   },
-  "manifest_hashes_checked": 12,
+  "manifest_hashes_checked": 13,
   "mutations_detected": {
     "thread_tx_rx_swap": true,
     "zigbee_flow_control_swap": true,
@@ -42,7 +43,9 @@
     "nano_reversed_row": true,
     "underside_component": true,
     "header_outside_board": true,
-    "overlapping_diodes": true
+    "overlapping_diodes": true,
+    "fitted_service_header": true,
+    "physical_usb_collision": true
   },
   "errors": [],
   "passed": true,

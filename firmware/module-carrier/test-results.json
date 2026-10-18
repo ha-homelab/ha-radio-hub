@@ -1,10 +1,10 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "tested_date_local": "2026-10-17",
   "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
   "passed": true,
-  "tests": 41,
-  "duration_seconds": 3.896,
+  "tests": 55,
+  "duration_seconds": 2.246,
   "sanitizers": [
     "address",
     "undefined"
@@ -15,20 +15,34 @@
     "-Wextra",
     "-Werror"
   ],
-  "test_scope": "Production guard state and durable transitions, write/commit/readback helper, bounded Spinel property verification, HDLC framing, and WK2132 transport core. No physical flash/RTC/UART or FreeRTOS scheduling emulation.",
+  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation.",
   "source_sha256": {
-    "firmware/low-power/components/low_power_otbr/thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
     "firmware/low-power/components/low_power_otbr/rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
-    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "2003501279bf4ae8d969e9da9ad68ad69ae106bf92b48d3f86aef32764287fd9",
-    "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "102dcbc5fcf3cbbf43a7b6b53c83cd51fa93fdaafd3541dc5b6ed967590a0df7",
-    "firmware/module-carrier/tests/test_thread_guard.py": "908dedd5bc55be9cd11e9903fc3f7e8d2ff0cf73152d8b5e5b82162ee7338f56",
-    "firmware/module-carrier/tests/thread_guard_test.cpp": "7e1a6d6c71b6dd4b06489119d505d2546871f65017730b9184ff61ce4cce51da",
+    "firmware/low-power/components/low_power_otbr/thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+    "firmware/low-power/components/low_power_otbr/uart_update.cpp": "8e4bf766409fde571222cc8f3aa8edbf95f5e38949f6106df0674fb08df51408",
+    "firmware/low-power/components/low_power_otbr/update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3",
     "firmware/module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
-    "firmware/module-carrier/tests/transport_test.cpp": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547"
+    "firmware/module-carrier/tests/test_thread_guard.py": "908dedd5bc55be9cd11e9903fc3f7e8d2ff0cf73152d8b5e5b82162ee7338f56",
+    "firmware/module-carrier/tests/test_updates.py": "954490469249178797c26d58e4431ea95f790f6aa19dbee82ccfe21989172ca1",
+    "firmware/module-carrier/tests/thread_guard_test.cpp": "7e1a6d6c71b6dd4b06489119d505d2546871f65017730b9184ff61ce4cce51da",
+    "firmware/module-carrier/tests/transport_test.cpp": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547",
+    "firmware/module-carrier/tests/update_session_test.cpp": "92943782fa5e4b0b0329a0b145fe211a04c7cd5ab8ba330490ac6a0318781ff9",
+    "firmware/module-carrier/updates/requirements.txt": "395d28581bb88cbc2dd5ffdf5e2fcbef768a030d1eb33dfd7340ed1c66be9166",
+    "firmware/module-carrier/updates/update.py": "9b4ce1dec74751d93e00e762c88d86fc75cf4d990b89c9fa11d7c1c668184690"
   },
   "additional_contract_guards": {
     "compiled_open_drain_source_verified": true,
     "push_pull_mutation_rejected": true,
     "reset_timing_mutation_rejected": true
+  },
+  "additional_update_checks": {
+    "pinned_host_dependencies_install": "pass",
+    "pip_check": "pass",
+    "actual_h2_and_mg24_image_offline_plans": "pass",
+    "binary_loopback_bytes": 65792,
+    "rest_contract_tests_passed": 2,
+    "physical_flashes_executed": 0
   }
 }

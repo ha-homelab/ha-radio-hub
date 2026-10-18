@@ -1,12 +1,12 @@
 {
   "revision": "MC1-Nano",
-  "layout_revision": "nano-shared-spi-bottom-edge",
+  "layout_revision": "nano-network-updates-65x75",
   "status": "engineering_prototype_not_fabrication_release",
-  "checked_at_utc": "2026-10-18T04:00:05.709405+00:00",
+  "checked_at_utc": "2026-10-18T04:21:44.189783+00:00",
   "kicad_version": "10.0.6",
   "board": {
-    "width_mm": 80,
-    "height_mm": 90,
+    "width_mm": 65,
+    "height_mm": 75,
     "copper_layers": 2
   },
   "checks": {
@@ -14,12 +14,14 @@
     "drc_violations": 0,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 18
+    "unit_tests_passed": 20
   },
   "assembly": {
-    "fitted_through_hole_references": 18,
+    "fitted_through_hole_references": 16,
+    "footprint_positions": 18,
+    "unpopulated_service_pads": 2,
     "mounted_ready_modules": 4,
-    "harness_or_service_headers": 9,
+    "harness_or_service_headers": 7,
     "loose_axial_diodes": 3,
     "loose_axial_resistors": 2,
     "female_sockets": 0,
@@ -48,21 +50,21 @@
         -1
       ],
       "service_corridor_global_mm": [
-        50,
-        89.3,
-        80,
-        128
+        35,
+        74.3,
+        65,
+        113
       ],
       "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
       "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
       "face_global_mm": [
         [
-          73.89,
-          92.0
+          58.89,
+          77.0
         ],
         [
-          57.79,
-          92.0
+          42.79,
+          77.0
         ]
       ],
       "outward_normal_global": [
@@ -71,168 +73,157 @@
       ],
       "mouth_beyond_bottom_edge_mm": 2.0,
       "pcb_bounds_global_mm": [
-        54.34,
-        64.3,
-        77.34,
-        89.3
+        39.34,
+        49.3,
+        62.34,
+        74.3
       ],
       "face_width_mm": 16.1,
       "opening_direction": "bottom / positive Y"
     },
-    "usb_service_envelopes_mm": {
+    "usb_service_envelopes_mm": {},
+    "physical_usb_shells_mm": {
       "U1": [
+        49.26,
         42.81,
-        3.38,
-        72.81,
-        17.38
+        60.5,
+        44.81
       ],
       "U2": [
-        1.815,
-        25.2,
-        31.815,
-        53.2
+        0.73,
+        48.185,
+        26.13,
+        49.185
       ],
       "U3": [
         20.921,
-        70.62,
-        50.921,
-        84.62
+        60.62,
+        23.921,
+        69.62
       ]
     },
     "header_mating_envelopes_mm": {
       "J1": [
-        15.25,
-        59.75,
-        21.29,
-        65.25
+        39.75,
+        41.24,
+        45.25,
+        47.28
       ],
       "J2": [
-        1.25,
-        59.75,
-        12.37,
-        65.25
+        39.75,
+        29.12,
+        45.25,
+        40.24
       ],
       "J3": [
-        25.25,
-        53.75,
-        41.45,
-        59.25
+        33.5,
+        17.0,
+        39.0,
+        33.2
       ],
       "J4": [
-        44.25,
-        53.75,
-        57.91,
-        59.25
+        33.5,
+        34.2,
+        39.0,
+        47.86
       ],
       "J5": [
-        1.25,
-        53.75,
-        22.53,
-        59.25
+        27.25,
+        17.0,
+        32.75,
+        38.28
       ],
       "J6": [
-        24.25,
-        59.75,
-        35.37,
-        65.25
+        27.25,
+        39.28,
+        32.75,
+        50.4
       ],
       "J7": [
-        61.25,
-        53.75,
-        72.37,
-        59.25
-      ],
-      "J8": [
-        38.25,
-        59.75,
-        44.29,
-        65.25
-      ],
-      "J9": [
-        46.25,
-        59.75,
-        52.29,
-        65.25
+        39.75,
+        17.0,
+        45.25,
+        28.12
       ]
     },
     "rf_copper_keepouts_mm": [
       [
+        44.5,
         0,
+        64.5,
+        1.8
+      ],
+      [
+        48.5,
         0,
-        1.8,
-        20
+        58.5,
+        6
       ],
       [
         0,
-        6,
-        6,
-        16
-      ],
-      [
-        79.6,
-        26,
-        80,
-        55
-      ],
-      [
-        68.5,
-        31,
-        80,
-        49
-      ],
-      [
         0,
-        67,
-        1.2,
-        89
+        29,
+        0.4
       ],
       [
-        0,
-        77,
         5,
-        84.98
+        0,
+        23,
+        11.5
       ],
       [
         0,
-        84.98,
+        54.5,
+        1.2,
+        75
+      ],
+      [
+        0,
+        64.5,
+        5,
+        72.48
+      ],
+      [
+        0,
+        72.48,
         2.5,
-        86
+        73.5
       ],
       [
         3.8,
-        84.98,
+        72.48,
         5,
-        86
+        73.5
       ]
     ],
     "rf_pour_only_keepouts_mm": [
       [
         2.5,
-        84.98,
+        72.48,
         3.8,
-        86
+        73.5
       ]
     ],
     "mounting_holes_mm": [
       [
-        4,
-        22.1
+        35,
+        6
       ],
       [
-        50,
-        21.4
+        24,
+        51.8
       ],
       [
-        77,
-        60.9
+        34,
+        72
       ]
     ],
     "mounting": {
       "drill_mm": 2.7,
       "hardware": "Three nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends",
-      "note": "Check enclosure support and RJ45 insertion load; support H3 is above WIZ PCB."
+      "note": "Check enclosure support and RJ45 insertion load; support H3 is left of WIZ PCB."
     },
-    "service_envelope_basis": "Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; USB 30mm axial length. Verify actual mating shells, cable bends and vertical access."
+    "service_envelope_basis": "Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."
   },
   "rj45": {
     "pcb_bounds_local_mm": [
@@ -256,21 +247,21 @@
       -1
     ],
     "service_corridor_global_mm": [
-      50,
-      89.3,
-      80,
-      128
+      35,
+      74.3,
+      65,
+      113
     ],
     "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
     "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
     "face_global_mm": [
       [
-        73.89,
-        92.0
+        58.89,
+        77.0
       ],
       [
-        57.79,
-        92.0
+        42.79,
+        77.0
       ]
     ],
     "outward_normal_global": [
@@ -279,10 +270,10 @@
     ],
     "mouth_beyond_bottom_edge_mm": 2.0,
     "pcb_bounds_global_mm": [
-      54.34,
-      64.3,
-      77.34,
-      89.3
+      39.34,
+      49.3,
+      62.34,
+      74.3
     ],
     "face_width_mm": 16.1,
     "opening_direction": "bottom / positive Y"
@@ -296,20 +287,23 @@
     "External PoE splitter, 3.3V buck, WK2132 and peripheral harnesses are separate finished modules",
     "Antenna keepouts are geometric engineering provisions, not RF certification",
     "Generic module schematic terminals do not validate internal regulator or IC electrical behavior",
-    "New WK2132 firmware path and radio coexistence require integration validation"
+    "New WK2132 firmware path and radio coexistence require integration validation",
+    "H2 R7 removal is required before assembly; exact purchased revision and open-circuit isolation must be verified",
+    "USB connectors remain physically present, but postassembly cable insertion is intentionally not supported"
   ],
   "sha256": {
-    "mc1.kicad_pcb": "057a7b642679e39965cc45b57765e67d7230496f94db0e204b7836f4750fdb4a",
+    "mc1.kicad_pcb": "cd28bc7a3875a8776e82679640d4388aaa7d5d4e21d166d6cca9cae9079c1fb1",
     "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
-    "mc1.kicad_sch": "e7be44f8b938bd3f6069d59f5717a6765c771de1f21033c3106d4952fc7a13ac",
-    "design.json": "4fe33c26db5066e3803eeb354e0a9299da3bbb3ed28c1361a21ce6e8fd7beb5f",
-    "routing/mc1.ses": "d19bcda74d1ec5addbbefb2d643c17644296126f0336fa7dbeee21dd34dba43b",
-    "manual-route.json": "439a02200eb4002fcb462c45cee0059147de1f4a679b5f69c164ecdf6f5b7eba",
-    "assembly-top.svg": "380fb5b3354a49967e75974ecf79458e8fdc32df852d609d651537cdaa592d25",
-    "board-top.svg": "3f2cac2c4c56a87eb240913053f22c6cc0006c8b8c71c7779e361c058d2031a2",
-    "board-bottom.svg": "a51ea2ca085e7b79896b7d4e8391c9356ea4607f28c553e22b1532a5ac9fdf68",
-    "schematic.svg": "1a7f3f78ad15c555ba39785c46b6c3daab0309449c501c63cc0abd5756a1ed57",
-    "schematic.pdf": "3e855b22606db672373147817b1a4797702a95a1982d8a2532dd53731ce0b9f1",
-    "nano-pin-plan.json": "a4f0479d9ce86fc42bad8c8787a68706a9beb14b5ca8453ba4ca307c0fd2ca07"
+    "mc1.kicad_sch": "6f68a2e97da8d15943a6e1be25ceb3beb71b72989c6851d826bae8d1e722f3b6",
+    "design.json": "210508fef541ee43eeeca02394719b49039473a9d64b9a931d14c5439dc2d84b",
+    "routing/mc1.ses": "6ca156be85cb25de8eb2a87a5350fc910db1ae11a8c042de13b17d12cc1cfb5e",
+    "manual-route.json": "2aee341b00a477d223c485120d919aef6cb8126ffc01145ea77ec2175ab551d7",
+    "assembly-top.svg": "a8d46537681e68cb7e62e23e8c837b9df84bd62ea8d3d978f90ab631ea07da74",
+    "board-top.svg": "8938d8a54d6e9f6a89862b44af0cbb82e78563b7ab8e68ad6a956ecb3525fc13",
+    "board-bottom.svg": "dd0aa687648a2879fa10a1a0b31c8add547fd2aede22dbc1accaab6cc1e5dd60",
+    "schematic.svg": "0f2cabd307b03f59b3e9805d7ddaf0611958404dbbd64a015ee5e2af59a354b3",
+    "schematic.pdf": "2d4f538909ae00a17677629ac8e27629a578a5c9be6df3512ac25c87964d6814",
+    "nano-pin-plan.json": "a4f0479d9ce86fc42bad8c8787a68706a9beb14b5ca8453ba4ca307c0fd2ca07",
+    "h2-uart-isolation.svg": "27507afa36dd4033e9dbef07037a37500bec378ca7be01468d9ba272260b8ac0"
   }
 }

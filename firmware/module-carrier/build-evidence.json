@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "tested_date_local": "2026-10-17",
   "host_os": "macOS arm64",
   "esphome": "2026.9.1",
@@ -40,16 +40,16 @@
     },
     "artifacts": {
       "module-carrier-hub.bin": {
-        "bytes": 1728512,
-        "sha256": "7a43a92ad66e4c930cd83ab347a300264965e8668661a6345038464eeb9f7a87"
+        "bytes": 1731456,
+        "sha256": "8ce7ab689de3373ade9a73f256d00267962a75cdf862e3df671e501d07b231c9"
       },
       "firmware.factory.bin": {
-        "bytes": 1794048,
-        "sha256": "12ed8bf3bb6d61e2b84c1641e1301bc706305c0eb0d2d5a4b5338a290397ec38"
+        "bytes": 1796992,
+        "sha256": "2d0186c77f46784ee8d6fce3effe3c527efa3fab6d118a5904364c2fd3dc281f"
       },
       "firmware.ota.bin": {
-        "bytes": 1728512,
-        "sha256": "7a43a92ad66e4c930cd83ab347a300264965e8668661a6345038464eeb9f7a87"
+        "bytes": 1731456,
+        "sha256": "8ce7ab689de3373ade9a73f256d00267962a75cdf862e3df671e501d07b231c9"
       }
     },
     "h2_service_gpio": {
@@ -58,8 +58,8 @@
       "mode": "open_drain",
       "idle_level": 1,
       "reset_low_ms": 10,
-      "h2_firmware_update_supported": false,
-      "source_sha256": "2003501279bf4ae8d969e9da9ad68ad69ae106bf92b48d3f86aef32764287fd9"
+      "h2_firmware_update_supported": true,
+      "source_sha256": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b"
     },
     "generated_pin_checks": {
       "all_assigned_gpio_verified": true,
@@ -104,7 +104,7 @@
         "subtype": "ota_0",
         "offset": 65536,
         "bytes": 8126464,
-        "image_margin_bytes": 6397952
+        "image_margin_bytes": 6395008
       },
       {
         "name": "app1",
@@ -112,7 +112,7 @@
         "subtype": "ota_1",
         "offset": 8192000,
         "bytes": 8126464,
-        "image_margin_bytes": 6397952
+        "image_margin_bytes": 6395008
       },
       {
         "name": "nvs",
@@ -123,15 +123,25 @@
       }
     ],
     "thread_source_sha256": {
-      "low_power_otbr.cpp": "2003501279bf4ae8d969e9da9ad68ad69ae106bf92b48d3f86aef32764287fd9",
-      "low_power_otbr.h": "102dcbc5fcf3cbbf43a7b6b53c83cd51fa93fdaafd3541dc5b6ed967590a0df7",
+      "low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
+      "low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
       "thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
-      "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa"
+      "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
+      "uart_update.cpp": "8e4bf766409fde571222cc8f3aa8edbf95f5e38949f6106df0674fb08df51408",
+      "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
     },
     "linked_memory": {
-      "static_ram_bytes": 163563,
+      "static_ram_bytes": 163795,
       "linker_ram_bytes": 341760,
       "runtime_measured": false
+    },
+    "h2_update": {
+      "transport": "authenticated temporary TCP6639 to ROM UART",
+      "baud": 115200,
+      "requires_durable_maintenance": true,
+      "max_arm_ms": 60000,
+      "max_session_ms": 600000,
+      "hardware_tested": false
     },
     "framework_cache_manually_modified": false,
     "sdk_patches_applied": false
@@ -146,8 +156,8 @@
       "CONFIG_OPENTHREAD_RCP_UART": "y",
       "CONFIG_OPENTHREAD_RADIO_NATIVE": "y",
       "CONFIG_OPENTHREAD_UART_PIN_MANUAL": "y",
-      "CONFIG_OPENTHREAD_UART_RX_PIN": "4",
-      "CONFIG_OPENTHREAD_UART_TX_PIN": "5",
+      "CONFIG_OPENTHREAD_UART_RX_PIN": "23",
+      "CONFIG_OPENTHREAD_UART_TX_PIN": "24",
       "CONFIG_FREERTOS_HZ": "1000"
     },
     "uart": {
@@ -155,10 +165,12 @@
       "format": "8N1",
       "flow_control": false
     },
+    "application_flash_offset": 65536,
+    "rom_uart_connected": true,
     "artifacts": {
       "esp_ot_rcp.bin": {
         "bytes": 208928,
-        "sha256": "cbcfa55533addea5b500d53502aeb11a62c6a18a87aaa7122817103df61dfcaf"
+        "sha256": "db23216a075bc250bc229e90cf798cd17cadd35f9ad632dc92eda2e2979e50b9"
       },
       "bootloader/bootloader.bin": {
         "bytes": 16784,
@@ -172,21 +184,31 @@
   },
   "zigbee_evidence": "zigbee/build-evidence.json",
   "source_sha256": {
-    "firmware/module-carrier/hub.yaml": "59812865a7677db2ebd414c57e0f2e1896f24b5eced7702efb521f17b318e890",
-    "firmware/module-carrier/health.yaml": "f07765ad00e8dc91eb59f0baf10ed16c9f96a1c052cb8bc84978d597c577e74d",
-    "firmware/module-carrier/prepare.py": "ce4a1e3f0d80bd75ee6fa807108a04724d0a43895de9e7b9a6ca04d9722e62ff",
-    "firmware/module-carrier/validate.py": "7aca5c94367fa7f50c74e96ca7d5760a0c5959202a01820bc4aeea54c9c3a3fb",
+    "firmware/low-power/components/low_power_otbr/__init__.py": "1b661e7ae8cb060a5db0b92e5d9c4a10d19dca19c542999c31c5e513498f7e3b",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
+    "firmware/low-power/components/low_power_otbr/rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
+    "firmware/low-power/components/low_power_otbr/thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+    "firmware/low-power/components/low_power_otbr/uart_update.cpp": "8e4bf766409fde571222cc8f3aa8edbf95f5e38949f6106df0674fb08df51408",
+    "firmware/low-power/components/low_power_otbr/update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3",
     "firmware/module-carrier/contract.py": "464ef9b69ab0473733faad951a8543a7ca78ab0403e4d1b823d3056cd83593d1",
+    "firmware/module-carrier/health.yaml": "e83a3fc4eddaf8942da7c8ac6278465aba2e7f2ceb747caa08480219347d8e4b",
+    "firmware/module-carrier/hub.yaml": "59812865a7677db2ebd414c57e0f2e1896f24b5eced7702efb521f17b318e890",
     "firmware/module-carrier/pin-plan.json": "8cfa8877133ba7dd5ee486cb1ce27b0e4732e1f6deaa184297fd70dce0f1b416",
-    "firmware/packages/rf-airbridge.yaml": "649e0fdf405b618b23a55360723b5813cc12647423e98d8e436b11bd5016a2ac",
-    "firmware/low-power/components/low_power_otbr/__init__.py": "1b661e7ae8cb060a5db0b92e5d9c4a10d19dca19c542999c31c5e513498f7e3b"
+    "firmware/module-carrier/prepare.py": "ce4a1e3f0d80bd75ee6fa807108a04724d0a43895de9e7b9a6ca04d9722e62ff",
+    "firmware/module-carrier/prepare_h2.py": "da87195b0f11034b283f55dd4cf925272e1ae5d839e805a02353c42fb3f0abd0",
+    "firmware/module-carrier/updates/requirements.txt": "395d28581bb88cbc2dd5ffdf5e2fcbef768a030d1eb33dfd7340ed1c66be9166",
+    "firmware/module-carrier/updates/update.py": "9b4ce1dec74751d93e00e762c88d86fc75cf4d990b89c9fa11d7c1c668184690",
+    "firmware/module-carrier/validate.py": "8f155737bc99dece56ba257e3d9fbfa6055e777c39eb980d7dceb236663c8d6c",
+    "firmware/module-carrier/verify_h2.py": "956a87473d7d0b9dbfd3c73a631fdf35f6bf5e47c6cacd67de2928ffc50ea3f1",
+    "firmware/packages/rf-airbridge.yaml": "649e0fdf405b618b23a55360723b5813cc12647423e98d8e436b11bd5016a2ac"
   },
-  "scope": "Full active Nano-M image compiled and generated hardware contract checked. Host tests cover guard/probe/storage decisions and WK2132 transport; actual ESP32 reboot/NVS/RTC/radio behavior and concurrent load remain untested. H2/MG24 firmware unchanged; prior matching build evidence retained.",
+  "scope": "Complete active Nano-M image and H2 ROM-UART23/24 RCP compiled. MG24 existing matching GBL unchanged. Offline tests cover guard, transport, update interlocks, artifact validation and localhost binary tunneling. No physical flashing, radio fault injection, or concurrent-load qualification.",
   "sdk_source_modified": false,
   "thread_guard": {
     "implemented": true,
     "host_fault_tests_passed": 27,
-    "full_suite_tests_passed": 41,
+    "full_suite_tests_passed": 55,
     "rest_contract_tests_passed": 2,
     "physical_fault_injection_tested": false,
     "terminal_fault_behavior": "one complete host restart then persistent Thread quarantine",
@@ -195,5 +217,15 @@
     "emergency_rtc_fallback_survives_total_power_loss": false,
     "thread_dataset_erased_by_guard": false,
     "sdk_patches_applied": false
+  },
+  "radio_updates": {
+    "s3": "existing ESPHome OTA",
+    "h2": "temporary authenticated TCP6639 to ROM UART23/24, explicit maintenance, host esptool5.3.1",
+    "mg24": "existing TCP6638, software Gecko bootloader entry, application GBL via universal-silabs-flasher1.1.0",
+    "h2_devkit_rework": "verified v1.3 R7 USB-UART TX isolation required",
+    "hardware_tested": false,
+    "host_dependency_install_and_pip_check": "pass",
+    "host_dry_plan_actual_images": "pass",
+    "readme": "updates/README.md"
   }
 }

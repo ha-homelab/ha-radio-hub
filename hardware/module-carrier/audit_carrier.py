@@ -95,6 +95,7 @@ def read_board(path):
                 courtyard.extend([list(map(float, p[1:])) for p in points if p[0] == "xy"])
         parts[ref] = {"name": fp[1], "layer": one(fp, "layer")[0],
                       "at": list(map(float, pos)), "pads": pads,
+                      "dnp": "dnp" in (one(fp, "attr") or []),
                       "courtyard_local_points": courtyard}
     return parts
 
@@ -155,6 +156,66 @@ def audit_courtyards(parts):
     return errors
 
 
+def transformed_box(fp, bounds):
+    x, y, *angles = fp["at"]
+    angle = math.radians(angles[0] if angles else 0)
+    points = [(x + px*math.cos(angle) + py*math.sin(angle),
+               y - px*math.sin(angle) + py*math.cos(angle))
+              for px in (bounds[0], bounds[2]) for py in (bounds[1], bounds[3])]
+    return [min(p[0] for p in points), min(p[1] for p in points),
+            max(p[0] for p in points), max(p[1] for p in points)]
+
+
+def audit_fitted_envelopes(parts):
+    """Independent conservative socket/housing allowances, not plug corridors.
+
+    Bounds are in the corresponding manufacturer header-origin coordinates.
+    Socket projections beyond PCB are rounded outward: Nano 2 mm, H2 1 mm,
+    XIAO 3 mm. They are engineering allowances, not production tolerances.
+    """
+    errors, boxes = [], {}
+    for ref, fp in parts.items():
+        if fp["dnp"]:
+            continue
+        points = fp["courtyard_local_points"]
+        if not points:
+            continue
+        bounds = [min(p[0] for p in points), min(p[1] for p in points),
+                  max(p[0] for p in points), max(p[1] for p in points)]
+        boxes[ref] = transformed_box(fp, bounds)
+    def overlap(a, b):
+        return min(a[2], b[2]) > max(a[0], b[0]) + 0.001 and min(a[3], b[3]) > max(a[1], b[1]) + 0.001
+    for ref, bounds in {
+        "U1": [2, -5.81, 13.24, -3.81],
+        "U2": [-1.27, 46.685, 24.13, 47.685],
+        "U3": [3.12, -5.921, 12.12, -2.921],
+    }.items():
+        if ref not in parts:
+            continue
+        shell = transformed_box(parts[ref], bounds)
+        for other, box in boxes.items():
+            if other != ref and overlap(shell, box):
+                errors.append(f"Physical USB shell {ref} intersects fitted courtyard {other}")
+        boxes[ref + "-USB"] = shell
+    for ref in (f"J{i}" for i in range(1, 8)):
+        if ref not in parts:
+            continue
+        n = len(parts[ref]["pads"])
+        housing = transformed_box(parts[ref], [-2.75, -1.75, 2.75, (n-1)*2.54+1.75])
+        for other, box in boxes.items():
+            if other not in (ref, ref + "-housing") and overlap(housing, box):
+                errors.append(f"Fitted mating housing {ref} intersects {other}")
+        boxes[ref + "-housing"] = housing
+    for ref, fp in parts.items():
+        if ref in PIN_SETS or not fp["pads"] or not all(p["kind"] == "np_thru_hole" for p in fp["pads"].values()):
+            continue
+        support = transformed_box(fp, [-2.5, -2.5, 2.5, 2.5])
+        for other, box in boxes.items():
+            if other != ref and overlap(support, box):
+                errors.append(f"5mm nylon support {ref} intersects {other}")
+    return errors
+
+
 def endpoints(text):
     return [tuple(x.split(":", 1)) for x in text.split()]
 
@@ -177,8 +238,8 @@ GROUPS = {k: endpoints(v) for k, v in {
     "rf_cs": "U1:JP2.6 J5:6 R2:2",
     "rf_tx_gdo0": "U1:JP1.7 J5:7 R1:2",
     "rf_rx_gdo2": "U1:JP2.5 J5:8",
-    "thread_rx_gpio4": "U1:JP2.1 U2:J1.9",
-    "thread_tx_gpio5": "U1:JP2.2 U2:J1.10",
+    "thread_rx_gpio23": "U1:JP2.1 U2:J3.3",
+    "thread_tx_gpio24": "U1:JP2.2 U2:J3.2",
     "thread_enable": "U1:JP2.15 U2:J1.2",
     "thread_boot_gpio9": "U1:JP1.1 U2:J3.11",
     "zigbee_rx_pc07": "U1:JP2.11 U3:8",
@@ -228,6 +289,8 @@ def audit(parts):
         if ref not in parts:
             errors.append(f"Missing {ref}"); continue
         fp = parts[ref]
+        if fp["dnp"] != (ref in {"J8", "J9"}):
+            errors.append(f"{ref} fitted/DNP state differs from compact assembly contract")
         if fp["layer"] != "F.Cu":
             errors.append(f"{ref} is not mounted on top")
         if set(fp["pads"]) != expected:
@@ -301,7 +364,7 @@ def evidence(cad):
 def mutations(parts, bounds):
     """Prove the independent audit catches plausible assembly/netlist mistakes."""
     cases = {
-        "thread_tx_rx_swap": lambda p: swap_net(p, ("U2", "J1.9"), ("U2", "J1.10")),
+        "thread_tx_rx_swap": lambda p: swap_net(p, ("U2", "J3.3"), ("U2", "J3.2")),
         "zigbee_flow_control_swap": lambda p: swap_net(p, ("U3", "5"), ("U3", "6")),
         "shared_spi_split": lambda p: p["J5"]["pads"]["5"].update(net="/BROKEN_MISO"),
         "nano_vbus_connected": lambda p: p["U1"]["pads"]["JP1.12"].update(net=p["J1"]["pads"]["1"]["net"]),
@@ -312,12 +375,14 @@ def mutations(parts, bounds):
         "underside_component": lambda p: p["R1"].update(layer="B.Cu"),
         "header_outside_board": lambda p: p["J5"].update(at=[-10.0, -10.0, 0.0]),
         "overlapping_diodes": lambda p: p["D2"].update(at=list(p["D1"]["at"])),
+        "fitted_service_header": lambda p: p["J9"].update(dnp=False),
+        "physical_usb_collision": lambda p: p["R2"].update(at=[49.0, 45.8, 0.0]),
     }
     result = {}
     for name, change in cases.items():
         mutated = copy.deepcopy(parts)
         change(mutated)
-        result[name] = bool(audit(mutated) + audit_pad_containment(mutated, bounds) + audit_courtyards(mutated))
+        result[name] = bool(audit(mutated) + audit_pad_containment(mutated, bounds) + audit_courtyards(mutated) + audit_fitted_envelopes(mutated))
     return result
 
 
@@ -330,12 +395,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--board", type=Path, default=HERE / "cad/mc1.kicad_pcb")
     parser.add_argument("--skip-evidence", action="store_true", help="For a preliminary board before final exports")
-    parser.add_argument("--self-test", action="store_true", help="Inject eleven plausible errors in memory")
+    parser.add_argument("--self-test", action="store_true", help="Inject thirteen plausible errors in memory")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     parts = read_board(args.board)
     bounds = board_bounds(args.board)
-    errors = audit(parts) + audit_pad_containment(parts, bounds) + audit_courtyards(parts)
+    errors = audit(parts) + audit_pad_containment(parts, bounds) + audit_courtyards(parts) + audit_fitted_envelopes(parts)
     hashes, checks, report_hashes = None, None, None
     if not args.skip_evidence:
         evidence_errors, hashes, checks, report_hashes = evidence(args.board.parent)
@@ -349,6 +414,7 @@ def main():
         "audit_script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "manufacturer_sources": SOURCES,
         "electronic_references": len(PIN_SETS),
+        "fitted_electronic_references": sum(not parts[ref]["dnp"] for ref in PIN_SETS if ref in parts),
         "expected_pads": sum(map(len, PIN_SETS.values())),
         "native_board_bounds_mm": bounds,
         "connected_endpoint_groups": len(GROUPS),

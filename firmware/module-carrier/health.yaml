@@ -3,6 +3,11 @@ debug:
   update_interval: 30s
 
 text_sensor:
+  - platform: template
+    name: H2 UART Update State
+    entity_category: diagnostic
+    update_interval: 2s
+    lambda: return {id(thread_border_router).update_status()};
   - platform: debug
     reset_reason:
       name: Hub Reset Reason
@@ -43,6 +48,14 @@ switch:
 
 api:
   actions:
+    - action: arm_h2_uart_update
+      variables:
+        token: string
+      then:
+        - lambda: id(thread_border_router).arm_uart_update(token);
+    - action: cancel_h2_uart_update
+      then:
+        - lambda: id(thread_border_router).cancel_uart_update();
     - action: pause_thread_for_h2_service
       then:
         - lambda: id(thread_border_router).pause_for_service();

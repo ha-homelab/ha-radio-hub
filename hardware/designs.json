@@ -11,7 +11,11 @@
     "castellated_side_soldering": false,
     "additional_height_accepted": true,
     "module_header_solder_joints": 86,
-    "new_recovery_contact": "J9: Nano GPIO0 to GND, normally open"
+    "new_recovery_contact": "J8 and J9: unpopulated local recovery pads, normally open",
+    "fitted_harness_headers": 7,
+    "fitted_references": 16,
+    "usb_cable_service_space": false,
+    "h2_preparation": "DevKitM-1 schematic v1.3: remove R7 (470 ohm) to isolate CP2102N TX; use H2 RX23/TX24"
   },
   "historical_designs": [
     {
@@ -51,7 +55,7 @@
     }
   ],
   "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
-  "active_layout_revision": "nano-shared-spi-bottom-edge",
+  "active_layout_revision": "nano-network-updates-65x75",
   "active_host": "Waveshare ESP32-S3-Nano-M",
   "active_memory": {
     "flash_mb": 16,

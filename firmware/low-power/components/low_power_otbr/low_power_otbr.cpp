@@ -134,6 +134,7 @@ void LowPowerOTBR::on_shutdown() {
   xSemaphoreGive(guard_mutex_);
 }
 void LowPowerOTBR::retry() {
+  if (update_phase_ != 0) { ESP_LOGW(TAG, "Cancel UART update before retrying Thread"); return; }
   if (!quarantined_ || !storage_ready_ || !guard_mutex_) {
     ESP_LOGW(TAG, "Retry ignored: Thread is not quarantined or guard storage is unavailable");
     return;
