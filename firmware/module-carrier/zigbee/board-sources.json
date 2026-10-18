@@ -27,6 +27,7 @@
   "notes": [
     "HFXO CTUNE 95 and LFXO CTUNE 44 use official board configuration, not generic module defaults.",
     "Antenna RF1 = onboard ceramic: PB04 low, PB05 high.",
+    "Antenna RF2 = external U.FL: PB04 high, PB05 high; selected explicitly at generation time.",
     "This provenance records consulted sources, not a hardware measurement."
   ]
 }

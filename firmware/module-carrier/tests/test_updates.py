@@ -79,6 +79,25 @@ class UpdateImageTests(unittest.TestCase):
         self.assertEqual(update.normalized_mac("AA-BB-CC-DD-EE-FF"), "aabbccddeeff")
         for value in ("", "aa:bb:cc:dd:ee", "aa:bb:cc:dd:ee:gg"):
             with self.assertRaises(ValueError): update.normalized_mac(value)
+    def test_external_mg24_label_and_gpio_must_agree(self):
+        data = bytes.fromhex("eb17a603") + b"fixture"
+        self.image.write_bytes(data)
+        self.metadata = {"target": "EFR32MG24B220F1536IM48", "board_sku": "102010690",
+            "board_configuration": {"SL_IOSTREAM_USART_VCOM_TX_PIN": "6", "SL_IOSTREAM_USART_VCOM_RX_PIN": "7",
+                "SL_IOSTREAM_USART_VCOM_CTS_PIN": "4", "SL_IOSTREAM_USART_VCOM_RTS_PIN": "5",
+                "SL_IOSTREAM_USART_VCOM_BAUDRATE": "115200",
+                "SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE": "usartHwFlowControlCtsAndRts"},
+            "antenna": {"mode": "external", "rf_path": "RF2/U.FL", "select_gpio": "PB04", "select_level": 1,
+                        "enable_gpio": "PB05", "enable_level": 1},
+            "files": {"artifacts/mc1-xiao-mg24-external-ncp.gbl": {
+                "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}}}
+        self.save()
+        self.assertEqual(update.checked_image("mg24", self.image, self.report)["bytes"], len(data))
+        self.metadata["antenna"]["select_level"] = 0
+        self.save()
+        with self.assertRaisesRegex(ValueError, "antenna selection"):
+            update.checked_image("mg24", self.image, self.report)
+
     def test_real_mg24_report_and_image(self):
         image = ROOT / "zigbee/artifacts/mc1-xiao-mg24-ncp.gbl"
         if not image.is_file(): self.skipTest("Locally generated ignored GBL unavailable")

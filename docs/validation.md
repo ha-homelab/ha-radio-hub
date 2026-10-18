@@ -1,7 +1,7 @@
 # Validation status
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 The current MC1 evidence is the [verification summary](../hardware/module-carrier/verification-summary.json), [independent CAD audit](../hardware/module-carrier/independent-review.md), [firmware build record](../firmware/module-carrier/build-evidence.json) and [enclosure prototype checks](../mechanical/module-carrier/enclosure-prototype/README.md). Current physical acceptance is in the [MC1 assembly guide](module-carrier.md#assembly-acceptance). The dated results below describe earlier targets.
 

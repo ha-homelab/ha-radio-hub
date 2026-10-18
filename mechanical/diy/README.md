@@ -1,7 +1,7 @@
 # DIY print exporter
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 Requires KiCad 10.0.x CLI, Python 3.9+ and the pinned packages in `requirements.txt`. CairoSVG additionally needs the Cairo native library (for example `brew install cairo` on macOS). If the Python loader cannot find Homebrew Cairo, prefix the build command with `DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib"`. The exporter only accepts the intentionally restricted LP-D0 geometry: zero-origin rectangular outline, top-side through-hole components, bottom tracks, round drilled holes, and no vias or zones.
 

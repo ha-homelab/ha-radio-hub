@@ -11,7 +11,7 @@
 #include <fcntl.h>
 
 namespace esphome::low_power_otbr {
-static const char *const TAG = "h2_uart_update";
+static const char *const TAG = "rcp_uart_update";
 static constexpr uart_port_t UART = UART_NUM_2;
 static constexpr uint16_t UPDATE_PORT = 6639;
 const char *LowPowerOTBR::update_status() const {
@@ -31,7 +31,7 @@ void LowPowerOTBR::arm_uart_update(const std::string &token) {
   if (!update_phase_.compare_exchange_strong(idle, 1)) return;
   std::copy(token.begin(), token.end(), update_token_.begin());
   update_cancel_ = false;
-  if (xTaskCreate(update_task, "h2_update", 6144, this, 3, nullptr) != pdPASS) update_phase_ = 0;
+  if (xTaskCreate(update_task, "rcp_update", 6144, this, 3, nullptr) != pdPASS) update_phase_ = 0;
 }
 void LowPowerOTBR::update_task(void *arg) {
   auto *self = static_cast<LowPowerOTBR *>(arg);
@@ -60,7 +60,7 @@ void LowPowerOTBR::run_uart_update_() {
   address.sin_family = AF_INET; address.sin_addr.s_addr = htonl(INADDR_ANY); address.sin_port = htons(UPDATE_PORT);
   if (bind(server, reinterpret_cast<sockaddr *>(&address), sizeof(address)) || listen(server, 1) ||
       fcntl(server, F_SETFL, O_NONBLOCK)) { cleanup(); return; }
-  // A wrong/partial token never changes UART ownership or H2 reset state.
+  // A wrong/partial token never changes UART ownership or RCP reset state.
   for (unsigned attempts = 0; attempts < 4 && !update_cancel_ && update_window_open(millis(), armed_at, 60000);) {
     client = accept(server, nullptr, nullptr);
     if (client < 0) { if (!again()) break; vTaskDelay(pdMS_TO_TICKS(10)); continue; }
@@ -114,7 +114,7 @@ void LowPowerOTBR::run_uart_update_() {
   }
   if (ready != 6 || update_cancel_) { cleanup(); return; }
   update_phase_ = 2;
-  ESP_LOGI(TAG, "Authenticated H2 ROM session, 115200 baud, maximum 10 minutes; Thread stays paused");
+  ESP_LOGI(TAG, "Authenticated RCP ROM session, 115200 baud, maximum 10 minutes; Thread stays paused");
   std::array<uint8_t, 2048> to_net{};
   std::array<uint8_t, 512> to_uart{};
   size_t net_size = 0, net_at = 0, uart_size = 0, uart_at = 0;
@@ -146,6 +146,6 @@ void LowPowerOTBR::run_uart_update_() {
     else vTaskDelay(pdMS_TO_TICKS(1));
   }
   cleanup();
-  ESP_LOGI(TAG, "H2 UART session closed; flash result must be checked by the host tool before explicit Thread retry");
+  ESP_LOGI(TAG, "RCP UART session closed; flash result must be checked by the host tool before explicit Thread retry");
 }
 }

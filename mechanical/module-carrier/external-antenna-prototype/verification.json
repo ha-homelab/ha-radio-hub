@@ -1,0 +1,231 @@
+{
+  "revision": "MC2-external-antenna",
+  "status": "printable_engineering_prototype_not_fit_qualified",
+  "units": "mm",
+  "native_source_sha256": {
+    "mc2.kicad_pcb": "535d78dddde5b69081fe6415c88d897618dc1ff7d98239d311c9ade48afc00c3",
+    "design.json": "4effdb41cc75bd4e7dfd41a3657338989333acd063eb9a40606264c78f2e99ce"
+  },
+  "generator_sha256": "c27b6a7179f278fd1e4e40fc5f51f0762546d6d40afb39340666b6cace49ffde",
+  "test_source_sha256": "bd90d9e15c6f34f59b82c3633dc99f8ec64c5c5cd727530c1ea07009d0cbb247",
+  "parameters_sha256": "bce9e975f2d37b708c5b8dfa75b236ebbca0a7a7823eb857c13ceb407503349a",
+  "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
+  "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
+  "outer_dimensions_mm": [
+    190.0,
+    160,
+    58.0
+  ],
+  "port_center_distances_mm": [
+    65.0,
+    130.0,
+    65.0
+  ],
+  "rf_route_guides": [
+    {
+      "radio": "BLE",
+      "module_ref": "U1",
+      "points_mm": [
+        [
+          30.0,
+          3.0,
+          34.0
+        ],
+        [
+          30.0,
+          26.0,
+          34.0
+        ],
+        [
+          60.0,
+          56.0,
+          29.0
+        ]
+      ],
+      "polyline_guide_length_mm": 65.72,
+      "cable_length_trial_mm": 150.0,
+      "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
+    },
+    {
+      "radio": "THREAD",
+      "module_ref": "U2",
+      "points_mm": [
+        [
+          95.0,
+          3.0,
+          34.0
+        ],
+        [
+          95.0,
+          26.0,
+          34.0
+        ],
+        [
+          94.0,
+          83.0,
+          29.0
+        ]
+      ],
+      "polyline_guide_length_mm": 80.228,
+      "cable_length_trial_mm": 150.0,
+      "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
+    },
+    {
+      "radio": "ZIGBEE",
+      "module_ref": "U3",
+      "points_mm": [
+        [
+          160.0,
+          3.0,
+          34.0
+        ],
+        [
+          160.0,
+          26.0,
+          34.0
+        ],
+        [
+          114.0,
+          71.0,
+          29.0
+        ]
+      ],
+      "polyline_guide_length_mm": 87.545,
+      "cable_length_trial_mm": 150.0,
+      "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
+    }
+  ],
+  "rear_bay_x_mm": [
+    89.0,
+    124.0
+  ],
+  "native_pcb_holes": {
+    "H4": [
+      96.0,
+      96.0
+    ],
+    "H2": [
+      96.0,
+      4.0
+    ],
+    "H3": [
+      4.0,
+      96.0
+    ],
+    "H1": [
+      4.0,
+      4.0
+    ]
+  },
+  "physical_tests_performed": false,
+  "parts": {
+    "base": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 211105.648,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          160.0,
+          55.0
+        ]
+      ],
+      "sha256": "c35633d7b0ced67a60692762d7575b87703570733999cfc198982028bc5a9994"
+    },
+    "cover": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 91097.657,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          160.0,
+          3.0
+        ]
+      ],
+      "sha256": "90d1e9526143ef726e51ad973991be4e263ec203deac669a101ff98202ea022f"
+    },
+    "ceiling-spacing-frame": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 40176.152,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          160.0,
+          4.0
+        ]
+      ],
+      "sha256": "5b61ee1e0060a849e02027fa69d0abda0de4b3772412e38de213b728123270d7"
+    },
+    "cable-bar": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 1460.829,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          46.0,
+          12.0,
+          3.0
+        ]
+      ],
+      "sha256": "ca7050fbdadfbfe95bb4952ac07592770a2984edc03aac00330124b02ad7bef7"
+    },
+    "bulkhead-fit-coupon": {
+      "watertight": true,
+      "single_solid": true,
+      "volume_mm3": 2917.349,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          45.0,
+          24.0,
+          3.0
+        ]
+      ],
+      "sha256": "7678a99d15928c19394cd8094197ac8ea841110f956d619de21e3e2940d3da34"
+    }
+  },
+  "scope": "MC2 carrier and its onboard U1-U4 plus wiring only. PoE splitter, buck, DFR0627, ZAC93, CC1101, LD2450 and BME680 remain in their declared separate housings. The external network connection remains one PoE cable to the system splitter; the carrier RJ45 is downstream data-only.",
+  "generated_sha256": {
+    "assembly-preview.png": "6de23a69347672f1604f58dde9a5b5649fb4f9e6f642f981078040267d793e43",
+    "assembly.scad": "8be7428fb7f85fb68b4d5f0f84ec55552ed1f0f46271ed8ce7edcd908a575b42",
+    "base.scad": "05b6290c5456c52c7422c45e1f5f7216864b3a73e5338b04d58623860542d976",
+    "base.stl": "c35633d7b0ced67a60692762d7575b87703570733999cfc198982028bc5a9994",
+    "bulkhead-fit-coupon.scad": "444549f16cb21a4044d30cb6255574b934b07a5430594a8b853874e85efc406a",
+    "bulkhead-fit-coupon.stl": "7678a99d15928c19394cd8094197ac8ea841110f956d619de21e3e2940d3da34",
+    "cable-bar.scad": "52126750120541c7da63ad0c2d0bde04dc718f6c2389453d08ade66368e20bcf",
+    "cable-bar.stl": "ca7050fbdadfbfe95bb4952ac07592770a2984edc03aac00330124b02ad7bef7",
+    "ceiling-spacing-frame.scad": "f152809ef8e939910f86affc2cccbe9e98045cfd17e258c2be6adf43e08e7616",
+    "ceiling-spacing-frame.stl": "5b61ee1e0060a849e02027fa69d0abda0de4b3772412e38de213b728123270d7",
+    "cover.scad": "5d2ed6f501225e7b32b2e566b73828e239441e4325d5f6e2d942bfb3650aba87",
+    "cover.stl": "90d1e9526143ef726e51ad973991be4e263ec203deac669a101ff98202ea022f",
+    "enclosure.svg": "1502fb71548186c2115d5c5a12cf3c650a56f49ed5026dced9f9f44465b47465",
+    "index.html": "b67f2e679c273c9568a48e1ac34bef27c0a5b17feb4b5fcda689df8cca30fabe",
+    "print-parts.png": "4a14e1fad73b6649ab77a5aa365e86b4e6ffda7a716fc1073d8c40632cb21050"
+  }
+}

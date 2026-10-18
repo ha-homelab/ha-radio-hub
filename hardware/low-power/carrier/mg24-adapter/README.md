@@ -1,7 +1,7 @@
 # LP-M0 exact-target MGM240P adapter
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../../../../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 **Prototype, not hardware validated.** This 60 × 40 × 1.6 mm, two-layer daughterboard carries the exact **MGM240PA22VNA3** module used by the project's [NCP firmware build](../../../../firmware/low-power/mg24/README.md). One M0 is required per modular C0 hub. It provides the power/ground lands, bypass capacitors, boot pull-up, antenna clearance and service connections that a bare module needs. It is a populated adapter board, not a substitute module variant or an unverified purchased breakout.
 

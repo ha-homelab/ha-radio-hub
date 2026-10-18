@@ -60,6 +60,8 @@ Arming requires durable maintenance after reboot, no launched OpenThread task, E
 
 ## MG24 application GBL update
 
+Select the GBL with the correct antenna mode: `mc1-xiao-mg24-onboard-ncp.gbl` for the ceramic antenna or `mc1-xiao-mg24-external-ncp.gbl` for the attached U.FL antenna. The updater checks mode and switch levels from the matching report. Historical unlabelled MC1 images remain accepted only with their original report.
+
 Stop the single ZHA or Zigbee2MQTT coordinator owner and retain its backup. Use the GBL and report produced together by `../zigbee/build.py`:
 
 ```sh

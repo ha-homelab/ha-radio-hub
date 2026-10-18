@@ -1,0 +1,123 @@
+{
+  "status": "build-and-offline-validation-pass",
+  "hardware_tested": false,
+  "sdk_tag": "v2025.6.3",
+  "sdk_inspection": {
+    "verified_sdk_version": "2025.6.3",
+    "verified_ezsp_protocol_version": 18,
+    "expected_source_commit": "b41bec3ff2485199c1a5a9995b3e649e118c1b8d",
+    "source_commit_verified": false,
+    "scope": "Version/protocol header inspection; unpacked source tree identity is not attested."
+  },
+  "board": "Seeed Studio XIAO MG24 Pre-Soldered",
+  "board_sku": "102010690",
+  "antenna": {
+    "mode": "onboard",
+    "rf_path": "RF1/onboard ceramic",
+    "select_gpio": "PB04",
+    "select_level": 0,
+    "enable_gpio": "PB05",
+    "enable_level": 1
+  },
+  "board_configuration": {
+    "SL_IOSTREAM_USART_VCOM_PERIPHERAL": "USART0",
+    "SL_IOSTREAM_USART_VCOM_PERIPHERAL_NO": "0",
+    "SL_IOSTREAM_USART_VCOM_TX_PORT": "gpioPortC",
+    "SL_IOSTREAM_USART_VCOM_TX_PIN": "6",
+    "SL_IOSTREAM_USART_VCOM_RX_PORT": "gpioPortC",
+    "SL_IOSTREAM_USART_VCOM_RX_PIN": "7",
+    "SL_IOSTREAM_USART_VCOM_CTS_PORT": "gpioPortC",
+    "SL_IOSTREAM_USART_VCOM_CTS_PIN": "4",
+    "SL_IOSTREAM_USART_VCOM_RTS_PORT": "gpioPortC",
+    "SL_IOSTREAM_USART_VCOM_RTS_PIN": "5",
+    "SL_IOSTREAM_USART_VCOM_BAUDRATE": "115200",
+    "SL_IOSTREAM_USART_VCOM_PARITY": "usartNoParity",
+    "SL_IOSTREAM_USART_VCOM_STOP_BITS": "usartStopbits1",
+    "SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE": "usartHwFlowControlCtsAndRts",
+    "SL_IOSTREAM_USART_VCOM_RX_BUFFER_SIZE": "256",
+    "SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF": "0",
+    "SL_CLOCK_MANAGER_HFXO_EN": "1",
+    "SL_CLOCK_MANAGER_HFXO_FREQ": "39000000",
+    "SL_CLOCK_MANAGER_HFXO_CTUNE": "95",
+    "SL_CLOCK_MANAGER_LFXO_EN": "1",
+    "SL_CLOCK_MANAGER_LFXO_CTUNE": "44",
+    "SL_CLOCK_MANAGER_DEFAULT_HF_CLOCK_SOURCE": "SL_CLOCK_MANAGER_DEFAULT_HF_CLOCK_SOURCE_HFXO",
+    "SL_CLOCK_MANAGER_DEFAULT_LF_CLOCK_SOURCE": "SL_CLOCK_MANAGER_DEFAULT_LF_CLOCK_SOURCE_LFXO",
+    "SL_DEVICE_INIT_DCDC_ENABLE": "1",
+    "SL_DEVICE_INIT_DCDC_BYPASS": "0",
+    "SL_DEVICE_INIT_DCDC_PFMX_IPKVAL_OVERRIDE": "1",
+    "SL_DEVICE_INIT_DCDC_PFMX_IPKVAL": "9",
+    "SL_RAIL_UTIL_PTI_MODE": "SL_RAIL_PTI_MODE_DISABLED"
+  },
+  "target": "EFR32MG24B220F1536IM48",
+  "ezsp_protocol_version": 18,
+  "flash_ranges": {
+    "bootloader": {
+      "data_bytes": 11400,
+      "first_address": "0x8000000",
+      "last_address": "0x8002c87"
+    },
+    "application": {
+      "data_bytes": 243252,
+      "first_address": "0x8006000",
+      "last_address": "0x8041633"
+    },
+    "combined": {
+      "data_bytes": 254652,
+      "first_address": "0x8000000",
+      "last_address": "0x8041633"
+    }
+  },
+  "files": {
+    "application/build/release/zigbee_ncp_uart_hw.s37": {
+      "bytes": 729884,
+      "sha256": "44000eddf8e096ad07acd632ad5617733a490e5b4990b3c49d619b560ad7dd7f"
+    },
+    "bootloader/artifact/bootloader-uart-xmodem-crc.s37": {
+      "bytes": 34308,
+      "sha256": "8d5d55d0d54979bc48f8ba6b2d154ff43cd9812ee618ed2004d779b3f43c01d0"
+    },
+    "artifacts/mc1-xiao-mg24-onboard-ncp.gbl": {
+      "bytes": 243328,
+      "sha256": "58b5cee45955f65d8eb304c863fbf5db114051a9fe7faff2ac093add94d28ac9"
+    },
+    "artifacts/mc1-xiao-mg24-onboard-initial.s37": {
+      "bytes": 764082,
+      "sha256": "8847bf476032373cd4ca4f0095b4241902ab4faf384bb7dab18ed340d79c74cb"
+    },
+    "artifacts/mc1-xiao-mg24-onboard-initial.hex": {
+      "bytes": 716323,
+      "sha256": "c86e56c78585b22b6923a50aa6ccbd1be1fedeab2a515993df51d26e5d1394d7"
+    }
+  },
+  "recipe_sha256": {
+    "config.json": "7ef2d264ece606d6dfee9910192090c7962c38373c82ab73bda792299be6daa7",
+    "antenna.py": "1865e993856a2be716659dde5e5e071da54d8ee731116f5a00206f9619c06cc3",
+    "mc1_board_init.h": "46ec3a13ec83761f6aa3f9c2696c65cc14c2a9b15761c61547aa19fac0ae8796",
+    "generate.py": "a734edd1d778b1614d239e1360eb65ac8ad6c5790738c95bb58bae7bf7c8cc62",
+    "build.py": "48e1942df421f386ddbec6bad7589af6fa838c12011ef505de1744bf01ee1ebb"
+  },
+  "tools": {
+    "slc": "6.0.15",
+    "gcc": "12.2.1",
+    "commander": "1.25.0 build1995"
+  },
+  "validation": [
+    "Both generated projects match committed UART/pin/clock configuration",
+    "Board RF initialization is present before radio stack startup",
+    "Antenna switch levels match explicit generated mode and labelled artifacts",
+    "Both Cortex-M vector tables and non-overlapping flash ranges are valid",
+    "Initial S37 exactly equals bootloader plus application addressed bytes",
+    "GBL and Intel HEX roundtrips retain all addressed bytes"
+  ],
+  "python_inspection": {
+    "id": "python",
+    "manifest_version": "3.10.5",
+    "native_library": "libjep.jnilib"
+  },
+  "host_validation": {
+    "system": "macOS arm64",
+    "test_command": "python3 -m unittest discover -s firmware/module-carrier/zigbee -p test_recipe.py -v",
+    "tests_passed": 13
+  }
+}

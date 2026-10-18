@@ -1,0 +1,149 @@
+{
+  "compiled": true,
+  "hardware_tested": false,
+  "esphome": "2026.9.1",
+  "esp_idf": "5.5.5",
+  "profile": "MC2 external antenna",
+  "board": "ESP32-S3-DevKitC-1U-N8R8",
+  "sdkconfig_verified": {
+    "CONFIG_OPENTHREAD_FTD": "y",
+    "CONFIG_OPENTHREAD_COMMISSIONER": "y",
+    "CONFIG_OPENTHREAD_JOINER": "y",
+    "CONFIG_VFS_SUPPORT_IO": "y",
+    "CONFIG_VFS_SUPPORT_DIR": "y",
+    "CONFIG_VFS_SUPPORT_SELECT": "y",
+    "CONFIG_OPENTHREAD_RADIO_SPINEL_UART": "y",
+    "CONFIG_OPENTHREAD_BORDER_ROUTER": "y",
+    "CONFIG_OPENTHREAD_BORDER_AGENT_ENABLE": "y",
+    "CONFIG_LWIP_IPV6": "y",
+    "CONFIG_LWIP_IPV6_FORWARD": "y",
+    "CONFIG_LWIP_IPV6_NUM_ADDRESSES": "12",
+    "CONFIG_LWIP_HOOK_IP6_INPUT_CUSTOM": "y",
+    "CONFIG_LWIP_HOOK_IP6_SELECT_SRC_ADDR_CUSTOM": "y",
+    "CONFIG_LWIP_FORCE_ROUTER_FORWARDING": "y",
+    "CONFIG_MDNS_MULTIPLE_INSTANCE": "y",
+    "CONFIG_BT_BLUEDROID_ENABLED": "y",
+    "CONFIG_SPIRAM_MODE_OCT": "y",
+    "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
+    "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
+    "CONFIG_FREERTOS_HZ": "1000",
+    "CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE": "y",
+    "CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT": "y",
+    "CONFIG_SPIRAM_USE_CAPS_ALLOC": "y",
+    "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y"
+  },
+  "artifacts": {
+    "module-carrier-hub.bin": {
+      "bytes": 1731456,
+      "sha256": "632cfc8c0302c2988d8d131646146b30dc0fb0a0b3616868d5057c0df1661b3a"
+    },
+    "firmware.factory.bin": {
+      "bytes": 1796992,
+      "sha256": "433ac784ada9d595b92f1c328f308837d28059a272a6e7c7ac9afc9adbc665f2"
+    },
+    "firmware.ota.bin": {
+      "bytes": 1731456,
+      "sha256": "632cfc8c0302c2988d8d131646146b30dc0fb0a0b3616868d5057c0df1661b3a"
+    }
+  },
+  "c6_service_gpio": {
+    "reset_gpio": 47,
+    "boot_gpio": 39,
+    "mode": "open_drain",
+    "idle_level": 1,
+    "reset_low_ms": 10,
+    "c6_firmware_update_supported": true,
+    "source_sha256": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
+  },
+  "generated_pin_checks": {
+    "all_assigned_gpio_verified": true,
+    "unique_gpio": 21,
+    "ble_slots": 3,
+    "native_uart_ownership": {
+      "0": "LD2450",
+      "1": "MG24",
+      "2": "C6"
+    },
+    "shared_spi": true,
+    "runtime_cc1101_reset_absent": true
+  },
+  "shared_spi_source_sha256": {
+    "core/component.h": "5455c08357a62ab7851ca00730226251a7587c18a816e898a429f16edc20e354",
+    "core/component.cpp": "1505845475a53b7effce459b7a91058d17c22cd5d0fb5bec3f7c4f23ec0ccb16",
+    "components/ethernet/ethernet_component.h": "0866a3872805ed8756f11a41e4fe1e3fcd8fea6a3387beac360a97ba4740727b",
+    "components/ethernet/ethernet_component_esp32.cpp": "8546fa078109c73bdc8295c3c8846489f3cf04eb17a9c9e0197719a96949ba94",
+    "components/spi/spi_esp_idf.cpp": "d6b7ef40fbae80cfbae8b508c034d5e6e399d6c2578bbf5d1b84218e447ff87d",
+    "components/spi/spi.h": "2219df88c87051dff6ad59d8a6cff4fea5bcc035efe2cf42bd5942ffac98851d",
+    "components/cc1101/cc1101.cpp": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+    "components/cc1101/cc1101.h": "34a95c3df32f8782366f4208f4a312f904bdff63d2a20bfeab38633e36f48788"
+  },
+  "partitions": [
+    {
+      "name": "otadata",
+      "type": "data",
+      "subtype": "0",
+      "offset": 36864,
+      "bytes": 8192
+    },
+    {
+      "name": "phy_init",
+      "type": "data",
+      "subtype": "1",
+      "offset": 45056,
+      "bytes": 4096
+    },
+    {
+      "name": "app0",
+      "type": "app",
+      "subtype": "ota_0",
+      "offset": 65536,
+      "bytes": 3932160,
+      "image_margin_bytes": 2200704
+    },
+    {
+      "name": "app1",
+      "type": "app",
+      "subtype": "ota_1",
+      "offset": 3997696,
+      "bytes": 3932160,
+      "image_margin_bytes": 2200704
+    },
+    {
+      "name": "nvs",
+      "type": "data",
+      "subtype": "2",
+      "offset": 7929856,
+      "bytes": 458752
+    }
+  ],
+  "thread_source_sha256": {
+    "low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e",
+    "low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
+    "thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+    "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
+    "uart_update.cpp": "0563edba5c1bbeff04eb15d5c9cea270434494a48a2d2f5a4bb02b0e0ce5960b",
+    "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
+  },
+  "linked_memory": {
+    "static_ram_bytes": 163795,
+    "linker_ram_bytes": 341760,
+    "runtime_measured": false
+  },
+  "c6_update": {
+    "transport": "authenticated temporary TCP6639 to ROM UART",
+    "baud": 115200,
+    "requires_durable_maintenance": true,
+    "max_arm_ms": 60000,
+    "max_session_ms": 600000,
+    "hardware_tested": false
+  },
+  "framework_cache_manually_modified": false,
+  "sdk_patches_applied": false,
+  "recipe_sha256": {
+    "hub.yaml": "e7396ea6e4c43b594bc79fcb6ddecb35489a469612e40ac0069a125349b6e7da",
+    "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
+    "pin-plan.json": "57820cf4135f2c0115f6c9c90d76404d5e44b7b4559815f532c8f1b2eb635bef",
+    "mc2_contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7",
+    "validate.py": "cf6dcebc8723f524566780e75505775a7f0b6c549f084d1815dc479f07041a3b"
+  }
+}

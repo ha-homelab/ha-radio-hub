@@ -30,9 +30,11 @@ def pin(name, field):
 class Contract(unittest.TestCase):
     def test_single_current_design(self):
         registry = json.loads((ROOT / 'hardware/designs.json').read_text())
-        self.assertEqual(registry['active_design'], 'MC1')
+        self.assertEqual(registry['active_design'], 'MC2')
         self.assertEqual(registry['active_custom_pcb_count'], 1)
-        self.assertEqual(registry['active_directory'], 'hardware/module-carrier')
+        self.assertEqual(registry['active_directory'], 'hardware/external-antenna')
+        self.assertTrue(any(item['id'] == 'MC1' and item['status'] == 'historical_reference'
+                            for item in registry['historical_designs']))
 
     def test_s3_interfaces_reach_named_cad_nets(self):
         checks = {

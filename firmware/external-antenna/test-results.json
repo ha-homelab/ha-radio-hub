@@ -1,0 +1,23 @@
+{
+  "hardware_tested": false,
+  "host": "macOS arm64",
+  "date": "2026-10-18",
+  "commands": [
+    {
+      "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/external-antenna/tests -v",
+      "passed": 24,
+      "skipped": 0
+    },
+    {
+      "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
+      "passed": 62,
+      "skipped": 0
+    },
+    {
+      "command": "python3 -m unittest discover -s firmware/module-carrier/zigbee -p test_recipe.py -v",
+      "passed": 13,
+      "skipped": 0
+    }
+  ],
+  "scope": "Host-compiled GPIO initialization, production fault/update helper tests and real loopback socket tests. Real external MG24 and C6 images accepted by offline update plans; no radio, ESPHome endpoint or HA contacted."
+}

@@ -1,0 +1,51 @@
+{
+  "compiled": true,
+  "hardware_tested": false,
+  "esp_idf": "5.5.5",
+  "board": "Unexpected Maker TinyC6-U-01",
+  "antenna": "fixed external U.FL",
+  "required_download_strap": {
+    "gpio": 8,
+    "level": 1,
+    "pullup_ohms": 10000,
+    "rail": "C6_LOCAL_3V3",
+    "header_pin": "10"
+  },
+  "sdkconfig_verified": {
+    "CONFIG_IDF_TARGET": "\"esp32c6\"",
+    "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
+    "CONFIG_OPENTHREAD_RCP_UART": "y",
+    "CONFIG_OPENTHREAD_RADIO_NATIVE": "y",
+    "CONFIG_OPENTHREAD_UART_PIN_MANUAL": "y",
+    "CONFIG_OPENTHREAD_UART_RX_PIN": "17",
+    "CONFIG_OPENTHREAD_UART_TX_PIN": "16",
+    "CONFIG_FREERTOS_HZ": "1000"
+  },
+  "uart": {
+    "baud": 460800,
+    "format": "8N1",
+    "flow_control": false
+  },
+  "application_flash_offset": 65536,
+  "rom_uart_connected": true,
+  "artifacts": {
+    "esp_ot_rcp.bin": {
+      "bytes": 235456,
+      "sha256": "38749dac097386c14b1a395c5ee7a7a338eb86496431973b2bb5d9701abd6f70"
+    },
+    "bootloader/bootloader.bin": {
+      "bytes": 17168,
+      "sha256": "6a3b5bd0f1a41cea19690860f2e73c940a452487b183ffaaef73ab5223846044"
+    },
+    "partition_table/partition-table.bin": {
+      "bytes": 3072,
+      "sha256": "7f00b6c042a89b15b0cac534f82ed988caf29278ff5700b0c511eb1b5bb7c820"
+    }
+  },
+  "recipe_sha256": {
+    "prepare_c6.py": "9ceda5d596f9f90145bea006792a8a8336d66712389513f9dcd30d15ccd5e89f",
+    "verify_c6.py": "0bee19ec63b577678def450e0ff6e40c7fbc3a65ec7ddece188308f5134dfed0",
+    "pin-plan.json": "57820cf4135f2c0115f6c9c90d76404d5e44b7b4559815f532c8f1b2eb635bef",
+    "mc2_contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7"
+  }
+}

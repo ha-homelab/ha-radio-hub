@@ -19,7 +19,7 @@ def count_parts(name):
 data = {
     'title': 'H2 Quartet: finished modules on a through-hole carrier',
     'review_date': '2026-10-17',
-    'status': 'historical experiment, not selected; MC1 is the current design; component compile only',
+    'status': 'historical experiment, not selected; MC2 is the current design; component compile only',
     'priority': 'Minimize builder-installed discrete parts; extra height and firmware work are acceptable.',
     'mounting': {'method': 'Factory male pins soldered directly into plated carrier holes',
                  'female_socket_quantity': 0, 'castellated_side_soldering': False},
@@ -150,7 +150,7 @@ select,button{{font:inherit;padding:8px;border:1px solid var(--line);border-radi
 nav{{display:flex;gap:20px;flex-wrap:wrap}}.table-wrap{{overflow:auto}}.mono{{font-family:ui-monospace,monospace;font-size:13px;overflow-wrap:anywhere}}
 @media(max-width:700px){{main{{padding:18px}}.columns{{display:block}}h1{{font-size:27px}}}}@media print{{body{{background:white}}main{{max-width:none;padding:0}}button,select,label{{display:none}}details>div{{display:block}}figure{{break-inside:avoid}}}}
 </style></head><body><main>
-<nav><a href="../module-carrier/index.html">Current MC1 design</a><a href="../../docs/h2-simplification.md">Historical English report</a><a href="assessment.json">Structured data</a><button onclick="print()">Print / PDF</button></nav>
+<nav><a href="../external-antenna/index.html">Current MC2 design</a><a href="../../docs/h2-simplification.md">Historical English report</a><a href="assessment.json">Structured data</a><button onclick="print()">Print / PDF</button></nav>
 <div class="strip"><strong>Historical experiment — not the selected build.</strong> On 17 October 2026 the project chose <a href="../module-carrier/index.html">MC1, one finished-module carrier with S3 + H2 + Ember MG24</a>, to preserve functions and Home Assistant compatibility. The analysis below remains a record of the rejected all-H2 option.</div>
 <h1>H2 Quartet: ready-made modules on a through-hole carrier</h1>
 <p class="lead">The main saving is assembly work: buy complete modules, insert their factory male pins directly into plated carrier holes, and solder from the underside. No female sockets. Extra height and custom firmware are acceptable.</p>

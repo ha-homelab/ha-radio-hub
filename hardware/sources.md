@@ -1,7 +1,7 @@
 # Sources and verification limits
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](../docs/external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 Checked on 2026-10-16. The sources below support individual components and protocols; they do not verify combined operation, electromagnetic compatibility or certification of this enclosure.
 

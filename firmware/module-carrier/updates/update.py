@@ -47,7 +47,19 @@ def checked_image(kind, image, report):
             "SL_IOSTREAM_USART_VCOM_BAUDRATE": "115200",
             "SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE": "usartHwFlowControlCtsAndRts"}.items()):
             raise ValueError("Wrong MG24 UART configuration")
-        expected = metadata["files"]["artifacts/mc1-xiao-mg24-ncp.gbl"]
+        antenna = metadata.get("antenna")
+        if antenna is None:
+            # Historical onboard images remain recoverable with their original report.
+            filename = "mc1-xiao-mg24-ncp.gbl"
+        else:
+            mode = antenna.get("mode")
+            if mode not in ("onboard", "external") or antenna != {
+                    "mode": mode, "rf_path": "RF2/U.FL" if mode == "external" else "RF1/onboard ceramic",
+                    "select_gpio": "PB04", "select_level": int(mode == "external"),
+                    "enable_gpio": "PB05", "enable_level": 1}:
+                raise ValueError("Invalid MG24 antenna selection metadata")
+            filename = "mc1-xiao-mg24-" + mode + "-ncp.gbl"
+        expected = metadata["files"]["artifacts/" + filename]
         if data[:4] != bytes.fromhex("eb17a603"):
             raise ValueError("Expected application GBL, not initial HEX or S37")
     digest = hashlib.sha256(data).hexdigest()

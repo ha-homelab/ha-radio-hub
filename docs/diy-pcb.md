@@ -1,7 +1,7 @@
 # Make the low-voltage DIY carrier with toner transfer
 
-<!-- MC1-CURRENT-DESIGN -->
-> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+<!-- MC2-CURRENT-DESIGN -->
+> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
 
 This is a separate single-sided carrier for home fabrication, not a simplified print of the factory boards. Its copper artwork, drilling and assembly sheets are generated from its native KiCad board. The design has not been etched, drilled, assembled or powered in hardware; CAD checks and a correct PDF cannot establish toner adhesion, drill accuracy or electrical performance.
 

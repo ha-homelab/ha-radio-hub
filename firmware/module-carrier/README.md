@@ -1,5 +1,8 @@
 # MC1 complete firmware target
 
+> **Historical MC1 revision.** The current [MC2 external-antenna build](../../docs/external-antennas.md) uses different modules, pins, flash layout and housing. Keep this material with MC1 boards only.
+
+
 MC1 keeps the existing S3 application and Thread/Ember protocol boundaries. It changes the physical modules, remaps the H2 UART, and replaces the discrete SC16IS752 circuit with a DFRobot DFR0627 module. It does not require a new multi-MCU application protocol or a port of the Thread Border Router to H2.
 
 Use `hub.yaml` with a **Waveshare ESP32-S3-Nano-M** (factory male headers), **ESP32-H2-DevKitM-1-N4S**, and the specified four-wire XIAO MG24 firmware. The generic `esp32-s3-devkitc-1` build descriptor selects the S3 toolchain; it is not the physical board. This profile explicitly selects **16 MB flash and 8 MB octal PSRAM**, preserves the node name `module-carrier-hub`, and uses all 21 available non-strap application GPIO.

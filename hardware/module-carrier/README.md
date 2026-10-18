@@ -1,5 +1,8 @@
 # MC1 hardware
 
+> **Historical MC1 revision.** The current [MC2 external-antenna build](../../docs/external-antennas.md) uses different modules, pins, flash layout and housing. Keep this material with MC1 boards only.
+
+
 MC1 is the project's **single current custom PCB**: a carrier for finished
 S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into
 plated holes, with controllers on the room-facing front and Ethernet/male harness

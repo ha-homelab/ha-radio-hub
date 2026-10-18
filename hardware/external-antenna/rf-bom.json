@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "design": "MC2",
+  "review_date": "2026-10-18",
+  "status": "Engineering selection; physical connector fit, installed cable routing and RF performance require validation",
+  "antenna": {
+    "manufacturer": "TE Connectivity / Linx",
+    "part": "ANT-2.4-LCW-SMA",
+    "quantity": 3,
+    "frequency_mhz": [
+      2400,
+      2485
+    ],
+    "impedance_ohm": 50,
+    "connector": "SMA plug, standard polarity, center pin",
+    "peak_gain_dbi": 2.8,
+    "length_mm": 83.1,
+    "maximum_width_mm": 10,
+    "pattern": "Omnidirectional dipole, tilt/swivel; gain is not a coverage guarantee",
+    "source": "https://www.te.com/en/product-L9000082-01.html"
+  },
+  "pigtail": {
+    "manufacturer": "Amphenol RF",
+    "part": "095-902-545-150",
+    "quantity": 3,
+    "nominal_length_mm": 150,
+    "impedance_ohm": 50,
+    "cable_od_mm": 1.13,
+    "radio_end": "AMC right-angle plug; U.FL-compatible family, not MHF III/4",
+    "enclosure_end": "SMA straight bulkhead jack, standard polarity, center socket",
+    "drawing_panel_cutout_mm": {
+      "round_diameter": 6.6,
+      "flat_dimension": 6.1
+    },
+    "source": "https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/",
+    "drawing": "https://www.amphenolrf.com/en-us/assets/file/4068032676/",
+    "routing_status": "Nominal length must pass the enclosure route check and a physical dry fit; never tension the module connector"
+  },
+  "paths": [
+    {
+      "label": "BLE",
+      "radio": "Espressif ESP32-S3-DevKitC-1U-N8R8",
+      "path": "ESP32-S3-WROOM-1U RF connector -> dedicated pigtail -> BLE bulkhead -> antenna",
+      "selection": "Factory external RF path; Wi-Fi remains unused for network transport"
+    },
+    {
+      "label": "THREAD",
+      "radio": "Unexpected Maker TinyC6-U-01",
+      "path": "TinyC6-U-01 U.FL -> dedicated pigtail -> THREAD bulkhead -> antenna",
+      "selection": "Factory external-only version; do not substitute the onboard-antenna or Series D version without review"
+    },
+    {
+      "label": "ZIGBEE",
+      "radio": "Seeed XIAO MG24",
+      "path": "XIAO U.FL -> dedicated pigtail -> ZIGBEE bulkhead -> antenna",
+      "selection": "External NCP build: PB04=1, PB05=1 before radio initialization; internal and external antennas are not used simultaneously"
+    }
+  ],
+  "assembly": [
+    "Connect one antenna to each independent radio. No passive combiner or shared antenna.",
+    "SMA and RP-SMA have different center contacts. Buy the exact standard-SMA antenna and bulkhead variants.",
+    "Mate miniature coax plugs axially with power removed and support the board; provide slack and strain relief.",
+    "Use the fit coupon before printing the whole shell. Published nominal metal dimensions are not printed-fit measurements.",
+    "Use module- and region-appropriate transmit power. This prototype does not establish radio certification for sale."
+  ],
+  "unchanged_paths": {
+    "CC1101": "Existing matched 433.92MHz antenna, separate from all three 2.4GHz paths",
+    "ZAC93": "Existing regional module with its stock PCB antenna",
+    "LD2450": "Stock 24 GHz printed radar array; no coax/whip conversion"
+  },
+  "coverage_test": "../../docs/rf-commissioning.md"
+}

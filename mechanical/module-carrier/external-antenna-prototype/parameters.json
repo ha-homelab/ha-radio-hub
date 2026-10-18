@@ -1,0 +1,97 @@
+{
+  "revision": "MC2-external-antenna",
+  "status": "printable_engineering_prototype_not_fit_qualified",
+  "units": "mm",
+  "source_directory": "hardware/external-antenna/cad",
+  "case": {
+    "width": 190.0,
+    "length": 160,
+    "height": 55.0,
+    "wall": 3.0,
+    "floor": 3.0,
+    "lid": 3.0,
+    "board_origin_xy": [
+      35.0,
+      40.0
+    ],
+    "board_seat_z": 15.0,
+    "board_thickness": 1.6,
+    "ceiling_spacing": 4.0,
+    "mounting_screw_hole": 4.5,
+    "pcb_screw_hole": 2.7,
+    "closure_pilot": 2.5,
+    "closure_hole": 3.3
+  },
+  "rf": {
+    "bulkhead_family": "Amphenol 095-902-545-XXX",
+    "bulkhead_drawing": "https://www.amphenolrf.com/en-us/assets/file/4068032676/",
+    "connector": "Standard polarity SMA female / AMC (U.FL-compatible) right-angle plug, 50 ohm",
+    "nominal_hole_diameter": 6.6,
+    "nominal_hole_flat_dimension": 6.1,
+    "print_allowance": 0.2,
+    "tool_clearance_diameter": 20.0,
+    "internal_straight_reservation": 23.0,
+    "cable_bend_radius_trial": 10.0,
+    "cable_length_trial": 150.0,
+    "minimum_center_spacing_trial": 65.0,
+    "antenna_candidate": "TE ANT-2.4-LCW-SMA / L9000082-01",
+    "antenna_length_nominal": 83.1,
+    "antenna_diameter_nominal": 10.0,
+    "ports": [
+      {
+        "id": "B",
+        "label": "BLE",
+        "module_ref": "U1",
+        "center": [
+          30.0,
+          0.0,
+          34.0
+        ],
+        "strap_xy": [
+          30.0,
+          26.0
+        ]
+      },
+      {
+        "id": "T",
+        "label": "THREAD",
+        "module_ref": "U2",
+        "center": [
+          95.0,
+          0.0,
+          34.0
+        ],
+        "strap_xy": [
+          95.0,
+          26.0
+        ]
+      },
+      {
+        "id": "Z",
+        "label": "ZIGBEE",
+        "module_ref": "U3",
+        "center": [
+          160.0,
+          0.0,
+          34.0
+        ],
+        "strap_xy": [
+          160.0,
+          26.0
+        ]
+      }
+    ],
+    "module_connector_z_trial": 29.0
+  },
+  "measured": {
+    "pcb_width_and_length": null,
+    "module_underbody_and_tallest_z": null,
+    "mated_rf_connector_coordinates": null,
+    "bulkhead_body_nut_and_tool_fit": null,
+    "actual_coax_length_after_strain_relief": null,
+    "minimum_bend_radius_confirmed_with_supplier": null,
+    "printed_fit_and_antenna_torque": null,
+    "closed_case_thermal_and_radio_results": null
+  },
+  "scope": "MC2 carrier and its onboard U1-U4 plus wiring only. PoE splitter, buck, DFR0627, ZAC93, CC1101, LD2450 and BME680 remain in their declared separate housings. The external network connection remains one PoE cable to the system splitter; the carrier RJ45 is downstream data-only."
+}

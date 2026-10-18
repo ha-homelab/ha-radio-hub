@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+from antenna import configuration as antenna_configuration, header as antenna_header, artifact_prefix
 
 HERE = Path(__file__).resolve().parent
 
@@ -54,6 +55,11 @@ def check_configuration(project, config):
     board_source = (HERE/'mc1_board_init.h').read_text()
     if (project/'application/autogen/mc1_board_init.h').read_text() != board_source:
         raise ValueError('Board RF initialization differs from committed source')
+    antenna = config['antenna']
+    if antenna != antenna_configuration(antenna['mode']):
+        raise ValueError('Invalid antenna switch configuration')
+    if (project/'application/autogen/mc1_antenna_config.h').read_text() != antenna_header(antenna['mode']):
+        raise ValueError('Generated antenna selection does not match build metadata')
     events = (project/'application/autogen/sl_event_handler.c').read_text()
     if events.count('  mc1_xiao_board_init();') != 1 or '  sl_gpio_init();\n  mc1_xiao_board_init();' not in events:
         raise ValueError('RF initialization must run in GPIO driver phase before radio stack')
@@ -95,6 +101,8 @@ def main():
     args = p.parse_args()
     project, gcc, commander = (x.resolve() for x in (args.project,args.gcc,args.commander))
     config = json.loads((HERE/'config.json').read_text())
+    generated_config = json.loads((project/'input-config.json').read_text())
+    config['antenna'] = antenna_configuration(generated_config['antenna']['mode'])
     inspected_sdk = json.loads((project/'sdk-inspection.json').read_text())
     if inspected_sdk['verified_sdk_version'] != config['sdk_tag'].removeprefix('v') or inspected_sdk['verified_ezsp_protocol_version'] != 18:
         raise ValueError('SDK inspection does not match this recipe')
@@ -114,10 +122,11 @@ def main():
     artifacts.mkdir(exist_ok=True)
     app = project/'application/build/release/zigbee_ncp_uart_hw.s37'
     boot = project/'bootloader/artifact/bootloader-uart-xmodem-crc.s37'
-    gbl, merged, roundtrip = [artifacts/name for name in ('mc1-xiao-mg24-ncp.gbl','mc1-xiao-mg24-initial.s37','ncp-roundtrip.s37')]
+    prefix = artifact_prefix(config['antenna']['mode'])
+    gbl, merged, roundtrip = [artifacts/name for name in (prefix+'-ncp.gbl',prefix+'-initial.s37','ncp-roundtrip.s37')]
     run([commander,'gbl','create',gbl,'--app',app])
     run([commander,'convert',boot,app,'--outfile',merged])
-    initial_hex = artifacts/'mc1-xiao-mg24-initial.hex'
+    initial_hex = artifacts/(prefix+'-initial.hex')
     hex_roundtrip = artifacts/'initial-hex-roundtrip.s37'
     run([commander,'convert',merged,'--outfile',initial_hex])
     run([commander,'convert',initial_hex,'--outfile',hex_roundtrip])
@@ -128,12 +137,13 @@ def main():
     report = {'status':'build-and-offline-validation-pass', 'hardware_tested':False,
               'sdk_tag':config['sdk_tag'], 'sdk_inspection':inspected_sdk,
               'board':config['board'], 'board_sku':config['board_sku'],
+              'antenna':config['antenna'],
               'board_configuration':config['application']['configuration'],
               'target':config['target'],'ezsp_protocol_version':inspected_sdk['verified_ezsp_protocol_version'],
               'flash_ranges':ranges,'files':{}}
     report['recipe_sha256'] = {
         name: hashlib.sha256((HERE/name).read_bytes()).hexdigest()
-        for name in ('config.json', 'mc1_board_init.h', 'generate.py', 'build.py')
+        for name in ('config.json', 'antenna.py', 'mc1_board_init.h', 'generate.py', 'build.py')
     }
     report['tools'] = {
         'slc': config['slc_version'], 'gcc': '12.2.1',
@@ -142,6 +152,7 @@ def main():
     report['validation'] = [
         'Both generated projects match committed UART/pin/clock configuration',
         'Board RF initialization is present before radio stack startup',
+        'Antenna switch levels match explicit generated mode and labelled artifacts',
         'Both Cortex-M vector tables and non-overlapping flash ranges are valid',
         'Initial S37 exactly equals bootloader plus application addressed bytes',
         'GBL and Intel HEX roundtrips retain all addressed bytes',

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1040" viewBox="0 0 1400 1040">
+<style>text{font-family:Arial,sans-serif;fill:#e2edf3}.h{font-size:27px;font-weight:bold}.s{font-size:18px}.n{font-size:15px}.warning{fill:#ffc670}</style>
+<rect width="1400" height="1040" fill="#0d1b29"/>
+<text x="40" y="48" class="h">MC2 · three external antennas, one fixed antenna wall</text>
+<text x="40" y="83" class="s">Carrier-only printable shell. 65 mm port spacing is a starting geometry, not a range specification.</text>
+<text x="40" y="115" class="s warning">Native PCB XY + provisional component heights, coax routes and purchased-part fit. Not production-qualified.</text>
+<rect x="65" y="220" width="665.0" height="560.0" rx="8" fill="#284556" stroke="#a5c8d6"/>
+<rect x="187.5" y="360.0" width="350.0" height="350.0" fill="#17483f" stroke="#78d8af"/>
+<text x="197.5" y="390.0" class="s">MC2 carrier 100 × 100 mm</text>
+<circle cx="523.5" cy="696.0" r="9" fill="#a2cabd"/><text x="535.5" y="700.0" class="n">H4</text>
+<circle cx="523.5" cy="374.0" r="9" fill="#a2cabd"/><text x="535.5" y="378.0" class="n">H2</text>
+<circle cx="201.5" cy="696.0" r="9" fill="#a2cabd"/><text x="213.5" y="700.0" class="n">H3</text>
+<circle cx="201.5" cy="374.0" r="9" fill="#a2cabd"/><text x="213.5" y="378.0" class="n">H1</text>
+<rect x="156.0" y="170" width="28" height="56" rx="7" fill="#d8a0ff"/>
+<text x="170.0" y="152" text-anchor="middle" class="s">BLE</text>
+<path d="M170.0 226 L170.0 311.0" stroke="#d8a0ff" stroke-width="5" fill="none"/>
+<rect x="149.0" y="300.5" width="42.0" height="21.0" fill="#d8a0ff"/>
+<rect x="383.5" y="170" width="28" height="56" rx="7" fill="#7ac1ff"/>
+<text x="397.5" y="152" text-anchor="middle" class="s">THREAD</text>
+<path d="M397.5 226 L397.5 311.0" stroke="#7ac1ff" stroke-width="5" fill="none"/>
+<rect x="376.5" y="300.5" width="42.0" height="21.0" fill="#7ac1ff"/>
+<rect x="611.0" y="170" width="28" height="56" rx="7" fill="#73dfb4"/>
+<text x="625.0" y="152" text-anchor="middle" class="s">ZIGBEE</text>
+<path d="M625.0 226 L625.0 311.0" stroke="#73dfb4" stroke-width="5" fill="none"/>
+<rect x="604.0" y="300.5" width="42.0" height="21.0" fill="#73dfb4"/>
+<path d="M170.0 311.0 Q170.0 363.5 275.0 416.0" stroke="#d8a0ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="275.0" cy="416.0" r="6" fill="#d8a0ff"/>
+<path d="M397.5 311.0 Q397.5 363.5 394.0 510.5" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="394.0" cy="510.5" r="6" fill="#7ac1ff"/>
+<path d="M625.0 311.0 Q625.0 363.5 464.0 468.5" stroke="#73dfb4" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="464.0" cy="468.5" r="6" fill="#73dfb4"/>
+<text x="790" y="180" class="s">Enclosure</text>
+<text x="790" y="205" class="n">190 × 160 × 58 mm; +4 mm ceiling spacer.</text>
+<text x="790" y="248" class="s">Three independent 50 Ω paths</text>
+<text x="790" y="273" class="n">SMA female → AMC / U.FL-compatible cable → one radio.</text>
+<text x="790" y="316" class="s">Fixed-wall ports</text>
+<text x="790" y="341" class="n">Lid lifts without pulling the three coax leads.</text>
+<text x="790" y="384" class="s">D-hole and tool access</text>
+<text x="790" y="409" class="n">6.6 / 6.1 mm nominal + 0.2 mm trial print allowance.</text>
+<text x="790" y="452" class="s">Strain relief</text>
+<text x="790" y="477" class="n">Soft loops at three towers. Do not crush micro-coax.</text>
+<text x="790" y="520" class="s">Cable length</text>
+<text x="790" y="545" class="n">150 mm trial; dashed guides end at estimated radio XY.</text>
+<text x="790" y="588" class="s">Antenna orientation</text>
+<text x="790" y="613" class="n">83.1 mm candidate: keep bodies outside, parallel and clear.</text>
+<text x="790" y="656" class="s">Low-voltage rear bay</text>
+<text x="790" y="681" class="n">Separate splitter supplies power; this RJ45 is data-only.</text>
+<text x="790" y="724" class="s">Not installed here</text>
+<text x="790" y="749" class="n">PoE converter, Z-Wave, sub-GHz radio and sensors.</text>
+<text x="65" y="815.0" class="s">Rear split cable opening · restraint required before connection to modules</text>
+<text x="40" y="865" class="h">First print: bulkhead-fit-coupon.stl</text>
+<text x="40" y="901" class="s">Three D-hole tolerances (left to right): nominal, +0.2 mm, +0.4 mm. Select from the real connector.</text>
+<text x="40" y="939" class="s">Verify nut engagement, anti-rotation, module clearance and formed cable routes before printing the full shell.</text>
+<text x="40" y="987" class="s warning">No coverage promise for 1,000 ft². Test all radios concurrently, closed case, at the central ceiling position.</text>
+</svg>

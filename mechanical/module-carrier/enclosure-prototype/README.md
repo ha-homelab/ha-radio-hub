@@ -1,5 +1,8 @@
 # MC1 printable enclosure prototype
 
+> **Historical MC1 revision.** The current [MC2 external-antenna build](../../../docs/external-antennas.md) uses different modules, pins, flash layout and housing. Keep this material with MC1 boards only.
+
+
 [Open the illustrated plan and section](index.html) · [dimensioned SVG](enclosure.svg) · [3D print-parts view](print-parts.png) · [trial dimensions](parameters.json) · [digital verification](verification.json)
 
 This is a **complete carrier-only shell prototype**, with a printable base, retaining cover, ceiling spacing frame and separate adjustable jack-stop trial. It replaces the absence of a shell; it does not replace physical measurements or claim a finished product. The earlier [split-rail study and fit coupons](../rail-mount/README.md) remain the starting point for selecting the board fit.
