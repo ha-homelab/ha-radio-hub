@@ -3,6 +3,8 @@
 The current engineering prototype uses an ESP32-S3-DevKitC-1U-N8R8 host, a TinyC6-U-01 Thread RCP, and a XIAO MG24 Zigbee NCP. Each radio has its own external antenna. The previous MC1 Nano remains historical and is not pin compatible.
 
 - [Visual assembly and antenna guide](index.html)
+- [Exact shopping list and AliExpress checks](../../docs/mc2-shopping.md)
+- [Generated appearance concepts and provenance](images/README.md)
 - [Editable carrier, exact pinout, assembly and checks](cad/README.md)
 - [Front assembly drawing](cad/assembly-top.svg)
 - [Schematic](cad/schematic.svg), [PDF](cad/schematic.pdf)

@@ -5,6 +5,13 @@ a local ESP32-S3 Thread Border Router, Ember Zigbee coordinator, active BLE prox
 Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
 100 × 100 mm carrier holds finished modules with direct-solder male headers.
 
+![MC2 assembled carrier — AI concept illustration](hardware/external-antenna/images/mc2-assembled-concept.png)
+
+*AI-generated appearance concept, not a photograph. Module shapes, pin counts,
+markings and copper are illustrative; use the [actual assembly drawing](hardware/external-antenna/cad/assembly-top.svg)
+and [native CAD](hardware/external-antenna/cad/README.md) for construction.
+The radios are shown without their required antennas to keep the board visible.*
+
 **Engineering prototype.** Source builds and CAD checks are not measurements of
 coverage, power consumption, mechanical fit or radio certification. The
 1,000 ft² house coverage target still requires testing.
@@ -17,6 +24,11 @@ Start with the [assembly guide](docs/external-antennas.md),
 ![MC2 independent antenna paths](hardware/external-antenna/antenna-paths.svg)
 
 ## Selected hardware
+
+**Buying parts?** The [MC2 shopping guide](docs/mc2-shopping.md) gives quantities,
+exact order codes, inspected AliExpress variants and outstanding availability
+checks. TinyC6 supply is unresolved; secure the original **TC6-U-01** before
+ordering a batch of carriers.
 
 - **ESP32-S3-DevKitC-1U-N8R8:** factory external antenna, 8 MB flash and 8 MB
   octal PSRAM; Ethernet host and active BLE proxy.
@@ -37,6 +49,11 @@ environment sensor and power modules remain off-board. The
 neither is a complete single-box shopping list on its own.
 
 ![MC2 carrier, all components on the front](hardware/external-antenna/cad/assembly-top.svg)
+
+![MC2 bare carrier — AI surface-finish concept](hardware/external-antenna/images/mc2-bare-concept.png)
+
+*Bare-board appearance concept only. AI-generated traces, pads and labels are
+not fabrication data. [Image provenance and prompts](hardware/external-antenna/images/README.md).*
 
 ![MC2 carrier-only enclosure with three external antennas](mechanical/module-carrier/external-antenna-prototype/assembly-preview.png)
 

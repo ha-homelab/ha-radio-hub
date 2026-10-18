@@ -1,0 +1,26 @@
+{
+  "created": "2026-10-18",
+  "tool": "built-in image_gen",
+  "purpose": "README appearance concepts, not CAD or photographs",
+  "source_sha256": {
+    "cad/assembly-top.svg": "b762862a8967f674327cf03b5a7e4146ab53484d7fedf7a085752c6bbbc60736",
+    "cad/board-top.svg": "609b496b5bb20946fdbaaac157bcf40f040c97c055f2423883d1eb1508524177",
+    "cad/mc2.kicad_pcb": "535d78dddde5b69081fe6415c88d897618dc1ff7d98239d311c9ade48afc00c3",
+    "cad/design.json": "4effdb41cc75bd4e7dfd41a3657338989333acd063eb9a40606264c78f2e99ce"
+  },
+  "output_sha256": {
+    "mc2-bare-concept.png": "dacc4b3eab8f55293859e47398063b16aad8f8f29ffc142626830f9455336a36",
+    "mc2-assembled-concept.png": "648503a6dc80047cd4dfd9d247600c9fe2c6630c15430d7561b9a77ef1773e4f"
+  },
+  "prompt_sha256": {
+    "initial-prompt.txt": "9bf57dac3821feb9b2c710253cea1de35a4a9a4b327865497e26121e0511fb30",
+    "bare-prompt.txt": "d31a752b3fd5087bf2112b94c8486b730b217d6fccb0992a87927750a53fdfe4",
+    "assembled-prompt.txt": "dd4df2b265eb129ab863b6125161bbf3af3a1c68cd083373dc9a6e4eee8b28a0"
+  },
+  "physical_validation": false,
+  "limitations": [
+    "Approximate module internals, pin counts, silkscreen, traces and connector geometry",
+    "Antennas omitted from assembled concept; required during operation",
+    "Not fabrication artwork; native CAD remains authoritative"
+  ]
+}
