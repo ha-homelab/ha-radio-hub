@@ -18,4 +18,9 @@
 (pad "J2.4" thru_hole circle (at 20.32 7.62) (size 1.9 1.9) (drill 1.1) (layers "*.Cu" "*.Mask"))
 (pad "J2.5" thru_hole circle (at 20.32 10.16) (size 1.9 1.9) (drill 1.1) (layers "*.Cu" "*.Mask"))
 (pad "J2.6" thru_hole circle (at 20.32 12.7) (size 1.9 1.9) (drill 1.1) (layers "*.Cu" "*.Mask"))
+
+(fp_line (start 2.11 -9.1) (end 18.21 -9.1) (stroke (width 0.4) (type solid)) (layer "F.Fab"))
+(fp_line (start 10.16 -9.1) (end 10.16 -14.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))
+(fp_line (start 10.16 -14.1) (end 8.91 -12.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))
+(fp_line (start 10.16 -14.1) (end 11.41 -12.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))
 )

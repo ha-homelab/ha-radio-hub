@@ -16,11 +16,68 @@
     "s3": "https://dl.espressif.com/dl/schematics/esp_idf/DXF_ESP32-S3-DevKitC-1_V1.1_20220429.pdf",
     "h2": "https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf",
     "xiao": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip",
+    "wiz_photo": "https://docs.wiznet.io/img/products/wiz850io/wiz850io.png",
+    "wiz_pinmap": "https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png",
     "wiz": "https://docs.wiznet.io/img/products/wiz850io/wiz850io_dimension.png",
     "weikai": "https://wiki.dfrobot.com/dfr0627",
     "connector": "https://www.samtec.com/products/tsw",
     "diode": "https://www.vishay.com/docs/88525/1n5817.pdf",
     "resistor": "https://www.vishay.com/docs/28729/mrs16.pdf"
+  },
+  "mechanics": {
+    "rj45": {
+      "pcb_bounds_local_mm": [
+        -1.34,
+        -6.4,
+        21.66,
+        18.6
+      ],
+      "rj45_face_local_mm": [
+        [
+          2.11,
+          -9.1
+        ],
+        [
+          18.21,
+          -9.1
+        ]
+      ],
+      "rj45_outward_normal_local": [
+        0,
+        -1
+      ],
+      "service_corridor_global_mm": [
+        -36,
+        61,
+        1.7,
+        88
+      ],
+      "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
+      "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
+      "face_global_mm": [
+        [
+          -1.0,
+          82.89
+        ],
+        [
+          -1.0,
+          66.79
+        ]
+      ],
+      "outward_normal_global": [
+        -1.0,
+        -0.0
+      ],
+      "mouth_beyond_left_edge_mm": 1.0,
+      "pcb_bounds_global_mm": [
+        1.7,
+        63.34,
+        26.7,
+        86.34
+      ],
+      "face_width_mm": 16.1,
+      "opening_direction": "left / negative X"
+    }
   },
   "parts": [
     {
@@ -798,95 +855,95 @@
       },
       "types": {},
       "xy": [
-        17,
-        72
+        8.1,
+        85
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; NO PoE extraction;3.3V only",
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces LEFT with mouth x=-1mm; NO PoE extraction;3.3V only",
       "pad_centers_mm": [
         {
           "number": "J1.1",
           "net": "GND",
-          "x": 17.0,
-          "y": 72.0,
+          "x": 8.1,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": "GND",
-          "x": 17.0,
-          "y": 74.54,
+          "x": 10.64,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": "ETH_MOSI",
-          "x": 17.0,
-          "y": 77.08,
+          "x": 13.18,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": "ETH_SCK",
-          "x": 17.0,
-          "y": 79.62,
+          "x": 15.72,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": "ETH_CS",
-          "x": 17.0,
-          "y": 82.16,
+          "x": 18.26,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": "ETH_INT",
-          "x": 17.0,
-          "y": 84.7,
+          "x": 20.8,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J2.1",
           "net": "GND",
-          "x": 37.32,
-          "y": 72.0,
+          "x": 8.1,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.2",
           "net": "+3V3",
-          "x": 37.32,
-          "y": 74.54,
+          "x": 10.64,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.3",
           "net": "+3V3",
-          "x": 37.32,
-          "y": 77.08,
+          "x": 13.18,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.4",
           "net": null,
-          "x": 37.32,
-          "y": 79.62,
+          "x": 15.72,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.5",
           "net": "ETH_RESET",
-          "x": 37.32,
-          "y": 82.16,
+          "x": 18.26,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.6",
           "net": "ETH_MISO",
-          "x": 37.32,
-          "y": 84.7,
+          "x": 20.8,
+          "y": 64.68,
           "drill_mm": 1.1
         }
       ]

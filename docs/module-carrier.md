@@ -54,6 +54,15 @@ The selected architecture uses:
    and gas resistance. Gas resistance is not a direct CO2 measurement.
 7. Service access, recoverable firmware updates and independent network backups.
 
+## Ethernet access
+
+U4 is rotated 90° at the lower-left edge. Its RJ45 opening faces outward to the
+left and projects 1 mm beyond the carrier edge. Keep the connector/plug/latch
+corridor clear and provide a matching enclosure cutout. The module remains
+soldered directly to the carrier; this change does not add an extension cable
+or alter the Ethernet pinout. Use the dimensioned assembly view for orientation,
+not the generated illustration.
+
 ## What changes in software
 
 The S3 host and existing application protocols remain. GPIO assignments must match

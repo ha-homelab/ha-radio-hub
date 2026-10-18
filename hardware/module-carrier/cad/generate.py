@@ -3,10 +3,10 @@
 Creates unrouted source, schematic, exact-pad ledger and Specctra DSN.
 Module footprints use manufacturer hole centers; external modules use harnesses.
 """
-import argparse, csv, json, uuid, re
+import argparse, csv, json, uuid, re, math
 from pathlib import Path
 import pcbnew as pcb
-from design import ROOT, parts, connectors, SOURCES, s3names, h2names
+from design import ROOT, parts, connectors, SOURCES, s3names, h2names, WIZ_MECHANICS
 ap=argparse.ArgumentParser(); ap.add_argument('--libraries', type=Path, required=True); a=ap.parse_args()
 LIB=a.libraries; LOCAL=ROOT/'MC1.pretty'; LOCAL.mkdir(exist_ok=True); BUILD=ROOT/'.build'; BUILD.mkdir(exist_ok=True)
 U=lambda s:str(uuid.uuid5(uuid.NAMESPACE_URL,'https://ha-radio-hub/MC1/'+s)); Q=lambda s:json.dumps(str(s))
@@ -27,6 +27,9 @@ module_fp('S3_DevKitC1_v11',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J3',
 module_fp('H2_DevKitM1',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J3',22.86)] for i in range(15)],(-1.27,-1.575,24.13,46.685),'Official Espressif v1.2 dimension PDF;22.86 rowspacing;2.54 pitch;antenna extends5.4mm beyond PCBtop;direct factory male headers')
 module_fp('XIAO_MG24',[(str(i+1),0,i*2.54) for i in range(7)]+[(str(14-i),15.24,i*2.54) for i in range(7)],(-1.27,-2.921,16.51,18.034),'Seeed official XIAO MG24 260114 nativePCB inner headerhole centers;15.24rowspacing;2.54pitch;D0pad1upperleft USBup;presoldered102010690')
 module_fp('WIZ850io',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J2',20.32)] for i in range(6)],(-1.34,-9.1,21.66,18.6),'WIZnet dimension and top-view pinmap;20.32rowspacing;2.54pitch;RJ45extends2.7mm beyond23x25PCB;direct pins')
+# RJ45 aperture edge and outward arrow are explicit assembly geometry, not copper.
+f=LOCAL/'WIZ850io.kicad_mod';raw=f.read_text().rstrip();raw=raw[:-1]+'\n(fp_line (start 2.11 -9.1) (end 18.21 -9.1) (stroke (width 0.4) (type solid)) (layer "F.Fab"))\n(fp_line (start 10.16 -9.1) (end 10.16 -14.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))\n(fp_line (start 10.16 -14.1) (end 8.91 -12.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))\n(fp_line (start 10.16 -14.1) (end 11.41 -12.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))\n)\n';f.write_text(raw)
+
 for p in parts:
     fp=p['footprint']
     if fp.startswith('MC1:'):continue
@@ -102,6 +105,11 @@ for bounds in [(0,0,160,1.2),(47,0,64,12),(89,0,106,12),(128.8,0,141,5)]:
     outline=zone.Outline();outline.NewOutline();x1,y1,x2,y2=bounds
     for x,y in [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]:outline.Append(pcb.FromMM(x),pcb.FromMM(y))
     board.Add(zone)
+# External cable/service corridor: mechanical reservation, not a PCB cutout.
+x1,y1,x2,y2=WIZ_MECHANICS['service_corridor_global_mm']
+for aa,bb in [((x1,y1),(x2,y1)),((x2,y1),(x2,y2)),((x2,y2),(x1,y2)),((x1,y2),(x1,y1))]:
+    sh=pcb.PCB_SHAPE();sh.SetShape(pcb.SHAPE_T_SEGMENT);sh.SetStart(pcb.VECTOR2I(pcb.FromMM(aa[0]),pcb.FromMM(aa[1])));sh.SetEnd(pcb.VECTOR2I(pcb.FromMM(bb[0]),pcb.FromMM(bb[1])));sh.SetLayer(pcb.Dwgs_User);sh.SetWidth(pcb.FromMM(.2));board.Add(sh)
+t=pcb.PCB_TEXT(board);t.SetText('RJ45 OUT / PLUG + LATCH CLEARANCE');t.SetPosition(pcb.VECTOR2I(pcb.FromMM(-17),pcb.FromMM(59)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(1),pcb.FromMM(1)));t.SetTextThickness(pcb.FromMM(.15));t.SetLayer(pcb.Dwgs_User);board.Add(t)
 board.BuildListOfNets();board.BuildConnectivity();pcb.SaveBoard(str(BUILD/'mc1-unrouted.kicad_pcb'),board);pcb.ExportSpecctraDSN(board,str(BUILD/'mc1.dsn'))
 # All high-current supply nets get 0.8mm traces rather than default signal width.
 dsn=BUILD/'mc1.dsn';s=dsn.read_text().replace('(width 200)','(width 250)').replace('(clearance 50 (type smd_smd))','(clearance 200 (type smd_smd))').replace('600:300','800:400').replace('(circle F.Cu 600)','(circle F.Cu 800)').replace('(circle B.Cu 600)','(circle B.Cu 800)')
@@ -115,7 +123,16 @@ pos=s.rfind('\n  (wiring');end=s.rfind('\n  )',0,pos);s=s[:end]+'\n    (class po
 ledger=[]
 for p in parts:
     fp=next(f for f in board.GetFootprints() if f.GetReference()==p['ref']);r=dict(p);r['pad_centers_mm']=[dict(number=pd.GetNumber(),net=p['pins'][pd.GetNumber()],x=round(pcb.ToMM(pd.GetPosition().x),4),y=round(pcb.ToMM(pd.GetPosition().y),4),drill_mm=round(pcb.ToMM(pd.GetDrillSize().x),4)) for pd in fp.Pads()];ledger.append(r)
-metadata=dict(schema_version=1,revision='MC1',status='engineering_prototype_not_fabrication_release',board=dict(width_mm=160,height_mm=100,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,parts=ledger)
+u4=next(p for p in parts if p['ref']=='U4');ang=math.radians(u4['rotation'])
+def transform(v):return [round(u4['xy'][0]+v[0]*math.cos(ang)+v[1]*math.sin(ang),4),round(u4['xy'][1]-v[0]*math.sin(ang)+v[1]*math.cos(ang),4)]
+rj45=dict(WIZ_MECHANICS)
+rj45['face_global_mm']=[transform(v) for v in WIZ_MECHANICS['rj45_face_local_mm']]
+rj45['outward_normal_global']=[round(-math.sin(ang),4),round(-math.cos(ang),4)]
+rj45['mouth_beyond_left_edge_mm']=-rj45['face_global_mm'][0][0]
+bb=WIZ_MECHANICS['pcb_bounds_local_mm'];bc=[transform(bb[:2]),transform(bb[2:])];rj45['pcb_bounds_global_mm']=[min(v[0] for v in bc),min(v[1] for v in bc),max(v[0] for v in bc),max(v[1] for v in bc)]
+rj45['face_width_mm']=16.10
+rj45['opening_direction']='left / negative X'
+metadata=dict(schema_version=1,revision='MC1',status='engineering_prototype_not_fabrication_release',board=dict(width_mm=160,height_mm=100,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"rj45":rj45},parts=ledger)
 (ROOT/'design.json').write_text(json.dumps(metadata,indent=2)+'\n');(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC1',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
 with (ROOT/'BOM.csv').open('w',newline='') as f:
     w=csv.writer(f);w.writerow(['Reference','Quantity','Part / module','Carrier footprint','Assembly note','Source']);

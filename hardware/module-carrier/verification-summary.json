@@ -11,8 +11,8 @@
     },
     {
       "check": "Mechanical and pin geometry",
-      "result": "7 tests passed; independent review checked 145 pad entries",
-      "scope": "Manufacturer-derived dimensions and net assignments; purchased module fit and RF remain untested"
+      "result": "9 tests passed; independent review checked 145 pad entries",
+      "scope": "Manufacturer-derived dimensions, net assignments and outward left-edge RJ45 opening; physical cable/enclosure fit remains untested"
     },
     {
       "check": "CAD / firmware interface contracts",
@@ -51,5 +51,6 @@
     "../../firmware/module-carrier/build-evidence.json",
     "../../firmware/module-carrier/test-results.json",
     "../../firmware/module-carrier/zigbee/build-evidence.json"
-  ]
+  ],
+  "layout_revision": "RJ45-left-edge"
 }

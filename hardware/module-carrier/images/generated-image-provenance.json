@@ -1,21 +1,23 @@
 {
   "kind": "AI-generated assembly illustration",
   "tool": "built-in image_gen",
-  "mode": "reference generation then mechanical correction edit",
+  "mode": "Previous assembly concept edited against the corrected CAD assembly drawing",
   "date": "2026-10-17",
   "file": "mc1-assembled-concept.png",
-  "sha256": "12c74ea6a39aac8463d5303ffcaa889809c56de6572023db8b81920957e8ba37",
+  "sha256": "696031917ac4cafd071a22aeadd92d37a545e52e4700fdf1c6bd19927b85baff",
   "reference_images": {
-    "mc1-board-top.png": "7a870eed5bee5de699c567c9c29bc95c46d2ab1a02e0f7e30e882f08e5916735",
-    "../cad/assembly-top.png": "e3a717ea8aa79bdf6815829f15ad529e6de7b8f553ae2774cd64ba8612eb1d94"
+    "previous_concept": "12c74ea6a39aac8463d5303ffcaa889809c56de6572023db8b81920957e8ba37",
+    "../cad/assembly-top.png": "39d763c049cc8fecd841a09983be67cafd1ec32175630b27e83837c6d3a5df83"
   },
   "prompts": [
     "assembly-prompt.txt",
-    "assembly-edit-prompt.txt"
+    "assembly-edit-prompt.txt",
+    "ethernet-edge-prompt.txt"
   ],
   "limitations": [
     "Not a photograph of built hardware",
     "Module bodies, connector positions and printed labels are approximate; use native CAD and assembly drawing for construction",
     "Illustrates direct-solder finished modules; no female module sockets"
-  ]
+  ],
+  "revision": "RJ45 opening faces outward at the left edge"
 }

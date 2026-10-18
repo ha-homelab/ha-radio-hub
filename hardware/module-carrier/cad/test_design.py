@@ -1,16 +1,50 @@
 #!/usr/bin/env python3
 """Independent assertions for mechanical coordinates, power boundaries and pin map."""
-import unittest,json,math
+import unittest,json,math,re
 from pathlib import Path
 R=Path(__file__).resolve().parent
 D=json.loads((R/'design.json').read_text());P={p['ref']:p for p in D['parts']}
 def pad(r,n):return next(p for p in P[r]['pad_centers_mm'] if p['number']==n)
+def native_footprints():
+ tokens=re.findall(r'"(?:\\.|[^"\\])*"|[()]|[^\s()]+',(R/'mc1.kicad_pcb').read_text())
+ stack=[];root=None
+ for t in tokens:
+  if t=='(':
+   n=[]
+   if stack:stack[-1].append(n)
+   else:root=n
+   stack.append(n)
+  elif t==')':stack.pop()
+  else:stack[-1].append(json.loads(t) if t.startswith('"') else t)
+ return [x for x in root if isinstance(x,list) and x and x[0]=='footprint']
 class CarrierTests(unittest.TestCase):
  def test_dimensions(self):
   self.assertEqual((D['board']['width_mm'],D['board']['height_mm'],D['board']['copper_layers']),(160,100,2))
  def test_module_row_centers(self):
   for ref,left,right,spacing in [('U1','J1.1','J3.1',22.86),('U2','J1.1','J3.1',22.86),('U3','1','14',15.24),('U4','J1.1','J2.1',20.32)]:
    a,b=pad(ref,left),pad(ref,right);self.assertAlmostEqual(math.dist((a['x'],a['y']),(b['x'],b['y'])),spacing,places=4)
+ def test_rj45_faces_out_of_left_edge(self):
+  p=P['U4'];self.assertEqual(p['rotation'],90);self.assertEqual(p['xy'],[8.1,85])
+  g=D['mechanics']['rj45'];self.assertEqual(g['outward_normal_global'],[-1.0,0.0])
+  self.assertEqual(g['face_global_mm'],[[-1.0,82.89],[-1.0,66.79]])
+  self.assertAlmostEqual(g['mouth_beyond_left_edge_mm'],1.0)
+  self.assertTrue(all(q['x']>0 and q['y']<100 for q in p['pad_centers_mm']))
+  self.assertLess(g['service_corridor_global_mm'][2],min(q['x'] for q in p['pad_centers_mm']))
+  # Empty access strip intersects no other module/connector pins inside the PCB.
+  x1,y1,x2,y2=g['service_corridor_global_mm']
+  for r in P.values():
+   if r['ref']=='U4':continue
+   self.assertFalse(any(x1<=q['x']<=x2 and y1<=q['y']<=y2 for q in r['pad_centers_mm']))
+ def test_native_rj45_footprint_matches_edge_contract(self):
+  f=next(f for f in native_footprints() if any(isinstance(p,list) and p[:3]==['property','Reference','U4'] for p in f))
+  at=next(x for x in f if isinstance(x,list) and x[0]=='at')
+  self.assertEqual([float(x) for x in at[1:]],[8.1,85.0,90.0])
+  face_found=False
+  for x in f:
+   if not isinstance(x,list) or x[0]!='fp_line':continue
+   fields={y[0]:y[1:] for y in x[1:] if isinstance(y,list)}
+   if fields.get('layer')==['F.Fab'] and fields.get('start')==['2.11','-9.1'] and fields.get('end')==['18.21','-9.1']:face_found=True
+  self.assertTrue(face_found,'Native footprint must mark the verified RJ45 face')
  def test_pitch(self):
   for ref,a,b in [('U1','J1.1','J1.2'),('U2','J1.1','J1.2'),('U3','1','2'),('U4','J1.1','J1.2')]:
    x,y=pad(ref,a),pad(ref,b);self.assertAlmostEqual(math.dist((x['x'],x['y']),(y['x'],y['y'])),2.54,places=4)

@@ -1,7 +1,7 @@
 {
   "revision": "MC1",
   "source": "cad/design.py",
-  "source_sha256": "8c9e1043481ee4def3626dfd8ee138a7c3716bcae0f7fc0239d61c236735abbe",
+  "source_sha256": "c51625e2e919e19bd2f2c4e1300839049a6a0251c75b4e76f28251407b7ef8a4",
   "nets": {
     "RF_GDO0": [
       "U1.J1.4",
@@ -327,12 +327,12 @@
       },
       "types": {},
       "xy": [
-        17,
-        72
+        8.1,
+        85
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; NO PoE extraction;3.3V only"
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces LEFT with mouth x=-1mm; NO PoE extraction;3.3V only"
     },
     {
       "ref": "J1",

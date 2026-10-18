@@ -4,6 +4,8 @@ SOURCES={
 's3':'https://dl.espressif.com/dl/schematics/esp_idf/DXF_ESP32-S3-DevKitC-1_V1.1_20220429.pdf',
 'h2':'https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf',
 'xiao':'https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip',
+'wiz_photo':'https://docs.wiznet.io/img/products/wiz850io/wiz850io.png',
+'wiz_pinmap':'https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png',
 'wiz':'https://docs.wiznet.io/img/products/wiz850io/wiz850io_dimension.png',
 'weikai':'https://wiki.dfrobot.com/dfr0627',
 'connector':'https://www.samtec.com/products/tsw',
@@ -23,7 +25,7 @@ xiaopins={str(i):None for i in range(1,15)}
 xiaopins.update({'1':'ZB_BOOT_SERVICE','5':'ZB_CTS','6':'ZB_RTS','7':'ZB_TX','8':'ZB_RX','13':'GND','14':'+5V_ZB'})
 add('U3','Seeed XIAO MG24 pre-soldered 102010690','MC1:XIAO_MG24',xiaopins,(143,18),180,source='xiao',notes='External UART PC06/PC07; CTS PC04 RTS PC05; USB probe preserved; 3V3 OUT NC')
 wizpins={'J1.1':'GND','J1.2':'GND','J1.3':'ETH_MOSI','J1.4':'ETH_SCK','J1.5':'ETH_CS','J1.6':'ETH_INT','J2.1':'GND','J2.2':'+3V3','J2.3':'+3V3','J2.4':None,'J2.5':'ETH_RESET','J2.6':'ETH_MISO'}
-add('U4','WIZ850io finished module','MC1:WIZ850io',wizpins,(17,72),source='wiz',notes='Direct factory pins; two1x6 at20.32 rowspacing; NO PoE extraction;3.3V only')
+add('U4','WIZ850io finished module','MC1:WIZ850io',wizpins,(8.1,85),90,source='wiz',notes='Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces LEFT with mouth x=-1mm; NO PoE extraction;3.3V only')
 add('J1','FUSED ISOLATED 5V INPUT','Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical',{1:'+5V',2:'GND'},(13,93),90,notes='Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier.')
 add('J2','D24V22F3 external assembled buck','Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical',{1:'+5V',2:'GND',3:'+3V3',4:'GND'},(36,93),90,notes='Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module.')
 add('J3','DFR0627 WK2132 ready module harness','Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',{1:'+3V3',2:'GND',3:'I2C_SDA',4:'I2C_SCL',5:'ZWAVE_RX',6:'ZWAVE_TX'},(92,93),90,source='weikai',notes='Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings.')
@@ -37,3 +39,13 @@ add('R1','4.7k RF GDO0 pull-up','Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.6
 add('R2','10k RF CS idle pull-up','Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal',{1:'+3V3',2:'RF_CS'},(82,68),source='resistor')
 add('J8','XIAO BOOT service short to GND','Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical',{1:'ZB_BOOT_SERVICE',2:'GND'},(141,35),90,notes='Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN.')
 connectors=[dict(ref=p['ref'],model=p['model'],pins=p['pins'],notes=p['notes']) for p in parts if p['ref'].startswith(('U','J'))]
+
+# Manufacturer top-view dimensions, in U4 footprint-local coordinates.
+WIZ_MECHANICS={
+ 'pcb_bounds_local_mm':[-1.34,-6.4,21.66,18.6],
+ 'rj45_face_local_mm':[[2.11,-9.1],[18.21,-9.1]],
+ 'rj45_outward_normal_local':[0,-1],
+ 'service_corridor_global_mm':[-36,61,1.7,88],
+ 'service_corridor_basis':'Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.',
+ 'evidence':'WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.'
+}

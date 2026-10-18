@@ -1,7 +1,7 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "index_sha256": "ba6895a1c76244b185e17a75aff420018f397715db1428887089c882f8799eac",
+  "index_sha256": "da696a113e86d8ee11dfadf993498ed6fa8114500d061d46c527c4e22a2e7183",
   "viewport_width": 319,
   "page_scroll_width": 319,
   "all_seven_images_loaded": true,
@@ -16,8 +16,9 @@
     "restored_empty_query": true
   },
   "screenshots": {
-    "ui-assembly.jpg": "cc4437cd7b013d052ef6a05462d15f6af11d0b0177aa166c9cb4d34300f00838",
-    "ui-pcb.jpg": "bb0b00e940dff1edbb7b5b4063985ea405b53170f047920d5181cf84d8c576ba",
-    "ui-wiring.jpg": "9b1e890218f345bf544d1118b60dd29e4a3ec1c82266dda5c1824f7acb3ccad5"
-  }
+    "ui-assembly.jpg": "e4a967d717c6f3ed84483cf66ef89b974ee3d04364ef4ddd2305165ddad343dc",
+    "ui-pcb.jpg": "2fe5aba4a97194aa01c2f5f1dcbfd1393fa497810f7757772b4d1df76aa3cd0a",
+    "ui-wiring.jpg": "f17bff49e27edc9f97a1700af61259541a9f4b82e20485852b660cde4966294e"
+  },
+  "layout_revision": "RJ45-left-edge"
 }

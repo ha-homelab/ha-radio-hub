@@ -777,95 +777,95 @@
       },
       "types": {},
       "xy": [
-        17,
-        72
+        8.1,
+        85
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; NO PoE extraction;3.3V only",
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces LEFT with mouth x=-1mm; NO PoE extraction;3.3V only",
       "pad_centers_mm": [
         {
           "number": "J1.1",
           "net": "GND",
-          "x": 17.0,
-          "y": 72.0,
+          "x": 8.1,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": "GND",
-          "x": 17.0,
-          "y": 74.54,
+          "x": 10.64,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": "ETH_MOSI",
-          "x": 17.0,
-          "y": 77.08,
+          "x": 13.18,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": "ETH_SCK",
-          "x": 17.0,
-          "y": 79.62,
+          "x": 15.72,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": "ETH_CS",
-          "x": 17.0,
-          "y": 82.16,
+          "x": 18.26,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": "ETH_INT",
-          "x": 17.0,
-          "y": 84.7,
+          "x": 20.8,
+          "y": 85.0,
           "drill_mm": 1.1
         },
         {
           "number": "J2.1",
           "net": "GND",
-          "x": 37.32,
-          "y": 72.0,
+          "x": 8.1,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.2",
           "net": "+3V3",
-          "x": 37.32,
-          "y": 74.54,
+          "x": 10.64,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.3",
           "net": "+3V3",
-          "x": 37.32,
-          "y": 77.08,
+          "x": 13.18,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.4",
           "net": null,
-          "x": 37.32,
-          "y": 79.62,
+          "x": 15.72,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.5",
           "net": "ETH_RESET",
-          "x": 37.32,
-          "y": 82.16,
+          "x": 18.26,
+          "y": 64.68,
           "drill_mm": 1.1
         },
         {
           "number": "J2.6",
           "net": "ETH_MISO",
-          "x": 37.32,
-          "y": 84.7,
+          "x": 20.8,
+          "y": 64.68,
           "drill_mm": 1.1
         }
       ]

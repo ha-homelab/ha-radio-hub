@@ -1,7 +1,8 @@
 {
   "revision": "MC1",
+  "layout_revision": "RJ45-left-edge",
   "status": "engineering_prototype_not_fabrication_release",
-  "checked_at_utc": "2026-10-18T02:26:53.321854+00:00",
+  "checked_at_utc": "2026-10-18T02:31:47.002046+00:00",
   "kicad_version": "10.0.6",
   "board": {
     "width_mm": 160,
@@ -13,7 +14,7 @@
     "drc_violations": 0,
     "unconnected_items": 0,
     "schematic_parity_issues": 0,
-    "unit_tests_passed": 7
+    "unit_tests_passed": 9
   },
   "assembly": {
     "fitted_through_hole_references": 17,
@@ -24,10 +25,64 @@
     "female_sockets": 0,
     "carrier_smt_components": 0
   },
+  "rj45": {
+    "pcb_bounds_local_mm": [
+      -1.34,
+      -6.4,
+      21.66,
+      18.6
+    ],
+    "rj45_face_local_mm": [
+      [
+        2.11,
+        -9.1
+      ],
+      [
+        18.21,
+        -9.1
+      ]
+    ],
+    "rj45_outward_normal_local": [
+      0,
+      -1
+    ],
+    "service_corridor_global_mm": [
+      -36,
+      61,
+      1.7,
+      88
+    ],
+    "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
+    "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
+    "face_global_mm": [
+      [
+        -1.0,
+        82.89
+      ],
+      [
+        -1.0,
+        66.79
+      ]
+    ],
+    "outward_normal_global": [
+      -1.0,
+      -0.0
+    ],
+    "mouth_beyond_left_edge_mm": 1.0,
+    "pcb_bounds_global_mm": [
+      1.7,
+      63.34,
+      26.7,
+      86.34
+    ],
+    "face_width_mm": 16.1,
+    "opening_direction": "left / negative X"
+  },
   "limitations": [
     "Carrier assembled hardware untested; no fabrication authorization implied",
     "Exact factory male pin fit and installed-board revision must be physically checked",
     "USB cable shells and underside module components require clearance checks",
+    "RJ45 plug boot, latch, bend radius and enclosure wall clearance require a physical check; reserved service rectangle is an engineering allowance",
     "Power headroom, thermal behavior and I/O backpower isolation require bench verification",
     "External PoE splitter, 3.3V buck, WK2132 and peripheral harnesses are separate finished modules",
     "Antenna keepouts are geometric engineering provisions, not RF certification",
@@ -35,10 +90,15 @@
     "New WK2132 firmware path and radio coexistence require integration validation"
   ],
   "sha256": {
-    "mc1.kicad_pcb": "4f1212c357125ec8af6b329a3761bcc34dcf14eb5bff9f75ebb48233c33307a0",
+    "mc1.kicad_pcb": "66280405ca9c8d4144ea105c86d38104f921f97fb98ce5922702cdc2a23f2036",
     "mc1.kicad_sch": "0d3b6aa1c8d2a7f7fd4460c0119052c7ba7d5cc6e864dd6b67d66e7716c53af1",
-    "design.json": "458a25c99e5aa74623de77348c02ee56b4329ca853c27ead70223717b0dd5b35",
-    "routing/mc1.ses": "5d0abf4a2101e20b72f6113713ca76677517babcddc81be5b166fa1544165219",
-    "manual-route.json": "aa532d5c0b927ee3360dc15f8ab5bf55e3899d8ce9ecad25ec82156effc755ac"
+    "design.json": "ab60e23c6e5f2cefc959bb20b8dbb9a798592443a44b44a2bb3ac6a8c23fd38a",
+    "routing/mc1.ses": "e9a92b258e421e34dbee17a01383ff036675e300755177fbf1773006d35e22fc",
+    "manual-route.json": "f011a48c0596426400b00d7eb871c8ff8dc396d261d52a85e2bd90c7f51f9f1f",
+    "assembly-top.svg": "4df634a68b6e3816586da8f1f00cf2686df00136453c1abe6b2c6ae42d3b58f3",
+    "board-top.svg": "1d0095cb28b4fff1bf2781ca341968cb3cf8bfb5f818f8483ebda25d5c71d2fe",
+    "board-bottom.svg": "83f5b4315a7bcfcbb70801282a5649e40d96d360ff162e356ef57ef735e3b9b0",
+    "schematic.svg": "9bb0229f0a46af2d101f765b6b3044d5d964bb8296e8fa8b8d61b6c876c3eb33",
+    "schematic.pdf": "f3be33123758489056dfdc51326dc113e06aa541d12ed792569d8f92dacde1bc"
   }
 }

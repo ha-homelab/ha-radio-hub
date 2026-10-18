@@ -27,7 +27,7 @@ photograph of a manufactured board, a dimensioned assembly drawing or evidence o
 physical fit. Pin counts, copper, small markings and component details in the
 illustration are not engineering data. Use the native CAD and connector manifest.
 
-The [initial prompt](assembly-prompt.txt), [mechanical correction prompt](assembly-edit-prompt.txt), and [generation provenance](generated-image-provenance.json) accompany the illustration. It was made with the built-in image_gen tool. No
+The [initial prompt](assembly-prompt.txt), [mechanical correction prompt](assembly-edit-prompt.txt), [RJ45 edge correction](ethernet-edge-prompt.txt), and [generation provenance](generated-image-provenance.json) accompany the illustration. It was made with the built-in image_gen tool. No
 manufacturer photography is redistributed as project artwork.
 
 ## Screenshots
