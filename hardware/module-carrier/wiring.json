@@ -1,7 +1,7 @@
 {
   "revision": "MC1",
   "source": "cad/design.py",
-  "source_sha256": "7a49d0b55e406416f4023472038c45e163b6f520cab7172ee7bfc2297ad66d27",
+  "source_sha256": "f9adfe2c821d8ec43d3fbcf96dd9946ce943489fde13a8b6b060bb9d8c292318",
   "nets": {
     "THREAD_BOOT": [
       "U1.JP1.1",
@@ -286,10 +286,10 @@
       "fitted": true,
       "side": "front",
       "xy": [
-        18,
-        56.5
+        1.5,
+        58.3
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "xiao",
       "notes": "External UART PC06/PC07; CTS PC04 RTS PC05; USB probe preserved; 3V3 OUT NC"
     },
@@ -315,7 +315,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        28.84,
+        22.84,
         67.9
       ],
       "rotation": 0,
@@ -506,7 +506,7 @@
       "side": "back",
       "xy": [
         3,
-        51.5
+        50.8
       ],
       "rotation": 0,
       "source": "diode",
@@ -524,8 +524,8 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        17,
-        67
+        12.5,
+        65
       ],
       "rotation": 180,
       "source": "diode",

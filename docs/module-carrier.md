@@ -12,8 +12,9 @@ coexistence still need testing on the assembled carrier.
 
 ## Construction
 
-The carrier has a **51 × 75 mm main body and a 6 × 27 mm right mounting ear**.
-Its overall envelope is **57 mm horizontal × 75 mm vertical**, with two copper layers.
+The carrier is a **51 mm horizontal × 75 mm vertical rectangle**, with two copper layers.
+WIZ moves 6 mm toward the center and XIAO rotates; the former mounting ear is removed.
+Four mounting points remain, including one between U2 and U3.
 **Front / room-facing:** S3, H2 and MG24. **Back / ceiling-facing:** WIZ850io
 and all seven male harness headers, three axial diodes and two resistors. Factory male module pins enter plated holes
 and are soldered from the opposite face. There are **no female module sockets**.
@@ -42,8 +43,8 @@ The selected parts are:
 
 ## Compact placement and fabrication cost
 
-Actual PCB area is **39.87 cm²**, an **18.2% reduction** from the historical
-65 × 75 mm single-sided arrangement. It is 75.1% smaller than the original
+Actual PCB area is **38.25 cm²**, a **21.5% reduction** from the historical
+65 × 75 mm single-sided arrangement. It is 76.1% smaller than the original
 160 × 100 mm carrier. The fitted BOM remains sixteen items; no new electronics,
 female module sockets or intermediate boards are added.
 
@@ -151,14 +152,17 @@ not reserved and some physical recovery can require removing a module.
 ## Antennas, connectors and enclosure
 
 H2 and Nano face their antenna ends toward the top edge; MG24's antenna faces
-left. H2's nominal antenna projection is outside the carrier FR4. Copper exclusions
+the bottom edge. H2's nominal antenna projection is outside the carrier FR4. Copper exclusions
 remain on both layers. At MG24 only the necessary PC07 signal escape is allowed
 in a small, explicitly reviewed trace pocket beside the header; no extra pour or
 via is allowed there. It is not a manufacturer-certified carrier clearance.
 
 Keep harnesses, metal, foil and enclosure parts away from antenna ends. Ceiling
 mounting does not remove near-field interaction with the carrier or metal lath.
-Radio range and simultaneous operation must be tested in the intended enclosure.
+Rotating XIAO places its ceramic antenna roughly 6.1 mm from the WIZ PCB edge
+and 9.55 mm from the modeled jack side in plan view. These are distances, not
+validated RF clearances. Radio range and simultaneous operation must be tested
+in the intended enclosure; unchanged pin assignments do not establish unchanged range.
 
 WIZ850io occupies the lower region on the **ceiling-facing back**, with its
 RJ45 opening toward the edge. Backside drawings mirror the horizontal coordinates;
@@ -168,7 +172,7 @@ is retained because that cable is required in normal operation. Support the boar
 against insertion loads. Harness assumptions use narrow mating housings and
 vertical wire exits; check the purchased plugs and their bend height.
 
-The dimensions describe the PCB, not a 57 × 75 mm enclosure. Antenna overhang,
+The dimensions describe the PCB, not a 51 × 75 mm enclosure. Antenna overhang,
 RJ45, wires, solder joints and external modules require additional space. Use the
 [front assembly](../hardware/module-carrier/cad/assembly-top.svg),
 [back assembly](../hardware/module-carrier/cad/assembly-bottom.svg),
@@ -214,12 +218,16 @@ and 90°. Useful orientation follows connectivity and physical clearance rather
 than a requirement to align every component horizontally or vertically. The
 back-side assembly drawing mirrors these orientations as actually viewed.
 
-Measured native track centerline length changes from **1,942.52 to 1,748.96 mm
-(−9.96%)**, with **35 → 19 vias**. The H2 branch after D2 changes from 80.85 to
-17.82 mm and the XIAO branch after D3 from 69.70 to 5.15 mm. These are named-net
-lengths, not complete incoming-supply loops. Shared 5 V and 3.3 V networks become
-longer, as do the SPI MOSI/MISO/SCK networks by approximately 6.06/11.78/6.05 mm.
-No claim is made that every path improves or that the result is globally optimal.
+Relative to the immediately preceding ear layout, native track centerline length
+changes from **1,748.96 to 1,736.71 mm (−0.70%)**, with **19 → 18 vias**.
+The H2 branch after D2 changes from 17.82 to 17.12 mm; the XIAO branch after D3
+grows from 5.15 to 8.46 mm. Shared 5 V grows from 103.44 to 105.04 mm, while
+the peripheral 3.3 V network shortens from 144.41 to 115.44 mm.
+SPI MOSI/MISO/SCK totals change from 123.77/102.92/113.12 to
+103.36/102.91/107.94 mm; their via counts change from 0/2/1 to 1/3/0.
+These are complete named-net lengths, including branches, not complete supply
+loops or individual source-to-receiver distances. Shorter net length with an
+extra layer change is a tradeoff, not automatic signal-integrity improvement.
 All original trace-width and clearance rules remain in force.
 
 See the [full native measurements](../hardware/module-carrier/cad/routing-metrics.json)
@@ -229,21 +237,26 @@ route does not replace loaded-voltage, return-path or signal-integrity validatio
 
 ## Ethernet insertion load and mounting
 
-The earlier three-point arrangement put the nearest support approximately 24.5 mm
-from the RJ45 mouth center, with every support to its left. The current lower pair
-straddles the connector: **H3 (24.2, 72) and H4 (54, 72) mm**. Their support line is
-**5 mm behind the mouth at y = 77 mm**. H1 and H2 remain at (29.5, 8) and (29.5, 44).
-The small right mounting ear provides an accessible fourth hole; no screw is
-hidden under WIZ850io. Use all four supports. Moving XIAO upward by 1 mm creates
-clearance at H3 without removing its USB shell or antenna exclusions.
+The current support centers are **H1 (29.5, 8), H2 (29.5, 44),
+H3 (18, 52.03) and H4 (48, 72) mm** in the front-view coordinate system.
+H3 occupies the gap between U2 (H2) and U3 (XIAO); H4 is beside the Ethernet end.
+WIZ moves 6 mm left, with its mouth centered at **(33, 77) mm**. The rear view
+mirrors these coordinates. Use nylon M2.5 hardware with **at most 5 mm** body/head
+diameter; larger washers or heads require a new fit check.
 
-The ear adds **162 mm², or 4.24%**, to the previous 51 × 75 mm board. Its rectangular
-fabrication envelope grows by 11.76%, from 3,825 to 4,275 mm². Actual pricing may
-follow that envelope or panel utilization rather than net laminate area. An extra
-support is an intentional mechanical improvement, not a claim of a lower quote.
+The rectangle removes **162 mm² (4.1%)** of actual PCB area relative to the ear
+version and reduces the bounding fabrication rectangle by **10.5%**, from
+57 × 75 to 51 × 75 mm. This does not establish the price quoted by a fabricator.
+No additional electronic parts or female sockets are introduced.
 
-These dimensions improve the geometric support arrangement; they are not a
-measured stiffness or insertion-force rating. The PCB supports also do not bypass
+The two lower supports no longer form the previous horizontal row behind the
+jack. Moving WIZ inward permits a simpler outline and the requested gap support;
+it does **not** by itself prove equal or improved stiffness. The modeled gap
+around the H3 support is narrow (about 0.35 mm to the nearest reserved geometry),
+so use the specified hardware and verify purchased module dimensions.
+
+These dimensions describe support placement, not a measured stiffness or
+insertion-force rating. The PCB supports also do not bypass
 the WIZ module's soldered pin joints. For repeated connector use, provide a fitted
 insulating enclosure cradle/end-stop around the jack body and nearby cable strain
 relief. Establish its contacts from the actual WIZ module; do not clamp its small
@@ -273,8 +286,10 @@ numbers in the study are assumptions until the actual modules are measured.
 
 The [assembly study](../hardware/module-carrier/studies/two-sided/assembly-review.md)
 explains tail trimming, access to the second soldering face and ceiling height.
-Use the native CAD's access order, not a blanket “all modules first” sequence.
-Inspect and electrically test each joint before it becomes covered. Neither the
+The required order is **the complete back first, then the front**. Fit and solder
+WIZ850io, J1–J7 and all five axial parts from the front before fitting U1–U3.
+Inspect and electrically test those joints before they become covered. Then
+solder the front-module pins from the accessible rear side. Neither the
 factory headers nor the change of side makes short-circuit probability zero.
 
 Ceiling-side hardware needs insulating supports. Set the stand-off from the
@@ -288,8 +303,8 @@ for insertion and latch release; do not press the jack against plaster or metal.
    Program all three controllers while loose using the matching images.
 2. Temporarily connect and verify Ethernet, every function and each network update
    path. Confirm module shells, male headers, mating plugs and antenna clearance.
-3. Measure both-sided overlap clearances and dry-run the solder-access order.
-   Fit, solder, trim and inspect in that order; leave J8/J9 unpopulated. Read the
+3. Measure both-sided overlap clearances and dry-run rear-first solder access.
+   Complete, trim and inspect the entire back, then fit and solder front U1–U3; leave J8/J9 unpopulated. Read the
    back drawing as a mirrored physical view, not a new pin-number assignment.
 4. Measure the isolated 5 V, peripheral 3.3 V and controller rails under load.
 5. Commission each service, then test Thread, three BLE connections, Zigbee,

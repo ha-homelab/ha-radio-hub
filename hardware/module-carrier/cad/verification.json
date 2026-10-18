@@ -1,11 +1,11 @@
 {
   "revision": "MC1-Nano",
-  "layout_revision": "nano-flange-angled-passives",
+  "layout_revision": "nano-centered-rear-first",
   "status": "engineering_prototype_not_fabrication_release",
-  "checked_at_utc": "2026-10-18T04:44:02.761454+00:00",
+  "checked_at_utc": "2026-10-18T05:12:05.398024+00:00",
   "kicad_version": "10.0.6",
   "board": {
-    "width_mm": 57,
+    "width_mm": 51,
     "height_mm": 75,
     "outline_mm": [
       [
@@ -18,14 +18,6 @@
       ],
       [
         51,
-        48
-      ],
-      [
-        57,
-        48
-      ],
-      [
-        57,
         75
       ],
       [
@@ -33,7 +25,7 @@
         75
       ]
     ],
-    "area_mm2": 3987.0,
+    "area_mm2": 3825.0,
     "copper_layers": 2,
     "assembly": "Factory male pins directly soldered in PTH; no female sockets",
     "signal_track_mm": 0.25,
@@ -76,11 +68,12 @@
       "ceiling_clearance_above_tallest_rear_feature_mm": 5.0,
       "ceiling_standoff_required": "Measured tallest rear component/mated connector/wire bend height plus 5 mm; WIZ catalog18 mm datum is unspecified",
       "assembly_order": [
-        "Rear J1-J7 and D1/D3/R1/R2: solder from front, trim and inspect; D2 clear of front module bodies",
-        "Front U1-U3: insert, solder accessible rear rows, trim and inspect",
-        "Rear U4: solder from front; its front lands remain clear"
+        "All rear parts, including U4: solder from front, trim and inspect",
+        "Front U1-U3: insert, solder accessible rear rows, trim and inspect"
       ],
       "solder_access_halo_mm": 2.0,
+      "all_rear_parts_before_front": true,
+      "rear_first_scope": "All 13 fitted back parts including WIZ must be installed before the 3 front controller modules; every front solder land must remain accessible",
       "status": "Geometric prototype; D3 now lies under XIAO and requires its own local underside measurement; all Z dimensions and trimmed-tail fit require actual module measurement before assembly approval"
     },
     "rj45": {
@@ -105,20 +98,20 @@
         -1
       ],
       "service_corridor_global_mm": [
-        24,
+        18,
         77,
-        54,
+        48,
         113
       ],
       "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
       "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
       "face_global_mm": [
         [
-          30.95,
+          24.95,
           77.0
         ],
         [
-          47.05,
+          41.05,
           77.0
         ]
       ],
@@ -128,9 +121,9 @@
       ],
       "mouth_beyond_bottom_edge_mm": 2.0,
       "pcb_bounds_global_mm": [
-        27.5,
+        21.5,
         49.3,
-        50.5,
+        44.5,
         74.3
       ],
       "face_width_mm": 16.1,
@@ -151,10 +144,10 @@
         49.185
       ],
       "U3": [
-        20.921,
-        59.62,
-        23.921,
-        68.62
+        4.62,
+        52.379,
+        13.62,
+        55.379
       ]
     },
     "header_mating_envelopes_mm": {
@@ -227,36 +220,30 @@
         11.5
       ],
       [
-        0,
-        53.5,
-        1.2,
-        74
+        8.5,
+        71.3,
+        16.48,
+        75
       ],
       [
-        0,
-        63.5,
-        5,
-        71.48
+        16.48,
+        73.8,
+        17.5,
+        75
       ],
       [
-        0,
-        71.48,
-        2.5,
-        72.5
-      ],
-      [
-        3.8,
-        71.48,
-        5,
+        16.48,
+        71.3,
+        17.5,
         72.5
       ]
     ],
     "rf_pour_only_keepouts_mm": [
       [
-        2.5,
-        71.48,
-        3.8,
-        72.5
+        16.48,
+        72.5,
+        17.5,
+        73.8
       ]
     ],
     "mounting_holes_mm": [
@@ -269,18 +256,18 @@
         44
       ],
       [
-        24.2,
-        72
+        18,
+        52.03
       ],
       [
-        54,
+        48,
         72
       ]
     ],
     "mounting": {
       "drill_mm": 2.7,
       "hardware": "Four nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends",
-      "note": "Check enclosure support and RJ45 insertion load; H3 and H4 bracket the jack at y72; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."
+      "note": "Check enclosure support and RJ45 insertion load; H3 lies between H2 and XIAO; H4 supports the right side of the jack; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."
     },
     "service_envelope_basis": "Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."
   },
@@ -306,20 +293,20 @@
       -1
     ],
     "service_corridor_global_mm": [
-      24,
+      18,
       77,
-      54,
+      48,
       113
     ],
     "service_corridor_basis": "Engineering reservation for plug/boot/latch; verify actual cable and enclosure. Not a vendor dimension.",
     "evidence": "WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.",
     "face_global_mm": [
       [
-        30.95,
+        24.95,
         77.0
       ],
       [
-        47.05,
+        41.05,
         77.0
       ]
     ],
@@ -329,9 +316,9 @@
     ],
     "mouth_beyond_bottom_edge_mm": 2.0,
     "pcb_bounds_global_mm": [
-      27.5,
+      21.5,
       49.3,
-      50.5,
+      44.5,
       74.3
     ],
     "face_width_mm": 16.1,
@@ -351,24 +338,24 @@
     "USB connectors remain physically present, but postassembly cable insertion is intentionally not supported"
   ],
   "sha256": {
-    "mc1.kicad_pcb": "7f8296edb0317269f6b094847edeb91a2886d2e1fc220150be1a1db43755d6ea",
+    "mc1.kicad_pcb": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
     "mc1.kicad_pro": "ed4ef16d62e98b7f1c5fb023e68f5bfd08255ad03a1a72318790ae64a661ca39",
     "mc1.kicad_sch": "6f68a2e97da8d15943a6e1be25ceb3beb71b72989c6851d826bae8d1e722f3b6",
-    "design.json": "ddecb5edbc20ab4a8b3bb476f11965124e490f48361f9cebb92e28f0f5862271",
-    "routing/mc1.ses": "ca2557d70c603d6ff06a0fa98f1e2e8b5d126f29f1ab5ac488de6610b20ffc09",
-    "manual-route.json": "fb98b625c1d92200f65a58a0f62d1604a01c33b67df860de2f54edd2ee38d160",
-    "assembly-top.svg": "6e6b8e1fc9ffc6961791bdecd9ededd9e89d847f352227f7a1d8130e056460dd",
-    "assembly-bottom.svg": "20201b3846925186f430c3ec523f81406afd2c43735c1904619c3f1a55ab90e5",
-    "validate_drc.py": "767958b92d6b95523fb38d78de1e6b5a1455db5ce0d2b99517527e4c52b15310",
-    "checks/drc.json": "2a49cd79a32652674170df498a3ff3140bbc7ca702a16fde3c0bd5be5fe36428",
-    "checks/drc-classification.json": "50387a31b1c3a82852dcdac044a7c3d49c3a5ce74dffebc06b883b215881d395",
-    "board-top.svg": "04dbcff8b7ddb4ef70b672bd384dca9e244489dcf96fb99c364dda4dc2aaf999",
-    "board-bottom.svg": "ec4046376d84293c420ac4ceae4a17c63148ac2e67e99d5909f074e13f91dbb9",
-    "schematic.svg": "0405c5d5e35b2d7dc5e7156a3f687b9305e813097557c62ca4cfe897bf54e349",
-    "schematic.pdf": "b1d4c2eb49e1d9b2eb0e0787dee4bf4aa6903ed63d93b37eab06fbac646065ca",
+    "design.json": "3ec66d88aa3c61b0f6fb72e5d2c45840be7dddcc6e5587b213107c57966d3d68",
+    "routing/mc1.ses": "d21b93448420059240fa8e5fd6099a6504b3193a89411b7a052ffa255a974d66",
+    "manual-route.json": "80d910853726ab47cf6b6a3316173373df7ef227fd6d31cb5abd773a474afe3c",
+    "assembly-top.svg": "b617f349ce97547d07b4f50bacc6c28c6281e05832f3143c394a509a5c3fee3f",
+    "assembly-bottom.svg": "5ea85d3837dae6334233603317af0b3acebebe3e1bfb8269530d0c061a7fad9b",
+    "validate_drc.py": "0abb4020bdf7a7fba35c126f754bcef516ac721dc6241ff186127b97067ca424",
+    "checks/drc.json": "7b124317ca194257c03180875289970934f697c502a9e49d232946b40094f95a",
+    "checks/drc-classification.json": "1c039733c8e5cba321398f73667b8b216e0ecdcfc904d7779ba51c83861d8061",
+    "board-top.svg": "3c98d10c7fd056456bb6d3d827e2d0675cf3cab1e4cae44ebbb03726dd7f1e94",
+    "board-bottom.svg": "079809db5b766711650bfb91f8797817d74ba2745e2f11bb8a395f873e1be0d6",
+    "schematic.svg": "3ac623bc1ffff278f3d6a5f875b0105c4f1f444c7e0986f7b504bbe3433011c0",
+    "schematic.pdf": "04f03a2c457bc4e7448f641d7effe27afe7bc0a11259a8597a12dc45f86ffd70",
     "nano-pin-plan.json": "a4f0479d9ce86fc42bad8c8787a68706a9beb14b5ca8453ba4ca307c0fd2ca07",
     "h2-uart-isolation.svg": "27507afa36dd4033e9dbef07037a37500bec378ca7be01468d9ba272260b8ac0",
-    "routing-metrics.json": "5fd1e6ac77aec6779dbd0ecbed6057d89a4124c0e85ca6eadd8b2e1f6db416cb",
+    "routing-metrics.json": "3d1b13ab42b664b54d90f39cf018a0f8c793de8e0717294d2542ee9afd824d4b",
     "measure_routing.py": "b30046d04f989a32201a9eefa0c7978018f1726bc4ad58613b51b34c5ef6c008"
   }
 }

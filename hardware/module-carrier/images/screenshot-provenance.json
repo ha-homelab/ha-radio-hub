@@ -1,8 +1,8 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "layout_revision": "nano-flange-angled-passives",
-  "index_sha256": "a8da5ea6138f762ed5caa2cec7c9c5777ce08400309f386c5cb3aee5bba35726",
+  "layout_revision": "nano-centered-rear-first",
+  "index_sha256": "9f56bad0c597489e8310fb120012471e27da02e8c770ba5a1326e5200462f088",
   "viewport_width": 586,
   "page_scroll_width": 586,
   "images_loaded": 12,
@@ -19,41 +19,41 @@
     "viewport_width": 586
   },
   "screenshots": {
-    "ui-pcb.jpg": "112bdd64a74ef30925825229f747d3ace7d4c19d5d289e6b4fae70fed6fc6140",
-    "ui-assembly.jpg": "0cba851cba453492f389a03c75ed51c7dd0f0444d1307d1eb110c707919dc9bf",
-    "ui-wiring.jpg": "2d3d0fc7c2d608c534610aad52ff2c0daa6a06baac9f0247c29a933b2f2fa340",
+    "ui-pcb.jpg": "6ec8301db5dca73f4e51a72c2d34b5100e5b872cf5d7ee04814a89b3c903ceba",
+    "ui-assembly.jpg": "9fc95cf91229c142edcfbc266f4b885e50d6db4c484967585387cb830d9c20b4",
+    "ui-wiring.jpg": "dbd0f47440d009680d71fdc907ac94f65886a3846c7ceab8668f645ef16293a4",
     "ui-architecture.jpg": "9acb2bf12d98d048e89b9e7e07e8c6efbfb8c4e007385eb27257ee51ecb2e65c",
     "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5",
     "ui-updates.jpg": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2",
-    "ui-assembly-back.jpg": "ca46ec7790fdc81dff5ed723e2c7dabab8f8d18a61975c3580341639dddd9882",
-    "ui-comparison.jpg": "b93f3c4df354871c61dc3a51058d24afa5b41f625cdaf1b26145d40255bcb1a3",
-    "ui-stack.jpg": "3a0054c2e1294a20cd3c49dad7205338dd8e8d3e992da0d76f16efddf31ea72c",
-    "ui-mounting.jpg": "687e5993b74a1fb501691498004693d5717c3618a307f7e1242f47102c22019a",
-    "ui-routing.jpg": "d5c874cd9d374b3e31c3b7714ed23c650fc17bfa7be040a65d356b96d687544b"
+    "ui-assembly-back.jpg": "d64b5e9165827a06a0fc5fd2630c928d2de3ad6c8997cf491e7ab1c511b9e717",
+    "ui-comparison.jpg": "07242a0e3132957bed19db2d1a6ac206fc5b394255078a6def0971aa25c23cd9",
+    "ui-stack.jpg": "29de7e92eb1d139bb3e3e39e55c866975f1e3f4a5ba1f4558039847ddf32bc8f",
+    "ui-mounting.jpg": "2a4722e5dab8b17555b31e4c70b34c025b9a1b29dfbd9e19ab3b2b6097d58300",
+    "ui-routing.jpg": "1bfb6cf3ace7e466a9b9db464695f2656ec55509a104ad9ac22d6ba8b7a5ee5e"
   },
   "source_sha256": {
-    "cad/assembly-top.svg": "6e6b8e1fc9ffc6961791bdecd9ededd9e89d847f352227f7a1d8130e056460dd",
+    "cad/assembly-top.svg": "b617f349ce97547d07b4f50bacc6c28c6281e05832f3143c394a509a5c3fee3f",
     "architecture.svg": "f18cfa0a8e29ce45cd5623ebeab8b7c7422f8819d2f9173f7bc4110657985e82",
     "thread-recovery.svg": "f05b56daa4d2c2b55187d5d09c6d9930d37853f634505eefb02e512983c19334",
     "network-updates.svg": "a91a33093589e2d074e4ab0c888298dd9e8200526707cc908eaa51c15901b629",
-    "wiring.json": "3b249cb117666288645b570c17e6cc9dc9f73c888938dd0451382f0a210ff2d8",
-    "cad/assembly-bottom.svg": "20201b3846925186f430c3ec523f81406afd2c43735c1904619c3f1a55ab90e5",
-    "layout-comparison.svg": "354b1109fbdaf116d8b942355225df3480500257d8496e995d92b3e2b1634dfa",
-    "direct-solder.svg": "39bd7b5dcf592e61e70f9e112339035a4b51ba7321816531dd8466164d907a4c",
-    "studies/mounting-routing/mounting.svg": "a5a6364b239b0e3101f527a5fb58cffaf87db69d506bea2e6aa5e4331ea08475",
-    "routing-comparison.svg": "cbfbe29a00b829e6a3e36785b7155b44aeecabbe047acd29211d4e092aef066e"
+    "wiring.json": "d6d8498d581b93ed83d026d1fcbcd030222f9c763afdc635777f906e59b6b3a5",
+    "cad/assembly-bottom.svg": "5ea85d3837dae6334233603317af0b3acebebe3e1bfb8269530d0c061a7fad9b",
+    "layout-comparison.svg": "0c81acc1de5fd1e580815c0400d3439d5c34901391a00c8ad6a8c0bc5cd21bc9",
+    "direct-solder.svg": "c263538f8bd76f1bd95a2d7169cb337181c4d7b82f3f2974be6e6aea3dbe8e45",
+    "studies/mounting-routing/mounting.svg": "ce21669b30f5e9ed350959dce502908e589e41d9e0515259c484dd1f692e6a07",
+    "routing-comparison.svg": "3f7e26062de1dfb9577126c0a290ab5a9beeb4e2e2d2411d58fec4498a09326c"
   },
   "capture_notes": {
-    "ui-pcb.jpg": "Current flanged layout, 586 px native viewport, #pcb; no override.",
-    "ui-assembly.jpg": "Full-page final front assembly SVG with four supports; no viewport override.",
+    "ui-pcb.jpg": "Current rectangular 51 × 75 mm layout, 586 px native viewport, PCB section; no viewport override.",
+    "ui-assembly.jpg": "Final front assembly SVG, with vertical XIAO, four supports and corrected J8/J9 labels.",
     "ui-wiring.jpg": "586 px native viewport; THREAD_RX shows one of 31 nets; search restored.",
     "ui-architecture.jpg": "Retained screenshot; architecture SVG source hash unchanged.",
     "ui-recovery.jpg": "Retained screenshot of unchanged recovery SVG; source SHA256 unchanged.",
     "ui-updates.jpg": "Retained screenshot; network-updates SVG source hash unchanged.",
-    "ui-assembly-back.jpg": "Full-page final mirrored back assembly SVG with angled passives and right mounting ear.",
-    "ui-comparison.jpg": "Current true outline with actual-area calculation and oriented axial parts.",
-    "ui-stack.jpg": "Retained screenshot of unchanged qualitative stack SVG; source hash unchanged.",
-    "ui-mounting.jpg": "Full-page before/after support geometry; true front view.",
-    "ui-routing.jpg": "Full-page per-net routed-length comparison from current native board metrics."
+    "ui-assembly-back.jpg": "Final mirrored back assembly SVG with centered WIZ, male headers and all five axial parts.",
+    "ui-comparison.jpg": "Current no-ear rectangular layout and historical single-sided carrier at equal scale.",
+    "ui-stack.jpg": "Updated qualitative stack section explicitly states entire rear before front.",
+    "ui-mounting.jpg": "Full-page immediate ear baseline versus no-ear carrier; final native board hash and staggered supports.",
+    "ui-routing.jpg": "Full-page native route comparison with the immediate ear baseline."
   }
 }

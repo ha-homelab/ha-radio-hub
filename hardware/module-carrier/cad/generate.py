@@ -22,6 +22,7 @@ def module_fp(name,pads,rect,description):
     for num,x,y in pads:
         shape='rect' if num in ['J1.1','JP1.1','1'] else 'circle'
         lines.append(f'(pad {Q(num)} thru_hole {shape} (at {x} {y}) (size 1.8 1.8) (drill 1.1) (layers "*.Cu" "*.Mask"))')
+    if name=='XIAO_MG24':lines=[line.replace('(layer "F.SilkS")','(layer "F.Fab")') for line in lines]
     lines.append(')');(LOCAL/(name+'.kicad_mod')).write_text('\n'.join(lines)+'\n')
 module_fp('S3_Nano_M',[(f'JP1.{i+1}',0,i*2.54) for i in range(15)]+[(f'JP2.{15-i}',15.24,i*2.54) for i in range(15)],(-1.27,-3.81,16.51,39.37),'Waveshare official Nano dimension and pinmap;15.24mm rowspacing;2.54 pitch;3.81mm first signal hole offset;factory male Nano-M; direct solder')
 module_fp('H2_DevKitM1',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J3',22.86)] for i in range(15)],(-1.27,-1.575,24.13,46.685),'Official Espressif v1.2 dimension PDF;22.86 rowspacing;2.54 pitch;antenna extends5.4mm beyond PCBtop;direct factory male headers')
@@ -113,7 +114,7 @@ for i,(x,y) in enumerate(MOUNT_HOLES,1):
     pd=pcb.PAD(fp);pd.SetAttribute(pcb.PAD_ATTRIB_NPTH);pd.SetShape(pcb.PAD_SHAPE_CIRCLE);pd.SetSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetDrillSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetLayerSet(pcb.LSET.AllCuMask());fp.Add(pd);board.Add(fp)
 for txt,x,y,size in [('MC1 NANO',29.5,33,.8),(f'{BOARD_W} x {BOARD_H}',29.5,36,.8)]:
     t=pcb.PCB_TEXT(board);t.SetText(txt);t.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(size),pcb.FromMM(size)));t.SetTextThickness(pcb.FromMM(.13));t.SetLayer(pcb.F_SilkS);board.Add(t)
-# RF exclusions: Nano/H2 at the top edge; XIAO at the left edge.
+# RF exclusions: Nano/H2 at the top edge; XIAO at the bottom edge.
 # Inter-row exclusions reach the edge without trapping the connected pads.
 for bounds in RF_KEEPOUTS:
     zone=pcb.ZONE(board);zone.SetIsRuleArea(True);zone.SetLayerSet(pcb.LSET.AllCuMask());zone.SetDoNotAllowZoneFills(True);zone.SetDoNotAllowTracks(True);zone.SetDoNotAllowVias(True);zone.SetDoNotAllowPads(False);zone.SetDoNotAllowFootprints(False)
@@ -180,8 +181,10 @@ stack={
  'seating':'Factory header plastic seated normally; do not assume its height. Reject/adjust assembly if measured clearance fails; no floating unspaced modules.',
  'ceiling_clearance_above_tallest_rear_feature_mm':5.0,
  'ceiling_standoff_required':'Measured tallest rear component/mated connector/wire bend height plus 5 mm; WIZ catalog18 mm datum is unspecified',
- 'assembly_order':['Rear J1-J7 and D1/D3/R1/R2: solder from front, trim and inspect; D2 clear of front module bodies','Front U1-U3: insert, solder accessible rear rows, trim and inspect','Rear U4: solder from front; its front lands remain clear'],
+ 'assembly_order':['All rear parts, including U4: solder from front, trim and inspect','Front U1-U3: insert, solder accessible rear rows, trim and inspect'],
  'solder_access_halo_mm':2.0,
+ 'all_rear_parts_before_front':True,
+ 'rear_first_scope':'All 13 fitted back parts including WIZ must be installed before the 3 front controller modules; every front solder land must remain accessible',
  'status':'Geometric prototype; D3 now lies under XIAO and requires its own local underside measurement; all Z dimensions and trimmed-tail fit require actual module measurement before assembly approval'
 }
 physical_shells={}
@@ -189,7 +192,7 @@ for ref,box in USB_SOCKET_BOUNDS_LOCAL.items():
     p=next(p for p in ledger if p['ref']==ref);theta=math.radians(p['rotation']);cx,cy=p['xy'];pts=[]
     for x,y in [(box[0],box[1]),(box[2],box[3])]:pts.append((cx+x*math.cos(theta)+y*math.sin(theta),cy-x*math.sin(theta)+y*math.cos(theta)))
     physical_shells[ref]=[round(min(v[0] for v in pts),4),round(min(v[1] for v in pts),4),round(max(v[0] for v in pts),4),round(max(v[1] for v in pts),4)]
-metadata=dict(schema_version=1,revision='MC1-Nano',status='engineering_prototype_not_fabrication_release',layout_revision='nano-flange-angled-passives',assembly_prerequisites=['Remove H2 USB-UART TX series R7 before soldering module; v1.3 470ohm; verify exact board revision and continuity. H2 RCP and ROM use RX23/TX24.','Initial programming before assembly; no postassembly USB insertion access is reserved.'],board=dict(width_mm=BOARD_W,height_mm=BOARD_H,outline_mm=BOARD_OUTLINE,area_mm2=abs(sum(a[0]*b[1]-b[0]*a[1] for a,b in zip(BOARD_OUTLINE,BOARD_OUTLINE[1:]+BOARD_OUTLINE[:1])))/2,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"stack":stack,"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"physical_usb_shells_mm":physical_shells,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"rf_pour_only_keepouts_mm":RF_POUR_ONLY_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting":{"drill_mm":2.7,"hardware":"Four nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends", "note":"Check enclosure support and RJ45 insertion load; H3 and H4 bracket the jack at y72; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."},parts=ledger)
+metadata=dict(schema_version=1,revision='MC1-Nano',status='engineering_prototype_not_fabrication_release',layout_revision='nano-centered-rear-first',assembly_prerequisites=['Remove H2 USB-UART TX series R7 before soldering module; v1.3 470ohm; verify exact board revision and continuity. H2 RCP and ROM use RX23/TX24.','Initial programming before assembly; no postassembly USB insertion access is reserved.'],board=dict(width_mm=BOARD_W,height_mm=BOARD_H,outline_mm=BOARD_OUTLINE,area_mm2=abs(sum(a[0]*b[1]-b[0]*a[1] for a,b in zip(BOARD_OUTLINE,BOARD_OUTLINE[1:]+BOARD_OUTLINE[:1])))/2,copper_layers=2,assembly='Factory male pins directly soldered in PTH; no female sockets',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={"stack":stack,"rj45":rj45,"usb_service_envelopes_mm":USB_ENVELOPES,"physical_usb_shells_mm":physical_shells,"header_mating_envelopes_mm":headers,"rf_copper_keepouts_mm":RF_KEEPOUTS,"rf_pour_only_keepouts_mm":RF_POUR_ONLY_KEEPOUTS,"mounting_holes_mm":MOUNT_HOLES,"mounting":{"drill_mm":2.7,"hardware":"Four nylon M2.5 standoffs, 5mm maximum body diameter; no metal near antenna ends", "note":"Check enclosure support and RJ45 insertion load; H3 lies between H2 and XIAO; H4 supports the right side of the jack; add an enclosure jack cradle/end-stop to bypass header-joint insertion load."},"service_envelope_basis":"Engineering allowance: 5.5mm header housing width, 3.5mm beyond pin span total; No USB insertion/cable allowance. Physical shell extensions retained: Nano2mm, H2 1mm, XIAO3mm. Verify actual module shells and vertical harness exits."},parts=ledger)
 (ROOT/'design.json').write_text(json.dumps(metadata,indent=2)+'\n');(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC1-Nano',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
 with (ROOT/'BOM.csv').open('w',newline='') as f:
     w=csv.writer(f);w.writerow(['Reference','Quantity','Fitted','Part / module','Carrier footprint','Side','Assembly note','Source']);

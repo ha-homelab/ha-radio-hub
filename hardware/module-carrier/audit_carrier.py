@@ -27,6 +27,12 @@ SOURCES = {
 }
 REAR_REFS = {"U4", *(f"J{i}" for i in range(1, 8)), "D1", "D2", "D3", "R1", "R2"}
 SOLDER_ACCESS_RADIUS_MM = 2.0
+MIN_COPPER_EDGE_CLEARANCE_MM = 0.5
+USB_SHELL_BOUNDS = {
+    "U1": [2, -5.81, 13.24, -3.81],
+    "U2": [-1.27, 46.685, 24.13, 47.685],
+    "U3": [3.12, -5.921, 12.12, -2.921],
+}
 
 
 def sexpr(text):
@@ -82,6 +88,7 @@ def read_board(path):
                 raise ValueError(f"Duplicate {ref}.{number}")
             pads[number] = {
                 "kind": p[2], "at": list(map(float, one(p, "at")[:2])),
+                "shape": p[3], "angle": float(one(p, "at")[2]) if len(one(p, "at")) > 2 else 0.0,
                 "size": list(map(float, one(p, "size"))),
                 "drill": float(one(p, "drill")[0]),
                 "net": (one(p, "net") or [""])[-1],
@@ -174,9 +181,20 @@ def audit_pad_containment(parts, bounds, outline=None):
             if min(gx-radius-bounds[0], gy-radius-bounds[1],
                    bounds[2]-gx-radius, bounds[3]-gy-radius) < -0.001:
                 errors.append(f"{ref}:{number} copper pad extends beyond board edge")
-            if outline is not None and (point_polygon_distance((gx,gy),outline) > 0.001 or
-                                         polygon_boundary_distance((gx,gy),outline) < radius-0.001):
-                errors.append(f"{ref}:{number} copper pad crosses actual native outline")
+            if outline is not None:
+                if p.get("shape") == "circle":
+                    gap = polygon_boundary_distance((gx,gy),outline)-radius
+                    inside = point_polygon_distance((gx,gy),outline) <= 0.001
+                else:
+                    # Bounding rectangle is conservative for roundrect/oval pads.
+                    halfx,halfy = (v/2 for v in p["size"])
+                    poly = transformed_rectangle({"at":[gx,gy,p.get("angle",0)],"layer":"F.Cu"},
+                                                 [-halfx,-halfy,halfx,halfy])
+                    inside = all(point_polygon_distance(q,outline) <= 0.001 for q in poly)
+                    gap = min(*(polygon_boundary_distance(q,outline) for q in poly),
+                              *(point_polygon_distance(q,poly) for q in outline))
+                if not inside or gap < MIN_COPPER_EDGE_CLEARANCE_MM-0.001:
+                    errors.append(f"{ref}:{number} copper violates actual outline/{MIN_COPPER_EDGE_CLEARANCE_MM:g}mm edge clearance")
     if outline is not None:
         for ref, fp in parts.items():
             if ref in PIN_SETS or not fp["pads"] or not all(p["kind"] == "np_thru_hole" for p in fp["pads"].values()):
@@ -304,11 +322,7 @@ def audit_fitted_envelopes(parts):
             continue
         polygons[ref] = courtyard_polygon(fp)
         sides[ref] = fp["layer"]
-    for ref, bounds in {
-        "U1": [2, -5.81, 13.24, -3.81],
-        "U2": [-1.27, 46.685, 24.13, 47.685],
-        "U3": [3.12, -5.921, 12.12, -2.921],
-    }.items():
+    for ref, bounds in USB_SHELL_BOUNDS.items():
         if ref not in parts:
             continue
         shell = transformed_rectangle(parts[ref], bounds, canonical=True)
@@ -409,28 +423,41 @@ def expected_xy(ref, number):
 
 
 def assembly_access(parts):
-    """Conservative solder-order graph, plus overlaps needing physical Z checks.
+    """Check explicit rear-first assembly, including shell/housing projections.
 
-    A -> B means solder A before installing B, because B would hide A's
-    opposite-side solder point. Acyclicity is necessary, not sufficient: this
-    cannot establish delivered pin lengths or underside component heights.
+    A -> B means solder A before installing B. Any front -> rear dependency
+    violates the required sequence even when the graph is acyclic. This is a
+    plan-view access test; tails and underside parts still need measured Z.
     """
-    polygons, fitted = {}, {r: p for r, p in parts.items() if r in PIN_SETS and not p["dnp"]}
+    fitted = {r: p for r, p in parts.items() if r in PIN_SETS and not p["dnp"]}
+    bodies = {r: courtyard_polygon(p) for r,p in fitted.items() if p["courtyard_local_points"]}
+    obstacles = [(r, "courtyard", poly) for r,poly in bodies.items()]
+    for r, bounds in USB_SHELL_BOUNDS.items():
+        if r in fitted:
+            obstacles.append((r, "physical USB shell", transformed_rectangle(fitted[r], bounds, canonical=True)))
+    for r in (f"J{i}" for i in range(1,8)):
+        if r in fitted:
+            n = len(fitted[r]["pads"])
+            obstacles.append((r, "mating housing", transformed_rectangle(fitted[r],
+                [-2.75,-1.75,2.75,(n-1)*2.54+1.75], canonical=True)))
+    edges, overlaps, blockers, usb_projections = set(), [], [], []
     for ref, fp in fitted.items():
-        if fp["courtyard_local_points"]:
-            polygons[ref] = courtyard_polygon(fp)
-    edges, overlaps = set(), []
-    for ref, fp in fitted.items():
-        for other, polygon in polygons.items():
+        for other, polygon in bodies.items():
+            if (ref < other and fp["layer"] != fitted[other]["layer"] and ref in bodies
+                    and polygons_overlap(bodies[ref], polygon)):
+                overlaps.append([ref, other])
+        for other, source, polygon in obstacles:
             if fp["layer"] == fitted[other]["layer"]:
                 continue
-            if ref < other and ref in polygons and polygons_overlap(polygons[ref], polygon):
-                overlaps.append([ref, other])
-            for pad in fp["pads"].values():
+            for pin, pad in fp["pads"].items():
                 xy = transform_points(fp, [pad["at"]])[0]
-                if point_polygon_distance(xy, polygon) < SOLDER_ACCESS_RADIUS_MM:
+                distance = point_polygon_distance(xy, polygon)
+                if distance < SOLDER_ACCESS_RADIUS_MM:
                     edges.add((ref, other))
-                    break
+                    blockers.append({"solder_ref":ref,"pin":pin,"install_later":other,
+                                     "obstacle":source,"clearance_mm":round(distance,4)})
+                if source == "physical USB shell" and distance < max(pad["size"])/2:
+                    usb_projections.append({"solder_ref":ref,"pin":pin,"shell_ref":other})
     remaining, order = set(fitted), []
     while remaining:
         ready = sorted((r for r in remaining if not any(b == r and a in remaining for a, b in edges)),
@@ -441,14 +468,24 @@ def assembly_access(parts):
     errors = []
     if remaining:
         errors.append("Cyclic opposite-side solder access: " + ", ".join(sorted(remaining)))
+    front_blockers = [b for b in blockers if fitted[b["solder_ref"]]["layer"] == "F.Cu"]
+    if front_blockers:
+        errors.append("Rear-first assembly hides front solder lands: " + ", ".join(sorted(
+            {b["solder_ref"]+":"+b["pin"]+" under "+b["install_later"] for b in front_blockers})))
+    fixed_order = sorted(r for r,p in fitted.items() if p["layer"] == "B.Cu") + sorted(
+        r for r,p in fitted.items() if p["layer"] == "F.Cu")
     return errors, {"solder_access_radius_mm": SOLDER_ACCESS_RADIUS_MM,
+                    "required_assembly_order": "All fitted rear parts, including WIZ, then all front controllers",
                     "solder_before_install_edges": [list(e) for e in sorted(edges)],
-                    "candidate_solder_order": order,
+                    "candidate_solder_order": fixed_order,
                     "cycle_members": sorted(remaining),
+                    "front_lands_blocked_by_fitted_rear_parts": front_blockers,
+                    "usb_shell_solder_copper_projections_requiring_z_check": usb_projections,
+                    "obstacles_checked": "Native courtyards, physical USB shells and fitted harness housings",
                     "opposite_side_body_overlaps_requiring_measured_z_clearance": overlaps,
                     "minimum_measured_conductor_clearance_mm": 1.0,
                     "z_qualified": False,
-                    "limitation": "Requires measured tail/solder height, module standoff and underside components; an acyclic graph does not prove physical fit."}
+                    "limitation": "Rear-first access does not prove delivered tail length, module spacing, underside clearance or physical fit."}
 
 
 def audit_rf_bodies(parts):
@@ -677,6 +714,33 @@ def geometry_regressions(parts):
     support = next(r for r in bad if r not in PIN_SETS)
     bad[support]["at"] = [54,49,0]
     result["support_crossing_flange_step_rejected"] = any(support in e for e in audit_pad_containment(bad,[0,0,57,75],concave))
+    bad = copy.deepcopy(parts)
+    bad["U3"]["at"] = [1.27,58.3,0]
+    result["inside_pad_with_insufficient_edge_clearance_rejected"] = any(
+        "U3" in e for e in audit_pad_containment(bad,[0,0,51,75],[(0,0),(51,0),(51,75),(0,75)]))
+
+    # An acyclic graph may still require a front part before a rear part.
+    bad = copy.deepcopy(parts)
+    x,y = transform_points(bad["U3"], [bad["U3"]["pads"]["1"]["at"]])[0]
+    rx,ry,*angles = bad["R2"]["at"]; angle = math.radians(angles[0] if angles else 0)
+    bad["R2"]["courtyard_local_points"] = [
+        [(gx-rx)*math.cos(angle)-(gy-ry)*math.sin(angle),
+         (gx-rx)*math.sin(angle)+(gy-ry)*math.cos(angle)]
+        for gx,gy in ((x-1,y-1),(x+1,y-1),(x+1,y+1),(x-1,y+1))]
+    access_errors, access = assembly_access(bad)
+    result["rear_first_rejects_acyclic_sequence"] = not access["cycle_members"] and any(
+        "Rear-first" in e for e in access_errors)
+
+    fixture = {r:copy.deepcopy(parts[r]) for r in ("U3","D2")}
+    shell = transformed_rectangle(fixture["U3"],USB_SHELL_BOUNDS["U3"],canonical=True)
+    point = (sum(q[0] for q in shell)/4, min(q[1] for q in shell)+0.1)
+    fixture["D2"]["at"] = [*point,0]
+    _,access = assembly_access(fixture)
+    result["usb_shell_outside_courtyard_creates_dependency"] = (
+        point_polygon_distance(point,courtyard_polygon(fixture["U3"])) > SOLDER_ACCESS_RADIUS_MM
+        and ["D2","U3"] in access["solder_before_install_edges"])
+    result["usb_shell_records_solder_projection_z_gate"] = bool(
+        access["usb_shell_solder_copper_projections_requiring_z_check"])
     return result
 
 

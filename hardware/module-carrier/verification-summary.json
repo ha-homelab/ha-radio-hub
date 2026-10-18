@@ -1,34 +1,34 @@
 {
   "revision": "MC1-Nano",
   "date": "2026-10-17",
-  "layout_revision": "nano-flange-angled-passives",
+  "layout_revision": "nano-centered-rear-first",
   "status": "CAD prototype verified with classified mechanical overlaps; physical height and hardware qualification outstanding",
   "hardware_tested": false,
   "checks": [
     {
       "check": "Carrier area and function preservation",
-      "result": "51 \u00d7 75 mm body + 6 \u00d7 27 mm mounting ear; 57 \u00d7 75 mm envelope; 3,987 mm\u00b2 area",
-      "scope": "Four supports, with the lower pair straddling RJ45. Laminate +4.24% versus the previous two-sided board; bounding rectangle +11.76%. Every pin assignment, seven functions, two copper layers and sixteen fitted electronic items retained."
+      "result": "51 × 75 mm rectangular carrier; 3,825 mm²; four mounting points without an ear",
+      "scope": "WIZ moves 6 mm inward and XIAO rotates. Actual area −4.06% and bounding rectangle −10.53% versus the ear version. Every pin assignment, seven functions, two copper layers and sixteen fitted electronic items retained. No quoted-price claim."
     },
     {
       "check": "Native KiCad 10.0.6 ERC / DRC",
       "result": "ERC 0; raw DRC 41, exactly classified 41, unclassified 0; unrouted 0; parity 0",
-      "scope": "33 rear-header pads beneath H2, six axial pads beneath S3, two D3 pads beneath XIAO; exact native classification preserves the raw report. Clean generator/SES/manual-route reconstruction agrees. Physical height and solder quality remain unqualified."
+      "scope": "33 rear-header pads beneath H2, six axial pads beneath S3, two D3 pads beneath XIAO; exact native classification preserves the raw report. Clean generator/SES/manual-route reconstruction agrees. Physical height remains unqualified."
     },
     {
       "check": "Mechanical and electrical CAD checks",
-      "result": "24 CAD tests and 31 independent mutation tests; 133 pads and 31 net groups audited",
-      "scope": "True outline polygon, arbitrary-angle courtyards, native mirrored pads, four accessible supports, physical housings, RF exclusions and acyclic solder access checked. Residual gap \u22651 mm still requires real measurements, including D3 beneath XIAO. No stiffness rating is claimed."
+      "result": "24 CAD tests and 35 independent mutation tests; 133 pads and 31 net groups audited",
+      "scope": "All thirteen rear parts before three front modules: no blocked front solder lands with a 2 mm access halo, physical USB shells and harness housings included. Copper-to-edge, support envelopes and RF exclusions checked. Residual gap ≥1 mm requires measurement; no stiffness or RF-range equivalence is claimed."
     },
     {
       "check": "Measured routing comparison",
-      "result": "1,942.5231 \u2192 1,748.9646 mm (\u22129.964%); 35 \u2192 19 vias",
-      "scope": "Explicit native track centerlines, excluding pours and internal/external wiring. Individual SPI and common supply nets become longer. Power branch routes and several peripheral nets shorten. No global-optimum or electrical-performance claim."
+      "result": "1,748.9646 → 1,736.7132 mm (−0.70%); 19 → 18 vias",
+      "scope": "Immediate ear-version comparison. Native track centerlines exclude pours and internal/external wiring. XIAO supply and shared 5 V become longer; 3.3 V and MOSI/SCK shorten. MOSI/MISO add vias. No global-optimum or electrical-performance claim."
     },
     {
       "check": "CAD / firmware interface contracts",
       "result": "15 contract tests passed",
-      "scope": "Every pin assignment identical to the saved 65 \u00d7 75 mm ledger; explicit front/back and no-socket checks. Existing shared SPI, three UARTs, flow control, power isolation and H2 ROM UART23/24 retained."
+      "scope": "Every pin assignment identical to the saved 65 × 75 mm ledger; explicit front/back and no-socket checks. Existing shared SPI, three UARTs, flow control, power isolation and H2 ROM UART23/24 retained."
     },
     {
       "check": "Complete S3 firmware",
@@ -53,7 +53,7 @@
     {
       "check": "Images and diagrams",
       "result": "Native front/back assembly and copper, support comparison, routing chart and stack section",
-      "scope": "Current true-outline and angled-component views regenerated. The previous three-support board is preserved as the reproducible routing baseline. Illustrations do not constitute measured vertical fit or connector-force qualification."
+      "scope": "Current rectangle, centered WIZ, rotated XIAO and four-support views regenerated. Ear and earlier three-support layouts are preserved as historical baselines. Drawings do not establish measured vertical fit, connector-force capacity or unchanged RF performance."
     }
   ],
   "evidence_files": [

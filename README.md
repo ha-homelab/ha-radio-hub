@@ -17,9 +17,10 @@ Start with the [English assembly guide](docs/module-carrier.md), the
 
 ## One board to assemble
 
-The carrier has a **57 × 75 mm overall envelope, with two copper layers**:
-a 51 × 75 mm body plus a small fourth-support ear beside Ethernet. Actual area is
-18.2% below the historical 65 × 75 mm single-sided carrier. It uses a factory-header
+The carrier is a **51 × 75 mm rectangle with two copper layers**.
+WIZ850io moves toward the center and XIAO rotates to remove the mounting ear,
+while retaining four supports. Actual area is 21.5% below the historical
+65 × 75 mm single-sided carrier. It uses a factory-header
 **S3-Nano-M with 16 MB flash and 8 MB PSRAM**, shared Ethernet/CC1101 SPI and the
 same dedicated Thread and Zigbee radios. Initial programming is done before soldering;
 USB cable corridors are removed, while physical connector bodies remain accounted for.
@@ -30,8 +31,8 @@ and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fa
 
 Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
 **Male pins go directly into plated holes and are soldered on the opposite face.
-No female module sockets; no castellated-side soldering.** A checked assembly
-order and measured clearance prevent opposing leads from touching module undersides. The power converter, UART bridge,
+No female module sockets; no castellated-side soldering.** Solder the entire back first, including WIZ, then fit the front controllers.
+Check measured clearance to prevent opposing leads from touching module undersides. The power converter, UART bridge,
 existing radios and sensors are finished modules with documented connections.
 
 The H2 DevKitM-1 v1.3 needs one preparation step: remove R7 to isolate its USB-UART

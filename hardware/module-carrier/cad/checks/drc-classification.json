@@ -32,8 +32,8 @@
       "pad_number": "1",
       "front_body_ref": "U3",
       "position_mm": [
-        17.0,
-        67.0
+        12.5,
+        65.0
       ]
     },
     {
@@ -41,8 +41,8 @@
       "pad_number": "2",
       "front_body_ref": "U3",
       "position_mm": [
-        9.38,
-        67.0
+        4.88,
+        65.0
       ]
     },
     {

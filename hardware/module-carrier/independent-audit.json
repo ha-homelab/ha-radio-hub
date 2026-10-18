@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-18T04:47:22.903577+00:00",
+  "checked_at_utc": "2026-10-18T05:12:15.740124+00:00",
   "board": "mc1.kicad_pcb",
-  "board_sha256": "7f8296edb0317269f6b094847edeb91a2886d2e1fc220150be1a1db43755d6ea",
-  "audit_script_sha256": "40e80ba5364cebc909728683dc9f6dba85434efb2872da801eb30980df18830d",
+  "board_sha256": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
+  "audit_script_sha256": "fe63f54429a8ec687a4ab5a41da51d012ff15f39699907adca20f649bb94fc77",
   "manufacturer_sources": {
     "nano": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
     "h2": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
@@ -17,10 +17,19 @@
   },
   "assembly_access": {
     "solder_access_radius_mm": 2.0,
+    "required_assembly_order": "All fitted rear parts, including WIZ, then all front controllers",
     "solder_before_install_edges": [
       [
         "D1",
         "U1"
+      ],
+      [
+        "D2",
+        "U2"
+      ],
+      [
+        "D2",
+        "U3"
       ],
       [
         "D3",
@@ -82,9 +91,20 @@
       "U3"
     ],
     "cycle_members": [],
+    "front_lands_blocked_by_fitted_rear_parts": [],
+    "usb_shell_solder_copper_projections_requiring_z_check": [],
+    "obstacles_checked": "Native courtyards, physical USB shells and fitted harness housings",
     "opposite_side_body_overlaps_requiring_measured_z_clearance": [
       [
-        "J4",
+        "R2",
+        "U1"
+      ],
+      [
+        "D3",
+        "U3"
+      ],
+      [
+        "J3",
         "U2"
       ],
       [
@@ -100,19 +120,11 @@
         "U1"
       ],
       [
-        "J3",
-        "U2"
-      ],
-      [
         "J6",
         "U2"
       ],
       [
-        "D3",
-        "U3"
-      ],
-      [
-        "J1",
+        "J4",
         "U2"
       ],
       [
@@ -120,8 +132,8 @@
         "U2"
       ],
       [
-        "R2",
-        "U1"
+        "J1",
+        "U2"
       ],
       [
         "J5",
@@ -130,13 +142,13 @@
     ],
     "minimum_measured_conductor_clearance_mm": 1.0,
     "z_qualified": false,
-    "limitation": "Requires measured tail/solder height, module standoff and underside components; an acyclic graph does not prove physical fit."
+    "limitation": "Rear-first access does not prove delivered tail length, module spacing, underside clearance or physical fit."
   },
   "expected_pads": 133,
   "native_board_bounds_mm": [
     0.0,
     0.0,
-    57.0,
+    51.0,
     75.0
   ],
   "native_board_outline_mm": [
@@ -150,14 +162,6 @@
     ],
     [
       51.0,
-      48.0
-    ],
-    [
-      57.0,
-      48.0
-    ],
-    [
-      57.0,
       75.0
     ],
     [
@@ -165,23 +169,23 @@
       75.0
     ]
   ],
-  "native_board_area_mm2": 3987.0,
+  "native_board_area_mm2": 3825.0,
   "native_support_centers_mm": {
+    "H3": [
+      18.0,
+      52.03
+    ],
     "H1": [
       29.5,
       8.0
     ],
-    "H3": [
-      24.2,
+    "H4": [
+      48.0,
       72.0
     ],
     "H2": [
       29.5,
       44.0
-    ],
-    "H4": [
-      54.0,
-      72.0
     ]
   },
   "connected_endpoint_groups": 31,
@@ -196,8 +200,8 @@
     "unclassified_violations": 0
   },
   "native_report_sha256": {
-    "checks/drc.json": "2a49cd79a32652674170df498a3ff3140bbc7ca702a16fde3c0bd5be5fe36428",
-    "checks/erc.json": "f5b87af3efb992dc5fa0953168e511e28431e2d6a8e3254ed3b1ad44b34fdcf1"
+    "checks/drc.json": "7b124317ca194257c03180875289970934f697c502a9e49d232946b40094f95a",
+    "checks/erc.json": "b9db6ebd345359c5bc5d47d577b081fdc7ea0a673463ee08477c5e295448ec93"
   },
   "drc_classification": {
     "native_findings": 41,
@@ -232,6 +236,10 @@
     "diagonal_parts_actual_collision_rejected": true,
     "pad_in_missing_flange_bbox_rejected": true,
     "support_crossing_flange_step_rejected": true,
+    "inside_pad_with_insufficient_edge_clearance_rejected": true,
+    "rear_first_rejects_acyclic_sequence": true,
+    "usb_shell_outside_courtyard_creates_dependency": true,
+    "usb_shell_records_solder_projection_z_gate": true,
     "drc_other_type_not_excused": true,
     "drc_missing_expected_pair": true,
     "drc_wrong_body_not_excused": true,

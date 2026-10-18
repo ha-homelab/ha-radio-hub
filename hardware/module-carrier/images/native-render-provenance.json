@@ -1,11 +1,11 @@
 {
   "source": "hardware/module-carrier/cad/mc1.kicad_pcb",
-  "board_sha256": "7f8296edb0317269f6b094847edeb91a2886d2e1fc220150be1a1db43755d6ea",
+  "board_sha256": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
   "kicad_version": "10.0.6",
   "representation": "Native PCB render, not a physical assembly photograph",
   "images": {
     "mc1-board-top.png": {
-      "sha256": "42e000f1aa7447d029f5a320c311316cbb914927d9752224e8642541fc682b31",
+      "sha256": "bd5aac53a5a570d4635c4c230ddee41487c5ebab12856795594b89c7d9fb0b65",
       "dimensions_px": [
         1568,
         1040
@@ -29,7 +29,7 @@
       ]
     },
     "mc1-board-bottom.png": {
-      "sha256": "3f97c282becc03f484649a502b0107b42a19ae6ec22bebd720b09e8d457a195e",
+      "sha256": "544737f9d589be31dd75186f5a0e2f28a4c859501fa977625000c620b4defcb2",
       "dimensions_px": [
         1568,
         1040

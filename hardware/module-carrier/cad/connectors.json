@@ -568,10 +568,10 @@
       "fitted": true,
       "side": "front",
       "xy": [
-        18,
-        56.5
+        1.5,
+        58.3
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "xiao",
       "notes": "External UART PC06/PC07; CTS PC04 RTS PC05; USB probe preserved; 3V3 OUT NC",
       "body_bounds_local_mm": [
@@ -584,107 +584,107 @@
         {
           "number": "1",
           "net": "ZB_BOOT_SERVICE",
-          "x": 18.0,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 58.3,
           "drill_mm": 1.1
         },
         {
           "number": "2",
           "net": null,
-          "x": 15.46,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 60.84,
           "drill_mm": 1.1
         },
         {
           "number": "3",
           "net": null,
-          "x": 12.92,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 63.38,
           "drill_mm": 1.1
         },
         {
           "number": "4",
           "net": null,
-          "x": 10.38,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 65.92,
           "drill_mm": 1.1
         },
         {
           "number": "5",
           "net": "ZB_CTS",
-          "x": 7.84,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 68.46,
           "drill_mm": 1.1
         },
         {
           "number": "6",
           "net": "ZB_RTS",
-          "x": 5.3,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 71.0,
           "drill_mm": 1.1
         },
         {
           "number": "7",
           "net": "ZB_TX",
-          "x": 2.76,
-          "y": 56.5,
+          "x": 1.5,
+          "y": 73.54,
           "drill_mm": 1.1
         },
         {
           "number": "14",
           "net": "+5V_ZB",
-          "x": 18.0,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 58.3,
           "drill_mm": 1.1
         },
         {
           "number": "13",
           "net": "GND",
-          "x": 15.46,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 60.84,
           "drill_mm": 1.1
         },
         {
           "number": "12",
           "net": null,
-          "x": 12.92,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 63.38,
           "drill_mm": 1.1
         },
         {
           "number": "11",
           "net": null,
-          "x": 10.38,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 65.92,
           "drill_mm": 1.1
         },
         {
           "number": "10",
           "net": null,
-          "x": 7.84,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 68.46,
           "drill_mm": 1.1
         },
         {
           "number": "9",
           "net": null,
-          "x": 5.3,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 71.0,
           "drill_mm": 1.1
         },
         {
           "number": "8",
           "net": "ZB_RX",
-          "x": 2.76,
-          "y": 71.74,
+          "x": 16.74,
+          "y": 73.54,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
-        -0.034,
-        55.23,
-        20.921,
-        73.01
+        0.23,
+        55.379,
+        18.01,
+        76.334
       ]
     },
     {
@@ -709,7 +709,7 @@
       "fitted": true,
       "side": "back",
       "xy": [
-        28.84,
+        22.84,
         67.9
       ],
       "rotation": 0,
@@ -725,92 +725,92 @@
         {
           "number": "J1.1",
           "net": "GND",
-          "x": 28.84,
+          "x": 22.84,
           "y": 67.9,
           "drill_mm": 1.1
         },
         {
           "number": "J1.2",
           "net": "GND",
-          "x": 28.84,
+          "x": 22.84,
           "y": 65.36,
           "drill_mm": 1.1
         },
         {
           "number": "J1.3",
           "net": "SPI_MOSI",
-          "x": 28.84,
+          "x": 22.84,
           "y": 62.82,
           "drill_mm": 1.1
         },
         {
           "number": "J1.4",
           "net": "SPI_SCK",
-          "x": 28.84,
+          "x": 22.84,
           "y": 60.28,
           "drill_mm": 1.1
         },
         {
           "number": "J1.5",
           "net": "ETH_CS",
-          "x": 28.84,
+          "x": 22.84,
           "y": 57.74,
           "drill_mm": 1.1
         },
         {
           "number": "J1.6",
           "net": "ETH_INT",
-          "x": 28.84,
+          "x": 22.84,
           "y": 55.2,
           "drill_mm": 1.1
         },
         {
           "number": "J2.1",
           "net": "GND",
-          "x": 49.16,
+          "x": 43.16,
           "y": 67.9,
           "drill_mm": 1.1
         },
         {
           "number": "J2.2",
           "net": "+3V3",
-          "x": 49.16,
+          "x": 43.16,
           "y": 65.36,
           "drill_mm": 1.1
         },
         {
           "number": "J2.3",
           "net": "+3V3",
-          "x": 49.16,
+          "x": 43.16,
           "y": 62.82,
           "drill_mm": 1.1
         },
         {
           "number": "J2.4",
           "net": null,
-          "x": 49.16,
+          "x": 43.16,
           "y": 60.28,
           "drill_mm": 1.1
         },
         {
           "number": "J2.5",
           "net": "ETH_RESET",
-          "x": 49.16,
+          "x": 43.16,
           "y": 57.74,
           "drill_mm": 1.1
         },
         {
           "number": "J2.6",
           "net": "SPI_MISO",
-          "x": 49.16,
+          "x": 43.16,
           "y": 55.2,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
-        27.5,
+        21.5,
         49.3,
-        50.5,
+        44.5,
         74.3
       ]
     },

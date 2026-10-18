@@ -73,7 +73,7 @@
     }
   ],
   "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
-  "active_layout_revision": "nano-flange-angled-passives",
+  "active_layout_revision": "nano-centered-rear-first",
   "active_host": "Waveshare ESP32-S3-Nano-M",
   "active_memory": {
     "flash_mb": 16,

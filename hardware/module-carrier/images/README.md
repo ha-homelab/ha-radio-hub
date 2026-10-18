@@ -19,7 +19,7 @@ fabrication finish specification.
 
 ## Current assembly views
 
-The current version uses the S3-Nano-M host on a 51 × 75 mm main body with a right mounting ear (57 × 75 mm overall), with
+The current version uses the S3-Nano-M host on a rectangular 51 × 75 mm carrier without a mounting ear, with
 controllers facing the room and Ethernet/male harness pins facing the ceiling.
 
 The [room-facing drawing](../cad/assembly-top.svg) shows the three controllers.
@@ -71,10 +71,15 @@ historical visual assets.
 
 ## Mounting and routed-length revision
 
-The current layout adds the right mounting ear and a fourth support beside RJ45.
+The current layout removes the former ear by moving WIZ 6 mm inward and rotating
+XIAO. Four supports remain, including one in the U2–U3 gap and one near RJ45.
+All rear parts are soldered before the front controllers.
 D1 and R1 use non-cardinal angles; the native mirrored assembly view remains the
 authority for polarity and pad identity.
 
 - [Support comparison](../studies/mounting-routing/mounting.svg) and [browser capture](ui-mounting.jpg).
 - [Measured routing comparison](../routing-comparison.svg) and [browser capture](ui-routing.jpg).
 - [Historical three-support baseline](../studies/mounting-routing/baseline/README.md).
+
+The [former ear layout](../studies/mounting-routing/ear-baseline/README.md) is
+preserved as an immutable mounting comparison, not an alternative active build.

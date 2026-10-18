@@ -33,7 +33,9 @@ Cable-header **short solder tails** project toward the room-facing modules; fact
 
 ## Solder-access dependency graph
 
-For every pair of opposite-side components, add the rule **A must be soldered and inspected before B is fitted** when B's body blocks the tool approach to A's solder lands. Use pad plus iron-tip/inspection clearance, not pad center alone. The resulting ordering must have no cycle.
+The selected assembly order is **all rear components first, then all front components**. For every pair of opposite-side components, add the rule **A must be soldered and inspected before B is fitted** when B's body blocks the tool approach to A's solder lands. Use pad plus iron-tip/inspection clearance, not pad center alone. The graph must permit this specific order; merely finding some acyclic order is insufficient.
+
+Deep front/rear overlap is permitted. Rear-component joints on the front may be covered after they are soldered, trimmed, inspected and electrically checked. Conversely, a fitted rear body must leave access to every front-module joint that will be soldered from the rear. The amount of overlap alone is not the acceptance criterion.
 
 A direct full overlap between H2 and WIZ is particularly problematic. H2's 25.40 mm body is wider than WIZ's 20.32 mm pin rows, while WIZ's 23 mm body is approximately as wide as H2's 22.86 mm rows. If their longitudinal spans also overlap, each can obstruct the other's required solder side. Increasing height may permit an angled tool, but that is a new assembly assumption and should not be the default plan.
 
@@ -41,13 +43,13 @@ WIZ behind Nano is more promising geometrically because its pin rows lie outside
 
 Back-side cable headers placed **between** a front module's rows are usually the straightforward case: solder the cable headers from the front first, inspect and trim their tails, then fit the front module and solder its rows from the back where no header housing blocks them. This is a placement rule, not permission to hide uninspected joints. The exact current layout should publish its own acyclic order after overlap checks.
 
-## Suggested assembly sequence
+## Required assembly sequence
 
 1. Program and bench-test loose modules. Perform the already required H2 v1.3 R7 isolation and verify continuity. Preserve the established firmware pins and update paths.
 2. Dry-fit all factory male pins in an unpowered carrier. Measure actual board-to-board gaps, tail projections, underside features and mating housings; mark every overlap and soldering dependency.
-3. Install small through-hole parts and whichever back-side headers will be hidden first. Solder, inspect and trim their front-side tails while those joints are visible. Keep J8/J9 recovery pads unpopulated as specified by the active design.
-4. Fit front controller modules in the verified order. Solder and inspect their back-side joints, trimming any tails that will lie below WIZ or cable housings. Use a holder that supports the assembly rather than resting it on antennas, switches or USB shells.
-5. Fit WIZ only when its required front-side solder lands remain accessible. If the graph requires WIZ earlier, change the order only after verifying access to every remaining controller joint. A mutual obstruction requires a placement change.
+3. Complete the entire rear: WIZ850io, J1–J7, D1–D3 and R1–R2. Solder from the front, then inspect, trim and electrically check their joints while visible. Leave J8/J9 recovery pads unpopulated. The front controllers are not fitted yet.
+4. Verify the rear assembly leaves the front controllers' solder lands accessible from the rear, including room for the soldering tool. Reject a layout or purchased module variant that blocks those remaining joints.
+5. Fit front U1–U3 and solder their accessible joints from the rear. Use a holder that supports the assembly rather than resting it on antennas, switches or USB shells. Recheck the measured opposing-tail clearances as each module is seated.
 6. Inspect both faces before power-up, including concealed-space clearance with the modules seated. Verify rails and all connections before attaching harnesses. Then verify host/network updating and the retained local recovery operations.
 
 No female module sockets, added interposer, underside flying wires or replacement factory headers are required by this recommendation. Tail trimming, two-sided handling and staged inspection are additional assembly work compared with the previous one-sided layout.

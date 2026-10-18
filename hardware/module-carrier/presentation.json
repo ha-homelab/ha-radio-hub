@@ -53,8 +53,8 @@
     "On H2 DevKitM-1 v1.3, remove R7 and verify USB-UART TX isolation. Retain the matching RX23/TX24 image.",
     "Temporarily wire all functions and network updates. The two-sided relocation does not change the pin map or firmware.",
     "Dry-fit both faces and measure factory spacer gaps, underside parts, opposing tail heights and ceiling-facing plug clearance.",
-    "Follow the CAD solder-access order. Complete, trim and inspect every joint before another module covers it; leave J8/J9 unpopulated.",
-    "Mount controller boards on the room-facing front; fit WIZ850io, all seven male harness headers, D1–D3 and R1–R2 on the ceiling-facing back. Read each side’s own pin-numbered drawing.",
+    "Complete the entire ceiling-facing back first: WIZ850io, J1–J7, D1–D3 and R1–R2. Solder from the front, then trim, inspect and electrically check all joints while visible. Leave J8/J9 unpopulated.",
+    "Only then fit front U1–U3 and solder their pins from the rear. Every front-module solder land must remain accessible with the rear already populated. Deep opposite-side overlap is permitted after the access and measured-clearance checks.",
     "Inspect and test every rail and net for continuity and unwanted contact, including after gentle connector loading. Check loaded Nano VIN and 3V3.",
     "Use insulating supports sized for the measured rear projection and cables; keep antenna zones free of rear hardware, wires and ceiling metal.",
     "Commission all services together and verify network updates, interrupted updates, power cycling, thermal behavior and RF range before mounting permanently."
@@ -99,5 +99,5 @@
       "https://esphome.io/components/weikai/"
     ]
   ],
-  "layout_revision": "nano-flange-angled-passives"
+  "layout_revision": "nano-centered-rear-first"
 }

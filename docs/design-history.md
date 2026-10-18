@@ -53,8 +53,16 @@ The earlier hardware has not been physically qualified either; its compiled
 firmware and documented interfaces are the comparison baseline, not field-test
 evidence.
 
-The current mounting revision adds a 6 × 27 mm ear for a fourth support beside
-RJ45 (57 × 75 mm overall). Two lower supports now straddle its opening. Axial
+An intermediate mounting revision added a 6 × 27 mm ear for a fourth support beside
+RJ45 (57 × 75 mm overall). Two lower supports straddled its opening. Axial
 parts may use arbitrary angles where the final routed result improves; all
 functions and firmware pin assignments remain unchanged. See the
 [mounting and routing review](../hardware/module-carrier/studies/mounting-routing/review.md).
+
+The current successor returns to a **51 × 75 mm rectangle**: WIZ moves 6 mm
+toward the center, XIAO rotates, and a support fits between U2 and U3. It keeps
+four mounting points without the ear. The required assembly order is now
+explicitly **the complete back first, then the front**. Rear-first solder access
+and unchanged electrical connectivity are checked separately from physical
+height and insertion-force qualification. The former ear layout is preserved
+under the mounting study.
