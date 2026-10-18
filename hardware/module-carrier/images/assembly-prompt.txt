@@ -1,0 +1,12 @@
+Use case: product-mockup
+Asset type: engineering repository assembly concept, explicitly AI-generated.
+Input image: the supplied native KiCad bare PCB render is the strict layout reference, not an assembled-photo target.
+Create one realistic studio product illustration of this MC1 carrier assembled from finished development-board modules. Show one single rectangular green 160 by 100 mm carrier at a similar three-quarter angle on a light neutral background. Preserve its hole placement, four corner mounting holes, routes, relative layout and modest white silkscreen.
+Populate only these four finished modules on the corresponding existing paired rows:
+U1, long 2x22-pin outline in upper middle-left: black Espressif ESP32-S3-DevKitC-1 v1.1, 25.4x62.74 mm, shielded RF can and PCB antenna at top edge, two small USB connectors at lower end.
+U2, 2x15-pin outline upper middle-right: black Espressif ESP32-H2-DevKitM-1, 25.4x48.26 mm, shield and antenna at top edge, USB connectors at lower end.
+U3, small 2x7-pin outline near upper right: Seeed XIAO MG24, 17.8x21 mm, small RF shield, ceramic antenna at top carrier edge, USB-C toward board center.
+U4, 2x6-pin outline lower left: WIZ850io 23x25 mm with a large metal RJ45 jack oriented toward lower carrier edge.
+IMPORTANT: All four module factory MALE header pins enter the carrier holes DIRECTLY and are soldered underneath. Show only the thin black factory male-pin plastic spacer under each module. ZERO female sockets, zero tall plug-in receptacles, no double-decker header stacks. Module boards are slightly raised for the male header spacer only.
+Populate R1,R2 with just two axial resistors and D1,D2,D3 with just three axial black Schottky diodes. Other external harness rows have small male pinheaders only, with no wires attached. No loose capacitor banks, no extra custom daughterboard, no additional processors, no extra module where none is specified. Finished vendor-module surface-mount parts stay factory fitted.
+Good focus, accurate electronic materials, matte green soldermask, gold pins and silver solder, technical product photography style. Avoid artistic circuit decorations and invented large components. Include a clean small footer outside PCB saying exactly: "MC1 · Generated assembly concept — not a manufactured board". Wide landscape composition. This is a conceptual assembly illustration; do not label it as measurement evidence.

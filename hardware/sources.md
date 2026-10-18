@@ -1,5 +1,8 @@
 # Sources and verification limits
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 Checked on 2026-10-16. The sources below support individual components and protocols; they do not verify combined operation, electromagnetic compatibility or certification of this enclosure.
 
 - [Waveshare PoE splitter 25W](https://www.waveshare.com/product/accessories/power-heat-sinks/poe-splitter-25w-type-c.htm) — DC-output model, nominal 5 V with 5 A maximum, isolation and dimensions. This does not establish a guarantee of continuous 25 W in our enclosure.

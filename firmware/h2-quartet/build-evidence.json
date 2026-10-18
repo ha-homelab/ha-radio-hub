@@ -1,0 +1,46 @@
+{
+  "status": "compile_success",
+  "scope": "ESP32-H2 + W5500 + ESPHome active BLE proxy, 3 connections; placeholder GPIOs; no Thread, Zigbee, RF, sensors, API encryption or OTA service; no hardware exercised",
+  "esphome": "2026.9.1",
+  "esp_idf": "5.5.5",
+  "target": "esp32h2",
+  "cpu_mhz": 96,
+  "static_ram_used": 106302,
+  "static_ram_report_capacity": 258000,
+  "image_size_reported": 1060772,
+  "application_partition_bytes": 1835008,
+  "files": {
+    "h2-ble-ethernet.yaml": {
+      "bytes": 635,
+      "sha256": "6bb866f66a63899fc06af988e5224946e8c43ae5032762546bbe2d227f4e142b",
+      "archived_in_repository": true
+    },
+    "config.log": {
+      "bytes": 2860,
+      "sha256": "230409eff3a82bb8b475a6c48a3226d96fa8d8b3a52e3412683f5abcb2f8f117",
+      "archived_in_repository": false
+    },
+    "build.log": {
+      "bytes": 146884,
+      "sha256": "860e85ec04c56f19ed46fb930753e72e62231ae8241291f7a299c956c6a8952f",
+      "archived_in_repository": false
+    },
+    "firmware.ota.bin": {
+      "bytes": 1061120,
+      "sha256": "a9bd2540baf5e485f4358a2f0314a3f7622406137aa38bd8e1fa5adc1644b711",
+      "archived_in_repository": false
+    },
+    "firmware.factory.bin": {
+      "bytes": 1126656,
+      "sha256": "bc1e7d18e430185bfb7d59e2de07c5f15da7095c2c4aa68dec4c4662b45c55a6",
+      "archived_in_repository": false
+    },
+    "firmware.elf": {
+      "bytes": 14805536,
+      "sha256": "8722c36b60d4ad1499bab04abc5600369beeca41f8ec66260102d5503d4cfd7d",
+      "archived_in_repository": false
+    }
+  },
+  "date": "2026-10-17",
+  "hardware_tested": false
+}

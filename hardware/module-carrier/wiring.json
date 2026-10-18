@@ -1,0 +1,578 @@
+{
+  "revision": "MC1",
+  "source": "cad/design.py",
+  "source_sha256": "8c9e1043481ee4def3626dfd8ee138a7c3716bcae0f7fc0239d61c236735abbe",
+  "nets": {
+    "RF_GDO0": [
+      "U1.J1.4",
+      "J5.7",
+      "R1.2"
+    ],
+    "RF_GDO2": [
+      "U1.J1.5",
+      "J5.8"
+    ],
+    "RF_MISO": [
+      "U1.J1.6",
+      "J5.5"
+    ],
+    "RF_SCK": [
+      "U1.J1.7",
+      "J5.3"
+    ],
+    "RF_CS": [
+      "U1.J1.8",
+      "J5.6",
+      "R2.2"
+    ],
+    "ZB_CTS": [
+      "U1.J1.9",
+      "U3.5"
+    ],
+    "ZB_RX": [
+      "U1.J1.10",
+      "U3.8"
+    ],
+    "ZB_TX": [
+      "U1.J1.11",
+      "U3.7"
+    ],
+    "RF_MOSI": [
+      "U1.J1.12",
+      "J5.4"
+    ],
+    "ETH_RESET": [
+      "U1.J1.15",
+      "U4.J2.5"
+    ],
+    "ETH_INT": [
+      "U1.J1.16",
+      "U4.J1.6"
+    ],
+    "ETH_MOSI": [
+      "U1.J1.17",
+      "U4.J1.3"
+    ],
+    "ETH_MISO": [
+      "U1.J1.18",
+      "U4.J2.6"
+    ],
+    "ETH_SCK": [
+      "U1.J1.19",
+      "U4.J1.4"
+    ],
+    "ETH_CS": [
+      "U1.J1.20",
+      "U4.J1.5"
+    ],
+    "+5V_S3": [
+      "U1.J1.21",
+      "D1.1"
+    ],
+    "GND": [
+      "U1.J1.22",
+      "U1.J3.1",
+      "U1.J3.21",
+      "U1.J3.22",
+      "U2.J1.13",
+      "U2.J1.15",
+      "U2.J3.1",
+      "U2.J3.10",
+      "U2.J3.12",
+      "U2.J3.15",
+      "U3.13",
+      "U4.J1.1",
+      "U4.J1.2",
+      "U4.J2.1",
+      "J1.2",
+      "J2.2",
+      "J2.4",
+      "J3.2",
+      "J4.2",
+      "J4.3",
+      "J5.2",
+      "J6.2",
+      "J7.1",
+      "J8.2"
+    ],
+    "I2C_SDA": [
+      "U1.J3.4",
+      "J3.3",
+      "J7.3"
+    ],
+    "I2C_SCL": [
+      "U1.J3.5",
+      "J3.4",
+      "J7.4"
+    ],
+    "THREAD_TX": [
+      "U1.J3.6",
+      "U2.J1.10"
+    ],
+    "THREAD_RX": [
+      "U1.J3.7",
+      "U2.J1.9"
+    ],
+    "RADAR_TX": [
+      "U1.J3.8",
+      "J6.4"
+    ],
+    "RADAR_RX": [
+      "U1.J3.9",
+      "J6.3"
+    ],
+    "THREAD_BOOT": [
+      "U1.J3.16",
+      "U2.J3.11"
+    ],
+    "THREAD_EN": [
+      "U1.J3.17",
+      "U2.J1.2"
+    ],
+    "ZB_RTS": [
+      "U1.J3.18",
+      "U3.6"
+    ],
+    "+5V_H2": [
+      "U2.J1.14",
+      "D2.1"
+    ],
+    "ZB_BOOT_SERVICE": [
+      "U3.1",
+      "J8.1"
+    ],
+    "+5V_ZB": [
+      "U3.14",
+      "D3.1"
+    ],
+    "+3V3": [
+      "U4.J2.2",
+      "U4.J2.3",
+      "J2.3",
+      "J3.1",
+      "J4.1",
+      "J5.1",
+      "J7.2",
+      "R1.1",
+      "R2.1"
+    ],
+    "+5V": [
+      "J1.1",
+      "J2.1",
+      "J6.1",
+      "D1.2",
+      "D2.2",
+      "D3.2"
+    ],
+    "ZWAVE_RX": [
+      "J3.5",
+      "J4.4"
+    ],
+    "ZWAVE_TX": [
+      "J3.6",
+      "J4.5"
+    ]
+  },
+  "parts": [
+    {
+      "ref": "U1",
+      "model": "ESP32-S3-DevKitC-1-N8R8 v1.1",
+      "footprint": "MC1:S3_DevKitC1_v11",
+      "pins": {
+        "J1.1": null,
+        "J1.2": null,
+        "J1.3": null,
+        "J1.4": "RF_GDO0",
+        "J1.5": "RF_GDO2",
+        "J1.6": "RF_MISO",
+        "J1.7": "RF_SCK",
+        "J1.8": "RF_CS",
+        "J1.9": "ZB_CTS",
+        "J1.10": "ZB_RX",
+        "J1.11": "ZB_TX",
+        "J1.12": "RF_MOSI",
+        "J1.13": null,
+        "J1.14": null,
+        "J1.15": "ETH_RESET",
+        "J1.16": "ETH_INT",
+        "J1.17": "ETH_MOSI",
+        "J1.18": "ETH_MISO",
+        "J1.19": "ETH_SCK",
+        "J1.20": "ETH_CS",
+        "J1.21": "+5V_S3",
+        "J1.22": "GND",
+        "J3.1": "GND",
+        "J3.2": null,
+        "J3.3": null,
+        "J3.4": "I2C_SDA",
+        "J3.5": "I2C_SCL",
+        "J3.6": "THREAD_TX",
+        "J3.7": "THREAD_RX",
+        "J3.8": "RADAR_TX",
+        "J3.9": "RADAR_RX",
+        "J3.10": null,
+        "J3.11": null,
+        "J3.12": null,
+        "J3.13": null,
+        "J3.14": null,
+        "J3.15": null,
+        "J3.16": "THREAD_BOOT",
+        "J3.17": "THREAD_EN",
+        "J3.18": "ZB_RTS",
+        "J3.19": null,
+        "J3.20": null,
+        "J3.21": "GND",
+        "J3.22": "GND"
+      },
+      "types": {},
+      "xy": [
+        44,
+        3
+      ],
+      "rotation": 0,
+      "source": "s3",
+      "notes": "Factory male headers solder directly; 3V3 outputs NC; USB19/20 and bridge43/44 untouched; no sockets"
+    },
+    {
+      "ref": "U2",
+      "model": "ESP32-H2-DevKitM-1-N4S",
+      "footprint": "MC1:H2_DevKitM1",
+      "pins": {
+        "J1.1": null,
+        "J1.2": "THREAD_EN",
+        "J1.3": null,
+        "J1.4": null,
+        "J1.5": null,
+        "J1.6": null,
+        "J1.7": null,
+        "J1.8": null,
+        "J1.9": "THREAD_RX",
+        "J1.10": "THREAD_TX",
+        "J1.11": null,
+        "J1.12": null,
+        "J1.13": "GND",
+        "J1.14": "+5V_H2",
+        "J1.15": "GND",
+        "J3.1": "GND",
+        "J3.2": null,
+        "J3.3": null,
+        "J3.4": null,
+        "J3.5": null,
+        "J3.6": null,
+        "J3.7": null,
+        "J3.8": null,
+        "J3.9": null,
+        "J3.10": "GND",
+        "J3.11": "THREAD_BOOT",
+        "J3.12": "GND",
+        "J3.13": null,
+        "J3.14": null,
+        "J3.15": "GND"
+      },
+      "types": {},
+      "xy": [
+        86,
+        3
+      ],
+      "rotation": 0,
+      "source": "h2",
+      "notes": "RCP RX4 TX5; native USB and UART bridge pins untouched; 3V3/VBAT NC"
+    },
+    {
+      "ref": "U3",
+      "model": "Seeed XIAO MG24 pre-soldered 102010690",
+      "footprint": "MC1:XIAO_MG24",
+      "pins": {
+        "1": "ZB_BOOT_SERVICE",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": "ZB_CTS",
+        "6": "ZB_RTS",
+        "7": "ZB_TX",
+        "8": "ZB_RX",
+        "9": null,
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": "GND",
+        "14": "+5V_ZB"
+      },
+      "types": {},
+      "xy": [
+        143,
+        18
+      ],
+      "rotation": 180,
+      "source": "xiao",
+      "notes": "External UART PC06/PC07; CTS PC04 RTS PC05; USB probe preserved; 3V3 OUT NC"
+    },
+    {
+      "ref": "U4",
+      "model": "WIZ850io finished module",
+      "footprint": "MC1:WIZ850io",
+      "pins": {
+        "J1.1": "GND",
+        "J1.2": "GND",
+        "J1.3": "ETH_MOSI",
+        "J1.4": "ETH_SCK",
+        "J1.5": "ETH_CS",
+        "J1.6": "ETH_INT",
+        "J2.1": "GND",
+        "J2.2": "+3V3",
+        "J2.3": "+3V3",
+        "J2.4": null,
+        "J2.5": "ETH_RESET",
+        "J2.6": "ETH_MISO"
+      },
+      "types": {},
+      "xy": [
+        17,
+        72
+      ],
+      "rotation": 0,
+      "source": "wiz",
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; NO PoE extraction;3.3V only"
+    },
+    {
+      "ref": "J1",
+      "model": "FUSED ISOLATED 5V INPUT",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND"
+      },
+      "types": {},
+      "xy": [
+        13,
+        93
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier."
+    },
+    {
+      "ref": "J2",
+      "model": "D24V22F3 external assembled buck",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "+3V3",
+        "4": "GND"
+      },
+      "types": {},
+      "xy": [
+        36,
+        93
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module."
+    },
+    {
+      "ref": "J3",
+      "model": "DFR0627 WK2132 ready module harness",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "I2C_SDA",
+        "4": "I2C_SCL",
+        "5": "ZWAVE_RX",
+        "6": "ZWAVE_TX"
+      },
+      "types": {},
+      "xy": [
+        92,
+        93
+      ],
+      "rotation": 90,
+      "source": "weikai",
+      "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings."
+    },
+    {
+      "ref": "J4",
+      "model": "ZAC93 ready module harness",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "GND",
+        "4": "ZWAVE_RX",
+        "5": "ZWAVE_TX"
+      },
+      "types": {},
+      "xy": [
+        126,
+        93
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Carrier1->ZACpin1;2->pin6;3->pin9;4->pin8RX;5->pin10TX. Different from ZAC physical header layout."
+    },
+    {
+      "ref": "J5",
+      "model": "CC1101 ready module harness",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "RF_SCK",
+        "4": "RF_MOSI",
+        "5": "RF_MISO",
+        "6": "RF_CS",
+        "7": "RF_GDO0",
+        "8": "RF_GDO2"
+      },
+      "types": {},
+      "xy": [
+        58,
+        77
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "3.3V; GDO0 open-drain TX with external4.7k pullup; GDO2 receiver."
+    },
+    {
+      "ref": "J6",
+      "model": "LD2450 radar harness",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+      "pins": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "RADAR_RX",
+        "4": "RADAR_TX"
+      },
+      "types": {},
+      "xy": [
+        150,
+        57
+      ],
+      "rotation": 0,
+      "source": "connector",
+      "notes": "Carrier3->radarRX;carrier4<-radarTX;5V supply;3.3V data."
+    },
+    {
+      "ref": "J7",
+      "model": "BME680 external pod harness",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "+3V3",
+        "3": "I2C_SDA",
+        "4": "I2C_SCL"
+      },
+      "types": {},
+      "xy": [
+        150,
+        79
+      ],
+      "rotation": 0,
+      "source": "connector",
+      "notes": "External pod,1GND2VDD3SDA4SCL;I2C pullups on modules;do notaddunreviewedpullups."
+    },
+    {
+      "ref": "D1",
+      "model": "1N5819 USB supply isolation",
+      "footprint": "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal",
+      "pins": {
+        "1": "+5V_S3",
+        "2": "+5V"
+      },
+      "types": {},
+      "xy": [
+        44,
+        86
+      ],
+      "rotation": 0,
+      "source": "diode",
+      "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
+    },
+    {
+      "ref": "D2",
+      "model": "1N5819 USB supply isolation",
+      "footprint": "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal",
+      "pins": {
+        "1": "+5V_H2",
+        "2": "+5V"
+      },
+      "types": {},
+      "xy": [
+        75,
+        86
+      ],
+      "rotation": 0,
+      "source": "diode",
+      "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
+    },
+    {
+      "ref": "D3",
+      "model": "1N5819 USB supply isolation",
+      "footprint": "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal",
+      "pins": {
+        "1": "+5V_ZB",
+        "2": "+5V"
+      },
+      "types": {},
+      "xy": [
+        130,
+        48
+      ],
+      "rotation": 0,
+      "source": "diode",
+      "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
+    },
+    {
+      "ref": "R1",
+      "model": "4.7k RF GDO0 pull-up",
+      "footprint": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "pins": {
+        "1": "+3V3",
+        "2": "RF_GDO0"
+      },
+      "types": {},
+      "xy": [
+        67,
+        68
+      ],
+      "rotation": 0,
+      "source": "resistor",
+      "notes": ""
+    },
+    {
+      "ref": "R2",
+      "model": "10k RF CS idle pull-up",
+      "footprint": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "pins": {
+        "1": "+3V3",
+        "2": "RF_CS"
+      },
+      "types": {},
+      "xy": [
+        82,
+        68
+      ],
+      "rotation": 0,
+      "source": "resistor",
+      "notes": ""
+    },
+    {
+      "ref": "J8",
+      "model": "XIAO BOOT service short to GND",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "ZB_BOOT_SERVICE",
+        "2": "GND"
+      },
+      "types": {},
+      "xy": [
+        141,
+        35
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN."
+    }
+  ]
+}

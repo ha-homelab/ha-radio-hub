@@ -1,5 +1,8 @@
 # Validation status
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 Initial design reviewed on **2026-10-16**. This record separates software evidence
 from hardware acceptance; it is not a declaration that the appliance works in a home.
 

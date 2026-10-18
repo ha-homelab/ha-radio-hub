@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-17",
+  "tool": "CUA in-app browser",
+  "index_sha256": "ba6895a1c76244b185e17a75aff420018f397715db1428887089c882f8799eac",
+  "viewport_width": 319,
+  "page_scroll_width": 319,
+  "all_seven_images_loaded": true,
+  "wiring_test": {
+    "query": "ZB_CTS",
+    "visible_count": 1,
+    "total_nets": 33,
+    "endpoints": [
+      "U1.J1.9",
+      "U3.5"
+    ],
+    "restored_empty_query": true
+  },
+  "screenshots": {
+    "ui-assembly.jpg": "cc4437cd7b013d052ef6a05462d15f6af11d0b0177aa166c9cb4d34300f00838",
+    "ui-pcb.jpg": "bb0b00e940dff1edbb7b5b4063985ea405b53170f047920d5181cf84d8c576ba",
+    "ui-wiring.jpg": "9b1e890218f345bf544d1118b60dd29e4a3ec1c82266dda5c1824f7acb3ccad5"
+  }
+}

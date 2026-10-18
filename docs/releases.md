@@ -1,5 +1,8 @@
 # Downloadable build package
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 Use the newest engineering prerelease from
 [GitHub Releases](https://github.com/ha-homelab/ha-radio-hub/releases). The original
 `v0.1.0` archive predates the complete RF Ethernet port; use `v0.2.0` or later for

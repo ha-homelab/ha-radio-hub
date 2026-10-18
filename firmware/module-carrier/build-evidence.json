@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "tested_date_local": "2026-10-17",
+  "host_os": "macOS arm64",
+  "esphome": "2026.9.1",
+  "esp_idf": "5.5.5",
+  "framework_cache_manually_modified": false,
+  "upstream_rest_commit": "29a2345e3f0c61bba9307f3daea5ed0c94388ed3",
+  "s3": {
+    "compiled": true,
+    "hardware_tested": false,
+    "esphome": "2026.9.1",
+    "esp_idf": "5.5.5",
+    "sdkconfig_verified": {
+      "CONFIG_OPENTHREAD_FTD": "y",
+      "CONFIG_OPENTHREAD_COMMISSIONER": "y",
+      "CONFIG_OPENTHREAD_JOINER": "y",
+      "CONFIG_VFS_SUPPORT_IO": "y",
+      "CONFIG_VFS_SUPPORT_DIR": "y",
+      "CONFIG_VFS_SUPPORT_SELECT": "y",
+      "CONFIG_OPENTHREAD_RADIO_SPINEL_UART": "y",
+      "CONFIG_OPENTHREAD_BORDER_ROUTER": "y",
+      "CONFIG_OPENTHREAD_BORDER_AGENT_ENABLE": "y",
+      "CONFIG_LWIP_IPV6": "y",
+      "CONFIG_LWIP_IPV6_FORWARD": "y",
+      "CONFIG_LWIP_IPV6_NUM_ADDRESSES": "12",
+      "CONFIG_LWIP_HOOK_IP6_INPUT_CUSTOM": "y",
+      "CONFIG_LWIP_HOOK_IP6_SELECT_SRC_ADDR_CUSTOM": "y",
+      "CONFIG_LWIP_FORCE_ROUTER_FORWARDING": "y",
+      "CONFIG_MDNS_MULTIPLE_INSTANCE": "y",
+      "CONFIG_BT_BLUEDROID_ENABLED": "y",
+      "CONFIG_SPIRAM_MODE_OCT": "y",
+      "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
+      "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
+      "CONFIG_FREERTOS_HZ": "1000"
+    },
+    "artifacts": {
+      "module-carrier-hub.bin": {
+        "bytes": 1717296,
+        "sha256": "660c37c5b82177155ace2d273b553cdbfe7f699841c7b8f8582b20dcfba17a1d"
+      },
+      "firmware.factory.bin": {
+        "bytes": 1782832,
+        "sha256": "3821dafef3a7bdcf02f58f3e48a003366a3ba6c72038ae345fa0573024bf2ce5"
+      },
+      "firmware.ota.bin": {
+        "bytes": 1717296,
+        "sha256": "660c37c5b82177155ace2d273b553cdbfe7f699841c7b8f8582b20dcfba17a1d"
+      }
+    },
+    "image_unpadded_bytes": 1717183,
+    "static_ram_bytes": 161579,
+    "linker_ram_bytes": 341760,
+    "ota_application_slot_bytes": 3932160,
+    "cpu_mhz": 160,
+    "psram_mb": 8,
+    "runtime_heap_stack_and_psram_capacity_tested": false,
+    "uart_worker": {
+      "task_priority": 2,
+      "stack_bytes": 4096,
+      "rx_poll_target_ms": 2,
+      "hardware_rx_fifo_bytes": 256,
+      "software_rx_tx_queue_bytes_each": 2048,
+      "staging_rx_tx_queue_bytes_each": 256,
+      "i2c_hz": 400000
+    },
+    "h2_service_gpio": {
+      "reset_gpio": 47,
+      "boot_gpio": 48,
+      "mode": "open_drain",
+      "idle_level": 1,
+      "reset_low_ms": 10,
+      "h2_firmware_update_supported": false,
+      "source_sha256": "92492effbb5ce3621ffcec84bb6a906c5afd71da4c2a53a360a2161fc0625961"
+    }
+  },
+  "h2_rcp": {
+    "compiled": true,
+    "hardware_tested": false,
+    "esp_idf": "5.5.5",
+    "sdkconfig_verified": {
+      "CONFIG_IDF_TARGET": "\"esp32h2\"",
+      "CONFIG_ESPTOOLPY_FLASHSIZE_4MB": "y",
+      "CONFIG_OPENTHREAD_RCP_UART": "y",
+      "CONFIG_OPENTHREAD_RADIO_NATIVE": "y",
+      "CONFIG_OPENTHREAD_UART_PIN_MANUAL": "y",
+      "CONFIG_OPENTHREAD_UART_RX_PIN": "4",
+      "CONFIG_OPENTHREAD_UART_TX_PIN": "5",
+      "CONFIG_FREERTOS_HZ": "1000"
+    },
+    "uart": {
+      "baud": 460800,
+      "format": "8N1",
+      "flow_control": false
+    },
+    "artifacts": {
+      "esp_ot_rcp.bin": {
+        "bytes": 208928,
+        "sha256": "cbcfa55533addea5b500d53502aeb11a62c6a18a87aaa7122817103df61dfcaf"
+      },
+      "bootloader/bootloader.bin": {
+        "bytes": 16784,
+        "sha256": "88e37102c4700475338dfe44784ad1cd21ef9d6bb092091455f0b1fc6714e31c"
+      },
+      "partition_table/partition-table.bin": {
+        "bytes": 3072,
+        "sha256": "7f00b6c042a89b15b0cac534f82ed988caf29278ff5700b0c511eb1b5bb7c820"
+      }
+    }
+  },
+  "zigbee_evidence": "zigbee/build-evidence.json",
+  "source_sha256": {
+    "components/wk2132_uart/__init__.py": "7142f34856416f1703fd5ec1275a674c1a236b9bb337ac3feab498b6bda49fef",
+    "components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+    "components/wk2132_uart/wk2132_uart.cpp": "a08286a74f64d4ee7b55316ee73c3dce33c76bb5e6684c8bcda23a8bd65bed81",
+    "components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+    "hub.yaml": "5d65e7d74cc29dfd806e94d72e4e37922d53fcaae4702ae2341186c3031d4ff6",
+    "prepare.py": "ce4a1e3f0d80bd75ee6fa807108a04724d0a43895de9e7b9a6ca04d9722e62ff",
+    "prepare_h2.py": "c43ce7c209bb898a7fc662c563104ffa7d2e89d2d24395524e43c6daebb7fc3e"
+  },
+  "scope": "Compiled images and host tests only; no device flashed and no hardware, RF, power or runtime acceptance performed."
+}

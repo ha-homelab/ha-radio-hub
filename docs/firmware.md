@@ -1,5 +1,8 @@
 # Firmware and software
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 The main build uses a Raspberry Pi 4 running Linux, two independent USB radios, and a Waveshare **ESP32-S3-ETH-M** with 16 MB flash. The S3 runs Ethernet, a Bluetooth proxy, LD2450, BME680, and a UART proxy for the existing Zooz ZAC93. A separate second S3-ETH-M with CC1101 handles the wired RF Airbridge; the previous ESP8266 is retained for rollback. All boards share the PoE power system. Private configuration and HA registry migration are handled separately using the migration guide.
 
 ## What has actually been verified

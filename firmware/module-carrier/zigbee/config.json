@@ -1,0 +1,75 @@
+{
+  "target": "EFR32MG24B220F1536IM48",
+  "sdk_tag": "v2025.6.3",
+  "sdk_commit": "b41bec3ff2485199c1a5a9995b3e649e118c1b8d",
+  "sdk_url": "https://github.com/SiliconLabs/simplicity_sdk/releases/download/v2025.6.3/simplicity-sdk.zip",
+  "slc_version": "6.0.15",
+  "gcc_version": "12.2.Rel1",
+  "application": {
+    "example": "protocol/zigbee/app/projects/ncp/zigbee_ncp_uart_hw/zigbee_ncp_uart_hw.slcp",
+    "name": "zigbee_ncp_uart_hw",
+    "configuration": {
+      "SL_IOSTREAM_USART_VCOM_PERIPHERAL": "USART0",
+      "SL_IOSTREAM_USART_VCOM_PERIPHERAL_NO": "0",
+      "SL_IOSTREAM_USART_VCOM_TX_PORT": "gpioPortC",
+      "SL_IOSTREAM_USART_VCOM_TX_PIN": "6",
+      "SL_IOSTREAM_USART_VCOM_RX_PORT": "gpioPortC",
+      "SL_IOSTREAM_USART_VCOM_RX_PIN": "7",
+      "SL_IOSTREAM_USART_VCOM_CTS_PORT": "gpioPortC",
+      "SL_IOSTREAM_USART_VCOM_CTS_PIN": "4",
+      "SL_IOSTREAM_USART_VCOM_RTS_PORT": "gpioPortC",
+      "SL_IOSTREAM_USART_VCOM_RTS_PIN": "5",
+      "SL_IOSTREAM_USART_VCOM_BAUDRATE": "115200",
+      "SL_IOSTREAM_USART_VCOM_PARITY": "usartNoParity",
+      "SL_IOSTREAM_USART_VCOM_STOP_BITS": "usartStopbits1",
+      "SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE": "usartHwFlowControlCtsAndRts",
+      "SL_IOSTREAM_USART_VCOM_RX_BUFFER_SIZE": "256",
+      "SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF": "0",
+      "SL_CLOCK_MANAGER_HFXO_EN": "1",
+      "SL_CLOCK_MANAGER_HFXO_FREQ": "39000000",
+      "SL_CLOCK_MANAGER_HFXO_CTUNE": "95",
+      "SL_CLOCK_MANAGER_LFXO_EN": "1",
+      "SL_CLOCK_MANAGER_LFXO_CTUNE": "44",
+      "SL_CLOCK_MANAGER_DEFAULT_HF_CLOCK_SOURCE": "SL_CLOCK_MANAGER_DEFAULT_HF_CLOCK_SOURCE_HFXO",
+      "SL_CLOCK_MANAGER_DEFAULT_LF_CLOCK_SOURCE": "SL_CLOCK_MANAGER_DEFAULT_LF_CLOCK_SOURCE_LFXO",
+      "SL_DEVICE_INIT_DCDC_ENABLE": "1",
+      "SL_DEVICE_INIT_DCDC_BYPASS": "0",
+      "SL_DEVICE_INIT_DCDC_PFMX_IPKVAL_OVERRIDE": "1",
+      "SL_DEVICE_INIT_DCDC_PFMX_IPKVAL": "9",
+      "SL_RAIL_UTIL_PTI_MODE": "SL_RAIL_PTI_MODE_DISABLED"
+    },
+    "configured_pin_headers": {
+      "sl_iostream_usart_vcom_config.h": "IO Stream USART peripheral not configured"
+    }
+  },
+  "bootloader": {
+    "example": "platform/bootloader/sample-apps/bootloader-uart-xmodem/bootloader-uart-xmodem.slcp",
+    "name": "bootloader-uart-xmodem",
+    "configuration": {
+      "SL_VCOM_ENABLE": "0",
+      "SL_SERIAL_UART_PERIPHERAL": "USART0",
+      "SL_SERIAL_UART_PERIPHERAL_NO": "0",
+      "SL_SERIAL_UART_TX_PORT": "gpioPortC",
+      "SL_SERIAL_UART_TX_PIN": "6",
+      "SL_SERIAL_UART_RX_PORT": "gpioPortC",
+      "SL_SERIAL_UART_RX_PIN": "7",
+      "SL_SERIAL_UART_CTS_PORT": "gpioPortC",
+      "SL_SERIAL_UART_CTS_PIN": "4",
+      "SL_SERIAL_UART_RTS_PORT": "gpioPortC",
+      "SL_SERIAL_UART_RTS_PIN": "5",
+      "SL_SERIAL_UART_BAUD_RATE": "115200",
+      "SL_SERIAL_UART_FLOW_CONTROL": "1",
+      "SL_GPIO_ACTIVATION_POLARITY": "LOW",
+      "SL_BTL_BUTTON_PORT": "gpioPortC",
+      "SL_BTL_BUTTON_PIN": "0"
+    },
+    "configured_pin_headers": {
+      "btl_uart_driver_cfg.h": "Bootloader UART peripheral not configured",
+      "btl_gpio_activation_cfg.h": "GPIO activation port not configured"
+    }
+  },
+  "sdk_archive_sha256": "c7cf5c002e26f6561fbbd392b9c6e159c607f77d92cbb55abad0ff7b0ff4cbf8",
+  "board": "Seeed Studio XIAO MG24 Pre-Soldered",
+  "board_sku": "102010690",
+  "transport": "115200 8N1 RTS/CTS; USART0 remapped to factory header PC06/PC07/PC04/PC05"
+}

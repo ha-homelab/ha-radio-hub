@@ -1,5 +1,8 @@
 # Low-power LP-P0: prototype hardware contract
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 This is a separate design with **one S3 host and one Ethernet interface**, three dedicated radio controllers H2/MG24/ZAC93, and CC1101. Assembly, firmware for the individual radio modules and hardware testing are required. No board has been fabricated or tested, and there is no verified “3 W” result.
 The [ready-module carrier](carrier/) and [integrated board](integrated/) are
 separate engineering revisions; use their own verification reports and connector maps.

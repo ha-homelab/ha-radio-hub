@@ -1,0 +1,55 @@
+{
+  "revision": "MC1",
+  "date": "2026-10-17",
+  "status": "Software and CAD verified; hardware qualification outstanding",
+  "hardware_tested": false,
+  "checks": [
+    {
+      "check": "Native KiCad 10.0.6 ERC / DRC",
+      "result": "0 violations, 0 unrouted, 0 parity issues",
+      "scope": "Final native schematic and routed PCB; passive module terminals do not validate internal circuits"
+    },
+    {
+      "check": "Mechanical and pin geometry",
+      "result": "7 tests passed; independent review checked 145 pad entries",
+      "scope": "Manufacturer-derived dimensions and net assignments; purchased module fit and RF remain untested"
+    },
+    {
+      "check": "CAD / firmware interface contracts",
+      "result": "9 tests passed",
+      "scope": "S3 interfaces, MG24 flow control, power isolation, USB pins and single current design"
+    },
+    {
+      "check": "Complete S3 firmware",
+      "result": "Compiled: 1,717,296-byte OTA image; 161,579 bytes static RAM",
+      "scope": "ESPHome 2026.9.1 / IDF 5.5.5, seven function groups; not runtime free-heap measurement"
+    },
+    {
+      "check": "H2 Thread RCP",
+      "result": "Compiled: 208,928 bytes; RX4 / TX5",
+      "scope": "IDF 5.5.5; open-drain S3 reset/boot control confirmed in compiled source"
+    },
+    {
+      "check": "XIAO MG24 Ember NCP + bootloader",
+      "result": "Compiled; 9 recipe/image tests passed",
+      "scope": "SiSDK 2025.6.3 / EmberZNet 8.2.3 / EZSP18; pairing and network restore remain untested"
+    },
+    {
+      "check": "WK2132 transport",
+      "result": "14 ASan / UBSan tests passed",
+      "scope": "Production queue/FIFO core with device model; dedicated worker compiled; physical timing remains untested"
+    },
+    {
+      "check": "Images and diagrams",
+      "result": "Native CAD exports plus labeled generated assembly concept",
+      "scope": "Illustrations are not measurements or fabrication evidence"
+    }
+  ],
+  "evidence_files": [
+    "cad/verification.json",
+    "independent-review.md",
+    "../../firmware/module-carrier/build-evidence.json",
+    "../../firmware/module-carrier/test-results.json",
+    "../../firmware/module-carrier/zigbee/build-evidence.json"
+  ]
+}

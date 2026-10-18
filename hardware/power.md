@@ -1,5 +1,8 @@
 # Power and thermal testing
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 This document describes the power reserve for the **modular Pi design**; the wattages
 below are not predictions of average consumption. A [separate single-S3 design](../docs/low-power.md)
 is being developed to minimize energy use over years of operation.

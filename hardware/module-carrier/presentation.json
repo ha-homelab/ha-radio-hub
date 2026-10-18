@@ -1,0 +1,34 @@
+{
+  "revision": "MC1",
+  "decision_date": "2026-10-17",
+  "title": "One carrier. Finished modules. Familiar protocols.",
+  "status": "Engineering prototype; no physical assembly or RF/power qualification",
+  "choice": "Preserve functions and Home Assistant compatibility; identical H2 controllers are not required.",
+  "functions": [
+    {"name":"Thread", "implementation":"Local S3 border router + dedicated H2 RCP", "retained":"IPv6, multicast, HA REST integration", "test":"Network commissioning, recovery and concurrent traffic"},
+    {"name":"Zigbee", "implementation":"XIAO MG24, board-specific Ember NCP", "retained":"Ember/EZSP family, RTS/CTS, normal ZHA / Zigbee2MQTT path", "test":"Pairing, backup/restore, antenna switch and flow control"},
+    {"name":"Bluetooth", "implementation":"S3 active ESPHome proxy", "retained":"Advertisements and active BLE connections", "test":"Simultaneous connections with other radios"},
+    {"name":"Z-Wave", "implementation":"Existing ZAC93 through WK2132 UART bridge", "retained":"Regional radio and Z-Wave proxy interface", "test":"Lossless byte forwarding, errors, resets and full-size frames"},
+    {"name":"433 MHz RF", "implementation":"Existing CC1101, S3 hardware-timed I/O", "retained":"RF Airbridge MQTT, native transmit and receive events", "test":"Physical timing, reception and transmit regression"},
+    {"name":"Presence", "implementation":"Existing LD2450 on native UART", "retained":"Measurements, configuration and control", "test":"Target tracking and all control actions"},
+    {"name":"Environment", "implementation":"BME680 in external ventilated pod", "retained":"Temperature, humidity, pressure, gas resistance", "test":"I2C stability and thermal bias"}
+  ],
+  "assembly_steps": [
+    "Match exact module revisions to the drawings. Program each module before permanent assembly.",
+    "Dry-fit the male pins in the plated holes. Check USB access and antenna keepouts.",
+    "Fit the listed through-hole parts, then solder module pins from the underside. No female module sockets.",
+    "Wire the finished isolated power and UART modules and the existing radios/sensors to the labeled carrier connectors.",
+    "Check polarity, continuity and loaded rail voltages before connecting the full assembly.",
+    "Commission one function at a time, then test all functions together including power loss and recovery."
+  ],
+  "manufacturing_claim": "One current custom PCB layout; finished vendor modules and external harnesses are still separate physical parts.",
+  "unproven": ["Power and diode headroom", "USB/back-power isolation in the real assembly", "Mechanical fit and antenna spacing", "RF coexistence and range", "End-to-end ZHA / Thread / Z-Wave commissioning", "Simultaneous workload reliability"],
+  "sources": [
+    ["S3 DevKitC-1 v1.1", "https://documentation.espressif.com/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html"],
+    ["H2 DevKitM-1", "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html"],
+    ["XIAO MG24", "https://wiki.seeedstudio.com/xiao_mg24_getting_started/"],
+    ["WIZ850io", "https://docs.wiznet.io/Product/ioModule/WIZ850io"],
+    ["DFR0627", "https://wiki.dfrobot.com/dfr0627"],
+    ["WeiKai ESPHome driver", "https://esphome.io/components/weikai/"]
+  ]
+}

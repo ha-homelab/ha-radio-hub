@@ -1,5 +1,8 @@
 # Parts catalog and visual assembly reference
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 [View the complete parts gallery on GitHub](parts-gallery.md) or [download/open the filterable HTML catalog](../hardware/parts/index.html). It includes every row of the original modular BOM, LP-P0 reference, C0 and M0 assembly/harness BOMs, I0 assembly BOM, and D0 DIY assembly/harness BOMs. Search by model, value or reference; filter by build and component family. Each card preserves exact quantities, reference designators, package and original row notes. [Download the machine-readable inventory](../hardware/parts/inventory.json).
 
 The catalog is a build reference, not a claim that the prototypes have passed hardware qualification. The [manufacturing options](../hardware/low-power/manufacturing-options.json), [pin-to-pin atlas](../hardware/low-power/visual/generated/index.html) and each board's release gates remain authoritative for assembly.

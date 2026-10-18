@@ -1,5 +1,8 @@
 # Compact hub with minimum energy consumption
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 This branch aims to **minimize energy use over the full service life**, without
 using payback calculations or component price limits. Further development uses
 one ESP32-S3, one Ethernet interface and shared efficient power rails. This

@@ -131,11 +131,14 @@ jobs:
               python3 hardware/low-power/integrated/validate.py
               python3 -m unittest discover -s hardware/low-power/diy -p "test_*.py"
               python3 hardware/low-power/diy/validate.py --check-hashes --out /tmp/diy-validation
+              python3 -m unittest discover -s hardware/module-carrier/cad -p "test_*.py"
+              kicad-cli sch erc --exit-code-violations --severity-all --format json --output /tmp/mc1-erc.json hardware/module-carrier/cad/mc1.kicad_sch
+              kicad-cli pcb drc --exit-code-violations --severity-all --schematic-parity --format json --output /tmp/mc1-drc.json hardware/module-carrier/cad/mc1.kicad_pcb
             '
   check:
     name: check
     if: always()
-    needs: [baseline, low-power, mg24, pcb]
+    needs: [baseline, low-power, mg24, pcb, module-carrier]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -145,11 +148,13 @@ jobs:
           LOW_POWER_RESULT: ${{ needs.low-power.result }}
           MG24_RESULT: ${{ needs.mg24.result }}
           PCB_RESULT: ${{ needs.pcb.result }}
+          MC1_RESULT: ${{ needs.module-carrier.result }}
         run: |
           test "$BASELINE_RESULT" = success
           test "$LOW_POWER_RESULT" = success
           test "$MG24_RESULT" = success
           test "$PCB_RESULT" = success
+          test "$MC1_RESULT" = success
   mg24:
     name: MG24 Zigbee NCP and bootloader
     runs-on: ubuntu-latest
@@ -187,3 +192,58 @@ jobs:
             --project "$RUNNER_TEMP/ha-radio-mg24-build" \
             --gcc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi" \
             --commander "$RUNNER_TEMP/ha-radio-mg24-tools/tools/commander/commander"
+
+      - name: Generate the MC1 XIAO MG24 board configuration
+        run: |
+          python3 firmware/module-carrier/zigbee/generate.py \
+            --sdk "$RUNNER_TEMP/ha-radio-mg24-tools/sdk" \
+            --slc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/slc_cli/slc" \
+            --python-pack "$RUNNER_TEMP/ha-radio-mg24-tools/tools/python" \
+            --gcc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi" \
+            --java-home /usr/lib/jvm/java-21-openjdk-amd64 \
+            --output "$RUNNER_TEMP/mc1-mg24-build"
+      - name: Build and verify the MC1 XIAO NCP and bootloader
+        run: |
+          python3 firmware/module-carrier/zigbee/build.py \
+            --project "$RUNNER_TEMP/mc1-mg24-build" \
+            --gcc "$RUNNER_TEMP/ha-radio-mg24-tools/tools/arm-gnu-toolchain-12.2.rel1-x86_64-arm-none-eabi" \
+            --commander "$RUNNER_TEMP/ha-radio-mg24-tools/tools/commander/commander"
+
+  module-carrier:
+    name: MC1 current module carrier
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Audit runner network access
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check current drawings, images and interface contracts
+        run: |
+          python3 hardware/module-carrier/render.py --check
+          python3 hardware/module-carrier/render_board.py --check
+          python3 -m unittest discover -s hardware/module-carrier -p 'test_*.py'
+          python3 -m unittest discover -s firmware/module-carrier/zigbee -p 'test_*.py'
+      - name: Exercise WK2132 forwarding under sanitizers
+        env:
+          RF_CPP_SANITIZERS: "1"
+        run: python3 -m unittest discover -s firmware/module-carrier/tests -p 'test_*.py'
+      - name: Install pinned ESPHome dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install -r firmware/requirements.txt
+      - name: Compile the complete MC1 S3 image
+        run: .venv/bin/python firmware/module-carrier/validate.py .build/mc1 --esphome .venv/bin/esphome --compile
+      - name: Compile the remapped MC1 H2 RCP
+        run: |
+          IDF_PATH=$(.venv/bin/python -c 'import json; print(json.load(open(".build/mc1/firmware/module-carrier/.esphome/build/module-carrier-hub/build/project_description.json"))["idf_path"])')
+          export IDF_PATH
+          export IDF_TOOLS_PATH="$RUNNER_TEMP/mc1-idf-h2"
+          "$IDF_PATH/install.sh" esp32h2
+          source "$IDF_PATH/export.sh"
+          python "$GITHUB_WORKSPACE/firmware/module-carrier/prepare_h2.py" "$GITHUB_WORKSPACE/.build/mc1-h2" --idf "$IDF_PATH"
+          idf.py -C "$GITHUB_WORKSPACE/.build/mc1-h2" -DIDF_TARGET=esp32h2 build
+          python "$GITHUB_WORKSPACE/firmware/module-carrier/verify_h2.py" "$GITHUB_WORKSPACE/.build/mc1-h2"

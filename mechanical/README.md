@@ -1,5 +1,8 @@
 # HA Radio Hub mechanical source
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 DRAFT V0: 240 × 200 × 80 mm two-level enclosure, plus an external ventilated
 45 × 36 × 20 mm BME680 pod. STL geometry is validated; physical fit, print,
 thermal and RF tests remain open.

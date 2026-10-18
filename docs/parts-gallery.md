@@ -1,4 +1,6 @@
-# Assembly parts gallery
+# Historical assembly parts gallery
+
+> **Historical catalog.** Use [the current MC1 guide](../hardware/module-carrier/index.html) and [MC1 hardware](../hardware/module-carrier/README.md) for the single active design. The following entries retain the earlier BOMs.
 
 Pictures, exact model identification and every canonical BOM row. [Build selection and sourcing notes](parts-catalog.md) · [Filterable HTML catalog](../hardware/parts/index.html) (download/open locally) · [Pin-to-pin atlas](../hardware/low-power/visual/README.md).
 

@@ -1,5 +1,8 @@
 # RF Airbridge → Ethernet: configuration migration and HA cutover
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 The wired branch uses a **dedicated Waveshare ESP32-S3-ETH-M + CC1101** and `firmware/rf-ethernet.yaml`. The original ESP8266 board remains ready for rollback. This guide covers preparation **without access to the live network**; flashing commands and HA changes are performed separately after bench testing. Current compilation and test status is recorded in [validation.md](../docs/validation.md).
 
 The original contract comes from [RF Airbridge, revision c96777d](https://github.com/ha-homelab/rf-airbridge/tree/c96777d0df65a7420e4883d79187f31eb1b98c9b). This port moves the application RX/MQTT/API contract to another board. It does not transfer the ESP8266's unique hardware identity: the Ethernet board has a **different MAC**, so retaining the name and API key alone does not preserve the HA device ID or entity-registry unique ID.

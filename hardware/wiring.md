@@ -1,5 +1,8 @@
 # Revision A wiring
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 This page describes the original **Pi + two S3 boards** assembly. For the
 **single-S3 low-power design**, use the [visual wiring atlas](low-power/visual/README.md)
 and its PCB connector maps. The GPIO assignments differ between these designs.

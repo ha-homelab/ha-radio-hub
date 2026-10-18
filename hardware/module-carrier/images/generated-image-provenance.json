@@ -1,0 +1,21 @@
+{
+  "kind": "AI-generated assembly illustration",
+  "tool": "built-in image_gen",
+  "mode": "reference generation then mechanical correction edit",
+  "date": "2026-10-17",
+  "file": "mc1-assembled-concept.png",
+  "sha256": "12c74ea6a39aac8463d5303ffcaa889809c56de6572023db8b81920957e8ba37",
+  "reference_images": {
+    "mc1-board-top.png": "7a870eed5bee5de699c567c9c29bc95c46d2ab1a02e0f7e30e882f08e5916735",
+    "../cad/assembly-top.png": "e3a717ea8aa79bdf6815829f15ad529e6de7b8f553ae2774cd64ba8612eb1d94"
+  },
+  "prompts": [
+    "assembly-prompt.txt",
+    "assembly-edit-prompt.txt"
+  ],
+  "limitations": [
+    "Not a photograph of built hardware",
+    "Module bodies, connector positions and printed labels are approximate; use native CAD and assembly drawing for construction",
+    "Illustrates direct-solder finished modules; no female module sockets"
+  ]
+}

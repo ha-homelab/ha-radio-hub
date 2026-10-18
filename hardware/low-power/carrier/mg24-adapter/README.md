@@ -1,5 +1,8 @@
 # LP-M0 exact-target MGM240P adapter
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](../../../../docs/module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 **Prototype, not hardware validated.** This 60 × 40 × 1.6 mm, two-layer daughterboard carries the exact **MGM240PA22VNA3** module used by the project's [NCP firmware build](../../../../firmware/low-power/mg24/README.md). One M0 is required per modular C0 hub. It provides the power/ground lands, bypass capacitors, boot pull-up, antenna clearance and service connections that a bare module needs. It is a populated adapter board, not a substitute module variant or an unverified purchased breakout.
 
 Open [mg24-adapter.kicad_pro](mg24-adapter.kicad_pro) in KiCad 10. Review the [schematic](outputs/schematic.pdf), [assembly drawing](outputs/assembly-top.svg), [top copper](outputs/board-top.svg), [BOM](assembly-bom.csv), [connector map](connectors.json) and [native validation report](outputs/validation/summary.json). [Prototype Gerbers and drill files](outputs/prototype-gerbers.zip) are for engineering review and first-article manufacture; passing CAD checks does not establish radio performance or assembly yield.

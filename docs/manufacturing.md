@@ -1,5 +1,8 @@
 # Manufacturing and selling small batches
 
+<!-- MC1-CURRENT-DESIGN -->
+> **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
+
 Reviewed **2026-10-17**. This is a sourcing and pilot plan, not a quotation, sales
 forecast or authorization to place an order. Both PCB architectures and all
 three delivery formats are in scope. No manufacturer has quoted production
