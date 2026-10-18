@@ -6,10 +6,11 @@ import importlib.util
 import json
 from pathlib import Path
 
-from prepare import ROOT, replace_once
+from prepare import ROOT, replace_once, require_historical_baseline
 
 
 def prepare(output, upstream=None):
+    require_historical_baseline()
     source = ROOT / "firmware/module-carrier/prepare.py"
     spec = importlib.util.spec_from_file_location("mc1_prepare", source)
     module = importlib.util.module_from_spec(spec)

@@ -19,12 +19,17 @@ fabrication finish specification.
 
 ## Current assembly view
 
+The current version uses the S3-Nano-M host on an 80 × 90 mm carrier, with RJ45 facing the bottom edge.
+
 Use the [dimensioned assembly drawing](../cad/assembly-top.svg) to see the four
 mounted modules, internal harness headers, antenna exclusions, USB access and
 outward-facing RJ45. It is generated from the same geometry as the native PCB.
 The [same-scale comparison](../layout-comparison.svg) shows the area reduction.
 
 ## Historical and rejected illustrations
+
+The preceding full-size-S3 renders and browser captures are archived under
+[pre-nano](history/pre-nano/). They describe the former 100 × 90 mm board, not the current assembly.
 
 The earlier [160 × 100 mm concept](history/mc1-160x100-concept.png) is retained
 only as history, with its [provenance](history/mc1-160x100-provenance.json).
@@ -46,7 +51,8 @@ verification artifacts and must be refreshed when the visible guide changes.
 They do not replace the source SVGs or native PCB files.
 
 Captured views: [current PCB](ui-pcb.jpg), [assembly drawing](ui-assembly.jpg),
-[net search](ui-wiring.jpg). The [screenshot record](screenshot-provenance.json)
+[net search](ui-wiring.jpg), [module architecture](ui-architecture.jpg), and
+[Thread recovery](ui-recovery.jpg). The [screenshot record](screenshot-provenance.json)
 records the source hash, viewport and successful search check.
 The [migration manifest](../visual-migration.json) accounts for current and
 historical visual assets.

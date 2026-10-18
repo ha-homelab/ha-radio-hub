@@ -28,11 +28,11 @@ for f in board.GetFootprints():
     if f.GetReference()=='U4':
         for pd in f.Pads():
             if pd.GetNetname()=='/GND':pd.SetLocalZoneConnection(pcb.ZONE_CONNECTION_FULL)
-# Three crowded GND pads use their routed 0.8mm return rather than a starved
+# Four crowded GND pads use their routed 0.8mm return rather than a starved
 # thermal island. Keep the pad-to-plane clearance; the GND traces join the plane.
 for f in board.GetFootprints():
     for pd in f.Pads():
-        if (f.GetReference(),pd.GetNumber()) in [('U1','J1.22'),('J5','2'),('U2','J3.12')]:
+        if (f.GetReference(),pd.GetNumber()) in [('U1','JP1.14'),('U3','13'),('J1','2'),('J2','4')]:
             pd.SetLocalZoneConnection(pcb.ZONE_CONNECTION_NONE)
 # Two ground pours, no plane under the RF exclusion strips.
 for layer in [pcb.F_Cu,pcb.B_Cu]:

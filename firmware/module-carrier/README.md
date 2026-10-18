@@ -2,9 +2,13 @@
 
 MC1 keeps the existing S3 application and Thread/Ember protocol boundaries. It changes the physical modules, remaps the H2 UART, and replaces the discrete SC16IS752 circuit with a DFRobot DFR0627 module. It does not require a new multi-MCU application protocol or a port of the Thread Border Router to H2.
 
-Use `hub.yaml` with an **Espressif ESP32-S3-DevKitC-1 v1.1 N8R8**, **ESP32-H2-DevKitM-1**, and the specified four-wire Ember MG24 firmware. The S3 target explicitly selects 8 MB flash and octal PSRAM. Compile evidence is not a hardware release.
+Use `hub.yaml` with a **Waveshare ESP32-S3-Nano-M** (factory male headers), **ESP32-H2-DevKitM-1**, and the specified four-wire XIAO MG24 firmware. The generic `esp32-s3-devkitc-1` build descriptor selects the S3 toolchain; it is not the physical board. This profile explicitly selects **16 MB flash and 8 MB octal PSRAM**, preserves the node name `module-carrier-hub`, and uses all 21 available non-strap application GPIO.
 
-The complete worker-based S3 image compiled successfully with ESPHome 2026.9.1 / ESP-IDF 5.5.5: 1,717,296-byte OTA binary, 161,579 bytes of static RAM, and two 3,932,160-byte application slots in the 8 MB flash layout. The remapped H2 RCP binary is 208,928 bytes. These sizes exclude unmeasured runtime allocation requirements. The [build record](build-evidence.json) contains hashes and verified configuration; [14 sanitized transport tests](test-results.json) cover FIFO backpressure, large frames, count-wrap races, I2C failures, serial errors and queue overflow. The separately compiled [XIAO MG24 firmware](zigbee/README.md) supplies the four-wire Ember NCP and recovery bootloader.
+The [build record](build-evidence.json) records the full image, partition margins and generated GPIO checks. The [host test record](test-results.json) distinguishes simulated fault coverage from physical testing. The separately compiled [XIAO MG24 firmware](zigbee/README.md) and matching H2 RCP retain their existing binaries and interfaces. No hardware has been flashed or qualified by this change.
+
+The complete guarded Nano image compiled with ESPHome 2026.9.1 / ESP-IDF 5.5.5: **1,728,512-byte OTA image**, **163,563 bytes static RAM**, and two **8,126,464-byte OTA slots**, each with **6,397,952 bytes** remaining. These are image/linker measurements, not peak runtime memory. All 41 host sanitizer tests and both existing REST contract tests passed.
+
+The generated 16 MB factory partition layout differs from the historical 8 MB layout, including the NVS location. Export/back up the existing Thread dataset and deployment configuration before a first factory installation or partition migration. App-only OTA ordinarily keeps the installed partition table; it does not perform this migration. Verify the actual installed layout. Runtime dataset preservation described below assumes an unchanged, correctly installed partition table.
 
 ## Functions retained
 
@@ -15,17 +19,36 @@ The complete worker-based S3 image compiled successfully with ESPHome 2026.9.1 /
 - ZAC93 through ESPHome's Z-Wave proxy, now using a checked DFR0627 UART1 adapter.
 - Native LD2450 UART and all existing radar controls; BME680 on the shared I2C bus.
 
-## Exact changed wiring
+## Exact wiring and service
 
-S3 Thread UART2 TX41 goes to H2 GPIO4/RX. H2 GPIO5/TX goes to S3 RX42. S3 GPIO47 controls H2 EN, and GPIO48 controls H2 BOOT/GPIO9. This frees each development board's onboard USB-to-UART connection. Use the new RCP preparation recipe below: the previous RX23/TX24 RCP binary has the wrong pinout for MC1.
+The [machine-readable pin contract](pin-plan.json) describes the Nano-M factory headers. Logical assignments are:
 
-The shared OTBR driver already configures both H2 control outputs as **open-drain**, not push-pull; this was checked in the source copied into the compiled MC1 image. BOOT stays released high, and startup pulls EN low for 10 ms before releasing it. The onboard H2 auto-reset transistors can therefore pull these nets low without opposing a driven-high S3 output. MC1 uses the DevKit's EN pull-up and H2 GPIO9's intrinsic reset-time pull-up; the legacy source comment specifying external 10 kΩ pull-ups describes the earlier carrier. The [H2 datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf) specifies the GPIO9 weak pull-up and permits external high-impedance loads on default straps. Verify its high level across reset and the 3 ms strap hold interval on the assembled carrier.
+- One shared SPI2 bus: SCK13, MOSI11, MISO12. W5500 uses CS14, IRQ10, RESET9. CC1101 uses CS6, GDO0/TX4 and GDO2/RX5.
+- MG24 UART1: TX17, RX18, RTS7, CTS21. The four-wire Ember 115200 8N1 contract is unchanged.
+- H2 UART2: S3 TX43 goes to H2 GPIO4/RX; H2 GPIO5/TX goes to S3 RX44. S3 GPIO47 controls H2 EN and GPIO48 controls H2 BOOT/GPIO9.
+- LD2450 UART0: TX8/RX38. I2C: SDA1/SCL2 at 400 kHz, shared by BME680 and DFR0627.
 
-The host component does **not** flash H2 firmware. During H2 USB service, keep the S3 in a stable state: avoid restarting it or making its first Ethernet connection because OTBR startup issues the reset pulse. Do not run simultaneous programmers. Open-drain resolves electrical contention; it does not arbitrate independent programming/reset operations.
+The Nano has native USB on 19/20 and no USB-UART bridge on 43/44. ROM boot messages on TX43 can reach H2; the firmware resets H2 before its read-only preflight and OpenThread startup. GPIO48 drives a slow open-drain BOOT control, compatible with the Nano's LED MOSFET gate load. The carrier must retain accessible GPIO0-to-GND recovery because the Nano has no dedicated BOOT button.
 
-S3 I2C SDA1/SCL2 runs at 400 kHz. Power the DFR0627 from 3.3 V; set IA1=1 and IA0=1. The fixed UART1 register address is 0x70 and its FIFO address is 0x71. DFR0627 TX1 goes to ZAC93 RX; RX1 comes from ZAC93 TX. UART2 is disabled. BME680 remains at 0x77. All other S3 signal pins retain the previous application assignment. The PCB netlist is authoritative for connector positions; these are GPIO numbers.
+H2 control outputs are open-drain. BOOT stays released high, and each hardware reset holds EN low for 10 ms then waits 100 ms. MC1 uses the H2 DevKit EN pull-up and GPIO9's intrinsic reset-time pull-up. Verify actual levels and the strap hold interval on the assembled carrier. The firmware does not update H2. Before H2 USB programming, activate **Pause Thread for H2 Service**, wait for the hub to reconnect with `Thread State = maintenance` and `Thread Guard Durable = on`, then follow the carrier electrical service procedure. Resume with **Retry Quarantined Thread** after programming. Do not run simultaneous programmers. Paused/quarantined Thread performs no automatic reset or retry. Native USB electrical safety and power sequencing remain governed by the carrier service instructions.
 
-The board must leave S3 GPIO43/44 (onboard USB-UART), GPIO38 (v1.1 RGB LED), and native USB 19/20 outside the application wiring. H2 uses normal header GPIO4/5, leaving UART 23/24 and USB 26/27 for service. The [official H2 board guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html) lists GPIO4/5 at J1 pins 9/10, EN at J1 pin 2, and BOOT9 at J3 pin 11.
+Power DFR0627 from 3.3 V; set IA1=1 and IA0=1. Its UART1 register address is 0x70 and FIFO address 0x71. TX1 goes to ZAC93 RX and RX1 comes from ZAC93 TX. UART2 is disabled. BME680 remains at 0x77.
+
+## Shared SPI contract
+
+ESPHome 2026.9.1 supports W5500 `spi_id`. Its SPI-device transactions arbitrate the same IDF bus as CC1101. The pinned CC1101 startup reset sequence directly toggles CS; therefore the generated-code check requires its default DATA setup priority (600), before Ethernet (250), with the bus initialized at 1000. No runtime CC1101 `reset()`/`configure()` or setup-priority override is permitted by this profile. RF modulation uses the existing RMT/GDO lines, not continuous SPI packet transfer. Firmware compilation and these source checks do not replace simultaneous Ethernet/RF load testing.
+
+## Thread failure containment
+
+The [detailed recovery contract](thread-recovery.md) describes the exact implementation and remaining limits. In ordinary operation all three active BLE slots, Zigbee, Z-Wave, radar, RF, MQTT and Thread remain enabled.
+
+Before the real OpenThread stack starts, a bounded read-only UART probe verifies HDLC integrity, Spinel 4.3, RCP/raw-radio capabilities, API compatibility and required radio features. No answer, an incompatible RCP or unavailable guard storage quarantines Thread without entering the SDK stack. The other functions continue. The probe does not read or modify network credentials.
+
+For an unrecoverable failure after startup, registered callbacks persist the fault and perform **one complete hub restart**, then leave Thread quarantined. All protocols briefly disconnect during that restart. SDK terminal paths that bypass those callbacks are detected conservatively after a panic/watchdog reset using a persisted armed marker. An unrelated crash while Thread was armed can therefore also quarantine Thread. This is bounded fault containment, not a claim of seamless recovery or perfect fault attribution.
+
+Home Assistant receives `Thread State`, `Thread Last Fault`, `Thread Quarantined`, fault/retry/reset counts, role, reset reason and internal/PSRAM memory measurements. Use the momentary **Retry Quarantined Thread** switch or native API action `retry_quarantined_thread` after fixing the cause. This durably clears only the guard and restarts the hub once. We deliberately avoid adding the ESPHome `button` component because it conflicts with the existing Dooya API argument named `button`; that public RF schema is preserved.
+
+Normal power-on, temporary Ethernet loss and absence of a commissioned Thread dataset do not by themselves trigger quarantine. The guard uses NVS namespace `hub_thread`; OpenThread's dataset remains untouched. Persistent quarantine survives normal resets, firmware updates and power cycles. If NVS writing fails during a fault, checksummed RTC memory protects a warm restart only; persistence across total power loss is not guaranteed while storage is failing. Existing ESPHome OTA safe mode/rollback is retained, with no claim that its successful-boot timer tests Thread connectivity.
 
 ## Why this is not the stock WeiKai component
 

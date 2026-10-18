@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "tested_date_local": "2026-10-17",
   "host_os": "macOS arm64",
   "esphome": "2026.9.1",
@@ -31,38 +31,26 @@
       "CONFIG_BT_BLUEDROID_ENABLED": "y",
       "CONFIG_SPIRAM_MODE_OCT": "y",
       "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
-      "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
-      "CONFIG_FREERTOS_HZ": "1000"
+      "CONFIG_ESPTOOLPY_FLASHSIZE_16MB": "y",
+      "CONFIG_FREERTOS_HZ": "1000",
+      "CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE": "y",
+      "CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT": "y",
+      "CONFIG_SPIRAM_USE_CAPS_ALLOC": "y",
+      "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y"
     },
     "artifacts": {
       "module-carrier-hub.bin": {
-        "bytes": 1717296,
-        "sha256": "660c37c5b82177155ace2d273b553cdbfe7f699841c7b8f8582b20dcfba17a1d"
+        "bytes": 1728512,
+        "sha256": "7a43a92ad66e4c930cd83ab347a300264965e8668661a6345038464eeb9f7a87"
       },
       "firmware.factory.bin": {
-        "bytes": 1782832,
-        "sha256": "3821dafef3a7bdcf02f58f3e48a003366a3ba6c72038ae345fa0573024bf2ce5"
+        "bytes": 1794048,
+        "sha256": "12ed8bf3bb6d61e2b84c1641e1301bc706305c0eb0d2d5a4b5338a290397ec38"
       },
       "firmware.ota.bin": {
-        "bytes": 1717296,
-        "sha256": "660c37c5b82177155ace2d273b553cdbfe7f699841c7b8f8582b20dcfba17a1d"
+        "bytes": 1728512,
+        "sha256": "7a43a92ad66e4c930cd83ab347a300264965e8668661a6345038464eeb9f7a87"
       }
-    },
-    "image_unpadded_bytes": 1717183,
-    "static_ram_bytes": 161579,
-    "linker_ram_bytes": 341760,
-    "ota_application_slot_bytes": 3932160,
-    "cpu_mhz": 160,
-    "psram_mb": 8,
-    "runtime_heap_stack_and_psram_capacity_tested": false,
-    "uart_worker": {
-      "task_priority": 2,
-      "stack_bytes": 4096,
-      "rx_poll_target_ms": 2,
-      "hardware_rx_fifo_bytes": 256,
-      "software_rx_tx_queue_bytes_each": 2048,
-      "staging_rx_tx_queue_bytes_each": 256,
-      "i2c_hz": 400000
     },
     "h2_service_gpio": {
       "reset_gpio": 47,
@@ -71,8 +59,82 @@
       "idle_level": 1,
       "reset_low_ms": 10,
       "h2_firmware_update_supported": false,
-      "source_sha256": "92492effbb5ce3621ffcec84bb6a906c5afd71da4c2a53a360a2161fc0625961"
-    }
+      "source_sha256": "2003501279bf4ae8d969e9da9ad68ad69ae106bf92b48d3f86aef32764287fd9"
+    },
+    "generated_pin_checks": {
+      "all_assigned_gpio_verified": true,
+      "unique_gpio": 21,
+      "ble_slots": 3,
+      "native_uart_ownership": {
+        "0": "LD2450",
+        "1": "MG24",
+        "2": "H2"
+      },
+      "shared_spi": true,
+      "runtime_cc1101_reset_absent": true
+    },
+    "shared_spi_source_sha256": {
+      "core/component.h": "5455c08357a62ab7851ca00730226251a7587c18a816e898a429f16edc20e354",
+      "core/component.cpp": "1505845475a53b7effce459b7a91058d17c22cd5d0fb5bec3f7c4f23ec0ccb16",
+      "components/ethernet/ethernet_component.h": "0866a3872805ed8756f11a41e4fe1e3fcd8fea6a3387beac360a97ba4740727b",
+      "components/ethernet/ethernet_component_esp32.cpp": "8546fa078109c73bdc8295c3c8846489f3cf04eb17a9c9e0197719a96949ba94",
+      "components/spi/spi_esp_idf.cpp": "d6b7ef40fbae80cfbae8b508c034d5e6e399d6c2578bbf5d1b84218e447ff87d",
+      "components/spi/spi.h": "2219df88c87051dff6ad59d8a6cff4fea5bcc035efe2cf42bd5942ffac98851d",
+      "components/cc1101/cc1101.cpp": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+      "components/cc1101/cc1101.h": "34a95c3df32f8782366f4208f4a312f904bdff63d2a20bfeab38633e36f48788"
+    },
+    "partitions": [
+      {
+        "name": "otadata",
+        "type": "data",
+        "subtype": "0",
+        "offset": 36864,
+        "bytes": 8192
+      },
+      {
+        "name": "phy_init",
+        "type": "data",
+        "subtype": "1",
+        "offset": 45056,
+        "bytes": 4096
+      },
+      {
+        "name": "app0",
+        "type": "app",
+        "subtype": "ota_0",
+        "offset": 65536,
+        "bytes": 8126464,
+        "image_margin_bytes": 6397952
+      },
+      {
+        "name": "app1",
+        "type": "app",
+        "subtype": "ota_1",
+        "offset": 8192000,
+        "bytes": 8126464,
+        "image_margin_bytes": 6397952
+      },
+      {
+        "name": "nvs",
+        "type": "data",
+        "subtype": "2",
+        "offset": 16318464,
+        "bytes": 458752
+      }
+    ],
+    "thread_source_sha256": {
+      "low_power_otbr.cpp": "2003501279bf4ae8d969e9da9ad68ad69ae106bf92b48d3f86aef32764287fd9",
+      "low_power_otbr.h": "102dcbc5fcf3cbbf43a7b6b53c83cd51fa93fdaafd3541dc5b6ed967590a0df7",
+      "thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+      "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa"
+    },
+    "linked_memory": {
+      "static_ram_bytes": 163563,
+      "linker_ram_bytes": 341760,
+      "runtime_measured": false
+    },
+    "framework_cache_manually_modified": false,
+    "sdk_patches_applied": false
   },
   "h2_rcp": {
     "compiled": true,
@@ -110,13 +172,28 @@
   },
   "zigbee_evidence": "zigbee/build-evidence.json",
   "source_sha256": {
-    "components/wk2132_uart/__init__.py": "7142f34856416f1703fd5ec1275a674c1a236b9bb337ac3feab498b6bda49fef",
-    "components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
-    "components/wk2132_uart/wk2132_uart.cpp": "a08286a74f64d4ee7b55316ee73c3dce33c76bb5e6684c8bcda23a8bd65bed81",
-    "components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
-    "hub.yaml": "5d65e7d74cc29dfd806e94d72e4e37922d53fcaae4702ae2341186c3031d4ff6",
-    "prepare.py": "ce4a1e3f0d80bd75ee6fa807108a04724d0a43895de9e7b9a6ca04d9722e62ff",
-    "prepare_h2.py": "c43ce7c209bb898a7fc662c563104ffa7d2e89d2d24395524e43c6daebb7fc3e"
+    "firmware/module-carrier/hub.yaml": "59812865a7677db2ebd414c57e0f2e1896f24b5eced7702efb521f17b318e890",
+    "firmware/module-carrier/health.yaml": "f07765ad00e8dc91eb59f0baf10ed16c9f96a1c052cb8bc84978d597c577e74d",
+    "firmware/module-carrier/prepare.py": "ce4a1e3f0d80bd75ee6fa807108a04724d0a43895de9e7b9a6ca04d9722e62ff",
+    "firmware/module-carrier/validate.py": "7aca5c94367fa7f50c74e96ca7d5760a0c5959202a01820bc4aeea54c9c3a3fb",
+    "firmware/module-carrier/contract.py": "464ef9b69ab0473733faad951a8543a7ca78ab0403e4d1b823d3056cd83593d1",
+    "firmware/module-carrier/pin-plan.json": "8cfa8877133ba7dd5ee486cb1ce27b0e4732e1f6deaa184297fd70dce0f1b416",
+    "firmware/packages/rf-airbridge.yaml": "649e0fdf405b618b23a55360723b5813cc12647423e98d8e436b11bd5016a2ac",
+    "firmware/low-power/components/low_power_otbr/__init__.py": "1b661e7ae8cb060a5db0b92e5d9c4a10d19dca19c542999c31c5e513498f7e3b"
   },
-  "scope": "Compiled images and host tests only; no device flashed and no hardware, RF, power or runtime acceptance performed."
+  "scope": "Full active Nano-M image compiled and generated hardware contract checked. Host tests cover guard/probe/storage decisions and WK2132 transport; actual ESP32 reboot/NVS/RTC/radio behavior and concurrent load remain untested. H2/MG24 firmware unchanged; prior matching build evidence retained.",
+  "sdk_source_modified": false,
+  "thread_guard": {
+    "implemented": true,
+    "host_fault_tests_passed": 27,
+    "full_suite_tests_passed": 41,
+    "rest_contract_tests_passed": 2,
+    "physical_fault_injection_tested": false,
+    "terminal_fault_behavior": "one complete host restart then persistent Thread quarantine",
+    "generic_crash_attribution": "conservative: panic/watchdog while armed may originate outside Thread",
+    "maintenance_pause_requires_verified_nvs": true,
+    "emergency_rtc_fallback_survives_total_power_loss": false,
+    "thread_dataset_erased_by_guard": false,
+    "sdk_patches_applied": false
+  }
 }

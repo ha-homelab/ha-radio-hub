@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import subprocess
 from prepare import prepare, load_legacy
+from contract import verify_generated, verify_shared_spi_sources, verify_partitions, actual_partition_csv
 
 def verify_service_gpio(source: str):
     # Check the source actually copied into the image, not just the YAML pins.
@@ -35,21 +36,35 @@ def verify(profile: Path):
     config=dict(line.split("=",1) for line in (root/("sdkconfig."+name)).read_text().splitlines()
                 if line.startswith("CONFIG_") and "=" in line)
     required=load_legacy("validate").REQUIRED_SDKCONFIG | {
-        "CONFIG_ESPTOOLPY_FLASHSIZE_8MB":"y","CONFIG_FREERTOS_HZ":"1000"}
+        "CONFIG_ESPTOOLPY_FLASHSIZE_16MB":"y", "CONFIG_FREERTOS_HZ":"1000",
+        "CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE":"y",
+        "CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT":"y",
+        "CONFIG_SPIRAM_USE_CAPS_ALLOC":"y",
+        "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM":"y"}
     for key,value in required.items():
         if config.get(key)!=value:
             raise RuntimeError(f"Required option missing: {key}={value}")
     generated=(root/"src/main.cpp").read_text()
-    for line in ["set_pins(41, 42, 47, 48)","set_pins(17, 18, 16, 21)"]:
-        if line not in generated:
-            raise RuntimeError("Wrong Thread carrier pin: "+line)
+    pin_checks=verify_generated(generated,"nano")
+    spi_checks=verify_shared_spi_sources(root/"src/esphome")
     service=verify_service_gpio((root/"src/esphome/components/low_power_otbr/low_power_otbr.cpp").read_text())
     artifacts={}
     for name in ("module-carrier-hub.bin","firmware.factory.bin","firmware.ota.bin"):
         data=(root/"build"/name).read_bytes()
         artifacts[name]={"bytes":len(data),"sha256":hashlib.sha256(data).hexdigest()}
+    partition_binary=root/"build/partition_table/partition-table.bin"
+    partitions=verify_partitions(actual_partition_csv(partition_binary),artifacts["firmware.ota.bin"]["bytes"],16777216)
+    sizes=json.loads((root/"build/esp_idf_size.json").read_text())
+    ram=sizes["memory_types"].get("DRAM") or sizes["memory_types"].get("DIRAM")
+    source_hashes={}
+    for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h"):
+        source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.9.1","esp_idf":"5.5.5",
-            "sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service}
+            "sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service,
+            "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
+            "partitions":partitions,"thread_source_sha256":source_hashes,
+            "linked_memory":{"static_ram_bytes":ram["used"],"linker_ram_bytes":ram["size"],"runtime_measured":False},
+            "framework_cache_manually_modified":False,"sdk_patches_applied":False}
     (profile.parent/"build-result.json").write_text(json.dumps(result,indent=2)+"\n")
     return result
 

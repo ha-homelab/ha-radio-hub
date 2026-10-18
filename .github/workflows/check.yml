@@ -225,6 +225,7 @@ jobs:
         run: |
           python3 hardware/module-carrier/render.py --check
           python3 hardware/module-carrier/render_board.py --check
+          python3 hardware/module-carrier/audit_carrier.py --self-test
           python3 -m unittest discover -s hardware/module-carrier -p 'test_*.py'
           python3 -m unittest discover -s firmware/module-carrier/zigbee -p 'test_*.py'
       - name: Exercise WK2132 forwarding under sanitizers

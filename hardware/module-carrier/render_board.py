@@ -45,7 +45,7 @@ def main():
         name = f'mc1-board-{side}.png'
         options = ['--width', '1600', '--height', '1050', '--side', side,
                    '--background', 'transparent', '--quality', 'high',
-                   '--perspective', '--rotate', '335,0,15', '--zoom', '0.85']
+                   '--perspective', '--rotate', '335,0,15', '--zoom', '0.70']
         subprocess.run([args.kicad_cli, 'pcb', 'render', str(board), '-o', str(out/name), *options], check=True)
         manifest['images'][name] = {'sha256': digest(out/name),
                                    'dimensions_px': dimensions(out/name), 'options': options}

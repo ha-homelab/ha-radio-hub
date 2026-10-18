@@ -6,6 +6,7 @@ substitutions:
   rf_received_topic: rf/received
   rf_raw_topic: rf/received/raw
   rf_transmit_result_topic: rf/transmit/result
+  rf_cs_pin: GPIO15
   # Override with this remote's learned 24-bit codes in private configuration.
   # Values outside 24 bits disable a slot; default configuration matches none.
   rm433_button_1_code: "0xffffffff"
@@ -47,7 +48,7 @@ event:
 cc1101:
   id: rf_radio
   spi_id: cc1101_spi
-  cs_pin: GPIO15
+  cs_pin: ${rf_cs_pin}
   frequency: 433.92MHz
 
 remote_receiver:

@@ -13,13 +13,13 @@ def text(x,y,t,size=18,fill='#203748',weight=400):
 def box(x,y,w,hh,title,lines,fill='#eff5f8'):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{hh}" rx="8" fill="{fill}" stroke="#7894a4"/>'+text(x+18,y+32,title,21,weight=700)+''.join(text(x+18,y+65+i*25,t,17) for i,t in enumerate(lines))
 def architecture():
-    s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 875" role="img" aria-label="MC1 one carrier architecture"><rect width="1320" height="875" fill="#fff"/><g font-family="Arial,sans-serif">'
+    s='<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="875" viewBox="0 0 1320 875" role="img" aria-label="MC1 one carrier architecture"><rect width="1320" height="875" fill="#fff"/><g font-family="Arial,sans-serif">'
     s+=text(36,47,'MC1 · one current module carrier',32,weight=700)+text(36,82,'One Ethernet uplink · local Thread BR · Ember Zigbee · direct-solder module pins',19)
     s+=box(36,122,1248,103,'Finished isolated power',['PoE splitter → fused 5 V → individual controller inputs; finished 3.3 V buck → peripheral rail'],'#f5f1e9')
     for points in ['318,360 425,360','805,344 948,344','805,458 865,458 865,536 948,536','318,552 369,552 369,460 425,460','600,550 600,666','425,515 405,515 405,735 385,735']:
         s+=f'<polyline points="{points}" fill="none" stroke="#2c698d" stroke-width="3"/>'
-    s+=box(36,287,282,148,'WIZ850io',['Finished Ethernet module','Dedicated SPI','No raw PoE on its headers'])
-    s+=box(425,278,380,272,'S3 · local host',['ESP32-S3-DevKitC-1 N8R8','Local Thread BR + active BLE','RF Airbridge + sensor services','Two SPI buses, three UARTs','USB-UART pins kept free'],'#e4eff7')
+    s+=box(36,287,282,148,'WIZ850io',['Finished Ethernet module','Shared SPI · own CS','No raw PoE on its headers'])
+    s+=box(425,278,380,272,'S3 · local host',['Waveshare ESP32-S3-Nano-M','16 MB flash + 8 MB PSRAM','Local Thread BR + 3 active BLE','Shared SPI, three native UARTs','Native USB + BOOT service'],'#e4eff7')
     s+=box(948,277,336,140,'H2 · Thread RCP',['ESP32-H2-DevKitM-1','Dedicated UART; EN + BOOT','Independent 802.15.4 radio'])
     s+=box(948,468,336,140,'XIAO MG24 · Zigbee',['Ember NCP, not ZBOSS','TX/RX + hardware RTS/CTS','Native onboard programming'])
     s+=box(36,474,282,155,'CC1101 · existing RF',['433 MHz TX + RX','SPI + two GDO signals','Hardware-timed S3 I/O'])
@@ -30,7 +30,7 @@ def architecture():
     return s+'</g></svg>'
 
 def assembly():
-    s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 450" role="img" aria-label="Direct solder through-hole assembly"><rect width="1320" height="450" fill="white"/><g font-family="Arial,sans-serif">'
+    s='<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="450" viewBox="0 0 1320 450" role="img" aria-label="Direct solder through-hole assembly"><rect width="1320" height="450" fill="white"/><g font-family="Arial,sans-serif">'
     s+=text(36,48,'Factory male pins → plated carrier holes → underside solder',29,weight=700)
     s+=text(36,86,'Assembly principle; section not to scale. Actual heights and underside clearance require a dry fit.',18)
     s+='<rect x="115" y="146" width="500" height="22" fill="#2e6670"/>'
@@ -48,26 +48,29 @@ def assembly():
     return s+'</g></svg>'
 
 def layout_comparison(current):
-    """Same-scale module positions; no invented copper or assembly photograph."""
-    previous=json.loads((HERE/'layout-baseline.json').read_text())
+    """Same-scale module bodies from the CAD ledgers; no invented copper."""
+    previous=json.loads((HERE/'layout-previous.json').read_text())
     old=previous['board']; new=current['board']
     old_area=old['width_mm']*old['height_mm']; new_area=new['width_mm']*new['height_mm']
     reduction=100*(1-new_area/old_area)
     body={'U1':(-1.27,-1.4,24.13,61.34),'U2':(-1.27,-1.575,24.13,46.685),
           'U3':(-1.27,-2.921,16.51,18.034),'U4':(-1.34,-6.4,21.66,18.6)}
     names={'U1':'S3','U2':'H2','U3':'MG24','U4':'Ethernet'}
-    s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 640" role="img" aria-label="Previous and current carrier placement at the same scale"><rect width="1260" height="640" fill="#fff"/><g font-family="Arial,sans-serif">'
-    s+=text(32,43,'A smaller carrier, with the same modules',29,weight=700)
-    s+=text(32,78,f'{old_area/100:g} → {new_area/100:g} cm² of PCB · {reduction:.1f}% less board area · two copper layers',19)
-    scale=3.5
-    for design,ox,label,color in [(previous,40,'Previous layout · historical','#ecf0f3'),(current,690,'Current layout','#e2f0ec')]:
+    s='<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="670" viewBox="0 0 1120 670" role="img" aria-label="Previous full-size S3 and current Nano carrier at equal scale"><rect width="1120" height="670" fill="#fff"/><g font-family="Arial,sans-serif">'
+    s+=text(32,43,'Smaller host. Same seven function groups.',29,weight=700)
+    s+=text(32,78,f'{old_area/100:g} → {new_area/100:g} cm² of PCB · {reduction:.1f}% less area than the last carrier',19)
+    scale=4
+    for design,ox,label,color in [(previous,55,'Previous · full-size S3','#ecf0f3'),(current,625,'Current · S3-Nano-M','#e2f0ec')]:
         oy=163; b=design['board']; w=b['width_mm']; height=b['height_mm']
         s+=text(ox,122,label,21,weight=700)
         s+=f'<rect x="{ox}" y="{oy}" width="{w*scale}" height="{height*scale}" fill="{color}" stroke="#688493" stroke-width="2"/>'
         for p in design['parts']:
             ref=p['ref']; pads=p['pad_centers_mm']
             if ref in body:
-                x1,y1,x2,y2=body[ref]; th=math.radians(p['rotation'])
+                bounds=p.get('body_bounds_local_mm',body[ref])
+                if design is current and ref=='U1':
+                    assert 'body_bounds_local_mm' in p, 'Nano body bounds must come from current CAD'
+                x1,y1,x2,y2=bounds; th=math.radians(p['rotation'])
                 points=[(p['xy'][0]+x*math.cos(th)+y*math.sin(th),p['xy'][1]-x*math.sin(th)+y*math.cos(th)) for x,y in [(x1,y1),(x1,y2),(x2,y1),(x2,y2)]]
                 xs,ys=zip(*points); x1,x2=min(xs),max(xs); y1,y2=min(ys),max(ys)
                 fill='#b6cbd7'; stroke='#597688'
@@ -78,9 +81,29 @@ def layout_comparison(current):
             s+=f'<rect x="{ox+x1*scale:.2f}" y="{oy+y1*scale:.2f}" width="{(x2-x1)*scale:.2f}" height="{(y2-y1)*scale:.2f}" rx="1" fill="{fill}" stroke="{stroke}"/>'
             if ref in names:
                 s+=f'<text x="{ox+(x1+x2)*scale/2:.2f}" y="{oy+(y1+y2)*scale/2:.2f}" text-anchor="middle" font-size="13" fill="#193748">{names[ref]}</text>'
-        s+=text(ox,oy+height*scale+30,f'{w:g} × {height:g} mm',19,weight=700)
-    s+=text(32,585,'Same scale. Blue: finished modules. Green: harness/service headers. Tan: axial parts.',17)
-    s+=text(32,615,'Placement overview from CAD ledgers; excludes cable bends, external modules and enclosure walls.',16)
+        r=design['mechanics']['rj45']; a,z=r['face_global_mm']; nx,ny=r['outward_normal_global']
+        cx,cy=(a[0]+z[0])/2,(a[1]+z[1])/2
+        s+=f'<line x1="{ox+a[0]*scale}" y1="{oy+a[1]*scale}" x2="{ox+z[0]*scale}" y2="{oy+z[1]*scale}" stroke="#287a63" stroke-width="4"/>'
+        sx,sy=ox+(cx+nx*2)*scale,oy+(cy+ny*2)*scale
+        ex,ey=ox+(cx+nx*10)*scale,oy+(cy+ny*10)*scale
+        s+=f'<line x1="{sx}" y1="{sy}" x2="{ex}" y2="{ey}" stroke="#287a63" stroke-width="3"/>'
+        s+=f'<polygon points="{ex},{ey} {ex-nx*10-ny*6},{ey-ny*10+nx*6} {ex-nx*10+ny*6},{ey-ny*10-nx*6}" fill="#287a63"/>'
+        s+=text(ox,oy-12,f'{w:g} mm horizontal × {height:g} mm vertical',18,weight=700)
+    s+=text(32,612,'Same scale. Blue: modules. Green: headers and RJ45 exit. Tan: axial parts.',17)
+    s+=text(32,644,'Carrier outline only; cable bends, external modules and enclosure walls add space.',16)
+    return s+'</g></svg>'
+
+
+def recovery_diagram():
+    s='<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="480" viewBox="0 0 1240 480" role="img" aria-label="Bounded Thread recovery"><rect width="1240" height="480" fill="#fff"/><g font-family="Arial,sans-serif">'
+    s+=text(32,46,'A failed Thread radio must not cause a reboot loop',28,weight=700)
+    s+=box(32,100,350,155,'Boot + RCP preflight',['Ethernet ready; probe H2','No response → quarantine','Keep the other services running'])
+    s+=box(444,100,350,155,'Thread operational',['Local border router + REST','Normal transient recovery stays','Terminal fault → record failure'])
+    s+=box(856,100,350,155,'Persistent quarantine',['At most one controlled restart','Next boot leaves Thread stopped','User retry explicitly re-arms it'])
+    for x in (382,794):
+        s+=f'<path d="M{x} 175 h58 m-9 -7 l9 7 -9 7" fill="none" stroke="#2c698d" stroke-width="3"/>'
+    s+=box(32,300,1174,105,'Other services still share the S3',['A terminal Thread fault briefly interrupts every service during the restart. This is bounded recovery, not hardware isolation.'],'#f6eedf')
+    s+=text(32,452,'Commissioning, power-loss recovery and simultaneous-load acceptance still require the assembled hardware.',17)
     return s+'</g></svg>'
 
 def produce():
@@ -94,7 +117,7 @@ def produce():
         rows_old=list(csv.DictReader((ROOT/'hardware/low-power'/relative/'assembly-bom.csv').open()))
         old_counts.append(sum(int(x['Quantity']) for x in rows_old if x['Reference'].startswith(('C','R'))))
     compare=[('C0 + M0 · historical',sum(old_counts[:2])),('I0 · historical',old_counts[2]),('MC1 · current',counts['C']+counts['R'])]
-    chart='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Builder-installed capacitor and resistor counts"><rect width="1200" height="420" fill="white"/><g font-family="Arial,sans-serif">'
+    chart='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="Builder-installed capacitor and resistor counts"><rect width="1200" height="420" fill="white"/><g font-family="Arial,sans-serif">'
     chart+=text(32,45,'Builder-installed capacitors + resistors',28,weight=700)
     chart+=text(32,79,'Component placements from the respective BOMs; alternative builds are not added together.',17)
     for i,(label,count) in enumerate(compare):
@@ -135,27 +158,29 @@ def produce():
     dimensions=f"{b['width_mm']:g} × {b['height_mm']:g} mm"
     baseline=json.loads((HERE/'layout-baseline.json').read_text())['board']
     area_reduction=100*(1-b['width_mm']*b['height_mm']/(baseline['width_mm']*baseline['height_mm']))
+    prior=json.loads((HERE/'layout-previous.json').read_text())['board']
+    previous_reduction=100*(1-b['width_mm']*b['height_mm']/(prior['width_mm']*prior['height_mm']))
     rj45=current['mechanics']['rj45']
     direction=rj45['opening_direction'].split(' / ')[0]
-    mouth=max(rj45.get('mouth_beyond_left_edge_mm',0),rj45.get('mouth_beyond_right_edge_mm',0))
+    mouth=max(rj45.get('mouth_beyond_'+side+'_edge_mm',0) for side in ('left','right','top','bottom'))
     edge_access=f'RJ45 faces outward at the {direction} edge; its mouth projects {mouth:g} mm beyond the carrier.'
-    compact=f'<p>The carrier is <strong>{dimensions}</strong>, with <strong>{area_reduction:.1f}% less PCB area</strong> than the previous 160 × 100 mm layout. Harness headers occupy accessible internal gaps; the four finished modules and their electrical pin assignments are retained. Cable/service reservations are shown on the assembly drawing and are not usable component space.</p><figure><a href="layout-comparison.svg"><img src="layout-comparison.svg" alt="Previous and compact MC1 placement at the same scale"></a><figcaption>Historical versus current placement at the same scale. <a href="layout-comparison.svg">Open comparison</a>. PCB area excludes external finished modules, cables and enclosure.</figcaption></figure>'
-    compact+='<p>Both dimensions stay within the 100 × 100 mm size ceiling used by advertised low-cost prototype offers. The selected 90 mm height keeps all components on top and allows ordinary mounting supports. <a href="../../docs/module-carrier.md#compact-placement-and-fabrication-cost">Cost rationale and source offers</a>; shipping and final fabrication specifications need their own quote.</p>'
+    compact=f'<p>The carrier is <strong>{dimensions}</strong>, with <strong>{previous_reduction:.1f}% less PCB area</strong> than the preceding 100 × 90 mm carrier and {area_reduction:.1f}% less than the original 160 × 100 mm outline. Harness headers occupy internal gaps. The full-size S3 is replaced with a factory-header Nano-M; the H2, MG24 and WIZ850io roles remain. GPIO assignments and the shared SPI bus are updated together in CAD and firmware. Cable/service reservations are shown on the assembly drawing and are not usable component space.</p><figure><a href="layout-comparison.svg"><img src="layout-comparison.svg" alt="Previous and compact MC1 placement at the same scale"></a><figcaption>Historical versus current placement at the same scale. <a href="layout-comparison.svg">Open comparison</a>. PCB area excludes external finished modules, cables and enclosure.</figcaption></figure>'
+    compact+='<p>Both dimensions stay within the 100 × 100 mm size ceiling used by advertised low-cost prototype offers. All components remain on top; the underside carries copper and solder joints. A smaller outline does not imply a proportional reduction in the delivered fabrication price. <a href="../../docs/module-carrier.md#compact-placement-and-fabrication-cost">Cost rationale and source offers</a>; shipping and final fabrication specifications need their own quote.</p>'
     page='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MC1 — one module carrier</title><style>
 :root{--ink:#193748;--muted:#5b7180;--accent:#27698e;--line:#c7d6df;--paper:#fff;--soft:#eef4f7}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf2f5;color:var(--ink);font:16px/1.6 system-ui,sans-serif}main{max-width:1260px;margin:auto;background:var(--paper);padding:36px}nav{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}a{color:var(--accent)}h1{font-size:42px;line-height:1.14;max-width:900px;margin:26px 0 18px}h2{font-size:27px;line-height:1.2;margin:40px 0 18px}h3{font-size:19px}p{max-width:1000px}.lead{font-size:20px}.eyebrow{letter-spacing:.12em;font-size:13px;font-weight:650;color:var(--muted)}.notice{padding:18px 24px;border-left:4px solid var(--accent);background:var(--soft)}.muted,figcaption{color:var(--muted)}.facts{display:flex;gap:36px;flex-wrap:wrap;padding:22px 0;border-bottom:1px solid var(--line)}.facts b{display:block;font-size:25px}.facts span{font-size:14px}.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}figure{margin:24px 0}img{display:block;max-width:100%;height:auto}figcaption{font-size:14px;margin-top:10px}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{font-weight:650}thead{background:var(--soft)}input,button{font:inherit;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:white;color:var(--ink)}input{max-width:100%;width:480px}li{margin-bottom:10px}.sources{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}code{font-size:.9em;background:#eef2f4;padding:2px 5px}details{margin-top:22px}summary{cursor:pointer;font-weight:650}@media(max-width:700px){main{padding:20px}h1{font-size:31px}.two{display:block}.facts{gap:22px}td,th{padding:8px}nav{gap:14px}}@media print{body{background:white}main{padding:0}nav,input,button{display:none}figure{break-inside:avoid}h2{break-after:avoid}}
 </style></head><body><main>
 <nav><a href="#board">Board</a><a href="#pcb">PCB</a>__PHOTO_LINK__<a href="#wiring">Wiring</a><a href="#assembly">Assembly</a><a href="#evidence">Evidence</a><a href="../../docs/module-carrier.md">English guide</a><a href="../../docs/design-history.md">Design history</a></nav>
 <p class="eyebrow">HA RADIO HUB / MC1 / 17 OCTOBER 2026</p><h1>One carrier.<br>Finished modules.<br>Familiar protocols.</h1>
-<p class="lead">S3 + H2 + Ember MG24. Keep the local Thread border router and Home Assistant interfaces. Solder factory module pins directly into the carrier.</p>
+<p class="lead">S3-Nano-M + H2 + Ember MG24. One Ethernet uplink, local Thread, three active BLE slots and the existing Home Assistant interfaces. Solder factory module pins directly into the carrier.</p>
 <div class="notice"><strong>One current design, no competing integrated version.</strong> Engineering prototype: no physical assembly, measured power, RF qualification or production approval is implied.</div>
 <div class="facts"><div><b>__DIMENSIONS__</b><span>two-layer custom PCB</span></div><div><b>0</b><span>female module sockets</span></div><div><b>3</b><span>dedicated radio/host controllers</span></div><div><b>7</b><span>retained function groups</span></div></div>
 <h2 id="board">The selected architecture</h2><figure><img src="architecture.svg" alt="MC1 module architecture"><figcaption>Logical topology. The CAD defines physical placement; this diagram does not claim routing lengths.</figcaption></figure>
 <p>The former C0/M0, I0 and D0 paths are historical references. The all-H2 experiment was not selected because its local border-router implementation and Zigbee integration/backup behavior did not meet the compatibility priority.</p>
-<h2 id="pcb">The compact PCB</h2>__COMPACT__<p><strong>__EDGE_ACCESS__</strong> Keep the marked plug and latch corridor clear. The pinout and firmware remain unchanged.</p>__BOARDVIEW__<div class="two">__NATIVE__</div>__CONCEPT__
-<h2>Function and compatibility contract</h2><p>These are the functions retained in the design. The last column names the hardware acceptance still required; a retained protocol is not a completed bench test.</p><div class="scroll"><table><thead><tr><th>Function</th><th>Implementation</th><th>Retained interface</th><th>Bench acceptance</th></tr></thead><tbody>__FUNCTIONS__</tbody></table></div>
+<h2 id="pcb">The compact PCB</h2>__COMPACT__<p><strong>__EDGE_ACCESS__</strong> Keep the marked plug and latch corridor clear. Use the new Nano pin map and matching firmware.</p>__BOARDVIEW__<div class="two">__NATIVE__</div><p><a href="cad/board-top.svg">Top copper and silk</a> · <a href="cad/board-bottom.svg">Bottom copper and silk</a> · <a href="cad/mc1.kicad_pcb">Native two-layer PCB</a></p>__CONCEPT__
+<h2>What changed after the SMLIGHT review</h2><p>The host and two independent radios remain. W5500 and CC1101 share one SPI bus with separate chip selects, freeing three host pins. No extra processor, GPIO expander or internal Ethernet hop is introduced. The smaller Nano retains 16 MB flash and 8 MB PSRAM. <a href="studies/slzb-thread/index.html">Source review</a> · <a href="studies/compact-s3/index.html">Host selection history</a>.</p><figure><img src="thread-recovery.svg" alt="Bounded Thread recovery with persistent quarantine"><figcaption>Recovery policy; source and model tests do not establish hardware fault-injection results. <a href="../../firmware/module-carrier/thread-recovery.md">Firmware controls and acceptance</a>.</figcaption></figure><h2>Function and compatibility contract</h2><p>These are the functions retained in the design. The last column names the hardware acceptance still required; a retained protocol is not a completed bench test.</p><div class="scroll"><table><thead><tr><th>Function</th><th>Implementation</th><th>Retained interface</th><th>Bench acceptance</th></tr></thead><tbody>__FUNCTIONS__</tbody></table></div>
 <h2 id="wiring">Actual net endpoints</h2><p>Generated from the current MC1 CAD design source. <strong>References identify carrier pads, not arbitrary clone pin numbers.</strong> Module connector labels and physical orientation must match the CAD.</p><label for="net-search">Find a net or endpoint</label><br><input id="net-search" type="search" placeholder="Example: THREAD, U2, ZB_CTS"><p id="net-count" class="muted"></p><div class="scroll"><table><thead><tr><th>Net</th><th>Carrier endpoints</th></tr></thead><tbody id="nets">__NETS__</tbody></table></div>
 <h2 id="assembly">Direct solder mounting</h2><figure><img src="direct-solder.svg" alt="Factory male pins through plated holes with underside solder"><figcaption>Only the factory male header spacer remains between module and carrier. No additional female socket.</figcaption></figure><ol>__STEPS__</ol>
-<div class="notice"><strong>Power and service:</strong> separate the controller supply paths from the peripheral 3.3 V rail. Do not parallel regulator outputs. Carrier diode drops require loaded-rail checks. USB service needs a verified VBUS-isolation procedure; merely unplugging PoE can leave back-power paths through signal pins.</div>
+<div class="notice"><strong>Power and service:</strong> separate the controller supply paths from the peripheral 3.3 V rail. Do not parallel regulator outputs. Carrier diode drops require loaded-rail checks. Nano receives the diode-isolated 5 V branch at VIN; VBUS and local 3V3 remain isolated. This is below its documented external VIN range and needs a loaded-rail test. USB service needs a board-specific power procedure; merely unplugging PoE can leave back-power paths through signal pins.</div>
 <h3>What is removed from manual assembly</h3><figure><img src="assembly-counts.svg" alt="BOM comparison of capacitors and resistors placed by the builder"><figcaption>Counts refer only to separately placed resistors and capacitors, not every component or solder joint in the completed hub.</figcaption></figure><details><summary>Carrier parts and module references</summary><div class="scroll"><table><thead><tr><th>Reference</th><th>Part</th><th>Assembly notes</th></tr></thead><tbody>__PARTS__</tbody></table></div></details>
 <h2 id="evidence">What has actually been checked</h2><div class="scroll"><table><thead><tr><th>Check</th><th>Result</th><th>Scope / limitation</th></tr></thead><tbody>__CHECKS__</tbody></table></div>
 <p><a href="verification-summary.json">Machine-readable verification summary</a> · <a href="../../firmware/module-carrier/README.md">Firmware evidence and build instructions</a> · <a href="cad/">Native CAD and reports</a> · <a href="images/README.md">Image provenance</a></p>
@@ -165,7 +190,7 @@ def produce():
 </main></body></html>'''
     for name,value in dict(DIMENSIONS=dimensions,EDGE_ACCESS=edge_access,COMPACT=compact,BOARDVIEW=boardview,NATIVE=native,CONCEPT=concept,PHOTO_LINK=photo_link,FUNCTIONS=functions,NETS=rows,STEPS=steps,PARTS=partrows,CHECKS=checks,GATES=gates,SOURCES=sources).items(): page=page.replace('__'+name+'__',value)
     wiring={'revision':'MC1','source':'cad/design.py','source_sha256':sha(HERE/'cad/design.py'),'nets':nets,'parts':parts}
-    return {'index.html':page,'architecture.svg':architecture(),'direct-solder.svg':assembly(),'assembly-counts.svg':chart,'layout-comparison.svg':layout_comparison(current),'wiring.json':json.dumps(wiring,indent=2)+'\n'}
+    return {'index.html':page,'architecture.svg':architecture(),'direct-solder.svg':assembly(),'assembly-counts.svg':chart,'layout-comparison.svg':layout_comparison(current),'thread-recovery.svg':recovery_diagram(),'wiring.json':json.dumps(wiring,indent=2)+'\n'}
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--check',action='store_true');args=a.parse_args()

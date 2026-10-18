@@ -1,5 +1,7 @@
 # Compact S3 host review
 
+**Historical study snapshot.** The selected Nano design is now implemented in [current MC1](../../index.html#pcb). Findings and build evidence below refer to the pre-implementation revision `177a547c70bba11d5f48dee0bdc8595670a4fafb`. Reproduce the old study from that Git revision; use the active firmware instructions for the new board.
+
 The selected next prototype uses **Waveshare ESP32-S3-Nano-M** in place of the large S3 development board. It keeps the S3 as the Ethernet/application host, the existing H2 as the Thread RCP, and XIAO MG24 as the Ember Zigbee NCP. This is a component-selection and firmware-port study; it does not replace the active routed MC1 carrier.
 
 Open [the visual review](index.html), [same-scale module outlines](outlines.svg), or [the retained architecture](architecture.svg). The three reviews cover [hardware and pin access](hardware-review.md), [firmware and alternative architectures](firmware-review.md), and [independent electrical, RF and service checks](independent-review.md).

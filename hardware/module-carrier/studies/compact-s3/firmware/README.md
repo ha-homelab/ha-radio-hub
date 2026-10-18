@@ -1,5 +1,7 @@
 # Compact S3 full-firmware build proof
 
+**Historical build proof.** These scripts target the pre-implementation revision `177a547c70bba11d5f48dee0bdc8595670a4fafb` and refuse to rewrite the new active profile. Use [current MC1 firmware](../../../../../firmware/module-carrier/README.md) for the implemented Nano carrier.
+
 The selected study target is **Waveshare ESP32-S3-Nano-M: 16 MB flash, 8 MB octal PSRAM, 21 application GPIO, shared W5500/CC1101 SPI2**. The comparison target is **LOLIN S3 Mini v1.0.0: 4 MB flash, 2 MB quad PSRAM, 24 application GPIO, separate SPI2/SPI3**. Neither configuration has been flashed or tested on a physical carrier.
 
 These scripts prepare the entire existing MC1 application in a new temporary directory. They retain local Thread border routing and its REST API, three active BLE proxy connections, four-wire Ember transport, Z-Wave through the checked WK2132 driver, radar controls, BME680, native RF receive/transmit, the existing MQTT schemas, encrypted ESPHome API, OTA and native USB logging. The active carrier firmware is not edited.

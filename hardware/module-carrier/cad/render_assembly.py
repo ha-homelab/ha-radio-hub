@@ -1,63 +1,61 @@
 #!/usr/bin/env python3
-"""Scaled engineering assembly view from the native pad/placement ledger."""
-import json, html, math
+"""Scaled assembly drawing from the same placement/pad ledger as native KiCad."""
+import json,html,math
 from pathlib import Path
-R=Path(__file__).resolve().parent; d=json.loads((R/'design.json').read_text()); esc=html.escape
-S=8.; OX=90; OY=155; W=d['board']['width_mm']; H=d['board']['height_mm']; CW=1290; CH=1160
-svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{CW}" height="{CH}" viewBox="0 0 {CW} {CH}">',f'<rect width="{CW}" height="{CH}" fill="#0b1424"/>','<style>text{font-family:Inter,Arial,sans-serif;fill:#e9f0fa}</style>','<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6ee7c8"/></marker></defs>']
-def text(x,y,t,size=16,fill='#e9f0fa',anchor='start'):
- svg.append(f'<text x="{x:.2f}" y="{y:.2f}" font-size="{size}" text-anchor="{anchor}" style="fill:{fill}">{esc(t)}</text>')
-def rect(x,y,w,h,fill,stroke='#bedde7',dash=False):
- svg.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" fill="{fill}" stroke="{stroke}"'+(' stroke-dasharray="6 4"' if dash else '')+'/>')
+R=Path(__file__).resolve().parent;d=json.loads((R/'design.json').read_text());e=html.escape
+W=d['board']['width_mm'];H=d['board']['height_mm'];S=7;OX=100;OY=135;CW=1330;CH=1160
+svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{CW}" height="{CH}" viewBox="0 0 {CW} {CH}">','<rect width="100%" height="100%" fill="#0c1423"/>','<style>text{font-family:Arial,sans-serif}</style>','<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71e5bc"/></marker></defs>']
+def text(x,y,t,size=15,color='#e8f0fb',anchor='start'):
+ svg.append(f'<text x="{x:.2f}" y="{y:.2f}" fill="{color}" font-size="{size}" text-anchor="{anchor}">{e(t)}</text>')
 def xy(x,y):return OX+S*x,OY+S*y
-def box(b,fill,stroke,dash=False):rect(*xy(b[0],b[1]),(b[2]-b[0])*S,(b[3]-b[1])*S,fill,stroke,dash)
-def trans(p,x,y):
- th=math.radians(p['rotation']);return p['xy'][0]+x*math.cos(th)+y*math.sin(th),p['xy'][1]-x*math.sin(th)+y*math.cos(th)
+def box(b,fill,stroke='#c0d1dd',dash=False):
+ x,y=xy(*b[:2]);svg.append(f'<rect x="{x}" y="{y}" width="{S*(b[2]-b[0])}" height="{S*(b[3]-b[1])}" fill="{fill}" stroke="{stroke}"'+(' stroke-dasharray="5 4"' if dash else '')+'/>')
+def tr(p,x,y):
+ a=math.radians(p['rotation']);return p['xy'][0]+x*math.cos(a)+y*math.sin(a),p['xy'][1]-x*math.sin(a)+y*math.cos(a)
 def bounds(p,b):
- co=[trans(p,*b[:2]),trans(p,*b[2:])];return [min(v[0] for v in co),min(v[1] for v in co),max(v[0] for v in co),max(v[1] for v in co)]
-text(60,52,'MC1 · compact ready-module carrier',34)
-text(60,89,f'{W} × {H} mm · two layers · all components on top · factory male headers soldered directly',19,'#a7b9cc')
-text(60,121,'ENGINEERING ASSEMBLY VIEW · dimensions from manufacturer drawings · no sockets / no carrier SMT',14,'#6adcc0')
-box([0,0,W,H],'#154a4d','#7baeb2')
-for b in d['mechanics']['rf_copper_keepouts_mm']:box(b,'#75503e','#eda86f')
+ q=[tr(p,*b[:2]),tr(p,*b[2:])];return[min(x[0] for x in q),min(x[1] for x in q),max(x[0] for x in q),max(x[1] for x in q)]
+text(55,48,'MC1 Nano · actual carrier assembly',31)
+text(55,83,f'{W} × {H} mm · 2 copper layers · factory male pins soldered directly · no module sockets',18,'#b4c7d9')
+text(55,111,'ENGINEERING DRAWING — actual placement and pad numbers; not a product photograph',13,'#71e5bc')
+box([0,0,W,H],'#16484a','#93b5b8')
+for b in d['mechanics']['rf_copper_keepouts_mm']:box(b,'#704735','#f4b073')
+for b in d['mechanics'].get('rf_pour_only_keepouts_mm',[]):box(b,'#926644','#f4b073',True)
 for ref,b in d['mechanics']['usb_service_envelopes_mm'].items():
- box(b,'#113846','#55a4cb',True);text(*xy((b[0]+b[2])/2,b[1]+4),ref+' USB access',11,'#92c9e9','middle')
-for ref,b in d['mechanics']['header_mating_envelopes_mm'].items():box(b,'#345258','#94afb2',True)
+ box(b,'#153d50','#73b5dc',True);text(*xy((b[0]+b[2])/2,(b[1]+b[3])/2),ref+' USB service',12,'#acdafa','middle')
+for ref,b in d['mechanics']['header_mating_envelopes_mm'].items():box(b,'none','#b8c2c5',True)
 for i,(x,y) in enumerate(d['mechanics']['mounting_holes_mm'],1):
- xx,yy=xy(x,y);svg.append(f'<circle cx="{xx}" cy="{yy}" r="{2.5*S}" fill="none" stroke="#b8d4dc" stroke-dasharray="3 3"/><circle cx="{xx}" cy="{yy}" r="{1.35*S}" fill="#0b1424" stroke="#e6eef5"/>');text(xx,yy+32,'H'+str(i),11,'#c2d5e1','middle')
-body={'U1':[-1.27,-1.4,24.13,61.34],'U2':[-1.27,-1.575,24.13,46.685],'U3':[-1.27,-2.921,16.51,18.034],'U4':[-1.34,-6.4,21.66,18.6]}
-labels={'U1':['U1 · ESP32-S3','N8R8','Host / BLE / LAN'],'U2':['U2 · ESP32-H2','Thread RCP','Antenna below'],'U3':['U3 · XIAO','MG24','Zigbee'],'U4':['U4 · WIZ850io','RJ45 right']}
+ xx,yy=xy(x,y);svg.append(f'<circle cx="{xx}" cy="{yy}" r="17.5" fill="none" stroke="#c4d3df" stroke-dasharray="3 3"/><circle cx="{xx}" cy="{yy}" r="9.45" fill="#0c1423" stroke="#e8f0fb"/>');text(xx+20,yy+5,'H'+str(i),10)
+labels={'U1':['U1 · WAVESHARE S3-NANO-M','16 MB flash / 8 MB PSRAM','USB →'],'U2':['U2 · ESP32-H2','Thread RCP','← USB    ANTENNA →'],'U3':['U3 · XIAO MG24','Zigbee NCP','ANT ←   USB →'],'U4':['U4 · WIZ850io','3.3 V / shared SPI','RJ45 ↓']}
 for p in d['parts']:
  ref=p['ref'];pads=p['pad_centers_mm']
- if ref in body:
-  b=bounds(p,body[ref]);box(b,'#d9e8dc' if ref!='U4' else '#b2d7ee','#f6fbfb')
-  if ref=='U4':
-   box(bounds(p,[2.11,-9.1,18.21,16]),'#c3cbd1','#f5f9fb')
-   fa,fb=[xy(*v) for v in d['mechanics']['rj45']['face_global_mm']];svg.append(f'<line x1="{fa[0]}" y1="{fa[1]}" x2="{fb[0]}" y2="{fb[1]}" stroke="#101820" stroke-width="6"/>')
+ if p.get('body_bounds_local_mm'):
+  b=bounds(p,p['body_bounds_local_mm']);box(b,'#d7e8dd','#f8faf8')
+  if ref=='U4':box(bounds(p,[2.11,-9.1,18.21,16]),'#bfcad2','#f5fafc')
+  if ref=='U2':box(bounds(p,[4.83,-6.975,18.03,-1.575]),'#987c4f','#e6c989')
+  if ref=='U1':box(bounds(p,[5.3,37,10.4,39.37]),'#987c4f','#e6c989')
+  if ref=='U3':box(bounds(p,[8.7,16.034,13.9,18.034]),'#987c4f','#e6c989')
   cx,cy=xy((b[0]+b[2])/2,(b[1]+b[3])/2)
-  for i,t in enumerate(labels[ref]):text(cx,cy+17*(i-(len(labels[ref])-1)/2),t,13 if ref!='U3' else 11,'#173c4d','middle')
-  if ref=='U2':box(bounds(p,[4.83,-6.975,18.03,-1.575]),'#8d7650','#e2bf76')
+  for i,t in enumerate(labels[ref]):text(cx,cy+(i-1)*17,t,12 if ref!='U3' else 11,'#173b47','middle')
  elif ref.startswith('J'):
-  b=[min(v['x'] for v in pads)-1.27,min(v['y'] for v in pads)-1.27,max(v['x'] for v in pads)+1.27,max(v['y'] for v in pads)+1.27];box(b,'#273748','#7da2b1');text(*xy((b[0]+b[2])/2,b[1]-.6),ref,11,'#fff','middle')
+  b=[min(q['x'] for q in pads)-1.27,min(q['y'] for q in pads)-1.27,max(q['x'] for q in pads)+1.27,max(q['y'] for q in pads)+1.27];box(b,'#273548','#a4bac4');text(*xy(b[0],b[1]-1.05),ref,10)
  else:
-  x1,y1=xy(pads[0]['x'],pads[0]['y']);x2,y2=xy(pads[1]['x'],pads[1]['y']);svg.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#c8cbd1" stroke-width="3"/>');rect((x1+x2)/2-7,(y1+y2)/2-20,14,40,'#6d4750' if ref[0]=='D' else '#c9a771','#e7ddd0');text(x1,y1-13,ref,11,'#e9f5ff','middle')
- for pad in pads:
-  x,y=xy(pad['x'],pad['y']);n=pad['number'];svg.append(f'<circle cx="{x}" cy="{y}" r="5.2" fill="#d8ac53" stroke="#eccb83"/><circle cx="{x}" cy="{y}" r="2.5" fill="#102530"/>')
-  if ref in ['U1','U2']:
-   left=pad['x']<p['xy'][0]+(0 if p['rotation']==180 else 1); direction=1 if left else -1
-   text(x+direction*9,y+3,n,8,'#173c4d','start' if direction==1 else 'end')
-  elif ref=='U4':text(x,y+(-9 if n.startswith('J2') else 14),n.split('.')[-1],9,'#173c4d','middle')
-  elif ref=='U3':text(x+(-9 if pad['x']<90 else 9),y+3,n,8,'#173c4d','end' if pad['x']<90 else 'start')
-  elif ref.startswith('J'):text(x+12,y+3,n,8,'#e4f0f0')
-r=d['mechanics']['rj45'];box(r['service_corridor_global_mm'],'none','#6ee7c8',True)
-fy=sum(v[1] for v in r['face_global_mm'])/2;ax,ay=xy(103,fy);ex,ey=xy(135,fy)
-svg.append(f'<line x1="{ax}" y1="{ay}" x2="{ex}" y2="{ey}" stroke="#6ee7c8" stroke-width="4" marker-end="url(#arrow)"/>')
-text(*xy(119,fy-8),'RJ45 CABLE OUT',15,'#6ee7c8','middle');text(*xy(119,fy+7),'Mouth: 2 mm past edge',13,'#c8e9df','middle');text(*xy(119,fy+13),'Keep boot + latch clear',12,'#c8e9df','middle')
-text(*xy(119,46),'Five axial parts on top',13,'#a7b9cc','middle')
-svg.append(f'<path d="M{OX} {OY+S*H+30}v10m0 -5h{S*W}m0 -5v10" stroke="#a5bfd0" fill="none"/>');text(OX+S*W/2,OY+S*H+60,f'{W} mm',18,'#bcd0de','middle');text(OX-35,OY+S*H/2,f'{H} mm',15,'#bcd0de','middle')
-text(60,985,'Same 17 parts · same 145 carrier pads · 43.75% smaller area than 160 × 100 mm',22)
-text(60,1019,'Blue dashed: USB service allowance. Grey dashed: 5.5 mm header housing allowance.',16,'#a7b9cc')
-text(60,1047,'Orange: RF copper exclusions. Three nylon M2.5 supports; max 5 mm standoff diameter.',16,'#a7b9cc')
-text(60,1075,'External harness modules: isolated 5V PoE splitter, 3.3V buck, WK2132, ZAC93, CC1101, radar, BME680.',15,'#a7b9cc')
-text(60,1116,'Prototype: verify cable shells, wire bend height, antenna enclosure clearance and support under RJ45 insertion load.',15,'#f0c294')
+  a,b=pads;xx,yy=xy((a['x']+b['x'])/2,(a['y']+b['y'])/2);x1,y1=xy(a['x'],a['y']);x2,y2=xy(b['x'],b['y']);svg.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#d0d7dc" stroke-width="3"/><rect x="{xx-16}" y="{yy-8}" width="32" height="16" rx="2" fill="'+('#51565e' if ref.startswith('D') else '#c8ad75')+'" stroke="#e7ddd0"/>')
+  if ref.startswith('D'):svg.append(f'<line x1="{xx-10}" y1="{yy-7}" x2="{xx-10}" y2="{yy+7}" stroke="#f5ebd4" stroke-width="3"/>')
+  text(xx,yy-14,ref,10,'#e8f0fb','middle')
+ for q in pads:
+  x,y=xy(q['x'],q['y']);n=q['number'];svg.append(f'<circle cx="{x}" cy="{y}" r="4.7" fill="#d4ad58" stroke="#f1d797"/><circle cx="{x}" cy="{y}" r="2.2" fill="#12212c"/>')
+  if ref in ('U1','U2','U3'):
+   b=bounds(p,p['body_bounds_local_mm']);up=q['y']<(b[1]+b[3])/2;text(x,y+(14 if up else -9),n.split('.')[-1],8,'#173b47','middle')
+  elif ref=='U4':text(x+(9 if n.startswith('J2') else -9),y+3,n.split('.')[-1],8,'#173b47','start' if n.startswith('J2') else 'end')
+  elif ref.startswith('J'):text(x,y+16,n,8,'#e3eff4','middle')
+r=d['mechanics']['rj45'];box(r['service_corridor_global_mm'],'none','#71e5bc',True)
+a,b=[xy(*v) for v in r['face_global_mm']];svg.append(f'<line x1="{a[0]}" y1="{a[1]}" x2="{b[0]}" y2="{b[1]}" stroke="#111b22" stroke-width="7"/>');cx=sum(v[0] for v in r['face_global_mm'])/2
+x1,y1=xy(cx,94);x2,y2=xy(cx,115);svg.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#71e5bc" stroke-width="4" marker-end="url(#arrow)"/>')
+text(*xy(cx,122),'RJ45 OUT · 2 mm past PCB',12,'#71e5bc','middle')
+text(770,165,'Placement and service',24)
+notes=[('80 × 90 mm','20% less carrier area than 100 × 90 mm.'),('18 carrier items / 133 pads','One new two-pin GPIO0 recovery header.'),('All mounted components on top','Three axial diodes, two axial resistors.'),('Blue dashed outlines','30 mm USB insertion / cable allowance.'),('Grey dashed outlines','5.5 mm narrow header housing allowance.'),('Orange regions','RF exclusions; dashed strip permits RX trace.'),('H1 / H2 / H3','Nylon M2.5 supports, max 5 mm head/body.'),('Factory header directions','U1 top JP1; bottom JP2 (reversed numbers).'),('J1 isolated 5 V · J2 external 3.3 V buck','J3 WK2132 · J4 ZAC93 · J5 CC1101'),('J6 LD2450 · J7 BME680','J8 XIAO boot · J9 Nano GPIO0 boot'),('Shared SPI','W5500 + CC1101: SCK / MOSI / MISO.'),('USB ports retained','No connector desoldering or underside wires.')]
+for i,(title,desc) in enumerate(notes):
+ y=209+i*61;text(770,y,title,16);text(770,y+22,desc,13,'#abc2d3')
+text(55,1100,'Prototype: check exact module fit, plugs, antenna enclosure clearance, power behavior and RF coexistence before fabrication release.',15,'#f0c38b')
+text(55,1129,'The geometry is reviewed; hardware performance and assembled service procedures remain unmeasured.',14,'#abc2d3')
 svg.append('</svg>');(R/'assembly-top.svg').write_text('\n'.join(svg)+'\n')

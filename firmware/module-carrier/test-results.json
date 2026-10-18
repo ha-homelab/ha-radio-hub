@@ -1,10 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "tested_date_local": "2026-10-17",
   "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
   "passed": true,
-  "tests": 14,
-  "duration_seconds": 1.399,
+  "tests": 41,
+  "duration_seconds": 3.896,
   "sanitizers": [
     "address",
     "undefined"
@@ -15,25 +15,17 @@
     "-Wextra",
     "-Werror"
   ],
-  "cases": [
-    "init",
-    "large_tx",
-    "backpressure",
-    "full_rx",
-    "count_race",
-    "read_error",
-    "write_error",
-    "line_errors",
-    "post_read_error",
-    "rx_overflow",
-    "tx_overflow",
-    "busy",
-    "reg_error",
-    "peek_partial"
-  ],
-  "test_scope": "Production WK2132 transport core against a stateful register/FIFO device model; no claim about physical I2C timing or FreeRTOS scheduling. Complete driver separately compiled with ESP-IDF5.5.5.",
-  "transport_sha256": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
-  "harness_sha256": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547",
+  "test_scope": "Production guard state and durable transitions, write/commit/readback helper, bounded Spinel property verification, HDLC framing, and WK2132 transport core. No physical flash/RTC/UART or FreeRTOS scheduling emulation.",
+  "source_sha256": {
+    "firmware/low-power/components/low_power_otbr/thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+    "firmware/low-power/components/low_power_otbr/rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "2003501279bf4ae8d969e9da9ad68ad69ae106bf92b48d3f86aef32764287fd9",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "102dcbc5fcf3cbbf43a7b6b53c83cd51fa93fdaafd3541dc5b6ed967590a0df7",
+    "firmware/module-carrier/tests/test_thread_guard.py": "908dedd5bc55be9cd11e9903fc3f7e8d2ff0cf73152d8b5e5b82162ee7338f56",
+    "firmware/module-carrier/tests/thread_guard_test.cpp": "7e1a6d6c71b6dd4b06489119d505d2546871f65017730b9184ff61ce4cce51da",
+    "firmware/module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+    "firmware/module-carrier/tests/transport_test.cpp": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547"
+  },
   "additional_contract_guards": {
     "compiled_open_drain_source_verified": true,
     "push_pull_mutation_rejected": true,

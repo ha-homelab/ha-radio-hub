@@ -1,0 +1,50 @@
+{
+  "checked_at_utc": "2026-10-18T04:00:39.261295+00:00",
+  "board": "mc1.kicad_pcb",
+  "board_sha256": "057a7b642679e39965cc45b57765e67d7230496f94db0e204b7836f4750fdb4a",
+  "audit_script_sha256": "200904070e86393d1608424cefe920b2550ae3dc2ba70960d5bb10842cfd95e1",
+  "manufacturer_sources": {
+    "nano": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
+    "h2": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html",
+    "xiao": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip",
+    "wiz": "https://docs.wiznet.io/Product/Modules/Ethernet-Modules/WIZ850io"
+  },
+  "electronic_references": 18,
+  "expected_pads": 133,
+  "native_board_bounds_mm": [
+    0.0,
+    0.0,
+    80.0,
+    90.0
+  ],
+  "connected_endpoint_groups": 31,
+  "connected_pads": 101,
+  "native_checks": {
+    "erc_violations": 0,
+    "drc_violations": 0,
+    "unconnected_items": 0,
+    "schematic_parity_issues": 0,
+    "unit_tests_passed": 18
+  },
+  "native_report_sha256": {
+    "checks/drc.json": "b59cf826028e748075a69beec9d5d2078b9bb71722352d280964269c3c21637a",
+    "checks/erc.json": "a4ef4ebc6acaa77eaf8396696c96f1220e34e8d4abbd63e4e873571dd7584b02"
+  },
+  "manifest_hashes_checked": 12,
+  "mutations_detected": {
+    "thread_tx_rx_swap": true,
+    "zigbee_flow_control_swap": true,
+    "shared_spi_split": true,
+    "nano_vbus_connected": true,
+    "regulator_outputs_joined": true,
+    "supply_diode_short": true,
+    "missing_manual_boot": true,
+    "nano_reversed_row": true,
+    "underside_component": true,
+    "header_outside_board": true,
+    "overlapping_diodes": true
+  },
+  "errors": [],
+  "passed": true,
+  "limits": "Read-only net-assignment and module-hole audit. DRC supplies route continuity. No physical fit, power, RF, USB or runtime test."
+}

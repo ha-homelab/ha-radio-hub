@@ -4,10 +4,11 @@ MC1 is the project's **single current custom PCB**: a carrier for finished
 S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into
 plated holes. Female module sockets and hand-soldered bare RF modules are excluded.
 
-Current PCB outline: **100 × 90 mm, two copper layers**. This reduces the former
-160 × 100 mm carrier area by 43.75%. The [placement comparison](layout-comparison.svg) uses
-the same scale for both layouts. The electrical pin contract remains unchanged;
-USB/RJ45 service corridors and external finished modules still need physical space.
+Current PCB outline: **80 mm horizontal × 90 mm vertical, two copper layers**.
+The Nano host reduces area by 20% against the preceding 100 × 90 mm carrier,
+with the same seven function groups. [Equal-scale comparison](layout-comparison.svg).
+The Nano pin map, shared Ethernet/CC1101 SPI and matching active firmware replace
+the old full-size S3 assignments. The RJ45 opening is at the bottom edge.
 
 Use the [visual guide](index.html), [assembly instructions](../../docs/module-carrier.md),
 [CAD source](cad/), [gallery](images/README.md), and
@@ -33,4 +34,8 @@ Run `python3 -m unittest discover -s hardware/module-carrier -p "test_*.py"`
 for the cross-file interface contract and `python3 hardware/module-carrier/render_board.py --check`
 to verify native-render provenance.
 
-The separate [100 × 100 mm layout study](studies/square-layout/index.html) tests a horizontal MG24 and Ethernet below H2, with stock USB connectors retained. It is a reviewed alternative, not a replacement of this active carrier.
+The [square-layout](studies/square-layout/index.html),
+[compact-host](studies/compact-s3/index.html) and
+[SMLIGHT](studies/slzb-thread/index.html) studies are historical decision records.
+Their selected direction is implemented here; their old build artifacts are not
+substitutes for the active firmware or routed CAD.

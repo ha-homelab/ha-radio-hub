@@ -7,7 +7,6 @@ ap=argparse.ArgumentParser();ap.add_argument('--python',required=True,help='KiCa
 with tempfile.TemporaryDirectory(prefix='mc1-reproduction-') as tmp:
  parent=Path(tmp)/'module-carrier';dst=parent/'cad'
  shutil.copytree(R,dst,ignore=shutil.ignore_patterns('.build','__pycache__','*.kicad_prl','logs','*.log'))
- shutil.copy2(R.parent/'layout-baseline.json',parent/'layout-baseline.json')
  commands=[[a.python,'generate.py','--libraries',a.libraries],[a.cli,'sch','export','netlist','--format','kicadxml','-o','.build/mc1.xml','mc1.kicad_sch'],[a.python,'finalize.py'],[a.python,'apply_manual_route.py'],[a.cli,'pcb','drc','--format','json','--output','checks/drc.json','--schematic-parity','mc1.kicad_pcb'],[a.cli,'sch','erc','--format','json','--output','checks/erc.json','mc1.kicad_sch'],[a.python,'test_design.py']]
  for command in commands:
   r=subprocess.run(command,cwd=dst,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)

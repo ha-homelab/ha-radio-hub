@@ -1,5 +1,7 @@
 # SMLIGHT SLZB Thread comparison
 
+**Historical study snapshot.** The selected Nano design is now implemented in [current MC1](../../index.html#pcb). Findings and build evidence below refer to the pre-implementation revision `177a547c70bba11d5f48dee0bdc8595670a4fafb`. Reproduce the old study from that Git revision; use the active firmware instructions for the new board.
+
 This review compares the current SMLIGHT SLZB family with the complete MC1 compact-S3 proposal. The user confirmed that “ZLB” meant SMLIGHT SLZB. It is a source-based engineering assessment, not a test of a purchased SMLIGHT device or a new carrier implementation.
 
 Open the [visual comparison](index.html) or [architecture diagram](comparison.svg). The supporting reviews cover [hardware](hardware-review.md), [firmware and failure recovery](firmware-review.md), and [Home Assistant compatibility](compatibility-review.md).

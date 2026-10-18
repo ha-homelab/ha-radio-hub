@@ -1,29 +1,40 @@
 {
   "date": "2026-10-17",
   "tool": "CUA in-app browser",
-  "index_sha256": "350ec5efe5b72220ff075f5e8b5385e55d6710adba3a25c72d394e9dd0a50c77",
+  "layout_revision": "nano-shared-spi-bottom-edge",
+  "index_sha256": "7158db78d265af4a36e8e15fda40693d0bef8f59ef91184ed35dd46976e5b597",
   "viewport_width": 319,
   "page_scroll_width": 319,
-  "all_seven_images_loaded": true,
+  "images_loaded": 8,
+  "all_images_loaded": true,
   "wiring_test": {
     "query": "ZB_CTS",
     "visible_count": 1,
-    "total_nets": 33,
+    "total_nets": 31,
     "endpoints": [
-      "U1.J1.9",
+      "U1.JP2.7",
       "U3.5"
     ],
     "restored_empty_query": true
   },
   "screenshots": {
-    "ui-assembly.jpg": "20f4488e27e5d13d2e65d753e6ee1fbc1cd67900228e2196683f222fc6862515",
-    "ui-pcb.jpg": "8a6060c492afde0f21d3f868cb45c677b2c97f81db2239251aa469a3771f6b7f",
-    "ui-wiring.jpg": "3de7d4c7b79cc9f595949dd74800668d5e776ddd3dfe04c33b99b6bfe0562e96"
+    "ui-pcb.jpg": "796a1a255f49e44d4051abdd30e66370e170538b5dc40290874683f6743e198b",
+    "ui-assembly.jpg": "9d4907373d545ca387d5095ed0293ce96ea206bbc8c244b4e81de620003326de",
+    "ui-wiring.jpg": "22013d9eea9402905ff1f7ac8016ef78ed8de68a20201cca1112c93c79a69b7e",
+    "ui-architecture.jpg": "7b71f70258a687112e06c1ae6f72a2934547d58880565d12993ed28cc6af3a5d",
+    "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5"
   },
-  "layout_revision": "compact-100x90-right-edge",
+  "source_sha256": {
+    "cad/assembly-top.svg": "380fb5b3354a49967e75974ecf79458e8fdc32df852d609d651537cdaa592d25",
+    "architecture.svg": "c1058b4f460873e5a1a66a55b6888ef5b4534c4b62dc1f61f002b1d29a7b35c2",
+    "thread-recovery.svg": "f05b56daa4d2c2b55187d5d09c6d9930d37853f634505eefb02e512983c19334",
+    "wiring.json": "eda2bf3d61fb6ed3615d8420d5a5056ea157f027f47bf1b6e8aa5452ca7899ab"
+  },
   "capture_notes": {
     "ui-pcb.jpg": "Native 319 px viewport, current guide at #pcb",
-    "ui-assembly.jpg": "Full-page screenshot of the current CAD assembly SVG, captured without resizing viewport",
-    "ui-wiring.jpg": "Native 319 px viewport, ZB_CTS search result"
+    "ui-assembly.jpg": "Full-page current native CAD assembly SVG; no viewport override",
+    "ui-wiring.jpg": "Native 319 px viewport, ZB_CTS search result",
+    "ui-architecture.jpg": "Full-size standalone architecture SVG clip; no viewport override",
+    "ui-recovery.jpg": "Full-size standalone recovery SVG clip; no viewport override"
   }
 }

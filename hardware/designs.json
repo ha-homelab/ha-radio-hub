@@ -9,16 +9,52 @@
     "female_module_sockets": 0,
     "method": "Male module pins enter plated carrier holes and are soldered on the underside.",
     "castellated_side_soldering": false,
-    "additional_height_accepted": true
+    "additional_height_accepted": true,
+    "module_header_solder_joints": 86,
+    "new_recovery_contact": "J9: Nano GPIO0 to GND, normally open"
   },
   "historical_designs": [
-    {"id": "original-modular", "directory": "hardware", "status": "historical_reference"},
-    {"id": "LP-P0", "directory": "hardware/low-power", "status": "baseline_contract"},
-    {"id": "C0", "directory": "hardware/low-power/carrier", "status": "historical_reference"},
-    {"id": "M0", "directory": "hardware/low-power/carrier/mg24-adapter", "status": "historical_reference"},
-    {"id": "I0", "directory": "hardware/low-power/integrated", "status": "historical_reference"},
-    {"id": "D0", "directory": "hardware/low-power/diy", "status": "historical_reference"},
-    {"id": "H2-Quartet", "directory": "hardware/h2-quartet", "status": "rejected_for_compatibility_priority"}
+    {
+      "id": "original-modular",
+      "directory": "hardware",
+      "status": "historical_reference"
+    },
+    {
+      "id": "LP-P0",
+      "directory": "hardware/low-power",
+      "status": "baseline_contract"
+    },
+    {
+      "id": "C0",
+      "directory": "hardware/low-power/carrier",
+      "status": "historical_reference"
+    },
+    {
+      "id": "M0",
+      "directory": "hardware/low-power/carrier/mg24-adapter",
+      "status": "historical_reference"
+    },
+    {
+      "id": "I0",
+      "directory": "hardware/low-power/integrated",
+      "status": "historical_reference"
+    },
+    {
+      "id": "D0",
+      "directory": "hardware/low-power/diy",
+      "status": "historical_reference"
+    },
+    {
+      "id": "H2-Quartet",
+      "directory": "hardware/h2-quartet",
+      "status": "rejected_for_compatibility_priority"
+    }
   ],
-  "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates."
+  "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
+  "active_layout_revision": "nano-shared-spi-bottom-edge",
+  "active_host": "Waveshare ESP32-S3-Nano-M",
+  "active_memory": {
+    "flash_mb": 16,
+    "psram_mb": 8
+  }
 }

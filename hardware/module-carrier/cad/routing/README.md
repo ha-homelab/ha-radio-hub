@@ -1,7 +1,7 @@
-# Frozen compact MC1 routing session
+# Frozen MC1 Nano routing session
 
-`mc1.ses` is the committed FreeRouting session for the 100 × 90 mm compact carrier. WIZ850io is at (92.9,67) mm, rotated270° so its RJ45 opening faces the right edge. This session belongs to the current frozen footprint placement and must not be applied to an earlier layout.
+`mc1.ses` is the saved FreeRouting 1.9.0 session for the 80 × 90 mm Nano carrier. WIZ850io is at (76,82.9) mm, rotation 180°, with its RJ45 opening facing the bottom edge. It must not be applied to any previous placement.
 
-The session leaves one signal, RF_MISO, unfinished. The exact remaining centerline is stored in `../manual-route.json`; `../apply_manual_route.py` applies it after `../finalize.py` imports the session and restores schematic terminal metadata. Native DRC then confirms zero remaining connections and zero rule or parity issues.
+The session is completed using `../manual-route.json`, which records a complete 0.25 mm ZB_RX centerline and one additional 0.8 mm +5V branch between the diode supply nodes. ZB_RX is completed through the narrow antenna escape pocket; other signal nets are in the stored router session. `../apply_manual_route.py` applies these centerlines after `../finalize.py` imports the session and restores schematic terminal metadata. Native DRC is the acceptance gate.
 
-Use `../reproduce_check.py` to reconstruct and verify this route in a clean temporary copy. Each board-write stage reapplies `../project_rules.py`, preserving the Default and Power netclasses that standalone pcbnew otherwise replaces with its defaults. A new autorouter search is not guaranteed to produce the same route; do not apply the saved manual centerline blindly to a different session.
+`../reproduce_check.py` reconstructs the result in a clean temporary copy and runs native DRC/parity/ERC plus all geometry/electrical tests. Every native-write stage restores the Default/Power classes using `../project_rules.py`. A fresh autorouter search may produce different paths; never apply these saved completions to a different result without rerouting and checking.

@@ -1,178 +1,209 @@
 # MC1 — one carrier, finished modules, preserved protocols
 
-**Decision: 17 October 2026.** Use one custom carrier PCB with finished controller,
-radio, Ethernet and power modules. Preserve the S3 local Thread-border-router
-architecture and Ember Zigbee integration. Do not maintain separate module-carrier
-and integrated-radio products for this build.
+The current carrier uses **Waveshare ESP32-S3-Nano-M, ESP32-H2-DevKitM-1,
+Seeed XIAO MG24 and WIZ850io**. It implements the compact-host direction from
+the [SMLIGHT comparison](../hardware/module-carrier/studies/slzb-thread/index.html)
+while keeping the seven existing function groups and their Home Assistant interfaces.
 
-**Engineering prototype:** this document distinguishes a retained protocol contract
-from a successful software build and from physical qualification. It is not a claim
-that the assembly has been fabricated or tested.
+**Engineering prototype:** CAD checks and firmware builds are recorded separately
+from physical acceptance. No assembled board, radio range, power margin or enclosure
+fit has been validated. Use the current drawings and matching firmware together;
+the former full-size S3 pin map is not interchangeable.
 
 ## Construction
 
-Factory male module pins enter plated through-holes and are soldered from the
-underside. **No female module sockets and no castellated-side soldering.** A board
-sold with loose male headers only requires ordinary through-hole header soldering;
-it must not be substituted with a bare radio module requiring fine-pitch assembly.
+The carrier is **80 mm horizontal × 90 mm vertical, with two copper layers**.
+All fitted components are on top. Factory male module pins enter plated holes
+and are soldered underneath; **no female module sockets or castellated-side soldering**.
 
-The carrier distributes power and signals. Regulators, crystals, RF matching,
-Ethernet magnetics and module decoupling stay on their factory-assembled boards.
-The 100 × 90 mm, two-layer carrier has **two resistors and three diodes**
-as separate circuit parts, plus four mounted modules and eight harness/service
-headers. It has no builder-installed capacitor array. This reduces builder-installed small parts without pretending those
-circuits no longer exist.
+The loose circuit parts remain **two resistors and three axial diodes**. There
+are four mounted finished modules and nine harness/service headers. J9 is the
+new two-pin Nano recovery contact, not another interface board. The Nano has 30
+header pins instead of the former S3 board's 44: the four modules require **86
+header solder joints**, down from 100. Factory-fitted regulator, RF matching and
+decoupling parts remain on their finished modules.
 
-The selected architecture uses:
+The selected parts are:
 
-- An **ESP32-S3-DevKitC-1 v1.1, N8R8** host with 8 MB flash and 8 MB PSRAM.
-- An **ESP32-H2-DevKitM-1** Thread RCP on remapped UART pins, retaining service
-  controls and avoiding the onboard USB-UART transmitter.
-- A **Seeed XIAO MG24 Pre-Soldered, SKU 102010690**, with a board-specific Ember
-  NCP image using exposed UART and RTS/CTS pins. The old M0 firmware is not a
-  drop-in image for this board.
-- **WIZ850io** Ethernet and a finished **DFRobot DFR0627 / WK2132** UART bridge
-  for the existing ZAC93. The WK bridge requires checked transport behavior;
-  stock driver availability alone does not establish lossless forwarding.
-- Finished isolated 5 V PoE power and a **D24V22F3** 3.3 V supply. An isolated
-  secondary input does not accept raw 48 V PoE.
-- The existing **CC1101, ZAC93, LD2450 and BME680** modules and appropriate
-  antenna/sensor placement.
+- **Waveshare ESP32-S3-Nano-M:** factory male headers, ESP32-S3R8, 16 MB flash,
+  8 MB octal PSRAM, 43.18 × 17.78 mm. The generic ESPHome S3 build descriptor is
+  not the physical module model: explicit memory and GPIO settings define this board.
+- **ESP32-H2-DevKitM-1:** independent Thread RCP. RX4/TX5 avoid its USB-UART
+  bridge; host-controlled reset and boot are retained.
+- **Seeed XIAO MG24 Pre-Soldered, SKU 102010690:** independent Ember Zigbee NCP,
+  PC06/PC07 UART and PC04/PC05 flow control. Use the XIAO-specific firmware,
+  not an old M0 adapter image.
+- **WIZ850io:** finished Ethernet module with magnetics, sharing SPI with CC1101.
+  It is powered from the peripheral 3.3 V rail; it does not extract PoE.
+- External finished **isolated 5 V PoE splitter, D24V22F3 3.3 V supply,
+  DFR0627/WK2132 UART bridge**, plus the existing CC1101, ZAC93, LD2450 and BME680.
+  These still need space outside the quoted carrier outline.
 
-## Functions that must remain
+## Functions and implementation
 
-1. One Ethernet uplink and local S3 Thread BR, including IPv6/multicast and the HA
-   REST integration. No added Linux host or internal Ethernet switch.
-2. Separate Thread and Zigbee radios. Zigbee remains Ember/EZSP with hardware
-   flow control and the normal ZHA/Zigbee2MQTT ecosystem, subject to firmware-version
-   compatibility and commissioning tests.
-3. Active ESPHome Bluetooth proxy, including connections rather than advertisements
-   alone.
-4. RF Airbridge MQTT contracts, native transmit actions and received button events.
-5. Z-Wave forwarding with the existing regional ZAC93, not a change of radio or region.
-6. LD2450 measurements **and controls**, and BME680 temperature, humidity, pressure
-   and gas resistance. Gas resistance is not a direct CO2 measurement.
-7. Service access, recoverable firmware updates and independent network backups.
+1. **Thread:** local S3 border router, dedicated H2 RCP, IPv6/multicast and Home
+   Assistant REST integration. No added Linux host or inter-processor Ethernet bridge.
+2. **Zigbee:** separate MG24 Ember/EZSP transport with hardware flow control for
+   the ZHA/Zigbee2MQTT ecosystem. Pairing and network backup/restore need bench tests.
+3. **Bluetooth:** ESPHome active proxy with three connection slots, as well as
+   advertisements. Concurrent performance is not established by compilation.
+4. **433 MHz RF:** existing RF Airbridge MQTT contracts and CC1101 receive/transmit.
+5. **Z-Wave:** existing regional ZAC93 via checked WK2132 byte forwarding.
+6. **Presence:** LD2450 native UART, measurements and control actions.
+7. **Environment:** BME680 temperature, humidity, pressure and gas resistance in
+   an external ventilated pod. Gas resistance is not a direct CO2 measurement.
+
+W5500 and CC1101 share **SCK13, MOSI11 and MISO12**, with separate chip selects
+and unchanged interrupt/control roles. This releases three GPIOs without an
+extra controller or expander. Normal SPI transactions use the driver bus lock.
+The initial CC1101 setup precedes Ethernet; unreviewed runtime CC1101 reset or
+reconfiguration is rejected by firmware validation. Keep the CC1101 harness short
+and qualify it under simultaneous Ethernet traffic.
+
+Three native UARTs remain assigned to Thread, Zigbee and radar. GPIO43 is now H2
+TX, so boot-time ROM chatter is cleared by resetting H2 before Spinel startup.
+GPIO48 drives the slow open-drain H2 BOOT control and also sees the Nano's onboard
+LED MOSFET gate. Native USB19/20 are reserved. J9 reaches GPIO0 through Nano
+**JP1.13**, permitting manual recovery without soldering a wire onto a test pad.
+The Nano's JP2 pin numbers run opposite to its physical top-to-bottom row order;
+follow the numbered native footprint and wiring ledger.
 
 ## Compact placement and fabrication cost
 
-The earlier 160 × 100 mm outline was a conservative placement envelope, not an
-electrical requirement. Widely spaced modules and a separate bottom row of
-harness headers left unnecessary board area. The compact layout uses the gaps
-between the mounted modules for those connections and turns H2 around so its
-antenna and USB access use opposite ends from S3. The same four modules, eight
-harness/service headers, five axial parts and electrical pin assignments remain.
+PCB area changes from **90 cm² to 72 cm²: 20% less than the preceding 100 × 90 mm
+carrier**, and 55% less than the original 160 × 100 mm outline. This is an area
+calculation, not a claim of a 20% reduction in delivered price. The previous and
+current boards both fit within a 100 × 100 mm fabrication size class; quantities,
+finish, drill rules, shipping and taxes determine an actual quotation.
 
-PCB area falls from **160 cm² to 90 cm²**, a **43.75% reduction**. Both board dimensions
-now fit within 100 mm. This matters independently of the area: a 110 × 80 mm board
-would still miss the size threshold advertised for low-cost prototype offers.
-As checked on 17 October 2026, [JLCPCB lists $2 for five two-layer boards no larger
-than 100 × 100 mm](https://jlcpcb.com/help/article/how-do-i-place-an-order), and
-[PCBWay advertises $5 for ten one/two-layer boards within the same dimensions](https://m.pcbway.com/activitypcb.aspx).
-These are advertised fabrication offers, **not quotes for delivered MC1 boards**.
-Thickness, copper weight, surface finish, quantity, options, taxes and shipping
-must be held constant for a price comparison. The area reduction is not a quote
-for the percentage saved on a delivered order. No manufacturing order has been placed.
+![Previous and current carrier at equal scale](../hardware/module-carrier/layout-comparison.svg)
 
-A 100 × 80 mm packing study required the five axial parts on the underside and
-more restrictive mounting. The selected 90 mm height preserves a single
-component side and ordinary through-hole assembly while remaining in the same
-advertised size class. Minimizing board area past that point was not worth the
-additional assembly and service restrictions.
+Harness headers occupy the bands between modules. USB sockets remain fitted and
+accessible. Module antennas face board edges with copper exclusions on both
+layers. H2 is shifted outward by 4.5 mm: its antenna lies nominally outside the
+carrier, with a 5.475 mm maximum overhang. Keep the manufacturer-recommended
+surrounding space free of enclosure metal and wire loops; verify real tolerances. The assembly drawing marks the reserved USB, connector housing and RF
+areas; these are not spare space for wiring. Ceiling mounting does not eliminate
+the antenna's near-field interaction with copper or wires.
 
-![Previous and compact placement at the same scale](../hardware/module-carrier/layout-comparison.svg)
+At MG24, the larger exclusion from copper pours is preserved while a narrow
+required PC07 signal escape is permitted beside the header. This is an explicitly
+reviewed routing exception, not a claim of manufacturer-qualified antenna clearance.
+The antenna maker's evaluation-board geometry is not a universal carrier rule for
+a finished XIAO; assembled RF range and coexistence must still be measured.
 
-This reduces the carrier footprint, not the entire system to a 100 × 90 mm box.
-The finished PoE splitter, buck, UART bridge and peripheral modules still need
-space. Cable boots, harness bends, service plugs and the enclosure wall remain
-outside the quoted PCB dimensions. The assembly drawing identifies reserved
-access corridors; they must not be filled with wires or components merely
-because no permanent module occupies them.
+The dimensions describe the carrier PCB, not an 80 × 90 mm enclosure. Projecting
+antenna ends, RJ45, plugged cables, harness bend height, underside solder joints
+and external modules require additional space. The narrow connector housings,
+nylon supports and service envelopes are explicitly checked in the CAD; verify
+the actual purchased mating shells before permanent assembly.
 
-The compact arrangement reserves **5.5 mm-wide mating housings** on the harness
-headers and **30 mm-long USB service envelopes**. Use narrow 2.54 mm harness
-connectors with wires leaving upward; bulky shrouded housings are not covered
-by this layout. In particular, the actual XIAO board has about 0.97 mm clearance
-to the nearest reserved housing corner. Verify the chosen plugs during the dry
-fit. Three nylon M2.5 supports, with bodies no larger than 5 mm in diameter,
-fit outside the service envelopes; the right support is beside WIZ850io.
+## Ethernet and board sides
 
-## Ethernet access
+WIZ850io is at the lower-right with its **RJ45 opening facing the bottom edge**.
+The jack mouth projects **2 mm beyond that edge**. Its factory holes remain on
+the carrier. Keep the plug, latch and boot corridor clear and support the board
+against connector insertion loads.
 
-U4 is rotated 270° at the lower-right edge. Its RJ45 opening faces outward to the
-right and projects 2 mm beyond the carrier edge. Keep the connector/plug/latch
-corridor clear and provide a matching enclosure cutout. The module remains
-soldered directly to the carrier; this change does not add an extension cable
-or alter the Ethernet pinout. Use the dimensioned assembly view for orientation,
-not the generated illustration.
+Use the [dimensioned assembly](../hardware/module-carrier/cad/assembly-top.svg),
+[top copper/silk](../hardware/module-carrier/cad/board-top.svg) and
+[bottom copper/silk](../hardware/module-carrier/cad/board-bottom.svg).
+The gallery includes native KiCad views of both sides. These are generated from
+the routed board, not a photograph of manufactured hardware. Old generated
+illustrations remain labeled as history and are not used for construction.
 
-## What changes in software
+## Power and USB service
 
-The S3 host and existing application protocols remain. GPIO assignments must match
-the finished boards, the H2 RCP UART is remapped, the XIAO needs its own Ember board
-configuration, and the WK2132 bridge needs bounded error-aware forwarding.
+The fused isolated 5 V bus reaches each controller through its own axial Schottky
+diode. **Nano D1 branch → VIN JP1.15**. Its **VBUS JP1.12 and 3V3 JP1.2 stay
+unconnected to carrier rails**. The onboard USB-to-VIN diode and carrier branch
+diode form a supply OR; the separate 3.3 V buck serves Ethernet and peripherals.
+Do not parallel the Nano, H2, XIAO and peripheral regulator outputs.
 
-These are real adaptations and must be built and tested. The goal is to avoid new
-high-level protocols and a new H2 border-router port, not to claim zero engineering
-work. A single PCB simplifies the purchasing and assembly path; it does not make
-the first prototype automatically reliable.
+The Nano vendor documents external VIN at 6–21 V. This design uses the regulated
+5 V bus minus the branch diode, below that published external range, based on the
+onboard converter and USB power circuit. **Loaded VIN/3V3 operation is therefore
+an explicit bench acceptance requirement**, including cold start, USB insertion,
+radio bursts and simultaneous traffic. A firmware build cannot validate this path.
+
+For USB service, keep the whole interconnected carrier powered normally and use
+a board-specific, measured procedure. A universal VBUS blocker is not appropriate:
+the XIAO SAMD11 programming probe needs USB VBUS. Merely removing PoE and powering
+one controller over USB can backfeed unpowered peers through signals; the supply
+diodes do not isolate those signals. Check backfeed, rail voltages and enumeration.
+Before USB-flashing H2, activate **Pause Thread for H2 Service**, allow the hub to
+restart, and verify **Thread State = maintenance** and **Thread Guard Durable = on**.
+Only then program H2; automatic RCP resets are disabled in that state. Use
+**Retry Quarantined Thread** after programming to resume. The maintenance pause
+does not count as a radio fault.
+
+See the [XIAO service review](../hardware/module-carrier/studies/square-layout/service-review.md).
+
+## Thread failure containment
+
+The active firmware probes H2 before starting OpenThread and connects actual reset
+and terminal-failure callbacks. An absent RCP can enter **persistent Thread
+quarantine** while the other services continue. A terminal fault after startup
+records the fault and permits **one controlled whole-host restart**; the next boot
+leaves Thread stopped until the explicit retry action. This avoids a repeating
+RCP-triggered boot loop. It is not seamless radio isolation: every S3 service is
+briefly interrupted during that restart.
+
+A persisted armed marker also covers SDK panic/watchdog exits. An unrelated host
+crash while Thread is armed can therefore conservatively quarantine Thread; the
+reported reset/fault state and explicit retry distinguish this from deleting the
+network. The Thread dataset is kept separately and is not erased by quarantine.
+Ordinary lack of a dataset or Ethernet link is not itself a terminal RCP failure.
+If a fault-time NVS write fails, RTC retention protects a warm restart but not
+complete power removal; check **Thread Guard Durable** before relying on persistent
+quarantine or entering maintenance.
+
+Home Assistant diagnostics expose Thread state, last fault, quarantine, fault and
+retry counters, RCP resets, device role, internal heap, largest free block, PSRAM,
+loop time, uptime and reset reason. **Retry Quarantined Thread** is the deliberate
+recovery control. See [firmware instructions](../firmware/module-carrier/README.md)
+for exact behavior, source tests and hardware acceptance.
+
+## Firmware installation and existing networks
+
+The Nano factory image uses a 16 MB partition layout. Its NVS location differs
+from the historical 8 MB image, so export network datasets/backups before factory
+installation or any partition migration. Dataset-preserving quarantine refers
+to operation within the installed Nano layout; it is not an automatic migration
+of old NVS data. An application-only OTA normally retains the installed partition
+table, so verify that table instead of assuming an OTA expands flash partitions.
+No physical device has been flashed as part of this redesign.
 
 ## Assemble and commission
 
-1. Check complete board model/revision markings, pin pitch, row spacing, antenna
-   keepouts and connector access against the MC1 drawings. Program the matching
-   firmware before permanent assembly, then dry-fit every module.
-2. Fit the carrier's listed through-hole parts and male module pins. Solder from
-   below, then inspect orientation, bridges and the continuity of every power rail.
-3. Check the isolated 5 V input and separate 3.3 V peripheral rail unloaded. Do not
-   parallel outputs from different modules' onboard regulators.
-4. For later USB service, keep the complete assembly powered normally and use a
-   **board- and USB-port-specific, bench-verified power procedure**. A VBUS blocker
-   is not a universal solution: on the XIAO, the onboard SAMD11 programming probe
-   requires USB VBUS, while the factory 5 V header supplies VIN behind a diode.
-   Check that board's diode isolation, supply voltages, absence of backfeed and USB
-   enumeration with its intended powered-USB connection before service. See the
-   [XIAO service review](../hardware/module-carrier/studies/square-layout/service-review.md#xiaos-programming-probe-needs-usb-vbus).
-   Simply disconnecting PoE and USB-powering one controller can backfeed the others
-   through signal pins; the three supply diodes do not isolate these signal paths.
-5. Verify Ethernet and service access first, then each radio and sensor separately.
-   Follow the board-specific firmware recovery procedure; old M0 images do not
-   match the XIAO pinout.
-6. Test simultaneous BLE, Thread, Zigbee, Z-Wave, RF and radar activity; exercise
-   resets, a lost uplink, power loss, updates and backup/restore. Compare the retained
-   application contracts with the LP-P0 regression suite.
-7. Only after these checks choose a permanent enclosure and migrate existing
-   household networks. Earlier enclosure images are not MC1 fit evidence.
-
-## Why one version is sufficient
-
-The former carrier and integrated layouts differed in construction, not in a
-required user function. MC1 retains the local host and dedicated radio roles,
-while moving small circuitry onto finished vendor boards. This removes the
-second custom PCB choice and the separate M0 radio adapter. It does **not**
-require a Linux machine, a new network hop, or a custom inter-H2 application
-protocol.
-
-The remaining software changes are bounded: new board pin assignments, a XIAO
-Ember build, and a checked WK2132 transport with its own worker task. The price
-of this assembly simplification is more height, permanent soldered modules,
-and a firmware adaptation to maintain. Neither lower total price nor lower
-power consumption has been measured for MC1. There are still 100 module-header
-pins to solder, in addition to the harness headers and five discrete parts.
+1. Match module revisions, header numbering and actual mating shells to the CAD.
+   Program all three controllers before permanent assembly and dry-fit everything.
+2. Fit the five axial parts and harness headers, then solder the factory male
+   module pins underneath. Inspect bridges, orientation and every power net.
+3. Verify isolated 5 V, peripheral 3.3 V and each controller input under load.
+   Leave local regulator outputs and Nano VBUS isolated as specified.
+4. Check Ethernet, USB service and J9 manual recovery. To invoke Nano ROM recovery,
+   temporarily short J9 GPIO0 to GND while resetting the Nano; remove the short for
+   normal operation. Do not leave either boot-service header permanently shorted.
+5. Commission each radio/sensor separately, then run Thread, three BLE connections,
+   Zigbee, Z-Wave, RF traffic and radar together. Record minimum heap, largest free
+   block, stack margin, errors, power and temperature.
+6. Exercise absent/stalled H2, explicit retry, power cycling, unplugged Ethernet,
+   updates and network backup/restore. Confirm bounded recovery and dataset retention.
+7. Choose the permanent enclosure and migrate household networks only after the
+   assembled prototype passes these checks. Old enclosure images are not fit evidence.
 
 The [verification summary](../hardware/module-carrier/verification-summary.json),
-[independent review](../hardware/module-carrier/independent-review.md), and
-[firmware build evidence](../firmware/module-carrier/README.md) separate completed
-software/CAD checks from commissioning on the real assembly.
+[independent audit](../hardware/module-carrier/independent-review.md), and
+[build evidence](../firmware/module-carrier/build-evidence.json) distinguish completed
+checks from physical work. There is one current hardware path; old layouts remain
+[engineering history](design-history.md).
 
-## Sources
+## Primary sources
 
-- [Official S3-DevKitC-1 v1.1 documentation](https://documentation.espressif.com/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html)
-- [Official H2-DevKitM-1 documentation](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html)
-- [XIAO MG24 hardware documentation](https://wiki.seeedstudio.com/xiao_mg24_getting_started/)
-- [Pre-soldered XIAO MG24](https://www.seeedstudio.com/Seeed-Studio-XIAO-MG24-Pre-Soldered-p-6381.html)
-- [WIZ850io](https://docs.wiznet.io/Product/ioModule/WIZ850io)
-- [DFR0627 hardware](https://wiki.dfrobot.com/dfr0627)
-- [ESPHome WeiKai component](https://esphome.io/components/weikai/)
-
-The [design history](design-history.md) identifies all retired alternatives.
+- [Waveshare Nano documentation](https://www.waveshare.com/wiki/ESP32-S3-Nano)
+  and [schematic](https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf)
+- [Espressif H2 DevKitM-1](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html)
+- [Seeed XIAO MG24](https://wiki.seeedstudio.com/xiao_mg24_getting_started/)
+- [WIZnet WIZ850io](https://docs.wiznet.io/Product/ioModule/WIZ850io)
+- [DFRobot DFR0627](https://wiki.dfrobot.com/dfr0627)

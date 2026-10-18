@@ -1,79 +1,53 @@
 {
   "revision": "MC1",
   "source": "cad/design.py",
-  "source_sha256": "80b1c1203f2e4bd9a8fbd4e4f538f5002b79745fd4ac9dcc4fc0c1e0505ca013",
+  "source_sha256": "e5155f92cfd939b797d097d1c3cbb6874a4271929c4333d1d73b136c91af9588",
   "nets": {
+    "THREAD_BOOT": [
+      "U1.JP1.1",
+      "U2.J3.11"
+    ],
+    "I2C_SDA": [
+      "U1.JP1.4",
+      "J3.3",
+      "J7.3"
+    ],
+    "I2C_SCL": [
+      "U1.JP1.5",
+      "J3.4",
+      "J7.4"
+    ],
     "RF_GDO0": [
-      "U1.J1.4",
+      "U1.JP1.7",
       "J5.7",
       "R1.2"
     ],
-    "RF_GDO2": [
-      "U1.J1.5",
-      "J5.8"
-    ],
-    "RF_MISO": [
-      "U1.J1.6",
-      "J5.5"
-    ],
-    "RF_SCK": [
-      "U1.J1.7",
-      "J5.3"
-    ],
-    "RF_CS": [
-      "U1.J1.8",
-      "J5.6",
-      "R2.2"
-    ],
-    "ZB_CTS": [
-      "U1.J1.9",
-      "U3.5"
-    ],
-    "ZB_RX": [
-      "U1.J1.10",
-      "U3.8"
-    ],
-    "ZB_TX": [
-      "U1.J1.11",
-      "U3.7"
-    ],
-    "RF_MOSI": [
-      "U1.J1.12",
+    "SPI_MOSI": [
+      "U1.JP1.8",
+      "U4.J1.3",
       "J5.4"
     ],
-    "ETH_RESET": [
-      "U1.J1.15",
-      "U4.J2.5"
+    "SPI_MISO": [
+      "U1.JP1.9",
+      "U4.J2.6",
+      "J5.5"
     ],
-    "ETH_INT": [
-      "U1.J1.16",
-      "U4.J1.6"
-    ],
-    "ETH_MOSI": [
-      "U1.J1.17",
-      "U4.J1.3"
-    ],
-    "ETH_MISO": [
-      "U1.J1.18",
-      "U4.J2.6"
-    ],
-    "ETH_SCK": [
-      "U1.J1.19",
-      "U4.J1.4"
+    "SPI_SCK": [
+      "U1.JP1.10",
+      "U4.J1.4",
+      "J5.3"
     ],
     "ETH_CS": [
-      "U1.J1.20",
+      "U1.JP1.11",
       "U4.J1.5"
     ],
-    "+5V_S3": [
-      "U1.J1.21",
-      "D1.1"
+    "S3_BOOT_SERVICE": [
+      "U1.JP1.13",
+      "J9.1"
     ],
     "GND": [
-      "U1.J1.22",
-      "U1.J3.1",
-      "U1.J3.21",
-      "U1.J3.22",
+      "U1.JP1.14",
+      "U1.JP2.4",
       "U2.J1.13",
       "U2.J1.15",
       "U2.J3.1",
@@ -93,45 +67,65 @@
       "J5.2",
       "J6.2",
       "J7.1",
-      "J8.2"
+      "J8.2",
+      "J9.2"
     ],
-    "I2C_SDA": [
-      "U1.J3.4",
-      "J3.3",
-      "J7.3"
-    ],
-    "I2C_SCL": [
-      "U1.J3.5",
-      "J3.4",
-      "J7.4"
-    ],
-    "THREAD_TX": [
-      "U1.J3.6",
-      "U2.J1.10"
+    "+5V_S3": [
+      "U1.JP1.15",
+      "D1.1"
     ],
     "THREAD_RX": [
-      "U1.J3.7",
+      "U1.JP2.1",
       "U2.J1.9"
     ],
-    "RADAR_TX": [
-      "U1.J3.8",
-      "J6.4"
+    "THREAD_TX": [
+      "U1.JP2.2",
+      "U2.J1.10"
+    ],
+    "RF_GDO2": [
+      "U1.JP2.5",
+      "J5.8"
+    ],
+    "RF_CS": [
+      "U1.JP2.6",
+      "J5.6",
+      "R2.2"
+    ],
+    "ZB_CTS": [
+      "U1.JP2.7",
+      "U3.5"
     ],
     "RADAR_RX": [
-      "U1.J3.9",
+      "U1.JP2.8",
       "J6.3"
     ],
-    "THREAD_BOOT": [
-      "U1.J3.16",
-      "U2.J3.11"
+    "ETH_RESET": [
+      "U1.JP2.9",
+      "U4.J2.5"
     ],
-    "THREAD_EN": [
-      "U1.J3.17",
-      "U2.J1.2"
+    "ETH_INT": [
+      "U1.JP2.10",
+      "U4.J1.6"
+    ],
+    "ZB_RX": [
+      "U1.JP2.11",
+      "U3.8"
+    ],
+    "ZB_TX": [
+      "U1.JP2.12",
+      "U3.7"
     ],
     "ZB_RTS": [
-      "U1.J3.18",
+      "U1.JP2.13",
       "U3.6"
+    ],
+    "RADAR_TX": [
+      "U1.JP2.14",
+      "J6.4"
+    ],
+    "THREAD_EN": [
+      "U1.JP2.15",
+      "U2.J1.2"
     ],
     "+5V_H2": [
       "U2.J1.14",
@@ -176,62 +170,48 @@
   "parts": [
     {
       "ref": "U1",
-      "model": "ESP32-S3-DevKitC-1-N8R8 v1.1",
-      "footprint": "MC1:S3_DevKitC1_v11",
+      "model": "Waveshare ESP32-S3-Nano-M 16MB flash 8MB PSRAM",
+      "footprint": "MC1:S3_Nano_M",
       "pins": {
-        "J1.1": null,
-        "J1.2": null,
-        "J1.3": null,
-        "J1.4": "RF_GDO0",
-        "J1.5": "RF_GDO2",
-        "J1.6": "RF_MISO",
-        "J1.7": "RF_SCK",
-        "J1.8": "RF_CS",
-        "J1.9": "ZB_CTS",
-        "J1.10": "ZB_RX",
-        "J1.11": "ZB_TX",
-        "J1.12": "RF_MOSI",
-        "J1.13": null,
-        "J1.14": null,
-        "J1.15": "ETH_RESET",
-        "J1.16": "ETH_INT",
-        "J1.17": "ETH_MOSI",
-        "J1.18": "ETH_MISO",
-        "J1.19": "ETH_SCK",
-        "J1.20": "ETH_CS",
-        "J1.21": "+5V_S3",
-        "J1.22": "GND",
-        "J3.1": "GND",
-        "J3.2": null,
-        "J3.3": null,
-        "J3.4": "I2C_SDA",
-        "J3.5": "I2C_SCL",
-        "J3.6": "THREAD_TX",
-        "J3.7": "THREAD_RX",
-        "J3.8": "RADAR_TX",
-        "J3.9": "RADAR_RX",
-        "J3.10": null,
-        "J3.11": null,
-        "J3.12": null,
-        "J3.13": null,
-        "J3.14": null,
-        "J3.15": null,
-        "J3.16": "THREAD_BOOT",
-        "J3.17": "THREAD_EN",
-        "J3.18": "ZB_RTS",
-        "J3.19": null,
-        "J3.20": null,
-        "J3.21": "GND",
-        "J3.22": "GND"
+        "JP1.1": "THREAD_BOOT",
+        "JP1.2": null,
+        "JP1.3": null,
+        "JP1.4": "I2C_SDA",
+        "JP1.5": "I2C_SCL",
+        "JP1.6": null,
+        "JP1.7": "RF_GDO0",
+        "JP1.8": "SPI_MOSI",
+        "JP1.9": "SPI_MISO",
+        "JP1.10": "SPI_SCK",
+        "JP1.11": "ETH_CS",
+        "JP1.12": null,
+        "JP1.13": "S3_BOOT_SERVICE",
+        "JP1.14": "GND",
+        "JP1.15": "+5V_S3",
+        "JP2.1": "THREAD_RX",
+        "JP2.2": "THREAD_TX",
+        "JP2.3": null,
+        "JP2.4": "GND",
+        "JP2.5": "RF_GDO2",
+        "JP2.6": "RF_CS",
+        "JP2.7": "ZB_CTS",
+        "JP2.8": "RADAR_RX",
+        "JP2.9": "ETH_RESET",
+        "JP2.10": "ETH_INT",
+        "JP2.11": "ZB_RX",
+        "JP2.12": "ZB_TX",
+        "JP2.13": "ZB_RTS",
+        "JP2.14": "RADAR_TX",
+        "JP2.15": "THREAD_EN"
       },
       "types": {},
       "xy": [
-        5,
-        3
+        39,
+        2
       ],
-      "rotation": 0,
+      "rotation": 270,
       "source": "s3",
-      "notes": "Factory male headers solder directly; 3V3 outputs NC; USB19/20 and bridge43/44 untouched; no sockets"
+      "notes": "Factory male pins direct solder; JP1.15 VIN via D1; VBUS/3V3 NC; nativeUSB19/20; GPIO0 service; sharedSPI; no sockets"
     },
     {
       "ref": "U2",
@@ -271,10 +251,10 @@
       },
       "types": {},
       "xy": [
-        64,
-        84
+        78.5,
+        28
       ],
-      "rotation": 180,
+      "rotation": 270,
       "source": "h2",
       "notes": "RCP RX4 TX5; native USB and UART bridge pins untouched; 3V3/VBAT NC"
     },
@@ -300,10 +280,10 @@
       },
       "types": {},
       "xy": [
-        97,
-        18
+        18,
+        70
       ],
-      "rotation": 180,
+      "rotation": 270,
       "source": "xiao",
       "notes": "External UART PC06/PC07; CTS PC04 RTS PC05; USB probe preserved; 3V3 OUT NC"
     },
@@ -314,8 +294,8 @@
       "pins": {
         "J1.1": "GND",
         "J1.2": "GND",
-        "J1.3": "ETH_MOSI",
-        "J1.4": "ETH_SCK",
+        "J1.3": "SPI_MOSI",
+        "J1.4": "SPI_SCK",
         "J1.5": "ETH_CS",
         "J1.6": "ETH_INT",
         "J2.1": "GND",
@@ -323,16 +303,16 @@
         "J2.3": "+3V3",
         "J2.4": null,
         "J2.5": "ETH_RESET",
-        "J2.6": "ETH_MISO"
+        "J2.6": "SPI_MISO"
       },
       "types": {},
       "xy": [
-        92.9,
-        67
+        76,
+        82.9
       ],
-      "rotation": 270,
+      "rotation": 180,
       "source": "wiz",
-      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces RIGHT with mouth x=102mm; NO PoE extraction;3.3V only"
+      "notes": "Direct factory pins; two1x6 at20.32 rowspacing; RJ45 faces BOTTOM with mouth y=92mm; NO PoE extraction;3.3V only"
     },
     {
       "ref": "J1",
@@ -344,10 +324,10 @@
       },
       "types": {},
       "xy": [
-        70.7,
-        35
+        17,
+        62.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Offboard assembled active PoE splitter and fused 5V harness. No raw PoE voltage on carrier."
     },
@@ -363,10 +343,10 @@
       },
       "types": {},
       "xy": [
-        77,
-        23.3
+        3,
+        62.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module."
     },
@@ -384,10 +364,10 @@
       },
       "types": {},
       "xy": [
-        70.7,
-        41.6
+        27,
+        56.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "weikai",
       "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings."
     },
@@ -404,10 +384,10 @@
       },
       "types": {},
       "xy": [
-        77,
-        41.6
+        46,
+        56.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Carrier1->ZACpin1;2->pin6;3->pin9;4->pin8RX;5->pin10TX. Different from ZAC physical header layout."
     },
@@ -418,19 +398,19 @@
       "pins": {
         "1": "+3V3",
         "2": "GND",
-        "3": "RF_SCK",
-        "4": "RF_MOSI",
-        "5": "RF_MISO",
+        "3": "SPI_SCK",
+        "4": "SPI_MOSI",
+        "5": "SPI_MISO",
         "6": "RF_CS",
         "7": "RF_GDO0",
         "8": "RF_GDO2"
       },
       "types": {},
       "xy": [
-        35,
-        23
+        3,
+        56.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "3.3V; GDO0 open-drain TX with external4.7k pullup; GDO2 receiver."
     },
@@ -446,10 +426,10 @@
       },
       "types": {},
       "xy": [
-        70.7,
-        23.3
+        26,
+        62.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Carrier3->radarRX;carrier4<-radarTX;5V supply;3.3V data."
     },
@@ -465,10 +445,10 @@
       },
       "types": {},
       "xy": [
-        35,
-        47
+        63,
+        56.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "External pod,1GND2VDD3SDA4SCL;I2C pullups on modules;do notaddunreviewedpullups."
     },
@@ -482,10 +462,10 @@
       },
       "types": {},
       "xy": [
-        82,
-        54
+        23,
+        87
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -499,10 +479,10 @@
       },
       "types": {},
       "xy": [
-        86,
-        54
+        33.6,
+        87
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -516,10 +496,10 @@
       },
       "types": {},
       "xy": [
-        90,
-        54
+        44.2,
+        87
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "diode",
       "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom."
     },
@@ -533,10 +513,10 @@
       },
       "types": {},
       "xy": [
-        94,
-        54
+        25,
+        67.5
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "resistor",
       "notes": ""
     },
@@ -550,10 +530,10 @@
       },
       "types": {},
       "xy": [
-        98,
-        54
+        39,
+        67.5
       ],
-      "rotation": 270,
+      "rotation": 0,
       "source": "resistor",
       "notes": ""
     },
@@ -567,12 +547,29 @@
       },
       "types": {},
       "xy": [
-        77,
-        35
+        40,
+        62.5
       ],
-      "rotation": 0,
+      "rotation": 90,
       "source": "connector",
       "notes": "Temporary short D0/PC00 to GND while resetting XIAO for recovery. Normally OPEN."
+    },
+    {
+      "ref": "J9",
+      "model": "Nano GPIO0 BOOT service short to GND",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "S3_BOOT_SERVICE",
+        "2": "GND"
+      },
+      "types": {},
+      "xy": [
+        48,
+        62.5
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Normally OPEN; short GPIO0 to GND while pressing Nano RESET for nativeUSB ROM recovery."
     }
   ]
 }

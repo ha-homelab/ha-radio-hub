@@ -1,9 +1,10 @@
-# MC1: complete single-carrier profile. Compile verified; hardware qualification required.
+# MC1: Waveshare ESP32-S3-Nano-M, 16 MB flash / 8 MB PSRAM.
 substitutions:
-  build_jobs: "2"
+  build_jobs: "4"
   bme680_address: "0x77"
   rf_airbridge_path: ..
   rf_source: module_carrier
+  rf_cs_pin: GPIO6
   rf_received_topic: build-only/rf/received
   rf_raw_topic: build-only/rf/raw
   rf_transmit_result_topic: build-only/rf/result
@@ -15,7 +16,7 @@ esphome:
 
 esp32:
   board: esp32-s3-devkitc-1
-  flash_size: 8MB
+  flash_size: 16MB
   cpu_frequency: 160MHz
   framework:
     type: esp-idf
@@ -28,9 +29,7 @@ psram:
 
 ethernet:
   type: W5500
-  clk_pin: GPIO13
-  mosi_pin: GPIO11
-  miso_pin: GPIO12
+  spi_id: cc1101_spi
   cs_pin: GPIO14
   interrupt_pin: GPIO10
   reset_pin: GPIO9
@@ -72,9 +71,10 @@ external_components:
 low_power_ethernet:
 
 low_power_otbr:
+  id: thread_border_router
   server_component_path: ../low-power/generated/esp_ot_br_server
-  tx_pin: GPIO41
-  rx_pin: GPIO42
+  tx_pin: GPIO43
+  rx_pin: GPIO44
   reset_pin: GPIO47
   boot_pin: GPIO48
   rest_port: 8081
@@ -90,8 +90,8 @@ bluetooth_proxy:
 
 uart:
   - id: radar_uart
-    tx_pin: GPIO39
-    rx_pin: GPIO40
+    tx_pin: GPIO8
+    rx_pin: GPIO38
     baud_rate: 256000
     rx_buffer_size: 1024
 
@@ -107,15 +107,16 @@ i2c:
 
 spi:
   id: cc1101_spi
-  interface: spi3
-  clk_pin: GPIO7
-  mosi_pin: GPIO8
-  miso_pin: GPIO6
+  interface: spi2
+  clk_pin: GPIO13
+  mosi_pin: GPIO11
+  miso_pin: GPIO12
 
 packages:
   rf: !include ../packages/rf-airbridge.yaml
   environment: !include ../packages/bme680.yaml
   radar: !include ../packages/ld2450.yaml
+  health: !include health.yaml
 
 # Factory DFR0627 module at 3.3 V, IA1=1 and IA0=1. UART1 only.
 wk2132_uart:
@@ -131,6 +132,6 @@ zwave_proxy:
 zigbee_tcp:
   tx_pin: GPIO17
   rx_pin: GPIO18
-  rts_pin: GPIO16
+  rts_pin: GPIO7
   cts_pin: GPIO21
   port: 6638

@@ -17,10 +17,12 @@ Start with the [English assembly guide](docs/module-carrier.md), the
 
 ## One board to assemble
 
-The carrier is **100 × 90 mm, with two copper layers**: 43.75% less PCB area than the
-earlier 160 × 100 mm layout. Harness connections sit in the gaps between modules;
-the RJ45 opening faces outward at the right edge. See the
-[same-scale placement comparison](hardware/module-carrier/layout-comparison.svg)
+The carrier is **80 mm horizontal × 90 mm vertical, with two copper layers**:
+20% less area than the preceding 100 × 90 mm carrier. It uses a factory-header
+**S3-Nano-M with 16 MB flash and 8 MB PSRAM**, shared Ethernet/CC1101 SPI and the
+same dedicated Thread and Zigbee radios. Harness headers occupy the internal gaps;
+RJ45 faces outward at the bottom edge. See the
+[same-scale comparison](hardware/module-carrier/layout-comparison.svg)
 and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fabrication-cost).
 
 Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
@@ -35,6 +37,8 @@ no second integrated-radio PCB option to choose.
 ## Preserve the interfaces
 
 - S3 hosts the local Thread BR and application services; H2 is its dedicated RCP.
+  Failed Thread startup is quarantined; terminal faults allow one controlled restart
+  rather than a repeating boot loop. Explicit retry and health diagnostics are exposed.
 - XIAO MG24 runs board-specific Ember NCP firmware, preserving the ZHA/
   Zigbee2MQTT protocol family and hardware UART flow control.
 - Active BLE proxy, RF Airbridge contracts, ZAC93 Z-Wave, LD2450 controls and

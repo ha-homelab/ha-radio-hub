@@ -1,0 +1,136 @@
+{
+  "status": "Active Nano-M full image compiled; all21 GPIO verified; hardware qualification remains",
+  "board": "Waveshare ESP32-S3-Nano-M",
+  "soc": "ESP32-S3R8",
+  "flash_bytes": 16777216,
+  "psram_bytes": 8388608,
+  "psram_mode": "octal",
+  "physical_attachment": "Nano-M factory male headers solder directly into carrier plated holes",
+  "source": "https://files.waveshare.com/wiki/ESP32-S3-Nano/ESP32-S3-Nano-Schematic.pdf",
+  "spi_bus_sharing": true,
+  "application_gpio_count": 21,
+  "assignments": {
+    "ethernet_sck": {
+      "gpio": 13,
+      "header_pin": "JP1.10"
+    },
+    "ethernet_mosi": {
+      "gpio": 11,
+      "header_pin": "JP1.8"
+    },
+    "ethernet_miso": {
+      "gpio": 12,
+      "header_pin": "JP1.9"
+    },
+    "ethernet_cs": {
+      "gpio": 14,
+      "header_pin": "JP1.11"
+    },
+    "ethernet_irq": {
+      "gpio": 10,
+      "header_pin": "JP2.10"
+    },
+    "ethernet_reset": {
+      "gpio": 9,
+      "header_pin": "JP2.9"
+    },
+    "cc1101_sck": {
+      "gpio": 13,
+      "header_pin": "JP1.10"
+    },
+    "cc1101_mosi": {
+      "gpio": 11,
+      "header_pin": "JP1.8"
+    },
+    "cc1101_miso": {
+      "gpio": 12,
+      "header_pin": "JP1.9"
+    },
+    "cc1101_cs": {
+      "gpio": 6,
+      "header_pin": "JP2.6"
+    },
+    "cc1101_gdo0_tx": {
+      "gpio": 4,
+      "header_pin": "JP1.7"
+    },
+    "cc1101_gdo2_rx": {
+      "gpio": 5,
+      "header_pin": "JP2.5"
+    },
+    "zigbee_tx": {
+      "gpio": 17,
+      "header_pin": "JP2.11"
+    },
+    "zigbee_rx": {
+      "gpio": 18,
+      "header_pin": "JP2.12"
+    },
+    "zigbee_rts": {
+      "gpio": 7,
+      "header_pin": "JP2.7"
+    },
+    "zigbee_cts": {
+      "gpio": 21,
+      "header_pin": "JP2.13"
+    },
+    "i2c_sda": {
+      "gpio": 1,
+      "header_pin": "JP1.4"
+    },
+    "i2c_scl": {
+      "gpio": 2,
+      "header_pin": "JP1.5"
+    },
+    "thread_tx": {
+      "gpio": 43,
+      "header_pin": "JP2.1"
+    },
+    "thread_rx": {
+      "gpio": 44,
+      "header_pin": "JP2.2"
+    },
+    "thread_reset": {
+      "gpio": 47,
+      "header_pin": "JP2.15"
+    },
+    "thread_boot": {
+      "gpio": 48,
+      "header_pin": "JP1.1"
+    },
+    "radar_tx": {
+      "gpio": 8,
+      "header_pin": "JP2.8"
+    },
+    "radar_rx": {
+      "gpio": 38,
+      "header_pin": "JP2.14"
+    }
+  },
+  "reserved": {
+    "native_usb_dm": 19,
+    "native_usb_dp": 20,
+    "boot_recovery_header": 0,
+    "unused_straps": [
+      3,
+      46
+    ]
+  },
+  "external_controller_contract": {
+    "h2": {
+      "rx": 4,
+      "tx": 5,
+      "baud": 460800,
+      "reset": "EN",
+      "boot": 9
+    },
+    "xiao_mg24": {
+      "rx": "D7 / PC07",
+      "tx": "D6 / PC06",
+      "cts": "D4 / PC04",
+      "rts": "D5 / PC05",
+      "baud": 115200
+    }
+  },
+  "caveat": "The two SPI peripherals share SCK/MOSI/MISO only; distinct chip selects and unchanged W5500 IRQ/reset. GPIO43 ROM chatter is cleared by resetting the H2 before Spinel startup. GPIO0 must remain accessible for manual native-USB recovery."
+}

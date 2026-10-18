@@ -11,13 +11,16 @@ ap=argparse.ArgumentParser();ap.add_argument('--routes',type=Path,default=R/'man
 b=p.LoadBoard(str(R/'mc1.kicad_pcb'));data=json.loads(args.routes.read_text());count=0
 for route in data['routes']:
  net=next(n for n in b.GetNetInfo().NetsByNetcode().values() if n.GetNetname()==route['net'])
- if any(t.GetNetCode()==net.GetNetCode() for t in b.GetTracks()):raise SystemExit(route['net']+' already routed; refusing duplicate route')
+ if route.get('replace_existing'):
+  for t in list(b.GetTracks()):
+   if t.GetNetCode()==net.GetNetCode():b.Remove(t)
+ elif any(t.GetNetCode()==net.GetNetCode() and not isinstance(t,p.PCB_VIA) and {tuple(round(p.ToMM(v),4) for v in (t.GetStart().x,t.GetStart().y)),tuple(round(p.ToMM(v),4) for v in (t.GetEnd().x,t.GetEnd().y))}=={tuple(route['points'][0][:2]),tuple(route['points'][1][:2])} for t in b.GetTracks()):raise SystemExit('Manual route already applied; refusing duplicate')
  a=route['points'];a[0][:2]=route['start'];a[-1][:2]=route['end']
  for v,w in zip(a,a[1:]):
   if v[2]!=w[2]:
    t=p.PCB_VIA(b);t.SetPosition(p.VECTOR2I(p.FromMM(v[0]),p.FromMM(v[1])));t.SetWidth(p.FromMM(.8));t.SetDrill(p.FromMM(.4));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu)
   else:
-   t=p.PCB_TRACK(b);t.SetStart(p.VECTOR2I(p.FromMM(v[0]),p.FromMM(v[1])));t.SetEnd(p.VECTOR2I(p.FromMM(w[0]),p.FromMM(w[1])));t.SetWidth(p.FromMM(.25));t.SetLayer(p.F_Cu if v[2]==0 else p.B_Cu)
+   t=p.PCB_TRACK(b);t.SetStart(p.VECTOR2I(p.FromMM(v[0]),p.FromMM(v[1])));t.SetEnd(p.VECTOR2I(p.FromMM(w[0]),p.FromMM(w[1])));t.SetWidth(p.FromMM(route.get('width_mm',.25)));t.SetLayer(p.F_Cu if v[2]==0 else p.B_Cu)
   t.SetNet(net);b.Add(t);count+=1
 b.BuildConnectivity();p.ZONE_FILLER(b).Fill(b.Zones());p.SaveBoard(str(R/'mc1.kicad_pcb'),b)
 print('Added',count,'route items; run native DRC')

@@ -1,5 +1,7 @@
 # MC1 square-layout study
 
+**Historical study snapshot.** The selected Nano design is now implemented in [current MC1](../../index.html#pcb). Findings and build evidence below refer to the pre-implementation revision `177a547c70bba11d5f48dee0bdc8595670a4fafb`. Reproduce the old study from that Git revision; use the active firmware instructions for the new board.
+
 This study checks a **100 × 100 mm** arrangement with XIAO MG24 horizontal at the left and WIZ850io below the vertical H2. It does not replace the active **100 × 90 mm** design. Open the [visual comparison](index.html), [same-scale drawing](comparison.svg), and [current results](result.json).
 
 The solution also moves S3 to the right. H2's USB ports face upward; MG24's USB port faces into the space between H2 and Ethernet. WIZ's RJ45 opening points down, 2 mm beyond the carrier. All factory USB connectors are retained. Desoldering a connector removes its body, but does not shrink a module's substrate or preserve its programming connection automatically.

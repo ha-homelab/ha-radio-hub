@@ -1,61 +1,65 @@
 {
-  "revision": "MC1",
+  "revision": "MC1-Nano",
   "date": "2026-10-17",
+  "layout_revision": "nano-shared-spi-bottom-edge",
   "status": "Software and CAD verified; hardware qualification outstanding",
   "hardware_tested": false,
   "checks": [
     {
-      "check": "Carrier area and electrical preservation",
-      "result": "160 x 100 mm to 100 x 90 mm; 43.75% less area",
-      "scope": "Same 17 parts and 145 pad assignments; all components on top, two copper layers, no new sockets or firmware changes"
+      "check": "Carrier area and function preservation",
+      "result": "100 × 90 mm → 80 × 90 mm; 20% less PCB area",
+      "scope": "Seven function groups retained; 55% smaller than the original 160 × 100 mm carrier. Two copper layers, four ready modules, nine headers, three diodes and two resistors. No female sockets."
     },
     {
       "check": "Native KiCad 10.0.6 ERC / DRC",
       "result": "0 violations, 0 unrouted, 0 parity issues",
-      "scope": "Final native schematic and routed PCB; passive module terminals do not validate internal circuits"
+      "scope": "Final native schematic and routed PCB; clean reproduction from generator, committed SES and manual route passed. Module terminals do not validate internal circuits."
     },
     {
-      "check": "Mechanical and pin geometry",
-      "result": "12 tests passed; independent review checked 145 pad entries",
-      "scope": "100 x 90 mm carrier; manufacturer-derived geometry, right-edge RJ45, USB and narrow header housing allowances, three nylon supports; physical fit remains untested"
+      "check": "Mechanical and electrical CAD checks",
+      "result": "18 tests passed; independent audit of 133 pads and 31 net groups passed",
+      "scope": "101 connected endpoints; 11 intentional corruptions detected. Bottom-edge RJ45; H2 antenna beyond carrier FR4. USB and header service allowances remain subject to physical fit."
     },
     {
       "check": "CAD / firmware interface contracts",
-      "result": "9 tests passed",
-      "scope": "S3 interfaces, MG24 flow control, power isolation, USB pins and single current design"
+      "result": "11 tests passed",
+      "scope": "21 S3 GPIOs; shared W5500/CC1101 SPI with distinct chip selects; three UARTs; native USB; MG24 hardware flow control; power isolation; BOOT service."
     },
     {
       "check": "Complete S3 firmware",
-      "result": "Compiled: 1,717,296-byte OTA image; 161,579 bytes static RAM",
-      "scope": "ESPHome 2026.9.1 / IDF 5.5.5, seven function groups; not runtime free-heap measurement"
+      "result": "Compiled: 1,728,512-byte OTA image; 163,563 bytes static RAM",
+      "scope": "ESPHome 2026.9.1 / IDF 5.5.5. Nano 16 MB flash, 8 MB octal PSRAM and three active BLE slots. Each new OTA slot has 6,397,952 bytes of margin. Static RAM is not runtime free heap."
+    },
+    {
+      "check": "Bounded Thread recovery and WK2132 transport",
+      "result": "41 ASan / UBSan host tests and 2 REST client tests passed",
+      "scope": "RCP preflight, durable quarantine, deliberate retry and maintenance pause. A terminal Thread fault may cause one whole-host restart. Physical reset, power-loss, radio and concurrent-load behavior remain untested."
     },
     {
       "check": "H2 Thread RCP",
-      "result": "Compiled: 208,928 bytes; RX4 / TX5",
-      "scope": "IDF 5.5.5; open-drain S3 reset/boot control confirmed in compiled source"
+      "result": "Retained verified build: 208,928 bytes; RX4 / TX5",
+      "scope": "IDF 5.5.5 RCP image unchanged. New S3 GPIO43/44 and open-drain GPIO47/48 control are checked against the generated firmware and native CAD."
     },
     {
       "check": "XIAO MG24 Ember NCP + bootloader",
-      "result": "Compiled; 9 recipe/image tests passed",
-      "scope": "SiSDK 2025.6.3 / EmberZNet 8.2.3 / EZSP18; pairing and network restore remain untested"
-    },
-    {
-      "check": "WK2132 transport",
-      "result": "14 ASan / UBSan tests passed",
-      "scope": "Production queue/FIFO core with device model; dedicated worker compiled; physical timing remains untested"
+      "result": "Retained verified build; 9 recipe/image tests passed",
+      "scope": "SiSDK 2025.6.3 / EmberZNet 8.2.3 / EZSP18 image unchanged. Pairing and network restore still require hardware validation."
     },
     {
       "check": "Images and diagrams",
-      "result": "Current native CAD renders and same-scale placement comparison",
-      "scope": "Generated compact illustration rejected for inaccurate module/connector details; retained only in history"
+      "result": "Regenerated native top/bottom renders and same-scale placement comparison",
+      "scope": "One current 80 × 90 mm Nano design. Earlier layouts and inaccurate generated concepts are explicitly historical. Assembly illustration uses native CAD geometry."
     }
   ],
   "evidence_files": [
     "cad/verification.json",
+    "cad/checks/reproduction.json",
     "independent-review.md",
+    "independent-audit.json",
+    "images/native-render-provenance.json",
+    "images/screenshot-provenance.json",
     "../../firmware/module-carrier/build-evidence.json",
     "../../firmware/module-carrier/test-results.json",
     "../../firmware/module-carrier/zigbee/build-evidence.json"
-  ],
-  "layout_revision": "compact-100x90-right-edge"
+  ]
 }

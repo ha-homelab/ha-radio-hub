@@ -8,7 +8,7 @@ import math
 from pathlib import Path
 
 R = Path(__file__).resolve().parent
-BASE = R.parents[1] / 'cad/design.json'
+BASE = R.parents[1] / 'layout-previous.json'
 CANDIDATE = R / 'cad-candidate/design.json'
 BODY = {
     'U1': [-1.27, -1.4, 24.13, 61.34],
@@ -86,14 +86,14 @@ def outputs():
     result = json.loads((R/'result.json').read_text())
     svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="830" viewBox="0 0 1240 830"><style>text{font-family:Arial,sans-serif}</style><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#73e2c5"/></marker></defs><rect width="1240" height="830" fill="#0c1828"/>'
     svg += '<text x="50" y="43" font-size="30" fill="#edf6fa" font-family="Arial">MC1 · square layout study</text><text x="50" y="73" font-size="16" fill="#adc4d5" font-family="Arial">Same scale · 17 parts · 145 pad assignments · all USB sockets retained</text>'
-    svg += board(base, 55, 162, 4.7, 'Current routed carrier')
+    svg += board(base, 55, 162, 4.7, 'Previous routed carrier')
     svg += board(candidate, 700, 162, 4.7, '100 × 100 mm candidate')
     svg += '<g font-family="Arial" fill="#b9d0df" font-size="17"><text x="50" y="710">Blue dashed: USB plug access. Orange: copper exclusions, not RF certification.</text><text x="50" y="740">The square candidate moves MG24 left and puts Ethernet below H2, with RJ45 exiting downward.</text><text x="50" y="770">+11.1% PCB area versus 100 × 90 mm; both fit the ≤100 × 100 mm prototype size class.</text><text x="50" y="800">Carrier dimensions exclude projecting connectors, service cables and external finished modules.</text></g></svg>'
     rows = ''.join(f'<tr><th>{esc(p["ref"])}</th><td>{esc(p["model"])}</td><td>{p["xy"][0]:g}, {p["xy"][1]:g}</td><td>{p["rotation"]}°</td></tr>' for p in candidate['parts'])
     points = ''.join(f'<li>{esc(t)}</li>' for t in result['findings'])
     page = f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MC1 · 100 × 100 mm study</title>
 <style>*{{box-sizing:border-box}}body{{margin:0;background:#0c1828;color:#e4edf5;font:16px/1.6 system-ui,sans-serif}}main{{max-width:1240px;margin:auto;padding:28px}}h1{{font-size:32px;line-height:1.15}}h2{{font-size:23px;margin-top:40px}}a{{color:#7fdbc6}}.muted{{color:#adc4d5}}.lead{{font-size:21px;max-width:850px}}img{{width:100%;height:auto}}.band{{border-left:3px solid #73e2c5;padding:10px 18px;margin:22px 0;background:#122c37}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:25px}}.scroll{{overflow-x:auto}}table{{width:100%;border-collapse:collapse;font-size:14px}}td,th{{text-align:left;padding:9px;border-bottom:1px solid #29404e}}li{{margin:10px 0}}code{{overflow-wrap:anywhere}}@media(max-width:500px){{main{{padding:18px}}h1{{font-size:28px}}}}</style>
-<main><a href="../../index.html#pcb">← Current 100 × 90 mm MC1</a> · <a href="../compact-s3/index.html">Compact S3 review →</a><p class="muted">Engineering study · 17 October 2026 · same electrical interfaces</p><h1>MG24 left. Ethernet below H2.<br>A square carrier without USB removal.</h1><p class="lead">{esc(result['conclusion'])}</p><div class="band">{esc(result['status'])}</div>
+<main><div class="band"><strong>Historical design study.</strong> Its findings describe the pre-Nano revision. The selected design is now implemented in the <a href="../../index.html#pcb">current MC1 carrier and firmware</a>; use those files for construction.</div><a href="../../index.html#pcb">← Current MC1 carrier</a> · <a href="../compact-s3/index.html">Compact S3 review →</a><p class="muted">Engineering study · 17 October 2026 · same electrical interfaces</p><h1>MG24 left. Ethernet below H2.<br>A square carrier without USB removal.</h1><p class="lead">{esc(result['conclusion'])}</p><div class="band">{esc(result['status'])}</div>
 <figure style="margin:30px 0"><a href="comparison.svg"><img src="comparison.svg" alt="Same-scale placement comparison of the current 100 by 90 millimetre carrier and square candidate"></a><figcaption class="muted">Open the drawing for readable full-size detail. Module bodies and pad positions come from the CAD ledgers.</figcaption></figure>
 <div class="grid"><section><h2>What improves</h2><ul>{''.join('<li>'+esc(t)+'</li>' for t in result['benefits'])}</ul></section><section><h2>What still needs proof</h2><ul>{''.join('<li>'+esc(t)+'</li>' for t in result['limits'])}</ul></section></div>
 <h2>Measured findings</h2><ul>{points}</ul><h2>Why keep the USB ports?</h2><p>Removing a socket does not shrink the module PCB or remove its antenna requirements. This arrangement keeps the ports and their access space. XIAO uses its onboard USB programming probe; removing that interface would add recovery work.</p><p><a href="usb-rf-review.md">USB and antenna review</a> · <a href="service-review.md">Programming and service review</a></p>
