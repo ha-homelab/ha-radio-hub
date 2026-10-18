@@ -1,7 +1,7 @@
 {
   "status": "digital_geometry_checked_physical_fit_unqualified",
   "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
-  "portable_test_sha256": "ef91d0560f0ac60ae5468eb77cb68b8a6efcbed09786b4447cd1c1a700129ff1",
+  "portable_test_sha256": "4060b95841772795d659460e20427e862248493c6340d1ffc082fc386e187d6b",
   "native_source_sha256": {
     "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
     "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"

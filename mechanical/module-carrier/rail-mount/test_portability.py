@@ -1,5 +1,4 @@
 """Keep portable export checks tolerant of rendering, strict about geometry."""
-import copy
 import importlib.util
 import json
 from pathlib import Path
