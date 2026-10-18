@@ -13,7 +13,16 @@ def require(condition, message):
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def h2_pin_contract():
+    """The carrier and network updater require H2's fixed ROM UART pins."""
+    plan = json.loads((STUDY / "pin-plan.json").read_text())["external_controller_contract"]["h2"]
+    expected = {"rx": 23, "tx": 24, "baud": 460800, "reset": "EN", "boot": 9}
+    require(plan == expected, "H2 plan must use ROM RX23/TX24, 460800 baud, EN and BOOT9")
+    return plan
+
 def verify_generated(main, board):
+    if board == "nano":
+        h2_pin_contract()
     plan = json.loads((STUDY / ("pin-plan.json" if board == "nano" else "pin-plan-mini.json")).read_text())
     pins = {k: v["gpio"] for k, v in plan["assignments"].items()}
     code = "\n".join(line for line in main.splitlines() if not line.lstrip().startswith("//"))

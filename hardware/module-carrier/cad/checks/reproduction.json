@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-18T05:33:09.990603+00:00",
+  "checked_at_utc": "2026-10-18T16:07:57.091896+00:00",
   "result": "pass_with_conditional_mechanical_findings",
   "physical_z_qualified": false,
   "method": "Clean temporary copy; generator + committed SES + manual route; native DRC/parity/ERC and geometry/electrical tests",

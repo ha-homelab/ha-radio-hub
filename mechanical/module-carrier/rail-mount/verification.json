@@ -1,11 +1,13 @@
 {
   "status": "digital_geometry_checked_physical_fit_unqualified",
+  "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
+  "portable_test_sha256": "ef91d0560f0ac60ae5468eb77cb68b8a6efcbed09786b4447cd1c1a700129ff1",
   "native_source_sha256": {
     "mc1.kicad_pcb": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
     "design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
   },
   "layout_revision": "nano-single-anchor-rails",
-  "generator_sha256": "eee2b1c1bd93b40d722e895f6a2c3b81f990e0eff7c740e698e25c64abfd4681",
+  "generator_sha256": "26a67a308fec5f14a5178804d960ae59daa9d1397374f40d576c8f48a41d481a",
   "parameters_sha256": "5f047ee65625fb9fc0cc8f87d3fb69e039da774ad6bb2722f8a12a5592bd1f57",
   "unit_test_source_sha256": "973b2becd95961a6e53e089c761d0ee942918972e25ba175df98e2fbdbf1c0af",
   "cad_reader_sha256": "4e6eec953cac85eaaff6bb28a646ba118b4f6f7feae55643a28f0e0a45b76b46",
@@ -64,7 +66,7 @@
     "fit-gap-2p0.stl": "fa062287ea35e29ade03326400280246f11889f358dd61108b376de1e41fbcd8",
     "fit-gap-2p2.stl": "911af4e7fc72985ea397a6287df95101241fa218e3868c2c0bf29151ae149b40",
     "index.html": "d716414202a3e7c4520c13efebcb3256cd9d4ed1cfea5f2b60c21c7b01fe6b6d",
-    "mesh-report.json": "9a4abf6aca1ff3327c00e5c51dfc8a8b4c3e58720431c00f44471f81f4081d15",
+    "mesh-report.json": "58c83d9b9048fc04e357f8006df71bd09ef7cd71ed5a87058cc25200caf01610",
     "mounting-comparison.svg": "951c27f29bdd4563503f55352130f27d0a880e9c6ae72e65f69e1182b0eed257",
     "native-inputs.json": "4e9df8fc2929ef73fca3bb3fe4377b76c159c8ff95b9a186919827fbcc156fa1",
     "rail-interface.scad": "7865ab1018d0ab351c0f16cb1386259946714e655581c801123a8a9f0d074ca4",

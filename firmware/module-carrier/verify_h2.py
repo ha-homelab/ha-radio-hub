@@ -5,14 +5,16 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+from contract import h2_pin_contract
 
 def verify(root: Path):
+    pins=h2_pin_contract()
     config=dict(line.split("=",1) for line in (root/"sdkconfig").read_text().splitlines()
                 if line.startswith("CONFIG_") and "=" in line)
     required={"CONFIG_IDF_TARGET":'"esp32h2"',"CONFIG_ESPTOOLPY_FLASHSIZE_4MB":"y",
               "CONFIG_OPENTHREAD_RCP_UART":"y","CONFIG_OPENTHREAD_RADIO_NATIVE":"y",
-              "CONFIG_OPENTHREAD_UART_PIN_MANUAL":"y","CONFIG_OPENTHREAD_UART_RX_PIN":"23",
-              "CONFIG_OPENTHREAD_UART_TX_PIN":"24","CONFIG_FREERTOS_HZ":"1000"}
+              "CONFIG_OPENTHREAD_UART_PIN_MANUAL":"y","CONFIG_OPENTHREAD_UART_RX_PIN":str(pins['rx']),
+              "CONFIG_OPENTHREAD_UART_TX_PIN":str(pins['tx']),"CONFIG_FREERTOS_HZ":"1000"}
     for key,value in required.items():
         if config.get(key)!=value:
             raise RuntimeError(f"Wrong MC1 RCP option: {key}={value}")

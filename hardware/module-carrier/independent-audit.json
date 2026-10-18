@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-18T05:33:38.105566+00:00",
+  "checked_at_utc": "2026-10-18T16:10:49.903943+00:00",
   "board": "mc1.kicad_pcb",
   "board_sha256": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
   "audit_script_sha256": "4e6eec953cac85eaaff6bb28a646ba118b4f6f7feae55643a28f0e0a45b76b46",
@@ -236,8 +236,8 @@
     "unclassified_violations": 0
   },
   "native_report_sha256": {
-    "checks/drc.json": "ffec2b154580ad7db0c1f739c606a8d6bee8b01af993316d318a42e4dc1cc2ce",
-    "checks/erc.json": "058f11158b184d78e6215104fbc841813df5eed4d73dcd5e1363f9c2fac20b83"
+    "checks/drc.json": "2030645878de68662f4fcc53f3c37cca4bde70c2cc58726c0abd74278acb6dc6",
+    "checks/erc.json": "719b4fb6a1e97b183c1a8e82b797eb2ccebf99ae09445f2b8dcb3b0acced544a"
   },
   "drc_classification": {
     "native_findings": 41,

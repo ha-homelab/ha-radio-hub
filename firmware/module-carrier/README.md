@@ -2,11 +2,11 @@
 
 MC1 keeps the existing S3 application and Thread/Ember protocol boundaries. It changes the physical modules, remaps the H2 UART, and replaces the discrete SC16IS752 circuit with a DFRobot DFR0627 module. It does not require a new multi-MCU application protocol or a port of the Thread Border Router to H2.
 
-Use `hub.yaml` with a **Waveshare ESP32-S3-Nano-M** (factory male headers), **ESP32-H2-DevKitM-1**, and the specified four-wire XIAO MG24 firmware. The generic `esp32-s3-devkitc-1` build descriptor selects the S3 toolchain; it is not the physical board. This profile explicitly selects **16 MB flash and 8 MB octal PSRAM**, preserves the node name `module-carrier-hub`, and uses all 21 available non-strap application GPIO.
+Use `hub.yaml` with a **Waveshare ESP32-S3-Nano-M** (factory male headers), **ESP32-H2-DevKitM-1-N4S**, and the specified four-wire XIAO MG24 firmware. The generic `esp32-s3-devkitc-1` build descriptor selects the S3 toolchain; it is not the physical board. This profile explicitly selects **16 MB flash and 8 MB octal PSRAM**, preserves the node name `module-carrier-hub`, and uses all 21 available non-strap application GPIO.
 
 The [build record](build-evidence.json) records the full image, partition margins and generated GPIO checks. The [host test record](test-results.json) distinguishes simulated fault coverage from physical testing. The separately compiled [XIAO MG24 firmware](zigbee/README.md) and matching H2 RCP retain their existing protocol interfaces; the H2 image is rebuilt for its ROM UART pins. No hardware has been flashed or qualified by this change.
 
-The complete guarded Nano image compiled with ESPHome 2026.9.1 / ESP-IDF 5.5.5: **1,731,456-byte OTA image**, **163,795 bytes static RAM**, and two **8,126,464-byte OTA slots**, each with **6,395,008 bytes** remaining. These are image/linker measurements, not peak runtime memory. All 55 host tests (C++ helpers under sanitizers plus Python image/tunnel tests) and both existing REST contract tests passed.
+The complete guarded Nano image compiled with ESPHome 2026.9.1 / ESP-IDF 5.5.5: **1,731,456-byte OTA image**, **163,795 bytes static RAM**, and two **8,126,464-byte OTA slots**, each with **6,395,008 bytes** remaining. These are image/linker measurements, not peak runtime memory. All 56 host tests (C++ helpers under sanitizers plus Python image/tunnel/pin-contract tests) and both existing REST contract tests passed.
 
 The generated 16 MB factory partition layout differs from the historical 8 MB layout, including the NVS location. Export/back up the existing Thread dataset and deployment configuration before a first factory installation or partition migration. App-only OTA ordinarily keeps the installed partition table; it does not perform this migration. Verify the actual installed layout. Runtime dataset preservation described below assumes an unchanged, correctly installed partition table.
 
@@ -88,6 +88,8 @@ idf.py build
 Run `python3 firmware/module-carrier/verify_h2.py /tmp/mc1-h2` from the repository to verify the finished H2 pin/configuration contract and print its artifact hashes. Linux CI can obtain `idf_path` from the completed S3 build's `build/project_description.json`, install that SDK's `esp32h2` tools in an isolated `IDF_TOOLS_PATH`, and reuse the exact same SDK with this recipe. No manually patched SDK cache is required.
 
 The RCP retains Spinel UART 460800 8N1, no hardware flow control, and 4 MB flash. The rebuilt image uses ROM-compatible RX23/TX24 and requires the corresponding new carrier wiring. The H2 is a Thread RCP, not an additional BLE proxy.
+
+The active firmware and CAD pin manifests both describe RX23/TX24. Preparation and build verification reject a stale RX4/TX5 manifest; the host regression suite also checks manifest parity and the physical H2/S3 crossover. The smaller single-retainer carrier changes placement and enclosure support, not these GPIO assignments or the compiled application.
 
 ## Qualification gates
 

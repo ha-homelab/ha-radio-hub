@@ -3,6 +3,8 @@
 <!-- MC1-CURRENT-DESIGN -->
 > **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
 
+For MC1, use the [carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md) with its [rail-fit study](../mechanical/module-carrier/rail-mount/README.md). The dimensions and printable parts below are retained for the earlier low-power allocation concept.
+
 **This is a preliminary mock-up for checking dimensions. Printable parts are available, but there is no PCB ready to order or physically validated assembly.** The enclosure dimensions match the hardware concept of one ESP32-S3, one W5500, separate H2/MG24 radios and locally connected radio modules. The original Pi enclosure remains a separate design. The later LP-C0 and LP-I0 PCBs do not fit this mock-up as complete assemblies: see the [CAD-coordinate compatibility review](../hardware/low-power/visual/physical/README.md).
 
 ![Space allocation plan](../mechanical/low-power/generated/layout-plan.png)

@@ -29,6 +29,31 @@ from native CAD geometry with physical pad numbers. The
 [same-scale comparison](../layout-comparison.svg) shows the area reduction, and
 [section principle](../direct-solder.svg) explains the opposing-tail clearance.
 
+## Current generated concept
+
+[The generated two-face concept](mc1-assembled-concept.png) is a simplified
+illustration of the current compact arrangement. It is **not a photograph or an
+assembly drawing**: exact pin counts, antennas, USB bodies, component shapes and
+clearances must be read from native CAD and the module documentation.
+The [provenance](generated-image-provenance.json) records the native source hashes
+and links the [initial prompt](single-anchor-prompt.txt) and
+[corrective prompt](single-anchor-edit-prompt.txt). The
+[first attempt](history/mc1-single-anchor-first-concept.png) was rejected for
+invented component details and is preserved only as history.
+
+## Full printable enclosure
+
+The [four-part mesh view](../../../mechanical/module-carrier/enclosure-prototype/print-parts.png)
+and [dimensioned plan and section](../../../mechanical/module-carrier/enclosure-prototype/enclosure.svg)
+are deterministic exports of the current carrier-only enclosure prototype.
+The shell is 84.3 × 121.8 × 57.4 mm; the ceiling frame adds 4 mm installed depth.
+The [guide](../../../mechanical/module-carrier/enclosure-prototype/README.md)
+explains bench-first fastener installation and the remaining physical measurements.
+
+The [external wiring SVG](../harness-connections.svg) names all seven rear male
+headers, their carrier pin numbers, net names and off-board destinations.
+The [native electrical schematic](../cad/schematic.svg) remains the circuit authority.
+
 ## Historical and rejected illustrations
 
 The preceding 65 × 75 mm single-sided layout is archived under
@@ -69,6 +94,10 @@ records the source hash, viewport and successful search check.
 The [migration manifest](../visual-migration.json) accounts for current and
 historical visual assets.
 
+New captures also cover the [full enclosure](ui-enclosure.jpg),
+[external connections](ui-harness.jpg), [native schematic](ui-schematic.jpg), and
+[labeled concept](ui-concept.jpg).
+
 ## Mounting and routed-length revision
 
 The current layout retains H3 and uses split enclosure edge capture. The PCB is
@@ -86,5 +115,5 @@ The [former ear layout](../studies/mounting-routing/ear-baseline/README.md) is
 preserved as an immutable mounting comparison, not an alternative active build.
 
 The [rail study screenshot](ui-rail-study.jpg) shows the separate illustrated
-mounting and fit-coupon guide. Coupons test fit only; the complete enclosure is
-not yet dimensionally qualified.
+mounting and fit-coupon guide. Coupons test fit only. The complete printable enclosure now exists, but
+its physical fit is not yet qualified.

@@ -152,6 +152,7 @@ class CarrierTests(unittest.TestCase):
   self.assertEqual(len(P),18)
  def test_nano_firmware_and_shared_spi_contract(self):
   plan=json.loads((R/'nano-pin-plan.json').read_text())
+  self.assertEqual(plan['external_controller_contract']['h2'],{'rx':23,'tx':24,'baud':460800,'reset':'EN','boot':9})
   names={'ethernet_sck':'SPI_SCK','ethernet_mosi':'SPI_MOSI','ethernet_miso':'SPI_MISO','ethernet_cs':'ETH_CS','ethernet_irq':'ETH_INT','ethernet_reset':'ETH_RESET','cc1101_sck':'SPI_SCK','cc1101_mosi':'SPI_MOSI','cc1101_miso':'SPI_MISO','cc1101_cs':'RF_CS','cc1101_gdo0_tx':'RF_GDO0','cc1101_gdo2_rx':'RF_GDO2','zigbee_tx':'ZB_RX','zigbee_rx':'ZB_TX','zigbee_rts':'ZB_CTS','zigbee_cts':'ZB_RTS','i2c_sda':'I2C_SDA','i2c_scl':'I2C_SCL','thread_tx':'THREAD_RX','thread_rx':'THREAD_TX','thread_reset':'THREAD_EN','thread_boot':'THREAD_BOOT','radar_tx':'RADAR_RX','radar_rx':'RADAR_TX'}
   for key,net in names.items():self.assertEqual(P['U1']['pins'][plan['assignments'][key]['header_pin']],net,key)
   self.assertEqual(len({v['gpio'] for v in plan['assignments'].values()}),21)

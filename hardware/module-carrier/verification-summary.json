@@ -1,6 +1,6 @@
 {
   "revision": "MC1-Nano",
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "layout_revision": "nano-single-anchor-rails",
   "status": "CAD prototype verified with classified mechanical overlaps; physical height and hardware qualification outstanding",
   "hardware_tested": false,
@@ -27,8 +27,13 @@
     },
     {
       "check": "Split-rail interface and fit coupons",
-      "result": "8 geometry tests; three single-solid fit-coupon meshes",
-      "scope": "Maximum lip reach checked for an assumed \u00b10.2 mm pointwise displacement. Slot void and bearing surfaces checked geometrically. Actual fit, engagement strength, print error, case height and complete enclosure design remain unqualified."
+      "result": "12 geometry/export checks; three single-solid fit-coupon meshes",
+      "scope": "Maximum lip reach checked for an assumed \u00b10.2 mm pointwise displacement. Slot void and bearing surfaces checked geometrically. The complete shell is now generated separately; actual fit, engagement strength, print error and installed clearance remain unqualified."
+    },
+    {
+      "check": "Complete printable enclosure prototype",
+      "result": "11 geometry tests; four watertight single-solid meshes; shell 84.3 \u00d7 121.8 \u00d7 57.4 mm, installed depth 61.4 mm",
+      "scope": "Includes base, cover, adjustable jack-stop trial and 4 mm ceiling spacing frame. Native XY checks include a 15.525 mm H2 antenna-to-end-wall gap. Front/rear cavity heights, actual fit, cable bends, RF and load capacity remain physically unqualified. Carrier-only enclosure; external modules remain outside."
     },
     {
       "check": "CAD / firmware interface contracts",
@@ -37,17 +42,17 @@
     },
     {
       "check": "Complete S3 firmware",
-      "result": "Compiled: 1,731,456-byte OTA image; 163,795 bytes static RAM",
-      "scope": "ESPHome 2026.9.1 / IDF 5.5.5. Nano 16 MB flash, 8 MB octal PSRAM and three active BLE slots. Each OTA slot has 6,395,008 bytes of margin. Static RAM is not runtime free heap."
+      "result": "Existing compiled image reverified: 1,731,456-byte OTA image; 163,795 bytes static RAM",
+      "scope": "ESPHome 2026.9.1 / IDF 5.5.5. Nano 16 MB flash, 8 MB octal PSRAM and three active BLE slots. Each OTA slot has 6,395,008 bytes of margin. Static RAM is not runtime free heap. No new compilation or physical flash was performed for this documentation/mechanical revision."
     },
     {
       "check": "Bounded Thread recovery, transport and radio update tooling",
-      "result": "55 ASan / UBSan host tests and 2 REST client tests passed",
+      "result": "56 ASan / UBSan host tests and 2 REST client tests passed",
       "scope": "RCP preflight, durable quarantine, explicit maintenance, authenticated temporary H2 UART session, image/partition checks and binary localhost tunnel. Pinned host dependencies install cleanly; both real radio images pass offline planning. Physical updates, power-loss and concurrent-load behavior remain untested."
     },
     {
       "check": "H2 Thread RCP",
-      "result": "Rebuilt and verified: 208,928 bytes; RX23 / TX24",
+      "result": "Existing compiled image reverified: 208,928 bytes; RX23 / TX24",
       "scope": "IDF 5.5.5 RCP uses the same pins as the ROM loader. H2 DevKitM-1 v1.3 R7 removal is required to isolate CP2102N TX; verify the purchased revision and continuity. Initial programming uses native USB J4 before assembly."
     },
     {
@@ -57,8 +62,8 @@
     },
     {
       "check": "Images and diagrams",
-      "result": "Native front/back assembly and copper, split-rail mounting study, fit coupons, routing chart and stack section",
-      "scope": "Single-H3 rectangle and both PCB faces regenerated from native geometry. Rail interface supports normal open loading after rear-first soldering. Preceding four-hole board preserved. Actual vertical fit, printed tolerances, connector load capacity and RF performance remain unqualified."
+      "result": "Native front/back assembly and copper, electrical schematic, seven-header harness map, enclosure meshes and labeled generated concept",
+      "scope": "Current assembly dimensions come from native CAD, and harness net labels from the design model. The generated bitmap is a simplified concept only; it cannot establish pin counts, antenna geometry or assembly clearances. Screenshots record the rendered guide."
     }
   ],
   "evidence_files": [
@@ -73,7 +78,9 @@
     "../../firmware/module-carrier/test-results.json",
     "../../firmware/module-carrier/zigbee/build-evidence.json",
     "cad/routing-metrics.json",
-    "../../mechanical/module-carrier/rail-mount/verification.json"
+    "../../mechanical/module-carrier/rail-mount/verification.json",
+    "images/generated-image-provenance.json",
+    "../../mechanical/module-carrier/enclosure-prototype/verification.json"
   ],
   "physical_z_qualified": false
 }

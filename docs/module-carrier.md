@@ -1,6 +1,6 @@
 # MC1 — two-sided carrier for ceiling mounting
 
-The current carrier uses **Waveshare ESP32-S3-Nano-M, ESP32-H2-DevKitM-1,
+The current carrier uses **Waveshare ESP32-S3-Nano-M, ESP32-H2-DevKitM-1-N4S,
 Seeed XIAO MG24 and WIZ850io**. It retains the seven application groups and their
 Home Assistant interfaces. The two-sided layout puts controllers toward the room and Ethernet/harness pins
 toward the ceiling. Program and verify the loose modules before permanent
@@ -33,7 +33,7 @@ The selected parts are:
 - **Waveshare ESP32-S3-Nano-M:** factory male headers, ESP32-S3R8, 16 MB flash,
   8 MB octal PSRAM, 43.18 × 17.78 mm. The generic ESPHome S3 descriptor identifies
   the toolchain; explicit memory and GPIO settings identify this physical board.
-- **ESP32-H2-DevKitM-1, schematic v1.3:** Thread RCP, with **R7 removed before
+- **ESP32-H2-DevKitM-1-N4S, schematic v1.3:** Thread RCP, with **R7 removed before
   assembly**. Both the RCP and ROM updater now use RX23/TX24. See preparation below.
 - **Seeed XIAO MG24 Pre-Soldered, SKU 102010690:** Ember NCP, PC06/PC07 UART,
   PC04/PC05 flow control, board-specific antenna setup and UART bootloader.
@@ -49,7 +49,11 @@ See the [current cost review](../hardware/module-carrier/cost-review/README.md)
 for the configured five-board estimate, comparison with the historical tariffs,
 and the separately priced modules. The displayed JLCPCB website estimate is
 $5.20 for five bare boards before delivery and tax; calculator service errors
-mean it remains provisional rather than a confirmed checkout quote.
+mean it remains provisional rather than a confirmed checkout quote. The four
+modules and carrier parts allocate to **$55–57 per populated carrier** when one
+PCB is taken from that five-board lot. Buying the whole lot to assemble only one
+carrier instead gives **$59–61**, leaving four bare boards. Neither figure
+includes shipping, tax, labor, the enclosure or any of the off-board modules.
 
 Actual PCB area is **35.625 cm²**, a **6.86% reduction** from the preceding
 51 × 75 mm four-hole board and **26.9% below** the historical
@@ -73,6 +77,17 @@ do not permit overlapping drill holes or arbitrary crossing of solder tails.
 The Ethernet and controller bodies avoid a mutual obstruction of their solder
 joints. **Physical USB bodies, antenna exclusions and support clearances remain
 part of the checks.** USB cable insertion space remains intentionally absent.
+
+## Circuit and connection references
+
+Use the [native schematic](../hardware/module-carrier/cad/schematic.svg),
+[PDF schematic](../hardware/module-carrier/cad/schematic.pdf),
+[wiring ledger](../hardware/module-carrier/wiring.json) and
+[connector map](../hardware/module-carrier/cad/connectors.json) together. These
+record named signals and physical pads; the architecture illustration shows
+functional relationships only. In particular, a harness pin number is not the
+GPIO number or necessarily the pin number on the remote module. The back view
+mirrors positions without renumbering the pins.
 
 ## Reading the stacked-board checks
 
@@ -282,9 +297,11 @@ considering printer accuracy. Prusa likewise advises clearance for mating parts.
 The narrow rail lands have been checked in XY, including a modeled 0.5 mm
 solder-fillet expansion outside the pad. Actual fillets, header heights,
 printed fit, insertion loads and thermal creep remain physical checks. The
-study defines the board-to-enclosure interface, **not a finished enclosure**;
-rear height and external-module/cable space remain unmeasured. No force rating
-or RF performance equivalence is claimed. Espressif recommends a 15 mm housing
+rail study defines the board-to-enclosure interface. The separate
+[carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md)
+provides a printable base and cover with that interface; component heights,
+cable space and printed fit remain unmeasured. No force rating or RF performance
+equivalence is claimed. Espressif recommends a 15 mm housing
 clearance around the H2 PCB antenna and end-product RF testing; the entire
 housing, not merely its rail contact patch, must be assessed against that
 recommendation. [H2 antenna guidance](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32h2/pcb-layout-design.html#general-principles-of-pcb-layout-for-modules-positioning-a-module-on-a-base-board).
@@ -292,6 +309,36 @@ recommendation. [H2 antenna guidance](https://docs.espressif.com/projects/esp-ha
 See the [rail mounting study and fit coupons](../mechanical/module-carrier/rail-mount/README.md).
 The [former four-hole comparison](../hardware/module-carrier/studies/mounting-routing/mounting.svg)
 is retained as history.
+
+## Current printable carrier enclosure
+
+The [housing source and instructions](../mechanical/module-carrier/enclosure-prototype/README.md)
+provide four print parts—base, room-facing cover, ceiling spacing frame and
+separate trial jack stop—plus a parameter file and
+[dimensioned inspection drawing](../mechanical/module-carrier/enclosure-prototype/enclosure.svg).
+The trial shell envelope is **84.3 × 121.8 × 57.4 mm**. The required **4 mm
+ceiling spacing frame** makes installed depth **61.4 mm**. Its nominal 26 mm rear
+and 25 mm front cavities are allocation assumptions, not measured assembled
+heights. The case is larger than the PCB to allow antenna, connector and wall
+clearance; the PCB dimensions are not the case dimensions. The H2 antenna-to-
+end-wall distance is 15.525 mm in the native model; this single checked distance
+does not establish complete three-dimensional RF clearance.
+
+This case accommodates U1–U4, their headers and axial parts. The isolated PoE
+splitter, peripheral buck, DFR0627 bridge, ZAC93, CC1101, LD2450 and BME680 remain
+external and require their own placement, insulation and harness allowance.
+Print and measure the rail coupons first, then confirm the full populated stack
+and mated cables against the parameter file before printing the complete case.
+Fit the underside H3 nut and any jack-stop floor fasteners **on the bench,
+before attaching the base to the ceiling**. Measure total underside projection,
+including washers, at no more than **3 mm**; the 4 mm spacing frame leaves 1 mm
+nominal clearance. Keep the frame installed and confirm the real hardware stack.
+Keep the trial jack stop out until its contact with the actual metal cage is
+measured and adjusted; it must not bear on module components or the latch. Mesh
+and geometric checks do not establish fit, insertion strength, RF range or
+thermal behavior.
+
+![Current carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/enclosure.svg)
 
 ## Two-sided assembly and clearance
 

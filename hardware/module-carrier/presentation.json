@@ -1,6 +1,6 @@
 {
   "revision": "MC1",
-  "decision_date": "2026-10-17",
+  "decision_date": "2026-10-18",
   "title": "One carrier. Finished modules. Familiar protocols.",
   "status": "Engineering prototype; no physical assembly or RF/power qualification",
   "choice": "Preserve functions and Home Assistant compatibility; identical H2 controllers are not required.",
@@ -56,14 +56,14 @@
     "Complete the entire ceiling-facing back first: WIZ850io, J1\u2013J7, D1\u2013D3 and R1\u2013R2. Solder from the front, then trim, inspect and electrically check all joints while visible. Leave J8/J9 unpopulated.",
     "Only then fit front U1\u2013U3 and solder their pins from the rear. Every front-module solder land must remain accessible with the rear already populated. Deep opposite-side overlap is permitted after the access and measured-clearance checks.",
     "Inspect and test every rail and net for continuity and unwanted contact, including after gentle connector loading. Check loaded Nano VIN and 3V3.",
-    "Load the assembled PCB into the open split enclosure rails, then close the upper lips and retain it at H3. Provide a separate WIZ jack stop and cable restraint. Measure the groove fit, rear projection and cable clearance; keep the enclosure clear of antenna regions.",
+    "Print the rail coupons and measure the populated stack first. On the bench, fit and adjust the base floor hardware and the separate jack stop; underside screw-head projection must be at most 3 mm. Install the 4 mm ceiling spacing frame before mounting the base. Load the PCB normally into the open edge supports, retain it at H3, then close the cover against its hard stops. Provide cable restraint without loading the WIZ header joints.",
     "Commission all services together and verify network updates, interrupted updates, power cycling, thermal behavior and RF range before mounting permanently."
   ],
   "manufacturing_claim": "One current custom PCB layout; finished vendor modules and external harnesses are still separate physical parts.",
   "unproven": [
     "Factory pin spacing in Z, trimmed solder-tail height and opposing underside-component clearance",
     "Soldering access and practical assembly order on purchased module variants",
-    "Printed rail fit, actual solder growth, jack-load support, housing thermal creep and enclosure dimensions",
+    "Printed rail fit, actual solder growth, jack-load support, housing thermal creep and fit of the generated full enclosure",
     "Loaded Nano VIN operation below the documented external 6 V minimum",
     "H2 R7 isolation, boot straps and network flashing on actual hardware",
     "MG24 update interruption and recovery on actual hardware",

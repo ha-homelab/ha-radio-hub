@@ -34,7 +34,15 @@
       "J6",
       "J7"
     ],
-    "mounting": "One H3 PCB retention hole plus split enclosure edge capture; separate enclosure ceiling attachment and WIZ jack stop"
+    "mounting": "One H3 PCB retention hole plus split enclosure edge capture; separate enclosure ceiling attachment and WIZ jack stop",
+    "back_axial_parts": [
+      "D1",
+      "D2",
+      "D3",
+      "R1",
+      "R2"
+    ],
+    "sequence": "Program loose controllers; solder, trim and inspect all 13 rear parts before fitting the 3 front controllers. Measure residual overlap clearances."
   },
   "historical_designs": [
     {
@@ -79,5 +87,50 @@
   "active_memory": {
     "flash_mb": 16,
     "psram_mb": 8
+  },
+  "documentation_review_date": "2026-10-18",
+  "active_pcb": {
+    "width_mm": 47.5,
+    "height_mm": 75,
+    "copper_layers": 2,
+    "nominal_thickness_mm": 1.6,
+    "layout_revision": "nano-single-anchor-rails",
+    "pcb_retention_holes": [
+      "H3"
+    ]
+  },
+  "current_references": {
+    "documentation": "docs/README.md",
+    "assembly": "docs/module-carrier.md",
+    "cost_review": "hardware/module-carrier/cost-review/README.md",
+    "schematic": "hardware/module-carrier/cad/schematic.svg",
+    "wiring": "hardware/module-carrier/wiring.json",
+    "firmware": "firmware/module-carrier/README.md",
+    "enclosure_prototype": "mechanical/module-carrier/enclosure-prototype/README.md",
+    "rail_fit_coupons": "mechanical/module-carrier/rail-mount/README.md",
+    "external_harness_svg": "hardware/module-carrier/harness-connections.svg"
+  },
+  "active_enclosure": {
+    "status": "carrier-only engineering prototype; physical fit, force, thermal and RF qualification outstanding",
+    "shell_envelope_mm": [
+      84.3,
+      121.8,
+      57.4
+    ],
+    "required_ceiling_spacing_frame_mm": 4.0,
+    "installed_depth_mm": 61.4,
+    "print_parts": [
+      "base",
+      "cover",
+      "jack-stop-trial",
+      "ceiling-spacing-frame"
+    ],
+    "floor_hardware_installation": "Install and adjust on the bench before ceiling attachment; measured underside projection including washers must not exceed 3 mm.",
+    "jack_stop": "Contact coordinates are unqualified; adjust to measured metal cage without component or latch contact before use.",
+    "nominal_cavity_mm": {
+      "rear": 26.0,
+      "front": 25.0
+    },
+    "cavity_heights_measured": false
   }
 }

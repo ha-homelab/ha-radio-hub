@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-18",
+  "tool": "built-in image_gen",
+  "accepted_as": "simplified_concept_only",
+  "layout_revision": "nano-single-anchor-rails",
+  "sha256": "c68e7db34a55a451c4f5d21ea8cdf91232b27f246098b0d102b11c1277e710c8",
+  "board_sha256": "c02f47112b37f0869d86eb1529d490935f7038851a0849897253628d1e5cfedd",
+  "reference_images": {
+    "../cad/assembly-top.png": "98004df02de09a1b96274b4803e546ae3b45f75394420241a4097aedd663ef3e",
+    "../cad/assembly-bottom.png": "4116e14566690414f4fb9876e42fd463c1835abf5d623499fefd5614729d55d0"
+  },
+  "generation_prompt": "single-anchor-prompt.txt",
+  "edit_prompt": "single-anchor-edit-prompt.txt",
+  "review": {
+    "accepted_scope": [
+      "Three front controller envelopes; rear Ethernet at bottom edge",
+      "Single H3; rear male harness header groups and axial parts",
+      "Deliberately simplified block model with caution visible in image"
+    ],
+    "not_authoritative": [
+      "Pin counts and numbering",
+      "Module detailed shape and height",
+      "USB bodies and antenna projections, intentionally omitted",
+      "Polarity, routing, or any assembly/fit measurement"
+    ]
+  },
+  "first_attempt": {
+    "file": "history/mc1-single-anchor-first-concept.png",
+    "sha256": "d3cd7daedd83773428295a6d44d936351245c9cce7c051ffe94337b3c3748d55",
+    "status": "rejected",
+    "reason": "Invented shields, misplaced USB detail and keepout areas mistaken for copper parts. Replaced with an explicitly simplified concept."
+  }
+}

@@ -3,12 +3,14 @@
 import argparse
 from pathlib import Path
 from prepare import load_legacy
+from contract import h2_pin_contract
 
 def prepare(output: Path,idf: Path) -> Path:
+    pins=h2_pin_contract()
     result=load_legacy("prepare_h2").prepare(output,idf)
     path=result/"sdkconfig.defaults"
     text=path.read_text()
-    for setting in ("CONFIG_OPENTHREAD_UART_RX_PIN=23", "CONFIG_OPENTHREAD_UART_TX_PIN=24"):
+    for setting in (f"CONFIG_OPENTHREAD_UART_RX_PIN={pins['rx']}", f"CONFIG_OPENTHREAD_UART_TX_PIN={pins['tx']}"):
         if text.count(setting)!=1:
             raise RuntimeError("Pinned RCP defaults changed")
     path.write_text(text)

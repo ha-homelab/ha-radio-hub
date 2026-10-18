@@ -235,10 +235,16 @@ jobs:
         env:
           RF_CPP_SANITIZERS: "1"
         run: python3 -m unittest discover -s firmware/module-carrier/tests -p 'test_*.py'
-      - name: Install pinned ESPHome dependencies
+      - name: Install pinned ESPHome and mechanical dependencies
         run: |
           python3 -m venv .venv
-          .venv/bin/pip install -r firmware/requirements.txt
+          .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt
+      - name: Check current carrier enclosure and rail geometry
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical/module-carrier/rail-mount -p 'test_*.py'
+          .venv/bin/python -m unittest discover -s mechanical/module-carrier/enclosure-prototype -p 'test_*.py'
+          .venv/bin/python mechanical/module-carrier/rail-mount/build.py --check
+          .venv/bin/python mechanical/module-carrier/enclosure-prototype/build.py --check
       - name: Compile the complete MC1 S3 image
         run: .venv/bin/python firmware/module-carrier/validate.py .build/mc1 --esphome .venv/bin/esphome --compile
       - name: Compile the remapped MC1 H2 RCP

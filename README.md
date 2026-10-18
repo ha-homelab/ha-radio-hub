@@ -9,11 +9,14 @@ uplink. It replaces the competing carrier/integrated construction paths.
 are evidence for their specific checks, not proof of electrical operation,
 RF range, power consumption or mechanical fit.
 
-Start with the [English assembly guide](docs/module-carrier.md), the
+Start with the [current documentation index](docs/README.md), the
+[English assembly guide](docs/module-carrier.md), the
 [interactive visual guide](hardware/module-carrier/index.html), and the
 [current hardware files](hardware/module-carrier/README.md).
 
-![MC1 assembly drawing](hardware/module-carrier/cad/assembly-top.png)
+![MC1 front: room-facing controllers](hardware/module-carrier/cad/assembly-top.png)
+
+![MC1 back: ceiling-facing Ethernet, male headers and axial parts](hardware/module-carrier/cad/assembly-bottom.png)
 
 ## One board to assemble
 
@@ -30,6 +33,10 @@ back; the controllers face the room. RJ45 opens outward at the board edge. See t
 and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fabrication-cost).
 The [current cost review](hardware/module-carrier/cost-review/README.md) separates
 bare PCB fabrication, mounted-module materials and the external parts still needed.
+Its 17 October 2026 reference is **$5.20 for five bare PCBs** (provisional calculator
+estimate) and **$55–57 in materials per populated carrier**, allocating one PCB
+from that lot. Delivery, tax, labor, enclosure and external modules are excluded;
+this is not a complete-hub price.
 
 Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
 **Male pins go directly into plated holes and are soldered on the opposite face.
@@ -37,8 +44,8 @@ No female module sockets; no castellated-side soldering.** Solder the entire bac
 Check measured clearance to prevent opposing leads from touching module undersides. The power converter, UART bridge,
 existing radios and sensors are finished modules with documented connections.
 
-The H2 DevKitM-1 v1.3 needs one preparation step: remove R7 to isolate its USB-UART
-transmitter. Its matched RCP and host updater use RX23/TX24. J8/J9 are unpopulated
+The selected **H2 DevKitM-1-N4S**, with schematic v1.3, needs one preparation
+step: remove R7 to isolate its USB-UART transmitter. Its matched RCP and host updater use RX23/TX24. J8/J9 are unpopulated
 recovery pads; no headers are fitted there. See the assembly guide before soldering.
 
 The carrier does not duplicate the modules' regulators, crystals, RF matching
@@ -65,8 +72,18 @@ can be flashed onto different boards unchanged.
 
 - [MC1 visual guide and wiring search](hardware/module-carrier/index.html)
 - [Native KiCad source and verification](hardware/module-carrier/cad/)
+- [Circuit schematic](hardware/module-carrier/cad/schematic.svg) and [pin-by-pin wiring](hardware/module-carrier/wiring.json)
+- [Carrier enclosure prototype](mechanical/module-carrier/enclosure-prototype/README.md) and [rail-fit coupons](mechanical/module-carrier/rail-mount/README.md)
 - [Current board gallery](hardware/module-carrier/images/README.md)
 - [One-design registry](hardware/designs.json)
+
+The carrier enclosure prototype has an **84.3 × 121.8 × 57.4 mm** trial envelope
+and four printable parts: base, cover, ceiling spacing frame and adjustable
+trial jack stop. Installed depth is **61.4 mm** with the required 4 mm frame. It
+covers the carrier; the off-board power, bridge, radios and sensors still need separate
+accommodation. Install floor hardware on the bench before mounting the base;
+underside projections must measure no more than 3 mm. Its printed fit, component
+heights and jack contact need measurement.
 
 Renders are labeled by origin. A generated illustration is not a photograph of
 a manufactured assembly and is not a source for pin numbering.

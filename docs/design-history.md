@@ -18,7 +18,7 @@ physical USB shells and implemented preassembly programming plus network updates
 It introduced H2 RX23/TX24 and the documented R7 removal so the standard ROM
 loader is reachable, while retaining shared SPI and independent radio controllers.
 
-The **51 × 75 mm two-sided carrier** places S3/H2/MG24 toward the room
+The historical **51 × 75 mm two-sided carrier** placed S3/H2/MG24 toward the room
 and WIZ850io, male harness headers and five axial parts toward the ceiling.
 Its electrical pin assignments and firmware are unchanged from the 65 × 75 mm
 revision. Staged solder access and measured opposing-tail clearance are now
@@ -59,7 +59,7 @@ parts may use arbitrary angles where the final routed result improves; all
 functions and firmware pin assignments remain unchanged. See the
 [mounting and routing review](../hardware/module-carrier/studies/mounting-routing/review.md).
 
-The current successor returns to a **51 × 75 mm rectangle**: WIZ moves 6 mm
+The following four-hole revision returned to a **51 × 75 mm rectangle**: WIZ moves 6 mm
 toward the center, XIAO rotates, and a support fits between U2 and U3. It keeps
 four mounting points without the ear. The required assembly order is now
 explicitly **the complete back first, then the front**. Rear-first solder access
@@ -77,6 +77,9 @@ the enclosure lips. All back components are still soldered before the front.
 No sockets, new electronics, pin-map or firmware changes are introduced.
 
 The [preceding four-hole native board](../mechanical/module-carrier/rail-mount/baseline/README.md)
-is immutable comparison evidence. The [new mounting study](../mechanical/module-carrier/rail-mount/README.md)
-defines a split support interface and fit coupons; actual enclosure height,
-jack support, printed tolerances, RF behavior and load capacity remain unqualified.
+is immutable comparison evidence. The [mounting study](../mechanical/module-carrier/rail-mount/README.md)
+defines the split support interface and fit coupons. The
+[carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md)
+extends that interface into printable housing parts. It does not house the
+external power, UART bridge, sensors and other radio modules. Actual module and
+cable fit, printed tolerances, RF behavior and load capacity remain unqualified.

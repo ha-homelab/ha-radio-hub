@@ -118,8 +118,8 @@
   },
   "external_controller_contract": {
     "h2": {
-      "rx": 4,
-      "tx": 5,
+      "rx": 23,
+      "tx": 24,
       "baud": 460800,
       "reset": "EN",
       "boot": 9

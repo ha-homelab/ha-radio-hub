@@ -19,6 +19,7 @@ def load_module(name, path):
 
 cad=load_module('rail_native_audit',ROOT/'hardware/module-carrier/audit_carrier.py')
 csg=load_module('rail_csg',ROOT/'mechanical/build.py')
+portable=load_module('mc1_portable_check',HERE.parent/'portable_check.py')
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def dump(value):return json.dumps(value,indent=2)+'\n'
@@ -306,6 +307,8 @@ def generate(directory, output, parameters):
     (output/'mesh-report.json').write_text(dump(report))
     verification={
       'status':'digital_geometry_checked_physical_fit_unqualified',
+      'portable_checker_sha256':sha(HERE.parent/'portable_check.py'),
+      'portable_test_sha256':sha(HERE/'test_portability.py'),
       'native_source_sha256':s['source_sha256'],
       'layout_revision':s['design']['layout_revision'],
       'generator_sha256':sha(Path(__file__)),
@@ -337,15 +340,13 @@ def generate(directory, output, parameters):
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--cad',type=Path,default=ROOT/'hardware/module-carrier/cad')
-    ap.add_argument('--output',type=Path,default=HERE);ap.add_argument('--check',action='store_true');args=ap.parse_args()
+    ap.add_argument('--output',type=Path,default=HERE);ap.add_argument('--check',action='store_true');ap.add_argument('--exact',action='store_true',help='Require byte-identical exports on the same platform');args=ap.parse_args()
+    if args.exact and not args.check:ap.error('--exact requires --check')
     params=json.loads((HERE/'parameters.json').read_text())
     if args.check:
         with tempfile.TemporaryDirectory(prefix='mc1-rail-check-') as td:
             temp=Path(td);generate(args.cad,temp,params)
-            for expected in temp.iterdir():
-                actual=args.output/expected.name
-                if not actual.exists() or actual.read_bytes()!=expected.read_bytes():
-                    raise SystemExit('Stale or missing rail artifact: '+str(actual))
+            portable.check_outputs(args.output,temp,csg,exact=args.exact)
         print('Rail study source, illustrations and coupon meshes match.')
     else:
         report=generate(args.cad,args.output,params);print('Generated',len(report['parts']),'watertight fit coupons; no enclosure STL.')

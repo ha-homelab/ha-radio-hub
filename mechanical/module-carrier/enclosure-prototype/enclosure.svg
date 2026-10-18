@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="1000" viewBox="0 0 1360 1000">
+<style>text{font-family:Arial,sans-serif;fill:#e4edf5}.t{font-size:27px;font-weight:bold}.h{font-size:20px;font-weight:bold}.s{font-size:17px}.n{font-size:14px}.a{fill:#77dfbb}.w{fill:#ffc875}</style>
+<rect width="1360" height="1000" fill="#0c1926"/>
+<text x="36" y="48" class="t">MC1 carrier enclosure · complete printable prototype</text>
+<text x="36" y="83" class="s">Native 47.5 × 75 mm PCB · one H3 retainer · split edge support · dimensions in mm</text>
+<text x="36" y="116" class="s w">Trial shell and jack stop. No physical fit, loading, temperature or RF qualification.</text>
+<rect x="55.0" y="160.0" width="370.92" height="535.9200000000001" fill="#253e50" stroke="#7896a9" />
+<rect x="65.56" y="170.56" width="349.8" height="514.8000000000001" fill="#0f2738" stroke="#7896a9" />
+<rect x="135.95999999999998" y="262.96000000000004" width="209.00000000000003" height="330.0" fill="#17473f" stroke="#70d1ac" />
+<rect x="168.51999999999998" y="238.87" width="58.08000000000001" height="23.759999999999998" fill="#d7b45f" stroke="#ffdf87" />
+<rect x="259.424" y="261.332" width="78.23200000000003" height="189.99200000000002" fill="#377362" stroke="#8cafbd" />
+<text x="298.54" y="356.32800000000003" text-anchor="middle" class="n">U1 front</text>
+<rect x="141.68" y="262.63" width="111.76" height="212.34400000000005" fill="#377362" stroke="#8cafbd" />
+<text x="197.56" y="368.802" text-anchor="middle" class="n">U2 front</text>
+<rect x="136.972" y="506.62760000000003" width="78.23200000000001" height="92.20200000000003" fill="#377362" stroke="#8cafbd" />
+<text x="176.08800000000002" y="552.7285999999999" text-anchor="middle" class="n">U3 front</text>
+<rect x="230.56" y="479.88" width="101.2" height="110.00000000000001" fill="#294459" stroke="#8cafbd" stroke-dasharray="4 3"/>
+<text x="281.16" y="534.88" text-anchor="middle" class="n">U4 rear</text>
+<rect x="135.95999999999998" y="381.76" width="2.86" height="120.11999999999999" fill="#ffc875" stroke="#7896a9" />
+<rect x="340.56000000000006" y="381.76" width="4.4" height="205.92000000000002" fill="#ffc875" stroke="#7896a9" />
+<circle cx="78.75999999999999" cy="183.76" r="12" fill="#658195"/><circle cx="78.75999999999999" cy="183.76" r="5" fill="#0c1926"/>
+<circle cx="402.16" cy="183.76" r="12" fill="#658195"/><circle cx="402.16" cy="183.76" r="5" fill="#0c1926"/>
+<circle cx="78.75999999999999" cy="672.1600000000001" r="12" fill="#658195"/><circle cx="78.75999999999999" cy="672.1600000000001" r="5" fill="#0c1926"/>
+<circle cx="402.16" cy="672.1600000000001" r="12" fill="#658195"/><circle cx="402.16" cy="672.1600000000001" r="5" fill="#0c1926"/>
+<circle cx="215.16" cy="491.89200000000005" r="10" fill="#ffd471"/><text x="200.16" y="474.89200000000005" class="n">H3</text>
+<rect x="215.16" y="601.76" width="132.0" height="94.16000000000004" fill="none" stroke="#69bcff" stroke-dasharray="5 4"/>
+<text x="281.16" y="658.96" text-anchor="middle" class="n">RJ45</text>
+<text x="55" y="720" class="h a">84.3 × 121.8 × 57.4 mm shell</text>
+<text x="55" y="750" class="s">Installed depth 61.4 mm with 4 mm spacing frame.</text>
+<text x="55" y="780" class="s">H2 antenna to upper end wall: 15.525 mm.</text>
+<text x="520" y="173" class="h a">1. Ceiling-side base</text>
+<text x="520" y="202" class="s">WIZ850io, male headers, diodes and resistors face the ceiling.</text>
+<text x="520" y="268" class="h a">2. Lower onto open seats</text>
+<text x="520" y="297" class="s">Fit back parts first, then front modules, then place the PCB.</text>
+<text x="520" y="363" class="h a">3. One H3 + retaining cover</text>
+<text x="520" y="392" class="s">Case screws hit hard stops. They must not compress the PCB.</text>
+<text x="520" y="458" class="h a">4. Jack insertion load</text>
+<text x="520" y="487" class="s">Trial stop must touch measured metal cage, never preload pins.</text>
+<text x="520" y="553" class="h a">5. External devices stay external</text>
+<text x="520" y="582" class="s">PoE splitter, buck, extra radios and sensors are not packed here.</text>
+<text x="520" y="683" class="h">Section through edge support (trial Z)</text>
+<rect x="540" y="915.0" width="145" height="13.2" fill="#9f93d2"/>
+<path d="M685 921.6 L703 936" stroke="#7896a9"/><text x="710" y="941" class="n">ceiling spacer · Z -4</text>
+<rect x="540" y="907.08" width="145" height="7.919999999999999" fill="#63859b"/>
+<path d="M685 911.04 L703 908" stroke="#7896a9"/><text x="710" y="913" class="n">ceiling base · Z 0</text>
+<rect x="540" y="821.28" width="145" height="7.919999999999999" fill="#ffc875"/>
+<path d="M685 825.24 L703 856" stroke="#7896a9"/><text x="710" y="861" class="n">lower seat · Z 26</text>
+<rect x="540" y="816.0" width="145" height="5.28" fill="#70d1ac"/>
+<path d="M685 818.64 L703 828" stroke="#7896a9"/><text x="710" y="833" class="n">PCB 1.6 · Z 28.4</text>
+<rect x="540" y="806.76" width="145" height="7.919999999999999" fill="#ffc875"/>
+<path d="M685 810.72 L703 800" stroke="#7896a9"/><text x="710" y="805" class="n">upper lip · Z 30.4</text>
+<rect x="540" y="725.58" width="145" height="7.919999999999999" fill="#63859b"/>
+<path d="M685 729.54 L703 728" stroke="#7896a9"/><text x="710" y="733" class="n">room cover · Z 55</text>
+<text x="990" y="739" class="n w">25 mm front cavity</text>
+<text x="990" y="830" class="n w">26 mm rear cavity</text>
+<text x="990" y="865" class="n">Both are assumptions.</text>
+<text x="36" y="967" class="s w">Print coupons first. Measure modules, wiring, rail play and actual jack contact before loading or ceiling installation.</text>
+</svg>

@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
-  "tested_date_local": "2026-10-17",
+  "tested_date_local": "2026-10-18",
   "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
   "passed": true,
-  "tests": 55,
-  "duration_seconds": 2.246,
+  "tests": 56,
+  "duration_seconds": 2.763,
   "sanitizers": [
     "address",
     "undefined"
@@ -15,7 +15,7 @@
     "-Wextra",
     "-Werror"
   ],
-  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation.",
+  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation. Active firmware/CAD pin-manifest parity and rejection of obsolete/swapped H2 UART assignments.",
   "source_sha256": {
     "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
     "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
@@ -30,12 +30,18 @@
     "firmware/module-carrier/tests/transport_test.cpp": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547",
     "firmware/module-carrier/tests/update_session_test.cpp": "92943782fa5e4b0b0329a0b145fe211a04c7cd5ab8ba330490ac6a0318781ff9",
     "firmware/module-carrier/updates/requirements.txt": "395d28581bb88cbc2dd5ffdf5e2fcbef768a030d1eb33dfd7340ed1c66be9166",
-    "firmware/module-carrier/updates/update.py": "9b4ce1dec74751d93e00e762c88d86fc75cf4d990b89c9fa11d7c1c668184690"
+    "firmware/module-carrier/updates/update.py": "9b4ce1dec74751d93e00e762c88d86fc75cf4d990b89c9fa11d7c1c668184690",
+    "firmware/module-carrier/contract.py": "7cc229d36d3872f501f060f1d9cdf0bde97505e7726f378dffe29dcfafa83cd0",
+    "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae",
+    "firmware/module-carrier/tests/test_pin_contract.py": "a48d7a33315f4384059fde6b6723d845402db857889dfc7da7b7986b858ab8fc",
+    "hardware/module-carrier/cad/nano-pin-plan.json": "9110335d6b2865fc78964b3719e6f68022f7cf2a58079dfb8fa3fd84dba34740",
+    "hardware/module-carrier/cad/design.json": "675e999c7db944e643e574925780234cfb6fb55084f1c75848326dba1bf622b8"
   },
   "additional_contract_guards": {
     "compiled_open_drain_source_verified": true,
     "push_pull_mutation_rejected": true,
-    "reset_timing_mutation_rejected": true
+    "reset_timing_mutation_rejected": true,
+    "original_tested_date_local": "2026-10-17"
   },
   "additional_update_checks": {
     "pinned_host_dependencies_install": "pass",
@@ -43,6 +49,8 @@
     "actual_h2_and_mg24_image_offline_plans": "pass",
     "binary_loopback_bytes": 65792,
     "rest_contract_tests_passed": 2,
-    "physical_flashes_executed": 0
+    "physical_flashes_executed": 0,
+    "original_tested_date_local": "2026-10-17",
+    "rest_contract_retested_date_local": "2026-10-18"
   }
 }

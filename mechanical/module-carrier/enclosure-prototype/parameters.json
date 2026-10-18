@@ -1,0 +1,39 @@
+{
+  "status": "printable_engineering_prototype_not_fit_qualified",
+  "units": "mm",
+  "nominal": {
+    "wall": 2.4,
+    "floor": 2.4,
+    "lid": 2.4,
+    "side_margin": 16.0,
+    "end_margin": 21.0,
+    "rear_cavity": 26.0,
+    "front_cavity": 25.0,
+    "pcb_thickness": 1.6,
+    "rail_slot": 2.0,
+    "side_clearance": 0.2,
+    "rail_lip": 2.4,
+    "rail_start_y": 27.0,
+    "closure_pilot": 2.5,
+    "closure_clearance": 3.2,
+    "h3_clearance": 2.7,
+    "jack_stop_height": 16.0,
+    "jack_stop_contact_y": 58.0,
+    "ceiling_spacing": 4.0,
+    "floor_hardware_max_projection": 3.0
+  },
+  "measured": {
+    "pcb_thickness": null,
+    "pcb_width": null,
+    "max_edge_excursion": null,
+    "tallest_rear_feature_including_mated_harness": null,
+    "tallest_front_feature": null,
+    "jack_cage_contact_y": null,
+    "jack_cage_contact_z": null,
+    "selected_rail_slot": null,
+    "filament_and_printer_fit": null,
+    "floor_hardware_projection": null
+  },
+  "scope": "Carrier U1-U4 and its headers/passives only. PoE splitter, buck, DFR0627, radios and sensor modules remain external.",
+  "source_rule": "Read active KiCad/design.json for XY dimensions, H3 and legal edge-contact bands. Z values and jack stop contact are explicit trial parameters, not measurements."
+}

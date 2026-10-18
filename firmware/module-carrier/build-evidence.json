@@ -227,5 +227,28 @@
     "host_dependency_install_and_pip_check": "pass",
     "host_dry_plan_actual_images": "pass",
     "readme": "updates/README.md"
+  },
+  "revalidation": {
+    "tested_date_local": "2026-10-18",
+    "method": "Revalidated existing compiled S3/H2 artifacts and generated source with current contract scripts; no recompilation or flashing",
+    "s3_artifact_hashes_unchanged": true,
+    "h2_artifact_hashes_unchanged": true,
+    "h2_rom_uart": {
+      "rx": 23,
+      "tx": 24,
+      "baud": 460800
+    },
+    "s3_generated_gpio_verified": 21,
+    "ble_slots_retained": 3,
+    "host_tests_passed": 56,
+    "rest_contract_tests_passed": 2,
+    "zigbee_recipe_tests_passed": 9,
+    "validator_sha256": {
+      "firmware/module-carrier/contract.py": "7cc229d36d3872f501f060f1d9cdf0bde97505e7726f378dffe29dcfafa83cd0",
+      "firmware/module-carrier/prepare_h2.py": "dcf47ad9dbaef8da0fe19e704aa8c376e0500b4f8b8907446ab962aa43e61483",
+      "firmware/module-carrier/verify_h2.py": "c2df9300f8376de4ce841328314eb9ffc2c7071f1eeac9c9b78c49360c10e8fb",
+      "firmware/module-carrier/validate.py": "8f155737bc99dece56ba257e3d9fbfa6055e777c39eb980d7dceb236663c8d6c",
+      "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae"
+    }
   }
 }

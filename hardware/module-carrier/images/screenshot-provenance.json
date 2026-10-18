@@ -1,11 +1,11 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "tool": "CUA in-app browser",
   "layout_revision": "nano-single-anchor-rails",
-  "index_sha256": "618f02b9ce88ce1e3927673187361dcc81090c7145c40de15289ad697f92b21c",
-  "viewport_width": 586,
-  "page_scroll_width": 586,
-  "images_loaded": 12,
+  "index_sha256": "1166a157344321ee411dc3ceed059852cf333385bdd2d671d0ffc782d372e6cc",
+  "viewport_width": 1280,
+  "page_scroll_width": 1280,
+  "images_loaded": 17,
   "all_images_loaded": true,
   "wiring_test": {
     "query": "THREAD_RX",
@@ -16,21 +16,25 @@
       "U2.J3.3"
     ],
     "restored_empty_query": true,
-    "viewport_width": 586
+    "viewport_width": 1280
   },
   "screenshots": {
-    "ui-pcb.jpg": "f8037ef7b8daf9452f87508d7bf9f3a38c82f78a2d03d1fb0caf4c1c3bdba23a",
-    "ui-assembly.jpg": "5f3a0201f7ddc82f433cdcd679625c05ba073cfa0a53b22b6d77bc2ecd7d452c",
-    "ui-wiring.jpg": "ec6bc60c997adaaaff9e8883c35c052b4b3cde92ed33b9aeddcd47840a1fe154",
+    "ui-pcb.jpg": "b25602c98283e563b7029d951e0fe9023547f9feb0d829be75e38b43ac5f6dc6",
+    "ui-assembly.jpg": "dd8ffc4908da9c17d0b86d5326543de026481d93ee2e354afd01885f0541b46c",
+    "ui-assembly-back.jpg": "e289e83a896cd492808eef6b1fac836fcebac86846b0763de8561d13d04fb6f7",
+    "ui-wiring.jpg": "e17d91425132f2b0f8d186fe6aab8be1e945a193aa74cb097d79da302f4c6a83",
     "ui-architecture.jpg": "9acb2bf12d98d048e89b9e7e07e8c6efbfb8c4e007385eb27257ee51ecb2e65c",
-    "ui-recovery.jpg": "460e23fef5b70b0fe68a24dd25fe6d7da0e22e4d50a24d04e5d0bbc220ae8ea5",
-    "ui-updates.jpg": "55295bfa1575cb7ae4f2e719005671448083d49020da4e2624557d6c634e0ca2",
-    "ui-assembly-back.jpg": "15a7b04d395be3d9238999bf952685f10c74efc6e14eba55036d03b5b028bb54",
-    "ui-comparison.jpg": "26930946ad72dd6d5f763a5ff3de8f1bd3b50a9f428a1c920523fd1059cc7132",
-    "ui-stack.jpg": "9f527d3a33e25c51b2c51e8d11b207c1baf71c9557bdb74037636a022dd0a068",
+    "ui-recovery.jpg": "86baeffbb7a731610106f7fff142248f27be688e0b8264e16255fbeb3b8ca0a2",
+    "ui-updates.jpg": "fec5d06992310a836f7ae05ba1309c133a3021dfbfaf7be540fda1d859403b76",
+    "ui-comparison.jpg": "3a64329a7a88da78e58c5b1b96343769d0da02645b29499d68781e68bac49d82",
+    "ui-stack.jpg": "d9a55492ed7a0db04e013fe989232b7e5e846867b3738b87c97923756fd2e6a7",
     "ui-mounting.jpg": "792d9f3afc1d3ce5a7ce6d7f06a0a54d815934c86de601166be978e71a01927c",
     "ui-routing.jpg": "89d33f8ef3833b2385dd24d4a4e0a2d6de6e7504b98f27e3dda450005b1fa2d6",
-    "ui-rail-study.jpg": "2691f3a770f9761381b0df97a2f2a1a18b4e7582043ca42fc31e8aa566d19e34"
+    "ui-rail-study.jpg": "fd842a535f90a4daa4d4366dbaa16b3fdbb696e296e8f4861b23ed31e52f24d5",
+    "ui-enclosure.jpg": "f66c44160a7ec42532ea6850186468e8b36dfc12286589783b5cd410f266baca",
+    "ui-harness.jpg": "320d9124ee76887ac2f282f6aa468f500db1d260e70b941683ae018ec4681886",
+    "ui-schematic.jpg": "3fc4c059a48e1b0f5a9f1b1d3823caa7f4c3b7cf46b99385b0674832ae88274e",
+    "ui-concept.jpg": "4a1a8eac4dd7b584dfc5514b4cc8bbd02fa422cce9065d0b36e3c8a7db4d3b75"
   },
   "source_sha256": {
     "cad/assembly-top.svg": "0f6620715d1aafe50bfafe39c9f164508ae948e714a1be0d1b88c8714c8737a7",
@@ -45,28 +49,48 @@
     "../../mechanical/module-carrier/rail-mount/rail-mount.svg": "c77300ddd2df7da43ee199d33e70ebad69f892a03312e4a7c1f930f64626340c",
     "../../mechanical/module-carrier/rail-mount/rail-section.svg": "fea236e77993d84173761f40c3b2966d58f7583d98a06dfdb9b18cd51bfeaf6c",
     "../../mechanical/module-carrier/rail-mount/assembly-sequence.svg": "819762afeff2106f44bbcc4886cbf3e9d3ad01c4bb8af804335960d37d6a1429",
-    "../../mechanical/module-carrier/rail-mount/mounting-comparison.svg": "951c27f29bdd4563503f55352130f27d0a880e9c6ae72e65f69e1182b0eed257"
+    "../../mechanical/module-carrier/rail-mount/mounting-comparison.svg": "951c27f29bdd4563503f55352130f27d0a880e9c6ae72e65f69e1182b0eed257",
+    "harness-connections.svg": "32b63fe5bf71bac9119fafaef7ac96e82522d664b79920b4669bd6aceb740e43",
+    "../../mechanical/module-carrier/enclosure-prototype/index.html": "44cf605ea61b10f9b4e13f48a19b9606982c70b84ec5d0606866f63cdaae9a8a",
+    "cad/schematic.svg": "a420f78ee23023ee22d43ded28810221a4d51c9c1cce5167a225f9441de1205d",
+    "../../mechanical/module-carrier/enclosure-prototype/enclosure.svg": "55d12942ad83b436f727944e21440bfcd9f17aa75847cbc7c89ed0445470f382",
+    "index.html": "1166a157344321ee411dc3ceed059852cf333385bdd2d671d0ffc782d372e6cc",
+    "../../mechanical/module-carrier/enclosure-prototype/print-parts.png": "58292585de69a19dd773140936ca9657a25834bfb41cb18f392a30c7c6585905",
+    "images/mc1-assembled-concept.png": "c68e7db34a55a451c4f5d21ea8cdf91232b27f246098b0d102b11c1277e710c8",
+    "../../mechanical/module-carrier/rail-mount/index.html": "d716414202a3e7c4520c13efebcb3256cd9d4ed1cfea5f2b60c21c7b01fe6b6d"
   },
   "capture_notes": {
-    "ui-pcb.jpg": "Current 47.5 \u00d7 75 single-H3 carrier, native 586 px viewport; no viewport override.",
-    "ui-assembly.jpg": "Current front SVG, H3 only, rail lands, corrected recovery pad labels; full document capture.",
-    "ui-wiring.jpg": "586 px native viewport; THREAD_RX shows one of 31 nets; search restored.",
-    "ui-architecture.jpg": "Retained screenshot; architecture SVG source hash unchanged.",
-    "ui-recovery.jpg": "Retained screenshot of unchanged recovery SVG; source SHA256 unchanged.",
-    "ui-updates.jpg": "Retained screenshot; network-updates SVG source hash unchanged.",
-    "ui-assembly-back.jpg": "Current mirrored rear SVG, H3 only, WIZ and male harnesses; full document capture.",
-    "ui-comparison.jpg": "Current 47.5 \u00d7 75 versus historical 65 \u00d7 75, both sides at equal scale.",
-    "ui-stack.jpg": "Updated section identifies split support, retains all-rear-first sequence.",
-    "ui-mounting.jpg": "Current native-derived single-anchor rail contact plan, maximum inward reach and source hash.",
-    "ui-routing.jpg": "Current native routed comparison against c3c8107 four-hole rectangle.",
-    "ui-rail-study.jpg": "Standalone rail study HTML, 586 px viewport, 4 of 4 SVGs loaded, no horizontal overflow."
+    "ui-pcb.jpg": "Fresh 2026-10-18 capture from index.html#pcb at the normal 1280 px browser viewport.",
+    "ui-assembly.jpg": "Fresh 2026-10-18 capture from cad/assembly-top.svg; full document capture with no viewport override.",
+    "ui-assembly-back.jpg": "Fresh 2026-10-18 capture from cad/assembly-bottom.svg; full document capture with no viewport override.",
+    "ui-wiring.jpg": "Fresh 2026-10-18 capture from index.html#wiring at the normal 1280 px browser viewport. THREAD_RX matched U1.JP2.1 and U2.J3.3; one of 31 nets; empty query restored.",
+    "ui-architecture.jpg": "Fresh 2026-10-18 capture from architecture.svg; full document capture with no viewport override.",
+    "ui-recovery.jpg": "Fresh 2026-10-18 capture from thread-recovery.svg; full document capture with no viewport override.",
+    "ui-updates.jpg": "Fresh 2026-10-18 capture from network-updates.svg; full document capture with no viewport override.",
+    "ui-comparison.jpg": "Fresh 2026-10-18 capture from layout-comparison.svg; full document capture with no viewport override.",
+    "ui-stack.jpg": "Fresh 2026-10-18 capture from direct-solder.svg; full document capture with no viewport override.",
+    "ui-mounting.jpg": "Fresh 2026-10-18 capture from ../../mechanical/module-carrier/rail-mount/rail-mount.svg; full document capture with no viewport override.",
+    "ui-routing.jpg": "Fresh 2026-10-18 capture from routing-comparison.svg; full document capture with no viewport override.",
+    "ui-rail-study.jpg": "Fresh 2026-10-18 capture from ../../mechanical/module-carrier/rail-mount/index.html; full document capture with no viewport override.",
+    "ui-enclosure.jpg": "Fresh 2026-10-18 capture from ../../mechanical/module-carrier/enclosure-prototype/index.html; full document capture with no viewport override.",
+    "ui-harness.jpg": "Fresh 2026-10-18 capture from harness-connections.svg; full document capture with no viewport override.",
+    "ui-schematic.jpg": "Fresh 2026-10-18 capture from cad/schematic.svg; full document capture with no viewport override.",
+    "ui-concept.jpg": "Fresh 2026-10-18 capture from index.html#photos at the normal 1280 px browser viewport."
   },
   "rail_study": {
     "page": "../../mechanical/module-carrier/rail-mount/index.html",
     "page_sha256": "d716414202a3e7c4520c13efebcb3256cd9d4ed1cfea5f2b60c21c7b01fe6b6d",
-    "viewport_width": 586,
-    "page_scroll_width": 586,
+    "viewport_width": 1280,
+    "page_scroll_width": 1280,
     "images_loaded": 4,
+    "all_images_loaded": true
+  },
+  "enclosure_study": {
+    "page": "../../mechanical/module-carrier/enclosure-prototype/index.html",
+    "page_sha256": "44cf605ea61b10f9b4e13f48a19b9606982c70b84ec5d0606866f63cdaae9a8a",
+    "viewport_width": 1280,
+    "page_scroll_width": 1280,
+    "images_loaded": 2,
     "all_images_loaded": true
   }
 }

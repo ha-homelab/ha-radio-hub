@@ -6,6 +6,8 @@ Three controller modules face the room. WIZ850io, all seven fitted male harness 
 
 There are **16 fitted parts, 18 footprint positions, 133 plated signal/power holes and 31 connected nets**. J8/J9 remain unpopulated recovery pads. Native PCB and schematic DNP states match `fitted` in the ledger. The electrical contract and firmware pin map have not changed from the preceding layout.
 
+The [CAD pin manifest](nano-pin-plan.json) and [active firmware manifest](../../../firmware/module-carrier/pin-plan.json) both use H2 **RX23/TX24**. Their parity and the native carrier crossover are checked by the firmware regression suite; H2 preparation and image verification also reject the old RX4/TX5 assignment. The smaller outline does not require a different S3 or H2 application image.
+
 This is an **engineering prototype, not a fabrication release**. Native DRC reports **41 intentional opposite-side PTH/body projections**: 33 rear header pins beneath H2, six axial pins beneath Nano, and two D3 pins beneath XIAO. D2 is clear of front-module bodies. These are retained in the raw report, not suppressed. Exact classification requires zero other violations, zero unrouted items and zero schematic mismatches. **Physical Z clearance is not yet qualified.** Neither a 2D overlap classification nor electrical DRC proves that stock male-header spacers clear the opposing solder joints.
 
 ## Files and geometry authority

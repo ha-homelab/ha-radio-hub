@@ -1,6 +1,9 @@
 # Continuous integration and automated approval
 
-The required `check` job gates four independent jobs. The modular job compiles
+The required `check` job gates five independent jobs in
+[Prototype validation](../.github/workflows/check.yml). The `module-carrier` job
+validates the current MC1; the other jobs retain shared implementation and
+historical hardware regressions. The modular job compiles
 both existing Ethernet ESPHome configurations, tests the RF/UART C++ contracts
 with sanitizers, exercises migration with synthetic inputs, validates printable
 geometry and builds the serial-service container. The single-host job checks the
@@ -16,6 +19,26 @@ checks. The wiring atlas and physical contact drawings must reproduce from their
 committed sources; their checks run in the single-host job. Failure, cancellation or
 skipping of any job prevents the required gate from passing. Thread RCP changes additionally run
 the existing independent Nordic RCP build.
+
+The MC1 job checks generated diagrams and native-render provenance, the
+independent carrier audit, GPIO/connector contracts and XIAO build recipes. It
+then exercises the WK2132, Thread recovery and update helpers under host
+sanitizers. It installs pinned mechanical dependencies, runs the rail and
+enclosure geometry tests, and checks regenerated outputs against the committed
+files with each `build.py --check`. The twelve rail/export checks cover fit
+geometry and portable export comparison: STL solids and source-derived text must
+agree; PNG integrity and dimensions are checked without requiring identical
+cross-platform pixels. Use `--check --exact` for local byte reproduction.
+The suite also includes the eleven enclosure checks
+for native board alignment, printable meshes, antenna end-wall setback and
+spacing-frame/floor-fastener clearance. It also compiles the complete S3-Nano
+image and builds/verifies the matching
+H2 RX23/TX24 RCP. The MG24 job separately builds the board-specific XIAO NCP and
+UART bootloader. The PCB job runs the MC1 native CAD tests, ERC and classified
+DRC in addition to the historical boards. Its 41 explicit opposing-face
+pad/body projections remain in the raw DRC report; additional or changed
+findings fail. These automated checks do not establish physical stack height,
+radio range or successful operation of an assembled hub.
 
 The modular job also checks that README board renders match their native PCB
 source hashes and that the illustrated parts catalog covers every canonical

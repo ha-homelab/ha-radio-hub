@@ -3,6 +3,8 @@
 <!-- MC1-CURRENT-DESIGN -->
 > **Current build: [MC1 — one finished-module carrier](module-carrier.md).** This page retains the earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC1 build.
 
+This RFQ is retained for the old C0/M0 and I0 designs; do not send it as an MC1 specification. The active [MC1 BOM](../hardware/module-carrier/cad/BOM.csv), [native CAD](../hardware/module-carrier/cad/README.md) and [cost review](../hardware/module-carrier/cost-review/README.md) define the current single-board prototype scope.
+
 **Unsent draft, 2026-10-17.** Intended recipients: JLCPCB and PCBWay, separately.
 This is a request for itemized engineering quotations, not an order, a production
 release or permission to substitute components. Both designs are prototypes
