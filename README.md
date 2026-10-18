@@ -28,6 +28,8 @@ Seven male harness headers and the Ethernet module sit on the ceiling-facing
 back; the controllers face the room. RJ45 opens outward at the board edge. See the
 [same-scale comparison](hardware/module-carrier/layout-comparison.svg)
 and [fabrication-cost rationale](docs/module-carrier.md#compact-placement-and-fabrication-cost).
+The [current cost review](hardware/module-carrier/cost-review/README.md) separates
+bare PCB fabrication, mounted-module materials and the external parts still needed.
 
 Finished S3, H2, XIAO MG24 and WIZ850io modules mount on the carrier.
 **Male pins go directly into plated holes and are soldered on the opposite face.

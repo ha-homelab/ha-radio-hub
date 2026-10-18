@@ -45,6 +45,12 @@ The selected parts are:
 
 ## Compact placement and fabrication cost
 
+See the [current cost review](../hardware/module-carrier/cost-review/README.md)
+for the configured five-board estimate, comparison with the historical tariffs,
+and the separately priced modules. The displayed JLCPCB website estimate is
+$5.20 for five bare boards before delivery and tax; calculator service errors
+mean it remains provisional rather than a confirmed checkout quote.
+
 Actual PCB area is **35.625 cm²**, a **6.86% reduction** from the preceding
 51 × 75 mm four-hole board and **26.9% below** the historical
 65 × 75 mm single-sided arrangement. It is 77.7% smaller than the original
