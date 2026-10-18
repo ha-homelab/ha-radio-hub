@@ -127,9 +127,14 @@ the first prototype automatically reliable.
 3. Check the isolated 5 V input and separate 3.3 V peripheral rail unloaded. Do not
    parallel outputs from different modules' onboard regulators.
 4. For later USB service, keep the complete assembly powered normally and use a
-   **verified USB VBUS-blocking data cable**. Verify the blocker before use. Simply
-   disconnecting PoE and USB-powering one controller can backfeed the others through
-   signal pins; the three supply diodes do not isolate these signal paths.
+   **board- and USB-port-specific, bench-verified power procedure**. A VBUS blocker
+   is not a universal solution: on the XIAO, the onboard SAMD11 programming probe
+   requires USB VBUS, while the factory 5 V header supplies VIN behind a diode.
+   Check that board's diode isolation, supply voltages, absence of backfeed and USB
+   enumeration with its intended powered-USB connection before service. See the
+   [XIAO service review](../hardware/module-carrier/studies/square-layout/service-review.md#xiaos-programming-probe-needs-usb-vbus).
+   Simply disconnecting PoE and USB-powering one controller can backfeed the others
+   through signal pins; the three supply diodes do not isolate these signal paths.
 5. Verify Ethernet and service access first, then each radio and sensor separately.
    Follow the board-specific firmware recovery procedure; old M0 images do not
    match the XIAO pinout.

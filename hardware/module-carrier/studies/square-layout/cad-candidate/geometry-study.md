@@ -1,0 +1,15 @@
+# Square placement result
+
+The requested arrangement fits on a 100 × 100 mm carrier while retaining every USB connector: horizontal MG24 at the left, vertical H2 in the center, and Ethernet directly beneath H2. Moving S3 to the right frees the left-side space and its service approach. The same finished modules, headers and five axial components remain; electrical assignments and firmware are unchanged.
+
+The module origins and KiCad rotations are S3 **(74,3),0°**; H2 **(62,52),180°**; MG24 **(18,59),270°**; and WIZ850io **(60.7,92.9),180°**. The RJ45 mouth is at y=102 mm and faces away from the bottom edge. All dimensions are millimetres; `geometry-study.json` contains transformed body rectangles and explicit connector reservations.
+
+Three 30 mm-long USB reservations survive. The critical one is XIAO's 14 mm-wide slot between H2's antenna and WIZ. Its top clearance is 0.645 mm to the antenna; below it is 0.680 mm to the WIZ PCB, or 0.180 mm to the conservative courtyard. A measured slim plug and an upward cable bend are required. The first proposed XIAO origin at y=52 did not fit: its USB reservation intersected both H2's PCB and antenna. Lowering XIAO to y=59 resolved those collisions without desoldering.
+
+The RF tradeoff is significant: H2's antenna faces an internal gap. There is 15.325 mm to the WIZ PCB and 15.56 mm laterally to S3's PCB, with a large carrier copper exclusion in front of and beside the H2 antenna. These distances do not certify gain, radiation pattern or radio coexistence. The temporary XIAO USB cable crosses the RF clearance area; it must not remain as an operating pigtail or during RF comparison measurements. XIAO's own antenna faces the left edge, with part of its ceramic body still above the carrier.
+
+USB removal is unnecessary for this candidate and would increase service difficulty. Desoldering a connector does not shorten a module's PCB. In particular, preserving XIAO's USB keeps access to its separate SAMD11/CMSIS-DAP probe. Correct probe power handling is described in `../service-review.md`; a data-only/VBUS-blocked connection does not by itself power that probe from the XIAO VIN header.
+
+The square adds 1,000 mm², or 11.1%, over the active 100 × 90 mm board. It produces the requested visual arrangement and keeps the stock service connectors, but it trades an edge-facing H2 antenna for an interior one and leaves a tightly specified XIAO service slot. It remains a separate candidate for review and physical comparison; the active layout is unchanged.
+
+Ceiling mounting and an open room do not remove this local antenna-loading question. The carrier copper, module ground, FR4 and nearby wiring are in the antenna's immediate environment. This candidate retains a solid rectangular FR4 carrier; its RF exclusions remove copper, not substrate. No interior window or all-sides cutout is claimed to cure the interior antenna arrangement. Compare the assembled board against the edge-antenna baseline with the intended ceiling orientation.

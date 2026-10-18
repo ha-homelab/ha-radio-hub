@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Record current native check results after every source/layout/export change."""
+import datetime, hashlib, json, unittest, importlib.util
+from pathlib import Path
+R=Path(__file__).resolve().parent
+spec=importlib.util.spec_from_file_location('mc1_tests',R/'test_design.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+suite=unittest.defaultTestLoader.loadTestsFromModule(mod);result=unittest.TextTestRunner(verbosity=1).run(suite)
+if not result.wasSuccessful():raise SystemExit('Regression checks failed')
+drc=json.loads((R/'checks/drc.json').read_text());erc=json.loads((R/'checks/erc.json').read_text());design=json.loads((R/'design.json').read_text())
+checks=dict(erc_violations=sum(len(s['violations']) for s in erc['sheets']),drc_violations=len(drc['violations']),unconnected_items=len(drc['unconnected_items']),schematic_parity_issues=len(drc['schematic_parity']),unit_tests_passed=result.testsRun)
+if any(checks[k] for k in checks if k!='unit_tests_passed'):raise SystemExit('Native checks have outstanding issues')
+v=dict(revision='MC1',layout_revision='study-square-100x100-bottom-edge',status='square_geometry_study_not_active_design',checked_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),kicad_version=drc.get('kicad_version'),board=dict(width_mm=100,height_mm=100,copper_layers=2),checks=checks,assembly=dict(fitted_through_hole_references=17,mounted_ready_modules=4,harness_or_service_headers=8,loose_axial_diodes=3,loose_axial_resistors=2,female_sockets=0,carrier_smt_components=0),mechanics=design['mechanics'],rj45=design['mechanics']['rj45'],limitations=['Carrier assembled hardware untested; no fabrication authorization implied','Exact factory male pin fit and installed-board revision must be physically checked','USB cable shells and underside module components require clearance checks','RJ45 plug boot, latch, bend radius and enclosure wall clearance require a physical check; reserved service rectangle is an engineering allowance','Power headroom, thermal behavior and I/O backpower isolation require bench verification','External PoE splitter, 3.3V buck, WK2132 and peripheral harnesses are separate finished modules','Antenna keepouts are geometric engineering provisions, not RF certification','Generic module schematic terminals do not validate internal regulator or IC electrical behavior','New WK2132 firmware path and radio coexistence require integration validation'])
+v['sha256']={name:hashlib.sha256((R/name).read_bytes()).hexdigest() for name in ['mc1.kicad_pcb','mc1.kicad_pro','mc1.kicad_sch','design.json','geometry-study.json','routing/mc1.ses','manual-route.json','assembly-top.svg','board-top.svg','board-bottom.svg','schematic.svg','schematic.pdf']}
+(R/'verification.json').write_text(json.dumps(v,indent=2)+'\n');print('Native checks and evidence hashes recorded')

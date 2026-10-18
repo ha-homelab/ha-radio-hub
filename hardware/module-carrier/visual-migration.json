@@ -567,7 +567,7 @@
     },
     {
       "path": "hardware/module-carrier/direct-solder.svg",
-      "sha256": "478310ccae509c670b5df1354c2d34730b012551dfb76a792ccc628d13d815ff",
+      "sha256": "0a43e9b63c568b6261f757f440bfe82d19704b52abae5a4eae5af254d0fea3a6",
       "kind": "native_CAD_or_deterministic_diagram"
     },
     {

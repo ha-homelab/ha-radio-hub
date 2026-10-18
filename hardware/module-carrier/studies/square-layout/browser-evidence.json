@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-17",
+  "tool": "CUA in-app browser",
+  "viewport_width": 319,
+  "page_scroll_width": 319,
+  "comparison_loaded": true,
+  "source_sha256": {
+    "index.html": "13ff89aa2e78fac9b4a6bd60fb1a5021c2b61b91547989abfcbcad79f33f7af7",
+    "comparison.svg": "cb8e0a6324fb05dfd602b10a1ba71cbed35315d351dc714c4d494871270f2c6a",
+    "result.json": "434ef787caa1416386c95797eb38ae6d02126ce4e90d0006496ddce1759fdab9",
+    "cad-candidate/design.json": "0430d49f296ce9f4083f46561deb81817a1bc5986fd5ed2fadb53bb8f1c7082e"
+  },
+  "screenshots": {
+    "comparison-preview.jpg": "380e976843790b4f3835ccdcdcf049a9664935b0c5ae49995deb6ad028445423",
+    "page-preview.jpg": "ac9b17e3709eb3a5c2f060b705472a6539bdfc4686ce8a61b54b2094c371b89c"
+  },
+  "notes": [
+    "Comparison SVG captured full-page without overriding browser viewport.",
+    "Study HTML checked at native319px viewport: no horizontal document overflow.",
+    "Images are CAD-derived explanatory drawings, not generated product photographs."
+  ]
+}

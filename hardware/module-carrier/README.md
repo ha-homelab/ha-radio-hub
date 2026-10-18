@@ -32,3 +32,5 @@ Current evidence: [native checks](cad/verification.json),
 Run `python3 -m unittest discover -s hardware/module-carrier -p "test_*.py"`
 for the cross-file interface contract and `python3 hardware/module-carrier/render_board.py --check`
 to verify native-render provenance.
+
+The separate [100 × 100 mm layout study](studies/square-layout/index.html) tests a horizontal MG24 and Ethernet below H2, with stock USB connectors retained. It is a reviewed alternative, not a replacement of this active carrier.

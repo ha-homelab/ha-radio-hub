@@ -1,0 +1,25 @@
+{
+  "conclusion": "The requested arrangement fits and routes in 100 \u00d7 100 mm with all USB connectors retained, after moving S3 to the right and orienting H2 for upward USB access.",
+  "status": "Separate routed candidate: zero native ERC/DRC violations, zero unrouted items and zero schematic-parity issues. The active 100 \u00d7 90 mm carrier is unchanged.",
+  "benefits": [
+    "MG24 is horizontal at the left edge; its antenna faces outward.",
+    "Ethernet continues the H2 column and the RJ45 mouth faces down, 2 mm beyond the carrier.",
+    "The same 17 parts and 145 pad assignments are retained. No sockets, extra electronics or firmware changes are required."
+  ],
+  "limits": [
+    "H2 antenna is inside the carrier outline, with an explicit copper-free region. RF performance must be measured.",
+    "The retained MG24 USB allowance passes through a narrow slot: only about 0.65 mm to H2 antenna and 0.68 mm to WIZ PCB. Confirm actual plug, cable lift and button access.",
+    "Connector removal is not needed and would complicate programming or recovery. All radio and physical assembly behavior remains untested.",
+    "Ceiling mounting is assumed to put the populated side toward the room. It does not remove local antenna loading by the carrier; the central H2 position is not the manufacturer-preferred edge placement."
+  ],
+  "findings": [
+    "Carrier area increases from 9,000 to 10,000 mm\u00b2 (+11.1%).",
+    "Candidate retains the original 30 mm USB plug access length. The XIAO envelope is 14 mm wide.",
+    "H2 antenna end to WIZ PCB separation: 15.325 mm. This is a geometric allowance, not a measured RF guarantee.",
+    "Native candidate route: 521 track/via items; 13 geometry, electrical-contract and project-rule tests pass."
+  ],
+  "validation": "Native KiCad candidate checks: 0 ERC, 0 DRC, 0 unrouted, 0 parity issues; 13 candidate tests pass. All 17 part identities and 145 pad assignments match the active design. No physical assembly, ceiling-mount or radio-range test has been performed.",
+  "native_evidence": "cad-candidate/verification.json",
+  "reproduction_evidence": "cad-candidate/checks/reproduction.json",
+  "reproduction": "pass: zero ERC, DRC, unrouted and parity issues in clean reconstruction"
+}

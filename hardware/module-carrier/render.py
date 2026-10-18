@@ -44,7 +44,7 @@ def assembly():
     s+=text(700,284,'Carrier PCB with plated through-holes',20)
     s+=text(700,321,'Solder joints on the underside',20)
     s+=text(36,385,'No female socket. No castellated-side soldering. Module replacement requires desoldering.',20,weight=700)
-    s+=text(36,421,'USB service: complete powered assembly + verified VBUS blocker. This section drawing is mechanical, not electrical.',17)
+    s+=text(36,421,'USB service: whole carrier powered; board-specific supply checks. XIAO programming probe requires USB VBUS.',17)
     return s+'</g></svg>'
 
 def layout_comparison(current):
