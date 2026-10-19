@@ -1,6 +1,6 @@
-# MC2: three external antennas
+# MC2-B: three external antennas
 
-MC2-A is the current **100 × 100 mm, two-copper-layer** carrier for finished
+MC2-B is the current **100 × 100 mm, two-copper-layer** carrier for finished
 modules. It retains the local Thread Border Router, Ember Zigbee, active Bluetooth
 proxy, Z-Wave transport, CC1101 RX/TX, LD2450 and BME680. Its change is three
 independent external 2.4 GHz radio paths. **This is an engineering prototype**:
@@ -13,10 +13,12 @@ Start with the [visual guide and pin lookup](../hardware/external-antenna/index.
 
 ## Exact module selection
 
-- **U1: Espressif ESP32-S3-DevKitC-1U-N8R8.** Factory external RF connector,
-  8 MB flash and 8 MB octal PSRAM; two 22-pin rows. S3 runs the application,
-  Ethernet transport, BLE proxy and local Thread Border Router. Do not substitute
-  the onboard-antenna DevKitC or use MC1's 16 MB partition table.
+- **U1: Espressif ESP32-DevKitC-VIE / ESP32-WROVER-IE.** Classic ESP32 ECOv3,
+  factory external RF connector, 8 MB flash and 8 MB physical PSRAM; two 19-pin
+  rows. The application maps 4 MB PSRAM for capability-based allocation at quad 40 MHz.
+  It runs Ethernet, the BLE 4.2 proxy and local Thread Border Router. Do not
+  substitute WROOM (no PSRAM), VE (onboard antenna), an older WROVER revision,
+  or the former S3 board. **MC2-A and MC2-B footprints and binaries differ.**
 - **U2: Unexpected Maker TinyC6-U-01.** Factory U.FL variant, 8 MB flash and native
   USB. It runs the dedicated Thread RCP. Its ordinary through-hole headers expose
   RX17, TX16, EN and BOOT9. Fit its supplied **1×12 and 1×11 loose headers** first.
@@ -31,7 +33,7 @@ Start with the [visual guide and pin lookup](../hardware/external-antenna/index.
 - **U4: WIZnet WIZ850io.** Retain the SPI Ethernet module. Its RJ45 is a data port;
   the separate standards-compliant PoE splitter supplies the low-voltage circuit.
 
-Module sources: [Espressif ordering and pin guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html),
+Module sources: [Espressif ordering and pin guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html),
 [Unexpected Maker design files](https://github.com/UnexpectedMaker/esp32c6),
 [Seeed antenna selection](https://wiki.seeedstudio.com/xiao_mg24_getting_started/).
 
@@ -53,7 +55,7 @@ standard SMA male plug, 50 Ω impedance, 2400–2485 MHz specification and 2.8 d
 peak gain. These are **not RP-SMA** connectors. Confirm center contacts and the
 exact connector family; MHF III/4 miniature plugs are not interchangeable.
 
-1. S3 U.FL → its cable → **BLE** bulkhead → antenna.
+1. WROVER-IE U.FL → its cable → **BLE** bulkhead → antenna.
 2. TinyC6-U U.FL → its cable → **THREAD** bulkhead → antenna.
 3. XIAO MG24 U.FL → its cable → **ZIGBEE** bulkhead → antenna.
 
@@ -74,25 +76,39 @@ and [schematic](../hardware/external-antenna/cad/schematic.svg), rather than MC1
 pin numbers. Net names such as THREAD_RX and ZB_RX describe the **radio end**:
 therefore the host transmitter connects to that RX net.
 
-- S3 GPIO15/TX → C6 GPIO17/RX, header 12; C6 GPIO16/TX, header 13 → S3 GPIO16/RX.
-- S3 GPIO47 → C6 EN/RST, header 15; S3 GPIO39 → C6 BOOT9, header 11.
+- ESP32 GPIO26/TX → C6 GPIO17/RX, header 12; C6 GPIO16/TX, header 13 → ESP32 GPIO36/RX.
+- ESP32 GPIO27 → C6 EN/RST, header 15; ESP32 GPIO15 → C6 BOOT9, header 11.
   Recovery outputs are open-drain.
-- S3 GPIO17/TX → MG24 D7/PC07 RX; MG24 D6/PC06 TX → S3 GPIO18/RX.
-  S3 GPIO7/RTS → MG24 D4/PC04 CTS; MG24 D5/PC05 RTS → S3 GPIO21/CTS.
-- LD2450 TX → S3 GPIO40/RX; S3 GPIO8/TX → LD2450 RX.
-- I²C uses GPIO1/SDA and GPIO2/SCL with 3.3 V logic. Retain the documented
-  WK2132 bridge and BME680 address/pull-up configuration; do not introduce 5 V
-  pull-ups. SPI is shared by WIZ850io and CC1101 with separate chip selects.
+- ESP32 GPIO32/TX → MG24 D7/PC07 RX; MG24 D6/PC06 TX → ESP32 GPIO39/RX.
+  ESP32 GPIO33/RTS → MG24 D4/PC04 CTS; MG24 D5/PC05 RTS → ESP32 GPIO14/CTS.
+- LD2450 TX → ESP32 GPIO18/RX; ESP32 GPIO23/TX → LD2450 RX.
+- I²C uses GPIO21/SDA and GPIO22/SCL with 3.3 V logic. Retain the documented
+  WK2132 bridge and BME680 address/pull-up configuration; never add 5 V pull-ups.
+- Shared SPI: GPIO12/SCK, GPIO2/MOSI, GPIO19/MISO. WIZ850io uses GPIO5/CS,
+  GPIO34/IRQ and GPIO4/RESET; CC1101 uses GPIO13/CS, GPIO25/GDO0 TX and
+  GPIO35/GDO2 RX. Do not use other breakout boards with unknown strap pull-ups.
 
-GPIO35–37 are reserved for octal PSRAM, GPIO38/48 for the DevKit's
-revision-dependent RGB LED, GPIO43/44 for its USB-UART bridge, and GPIO19/20 for
-native USB. Do not reuse them from a generic ESP32 pin diagram.
+GPIO6–11 belong to flash, GPIO16/17 to PSRAM, GPIO1/3 to the board's USB-UART
+bridge, and GPIO0 to ROM download entry. GPIO34/35/36/39 are input-only and have
+no internal pulls. **Fit the carrier's 10 kΩ pull-downs on GPIO12 and GPIO2**:
+GPIO12 must be low at reset for the selected module's 3.3 V flash supply;
+GPIO2 must be low for UART download mode. They connect only to SPI peripheral
+inputs. Preserve the documented chip-select and C6 boot pull-ups and the C6
+local-3.3-V GPIO8 strap. Never apply an eFuse workaround to an unknown module.
 
-Program and verify each controller **while loose**, using the MC2 S3 factory
+The UART0 logger is disabled and the IDF application console is off so UART0 can
+serve the radar after boot. Zigbee uses UART1, Thread uses UART2. USB-UART remains
+available for ROM programming on GPIO1/3, but is not a running application log
+port. The firmware locks the supported silicon to ECOv3 or newer.
+
+Program and verify each controller **while loose**, using the MC2-B classic-ESP32 factory
 image, C6 RCP and external MG24 NCP/bootloader. For loose TinyC6 ROM programming,
 fit a temporary 10 kΩ pull-up from GPIO8 (header 10) to its local 3.3 V
-(header 4): carrier R3 is not connected yet. The BOOT button only pulls GPIO9 low. MC1 OTA cannot resize the S3 flash
-partition table. Keep physical recovery possible before soldering. All carrier
+(header 4): carrier R3 is not connected yet. The BOOT button only pulls GPIO9 low.
+Neither an MC1 nor MC2-A S3 OTA image is compatible with this processor.
+Flash the new host over its Micro-B USB-UART connection first, under the new
+`mc2-classic-hub` identity. Do not reuse an S3 factory image or its boot offset.
+Keep physical recovery possible before soldering. All carrier
 components face the same side; solder low axial parts and headers first, then
 modules from the back. Check pad numbers, diode cathodes, continuity, supply
 polarity and clearance before applying power. The C6's loose headers require
@@ -128,7 +144,13 @@ single-box assembly. Bulkheads and coax remain on the fixed base when the lid
 is removed. Print the connector fit coupon before the full shell; validate
 actual module heights, solder tails, cable bends and attachment strength.
 
-## What coverage to expect
+## Bluetooth compatibility and coverage
+
+The classic ESP32 supports BLE 4.2 legacy advertisements and active connections.
+The configured three-connection HA proxy is retained, but BLE 5 extended
+advertisements and LE Coded PHY are unavailable. External antennas do not add
+those features. Confirm any sensor requiring them before changing the host.
+
 
 External antennas move the radiators away from the carrier ground planes,
 Ethernet metalwork and converters. They improve placement options; they do not
@@ -144,6 +166,9 @@ antenna orientation, then add appropriate powered Zigbee/Thread routers or a
 second Ethernet BLE proxy. Do not compensate with arbitrary transmit-power
 increases. Hardware operation, measured energy use and regulatory compliance
 remain separate from compilation and CAD validation.
+
+The [host migration record](classic-esp32-migration.md) explains the exact board
+choice, memory budget and limitations.
 
 The [historical MC1 guide](module-carrier.md) remains available for existing
 boards. Its Nano/H2 pin map, compact case and onboard MG24 image are not MC2 parts.

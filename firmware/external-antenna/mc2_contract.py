@@ -46,7 +46,10 @@ def verify_generated(main):
     pin("radar_uart", "set_tx_pin", pins["radar_tx"])
     pin("radar_uart", "set_rx_pin", pins["radar_rx"])
     call("radar_uart", "set_baud_rate", "256000")
-    call("logger_logger_id", "set_uart_selection", "logger::UART_SELECTION_USB_SERIAL_JTAG")
+    require("new(logger_logger_id) logger::Logger(0);" in code, "UART0 logger must be disabled")
+    selection = re.search(r"logger_logger_id->set_uart_selection\(([^;]+)\);", code)
+    require(selection is None or selection[1] == "logger::UART_SELECTION_UART0",
+            "Classic ESP32 must use the disabled UART0 logger, not USB Serial/JTAG")
     for service in ("arm_c6_uart_update", "cancel_c6_uart_update", "pause_thread_for_c6_service"):
         require(f'PROGMEM = "{service}";' in code, f"MC2 C6 updater API missing: {service}")
     require('"C6 UART Update State"' in code, "MC2 C6 update diagnostic missing")
@@ -80,6 +83,37 @@ def verify_generated(main):
     return {"all_assigned_gpio_verified": True, "unique_gpio": len(set(pins.values())), "ble_slots": 3,
             "native_uart_ownership": {"0": "LD2450", "1": "MG24", "2": "C6"},
             "shared_spi": True, "runtime_cc1101_reset_absent": True}
+
+def verify_uart_sources(source):
+    """Check default UART allocation and console suppression, not just YAML intent."""
+    checks = {
+        "components/logger/logger.h": ("UARTSelection uart_{UART_SELECTION_UART0}",),
+        "components/logger/logger_esp32.cpp": ("if (this->baud_rate_ > 0)",),
+        "components/uart/uart_component_esp_idf.cpp": (
+            "static uint8_t next_uart_num = 0;",
+            "logger_uses_hardware_uart && logger::global_logger->get_baud_rate() > 0",
+            "this->uart_num_ = static_cast<uart_port_t>(next_uart_num++);"),
+        "components/zigbee_tcp/zigbee_tcp.cpp": ("PORT = UART_NUM_1",),
+        "components/low_power_otbr/low_power_otbr.cpp": ("radio.port = UART_NUM_2",),
+    }
+    hashes = {}
+    for relative, fragments in checks.items():
+        path = source / relative
+        content = path.read_text()
+        for fragment in fragments:
+            require(fragment in content, f"UART ownership source assumption changed: {relative}: {fragment}")
+        hashes[relative] = sha(path)
+    return hashes
+
+def verify_app_header(data):
+    require(len(data) >= 24 and data[0] == 0xE9, "Invalid ESP application header")
+    chip_id = struct.unpack_from("<H", data, 12)[0]
+    minimum_revision = struct.unpack_from("<H", data, 15)[0]
+    require(chip_id == 0, "MC2-B application must target classic ESP32, never ESP32-S3")
+    require(minimum_revision == 300, "MC2-B application must require ESP32 ECO V3")
+    require(data[3] >> 4 == 3, "MC2-B application must declare 8 MB flash")
+    return {"chip_id": chip_id, "soc": "ESP32", "minimum_revision_full": minimum_revision,
+            "flash_bytes": 8388608}
 
 def quantity(s):
     return int(s[:-1], 0) * 1024 if s.endswith("K") else int(s, 0)

@@ -14,7 +14,7 @@ python3 firmware/external-antenna/updates/update.py c6 \
   --report /path/to/c6-report.json
 ```
 
-For the authorized update, set `MC1_API_KEY` to the deployed encrypted ESPHome API key (the environment variable name is retained for the existing tooling) and add `--mac <expected-base-mac> --execute`. Do not place the key in command arguments. The tool persists C6 maintenance, restarts the hub once, opens a token-authenticated UART session, invokes esptool for **C6 app 0x10000 only**, closes the tunnel and retries Thread. Bootloader, partitions, eFuses and existing host datasets are not written. An interrupted update leaves Thread in maintenance; restore a matching C6 application and retry. S3 USB recovery and local C6 BOOT/RESET are the fallback when host service is unavailable.
+For the authorized update, set `MC1_API_KEY` to the deployed encrypted ESPHome API key (the environment variable name is retained for the existing tooling) and add `--mac <expected-base-mac> --execute`. Do not place the key in command arguments. The tool persists C6 maintenance, restarts the hub once, opens a token-authenticated UART session, invokes esptool for **C6 app 0x10000 only**, closes the tunnel and retries Thread. Bootloader, partitions, eFuses and existing host datasets are not written. An interrupted update leaves Thread in maintenance; restore a matching C6 application and retry. DevKitC USB-UART recovery and local C6 BOOT/RESET are the fallback when host service is unavailable.
 
 ## Zigbee application
 
@@ -28,4 +28,6 @@ python3 firmware/external-antenna/updates/update.py mg24 \
 
 After backing up the Zigbee network and stopping its single ZHA/Zigbee2MQTT owner, add `--coordinator-stopped --execute`. This updates only the application through existing TCP6638; it does not flash the initial HEX or bootloader. Initial USB/CMSIS-DAP and J8 recovery follow the [XIAO guide](../../module-carrier/zigbee/README.md#initial-programming-and-recovery).
 
-S3 app-only OTA uses ESPHome after the correct MC2 factory partition layout has been installed. Back up deployment secrets and Thread credentials separately. No update has been executed on assembled hardware as part of development validation.
+MC2-B classic ESP32 app-only OTA uses ESPHome after the correct MC2-B factory partition layout has been installed. Back up deployment secrets and Thread credentials separately. No update has been executed on assembled hardware as part of development validation.
+
+MC2-B host identity is `mc2-classic-hub`. Its ESP32-WROVER-IE image is incompatible with the previous MC2-A ESP32-S3 image and carrier. Initial migration requires a full USB-UART factory installation on the new host; do not treat the host-generation change as an OTA update. GPIO1/3 remain connected only to the DevKitC USB-UART bridge. Runtime serial console output is disabled so the remapped UART0 can serve LD2450.

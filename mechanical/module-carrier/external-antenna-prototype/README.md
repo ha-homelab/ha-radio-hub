@@ -1,10 +1,12 @@
-# MC2 external-antenna enclosure prototype
+# MC2-B external-antenna enclosure prototype
 
 [Illustrated plan](index.html) · [dimensioned drawing](enclosure.svg) · [actual printable meshes](print-parts.png) · [assembly with antenna envelopes](assembly-preview.png) · [trial parameters](parameters.json) · [digital checks](verification.json)
 
 This package implements three independently labeled external antenna connections for **MC2**: **BLE**, **THREAD** and **ZIGBEE**. Each uses its own 50 Ω cable. The ports are in the fixed base wall, so lifting the cover does not pull on the miniature radio connectors. This enclosure is a printable engineering prototype; physical fit, cable routing, strength, temperature and coverage are not yet qualified.
 
 The nominal carrier shell is **190 × 160 × 58 mm**, plus a **4 mm ceiling spacing frame**. The carrier is 100 × 100 mm; its actual outline and mounting holes are read from the MC2 native KiCad board. The extra width reserves hand/tool access and initial 65 mm spacing between adjacent antenna connectors. That spacing is a starting mechanical layout, **not a demonstrated RF isolation distance or a promise of coverage over 1,000 ft²**.
+
+MC2-B uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
 
 This remains a **carrier-only housing**. The PoE splitter, converter, DFR0627, ZAC93, CC1101, LD2450 and BME680 remain in their separately allocated housings/locations. No free volume in this shell is permission to move them next to the RF cables. The system still receives one PoE cable from the existing network switch. The carrier's downstream WIZ Ethernet connector carries data after the external splitter; do not connect raw PoE to an ordinary WIZ jack.
 
@@ -50,4 +52,4 @@ python mechanical/module-carrier/external-antenna-prototype/build.py --check
 python -m unittest discover -s mechanical/module-carrier/external-antenna-prototype -p 'test_*.py'
 ```
 
-The tests check native mounting positions, independent port identities and spacing, nominal PCB clearance, separation of shell/cover, open bulkhead tool envelopes, frame/mount alignment and connected watertight meshes in bed orientation. The portable output check compares source contracts and geometry while tolerating platform-specific mesh ordering or PNG rasterization. These are digital regressions; they do not turn unspecified hardware measurements into physical fit results.
+The tests check native mounting positions, current module-body XY reservations inside the shell, RF guide endpoints against the CAD connector estimates, independent port identities and spacing, nominal PCB clearance, separation of shell/cover, open bulkhead tool envelopes, frame/mount alignment and connected watertight meshes in bed orientation. The portable output check compares source contracts and geometry while tolerating platform-specific mesh ordering or PNG rasterization. Module-body checks cover XY only; they do not certify component height or a collision-free formed coax route. These are digital regressions; they do not turn unspecified hardware measurements into physical fit results.

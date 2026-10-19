@@ -1,0 +1,27 @@
+{
+  "created": "2026-10-18",
+  "layout_revision": "MC2-B",
+  "tool": "built-in image_gen",
+  "purpose": "README appearance concepts, not CAD or photographs",
+  "source_sha256": {
+    "cad/assembly-top.svg": "680bd9f4b50815ba0688ad47e32e9d8dcd4fc3818f3243f957669f73dbf8bd24",
+    "cad/board-top.svg": "a3f87372ca3a65d81f2dec93e239cc844bdd2ea9718d6a07c04c3179c955dc8a",
+    "cad/mc2.kicad_pcb": "3f8c4497140c946b53162c7ee87e7adb0259c2a0f6a31820d07f05b26d73e1e5",
+    "cad/design.json": "efd88fd41038c5d1586547945eaca335ac195f3ba0c937704dcd3381861772eb"
+  },
+  "output_sha256": {
+    "mc2b-assembled-concept.png": "8ac58036161af9c2db02fe5042c0b08425e541ea9bc98a3c78753db2ebef71bb",
+    "mc2b-bare-concept.png": "6705257ef9d480504976858ba5e08231408ca798ade450044eaab744b01492b3"
+  },
+  "prompt_sha256": {
+    "mc2b-assembled-prompt.txt": "209854b0bb3f0548fba81b8838ac91af6a31f714ea117f148448021bb9af8414",
+    "mc2b-correction-prompt.txt": "48eaa9d4285f130a8078a9b1c6620279e9f6e5d7e8eccc36e8df65eb39aa57c4",
+    "mc2b-bare-prompt.txt": "2498a2cc10440706f7e9290ad0dfd935842a50f89681d54b15dae78eed41070c"
+  },
+  "physical_validation": false,
+  "limitations": [
+    "Approximate module internals, pin counts, silkscreen, traces and connector geometry",
+    "Antennas and coax omitted for visibility; required in service",
+    "Native CAD remains authoritative"
+  ]
+}

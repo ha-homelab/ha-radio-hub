@@ -119,7 +119,7 @@ async def tunnel_session(local_reader, local_writer, host, token, remote_port=66
 class HubAPI:
     def __init__(self, host, psk, expected_mac):
         from aioesphomeapi import APIClient
-        self.client = APIClient(host, 6053, noise_psk=psk, expected_name="module-carrier-hub", expected_mac=normalized_mac(expected_mac))
+        self.client = APIClient(host, 6053, noise_psk=psk, expected_name="mc2-classic-hub", expected_mac=normalized_mac(expected_mac))
         self.services, self.states = {}, {}
 
     async def connect(self):

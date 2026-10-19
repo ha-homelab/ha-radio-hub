@@ -276,9 +276,11 @@ class TxSchedulerTest(unittest.TestCase):
         self.assertFalse(tx["eot_level"])
         self.assertTrue(tx["pin"]["mode"]["open_drain"])
         self.assertTrue(tx["pin"]["mode"]["pullup"])
-        self.assertEqual(tx["pin"]["number"], "GPIO4")
+        self.assertEqual(tx["pin"]["number"], "${rf_tx_pin}")
+        self.assertEqual(self.package["substitutions"]["rf_tx_pin"], "GPIO4")
         rx = self.package["remote_receiver"]
-        self.assertEqual(rx["pin"], "GPIO5")
+        self.assertEqual(rx["pin"], "${rf_rx_pin}")
+        self.assertEqual(self.package["substitutions"]["rf_rx_pin"], "GPIO5")
         self.assertTrue(rx["filter"].endswith("us"))
         self.assertLessEqual(int(rx["filter"][:-2]), 170)
         event, = self.package["event"]

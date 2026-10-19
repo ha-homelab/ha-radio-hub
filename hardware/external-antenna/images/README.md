@@ -1,6 +1,34 @@
-# MC2 appearance concepts
+# MC2-B appearance concepts
 
-These two images were made on 18 October 2026 with the built-in `image_gen`
+The current README uses two new **AI-generated appearance concepts**, made on
+18 October 2026 with the built-in `image_gen` tool:
+
+- [Assembled MC2-B](mc2b-assembled-concept.png): classic WROVER-IE host at left,
+  TinyC6 upper middle, XIAO MG24 upper right, WIZ850io lower right.
+- [Bare MC2-B](mc2b-bare-concept.png): illustrative board finish with no parts.
+
+No antennas or pigtails are attached in the assembled view, as requested, so
+the board remains visible. All three radios require their respective antennas
+for operation. The host uses one Micro-B USB-UART service connector.
+
+These are not photographs, manufacturing artwork or exact module models.
+Pin/hole counts, small components, shield shapes, copper and text are approximate.
+Use the [native CAD](../cad/README.md), [assembly drawing](../cad/assembly-top.svg)
+and [current shopping guide](../../../docs/mc2-shopping.md) for construction.
+The first generated image had an incorrect host antenna extension and power
+connector; a corrective pass removed those features before publication.
+
+- [Initial assembled prompt](mc2b-assembled-prompt.txt)
+- [Corrective prompt](mc2b-correction-prompt.txt)
+- [Bare-board prompt](mc2b-bare-prompt.txt)
+- [Reference and output hashes](mc2b-provenance.json)
+
+## Historical MC2-A appearance concepts
+
+These originals and their provenance refer to the
+[MC2-A snapshot](https://github.com/ha-homelab/ha-radio-hub/tree/fee52fb67c3286e3f22925347ef7a35a720c2a55).
+
+These older S3 images were made on 18 October 2026 with the built-in `image_gen`
 tool for the project README. They are **AI-generated concept illustrations**,
 not photographs, deterministic CAD renders, fabrication artwork or evidence of
 physical assembly. Green solder mask and gold pad finish are presentation choices.
@@ -33,4 +61,5 @@ antennas rather than presenting that routing as correct.
 - [Bare-carrier prompt](bare-prompt.txt)
 - [Source and output hashes](provenance.json)
 
-The original CAD and firmware are unchanged by these illustrations.
+These images belong to the historical MC2-A S3 revision and must not be used
+to identify the current MC2-B parts.

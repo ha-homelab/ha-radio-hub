@@ -1,11 +1,11 @@
-# HA Radio Hub — MC2
+# HA Radio Hub — MC2-B
 
 **Three independent external antennas: Zigbee, Thread and Bluetooth.** MC2 keeps
-a local ESP32-S3 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
+a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
 Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
 100 × 100 mm carrier holds finished modules with direct-solder male headers.
 
-![MC2 assembled carrier — AI concept illustration](hardware/external-antenna/images/mc2-assembled-concept.png)
+![MC2-B assembled carrier — AI concept illustration](hardware/external-antenna/images/mc2b-assembled-concept.png)
 
 *AI-generated appearance concept, not a photograph. Module shapes, pin counts,
 markings and copper are illustrative; use the [actual assembly drawing](hardware/external-antenna/cad/assembly-top.svg)
@@ -27,11 +27,13 @@ Start with the [assembly guide](docs/external-antennas.md),
 
 **Buying parts?** The [MC2 shopping guide](docs/mc2-shopping.md) gives quantities,
 exact order codes, inspected AliExpress variants and outstanding availability
-checks. TinyC6 supply is unresolved; secure the original **TC6-U-01** before
+checks. MC2-B replaces the S3 host; it needs its own carrier and first flash,
+not an S3 OTA update. TinyC6 supply is unresolved; secure the original **TC6-U-01** before
 ordering a batch of carriers.
 
-- **ESP32-S3-DevKitC-1U-N8R8:** factory external antenna, 8 MB flash and 8 MB
-  octal PSRAM; Ethernet host and active BLE proxy.
+- **Espressif ESP32-DevKitC-VIE / ESP32-WROVER-IE:** previous-generation host
+  with a factory external antenna connector, 8 MB flash and 8 MB physical PSRAM
+  (4 MB directly addressable, quad 40 MHz); Ethernet host and active BLE 4.2 proxy.
 - **Unexpected Maker TinyC6-U-01:** external U.FL Thread RCP, 8 MB flash,
   native USB and ordinary header-accessible recovery pins. Its two loose headers
   require through-hole soldering. Availability was backorder/on-request when
@@ -42,6 +44,11 @@ ordering a batch of carriers.
 - **Three TE ANT-2.4-LCW-SMA antennas and three Amphenol 095-902-545-150 cables:**
   separate 50 Ω paths, standard SMA bulkheads, no combiner.
 
+Classic ESP32 retains the configured services and three active BLE connections,
+but does not support BLE 5 extended advertising or Coded PHY. Lower power
+consumption has not been established. See the [host migration](docs/classic-esp32-migration.md)
+for the cost comparison, memory limits and compatibility checks.
+
 The existing WK2132 bridge, ZAC93, band-matched CC1101/433.92 MHz antenna, radar,
 environment sensor and power modules remain off-board. The
 [carrier BOM](hardware/external-antenna/cad/BOM.csv) and
@@ -50,7 +57,7 @@ neither is a complete single-box shopping list on its own.
 
 ![MC2 carrier, all components on the front](hardware/external-antenna/cad/assembly-top.svg)
 
-![MC2 bare carrier — AI surface-finish concept](hardware/external-antenna/images/mc2-bare-concept.png)
+![MC2-B bare carrier — AI surface-finish concept](hardware/external-antenna/images/mc2b-bare-concept.png)
 
 *Bare-board appearance concept only. AI-generated traces, pads and labels are
 not fabrication data. [Image provenance and prompts](hardware/external-antenna/images/README.md).*
@@ -73,9 +80,9 @@ removed without moving their coax. The 65 mm adjacent pitch and 150 mm cable
 routes require a physical fit and coexistence test. Other modules need separate
 accommodation. CAD renderings are not photographs of manufactured hardware.
 
-MC1 is retained as [engineering history](docs/design-history.md) and a regression
-target. Its Nano/H2 firmware, 16 MB partition table and compact enclosure do not
-fit MC2. The [design registry](hardware/designs.json) identifies the one active
+MC2-A (S3) is preserved in a Git snapshot, and MC1 remains a regression target;
+see the [engineering history](docs/design-history.md). MC1's Nano/H2 firmware,
+16 MB partition table and compact enclosure do not fit MC2. The [design registry](hardware/designs.json) identifies the one active
 revision. Do not mix images, pin maps or prices between revisions.
 
 ## Project information

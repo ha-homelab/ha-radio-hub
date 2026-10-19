@@ -1,388 +1,340 @@
 {
   "schema_version": 1,
-  "revision": "MC2-A",
+  "revision": "MC2-B",
   "connectors": [
     {
       "ref": "U1",
-      "model": "ESP32-S3-DevKitC-1U-N8R8",
-      "footprint": "MC2:S3_DevKitC1U",
+      "model": "ESP32-DevKitC-VIE",
+      "footprint": "MC2:ESP32_DevKitC_VIE",
       "pins": {
-        "J1.1": null,
-        "J1.2": null,
-        "J1.3": null,
-        "J1.4": "RF_GDO0",
-        "J1.5": "RF_GDO2",
-        "J1.6": "RF_CS",
-        "J1.7": "ZB_CTS",
-        "J1.8": "THREAD_RX",
-        "J1.9": "THREAD_TX",
-        "J1.10": "ZB_RX",
-        "J1.11": "ZB_TX",
-        "J1.12": "RADAR_RX",
-        "J1.13": null,
-        "J1.14": null,
-        "J1.15": "ETH_RESET",
-        "J1.16": "ETH_INT",
-        "J1.17": "SPI_MOSI",
-        "J1.18": "SPI_MISO",
-        "J1.19": "SPI_SCK",
-        "J1.20": "ETH_CS",
-        "J1.21": "+5V_S3",
-        "J1.22": "GND",
+        "J2.1": null,
+        "J2.2": null,
+        "J2.3": "THREAD_TX",
+        "J2.4": "ZB_TX",
+        "J2.5": "ETH_INT",
+        "J2.6": "RF_GDO2",
+        "J2.7": "ZB_RX",
+        "J2.8": "ZB_CTS",
+        "J2.9": "RF_GDO0",
+        "J2.10": "THREAD_RX",
+        "J2.11": "THREAD_EN",
+        "J2.12": "ZB_RTS",
+        "J2.13": "SPI_SCK",
+        "J2.14": "GND",
+        "J2.15": "RF_CS",
+        "J2.16": null,
+        "J2.17": null,
+        "J2.18": null,
+        "J2.19": "+5V_HOST",
         "J3.1": "GND",
-        "J3.2": null,
-        "J3.3": null,
-        "J3.4": "I2C_SDA",
-        "J3.5": "I2C_SCL",
-        "J3.6": null,
-        "J3.7": null,
-        "J3.8": "RADAR_TX",
-        "J3.9": "THREAD_BOOT",
-        "J3.10": null,
+        "J3.2": "RADAR_RX",
+        "J3.3": "I2C_SCL",
+        "J3.4": null,
+        "J3.5": null,
+        "J3.6": "I2C_SDA",
+        "J3.7": "GND",
+        "J3.8": "SPI_MISO",
+        "J3.9": "RADAR_TX",
+        "J3.10": "ETH_CS",
         "J3.11": null,
         "J3.12": null,
-        "J3.13": null,
-        "J3.14": "S3_BOOT_SERVICE",
-        "J3.15": null,
-        "J3.16": null,
-        "J3.17": "THREAD_EN",
-        "J3.18": "ZB_RTS",
-        "J3.19": null,
-        "J3.20": null,
-        "J3.21": "GND",
-        "J3.22": "GND"
+        "J3.13": "ETH_RESET",
+        "J3.14": "HOST_BOOT_SERVICE",
+        "J3.15": "SPI_MOSI",
+        "J3.16": "THREAD_BOOT",
+        "J3.17": null,
+        "J3.18": null,
+        "J3.19": null
       },
       "types": {},
       "fitted": true,
       "side": "front",
       "xy": [
         9.27,
-        13.4
+        20
       ],
       "rotation": 0,
-      "source": "s3",
-      "notes": "Factory male pins; external U.FL RF; 8MB flash/8MB octal PSRAM; 5V via D1; GPIO35-38/43/44/48 unconnected; no bridge modification",
+      "source": "host",
+      "notes": "Factory male pins; WROVER-IE external U.FL; 8MB flash/8MB quad PSRAM; 5V via D1; GPIO0 boot,1/3 USB-UART,6-11 flash,16/17 PSRAM reserved; BLE4.2, no BLE5 extended advertising",
       "body_bounds_local_mm": [
         -1.27,
-        -1.4,
-        24.13,
-        61.34
+        -7.34,
+        26.67,
+        46.99
       ],
       "pad_centers_mm": [
         {
-          "number": "J1.1",
+          "number": "J2.1",
           "net": null,
           "x": 9.27,
-          "y": 13.4,
+          "y": 20.0,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.2",
+          "number": "J2.2",
           "net": null,
           "x": 9.27,
-          "y": 15.94,
+          "y": 22.54,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.3",
-          "net": null,
-          "x": 9.27,
-          "y": 18.48,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.4",
-          "net": "RF_GDO0",
-          "x": 9.27,
-          "y": 21.02,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.5",
-          "net": "RF_GDO2",
-          "x": 9.27,
-          "y": 23.56,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.6",
-          "net": "RF_CS",
-          "x": 9.27,
-          "y": 26.1,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.7",
-          "net": "ZB_CTS",
-          "x": 9.27,
-          "y": 28.64,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.8",
-          "net": "THREAD_RX",
-          "x": 9.27,
-          "y": 31.18,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.9",
+          "number": "J2.3",
           "net": "THREAD_TX",
           "x": 9.27,
-          "y": 33.72,
+          "y": 25.08,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.10",
-          "net": "ZB_RX",
-          "x": 9.27,
-          "y": 36.26,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.11",
+          "number": "J2.4",
           "net": "ZB_TX",
           "x": 9.27,
-          "y": 38.8,
+          "y": 27.62,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.12",
-          "net": "RADAR_RX",
-          "x": 9.27,
-          "y": 41.34,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.13",
-          "net": null,
-          "x": 9.27,
-          "y": 43.88,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.14",
-          "net": null,
-          "x": 9.27,
-          "y": 46.42,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.15",
-          "net": "ETH_RESET",
-          "x": 9.27,
-          "y": 48.96,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.16",
+          "number": "J2.5",
           "net": "ETH_INT",
           "x": 9.27,
-          "y": 51.5,
+          "y": 30.16,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.17",
-          "net": "SPI_MOSI",
+          "number": "J2.6",
+          "net": "RF_GDO2",
           "x": 9.27,
-          "y": 54.04,
+          "y": 32.7,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.18",
-          "net": "SPI_MISO",
+          "number": "J2.7",
+          "net": "ZB_RX",
           "x": 9.27,
-          "y": 56.58,
+          "y": 35.24,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.19",
+          "number": "J2.8",
+          "net": "ZB_CTS",
+          "x": 9.27,
+          "y": 37.78,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.9",
+          "net": "RF_GDO0",
+          "x": 9.27,
+          "y": 40.32,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.10",
+          "net": "THREAD_RX",
+          "x": 9.27,
+          "y": 42.86,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.11",
+          "net": "THREAD_EN",
+          "x": 9.27,
+          "y": 45.4,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.12",
+          "net": "ZB_RTS",
+          "x": 9.27,
+          "y": 47.94,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.13",
           "net": "SPI_SCK",
           "x": 9.27,
-          "y": 59.12,
+          "y": 50.48,
           "drill_mm": 1.1
         },
         {
-          "number": "J1.20",
-          "net": "ETH_CS",
-          "x": 9.27,
-          "y": 61.66,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.21",
-          "net": "+5V_S3",
-          "x": 9.27,
-          "y": 64.2,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J1.22",
+          "number": "J2.14",
           "net": "GND",
           "x": 9.27,
-          "y": 66.74,
+          "y": 53.02,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.15",
+          "net": "RF_CS",
+          "x": 9.27,
+          "y": 55.56,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.16",
+          "net": null,
+          "x": 9.27,
+          "y": 58.1,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.17",
+          "net": null,
+          "x": 9.27,
+          "y": 60.64,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.18",
+          "net": null,
+          "x": 9.27,
+          "y": 63.18,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "J2.19",
+          "net": "+5V_HOST",
+          "x": 9.27,
+          "y": 65.72,
           "drill_mm": 1.1
         },
         {
           "number": "J3.1",
           "net": "GND",
-          "x": 32.13,
-          "y": 13.4,
+          "x": 34.67,
+          "y": 20.0,
           "drill_mm": 1.1
         },
         {
           "number": "J3.2",
-          "net": null,
-          "x": 32.13,
-          "y": 15.94,
+          "net": "RADAR_RX",
+          "x": 34.67,
+          "y": 22.54,
           "drill_mm": 1.1
         },
         {
           "number": "J3.3",
-          "net": null,
-          "x": 32.13,
-          "y": 18.48,
+          "net": "I2C_SCL",
+          "x": 34.67,
+          "y": 25.08,
           "drill_mm": 1.1
         },
         {
           "number": "J3.4",
-          "net": "I2C_SDA",
-          "x": 32.13,
-          "y": 21.02,
+          "net": null,
+          "x": 34.67,
+          "y": 27.62,
           "drill_mm": 1.1
         },
         {
           "number": "J3.5",
-          "net": "I2C_SCL",
-          "x": 32.13,
-          "y": 23.56,
+          "net": null,
+          "x": 34.67,
+          "y": 30.16,
           "drill_mm": 1.1
         },
         {
           "number": "J3.6",
-          "net": null,
-          "x": 32.13,
-          "y": 26.1,
+          "net": "I2C_SDA",
+          "x": 34.67,
+          "y": 32.7,
           "drill_mm": 1.1
         },
         {
           "number": "J3.7",
-          "net": null,
-          "x": 32.13,
-          "y": 28.64,
+          "net": "GND",
+          "x": 34.67,
+          "y": 35.24,
           "drill_mm": 1.1
         },
         {
           "number": "J3.8",
-          "net": "RADAR_TX",
-          "x": 32.13,
-          "y": 31.18,
+          "net": "SPI_MISO",
+          "x": 34.67,
+          "y": 37.78,
           "drill_mm": 1.1
         },
         {
           "number": "J3.9",
-          "net": "THREAD_BOOT",
-          "x": 32.13,
-          "y": 33.72,
+          "net": "RADAR_TX",
+          "x": 34.67,
+          "y": 40.32,
           "drill_mm": 1.1
         },
         {
           "number": "J3.10",
-          "net": null,
-          "x": 32.13,
-          "y": 36.26,
+          "net": "ETH_CS",
+          "x": 34.67,
+          "y": 42.86,
           "drill_mm": 1.1
         },
         {
           "number": "J3.11",
           "net": null,
-          "x": 32.13,
-          "y": 38.8,
+          "x": 34.67,
+          "y": 45.4,
           "drill_mm": 1.1
         },
         {
           "number": "J3.12",
           "net": null,
-          "x": 32.13,
-          "y": 41.34,
+          "x": 34.67,
+          "y": 47.94,
           "drill_mm": 1.1
         },
         {
           "number": "J3.13",
-          "net": null,
-          "x": 32.13,
-          "y": 43.88,
+          "net": "ETH_RESET",
+          "x": 34.67,
+          "y": 50.48,
           "drill_mm": 1.1
         },
         {
           "number": "J3.14",
-          "net": "S3_BOOT_SERVICE",
-          "x": 32.13,
-          "y": 46.42,
+          "net": "HOST_BOOT_SERVICE",
+          "x": 34.67,
+          "y": 53.02,
           "drill_mm": 1.1
         },
         {
           "number": "J3.15",
-          "net": null,
-          "x": 32.13,
-          "y": 48.96,
+          "net": "SPI_MOSI",
+          "x": 34.67,
+          "y": 55.56,
           "drill_mm": 1.1
         },
         {
           "number": "J3.16",
-          "net": null,
-          "x": 32.13,
-          "y": 51.5,
+          "net": "THREAD_BOOT",
+          "x": 34.67,
+          "y": 58.1,
           "drill_mm": 1.1
         },
         {
           "number": "J3.17",
-          "net": "THREAD_EN",
-          "x": 32.13,
-          "y": 54.04,
+          "net": null,
+          "x": 34.67,
+          "y": 60.64,
           "drill_mm": 1.1
         },
         {
           "number": "J3.18",
-          "net": "ZB_RTS",
-          "x": 32.13,
-          "y": 56.58,
+          "net": null,
+          "x": 34.67,
+          "y": 63.18,
           "drill_mm": 1.1
         },
         {
           "number": "J3.19",
           "net": null,
-          "x": 32.13,
-          "y": 59.12,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J3.20",
-          "net": null,
-          "x": 32.13,
-          "y": 61.66,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J3.21",
-          "net": "GND",
-          "x": 32.13,
-          "y": 64.2,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "J3.22",
-          "net": "GND",
-          "x": 32.13,
-          "y": 66.74,
+          "x": 34.67,
+          "y": 65.72,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
         8.0,
-        12.0,
-        33.4,
-        74.74
+        12.66,
+        35.94,
+        66.99
       ]
     },
     {
@@ -1320,10 +1272,10 @@
     },
     {
       "ref": "J9",
-      "model": "S3 BOOT unpopulated service pads",
+      "model": "HOST BOOT unpopulated service pads",
       "footprint": "MC2:PinHeader_1x02_P2.54mm_Vertical",
       "pins": {
-        "1": "S3_BOOT_SERVICE",
+        "1": "HOST_BOOT_SERVICE",
         "2": "GND"
       },
       "types": {},
@@ -1335,12 +1287,12 @@
       ],
       "rotation": 90,
       "source": "connector",
-      "notes": "Normally OPEN; short GPIO0 to GND while pressing S3 RESET for nativeUSB ROM recovery.",
+      "notes": "Normally OPEN; short GPIO0 to GND while pressing host RESET for USB-UART ROM recovery.",
       "body_bounds_local_mm": null,
       "pad_centers_mm": [
         {
           "number": "1",
-          "net": "S3_BOOT_SERVICE",
+          "net": "HOST_BOOT_SERVICE",
           "x": 90.0,
           "y": 92.0,
           "drill_mm": 1.0

@@ -3,6 +3,7 @@
 from pathlib import Path
 import argparse
 import hashlib
+import html
 import importlib.util
 import json
 import math
@@ -33,7 +34,9 @@ def source(p):
     parts = cad.read_board(board)
     bb = cad.board_bounds(board)
     width, length = bb[2] - bb[0], bb[3] - bb[1]
-    holes = {ref: part['at'][:2] for ref, part in parts.items() if ref.startswith('H')}
+    # Native KiCad footprint order is not geometry; keep the CSG union order stable.
+    holes = dict(sorted(((ref, part['at'][:2]) for ref, part in parts.items()
+                         if ref.startswith('H')), key=lambda item: tuple(item[1]), reverse=True))
     assert len(holes) >= 3, 'MC2 requires a native three-or-more-point PCB mounting pattern'
     return dict(width=width, length=length, holes=holes, parts=parts, design=design,
                 hashes={board.name: sha(board), 'design.json': sha(directory / 'design.json')})
@@ -78,6 +81,16 @@ def geometry(s, p):
     bx,by=q['board_origin_xy']; seat=q['board_seat_z']
     assert bx>=t+8 and by>=t+8 and bx+s['width']<=W-t-8 and by+s['length']<=H-t-8, 'Native PCB exceeds trial shell clearance'
     assert 0 < seat-f and seat+q['board_thickness'] < Z-10
+    # These are the CAD's component-side XY reservations, not measured heights.
+    # Keep the visible host envelope tied to the selected electrical revision.
+    modules=[]
+    for part in s['design']['parts']:
+        if not part['ref'].startswith('U') or not part['body_bounds_global_mm']:
+            continue
+        x0,y0,x1,y1=part['body_bounds_global_mm']
+        bounds=[bx+x0,by+y0,bx+x1,by+y1]
+        assert t < bounds[0] < bounds[2] < W-t and t < bounds[1] < bounds[3] < H-t, 'Native module XY reservation exceeds shell interior'
+        modules.append({'ref':part['ref'],'model':part['model'],'bounds_case_mm':bounds})
     pcb_holes={ref:(bx+xy[0],by+xy[1]) for ref,xy in s['holes'].items()}
     corridor=s['design']['mechanics']['rj45']['service_corridor_global_mm']
     rearcenter=bx+(corridor[0]+corridor[2])/2
@@ -144,11 +157,11 @@ def geometry(s, p):
     assert min(distances)>=r['minimum_center_spacing_trial'], 'Ports do not meet initial mechanical spacing target'
     return dict(nodes={'base':base,'cover':lid,'ceiling-spacing-frame':frame,'cable-bar':clamp,'bulkhead-fit-coupon':coupon},
                 assembled={'base':base,'cover':lid.move((0,0,Z)),'ceiling-spacing-frame':frame.move((0,0,-spacing)), 'cable-bar':clamp.move((rearcenter-23,H-18,f))},
-                pcb_holes=pcb_holes,ceiling=ceiling,distances=distances,routes=routes,rearcenter=rearcenter,rear_bay=[rearcenter-rearwidth/2,rearcenter+rearwidth/2])
+                pcb_holes=pcb_holes,ceiling=ceiling,distances=distances,routes=routes,rearcenter=rearcenter,rear_bay=[rearcenter-rearwidth/2,rearcenter+rearwidth/2],modules=modules)
 
 
 def svg(s,p,g):
-    q=p['case'];r=p['rf'];sc=3.5;ox=65;oy=220
+    q=p['case'];r=p['rf'];sc=3.5;ox=65;oy=240
     a=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1040" viewBox="0 0 1400 1040">',
        '<style>text{font-family:Arial,sans-serif;fill:#e2edf3}.h{font-size:27px;font-weight:bold}.s{font-size:18px}.n{font-size:15px}.warning{fill:#ffc670}</style>',
        '<rect width="1400" height="1040" fill="#0d1b29"/>',
@@ -158,7 +171,13 @@ def svg(s,p,g):
        f'<rect x="{ox}" y="{oy}" width="{q["width"]*sc}" height="{q["length"]*sc}" rx="8" fill="#284556" stroke="#a5c8d6"/>']
     bx,by=q['board_origin_xy']; x=ox+bx*sc;y=oy+by*sc
     a.append(f'<rect x="{x}" y="{y}" width="{s["width"]*sc}" height="{s["length"]*sc}" fill="#17483f" stroke="#78d8af"/>')
-    a.append(f'<text x="{x+10}" y="{y+30}" class="s">MC2 carrier {s["width"]:g} × {s["length"]:g} mm</text>')
+    a.append(f'<text x="{x}" y="{y-12}" class="s">MC2 carrier {s["width"]:g} × {s["length"]:g} mm · native module XY</text>')
+    for module in g['modules']:
+        x0,y0,x1,y1=module['bounds_case_mm']
+        a.append(f'<rect x="{ox+x0*sc}" y="{oy+y0*sc}" width="{(x1-x0)*sc}" height="{(y1-y0)*sc}" fill="#223749" stroke="#9ab9cb"/>')
+        a.append(f'<text x="{ox+x0*sc+5}" y="{oy+y0*sc+18}" class="n">{html.escape(module["ref"])}</text>')
+    host=next(module['model'] for module in g['modules'] if module['ref']=='U1')
+    a.append(f'<text x="40" y="150" class="s">Host U1: {html.escape(host)} · component heights remain unmeasured.</text>')
     for ref,(hx,hy) in g['pcb_holes'].items():
         a.append(f'<circle cx="{ox+hx*sc}" cy="{oy+hy*sc}" r="9" fill="#a2cabd"/><text x="{ox+hx*sc+12}" y="{oy+hy*sc+4}" class="n">{ref}</text>')
     for port,col in zip(r['ports'],['#d8a0ff','#7ac1ff','#73dfb4']):
@@ -261,7 +280,7 @@ def generate(output,p):
             'generator_sha256':sha(Path(__file__)),'test_source_sha256':sha(HERE/'test_build.py'),'parameters_sha256':sha(HERE/'parameters.json'),
             'portable_checker_sha256':sha(HERE.parent/'portable_check.py'),'dependency_pins_sha256':sha(ROOT/'mechanical/requirements.txt'),
             'outer_dimensions_mm':[p['case']['width'],p['case']['length'],p['case']['height']+p['case']['lid']],
-            'port_center_distances_mm':g['distances'],'rf_route_guides':g['routes'],'rear_bay_x_mm':g['rear_bay'],'native_pcb_holes':s['holes'],'physical_tests_performed':False,'parts':{},'scope':p['scope']}
+            'port_center_distances_mm':g['distances'],'rf_route_guides':g['routes'],'module_xy_reservations':g['modules'],'native_layout_revision':s['design']['revision'],'rear_bay_x_mm':g['rear_bay'],'native_pcb_holes':s['holes'],'physical_tests_performed':False,'parts':{},'scope':p['scope']}
     for name,node in g['nodes'].items():
         mesh=c.mesh_of(node);path=output/(name+'.stl');path.write_text(c.trimesh.exchange.stl.export_stl_ascii(mesh));actual=c.trimesh.load_mesh(path,process=True)
         assert actual.is_watertight and actual.is_winding_consistent and actual.volume>0 and len(actual.split())==1

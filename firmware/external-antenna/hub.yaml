@@ -1,38 +1,44 @@
-# MC2: ESP32-S3-DevKitC-1U-N8R8, 8 MB flash / 8 MB PSRAM; fixed external RF connector.
+# MC2-B: ESP32-DevKitC-VIE / WROVER-IE, 8 MB flash / 8 MB quad PSRAM.
+# ECO V3+; at most 4 MB PSRAM is directly mapped. New carrier and factory flash required.
 substitutions:
   build_jobs: "4"
   bme680_address: "0x77"
   rf_airbridge_path: ..
   rf_source: module_carrier
-  rf_cs_pin: GPIO6
+  rf_cs_pin: GPIO13
+  rf_rx_pin: GPIO35
+  rf_tx_pin: GPIO25
   rf_received_topic: build-only/rf/received
   rf_raw_topic: build-only/rf/raw
   rf_transmit_result_topic: build-only/rf/result
 
 esphome:
-  name: module-carrier-hub
+  name: mc2-classic-hub
   min_version: 2026.9.1
   compile_process_limit: ${build_jobs}
 
 esp32:
-  board: esp32-s3-devkitc-1
+  board: esp32dev
   flash_size: 8MB
   cpu_frequency: 160MHz
   framework:
     type: esp-idf
     version: 5.5.5
+    sdkconfig_options:
+      CONFIG_ESP32_REV_MIN_3: y
+      CONFIG_ESP_CONSOLE_NONE: y
 
 psram:
-  mode: octal
-  speed: 80MHz
+  mode: quad
+  speed: 40MHz
   ignore_not_found: false
 
 ethernet:
   type: W5500
   spi_id: cc1101_spi
-  cs_pin: GPIO14
-  interrupt_pin: GPIO10
-  reset_pin: GPIO9
+  cs_pin: GPIO5
+  interrupt_pin: GPIO34
+  reset_pin: GPIO4
   clock_speed: 10MHz
 
 network:
@@ -41,7 +47,7 @@ network:
 
 logger:
   level: INFO
-  hardware_uart: USB_SERIAL_JTAG
+  hardware_uart: UART0
   baud_rate: 0
 
 api:
@@ -73,10 +79,10 @@ low_power_ethernet:
 low_power_otbr:
   id: thread_border_router
   server_component_path: ../low-power/generated/esp_ot_br_server
-  tx_pin: GPIO15
-  rx_pin: GPIO16
-  reset_pin: GPIO47
-  boot_pin: GPIO39
+  tx_pin: GPIO26
+  rx_pin: GPIO36
+  reset_pin: GPIO27
+  boot_pin: GPIO15
   rest_port: 8081
 
 esp32_ble_tracker:
@@ -90,8 +96,8 @@ bluetooth_proxy:
 
 uart:
   - id: radar_uart
-    tx_pin: GPIO8
-    rx_pin: GPIO40
+    tx_pin: GPIO23
+    rx_pin: GPIO18
     baud_rate: 256000
     rx_buffer_size: 1024
 
@@ -101,16 +107,16 @@ ld2450:
 
 i2c:
   id: expansion_bus
-  sda: GPIO1
-  scl: GPIO2
+  sda: GPIO21
+  scl: GPIO22
   frequency: 400kHz
 
 spi:
   id: cc1101_spi
   interface: spi2
-  clk_pin: GPIO13
-  mosi_pin: GPIO11
-  miso_pin: GPIO12
+  clk_pin: GPIO12
+  mosi_pin: GPIO2
+  miso_pin: GPIO19
 
 packages:
   rf: !include ../packages/rf-airbridge.yaml
@@ -128,10 +134,10 @@ zwave_proxy:
   id: zwave_radio
   uart_id: uart_zwave
 
-# Ember EZSP/ASH four-wire 115200 8N1. MG24 owns Zigbee; S3 transports bytes.
+# Ember EZSP/ASH four-wire 115200 8N1. MG24 owns Zigbee; the classic ESP32 transports bytes.
 zigbee_tcp:
-  tx_pin: GPIO17
-  rx_pin: GPIO18
-  rts_pin: GPIO7
-  cts_pin: GPIO21
+  tx_pin: GPIO32
+  rx_pin: GPIO39
+  rts_pin: GPIO33
+  cts_pin: GPIO14
   port: 6638

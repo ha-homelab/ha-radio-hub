@@ -36,18 +36,18 @@ def final_validate(config):
         raise cv.Invalid("network.enable_ipv6 must be true for the Thread backbone")
     uarts = full.get("uart", [])
     radar_pins = [(u.get("tx_pin", {}).get("number"), u.get("rx_pin", {}).get("number")) for u in uarts]
-    if radar_pins not in [[(39, 40)], [(8, 38)], [(8, 40)]]:
-        raise cv.Invalid("Only LD2450 on legacy GPIO39/40, MC1 GPIO8/38 or MC2 GPIO8/40 may use ESPHome native UART; UART1/2 belong to Zigbee/Thread RCP")
+    if radar_pins not in [[(39, 40)], [(8, 38)], [(8, 40)], [(23, 18)]]:
+        raise cv.Invalid("Only LD2450 on legacy GPIO39/40, MC1 GPIO8/38 MC2-A GPIO8/40 or MC2-B GPIO23/18 may use ESPHome native UART; UART1/2 belong to Zigbee/Thread RCP")
     if full.get("logger", {}).get("baud_rate", 0) != 0:
-        raise cv.Invalid("UART logging must be disabled; use the native USB console")
+        raise cv.Invalid("UART logging must be disabled; use network logs (native USB is only available on S3)")
     return config
 
 FINAL_VALIDATE_SCHEMA = final_validate
 
 
 async def to_code(config):
-    if esp32.get_esp32_variant() != esp32.VARIANT_ESP32S3:
-        raise cv.Invalid("This integration is tested only with ESP32-S3")
+    if esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32S3, esp32.VARIANT_ESP32):
+        raise cv.Invalid("This integration supports only the pinned ESP32-S3 and classic ESP32 profiles")
     server = Path(CORE.relative_config_path(config["server_component_path"])).resolve()
     if not (server / "CMakeLists.txt").is_file():
         raise cv.Invalid("Run low-power/prepare.py to prepare the pinned REST component")

@@ -1,14 +1,14 @@
 {
-  "revision": "MC2-external-antenna",
+  "revision": "MC2-B-external-antenna",
   "status": "printable_engineering_prototype_not_fit_qualified",
   "units": "mm",
   "native_source_sha256": {
-    "mc2.kicad_pcb": "535d78dddde5b69081fe6415c88d897618dc1ff7d98239d311c9ade48afc00c3",
-    "design.json": "4effdb41cc75bd4e7dfd41a3657338989333acd063eb9a40606264c78f2e99ce"
+    "mc2.kicad_pcb": "3f8c4497140c946b53162c7ee87e7adb0259c2a0f6a31820d07f05b26d73e1e5",
+    "design.json": "efd88fd41038c5d1586547945eaca335ac195f3ba0c937704dcd3381861772eb"
   },
-  "generator_sha256": "c27b6a7179f278fd1e4e40fc5f51f0762546d6d40afb39340666b6cace49ffde",
-  "test_source_sha256": "bd90d9e15c6f34f59b82c3633dc99f8ec64c5c5cd727530c1ea07009d0cbb247",
-  "parameters_sha256": "bce9e975f2d37b708c5b8dfa75b236ebbca0a7a7823eb857c13ceb407503349a",
+  "generator_sha256": "1c69c7780fffedf18d5359725e905efd014120c6aab389189ed30c397b0de351",
+  "test_source_sha256": "2c666e2db8c29593ce184f993d224deac3c93edd91e1cfd0790dafbc6fb5b04a",
+  "parameters_sha256": "64af4eadaa142c3d3ae4460ba45023431c1c91636045768e131427c3521ef2ae",
   "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
   "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
   "outer_dimensions_mm": [
@@ -95,6 +95,49 @@
       "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
     }
   ],
+  "module_xy_reservations": [
+    {
+      "ref": "U1",
+      "model": "ESP32-DevKitC-VIE",
+      "bounds_case_mm": [
+        43.0,
+        52.66,
+        70.94,
+        106.99
+      ]
+    },
+    {
+      "ref": "U2",
+      "model": "Unexpected Maker TinyC6-U-01",
+      "bounds_case_mm": [
+        80.0,
+        52.0,
+        97.78,
+        86.6774
+      ]
+    },
+    {
+      "ref": "U3",
+      "model": "Seeed XIAO MG24 pre-soldered 102010690",
+      "bounds_case_mm": [
+        110.0,
+        52.0,
+        127.78,
+        72.955
+      ]
+    },
+    {
+      "ref": "U4",
+      "model": "WIZ850io finished module",
+      "bounds_case_mm": [
+        94.0,
+        114.3,
+        117.0,
+        139.3
+      ]
+    }
+  ],
+  "native_layout_revision": "MC2-B",
   "rear_bay_x_mm": [
     89.0,
     124.0
@@ -224,7 +267,7 @@
     "ceiling-spacing-frame.stl": "5b61ee1e0060a849e02027fa69d0abda0de4b3772412e38de213b728123270d7",
     "cover.scad": "5d2ed6f501225e7b32b2e566b73828e239441e4325d5f6e2d942bfb3650aba87",
     "cover.stl": "90d1e9526143ef726e51ad973991be4e263ec203deac669a101ff98202ea022f",
-    "enclosure.svg": "1502fb71548186c2115d5c5a12cf3c650a56f49ed5026dced9f9f44465b47465",
+    "enclosure.svg": "755fe146c02becf1366e9c5c0abe887705148c23b0bb1eab36d914e0bb5a3d9e",
     "index.html": "b67f2e679c273c9568a48e1ac34bef27c0a5b17feb4b5fcda689df8cca30fabe",
     "print-parts.png": "4a14e1fad73b6649ab77a5aa365e86b4e6ffda7a716fc1073d8c40632cb21050"
   }

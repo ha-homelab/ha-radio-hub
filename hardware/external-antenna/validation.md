@@ -1,4 +1,4 @@
-# MC2 verification record
+# MC2-B verification record
 
 Review date: 18 October 2026. This record describes **digital verification of an
 engineering prototype**. No assembled MC2 board was powered, flashed or connected
@@ -13,23 +13,23 @@ compares the generated connector/BOM ledgers and native copper/pad topology afte
 regenerating from source and the frozen routing session. Source hashes bind the
 record to the tested revision; object UUIDs are not treated as geometry.
 
-Independent review checked the S3's 44 physical header positions and the original
+Independent review checked the ESP32-DevKitC-VIE's 38 physical header positions and the original
 TinyC6's 23 positions against manufacturer drawings. The C6 review found a missing
 GPIO8 boot strap: **R3, 10 kΩ, now connects GPIO8 to the C6's own local 3.3 V rail**.
 That rail is separate from peripheral 3.3 V. Loose-module programming requires
 the temporary equivalent pull-up before carrier assembly. The XIAO RF connector's
 estimated cable endpoint was also checked against the actual connector location;
-these estimates still require measurement on delivered modules.
+these estimates still require measurement on delivered modules. MC2-B adds R4/R5, 10 kΩ pull-downs on GPIO12/SCK and GPIO2/MOSI. The former preserves 3.3 V VDD_SDIO; the latter permits serial recovery. WIZ850io v1.1 has no pull-ups on those two input nets. Actual CC1101 modules and warm/cold boot behavior still require inspection and testing.
 
 ## Firmware
 
 Actual build reports are retained for:
 
-- [MC2 S3](../../firmware/external-antenna/build-evidence.json): all 21 application
-  GPIO, shared SPI, three active BLE connections, C6 update API and memory layout.
-  The 1,731,456-byte application fits both 3,932,160-byte OTA slots, leaving
-  2,200,704 bytes per slot. Static RAM allocation is 163,795 bytes; this is not a
-  measurement of runtime free heap or simultaneous-load peaks.
+- [MC2-B ESP32](../../firmware/external-antenna/build-evidence.json): all 21 application
+  GPIO, shared SPI, three legacy BLE4.2 connections, C6 update API and memory layout.
+  The report records the actual linked application and partition sizes. Static
+  RAM allocation is not a measurement of runtime free heap or simultaneous-load peaks.
+  BLE5 extended advertisements and Coded PHY are not supported by this older SoC.
 - [C6 RCP](../../firmware/external-antenna/c6-build-evidence.json): 235,456-byte
   application, ESP-IDF 5.5.5, 8 MB flash, ROM-compatible RX17/TX16 and required
   GPIO8 high/BOOT9 low entry contract.
