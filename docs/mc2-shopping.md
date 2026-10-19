@@ -1,4 +1,4 @@
-# MC2: exact radio and antenna shopping list
+# MC2-B: exact radio and antenna shopping list
 
 Checked **18 October 2026** for one MC2 hub. This is the radio/antenna purchase
 list, not the complete hub BOM. The [carrier BOM](../hardware/external-antenna/cad/BOM.csv),
@@ -9,18 +9,24 @@ discount eligibility, tax, delivery and stock can change.
 
 ## The two ESP boards and the Zigbee board
 
-1. **1 × Espressif ESP32-S3-DevKitC-1U-N8R8**, complete development board.
-   The `1U` selects the external antenna module; `N8R8` means 8 MB flash and
-   8 MB octal PSRAM. Buy the full board with two 22-pin rows, not a loose
-   ESP32-S3-WROOM module or a smaller generic ESP32 board. This runs the
-   Ethernet host, Bluetooth proxy and Thread Border Router.
-   [AliExpress — ESPRESSIF Official Store](https://www.aliexpress.com/item/3256803793464226.html):
-   the live listing was inspected and **Color: S3-DevKitC-1U-N8R8** selected.
-   It displayed **$15.20**, a new-shopper offer with **$22.00** crossed out,
-   and **$5.93** shipping; do not assume repeat orders receive that offer.
-   This is the AliExpress listing linked by
-   [Espressif's own product catalog](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview).
-   [DigiKey exact-part fallback](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-DEVKITC-1U-N8R8/16162636).
+1. **1 × Espressif ESP32-DevKitC-VIE**, complete development board with
+   **ESP32-WROVER-IE**, male headers, 8 MB flash and 8 MB physical PSRAM.
+   The original ESP32 maps 4 MB of that PSRAM for capability-based allocation; this
+   project uses quad PSRAM at 40 MHz. The **IE** module has the factory external
+   antenna connector. Buy the 38-pin board (two 19-pin rows), not a loose module,
+   WROOM board, onboard-antenna VE or an S3 board. It runs Ethernet, the active
+   BLE 4.2 proxy and Thread Border Router.
+   [Espressif's exact ordering table](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html#ordering-information)
+   confirms the memory and antenna variant.
+   [Mouser exact-part listing](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D)
+   was indexed at **$9.48 for one** on 18 October 2026. Its live page blocked
+   automated rechecking, so confirm the current offer, stock and delivery at
+   checkout. No exact AliExpress VIE variant has been qualified for MC2-B.
+   The previous S3 offer was $15.20 promotional / $22.00 crossed-out price,
+   before $5.93 shipping: the observed board-only reduction is $5.72 (37.6%)
+   against that promotional price, **not a delivered-cost quote**.
+   This purchase requires the **MC2-B** carrier and initial USB-UART flash;
+   it is not a drop-in replacement on the older MC2-A PCB.
 
 2. **1 × Unexpected Maker TinyC6 with fixed U.FL, order code TC6-U-01**.
    Project documents call this **TinyC6-U-01**. It is the original board with

@@ -7,9 +7,11 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("mc2_update", ROOT / "updates/update.py")
@@ -175,6 +177,14 @@ class UpdateTunnelTests(unittest.IsolatedAsyncioTestCase):
 
 
 class HubConnectionTests(unittest.IsolatedAsyncioTestCase):
+    def test_client_binds_to_mc2b_identity_and_expected_mac(self):
+        client = Mock()
+        with patch.dict(sys.modules, {"aioesphomeapi": SimpleNamespace(APIClient=client)}):
+            update.HubAPI("hub.invalid", "test-key", "AA:BB:CC:DD:EE:FF")
+        client.assert_called_once_with("hub.invalid", 6053, noise_psk="test-key",
+                                      expected_name="mc2-classic-hub", expected_mac="aabbccddeeff")
+        self.assertIn("name: mc2-classic-hub", (ROOT / "hub.yaml").read_text())
+
     async def test_nonpositive_attempts_are_rejected_without_connecting(self):
         with patch.object(update, "HubAPI") as factory:
             for attempts in (0, -1):

@@ -328,7 +328,7 @@
       },
       {
         "netclass": "Power",
-        "pattern": "/+5V_S3"
+        "pattern": "/+5V_HOST"
       },
       {
         "netclass": "Power",

@@ -23,6 +23,26 @@ class MC2Enclosure(unittest.TestCase):
         for ref,xy in self.s['holes'].items():
             self.assertEqual(tuple(v+a for v,a in zip(xy,self.p['case']['board_origin_xy'])),self.g['pcb_holes'][ref])
 
+    def test_native_module_reservations_follow_current_host(self):
+        bx,by=self.p['case']['board_origin_xy']
+        source={part['ref']:part for part in self.s['design']['parts']}
+        self.assertEqual({part['ref'] for part in self.g['modules']},{'U1','U2','U3','U4'})
+        for module in self.g['modules']:
+            part=source[module['ref']]
+            self.assertEqual(module['model'],part['model'])
+            x0,y0,x1,y1=part['body_bounds_global_mm']
+            self.assertEqual(module['bounds_case_mm'],[bx+x0,by+y0,bx+x1,by+y1])
+        bad=copy.deepcopy(self.s)
+        next(part for part in bad['design']['parts'] if part['ref']=='U1')['body_bounds_global_mm'][0]=-100
+        with self.assertRaisesRegex(AssertionError,'module XY reservation'):
+            b.geometry(bad,self.p)
+
+    def test_rf_endpoints_follow_native_connectors(self):
+        bx,by=self.p['case']['board_origin_xy']
+        for route in self.g['routes']:
+            x,y=self.s['design']['mechanics']['rf_ports'][route['module_ref']]['estimated_xy_mm']
+            self.assertEqual(route['points_mm'][-1],[bx+x,by+y,self.p['rf']['module_connector_z_trial']])
+
     def test_three_labeled_independent_ports(self):
         ports=self.p['rf']['ports']
         self.assertEqual({p['label'] for p in ports},{'ZIGBEE','THREAD','BLE'})

@@ -1,18 +1,19 @@
 # Current MC2 documentation
 
-Updated 18 October 2026. **MC2-A** is the active 100 × 100 mm carrier with separate
-external Zigbee, Thread and BLE antennas. The selected S3 has 8 MB flash and 8 MB
-PSRAM; its Thread radio is TinyC6-U-01. All components face the same side.
+Updated 18 October 2026. **MC2-B** is the active 100 × 100 mm carrier with separate
+external Zigbee, Thread and BLE antennas. The selected ESP32-DevKitC-VIE has 8 MB flash and 8 MB physical
+PSRAM (4 MB directly addressable); its Thread radio is TinyC6-U-01. All components face the same side.
 The project is an engineering prototype, with physical and whole-house RF
 qualification still outstanding.
 
+- [Classic ESP32 migration, cost and compatibility](classic-esp32-migration.md).
 - [Assembly, exact parts and antenna connections](external-antennas.md).
 - [Visual guide with pin-to-pin lookup](../hardware/external-antenna/index.html).
 - [Hardware and carrier BOM](../hardware/external-antenna/README.md),
   [RF BOM](../hardware/external-antenna/rf-bom.json),
   [schematic](../hardware/external-antenna/cad/schematic.svg) and
   [connector ledger](../hardware/external-antenna/cad/connectors.json).
-- [S3/C6/MG24 build and programming instructions](../firmware/external-antenna/README.md)
+- [ESP32/C6/MG24 build and programming instructions](../firmware/external-antenna/README.md)
   and [network updating](../firmware/external-antenna/updates/README.md).
 - [Carrier-only printed enclosure and fit coupon](../mechanical/module-carrier/external-antenna-prototype/README.md).
 - [Coverage acceptance procedure](rf-commissioning.md) and

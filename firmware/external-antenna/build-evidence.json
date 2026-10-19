@@ -3,8 +3,8 @@
   "hardware_tested": false,
   "esphome": "2026.9.1",
   "esp_idf": "5.5.5",
-  "profile": "MC2 external antenna",
-  "board": "ESP32-S3-DevKitC-1U-N8R8",
+  "profile": "MC2-B classic ESP32 external antenna",
+  "board": "ESP32-DevKitC-VIE",
   "sdkconfig_verified": {
     "CONFIG_OPENTHREAD_FTD": "y",
     "CONFIG_OPENTHREAD_COMMISSIONER": "y",
@@ -23,32 +23,40 @@
     "CONFIG_LWIP_FORCE_ROUTER_FORWARDING": "y",
     "CONFIG_MDNS_MULTIPLE_INSTANCE": "y",
     "CONFIG_BT_BLUEDROID_ENABLED": "y",
-    "CONFIG_SPIRAM_MODE_OCT": "y",
     "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
+    "CONFIG_IDF_TARGET": "\"esp32\"",
+    "CONFIG_ESP32_REV_MIN_FULL": "300",
+    "CONFIG_SPIRAM_MODE_QUAD": "y",
+    "CONFIG_SPIRAM_SPEED_40M": "y",
+    "CONFIG_ESP_CONSOLE_NONE": "y",
+    "CONFIG_BTDM_CTRL_MODE_BLE_ONLY": "y",
+    "CONFIG_BTDM_CTRL_BLE_MAX_CONN": "3",
+    "CONFIG_BTDM_CTRL_BLE_MAX_CONN_EFF": "3",
     "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
     "CONFIG_FREERTOS_HZ": "1000",
     "CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE": "y",
     "CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT": "y",
     "CONFIG_SPIRAM_USE_CAPS_ALLOC": "y",
-    "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y"
+    "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y",
+    "CONFIG_OPENTHREAD_PLATFORM_MSGPOOL_MANAGEMENT": "y"
   },
   "artifacts": {
-    "module-carrier-hub.bin": {
-      "bytes": 1731456,
-      "sha256": "632cfc8c0302c2988d8d131646146b30dc0fb0a0b3616868d5057c0df1661b3a"
+    "mc2-classic-hub.bin": {
+      "bytes": 1708944,
+      "sha256": "3368120f885b729feafa902e97381e667f0898433aaec1fe3fb8f9b448083a73"
     },
     "firmware.factory.bin": {
-      "bytes": 1796992,
-      "sha256": "433ac784ada9d595b92f1c328f308837d28059a272a6e7c7ac9afc9adbc665f2"
+      "bytes": 1774480,
+      "sha256": "dbed9dce7b33f715ee14b3a60b3ed2aa7ff964726a2f27339efc64c4e678a5af"
     },
     "firmware.ota.bin": {
-      "bytes": 1731456,
-      "sha256": "632cfc8c0302c2988d8d131646146b30dc0fb0a0b3616868d5057c0df1661b3a"
+      "bytes": 1708944,
+      "sha256": "3368120f885b729feafa902e97381e667f0898433aaec1fe3fb8f9b448083a73"
     }
   },
   "c6_service_gpio": {
-    "reset_gpio": 47,
-    "boot_gpio": 39,
+    "reset_gpio": 27,
+    "boot_gpio": 15,
     "mode": "open_drain",
     "idle_level": 1,
     "reset_low_ms": 10,
@@ -77,6 +85,19 @@
     "components/cc1101/cc1101.cpp": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
     "components/cc1101/cc1101.h": "34a95c3df32f8782366f4208f4a312f904bdff63d2a20bfeab38633e36f48788"
   },
+  "uart_source_sha256": {
+    "components/logger/logger.h": "8432723c9d6d07cf72b0ea036550b2ad3e2de5f1b228b541ca1b9ef28e9c47d5",
+    "components/logger/logger_esp32.cpp": "5c301b2da21b1848b680c382f8264beb3221f46153c8606af2fac273bc1fe45f",
+    "components/uart/uart_component_esp_idf.cpp": "896ebfdae6958164e5dc15e41b1f6d6477f67812c09d6d1ab0fab06f62aa9242",
+    "components/zigbee_tcp/zigbee_tcp.cpp": "18b4fb6c9375e2295efeb21ba7f5f156d2ffae0a4531731744e39647477e40d2",
+    "components/low_power_otbr/low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
+  },
+  "application_header": {
+    "chip_id": 0,
+    "soc": "ESP32",
+    "minimum_revision_full": 300,
+    "flash_bytes": 8388608
+  },
   "partitions": [
     {
       "name": "otadata",
@@ -98,7 +119,7 @@
       "subtype": "ota_0",
       "offset": 65536,
       "bytes": 3932160,
-      "image_margin_bytes": 2200704
+      "image_margin_bytes": 2223216
     },
     {
       "name": "app1",
@@ -106,7 +127,7 @@
       "subtype": "ota_1",
       "offset": 3997696,
       "bytes": 3932160,
-      "image_margin_bytes": 2200704
+      "image_margin_bytes": 2223216
     },
     {
       "name": "nvs",
@@ -125,8 +146,14 @@
     "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
   },
   "linked_memory": {
-    "static_ram_bytes": 163795,
-    "linker_ram_bytes": 341760,
+    "static_ram_bytes": 101636,
+    "linker_ram_bytes": 124580,
+    "dram_headroom_bytes": 22944,
+    "iram_used_bytes": 88543,
+    "iram_size_bytes": 131072,
+    "iram_headroom_bytes": 42529,
+    "psram_installed_bytes": 8388608,
+    "psram_direct_mapping_limit_bytes": 4194304,
     "runtime_measured": false
   },
   "c6_update": {
@@ -140,10 +167,10 @@
   "framework_cache_manually_modified": false,
   "sdk_patches_applied": false,
   "recipe_sha256": {
-    "hub.yaml": "e7396ea6e4c43b594bc79fcb6ddecb35489a469612e40ac0069a125349b6e7da",
+    "hub.yaml": "7eef42c8236ad86a8ba98b162b9e3e87124f265a3294a8fbb50295d446aaad3b",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
-    "pin-plan.json": "57820cf4135f2c0115f6c9c90d76404d5e44b7b4559815f532c8f1b2eb635bef",
-    "mc2_contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7",
-    "validate.py": "cf6dcebc8723f524566780e75505775a7f0b6c549f084d1815dc479f07041a3b"
+    "pin-plan.json": "cd877bc25823ab20e3e1450452d1cab90266b4239c1b383818267a9cb1e475e2",
+    "mc2_contract.py": "39317b1b02590b4d8360ffaba8083fefece8ce8bd2396c477572b6dab3414856",
+    "validate.py": "4b338e143c259fa080395f8a25db24b4f1a7e98f80ed866b3a41c923c92b3a74"
   }
 }

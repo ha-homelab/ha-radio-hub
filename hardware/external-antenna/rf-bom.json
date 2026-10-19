@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "design": "MC2",
+  "design": "MC2-B",
   "review_date": "2026-10-18",
   "status": "Engineering selection; physical connector fit, installed cable routing and RF performance require validation",
   "antenna": {
@@ -39,9 +39,9 @@
   "paths": [
     {
       "label": "BLE",
-      "radio": "Espressif ESP32-S3-DevKitC-1U-N8R8",
-      "path": "ESP32-S3-WROOM-1U RF connector -> dedicated pigtail -> BLE bulkhead -> antenna",
-      "selection": "Factory external RF path; Wi-Fi remains unused for network transport"
+      "radio": "Espressif ESP32-DevKitC-VIE",
+      "path": "ESP32-WROVER-IE RF connector -> dedicated pigtail -> BLE bulkhead -> antenna",
+      "selection": "Factory external RF path; legacy Bluetooth LE 4.2 advertisements/connections; Wi-Fi unused for network transport"
     },
     {
       "label": "THREAD",

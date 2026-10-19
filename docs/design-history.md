@@ -1,8 +1,17 @@
 # One current design, retained engineering history
 
-On 18 October 2026 **MC2-A** became the current design: a 100 × 100 mm carrier
+On 18 October 2026 **MC2-B** replaced the S3 host with the previous-generation
+**ESP32-DevKitC-VIE / WROVER-IE** to reduce the host purchase cost. Its new
+38-pin footprint, pin map, boot-strap resistors and classic-ESP32 binary are not
+interchangeable with MC2-A. It retains the C6/MG24 radio paths and application
+services; BLE is limited to the original ESP32's 4.2 feature set. See the
+[migration record](classic-esp32-migration.md).
+
+Earlier on 18 October 2026 **MC2-A** introduced a 100 × 100 mm carrier
 with factory external-antenna S3/C6 modules and external-mode XIAO MG24 firmware.
-It retains local services while separating all three 2.4 GHz antenna feeds.
+It retained local services while separating all three 2.4 GHz antenna feeds.
+The [MC2-A source snapshot](https://github.com/ha-homelab/ha-radio-hub/tree/fee52fb67c3286e3f22925347ef7a35a720c2a55)
+preserves its S3 CAD, firmware and appearance concepts.
 MC1 remains historical and continues to have regression checks. Its last
 47.5 × 75 mm layout, Nano 16 MB flash target and H2 pin map are not MC2.
 

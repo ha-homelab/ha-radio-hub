@@ -7,6 +7,8 @@ substitutions:
   rf_raw_topic: rf/received/raw
   rf_transmit_result_topic: rf/transmit/result
   rf_cs_pin: GPIO15
+  rf_rx_pin: GPIO5
+  rf_tx_pin: GPIO4
   # Override with this remote's learned 24-bit codes in private configuration.
   # Values outside 24 bits disable a slot; default configuration matches none.
   rm433_button_1_code: "0xffffffff"
@@ -53,7 +55,7 @@ cc1101:
 
 remote_receiver:
   id: rf_receiver
-  pin: GPIO5
+  pin: ${rf_rx_pin}
   dump: [rc_switch, dooya]
   tolerance: 30%
   # ESP32 RMT filters individual pulses; RM433 short pulses are about 240us.
@@ -103,7 +105,7 @@ remote_transmitter:
   id: rf_transmitter
   # Released during RX; otherwise GDO0 and an ESP32 push-pull output contend.
   pin:
-    number: GPIO4
+    number: ${rf_tx_pin}
     mode:
       output: true
       open_drain: true

@@ -36,8 +36,9 @@ assert Path(contract.__file__).resolve() == mc2 / "mc2_contract.py"
         self.assertEqual({k: v for k, v in firmware.items() if k != 'status'},
                          {k: v for k, v in hardware.items() if k != 'status'})
         used = {v['gpio'] for v in firmware['assignments'].values()}
-        for unavailable in ('onboard_usb_uart', 'onboard_rgb_led_revision_dependent', 'octal_psram', 'unused_straps'):
+        for unavailable in ('onboard_usb_uart', 'flash', 'psram'):
             self.assertFalse(used.intersection(firmware['reserved'][unavailable]))
+        self.assertNotIn(0, used)
         self.assertEqual(firmware['flash_bytes'], 8 * 1024 * 1024)
         self.assertEqual(firmware['psram_bytes'], 8 * 1024 * 1024)
 
@@ -54,7 +55,7 @@ assert Path(contract.__file__).resolve() == mc2 / "mc2_contract.py"
                      'cv': SimpleNamespace(Invalid=ValueError), '__version__': '2026.9.1'}
         exec(compile(module, str(path), 'exec'), namespace)
         validate = namespace['final_validate']
-        for tx, rx in ((8, 40), (8, 38), (39, 40)):
+        for tx, rx in ((8, 40), (8, 38), (39, 40), (23, 18)):
             full['uart'] = [{'tx_pin': {'number': tx}, 'rx_pin': {'number': rx}}]
             self.assertEqual(validate({'fixture': True}), {'fixture': True})
         for uarts in ([], [{'tx_pin': {'number': 15}, 'rx_pin': {'number': 16}}],
@@ -62,6 +63,25 @@ assert Path(contract.__file__).resolve() == mc2 / "mc2_contract.py"
             full['uart'] = uarts
             with self.assertRaisesRegex(ValueError, 'Only LD2450'):
                 validate({})
+        full['uart'] = [{'tx_pin': {'number': 23}, 'rx_pin': {'number': 18}}]
+        full['logger'] = {'baud_rate': 115200}
+        with self.assertRaisesRegex(ValueError, 'UART logging must be disabled'):
+            validate({})
+
+    def test_classic_image_header_rejects_wrong_chip_revision_and_flash(self):
+        sys.path.insert(0, str(ROOT))
+        from mc2_contract import verify_app_header
+        import struct
+        image = bytearray(24)
+        image[0] = 0xE9
+        image[3] = 0x30
+        struct.pack_into('<H', image, 15, 300)
+        self.assertEqual(verify_app_header(image)['soc'], 'ESP32')
+        for offset, value, message in ((12, 9, 'classic ESP32'), (15, 0, 'ECO V3'), (3, 0x20, '8 MB')):
+            broken = bytearray(image)
+            broken[offset] = value
+            with self.assertRaisesRegex(RuntimeError, message):
+                verify_app_header(broken)
 
 
 if __name__ == '__main__':

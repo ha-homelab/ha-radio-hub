@@ -45,7 +45,7 @@
   "recipe_sha256": {
     "prepare_c6.py": "9ceda5d596f9f90145bea006792a8a8336d66712389513f9dcd30d15ccd5e89f",
     "verify_c6.py": "0bee19ec63b577678def450e0ff6e40c7fbc3a65ec7ddece188308f5134dfed0",
-    "pin-plan.json": "57820cf4135f2c0115f6c9c90d76404d5e44b7b4559815f532c8f1b2eb635bef",
-    "mc2_contract.py": "0aad297051eb50f1e1a79694976de6430f94386f005c1da3ec86cce0a7607ec7"
+    "pin-plan.json": "cd877bc25823ab20e3e1450452d1cab90266b4239c1b383818267a9cb1e475e2",
+    "mc2_contract.py": "39317b1b02590b4d8360ffaba8083fefece8ce8bd2396c477572b6dab3414856"
   }
 }

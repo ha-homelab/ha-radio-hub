@@ -266,7 +266,7 @@ jobs:
           python "$GITHUB_WORKSPACE/firmware/module-carrier/verify_h2.py" "$GITHUB_WORKSPACE/.build/mc1-h2"
 
   external-antenna:
-    name: MC2 external antennas and C6 RCP
+    name: MC2-B classic ESP32 and C6 RCP
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -291,11 +291,11 @@ jobs:
         run: |
           .venv/bin/python -m unittest discover -s mechanical/module-carrier/external-antenna-prototype -p 'test_*.py'
           .venv/bin/python mechanical/module-carrier/external-antenna-prototype/build.py --check
-      - name: Compile complete MC2 S3 image
+      - name: Compile complete MC2-B classic ESP32 image
         run: .venv/bin/python firmware/external-antenna/validate.py .build/mc2 --esphome .venv/bin/esphome --compile
       - name: Compile and verify matching C6 RCP
         run: |
-          IDF_PATH=$(.venv/bin/python -c 'import json; print(json.load(open(".build/mc2/firmware/external-antenna/.esphome/build/module-carrier-hub/build/project_description.json"))["idf_path"])')
+          IDF_PATH=$(.venv/bin/python -c 'import json; print(json.load(open(".build/mc2/firmware/external-antenna/.esphome/build/mc2-classic-hub/build/project_description.json"))["idf_path"])')
           export IDF_PATH
           export IDF_TOOLS_PATH="$RUNNER_TEMP/mc2-idf-c6"
           "$IDF_PATH/install.sh" esp32c6

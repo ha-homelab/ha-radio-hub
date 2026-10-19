@@ -4,31 +4,40 @@
 <text x="40" y="48" class="h">MC2 · three external antennas, one fixed antenna wall</text>
 <text x="40" y="83" class="s">Carrier-only printable shell. 65 mm port spacing is a starting geometry, not a range specification.</text>
 <text x="40" y="115" class="s warning">Native PCB XY + provisional component heights, coax routes and purchased-part fit. Not production-qualified.</text>
-<rect x="65" y="220" width="665.0" height="560.0" rx="8" fill="#284556" stroke="#a5c8d6"/>
-<rect x="187.5" y="360.0" width="350.0" height="350.0" fill="#17483f" stroke="#78d8af"/>
-<text x="197.5" y="390.0" class="s">MC2 carrier 100 × 100 mm</text>
-<circle cx="523.5" cy="696.0" r="9" fill="#a2cabd"/><text x="535.5" y="700.0" class="n">H4</text>
-<circle cx="523.5" cy="374.0" r="9" fill="#a2cabd"/><text x="535.5" y="378.0" class="n">H2</text>
-<circle cx="201.5" cy="696.0" r="9" fill="#a2cabd"/><text x="213.5" y="700.0" class="n">H3</text>
-<circle cx="201.5" cy="374.0" r="9" fill="#a2cabd"/><text x="213.5" y="378.0" class="n">H1</text>
-<rect x="156.0" y="170" width="28" height="56" rx="7" fill="#d8a0ff"/>
-<text x="170.0" y="152" text-anchor="middle" class="s">BLE</text>
-<path d="M170.0 226 L170.0 311.0" stroke="#d8a0ff" stroke-width="5" fill="none"/>
-<rect x="149.0" y="300.5" width="42.0" height="21.0" fill="#d8a0ff"/>
-<rect x="383.5" y="170" width="28" height="56" rx="7" fill="#7ac1ff"/>
-<text x="397.5" y="152" text-anchor="middle" class="s">THREAD</text>
-<path d="M397.5 226 L397.5 311.0" stroke="#7ac1ff" stroke-width="5" fill="none"/>
-<rect x="376.5" y="300.5" width="42.0" height="21.0" fill="#7ac1ff"/>
-<rect x="611.0" y="170" width="28" height="56" rx="7" fill="#73dfb4"/>
-<text x="625.0" y="152" text-anchor="middle" class="s">ZIGBEE</text>
-<path d="M625.0 226 L625.0 311.0" stroke="#73dfb4" stroke-width="5" fill="none"/>
-<rect x="604.0" y="300.5" width="42.0" height="21.0" fill="#73dfb4"/>
-<path d="M170.0 311.0 Q170.0 363.5 275.0 416.0" stroke="#d8a0ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
-<circle cx="275.0" cy="416.0" r="6" fill="#d8a0ff"/>
-<path d="M397.5 311.0 Q397.5 363.5 394.0 510.5" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
-<circle cx="394.0" cy="510.5" r="6" fill="#7ac1ff"/>
-<path d="M625.0 311.0 Q625.0 363.5 464.0 468.5" stroke="#73dfb4" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
-<circle cx="464.0" cy="468.5" r="6" fill="#73dfb4"/>
+<rect x="65" y="240" width="665.0" height="560.0" rx="8" fill="#284556" stroke="#a5c8d6"/>
+<rect x="187.5" y="380.0" width="350.0" height="350.0" fill="#17483f" stroke="#78d8af"/>
+<text x="187.5" y="368.0" class="s">MC2 carrier 100 × 100 mm · native module XY</text>
+<rect x="215.5" y="424.31" width="97.78999999999999" height="190.155" fill="#223749" stroke="#9ab9cb"/>
+<text x="220.5" y="442.31" class="n">U1</text>
+<rect x="345.0" y="422.0" width="62.230000000000004" height="121.37090000000002" fill="#223749" stroke="#9ab9cb"/>
+<text x="350.0" y="440.0" class="n">U2</text>
+<rect x="450.0" y="422.0" width="62.230000000000004" height="73.3425" fill="#223749" stroke="#9ab9cb"/>
+<text x="455.0" y="440.0" class="n">U3</text>
+<rect x="394.0" y="640.05" width="80.5" height="87.50000000000006" fill="#223749" stroke="#9ab9cb"/>
+<text x="399.0" y="658.05" class="n">U4</text>
+<text x="40" y="150" class="s">Host U1: ESP32-DevKitC-VIE · component heights remain unmeasured.</text>
+<circle cx="523.5" cy="716.0" r="9" fill="#a2cabd"/><text x="535.5" y="720.0" class="n">H4</text>
+<circle cx="523.5" cy="394.0" r="9" fill="#a2cabd"/><text x="535.5" y="398.0" class="n">H2</text>
+<circle cx="201.5" cy="716.0" r="9" fill="#a2cabd"/><text x="213.5" y="720.0" class="n">H3</text>
+<circle cx="201.5" cy="394.0" r="9" fill="#a2cabd"/><text x="213.5" y="398.0" class="n">H1</text>
+<rect x="156.0" y="190" width="28" height="56" rx="7" fill="#d8a0ff"/>
+<text x="170.0" y="172" text-anchor="middle" class="s">BLE</text>
+<path d="M170.0 246 L170.0 331.0" stroke="#d8a0ff" stroke-width="5" fill="none"/>
+<rect x="149.0" y="320.5" width="42.0" height="21.0" fill="#d8a0ff"/>
+<rect x="383.5" y="190" width="28" height="56" rx="7" fill="#7ac1ff"/>
+<text x="397.5" y="172" text-anchor="middle" class="s">THREAD</text>
+<path d="M397.5 246 L397.5 331.0" stroke="#7ac1ff" stroke-width="5" fill="none"/>
+<rect x="376.5" y="320.5" width="42.0" height="21.0" fill="#7ac1ff"/>
+<rect x="611.0" y="190" width="28" height="56" rx="7" fill="#73dfb4"/>
+<text x="625.0" y="172" text-anchor="middle" class="s">ZIGBEE</text>
+<path d="M625.0 246 L625.0 331.0" stroke="#73dfb4" stroke-width="5" fill="none"/>
+<rect x="604.0" y="320.5" width="42.0" height="21.0" fill="#73dfb4"/>
+<path d="M170.0 331.0 Q170.0 383.5 275.0 436.0" stroke="#d8a0ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="275.0" cy="436.0" r="6" fill="#d8a0ff"/>
+<path d="M397.5 331.0 Q397.5 383.5 394.0 530.5" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="394.0" cy="530.5" r="6" fill="#7ac1ff"/>
+<path d="M625.0 331.0 Q625.0 383.5 464.0 488.5" stroke="#73dfb4" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="464.0" cy="488.5" r="6" fill="#73dfb4"/>
 <text x="790" y="180" class="s">Enclosure</text>
 <text x="790" y="205" class="n">190 × 160 × 58 mm; +4 mm ceiling spacer.</text>
 <text x="790" y="248" class="s">Three independent 50 Ω paths</text>
@@ -47,7 +56,7 @@
 <text x="790" y="681" class="n">Separate splitter supplies power; this RJ45 is data-only.</text>
 <text x="790" y="724" class="s">Not installed here</text>
 <text x="790" y="749" class="n">PoE converter, Z-Wave, sub-GHz radio and sensors.</text>
-<text x="65" y="815.0" class="s">Rear split cable opening · restraint required before connection to modules</text>
+<text x="65" y="835.0" class="s">Rear split cable opening · restraint required before connection to modules</text>
 <text x="40" y="865" class="h">First print: bulkhead-fit-coupon.stl</text>
 <text x="40" y="901" class="s">Three D-hole tolerances (left to right): nominal, +0.2 mm, +0.4 mm. Select from the real connector.</text>
 <text x="40" y="939" class="s">Verify nut engagement, anti-rotation, module clearance and formed cable routes before printing the full shell.</text>

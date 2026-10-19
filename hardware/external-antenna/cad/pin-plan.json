@@ -1,133 +1,129 @@
 {
-  "status": "MC2 external-antenna engineering prototype; firmware and physical validation pending",
-  "board": "ESP32-S3-DevKitC-1U-N8R8",
-  "soc": "ESP32-S3",
+  "status": "MC2-B classic ESP32 external-antenna engineering prototype; physical validation pending",
+  "board": "ESP32-DevKitC-VIE",
+  "soc": "ESP32",
   "flash_bytes": 8388608,
   "psram_bytes": 8388608,
-  "psram_mode": "octal",
-  "physical_attachment": "Factory male headers solder directly into MC2 plated holes; official DevKitC-1 has two 22-pin rows",
-  "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+  "psram_mode": "quad",
+  "physical_attachment": "Factory male headers solder directly into MC2-B plated holes; DevKitC V4 has two 19-pin rows, 25.40mm apart",
+  "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html",
   "spi_bus_sharing": true,
   "application_gpio_count": 21,
   "assignments": {
     "ethernet_sck": {
-      "gpio": 13,
-      "header_pin": "J1.19"
+      "gpio": 12,
+      "header_pin": "J2.13"
     },
     "ethernet_mosi": {
-      "gpio": 11,
-      "header_pin": "J1.17"
+      "gpio": 2,
+      "header_pin": "J3.15"
     },
     "ethernet_miso": {
-      "gpio": 12,
-      "header_pin": "J1.18"
+      "gpio": 19,
+      "header_pin": "J3.8"
     },
     "ethernet_cs": {
-      "gpio": 14,
-      "header_pin": "J1.20"
+      "gpio": 5,
+      "header_pin": "J3.10"
     },
     "ethernet_irq": {
-      "gpio": 10,
-      "header_pin": "J1.16"
+      "gpio": 34,
+      "header_pin": "J2.5"
     },
     "ethernet_reset": {
-      "gpio": 9,
-      "header_pin": "J1.15"
+      "gpio": 4,
+      "header_pin": "J3.13"
     },
     "cc1101_sck": {
-      "gpio": 13,
-      "header_pin": "J1.19"
+      "gpio": 12,
+      "header_pin": "J2.13"
     },
     "cc1101_mosi": {
-      "gpio": 11,
-      "header_pin": "J1.17"
+      "gpio": 2,
+      "header_pin": "J3.15"
     },
     "cc1101_miso": {
-      "gpio": 12,
-      "header_pin": "J1.18"
+      "gpio": 19,
+      "header_pin": "J3.8"
     },
     "cc1101_cs": {
-      "gpio": 6,
-      "header_pin": "J1.6"
+      "gpio": 13,
+      "header_pin": "J2.15"
     },
     "cc1101_gdo0_tx": {
-      "gpio": 4,
-      "header_pin": "J1.4"
+      "gpio": 25,
+      "header_pin": "J2.9"
     },
     "cc1101_gdo2_rx": {
-      "gpio": 5,
-      "header_pin": "J1.5"
+      "gpio": 35,
+      "header_pin": "J2.6"
     },
     "zigbee_tx": {
-      "gpio": 17,
-      "header_pin": "J1.10"
+      "gpio": 32,
+      "header_pin": "J2.7"
     },
     "zigbee_rx": {
-      "gpio": 18,
-      "header_pin": "J1.11"
+      "gpio": 39,
+      "header_pin": "J2.4"
     },
     "zigbee_rts": {
-      "gpio": 7,
-      "header_pin": "J1.7"
+      "gpio": 33,
+      "header_pin": "J2.8"
     },
     "zigbee_cts": {
-      "gpio": 21,
-      "header_pin": "J3.18"
+      "gpio": 14,
+      "header_pin": "J2.12"
     },
     "i2c_sda": {
-      "gpio": 1,
-      "header_pin": "J3.4"
+      "gpio": 21,
+      "header_pin": "J3.6"
     },
     "i2c_scl": {
-      "gpio": 2,
-      "header_pin": "J3.5"
+      "gpio": 22,
+      "header_pin": "J3.3"
     },
     "thread_tx": {
-      "gpio": 15,
-      "header_pin": "J1.8"
+      "gpio": 26,
+      "header_pin": "J2.10"
     },
     "thread_rx": {
-      "gpio": 16,
-      "header_pin": "J1.9"
+      "gpio": 36,
+      "header_pin": "J2.3"
     },
     "thread_reset": {
-      "gpio": 47,
-      "header_pin": "J3.17"
+      "gpio": 27,
+      "header_pin": "J2.11"
     },
     "thread_boot": {
-      "gpio": 39,
-      "header_pin": "J3.9"
+      "gpio": 15,
+      "header_pin": "J3.16"
     },
     "radar_tx": {
-      "gpio": 8,
-      "header_pin": "J1.12"
+      "gpio": 23,
+      "header_pin": "J3.2"
     },
     "radar_rx": {
-      "gpio": 40,
-      "header_pin": "J3.8"
+      "gpio": 18,
+      "header_pin": "J3.9"
     }
   },
   "reserved": {
-    "native_usb_dm": 19,
-    "native_usb_dp": 20,
     "boot_recovery_header": 0,
-    "unused_straps": [
-      3,
-      45,
-      46
-    ],
     "onboard_usb_uart": [
-      43,
-      44
+      1,
+      3
     ],
-    "onboard_rgb_led_revision_dependent": [
-      38,
-      48
+    "flash": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
     ],
-    "octal_psram": [
-      35,
-      36,
-      37
+    "psram": [
+      16,
+      17
     ]
   },
   "external_controller_contract": {
@@ -165,5 +161,35 @@
       }
     }
   },
-  "caveat": "S3 GPIO43/44 reserved for factory USB-UART bridge; GPIO38/48 reserved for either RGB LED revision; GPIO35/36/37 reserved for octal PSRAM. TinyC6-U-01 uses native USB only, no bridge output fights ROM RX17. C6 radio fixed to its factory U.FL connector; not the upcoming TinyC6[D]."
+  "caveat": "Classic ESP32 BLE4.2 supports legacy advertising/connections, not BLE5 extended advertising, 2M or Coded PHY. Input-only GPIO34/35/36/39 have no internal pull resistors. UART0 is remapped to LD2450; GPIO1/3 remain USB-UART only with runtime logging disabled. This is not MC2-A socket compatible.",
+  "bootstrap_requirements": {
+    "GPIO12": {
+      "level": 0,
+      "net": "SPI_SCK",
+      "resistor": "R4",
+      "pulldown_ohms": 10000,
+      "reason": "WROVER-IE uses 3.3V VDD_SDIO; no external pull-ups or peer outputs permitted"
+    },
+    "GPIO2": {
+      "level": 0,
+      "net": "SPI_MOSI",
+      "resistor": "R5",
+      "pulldown_ohms": 10000,
+      "reason": "UART download when GPIO0 LOW; SPI slave inputs only"
+    },
+    "GPIO5": {
+      "net": "ETH_CS",
+      "default_level": 1,
+      "pullup": "WIZ850io factory 4.7k",
+      "reason": "SPI CS inactive; host SDIO slave unused"
+    },
+    "GPIO15": {
+      "net": "THREAD_BOOT",
+      "default_level": 1,
+      "pullup": "TinyC6 factory BOOT pull-up / host internal pull-up",
+      "reason": "Host UART boot-log selection only; C6 BOOT normally high"
+    }
+  },
+  "psram_heap_mapped_bytes": 4194304,
+  "psram_frequency_mhz": 40
 }

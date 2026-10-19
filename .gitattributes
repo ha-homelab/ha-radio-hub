@@ -13,3 +13,7 @@ hardware/low-power/diy/print/*.svg -text whitespace=-blank-at-eol
 hardware/module-carrier/cad/BOM.csv -text whitespace=cr-at-eol
 hardware/module-carrier/cad/*.svg -text whitespace=-blank-at-eol
 hardware/module-carrier/cad/routing/*.ses -text whitespace=-blank-at-eol
+# MC2 native KiCad/FreeRouting exports follow the same byte-preservation rules.
+hardware/external-antenna/cad/BOM.csv -text whitespace=cr-at-eol
+hardware/external-antenna/cad/*.svg -text whitespace=-blank-at-eol
+hardware/external-antenna/cad/routing/*.ses -text whitespace=-blank-at-eol

@@ -5,12 +5,14 @@
   "active_design": "MC2",
   "active_custom_pcb_count": 1,
   "active_directory": "hardware/external-antenna",
-  "priority": "Preserve local Home Assistant functions with three independent external 2.4 GHz antennas and direct-solder finished modules.",
-  "active_layout_revision": "MC2-A",
-  "active_host": "ESP32-S3-DevKitC-1U-N8R8",
+  "priority": "Reduce host board cost with classic ESP32 while retaining local services, three independent external 2.4 GHz antennas and direct-solder finished modules.",
+  "active_layout_revision": "MC2-B",
+  "active_host": "ESP32-DevKitC-VIE (ESP32-WROVER-IE)",
   "active_memory": {
     "flash_mb": 8,
-    "psram_mb": 8
+    "psram_mb": 8,
+    "psram_heap_mapped_mb": 4,
+    "psram_bus": "quad, 40 MHz"
   },
   "active_thread_rcp": "Unexpected Maker TinyC6-U-01",
   "active_pcb": {
@@ -18,7 +20,7 @@
     "height_mm": 100,
     "copper_layers": 2,
     "nominal_thickness_mm": 1.6,
-    "layout_revision": "MC2-A"
+    "layout_revision": "MC2-B"
   },
   "assembly": {
     "female_module_sockets": 0,
@@ -101,8 +103,17 @@
       "directory": "hardware/module-carrier",
       "status": "historical_reference",
       "last_layout": "nano-single-anchor-rails",
-      "reason": "MC2 selects factory external-antenna S3/C6 modules and an explicit external MG24 image; MC1 geometry and firmware remain separate."
+      "reason": "MC2 selects factory external-antenna host/C6 modules and an explicit external MG24 image; MC1 geometry and firmware remain separate."
+    },
+    {
+      "id": "MC2-A",
+      "status": "historical_git_snapshot",
+      "commit": "fee52fb67c3286e3f22925347ef7a35a720c2a55",
+      "directory": "hardware/external-antenna",
+      "host": "ESP32-S3-DevKitC-1U-N8R8",
+      "reason": "Superseded by classic ESP32 host in MC2-B; different footprint, pin map, target binary and node identity."
     }
   ],
-  "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates."
+  "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",
+  "active_bluetooth": "Bluetooth LE 4.2; legacy advertisements and active connections; no BLE 5 extended advertisements or Coded PHY"
 }

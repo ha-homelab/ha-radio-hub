@@ -1,4 +1,4 @@
-# Local RF Airbridge patch: pinned ESPHome/ESP32-S3 non-DMA lifecycle.
+# Local RF Airbridge patch: pinned ESPHome/ESP32 and ESP32-S3 non-DMA lifecycle.
 from typing import Any
 
 from esphome import pins
@@ -70,8 +70,8 @@ RemoteReceiverComponent = remote_receiver_ns.class_(
 def validate_config(config: ConfigType) -> ConfigType:
     if __version__ != "2026.9.1":
         raise cv.Invalid("RF Ethernet receiver requires ESPHome 2026.9.1; review/rebase the local patch before upgrading")
-    if not CORE.is_esp32 or esp32.get_esp32_variant() != esp32.VARIANT_ESP32S3:
-        raise cv.Invalid("RF Ethernet receiver lifecycle is validated only for ESP32-S3")
+    if not CORE.is_esp32 or esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32S3, esp32.VARIANT_ESP32):
+        raise cv.Invalid("RF Ethernet receiver lifecycle is validated only for ESP32 and ESP32-S3")
     if config.get(CONF_USE_DMA, False):
         raise cv.Invalid("RF Ethernet receiver lifecycle requires use_dma: false")
     if CORE.is_esp32:
