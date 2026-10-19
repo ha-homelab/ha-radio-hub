@@ -12,7 +12,7 @@ concurrency:
 jobs:
   baseline:
     name: Modular prototype
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     steps:
       - name: Audit runner network access
@@ -57,7 +57,7 @@ jobs:
         run: docker build -t ha-radio-hub/ser2net:ci software/ser2net
   low-power:
     name: Single-host low-power prototype
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
       - name: Audit runner network access
@@ -101,7 +101,7 @@ jobs:
           .venv/bin/python mechanical/low-power/build.py --check
   pcb:
     name: Carrier, integrated and DIY PCB validation
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     env:
       KICAD_IMAGE: kicad/kicad:10.0.6@sha256:18693567392b80da435f9fa952ce3a3e534c66eb5a6033f5b9c80aa3b19dd3ec
@@ -146,7 +146,7 @@ jobs:
     name: check
     if: always()
     needs: [baseline, low-power, mg24, pcb, module-carrier, external-antenna]
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 2
     steps:
       - name: Require all prototype validations
@@ -166,7 +166,7 @@ jobs:
           test "$MC2_RESULT" = success
   mg24:
     name: MG24 Zigbee NCP and bootloader
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     env:
       QT_QPA_PLATFORM: offscreen
@@ -221,7 +221,7 @@ jobs:
 
   module-carrier:
     name: MC1 historical regression
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
       - name: Audit runner network access
@@ -267,7 +267,7 @@ jobs:
 
   external-antenna:
     name: MC2-B classic ESP32 and C6 RCP
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
       - name: Audit runner network access
