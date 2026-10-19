@@ -22,21 +22,44 @@ class ConnectionTests(unittest.TestCase):
         with self.assertRaises(ValueError): module.validate(self.data)
     def test_model_and_firmware_match(self):
         self.assertEqual(module.validate(self.data)['firmware_roles'],26)
-    def test_changed_rf_cs_substitution_is_rejected(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root=Path(directory)
-            for name in ['hardware/low-power/pinmap.json','firmware/low-power/proof.yaml',
-                         'firmware/low-power/hub.yaml','firmware/packages/rf-airbridge.yaml',
-                         'firmware/low-power/mg24/config.json']:
-                path=root/name
-                path.parent.mkdir(parents=True,exist_ok=True)
-                shutil.copyfile(module.ROOT/name,path)
-            path=root/'firmware/packages/rf-airbridge.yaml'
-            source=path.read_text()
-            self.assertIn('rf_cs_pin: GPIO15',source)
-            path.write_text(source.replace('rf_cs_pin: GPIO15','rf_cs_pin: GPIO6'))
-            with self.assertRaisesRegex(ValueError,'RF CS mismatch'):
-                module.validate(self.data,root=root)
+    def firmware_fixture(self):
+        directory=tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        root=Path(directory.name)
+        for name in ['hardware/low-power/pinmap.json','firmware/low-power/proof.yaml',
+                     'firmware/low-power/hub.yaml','firmware/packages/rf-airbridge.yaml',
+                     'firmware/low-power/mg24/config.json']:
+            path=root/name
+            path.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(module.ROOT/name,path)
+        return root
+    def test_changed_rf_default_substitutions_are_rejected(self):
+        for name, pin, error in [('rf_cs_pin',15,'RF CS mismatch'),
+                                 ('rf_rx_pin',5,'RF RX mismatch'),
+                                 ('rf_tx_pin',4,'RF transmitter drive contract changed')]:
+            with self.subTest(pin=name):
+                root=self.firmware_fixture()
+                path=root/'firmware/packages/rf-airbridge.yaml'
+                source=path.read_text()
+                self.assertIn(f'{name}: GPIO{pin}',source)
+                path.write_text(source.replace(f'{name}: GPIO{pin}',f'{name}: GPIO6'))
+                with self.assertRaisesRegex(ValueError,error):
+                    module.validate(self.data,root=root)
+    def test_target_rf_overrides_take_precedence_over_package_defaults(self):
+        for name, pin, error in [('rf_cs_pin',15,'RF CS mismatch'),
+                                 ('rf_rx_pin',5,'RF RX mismatch'),
+                                 ('rf_tx_pin',4,'RF transmitter drive contract changed')]:
+            with self.subTest(pin=name):
+                root=self.firmware_fixture()
+                package=root/'firmware/packages/rf-airbridge.yaml'
+                package.write_text(package.read_text().replace(f'{name}: GPIO{pin}',f'{name}: GPIO6'))
+                proof=root/'firmware/low-power/proof.yaml'
+                proof.write_text(proof.read_text().replace('substitutions:\n',f'substitutions:\n  {name}: GPIO{pin}\n',1))
+                self.assertEqual(module.validate(self.data,root=root)['firmware_roles'],26)
+                hub=root/'firmware/low-power/hub.yaml'
+                hub.write_text(f'substitutions:\n  {name}: GPIO7\n\n'+hub.read_text())
+                with self.assertRaisesRegex(ValueError,error):
+                    module.validate(self.data,root=root)
     def test_invented_module_header_is_rejected(self):
         self.pin('cc1101','GDO2')['physical']['position']='7'
         self.bad()

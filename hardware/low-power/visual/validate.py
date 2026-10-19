@@ -147,10 +147,11 @@ def validate(data, root=ROOT):
         for field,role in keys.items():require(gpio(block(hub,section),field)==roles[role],f'Firmware mismatch {section}.{field}')
     require('crystal_frequency: 3686400' in block(hub,'sc16is752_uart'), 'SC16 firmware crystal mismatch')
     rf = (root/'firmware/packages/rf-airbridge.yaml').read_text()
-    require(gpio(block(rf,'cc1101'),'cs_pin', pin_substitutions(rf, proof, hub)) == roles['cc1101_cs'], 'RF CS mismatch')
-    require(gpio(block(rf,'remote_receiver'),'pin') == roles['cc1101_gdo2_rx'], 'RF RX mismatch')
+    rf_pins = pin_substitutions(rf, proof, hub)
+    require(gpio(block(rf,'cc1101'),'cs_pin', rf_pins) == roles['cc1101_cs'], 'RF CS mismatch')
+    require(gpio(block(rf,'remote_receiver'),'pin', rf_pins) == roles['cc1101_gdo2_rx'], 'RF RX mismatch')
     tx=block(rf,'remote_transmitter')
-    require(gpio(tx,'number') == roles['cc1101_gdo0_tx'] and 'open_drain: true' in tx and 'eot_level: false' in tx, 'RF transmitter drive contract changed')
+    require(gpio(tx,'number', rf_pins) == roles['cc1101_gdo0_tx'] and 'open_drain: true' in tx and 'eot_level: false' in tx, 'RF transmitter drive contract changed')
     mg = json.loads((root/'firmware/low-power/mg24/config.json').read_text())['application']['configuration']
     require([mg[f'SL_IOSTREAM_USART_VCOM_{name}_PIN'] for name in ('RX','TX','CTS','RTS')] == ['5','6','1','0'], 'MG24 firmware pins differ')
     return {'components':len(comps),'pins':len(pins),'nets':len(nets),'support_parts':len(parts),'firmware_roles':len(roles)}
