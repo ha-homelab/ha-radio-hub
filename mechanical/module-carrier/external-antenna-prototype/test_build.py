@@ -64,11 +64,11 @@ class MC2Enclosure(unittest.TestCase):
             self.assertAlmostEqual(float((pcb.solid^self.g['assembled'][name].solid).volume()),0,places=5)
 
     def test_bulkhead_core_and_tool_access_are_open(self):
-        # Core stays away from the D-flat. Tool access reserves a 20 mm disk INSIDE the wall.
+        # A complete 1/4 inch barrel must pass; an inherited D-flat fails this.
         q=self.p['case']
         for port in self.p['rf']['ports']:
             x,y,z=port['center']
-            core=b.c.cylinder(5.5,q['wall']+.4).rotate((90,0,0)).move((x,q['wall']+.2,z))
+            core=b.c.cylinder(6.35,q['wall']+.4).rotate((90,0,0)).move((x,q['wall']+.2,z))
             tool=b.c.cylinder(self.p['rf']['tool_clearance_diameter'],12).rotate((90,0,0)).move((x,q['wall']+12.1,z))
             self.assertAlmostEqual(float((core.solid^self.g['nodes']['base'].solid).volume()),0,places=5)
             self.assertAlmostEqual(float((tool.solid^self.g['nodes']['base'].solid).volume()),0,places=5)
@@ -89,8 +89,17 @@ class MC2Enclosure(unittest.TestCase):
     def test_route_guides_allow_connector_and_service_slack(self):
         self.assertEqual(len(self.g['routes']),3)
         for route in self.g['routes']:
-            self.assertGreaterEqual(route['cable_length_trial_mm']-route['polyline_guide_length_mm'],30)
+            self.assertGreaterEqual(route['cable_length_minimum_budget_mm']-route['polyline_guide_length_mm'],30)
+            self.assertEqual(route['cable_length_minimum_budget_mm'],144)
+            self.assertGreaterEqual(route['straight_bulkhead_lead_mm'],21)
             self.assertIn('unmeasured',route['status'])
+
+    def test_coupon_wall_and_short_cable(self):
+        self.assertAlmostEqual(b.c.mesh_of(self.g['nodes']['bulkhead-fit-coupon']).extents[2],self.p['case']['wall'])
+        p=copy.deepcopy(self.p)
+        p['rf'].update(cable_length_trial=100,cable_length_minimum_budget=94)
+        with self.assertRaisesRegex(AssertionError,'slack allowance'):
+            b.geometry(self.s,p)
 
     def test_bulkhead_lead_in_keeps_declared_straight_reservation(self):
         for route in self.g['routes']:

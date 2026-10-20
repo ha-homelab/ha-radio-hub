@@ -5,7 +5,7 @@
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html" aria-current="page">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/full-hub-assembly.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#install-the-zac93">Install the ZAC93</a></li><li><a href="#fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</a></li><li><a href="#power-and-ethernet">Power and Ethernet</a></li><li><a href="#other-off-carrier-modules">Other off-carrier modules</a></li><li><a href="#mounting-and-cable-order">Mounting and cable order</a></li><li><a href="#first-power-and-home-assistant">First power and Home Assistant</a></li></ul></details><article class="article"><h1 id="mc2-c-full-hub-assembly-and-z-wave-installation">MC2-C full-hub assembly and Z-Wave installation</h1>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/full-hub-assembly.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</a></li><li><a href="#install-the-zac93">Install the ZAC93</a></li><li><a href="#fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</a></li><li><a href="#power-and-ethernet">Power and Ethernet</a></li><li><a href="#other-off-carrier-modules">Other off-carrier modules</a></li><li><a href="#mounting-and-cable-order">Mounting and cable order</a></li><li><a href="#first-power-and-home-assistant">First power and Home Assistant</a></li></ul></details><article class="article"><h1 id="mc2-c-full-hub-assembly-and-z-wave-installation">MC2-C full-hub assembly and Z-Wave installation</h1>
 <p>The <strong>Zooz ZAC93 sits in its own printed cradle beside the MC2-C carrier</strong>. It
 connects by a five-wire harness to <strong>carrier J4</strong>, with serial data passing through
 <strong>DFRobot DFR0627 / WK2132 on carrier J3</strong>. It does not plug onto the ESP32, into
@@ -22,6 +22,19 @@ The image shows electrical relationships, not cable lengths or a mating-side
 connector view. The <a href="print.html">mechanical layout</a> shows
 where parts sit. The <a href="../hardware/external-antenna/cad/connectors.json">native carrier ledger</a>
 is authoritative for carrier pad numbers.</p>
+<h2 id="fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</h2>
+<p>Use <strong>3 × Taoglas CAB.618.E</strong> with <strong>3 × TE/Linx ANT-2.4-LCW-SMA</strong> and the
+<strong>FH1-MC2-C-RF1</strong> print package. Print its connector coupon first: the round
+6.8 mm clearance hole passes through the same 3 mm thickness as the case wall.
+Check the actual bulkhead, washer, nut and mating antenna before printing the
+main shell. Hold the metal shoulder while tightening; the round hole does not
+provide an anti-rotation flat, and the coax must not take the tightening torque.</p>
+<p>Follow the generated BLE, Thread and Zigbee routes with at least 25 mm service
+allowance and bends no tighter than 6.8 mm radius. The routing check uses
+144 mm available length (150 mm nominal less a project 6 mm shortfall allowance).
+The manufacturer family drawing does not establish the exact 150 mm SKU's
+length tolerance, so measure the delivered cables and dry-fit all three with
+no tension on the miniature sockets. See the <a href="pigtails.html">selection and evidence</a>.</p>
 <h2 id="install-the-zac93">Install the ZAC93</h2>
 <p>Use the regional <strong>ZAC93 GPIO board</strong>, retaining its factory PCB antenna. The
 manufacturer specifies a nominal <strong>1.1 × 1.1 inch</strong> board and <strong>3.3 V supply</strong>.

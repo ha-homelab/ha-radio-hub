@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import subprocess
 import tempfile
 import zipfile
@@ -87,7 +87,7 @@ def current_sources() -> dict[str, str]:
             or prints["source_report_sha256"] != sha((mechanical / "verification.json").read_bytes())):
         raise ValueError("Enclosure evidence must match the MC2-C carrier")
     for name, expected in report["source_sha256"].items():
-        path = (CAD if name in {"mc2.kicad_pcb", "design.json"} else mechanical) / name
+        path = ((CAD if name in {"mc2.kicad_pcb", "design.json"} else mechanical) / name).resolve()
         actual = sha(path.read_bytes())
         if actual != expected:
             raise ValueError(f"Stale mechanical evidence: {name}")
@@ -123,10 +123,8 @@ def inspect_files(files: dict[str, bytes]) -> None:
         raise ValueError("Missing plated drill classification")
 
 
-def check() -> None:
-    manifest = json.loads((HERE / "manifest.json").read_text())
-    if manifest["source_sha256"] != current_sources():
-        raise ValueError("Fabrication package is stale; regenerate after the design/evidence changes")
+def check_archive(manifest: dict) -> None:
+    """Verify the existing export without changing its files or source binding."""
     data = (HERE / ARCHIVE).read_bytes()
     if sha(data) != manifest["archive_sha256"]:
         raise ValueError("Archive hash mismatch")
@@ -137,7 +135,63 @@ def check() -> None:
     inspect_files(files)
     if {n: sha(b) for n, b in sorted(files.items())} != manifest["files_sha256"]:
         raise ValueError("Fabrication file hash mismatch")
+
+
+def check() -> None:
+    manifest = json.loads((HERE / "manifest.json").read_text())
+    if manifest["source_sha256"] != current_sources():
+        raise ValueError("Fabrication package is stale; regenerate after the design/evidence changes")
+    check_archive(manifest)
     print("MC2-C fabrication package: sources, evidence and all 10 files match")
+
+
+def is_assembly_source(name: str) -> bool:
+    path = PurePosixPath(name)
+    if path.is_absolute() or ".." in path.parts or path.as_posix() != name:
+        return False
+    return (
+        path.parts[:2] == ("mechanical", "full-hub")
+        and len(path.parts) > 2
+    ) or name in {
+        "hardware/external-antenna/rf-bom.json",
+        "mechanical/module-carrier/external-antenna-prototype/build.py",
+    }
+
+
+def refresh_assembly_evidence() -> None:
+    """Rebind checked enclosure/accessory evidence to an unchanged native export."""
+    manifest_path = HERE / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    check_archive(manifest)
+    sources = current_sources()
+    previous = manifest["source_sha256"]
+    immutable_before = {n: h for n, h in previous.items() if not is_assembly_source(n)}
+    immutable_after = {n: h for n, h in sources.items() if not is_assembly_source(n)}
+    if immutable_before != immutable_after:
+        raise ValueError("Native CAD or firmware sources changed; a fresh native export is required")
+    changed = sorted(
+        n for n in previous.keys() | sources.keys()
+        if previous.get(n) != sources.get(n)
+    )
+    if not changed:
+        print("MC2-C assembly evidence already matches; no files changed")
+        return
+    manifest["source_sha256"] = sources
+    manifest["assembly_evidence_refresh"] = {
+        "changed_sources": changed,
+        "previous_source_mapping_sha256": sha(
+            json.dumps(previous, sort_keys=True, separators=(",", ":")).encode()
+        ),
+        "archive_reexported": False,
+        "native_checks_rerun": False,
+        "note": (
+            "Refreshed verified enclosure/accessory evidence only. "
+            "The existing archive, member hashes, native CAD and firmware source bindings "
+            "are unchanged. No fresh native KiCad export or ERC/DRC run was performed."
+        ),
+    }
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    print("MC2-C assembly evidence refreshed; existing native export unchanged")
 
 
 def export(cli: str) -> None:
@@ -195,12 +249,15 @@ def export(cli: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true")
-    parser.add_argument("--cli", help="Pinned KiCad 10.0.6 CLI; required for fresh export")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument("--cli", help="Pinned KiCad 10.0.6 CLI; required for fresh export")
+    mode.add_argument("--refresh-assembly-evidence", action="store_true",
+                      help="Rebind verified accessory/enclosure evidence; native CAD and firmware must be unchanged")
     args = parser.parse_args()
     if args.check:
         check()
     elif args.cli:
         export(args.cli)
     else:
-        parser.error("Choose --check or --cli PATH")
+        refresh_assembly_evidence()

@@ -22,21 +22,21 @@
 <circle cx="201.5" cy="394.0" r="9" fill="#a2cabd"/><text x="213.5" y="398.0" class="n">H1</text>
 <rect x="156.0" y="190" width="28" height="56" rx="7" fill="#d8a0ff"/>
 <text x="170.0" y="172" text-anchor="middle" class="s">BLE</text>
-<path d="M170.0 246 L170.0 331.0" stroke="#d8a0ff" stroke-width="5" fill="none"/>
-<rect x="149.0" y="320.5" width="42.0" height="21.0" fill="#d8a0ff"/>
+<path d="M170.0 246 L170.0 345.0" stroke="#d8a0ff" stroke-width="5" fill="none"/>
+<rect x="149.0" y="334.5" width="42.0" height="21.0" fill="#d8a0ff"/>
 <rect x="383.5" y="190" width="28" height="56" rx="7" fill="#7ac1ff"/>
 <text x="397.5" y="172" text-anchor="middle" class="s">THREAD</text>
-<path d="M397.5 246 L397.5 331.0" stroke="#7ac1ff" stroke-width="5" fill="none"/>
-<rect x="376.5" y="320.5" width="42.0" height="21.0" fill="#7ac1ff"/>
+<path d="M397.5 246 L397.5 345.0" stroke="#7ac1ff" stroke-width="5" fill="none"/>
+<rect x="376.5" y="334.5" width="42.0" height="21.0" fill="#7ac1ff"/>
 <rect x="611.0" y="190" width="28" height="56" rx="7" fill="#73dfb4"/>
 <text x="625.0" y="172" text-anchor="middle" class="s">ZIGBEE</text>
-<path d="M625.0 246 L625.0 331.0" stroke="#73dfb4" stroke-width="5" fill="none"/>
-<rect x="604.0" y="320.5" width="42.0" height="21.0" fill="#73dfb4"/>
-<path d="M170.0 331.0 Q170.0 383.5 275.0 436.0" stroke="#d8a0ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<path d="M625.0 246 L625.0 345.0" stroke="#73dfb4" stroke-width="5" fill="none"/>
+<rect x="604.0" y="334.5" width="42.0" height="21.0" fill="#73dfb4"/>
+<path d="M170.0 345.0 Q170.0 397.5 275.0 436.0" stroke="#d8a0ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
 <circle cx="275.0" cy="436.0" r="6" fill="#d8a0ff"/>
-<path d="M397.5 331.0 Q397.5 383.5 356.515 541.8820000000001" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<path d="M397.5 345.0 Q397.5 397.5 356.515 541.8820000000001" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
 <circle cx="356.515" cy="541.8820000000001" r="6" fill="#7ac1ff"/>
-<path d="M625.0 331.0 Q625.0 383.5 464.0 488.5" stroke="#73dfb4" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<path d="M625.0 345.0 Q625.0 397.5 464.0 488.5" stroke="#73dfb4" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
 <circle cx="464.0" cy="488.5" r="6" fill="#73dfb4"/>
 <text x="790" y="180" class="s">Enclosure</text>
 <text x="790" y="205" class="n">190 × 160 × 58 mm; +4 mm ceiling spacer.</text>
@@ -44,12 +44,12 @@
 <text x="790" y="273" class="n">SMA female → AMC / U.FL-compatible cable → one radio.</text>
 <text x="790" y="316" class="s">Fixed-wall ports</text>
 <text x="790" y="341" class="n">Lid lifts without pulling the three coax leads.</text>
-<text x="790" y="384" class="s">D-hole and tool access</text>
-<text x="790" y="409" class="n">6.6 / 6.1 mm nominal + 0.2 mm trial print allowance.</text>
+<text x="790" y="384" class="s">Round-hole and tool access</text>
+<text x="790" y="409" class="n">6.6 mm project clearance + 0.2 mm trial print allowance.</text>
 <text x="790" y="452" class="s">Strain relief</text>
 <text x="790" y="477" class="n">Soft loops at three towers. Do not crush micro-coax.</text>
 <text x="790" y="520" class="s">Cable length</text>
-<text x="790" y="545" class="n">150 mm trial; dashed guides end at estimated radio XY.</text>
+<text x="790" y="545" class="n">150 mm nominal; 144 mm project budget including 6 mm shortfall.</text>
 <text x="790" y="588" class="s">Antenna orientation</text>
 <text x="790" y="613" class="n">83.1 mm candidate: keep bodies outside, parallel and clear.</text>
 <text x="790" y="656" class="s">Low-voltage rear bay</text>
@@ -58,7 +58,7 @@
 <text x="790" y="749" class="n">PoE converter, Z-Wave, sub-GHz radio and sensors.</text>
 <text x="65" y="835.0" class="s">Rear split cable opening · restraint required before connection to modules</text>
 <text x="40" y="865" class="h">First print: bulkhead-fit-coupon.stl</text>
-<text x="40" y="901" class="s">Three D-hole tolerances (left to right): nominal, +0.2 mm, +0.4 mm. Select from the real connector.</text>
+<text x="40" y="901" class="s">Three round-hole tolerances (left to right): nominal, +0.2 mm, +0.4 mm. Select from the real connector.</text>
 <text x="40" y="939" class="s">Verify nut engagement, anti-rotation, module clearance and formed cable routes before printing the full shell.</text>
 <text x="40" y="987" class="s warning">No coverage promise for 1,000 ft². Test all radios concurrently, closed case, at the central ceiling position.</text>
 </svg>

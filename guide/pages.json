@@ -9,7 +9,7 @@
     "slug": "shopping",
     "source": "docs/mc2-shopping.md",
     "label": "Choose parts",
-    "description": "Check exact ESP modules, antenna connectors and availability."
+    "description": "Check exact modules, stock, component prices and the remaining unpriced materials."
   },
   {
     "slug": "pcb-order",
@@ -52,6 +52,12 @@
     "source": "docs/external-antennas.md",
     "label": "Antenna details",
     "description": "Review the three independent antenna paths and hardware constraints."
+  },
+  {
+    "slug": "pigtails",
+    "source": "docs/pigtail-selection.md",
+    "label": "Choose RF cables",
+    "description": "Check the Taoglas replacement, lower price, length allowance and RF1 enclosure fit."
   },
   {
     "slug": "hardware",

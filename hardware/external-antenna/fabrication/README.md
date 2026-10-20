@@ -25,6 +25,27 @@ Native Gerbers and Excellon drill files are not geometrically edited.
 Export timestamps are retained. Every export therefore produces a new manifest.
 Do not mix an old archive with a newer source checkout.
 
+An enclosure or off-board RF accessory change does not require a new Gerber
+export when the native PCB and firmware are unchanged. First regenerate and
+validate the mechanical reports and print package, then run:
+
+```sh
+python3 hardware/external-antenna/fabrication/package.py --refresh-assembly-evidence
+python3 hardware/external-antenna/fabrication/package.py --check
+```
+
+This explicit operation checks the existing ZIP, all ten member hashes, and the
+same native/firmware/mechanical evidence guards as `--check`. It only permits
+source changes under `mechanical/full-hub/` and the exact off-board
+`hardware/external-antenna/rf-bom.json` file, plus the exact shared mechanical
+helper `mechanical/module-carrier/external-antenna-prototype/build.py`. Mechanical
+source paths are resolved to their canonical repository paths before binding.
+A changed, added or removed native
+CAD or firmware source binding requires a fresh export instead. It updates only
+the manifest's assembly evidence binding and records that no new native export
+or ERC/DRC run took place. The archive and its original native export timestamps
+remain untouched. `--check` still rejects any unrefreshed source difference.
+
 The four mounting holes are non-plated. The separate plated drill file contains
 component holes and vias. The selected finish is **lead-free HASL**; no assembly
 or stencil is needed. A small prototype order does not certify the design or

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "revision": "MC2-C",
   "checked_on": "2026-10-19",
-  "scope": "Changed U2 target and bare-PCB prototype quotes; not a complete supplier stock audit",
+  "scope": "Observed purchase offers for 11 major component lines and a five-board prototype batch; excludes owned parts and unpriced assembly materials. Not a complete delivered hub quote.",
   "thread_rcp": {
     "manufacturer": "Unexpected Maker",
     "part": "TC6D-01",
@@ -52,5 +52,150 @@
     ],
     "status": "Calculator estimates before Gerber DFM review and address-specific checkout; no order placed",
     "recommended_quantity": 5
-  }
+  },
+  "major_component_offers": [
+    {
+      "id": "host",
+      "part": "ESP32-DevKitC-VIE",
+      "quantity": 1,
+      "unit_price_usd": 9.48,
+      "line_price_usd": 9.48,
+      "observed_stock": 488,
+      "seller": "Mouser",
+      "source": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D",
+      "observation": "Live US listing; complete 38-pin WROVER-IE board."
+    },
+    {
+      "id": "thread",
+      "part": "TC6D-01",
+      "quantity": 1,
+      "unit_price_usd": 18.0,
+      "line_price_usd": 18.0,
+      "observed_stock": 48,
+      "seller": "Unexpected Maker",
+      "source": "https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851",
+      "observation": "Ships from Australia; standard supplied headers, no extras."
+    },
+    {
+      "id": "zigbee",
+      "part": "Seeed XIAO MG24 102010690",
+      "quantity": 1,
+      "unit_price_usd": 8.9,
+      "line_price_usd": 8.9,
+      "observed_stock": null,
+      "seller": "Seeed",
+      "source": "https://www.seeedstudio.com/Seeed-Studio-XIAO-MG24-Pre-Soldered-p-6381.html",
+      "observation": "In stock; pre-soldered non-Sense version."
+    },
+    {
+      "id": "ethernet",
+      "part": "WIZ850io",
+      "quantity": 1,
+      "unit_price_usd": 24.52,
+      "line_price_usd": 24.52,
+      "observed_stock": 1433,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/wiznet/WIZ850IO/8789619",
+      "observation": "Live stock count."
+    },
+    {
+      "id": "poe",
+      "part": "POE-SPLITTER-25W-5.5-2.1, SKU 27737",
+      "quantity": 1,
+      "unit_price_usd": 19.99,
+      "line_price_usd": 19.99,
+      "observed_stock": null,
+      "seller": "Waveshare",
+      "source": "https://www.waveshare.com/poe-splitter-25w-type-c.htm?sku=27737",
+      "observation": "5 V DC barrel version selected despite Type-C URL; orderable, no explicit stock count."
+    },
+    {
+      "id": "buck",
+      "part": "Pololu D24V22F3 / 2857",
+      "quantity": 1,
+      "unit_price_usd": 26.95,
+      "line_price_usd": 26.95,
+      "observed_stock": 149,
+      "seller": "DigiKey Marketplace / Pololu",
+      "source": "https://www.digikey.com/en/products/detail/pololu/2857/10451182",
+      "observation": "Ships from Pololu; separate marketplace freight may apply. Direct manufacturer status is Rationed (Active and Preferred)."
+    },
+    {
+      "id": "uart",
+      "part": "DFRobot DFR0627",
+      "quantity": 1,
+      "unit_price_usd": 8.0,
+      "line_price_usd": 8.0,
+      "observed_stock": null,
+      "seller": "DFRobot",
+      "source": "https://www.dfrobot.com/product-2001.html",
+      "observation": "Orderable; no explicit stock count."
+    },
+    {
+      "id": "environment",
+      "part": "Adafruit BME680 STEMMA QT / 3660",
+      "quantity": 1,
+      "unit_price_usd": 18.95,
+      "line_price_usd": 18.95,
+      "observed_stock": null,
+      "seller": "Adafruit",
+      "source": "https://www.adafruit.com/product/3660",
+      "observation": "In stock."
+    },
+    {
+      "id": "radar",
+      "part": "Hi-Link HLK-LD2450 module",
+      "quantity": 1,
+      "unit_price_usd": 21.99,
+      "line_price_usd": 21.99,
+      "observed_stock": null,
+      "seller": "Alexnld",
+      "source": "https://alexnld.com/product/hi-link-hlk-ld2450-24ghz-motion-target-tracking-radar-sensor-module-distance-angle-measurement-for-smart-hotel-home-led/",
+      "observation": "Selected HLK-LD2450 Module; seller reports In Stock. Not claimed to be lowest market price."
+    },
+    {
+      "id": "antenna",
+      "part": "TE/Linx ANT-2.4-LCW-SMA",
+      "quantity": 3,
+      "unit_price_usd": 3.76,
+      "line_price_usd": 11.28,
+      "observed_stock": 2777,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-2-4-LCW-SMA/9607799",
+      "observation": "Standard SMA male center pin."
+    },
+    {
+      "id": "pigtail",
+      "part": "Taoglas CAB.618.E",
+      "quantity": 3,
+      "unit_price_usd": 4.66,
+      "line_price_usd": 13.98,
+      "observed_stock": 48,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261",
+      "observation": "931-CAB.618.E-ND. US tariff may be added in cart. Use RF1 enclosure fit checks."
+    }
+  ],
+  "cost_summary": {
+    "major_component_subtotal_usd": 182.04,
+    "five_bare_pcbs_and_quoted_shipping_usd": 13.71,
+    "known_subtotal_with_pcb_quote_usd": 195.75,
+    "previous_three_pigtails_usd": 88.41,
+    "new_three_pigtails_usd": 13.98,
+    "pigtail_savings_usd": 74.43,
+    "not_a_complete_delivered_total": true
+  },
+  "excluded_owned_parts": [
+    "Received Zooz ZAC93",
+    "Existing CC1101 and matching 433.92 MHz antenna; confirm actual module dimensions"
+  ],
+  "unpriced_requirements": [
+    "3 x 1N5819 diodes and 5 axial resistors (1 x 4.7 kohm, 4 x 10 kohm)",
+    "Carrier J1-J7 headers, insulated mating harness contacts and ZAC93 2x5 mating header",
+    "BME680 QT lead and required module harness wires",
+    "1.5 A time-delay fuse and insulated holder, 5.5/2.1 mm DC adapter",
+    "Fasteners, insulating parts, cable restraints, filament or printing service",
+    "All electronics freight, sales tax, import/tariff charges and any later PCB DFM/checkout adjustments"
+  ],
+  "ordering_status": "No parts reserved, purchased or paid for. Verify exact variants and final shipping/tax in checkout."
 }

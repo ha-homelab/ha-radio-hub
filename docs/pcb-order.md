@@ -73,8 +73,11 @@ a demonstrated cheaper delivered alternative. The observed values are stored in
 - **Firmware:** current MC2-C host and TinyC6[D] RCP. The latter verifies the
   FXL6408-controlled external antenna before starting Thread. An old TinyC6
   RCP image lacks this step.
-- **Enclosure:** [FH1-MC2-C print package](../mechanical/full-hub/FH1-MC2-C-print-package.zip),
-  generated against the updated module body and U.FL endpoint.
+- **RF accessories:** three **Taoglas CAB.618.E** pigtails and three
+  **TE ANT-2.4-LCW-SMA** antennas; see the [selection record](pigtail-selection.md).
+- **Enclosure:** [FH1-MC2-C-RF1 print package](../mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip),
+  with round SMA cutouts, a wall-thickness-matched coupon and shorter coax routes.
+  RF1 is a mechanical revision; the MC2-C PCB and firmware are unchanged.
 
 The [full shopping list](mc2-shopping.md), [carrier BOM](../hardware/external-antenna/cad/BOM.csv)
 and [full-hub inventory](../mechanical/full-hub/components.json) cover the remaining

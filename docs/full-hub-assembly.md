@@ -20,6 +20,22 @@ connector view. The [mechanical layout](../mechanical/full-hub/README.md) shows
 where parts sit. The [native carrier ledger](../hardware/external-antenna/cad/connectors.json)
 is authoritative for carrier pad numbers.
 
+## Fit the three 2.4 GHz pigtails
+
+Use **3 × Taoglas CAB.618.E** with **3 × TE/Linx ANT-2.4-LCW-SMA** and the
+**FH1-MC2-C-RF1** print package. Print its connector coupon first: the round
+6.8 mm clearance hole passes through the same 3 mm thickness as the case wall.
+Check the actual bulkhead, washer, nut and mating antenna before printing the
+main shell. Hold the metal shoulder while tightening; the round hole does not
+provide an anti-rotation flat, and the coax must not take the tightening torque.
+
+Follow the generated BLE, Thread and Zigbee routes with at least 25 mm service
+allowance and bends no tighter than 6.8 mm radius. The routing check uses
+144 mm available length (150 mm nominal less a project 6 mm shortfall allowance).
+The manufacturer family drawing does not establish the exact 150 mm SKU's
+length tolerance, so measure the delivered cables and dry-fit all three with
+no tension on the miniature sockets. See the [selection and evidence](pigtail-selection.md).
+
 ## Install the ZAC93
 
 Use the regional **ZAC93 GPIO board**, retaining its factory PCB antenna. The

@@ -197,17 +197,17 @@ translate([164, 209.5, 0]) { cylinder(d=5,h=6,$fn=48); }
 translate([196, 209.5, 0]) { cylinder(d=5,h=6,$fn=48); }
 }
 difference() {
-translate([29, 23, 2.9]) { cube([12,6,35.1]); }
+translate([29, 23, 2.9]) { cube([12,6,33.1]); }
 translate([31, 22.9, 32]) { cube([8,6.2,2]); }
 }
 }
 difference() {
-translate([94, 23, 2.9]) { cube([12,6,35.1]); }
+translate([94, 23, 2.9]) { cube([12,6,33.1]); }
 translate([96, 22.9, 32]) { cube([8,6.2,2]); }
 }
 }
 difference() {
-translate([159, 23, 2.9]) { cube([12,6,35.1]); }
+translate([159, 23, 2.9]) { cube([12,6,33.1]); }
 translate([161, 22.9, 32]) { cube([8,6.2,2]); }
 }
 }
@@ -272,10 +272,7 @@ translate([164, 161.5, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([208, 161.5, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([164, 209.5, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([196, 209.5, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
-translate([35, 3.1, 38]) { difference() {
-rotate([90, 0, 0]) { cylinder(d=6.8,h=3.2,$fn=48); }
-translate([-4.4, -4.2, 2.9]) { cube([8.8,5.2,8.8]); }
-} }
+translate([35, 3.1, 38]) { rotate([90, 0, 0]) { cylinder(d=6.8,h=3.2,$fn=48); } }
 union() {
 translate([29.475, -0.1, 29.9]) { cube([0.66,0.7,0.66]); }
 translate([30.125, -0.1, 29.9]) { cube([0.66,0.7,0.66]); }
@@ -327,10 +324,7 @@ translate([38.574999999999996, -0.1, 26.0]) { cube([0.66,0.7,0.66]); }
 translate([39.225, -0.1, 26.0]) { cube([0.66,0.7,0.66]); }
 translate([39.875, -0.1, 26.0]) { cube([0.66,0.7,0.66]); }
 }
-translate([100, 3.1, 38]) { difference() {
-rotate([90, 0, 0]) { cylinder(d=6.8,h=3.2,$fn=48); }
-translate([-4.4, -4.2, 2.9]) { cube([8.8,5.2,8.8]); }
-} }
+translate([100, 3.1, 38]) { rotate([90, 0, 0]) { cylinder(d=6.8,h=3.2,$fn=48); } }
 union() {
 translate([88.625, -0.1, 29.9]) { cube([0.66,0.7,0.66]); }
 translate([89.275, -0.1, 29.9]) { cube([0.66,0.7,0.66]); }
@@ -433,10 +427,7 @@ translate([108.77500000000003, -0.1, 26.0]) { cube([0.66,0.7,0.66]); }
 translate([109.42500000000003, -0.1, 26.0]) { cube([0.66,0.7,0.66]); }
 translate([110.07500000000003, -0.1, 26.0]) { cube([0.66,0.7,0.66]); }
 }
-translate([165, 3.1, 38]) { difference() {
-rotate([90, 0, 0]) { cylinder(d=6.8,h=3.2,$fn=48); }
-translate([-4.4, -4.2, 2.9]) { cube([8.8,5.2,8.8]); }
-} }
+translate([165, 3.1, 38]) { rotate([90, 0, 0]) { cylinder(d=6.8,h=3.2,$fn=48); } }
 union() {
 translate([154.275, -0.1, 29.9]) { cube([0.66,0.7,0.66]); }
 translate([154.925, -0.1, 29.9]) { cube([0.66,0.7,0.66]); }

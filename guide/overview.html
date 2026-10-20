@@ -33,7 +33,7 @@ Alternatively, open <a href="../guide/index.html">guide/index.html</a> from the 
 folder. GitHub shows HTML source rather than running this guide. Use
 <code>--port 0</code> if the default local port is occupied.</p>
 <p><a href="start-here.html">Start here</a> ·
-<a href="../mechanical/full-hub/FH1-MC2-C-print-package.zip">Print package — all STLs and quantities</a> ·
+<a href="../mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip">Print package — all STLs and quantities</a> ·
 <a href="../hardware/external-antenna/harness.csv">Pin-to-pin harness CSV</a> ·
 <a href="documentation.html">Documentation index</a></p>
 <p><img src="../hardware/external-antenna/antenna-paths.svg" alt="MC2 independent antenna paths" /></p>
@@ -55,8 +55,10 @@ two supplied male headers; no battery, extra female headers or RF rework.</li>
 <li><strong>Seeed XIAO MG24:</strong> Ember NCP with explicit external-antenna firmware.</li>
 <li><strong>WIZnet WIZ850io:</strong> shared-SPI Ethernet; retain the isolated PoE splitter and
 regulated low-voltage supply from the battery-fed PoE switch.</li>
-<li><strong>Three TE ANT-2.4-LCW-SMA antennas and three Amphenol 095-902-545-150 cables:</strong>
-separate 50 Ω paths, standard SMA bulkheads, no combiner.</li>
+<li><strong>Three TE ANT-2.4-LCW-SMA antennas and three Taoglas CAB.618.E cables:</strong>
+separate 50 Ω paths, standard SMA bulkheads, no combiner. The
+<a href="pigtails.html">updated selection</a> saves $74.43 on three cables;
+use the <strong>FH1-MC2-C-RF1</strong> enclosure and fit coupon.</li>
 </ul>
 <p>Classic ESP32 retains the configured services and three active BLE connections,
 but does not support BLE 5 extended advertising or Coded PHY. Lower power

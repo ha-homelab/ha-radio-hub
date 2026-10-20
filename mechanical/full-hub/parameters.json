@@ -1,5 +1,5 @@
 {
-  "revision": "FH1-MC2-C",
+  "revision": "FH1-MC2-C-RF1",
   "status": "digitally_checked_prototype_physical_fit_unverified",
   "units": "mm",
   "case": {
@@ -162,5 +162,20 @@
     "inner_window_z_mm": 77.2,
     "air_gap_mm": 12.4,
     "status": "nominal antenna plane and nonconductive window; confirm delivered PCB and printed material"
+  },
+  "rf_harness": {
+    "part": "Taoglas CAB.618.E",
+    "nominal_length_mm": 150,
+    "project_length_shortfall_allowance_mm": 6,
+    "minimum_length_budget_mm": 144,
+    "minimum_bend_radius_mm": 6.8,
+    "service_slack_mm": 25,
+    "cutout_shape": "round",
+    "nominal_hole_diameter_mm": 6.6,
+    "print_allowance_mm": 0.2,
+    "bulkhead_straight_reservation_mm": 27,
+    "heatshrink_reference_length_mm": 17,
+    "source_evidence": "rf-evidence.json",
+    "unbent_connector_allowance_mm": 21
   }
 }

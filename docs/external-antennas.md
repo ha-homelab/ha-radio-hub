@@ -50,8 +50,8 @@ price MC2.
 
 ## Three antenna paths
 
-Buy **three TE Connectivity/Linx ANT-2.4-LCW-SMA antennas** and **three Amphenol RF
-095-902-545-150 pigtails**. Each 150 mm cable has an AMC/U.FL-compatible right-angle
+Buy **three TE Connectivity/Linx ANT-2.4-LCW-SMA antennas** and **three Taoglas
+CAB.618.E pigtails**. Each 150 mm cable has an I-PEX MHF I/U.FL-compatible right-angle
 radio plug and a standard SMA female bulkhead. Each antenna has the matching
 standard SMA male plug, 50 Ω impedance, 2400–2485 MHz specification and 2.8 dBi
 peak gain. These are **not RP-SMA** connectors. Confirm center contacts and the
@@ -67,9 +67,13 @@ before operating the radios. Inspect the physical cable route before final
 assembly. The enclosure's 65 mm adjacent bulkhead pitch is a starting layout,
 **not a measured isolation rating**. The 150 mm cable selection still needs a
 physical dry fit; do not pull it taut to reach a bulkhead.
+Use the **FH1-MC2-C-RF1** print package: its round-hole coupon matches the
+3 mm wall, and the revised routes reserve a 6 mm cable-length shortfall
+allowance plus 25 mm service slack. That shortfall is an engineering budget,
+not a manufacturer-guaranteed tolerance. See the [pigtail selection](pigtail-selection.md).
 
 Primary specifications: [TE antenna](https://www.te.com/en/product-L9000082-01.html),
-[Amphenol 150 mm assembly](https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/).
+[Taoglas 150 mm assembly](https://www.taoglas.com/product/cab-618-e-i-pex-mhf-i-u-fl-to-150mm-1-13mm-coax-black-cable-smaf-bulkhead-straight/).
 
 ## Pin connections and initial programming
 

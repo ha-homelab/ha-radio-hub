@@ -1,0 +1,57 @@
+{
+  "part": "Taoglas CAB.618.E",
+  "review_date": "2026-10-19",
+  "physical_fit_verified": false,
+  "sources": [
+    {
+      "url": "https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf",
+      "sha256": "7efd4dbaf720ab9a3719420b1a6837262f71d37386bfea676e31c254064a22ff",
+      "document": "SPE-24-8-198-C",
+      "page": 11,
+      "scope": "Grouped drawing lists CAB.618.E as 150 mm. The illustrated 200 mm sibling is labelled \u00b16 mm; that is not an explicit tolerance guarantee for the 150 mm SKU."
+    },
+    {
+      "url": "https://cdn.taoglas.com/specifications/30021F0020000A_Taoglas.pdf",
+      "sha256": "d77cdd999537c61bc76e52137def19dc4ff4c65b04319a95366de3cff790a2db",
+      "document": "SPE-23-8-098-C",
+      "scope": "Published Taoglas 1.13 mm family cable: OD \u00b10.05 mm; minimum bend radius 6.8 mm; attenuation 3.1 dB/m at 2.4 GHz. The exact internal wire part number of CAB.618.E is not established by the public assembly catalogue; this is an engineering basis, not lot-specific qualification."
+    }
+  ],
+  "vendor_drawing_mm": {
+    "thread": "1/4-36 UNS-2A",
+    "thread_projection_nominal": 11.4,
+    "thread_projection_tolerance": 0.3,
+    "nut_thickness_nominal": 1.75,
+    "nut_thickness_tolerance": 0.2,
+    "washer_thickness_nominal": 1.1,
+    "washer_thickness_tolerance": 0.3,
+    "heatshrink_reference_length": 17
+  },
+  "project_allowances": {
+    "nominal_cable_length_mm": 150,
+    "shortfall_mm": 6,
+    "minimum_route_budget_mm": 144,
+    "shortfall_basis": "Conservative engineering allowance from grouped drawing, not a dedicated CAB.618.E tolerance specification. Measure delivered usable length before routing.",
+    "minimum_bend_radius_mm": 6.8,
+    "service_slack_mm": 25,
+    "round_cutout_nominal_diameter_mm": 6.6,
+    "print_allowance_mm": 0.2,
+    "panel_thickness_mm": 3,
+    "nominal_thread_remaining_after_panel_nut_washer_mm": 5.55,
+    "worst_drawing_stack_remaining_mm": 4.75,
+    "thread_stack_scope": "Arithmetic residual only, not a guarantee of full antenna engagement. Check actual nut, washer, shoulder and antenna on the 3 mm coupon; hold the shoulder when tightening.",
+    "unbent_connector_allowance_mm": 21,
+    "unbent_connector_basis": "17 mm reference heatshrink plus up to 4 mm flange/body length from (14.8+0.3)-(11.4-0.3). A 27 mm guide lead-in retains at least 21 mm straight after the first 6.8 mm fillet."
+  },
+  "step_model": {
+    "url": "https://www.taoglas.com/assets/3d-models/CAB.618.E_Web.STEP",
+    "inspected": false,
+    "reason": "Published link returned a Cloudflare challenge; no dimensions inferred from inaccessible model."
+  },
+  "acceptance": [
+    "Use standard SMA female centre socket, not RP-SMA, and I-PEX MHF I/U.FL, not MHF4.",
+    "Fit supplied washer and nut; prevent barrel rotation using its shoulder flats while tightening the antenna.",
+    "Print coupon first. All three 6.6/6.8/7.0 mm trials are 3 mm thick, matching the base wall.",
+    "Reject a delivered cable that cannot follow its smooth route with 25 mm service slack. Never bend the heatshrink or tension a U.FL socket."
+  ]
+}
