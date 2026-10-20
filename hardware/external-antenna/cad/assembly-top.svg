@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="970" viewBox="0 0 1160 970">
 <rect width="100%" height="100%" fill="#0b1420"/><style>text{font-family:Arial,sans-serif}</style>
-<text x="45" y="40" font-size="28" fill="#e6edf4" text-anchor="start">MC2-B · CLASSIC ESP32 + THREE ANTENNAS</text>
+<text x="45" y="40" font-size="28" fill="#e6edf4" text-anchor="start">MC2-C · CLASSIC ESP32 + THREE ANTENNAS</text>
 <text x="45" y="72" font-size="16" fill="#b8c6d8" text-anchor="start">100 × 100 mm · front view · all components on this side · prototype</text>
 <rect x="45" y="100" width="700" height="700" fill="#164845" stroke="#80bbac"/>
 <circle cx="73" cy="128" r="9.450000000000001" fill="#0b1420" stroke="#d2e1d9"/>
@@ -49,9 +49,9 @@
 <circle cx="287.69" cy="524.48" r="4.8" fill="#d1b45c"/><circle cx="287.69" cy="524.48" r="2.6" fill="#142525"/>
 <circle cx="287.69" cy="542.26" r="4.8" fill="#d1b45c"/><circle cx="287.69" cy="542.26" r="2.6" fill="#142525"/>
 <circle cx="287.69" cy="560.04" r="4.8" fill="#d1b45c"/><circle cx="287.69" cy="560.04" r="2.6" fill="#142525"/>
-<rect x="360.0" y="184.0" width="124.46000000000001" height="242.74179999999998" fill="#d5e7df" stroke="#d5e7df"/>
-<text x="422.23" y="305.3709" font-size="12" fill="#143d39" text-anchor="middle">TinyC6-U</text>
-<text x="422.23" y="321.3709" font-size="12" fill="#143d39" text-anchor="middle">Thread RCP</text>
+<rect x="360.0" y="187.374" width="124.46000000000001" height="254.09999999999997" fill="#d5e7df" stroke="#d5e7df"/>
+<text x="422.23" y="314.424" font-size="12" fill="#143d39" text-anchor="middle">TinyC6[D]</text>
+<text x="422.23" y="330.424" font-size="12" fill="#143d39" text-anchor="middle">Thread RCP</text>
 <circle cx="475.57" cy="212.448" r="4.8" fill="#d1b45c"/><circle cx="475.57" cy="212.448" r="2.6" fill="#142525"/>
 <circle cx="475.57" cy="230.228" r="4.8" fill="#d1b45c"/><circle cx="475.57" cy="230.228" r="2.6" fill="#142525"/>
 <circle cx="475.57" cy="248.00799999999998" r="4.8" fill="#d1b45c"/><circle cx="475.57" cy="248.00799999999998" r="2.6" fill="#142525"/>
@@ -195,12 +195,12 @@
 <circle cx="101.0" cy="653.0" r="4.8" fill="#d1b45c"/><circle cx="101.0" cy="653.0" r="2.6" fill="#142525"/>
 <circle cx="154.33999999999997" cy="653.0" r="4.8" fill="#d1b45c"/><circle cx="154.33999999999997" cy="653.0" r="2.6" fill="#142525"/>
 <rect x="165.89" y="551.5" width="65.80000000000001" height="38.5" fill="none" stroke="#6db8f2" stroke-dasharray="5 4"/>
-<rect x="391.99" y="178.974" width="60.480000000000004" height="54.79599999999999" fill="none" stroke="#6db8f2" stroke-dasharray="5 4"/>
+<rect x="391.15000000000003" y="177.29399999999998" width="62.579999999999984" height="55.300000000000004" fill="none" stroke="#6db8f2" stroke-dasharray="5 4"/>
 <rect x="600.73" y="163.0" width="63.0" height="21.0" fill="none" stroke="#6db8f2" stroke-dasharray="5 4"/>
 <circle cx="220" cy="212" r="7" fill="#e0a847" stroke="#29200b"/>
 <text x="220" y="199" font-size="12" fill="#ffc96a" text-anchor="middle">BLE U.FL*</text>
-<circle cx="458" cy="401" r="7" fill="#e0a847" stroke="#29200b"/>
-<text x="458" y="388" font-size="12" fill="#ffc96a" text-anchor="middle">Thread U.FL*</text>
+<circle cx="383.03" cy="423.764" r="7" fill="#e0a847" stroke="#29200b"/>
+<text x="383.03" y="410.764" font-size="12" fill="#ffc96a" text-anchor="middle">Thread U.FL*</text>
 <circle cx="598" cy="317" r="7" fill="#e0a847" stroke="#29200b"/>
 <text x="598" y="304" font-size="12" fill="#ffc96a" text-anchor="middle">Zigbee U.FL*</text>
 <rect x="482.15000000000003" y="795.1" width="112.69999999999996" height="18.90000000000002" fill="#aab4be" stroke="#76899d"/>
@@ -212,14 +212,14 @@
 <text x="775" y="270" font-size="15" fill="#8ce0c2" text-anchor="start">EXTERNAL ANTENNA REQUIRED</text>
 <text x="775" y="295" font-size="12" fill="#e6edf4" text-anchor="start">Connect before radio operation.</text>
 <text x="775" y="345" font-size="15" fill="#8ce0c2" text-anchor="start">C6 PREPARATION</text>
-<text x="775" y="370" font-size="12" fill="#e6edf4" text-anchor="start">Solder its supplied 1×11 + 1×12 headers.</text>
-<text x="775" y="420" font-size="15" fill="#8ce0c2" text-anchor="start">NO C6 UART-BRIDGE REWORK</text>
-<text x="775" y="445" font-size="12" fill="#e6edf4" text-anchor="start">Native USB; ROM RX17 / TX16.</text>
+<text x="775" y="370" font-size="12" fill="#e6edf4" text-anchor="start">Solder its 1×11 + 1×12 male headers.</text>
+<text x="775" y="420" font-size="15" fill="#8ce0c2" text-anchor="start">C6 EXTERNAL ANTENNA SELECTION</text>
+<text x="775" y="445" font-size="12" fill="#e6edf4" text-anchor="start">MC2-C RCP firmware sets FXL6408 XIO0.</text>
 <text x="775" y="495" font-size="15" fill="#8ce0c2" text-anchor="start">HOST BOOT STRAPS</text>
 <text x="775" y="520" font-size="12" fill="#e6edf4" text-anchor="start">R4 / R5: GPIO12 / GPIO2 LOW at reset.</text>
 <text x="775" y="570" font-size="15" fill="#8ce0c2" text-anchor="start">CASE &amp; RF CHECK STILL REQUIRED</text>
 <text x="775" y="595" font-size="12" fill="#e6edf4" text-anchor="start">No measured coverage or fit claim.</text>
 <text x="775" y="645" font-size="15" fill="#8ce0c2" text-anchor="start">* RF SOCKET LOCATIONS</text>
-<text x="775" y="670" font-size="12" fill="#e6edf4" text-anchor="start">Planning estimates: measure real boards.</text>
-<text x="45" y="932" font-size="13" fill="#c6d0df" text-anchor="start">Blue: physical USB shell bounds. Gold: approximate RF socket positions. All dimensions require sample fit verification.</text>
+<text x="775" y="670" font-size="12" fill="#e6edf4" text-anchor="start">C6: vendor STEP; others: estimates.</text>
+<text x="45" y="932" font-size="13" fill="#c6d0df" text-anchor="start">Blue: physical USB shell bounds. Gold: C6 vendor STEP center; other RF positions approximate. All dimensions require sample fit verification.</text>
 </svg>

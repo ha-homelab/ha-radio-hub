@@ -29,7 +29,7 @@ printing = load('fullhub_printing', HERE / 'print_package.py')
 COLORS = {'carrier':'#23725c','poe_splitter':'#303842','buck':'#18608c',
           'wk2132':'#25699c','zwave':'#346baa','cc1101':'#17663d',
           'ld2450':'#4c83ac','bme680':'#6938a1','dc_adapter':'#354548','fuse_holder':'#aa7440'}
-LABELS = {'carrier':'MC2-B carrier + U1–U4','poe_splitter':'Isolated PoE splitter',
+LABELS = {'carrier':'MC2-C carrier + U1–U4','poe_splitter':'Isolated PoE splitter',
           'buck':'3.3 V regulator','wk2132':'DFR0627 / WK2132','zwave':'Zooz ZAC93 Z-Wave',
           'cc1101':'CC1101 RF transceiver','ld2450':'LD2450 radar → room','bme680':'BME680 ambient sensor','dc_adapter':'Insulated 5 V DC adapter','fuse_holder':'Insulated inline DC fuse'}
 
@@ -310,7 +310,15 @@ def validate(p,m,s,g):
     for part in s['design']['parts']:
         if not part['ref'].startswith('U'):continue
         x0,y0,x1,y1=part['body_bounds_global_mm']
+        usb=s['design']['mechanics']['physical_usb_shells_mm'].get(part['ref'])
+        if usb:
+            x0,y0,x1,y1=min(x0,usb[0]),min(y0,usb[1]),max(x1,usb[2]),max(y1,usb[3])
         module_boxes[part['ref']]=[carrier_origin[0]+x0,carrier_origin[1]+y0,carrier_origin[2]+9,carrier_origin[0]+x1,carrier_origin[1]+y1,carrier_origin[2]+(23.6 if part['ref']=='U4' else 17)]
+        assert contains(boxes['carrier'],module_boxes[part['ref']]),f'{part["ref"]} module exceeds the populated carrier reservation'
+        nominal=s['design']['mechanics']['module_geometry'].get(part['ref'])
+        if nominal and 'model_height_mm' in nominal:
+            available=module_boxes[part['ref']][5]-module_boxes[part['ref']][2]
+            assert nominal['model_height_mm']<=available,f'{part["ref"]} nominal model exceeds the allocated module height'
     endpoint_refs={'ble-coax':'U1','thread-coax':'U2','zigbee-coax':'U3'}
     for route in routes:
         for index,(start,end) in enumerate(zip(route['points_mm'],route['points_mm'][1:])):
@@ -369,9 +377,21 @@ def validate(p,m,s,g):
                 volume=(node.solid ^ bodybox(shrink).solid).volume()
                 if volume>.5:plastic_collisions.append({'component':key,'part':name,'volume_mm3':round(volume,3)})
     assert not plastic_collisions,f'Plastic crosses body reservation: {plastic_collisions}'
+    thread_part=next(part for part in s['design']['parts'] if part['ref']=='U2')
+    thread_route=next(route for route in routes if route['id']=='thread-coax')
+    thread_fit={
+        'model':thread_part['model'],
+        'manufacturer_geometry':s['design']['mechanics']['module_geometry']['U2'],
+        'allocated_envelope_case_mm':module_boxes['U2'],
+        'coax_route_length_mm':thread_route['length_mm'],
+        'coax_service_allowance_mm':thread_route['slack_allowance_mm'],
+        'coax_length_budget_mm':thread_route['length_budget_mm'],
+        'status':'Nominal PCB and RF connector XY checked against manufacturer STEP; header seating, mated plug and formed bends require physical fit.'
+    }
     return {'interior_component_containment':True,'pairwise_component_boxes_clear':True,'mount_containment':True,
             'native_rj45_access_clear':True,'zac93_antenna_air_space_clear':True,'cable_envelopes_clear':True,
             'plastic_body_intersections_mm3':plastic_collisions,'keepouts_mm':keepouts,'routes':routes,
+            'thread_radio_nominal_fit':thread_fit,
             'cable_sweeps_clear_of_printed_parts':True,'cable_sweeps_clear_of_native_modules':True,'native_module_boxes_mm':module_boxes,'carrier_mated_headers_clear':True,'carrier_mated_header_boxes_mm':native_header_boxes,'mated_connector_boxes_mm':connector_boxes,'detailed_component_solids_mm':detailed,'physical_fit_verified':False,'verification_scope':'Conservative digital envelopes and generated plastic only. Does not establish header orientation, material RF loss, purchased-part fit, thermal bias or RF coverage.'}
 
 def electronics(p,m,s,g):
@@ -405,7 +425,7 @@ def svg(p,m,g,checks):
     a=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">',
        '<style>text{font-family:Arial,sans-serif;fill:#e7f0f5}.h{font-size:27px;font-weight:bold}.s{font-size:18px}.n{font-size:15px}</style>',
        '<rect width="1400" height="1000" fill="#10202e"/>',
-       '<text x="40" y="45" class="h">FH1 full-hub enclosure · MC2-B + Z-Wave + RF + radar + ambient sensors</text>',
+       '<text x="40" y="45" class="h">FH1 full-hub enclosure · MC2-C + Z-Wave + RF + radar + ambient sensors</text>',
        '<text x="40" y="79" class="s">Top view, lid removed. Solid areas are component envelopes; dashed areas are reserved access/cable space.</text>',
        f'<rect x="{ox}" y="{oy}" width="{W*scale}" height="{D*scale}" fill="#263f4e" stroke="#7b9caa" stroke-width="8"/>']
     for key,bb in g['bounds'].items():
@@ -498,7 +518,7 @@ def generate(out,p,package=True):
         exploded.append('color("'+color+'") {'+node.move((0,0,dz)).scad+'}')
     (out/'exploded.scad').write_text('// Exploded review only, not printable. Lid displaced sideways; component XY unchanged, Z offsets explanatory.\n'+'\n'.join(exploded)+'\n')
     (out/'layout.svg').write_text(svg(p,m,g,checks));preview(out,p,m,s,g)
-    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
+    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p><strong>MC2-C with TinyC6[D] TC6D-01.</strong> The Thread board outline and relocated U.FL socket follow the manufacturer STEP model. Use the MC2-C RCP firmware to select the external antenna. <a href="sources.md#tinyc6d-revision-change">Source and fit evidence</a>.</p><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
     outputs=[name+suffix for name in g['nodes'] for suffix in ['.stl','.scad']]+['assembly.scad','exploded.scad','layout.svg','full-assembly-preview.png','exploded-preview.png','index.html']
     report['generated_sha256']={name:sha(out/name) for name in sorted(outputs)}
     report=json.loads(json.dumps(report))

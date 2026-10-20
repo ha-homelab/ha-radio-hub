@@ -1,6 +1,6 @@
-# Start here: build the MC2-B / FH1 hub
+# Start here: build the MC2-C / FH1 hub
 
-Use this route for the **MC2-B carrier and FH1 full-hub enclosure**. It takes
+Use this route for the **MC2-C carrier and FH1 full-hub enclosure**. It takes
 you from loose parts to a tested Home Assistant node. The hardware is an
 engineering prototype: software and CAD checks have passed, but the physical
 assembly, thermal behaviour and house coverage still need measurement.
@@ -19,9 +19,10 @@ Check the labels on the four carrier modules:
 
 - **U1: ESP32-DevKitC-VIE / WROVER-IE**, classic ESP32 with two 19-pin rows,
   external antenna, 8 MB flash and 8 MB physical PSRAM.
-- **U2: Unexpected Maker TinyC6-U-01 / TC6-U-01**, the original 8 MB external
-  U.FL version. Confirm this exact part is available before buying its carrier;
-  TinyC6[D], H2 and an onboard-antenna C6 are not substitutes.
+- **U2: Unexpected Maker TinyC6[D] / TC6D-01**, the 8 MB board with switched
+  onboard/U.FL antennas. Use the matching MC2-C RCP firmware, which selects the
+  external path before starting Thread. The old TC6-U-01 and H2 are not the
+  current purchase target.
 - **U3: Seeed XIAO MG24**, pre-soldered SKU 102010690, for external-antenna Zigbee.
 - **U4: WIZ850io**, the data-only SPI Ethernet module.
 
@@ -38,7 +39,7 @@ MC2-A/S3 and Pi-era instructions in the [history section](design-history.md).
 
 ## 2. Program the three controllers while they are loose
 
-Follow the [MC2-B firmware guide](../firmware/external-antenna/README.md) for
+Follow the [MC2-C firmware guide](../firmware/external-antenna/README.md) for
 tool versions, commands and board selection. Attach the appropriate antenna
 before a radio runs. Use USB power only for each loose board.
 
@@ -46,16 +47,18 @@ before a radio runs. Use USB power only for each loose board.
    OTA and MQTT credentials, broker and RF topics with your intended values.
    The validation build has disposable credentials and `build-only/rf/*`
    topics; it is not a deployable household configuration.
-2. Give **U1/VIE a full initial USB-UART flash**, including its MC2-B partition
+2. Give **U1/VIE a full initial USB-UART flash**, including its MC2-C partition
    table. The node name is `mc2-classic-hub`. An S3 or MC1 image, and an app-only
    OTA over an old partition layout, are not valid initial installations.
-3. Build and flash the **TinyC6 RCP** with the matching pinned ESP-IDF. For loose
+3. Build and flash the **TinyC6[D] RCP** with the matching pinned ESP-IDF. For loose
    programming, temporarily fit the documented **10 kΩ GPIO8-to-local-3.3 V
-   pull-up**; the carrier supplies it only after assembly.
-4. Follow the [MC2-B XIAO MG24 programming guide](mc2-zigbee.md), which selects
+   pull-up**; the carrier supplies it only after assembly. Check the build's
+   TC6D-01 identity and external-antenna verification; the original fixed-U.FL
+   firmware does not switch this board's antenna.
+4. Follow the [MC2-C XIAO MG24 programming guide](mc2-zigbee.md), which selects
    **`--antenna external`**, and program its external initial HEX through the
    XIAO's onboard CMSIS-DAP probe. Output filenames retain `mc1` because the
-   build recipe is shared; the guide gives the current MC2-B host connections.
+   build recipe is shared; the guide gives the current MC2-C host connections.
 5. Leave the **ZAC93 on its Zooz firmware**. It is not an ESPHome target.
 
 **Ready to continue:** programming and verification succeed for all three
@@ -72,7 +75,7 @@ The largest part is 215 × 215 mm; the identified TRONXY XY-3 has a nominal
 310 × 310 mm bed. Check the slicer's usable area and brim before printing.
 
 Dry-fit every received component, mated plug, solder tail and cable route.
-Follow the [MC2-B assembly order](external-antennas.md#pin-connections-and-initial-programming):
+Follow the [MC2-C assembly order](external-antennas.md#pin-connections-and-initial-programming):
 all modules face the same side, low axial parts and headers go first, and module
 joints are soldered from the back. The historical MC1 rear-first assembly is a
 different carrier. Install each off-board module's restraint, the radar holder

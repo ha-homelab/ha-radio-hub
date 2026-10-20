@@ -1,5 +1,10 @@
 # MC2-B appearance concepts
 
+These raster concepts predate the **MC2-C / TinyC6[D]** revision. They illustrate
+the general arrangement, not the current module outline or U.FL position.
+Use the [current CAD assembly](../cad/assembly-top.svg) and
+[full-hub layout](../../../mechanical/full-hub/layout.svg) to build MC2-C.
+
 The current README uses two new **AI-generated appearance concepts**, made on
 18 October 2026 with the built-in `image_gen` tool:
 
@@ -87,4 +92,4 @@ antennas rather than presenting that routing as correct.
 - [Source and output hashes](provenance.json)
 
 These images belong to the historical MC2-A S3 revision and must not be used
-to identify the current MC2-B parts.
+to identify the depicted MC2-B parts, not the later MC2-C revision.

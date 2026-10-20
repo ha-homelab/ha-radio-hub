@@ -2,8 +2,30 @@
   "compiled": true,
   "hardware_tested": false,
   "esp_idf": "5.5.5",
-  "board": "Unexpected Maker TinyC6-U-01",
-  "antenna": "fixed external U.FL",
+  "board": "Unexpected Maker TinyC6[D]",
+  "board_sku": "TC6D-01",
+  "hardware_revision": "MC2-C",
+  "antenna": {
+    "mode": "external",
+    "rf_path": "U.FL",
+    "expander": "FXL6408",
+    "i2c_address": 67,
+    "sda": 6,
+    "scl": 7,
+    "select_pin": "XIO0",
+    "select_level": 1,
+    "initialized_before_radio": true
+  },
+  "application_header": {
+    "chip_id": 13,
+    "flash_bytes": 8388608,
+    "project": "esp_ot_rcp",
+    "version": "mc2c-tc6d-ext-v1"
+  },
+  "antenna_source_sha256": {
+    "tinyc6d_antenna.c": "ed8e460b63ce39016ab26f2df0dc32d0017fffe284ed28014c65fd4af9e9a9f1",
+    "tinyc6d_antenna.h": "b307bdd7e96f889b7b374f694b18a9f044e1fc340a301126c4055c61e6f06868"
+  },
   "required_download_strap": {
     "gpio": 8,
     "level": 1,
@@ -19,7 +41,12 @@
     "CONFIG_OPENTHREAD_UART_PIN_MANUAL": "y",
     "CONFIG_OPENTHREAD_UART_RX_PIN": "17",
     "CONFIG_OPENTHREAD_UART_TX_PIN": "16",
-    "CONFIG_FREERTOS_HZ": "1000"
+    "CONFIG_FREERTOS_HZ": "1000",
+    "CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG": "y",
+    "CONFIG_ESP_CONSOLE_UART_NUM": "-1",
+    "CONFIG_ESP_CONSOLE_SECONDARY_NONE": "y",
+    "CONFIG_LOG_DEFAULT_LEVEL_ERROR": "y",
+    "CONFIG_OPENTHREAD_PLATFORM_INFO": "\"MC2-C TC6D-01 external antenna\""
   },
   "uart": {
     "baud": 460800,
@@ -30,12 +57,12 @@
   "rom_uart_connected": true,
   "artifacts": {
     "esp_ot_rcp.bin": {
-      "bytes": 235456,
-      "sha256": "38749dac097386c14b1a395c5ee7a7a338eb86496431973b2bb5d9701abd6f70"
+      "bytes": 257552,
+      "sha256": "8126db54c7b70f8a0682c9153f562c58dfc48e2388ddf3d2b063743c78a0d3f2"
     },
     "bootloader/bootloader.bin": {
       "bytes": 17168,
-      "sha256": "6a3b5bd0f1a41cea19690860f2e73c940a452487b183ffaaef73ab5223846044"
+      "sha256": "570a5144c3f5df8c6192db1635097bf45b1b219ace955bfe56609861222e1523"
     },
     "partition_table/partition-table.bin": {
       "bytes": 3072,
@@ -43,9 +70,12 @@
     }
   },
   "recipe_sha256": {
-    "prepare_c6.py": "9ceda5d596f9f90145bea006792a8a8336d66712389513f9dcd30d15ccd5e89f",
-    "verify_c6.py": "0bee19ec63b577678def450e0ff6e40c7fbc3a65ec7ddece188308f5134dfed0",
-    "pin-plan.json": "cd877bc25823ab20e3e1450452d1cab90266b4239c1b383818267a9cb1e475e2",
-    "mc2_contract.py": "39317b1b02590b4d8360ffaba8083fefece8ce8bd2396c477572b6dab3414856"
+    "prepare_c6.py": "434151fe773d45db51af0c4c97f104b81aeb4bfd1ce3c44b13d53ec0d1a5bca4",
+    "verify_c6.py": "3f8d6bd669c04de3f4bb0f0df73438ec031ce1efb9f321d8e73d594c633cc596",
+    "pin-plan.json": "15d73b3387d5c6f7f7321c56096ad687d423ac0c698e6ce062108dea95e20955",
+    "mc2_contract.py": "b209f37138ce7b9387c018b79f5d4a1c8a9596795368bc51728a0934f92d71b9",
+    "c6_identity.py": "1add7655cd1387ff3202af73d914b0d4ff8fba54c53949403f72be6bf1d2db97",
+    "tinyc6d_antenna.c": "ed8e460b63ce39016ab26f2df0dc32d0017fffe284ed28014c65fd4af9e9a9f1",
+    "tinyc6d_antenna.h": "b307bdd7e96f889b7b374f694b18a9f044e1fc340a301126c4055c61e6f06868"
   }
 }

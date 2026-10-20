@@ -14,6 +14,8 @@ import shutil
 import sys
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from c6_identity import ANTENNA, BOARD, SKU, verify_c6_image
 
 
 def normalized_mac(value):
@@ -28,6 +30,10 @@ def checked_image(kind, image, report):
     data = image.read_bytes()
     metadata = json.loads(report.read_text())
     if kind == "c6":
+        if metadata.get("board") != BOARD or metadata.get("board_sku") != SKU or metadata.get("hardware_revision") != "MC2-C":
+            raise ValueError("C6 requires the MC2-C TinyC6[D] TC6D-01 build report")
+        if metadata.get("antenna") != ANTENNA:
+            raise ValueError("C6 requires verified FXL6408 XIO0 external antenna selection")
         config = metadata.get("sdkconfig_verified", {})
         if metadata.get("rom_uart_connected") is not True or config.get("CONFIG_IDF_TARGET") != '"esp32c6"' or config.get("CONFIG_ESPTOOLPY_FLASHSIZE_8MB") != "y" or (
                 config.get("CONFIG_OPENTHREAD_UART_RX_PIN"), config.get("CONFIG_OPENTHREAD_UART_TX_PIN")) != ("17", "16"):
@@ -38,8 +44,8 @@ def checked_image(kind, image, report):
                                                       "rail": "C6_LOCAL_3V3", "header_pin": "10"}:
             raise ValueError("C6 report must record the required local-3.3V GPIO8 pull-up")
         expected = metadata["artifacts"]["esp_ot_rcp.bin"]
-        if not data or data[0] != 0xE9 or len(data) > 1024 * 1024:
-            raise ValueError("Invalid/oversized C6 application image")
+        if metadata.get("application_header") != verify_c6_image(data):
+            raise ValueError("C6 report and application identity differ")
     else:
         if metadata.get("target") != "EFR32MG24B220F1536IM48" or metadata.get("board_sku") != "102010690":
             raise ValueError("Only the MC2 XIAO MG24 build report is accepted")

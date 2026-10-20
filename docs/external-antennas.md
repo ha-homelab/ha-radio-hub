@@ -1,6 +1,6 @@
-# MC2-B: three external antennas
+# MC2-C: three external antennas
 
-MC2-B is the current **100 × 100 mm, two-copper-layer** carrier for finished
+MC2-C is the current **100 × 100 mm, two-copper-layer** carrier for finished
 modules. It retains the local Thread Border Router, Ember Zigbee, active Bluetooth
 proxy, Z-Wave transport, CC1101 RX/TX, LD2450 and BME680. Its change is three
 independent external 2.4 GHz radio paths. **This is an engineering prototype**:
@@ -18,14 +18,17 @@ Start with the [visual guide and pin lookup](../hardware/external-antenna/index.
   rows. The application maps 4 MB PSRAM for capability-based allocation at quad 40 MHz.
   It runs Ethernet, the BLE 4.2 proxy and local Thread Border Router. Do not
   substitute WROOM (no PSRAM), VE (onboard antenna), an older WROVER revision,
-  or the former S3 board. **MC2-A and MC2-B footprints and binaries differ.**
-- **U2: Unexpected Maker TinyC6-U-01.** Factory U.FL variant, 8 MB flash and native
+  or the former S3 board. **MC2-A and MC2-C footprints and binaries differ.**
+- **U2: Unexpected Maker TinyC6[D] / TC6D-01.** Switched U.FL/onboard antennas, 8 MB flash and native
   USB. It runs the dedicated Thread RCP. Its ordinary through-hole headers expose
   RX17, TX16, EN and BOOT9. Fit its supplied **1×12 and 1×11 loose headers** first.
   The carrier adds a 10 kΩ pull-up from the TinyC6 local 3.3 V pin (header 4)
   to its GPIO8 strap (header 10), required for reliable ROM download entry.
-  There is no competing USB-UART transmitter and no H2 R7 removal step. Do not
-  substitute TinyC6[D], an onboard-antenna TinyC6, or an H2 image.
+  There is no competing USB-UART transmitter and no H2 R7 removal step.
+  The matching RCP firmware selects **FXL6408 XIO0 HIGH**, verifies it, then
+  starts the radio. The expander is on the C6-local SDA6/SCL7 bus at 0x43,
+  separate from the host's BME680/WK2132 bus. Default/reset selection is the
+  onboard antenna; old fixed-U.FL TinyC6 and H2 images are not substitutes.
 - **U3: Seeed XIAO MG24.** Retain the same Ember protocol family, with a separately
   built **external-antenna firmware**. PB04=1 and PB05=1 select its U.FL path before
   radio initialization. Its onboard antenna and external path are alternatives,
@@ -34,14 +37,13 @@ Start with the [visual guide and pin lookup](../hardware/external-antenna/index.
   the separate standards-compliant PoE splitter supplies the low-voltage circuit.
 
 Module sources: [Espressif ordering and pin guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html),
-[Unexpected Maker design files](https://github.com/UnexpectedMaker/esp32c6),
+[Unexpected Maker design files](https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3),
 [Seeed antenna selection](https://wiki.seeedstudio.com/xiao_mg24_getting_started/).
 
-**Procurement caveat, 18 October 2026:** TinyC6-U-01 was not available for immediate
-shipment in the checked listings; Mouser 392-TC6-U-01 showed zero stock/backorder
-and TinyTronics showed on-request availability. This is an exact-part design,
-not a claim that every part can be ordered for next-day delivery. Recheck the
-specific U.FL SKU before ordering the carrier. The [RF BOM](../hardware/external-antenna/rf-bom.json)
+**Procurement update, 19 October 2026:** the old TC6-U-01 is obsolete/restricted
+in Mouser's US listing. MC2-C uses **TC6D-01**, shown at USD $18 with 48 available
+in the [manufacturer's shop](https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851).
+Availability is not a reservation or a delivered-cost quote. The [RF BOM](../hardware/external-antenna/rf-bom.json)
 and [carrier BOM](../hardware/external-antenna/cad/BOM.csv) must be used together
 with the retained off-board equipment below. MC1's old price estimate does not
 price MC2.
@@ -56,7 +58,7 @@ peak gain. These are **not RP-SMA** connectors. Confirm center contacts and the
 exact connector family; MHF III/4 miniature plugs are not interchangeable.
 
 1. WROVER-IE U.FL → its cable → **BLE** bulkhead → antenna.
-2. TinyC6-U U.FL → its cable → **THREAD** bulkhead → antenna.
+2. TinyC6[D] switched U.FL → its cable → **THREAD** bulkhead → antenna.
 3. XIAO MG24 U.FL → its cable → **ZIGBEE** bulkhead → antenna.
 
 No RF combiner is used. Mate miniature connectors squarely with power removed;
@@ -101,7 +103,7 @@ serve the radar after boot. Zigbee uses UART1, Thread uses UART2. USB-UART remai
 available for ROM programming on GPIO1/3, but is not a running application log
 port. The firmware locks the supported silicon to ECOv3 or newer.
 
-Program and verify each controller **while loose**, using the MC2-B classic-ESP32 factory
+Program and verify each controller **while loose**, using the MC2-C classic-ESP32 factory
 image, C6 RCP and external MG24 NCP/bootloader. For loose TinyC6 ROM programming,
 fit a temporary 10 kΩ pull-up from GPIO8 (header 10) to its local 3.3 V
 (header 4): carrier R3 is not connected yet. The BOOT button only pulls GPIO9 low.

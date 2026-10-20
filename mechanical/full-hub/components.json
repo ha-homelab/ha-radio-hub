@@ -2,7 +2,7 @@
   "schema_version": 1,
   "revision": "FH1",
   "review_date": "2026-10-19",
-  "design": "MC2-B",
+  "design": "MC2-C",
   "status": "engineering prototype; component fit and assembled operation not physically verified",
   "units": "mm",
   "coordinate_convention": "Each local envelope uses lower-left-bottom origin [0,0,0]. design_envelope_mm includes allocated installed pins, socket and body height but not the external cable service space explicitly listed in keepouts. Positions and rotations are defined by the enclosure layout, not this inventory.",
@@ -16,7 +16,7 @@
   "components": [
     {
       "id": "carrier",
-      "model": "MC2-B carrier with ESP32-DevKitC-VIE, TinyC6-U-01, XIAO MG24 and WIZ850io",
+      "model": "MC2-C carrier with ESP32-DevKitC-VIE, TinyC6[D] TC6D-01, XIAO MG24 and WIZ850io",
       "quantity": 1,
       "body_mm": [
         100,
@@ -56,7 +56,9 @@
       "notes": [
         "The 100x100 bare PCB is not the complete populated envelope. WIZ850io jack face is at local y=102.",
         "All four fitted modules, carrier headers, D1-D3 and R1-R5 are retained; they do not each need independent enclosure screws.",
-        "Reserve access above the service headers and component-side reset/boot buttons."
+        "Reserve access above the service headers and component-side reset/boot buttons.",
+        "U2 is TinyC6[D] TC6D-01: use the MC2-C footprint and firmware; solder 1x11 and 1x12 headers, leave the optional battery connector unpopulated, and do not fit a LiPo battery.",
+        "The longer 36.3 x 17.78 mm nominal U2 PCB and its relocated U.FL endpoint are read from the MC2-C CAD source; the enclosing carrier reservation is unchanged."
       ],
       "keepouts": [
         {
@@ -76,7 +78,9 @@
       ],
       "sources": [
         "../../hardware/external-antenna/cad/design.json",
-        "../../hardware/external-antenna/cad/connectors.json"
+        "../../hardware/external-antenna/cad/connectors.json",
+        "../../hardware/external-antenna/cad/c6d-evidence.json",
+        "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step"
       ],
       "fit_verified": false
     },

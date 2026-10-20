@@ -1,6 +1,13 @@
-# FH1 — complete MC2-B radio-hub enclosure
+# FH1 — complete MC2-C radio-hub enclosure
 
-This package adds physical accommodation for the **whole hub**: the MC2-B
+**Current Thread board: Unexpected Maker TinyC6[D], TC6D-01.** This package
+uses the longer Series D board outline and its corrected U.FL position from
+the manufacturer STEP model. It retains the 215 × 215 × 78 mm shell and checks
+the three separate 150 mm coax routes. See the [source and fit ledger](sources.md#tinyc6d-revision-change)
+for the header alignment, nominal dimensions and remaining physical checks.
+Use the MC2-C RCP firmware to enable the Series D external antenna.
+
+This package adds physical accommodation for the **whole hub**: the MC2-C
 carrier, Zooz ZAC93, DFR0627 UART bridge, CC1101, isolated PoE splitter, 3.3 V
 regulator, DC adapter, fuse, LD2450 and an attached BME680 pod. It supersedes the
 smaller carrier-only housing for a complete assembly. It is an **engineering
@@ -37,7 +44,7 @@ or plugging in the harness.
 
 ## Print package
 
-**[Download the complete FH1 print ZIP](FH1-MC2-B-print-package.zip)** — all 14
+**[Download the complete FH1 print ZIP](FH1-MC2-C-print-package.zip)** — all 14
 current STL files, a [print-first checklist](PRINT-FIRST.txt), and a
 [machine-readable quantity/hash manifest](print-manifest.json). The archive
 contains 13 installed pieces, one trial coupon and one optional blank. **Print
@@ -153,7 +160,7 @@ those during the unpowered dry fit.
 
 ## Evidence and remaining physical checks
 
-The generator reads the current native MC2-B carrier geometry and
+The generator reads the current native MC2-C carrier geometry and
 `components.json`, rather than assuming that all boards are interchangeable.
 `verification.json` records the modelled component bounds, keepouts, mount
 positions, cable-route allowances, print-part dimensions and source hashes.

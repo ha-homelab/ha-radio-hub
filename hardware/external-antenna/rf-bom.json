@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "design": "MC2-B",
-  "review_date": "2026-10-18",
+  "design": "MC2-C",
+  "review_date": "2026-10-19",
   "status": "Engineering selection; physical connector fit, installed cable routing and RF performance require validation",
   "antenna": {
     "manufacturer": "TE Connectivity / Linx",
@@ -45,9 +45,9 @@
     },
     {
       "label": "THREAD",
-      "radio": "Unexpected Maker TinyC6-U-01",
-      "path": "TinyC6-U-01 U.FL -> dedicated pigtail -> THREAD bulkhead -> antenna",
-      "selection": "Factory external-only version; do not substitute the onboard-antenna or Series D version without review"
+      "radio": "Unexpected Maker TinyC6[D] / TC6D-01",
+      "path": "TinyC6[D] U.FL -> dedicated pigtail -> THREAD bulkhead -> antenna",
+      "selection": "MC2-C RCP selects and verifies FXL6408 XIO0 HIGH on local C6 SDA6/SCL7, address 0x43, before radio initialization; reset defaults to onboard antenna"
     },
     {
       "label": "ZIGBEE",

@@ -77,10 +77,10 @@ def shell(title: str, content: str, pages: list[dict], current: str = '') -> str
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide">{nav}<span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main">{content}<footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<main id="main">{content}<footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>
 '''
 
@@ -101,7 +101,7 @@ def build() -> dict[str, str]:
         output[page['slug'] + '.html'] = shell(page['label'], meta + toc + '<article class="article">' + body + '</article>', pages, page['slug'])
         search = ' '.join((page['label'] + ' ' + page['description'] + ' ' + text).lower().split())
         cards.append(f'<article class="card" data-search="{html.escape(search, quote=True)}"><h2><a href="{page["slug"]}.html">{html.escape(page["label"])}</a></h2><p>{html.escape(page["description"])}</p></article>')
-    home = '''<section class="hero"><div class="eyebrow">Build, wire, check</div><h1>One place to build<br>your radio hub.</h1><p>Start with the current MC2-B hardware, then work through programming, the FH1 enclosure and Home Assistant commissioning.</p><div class="actions"><a class="primary" href="start-here.html">Start the build</a><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/FH1-MC2-B-print-package.zip" download>Download print package</a></div></section>
+    home = '''<section class="hero"><div class="eyebrow">Build, wire, check</div><h1>One place to build<br>your radio hub.</h1><p>Start with the current MC2-C hardware, then work through programming, the FH1 enclosure and Home Assistant commissioning.</p><div class="actions"><a class="primary" href="start-here.html">Start the build</a><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/FH1-MC2-C-print-package.zip" download>Download print package</a></div></section>
 <section class="tools"><label for="guide-search">Find a guide by topic or part</label><input id="guide-search" type="search" placeholder="Try ZAC93, flash, antenna, BME680 or recovery"><p id="result-count" role="status"></p><button id="clear-search" type="button">Clear search</button></section>
 <p class="empty" id="empty" hidden>No matching guides. Try a component name or clear the search.</p><section class="grid" aria-label="Guides">''' + ''.join(cards) + '</section>'
     output['index.html'] = shell('Build guide', home, pages)

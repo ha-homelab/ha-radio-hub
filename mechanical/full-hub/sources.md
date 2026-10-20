@@ -11,8 +11,8 @@ listed separately. They are not manufacturer tolerances or a fit certificate.
 
 ### Carrier and its four fitted modules
 
-The current carrier is MC2-B, with ESP32-DevKitC-VIE / ESP32-WROVER-IE,
-Unexpected Maker TinyC6-U-01, Seeed XIAO MG24 and WIZnet WIZ850io. Its authoritative
+The current carrier is MC2-C, with ESP32-DevKitC-VIE / ESP32-WROVER-IE,
+Unexpected Maker TinyC6[D] TC6D-01, Seeed XIAO MG24 and WIZnet WIZ850io. Its authoritative
 outline, four mounting holes and fitted-part plan geometry are in the project
 [CAD manifest](../../hardware/external-antenna/cad/design.json). The bare PCB is
 100 x 100 mm with four 2.7 mm holes at (4,4), (96,4), (4,96), (96,96).
@@ -22,6 +22,33 @@ stack. Individual modules are retained by their soldered headers; the case
 supports the carrier and the Ethernet jack. Do not add screws through module
 PCBs. The wiring authority remains the
 [connector ledger](../../hardware/external-antenna/cad/connectors.json).
+
+### TinyC6[D] revision change
+
+MC2-C selects **Unexpected Maker TinyC6[D], TC6D-01**, in place of the original
+TC6-U-01 used by MC2-B. The manufacturer's
+[Series D source revision](https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3)
+and [TinyC6D STEP model](https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step)
+define the new PCB and connector geometry. The nominal PCB is 36.3 × 17.78 mm;
+17.8 mm is the rounded published width. A BRep import using CadQuery 2.8.0 /
+Open CASCADE 7.9.3 confirms a 0.91 mm PCB and a complete unpinned model Z range
+of −0.075…4.205 mm, or 4.28 mm overall. The small negative extent belongs to
+underside features; it is not a header or mating clearance. The
+[native evidence ledger](../../hardware/external-antenna/cad/c6d-evidence.json)
+records the pinned STEP digest and nominal geometry. Its 1×11 and 1×12 header rows retain
+2.54 mm pitch and 15.24 mm separation. Do not use the old board-edge outline
+to locate the longer replacement: the carrier aligns the **header holes**.
+The native MC2-C CAD records the exact transformation and connector locations.
+
+The new U.FL socket is near the opposite side of the Thread board from the
+previous estimated endpoint. Both enclosure generators consume the corrected
+native-CAD endpoint when checking the 150 mm coax route. A fitted AMC plug,
+header/socket stack and formed cable bend still need a dry fit; the STEP model
+does not include those purchased mating parts. The full enclosure retains its
+215 × 215 × 78 mm dimensions and a 30 mm populated-carrier height reservation.
+Do not fit the optional battery connector or a LiPo battery in this build.
+The external antenna also requires the MC2-C RCP firmware, which selects it via
+the Series D I²C expander; mechanically plugging in a pigtail is insufficient.
 
 ### Zooz ZAC93
 

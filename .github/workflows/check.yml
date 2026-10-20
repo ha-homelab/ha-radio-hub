@@ -147,6 +147,8 @@ jobs:
               kicad-cli sch erc --exit-code-violations --severity-all --format json --output hardware/external-antenna/cad/checks/erc.json hardware/external-antenna/cad/mc2.kicad_sch
               kicad-cli pcb drc --exit-code-violations --severity-all --schematic-parity --format json --output hardware/external-antenna/cad/checks/drc.json hardware/external-antenna/cad/mc2.kicad_pcb
               python3 hardware/external-antenna/cad/test_design.py
+              python3 hardware/external-antenna/fabrication/package.py --check
+              python3 -m unittest discover -s hardware/external-antenna/fabrication -p "test_*.py"
               python3 hardware/external-antenna/cad/reproduce_check.py --python python3 --cli kicad-cli --libraries /usr/share/kicad
             '
   check:
@@ -273,7 +275,7 @@ jobs:
           python "$GITHUB_WORKSPACE/firmware/module-carrier/verify_h2.py" "$GITHUB_WORKSPACE/.build/mc1-h2"
 
   external-antenna:
-    name: MC2-B classic ESP32 and C6 RCP
+    name: MC2-C classic ESP32 and C6 RCP
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
@@ -302,7 +304,7 @@ jobs:
         run: |
           .venv/bin/python -m unittest discover -s mechanical/full-hub -p 'test_*.py'
           .venv/bin/python mechanical/full-hub/build.py --check
-      - name: Compile complete MC2-B classic ESP32 image
+      - name: Compile complete MC2-C classic ESP32 image
         run: .venv/bin/python firmware/external-antenna/validate.py .build/mc2 --esphome .venv/bin/esphome --compile
       - name: Compile and verify matching C6 RCP
         run: |

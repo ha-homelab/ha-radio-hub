@@ -1,5 +1,7 @@
 from pathlib import Path
+import json
 ROOT=Path(__file__).resolve().parent
+C6D_EVIDENCE=json.loads((ROOT/'c6d-evidence.json').read_text())
 SOURCES={
 'host':'https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html',
 'host_module':'https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf',
@@ -7,7 +9,10 @@ SOURCES={
 'host_layout':'https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_pcb_layout.pdf',
 'wiz_schematic':'https://docs.wiznet.io/assets/files/wiz850io_sch_v110-3fcc19fc2acaf16f15c5f08f9c8330cb.pdf',
 'host_dimensions':'https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_dimensions.pdf',
-'c6':'https://github.com/UnexpectedMaker/esp32c6/tree/7c3137962e469be55a295d0eb7ccebed2a6354d1/TinyC6',
+'c6':'https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3',
+'c6_schematic':'https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/schematics/schematic-tinyc6-p1.pdf',
+'c6_step':'https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step',
+'c6_pinout':'https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/pinout_cards/TinyC6D_pinout.webp',
 'xiao':'https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip',
 'wiz_photo':'https://docs.wiznet.io/img/products/wiz850io/wiz850io.png',
 'wiz_pinmap':'https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png',
@@ -28,8 +33,8 @@ RAIL_COPPER_KEEPOUTS=[]
 RF_KEEPOUTS=[]
 RF_POUR_ONLY_KEEPOUTS=[]
 USB_ENVELOPES={'U1':[17,70,29,99],'U2':[48,0,60,12],'U3':[77,0,91,12]}
-USB_SOCKET_BOUNDS_LOCAL={'U1':[8,44.5,17.4,50], 'U2':[-4.21,-18.718,4.43,-10.89], 'U3':[3.12,-5.921,12.12,-2.921]}
-BODY_BOUNDS={'U1':[-1.27,-7.34,26.67,46.99],'U2':[-8.78,-18,9,16.67735],'U3':[-1.27,-2.921,16.51,18.034],'U4':[-1.34,-6.4,21.66,18.6]}
+USB_SOCKET_BOUNDS_LOCAL={'U1':[8,44.5,17.4,50], 'U2':C6D_EVIDENCE['mechanics']['usb_bounds_local_mm'], 'U3':[3.12,-5.921,12.12,-2.921]}
+BODY_BOUNDS={'U1':[-1.27,-7.34,26.67,46.99],'U2':C6D_EVIDENCE['mechanics']['pcb_bounds_local_mm'],'U3':[-1.27,-2.921,16.51,18.034],'U4':[-1.34,-6.4,21.66,18.6]}
 parts=[]
 def add(ref,model,fp,pins,xy,rotation=0,source='connector',notes=''):
  if ref.startswith('J') and rotation==270:rotation=90
@@ -37,9 +42,9 @@ def add(ref,model,fp,pins,xy,rotation=0,source='connector',notes=''):
 hostnames={'J2':['3V3','EN','36','39','34','35','32','33','25','26','27','14','12','GND','13','9','10','11','5V'],'J3':['GND','23','22','1','3','21','GND','19','18','5','17','16','4','0','2','15','8','7','6']}
 hostnets={'5V':'+5V_HOST','GND':'GND','0':'HOST_BOOT_SERVICE','25':'RF_GDO0','35':'RF_GDO2','13':'RF_CS','33':'ZB_CTS','14':'ZB_RTS','23':'RADAR_RX','32':'ZB_RX','39':'ZB_TX','4':'ETH_RESET','34':'ETH_INT','2':'SPI_MOSI','19':'SPI_MISO','12':'SPI_SCK','5':'ETH_CS','21':'I2C_SDA','22':'I2C_SCL','26':'THREAD_RX','36':'THREAD_TX','18':'RADAR_TX','27':'THREAD_EN','15':'THREAD_BOOT'}
 add('U1','ESP32-DevKitC-VIE','MC2:ESP32_DevKitC_VIE',{f'{row}.{i+1}':hostnets.get(n) for row,ns in hostnames.items() for i,n in enumerate(ns)},(9.27,20),0,source='host',notes='Factory male pins; WROVER-IE external U.FL; 8MB flash/8MB quad PSRAM; 5V via D1; GPIO0 boot,1/3 USB-UART,6-11 flash,16/17 PSRAM reserved; BLE4.2, no BLE5 extended advertising')
-c6names={'1':'VBAT','2':'GND','3':'5V','4':'3V3','5':'3','6':'2','7':'1','8':'0','9':'11','10':'8','11':'9','12':'17','13':'16','14':'GND','15':'EN','16':'15','17':'5','18':'6','19':'7','20':'18','21':'19','22':'20','23':'21'}
+c6names={'1':'VBAT','2':'GND','3':'5V','4':'3V3','5':'3','6':'2','7':'1','8':'0','9':'11','10':'8','11':'9','12':'17','13':'16','14':'GND','15':'EN','16':'15','17':'10','18':'6','19':'7','20':'18','21':'19','22':'20','23':'21'}
 c6nets={'3V3':'C6_LOCAL_3V3','8':'C6_STRAP8','5V':'+5V_C6','GND':'GND','EN':'THREAD_EN','17':'THREAD_RX','16':'THREAD_TX','9':'THREAD_BOOT'}
-add('U2','Unexpected Maker TinyC6-U-01','MC2:TinyC6_U',{n:c6nets.get(g) for n,g in c6names.items()},(53.78,30),0,source='c6',notes='Original TC6-U-01 fixed U.FL; NOT TC6D-01; solder supplied 1x12 + 1x11 male headers; native USB no bridge; ROM RX17 TX16; EN/BOOT9 accessible; no LiPo fitted')
+add('U2','Unexpected Maker TinyC6[D] TC6D-01','MC2:TinyC6_D',{n:c6nets.get(g) for n,g in c6names.items()},(53.78,30),0,source='c6',notes='TC6D-01; solder 1x12 + 1x11 male headers; native USB no UART bridge; ROM RX17 TX16; EN/BOOT9 accessible; external antenna requires MC2-C firmware: FXL6408 0x43 XIO0 HIGH via local GPIO6 SDA/7 SCL; no LiPo fitted')
 xiaopins={str(i):None for i in range(1,15)}
 xiaopins.update({'1':'ZB_BOOT_SERVICE','5':'ZB_CTS','6':'ZB_RTS','7':'ZB_TX','8':'ZB_RX','13':'GND','14':'+5V_ZB'})
 add('U3','Seeed XIAO MG24 pre-soldered 102010690','MC2:XIAO_MG24',xiaopins,(76.27,14.921),0,source='xiao',notes='External UART PC06/PC07; CTS PC04 RTS PC05; USB probe preserved; 3V3 OUT NC; external U.FL selected by firmware PB04=1 PB05=1')
@@ -75,6 +80,6 @@ WIZ_MECHANICS={
  'evidence':'WIZnet dimension image:16.10mm jack width,20.32mm row spacing,6.40mm first-row offset,2.70mm jack projection. Official angled photo identifies opposite solder-contact side as rear.'
 }
 
-# RF port centre estimates used only for cable planning (not manufactured coordinates).
+# U2 RF center comes from the nominal manufacturer STEP; U1/U3 remain planning estimates.
 # Measure the supplied modules and coax bend/radius before case qualification.
-RF_PORTS={'U1':{'radio':'BLE','connector':'U.FL / MHF1','estimated_xy_mm':[25,16], 'evidence':'Planning estimate for WROVER-IE external connector; measure the delivered DevKitC-VIE before cable qualification'},'U2':{'radio':'Thread','connector':'U.FL / MHF1','estimated_xy_mm':[59,43]},'U3':{'radio':'Zigbee','connector':'U.FL / MHF1','estimated_xy_mm':[79,31], 'evidence':'Bottom-left U.FL on official component-side USB-up front pinout: https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_front_pinout.png'}}
+RF_PORTS={'U1':{'radio':'BLE','connector':'U.FL / MHF1','estimated_xy_mm':[25,16], 'evidence':'Planning estimate for WROVER-IE external connector; measure the delivered DevKitC-VIE before cable qualification'},'U2':{'radio':'Thread','connector':'U.FL / MHF1','estimated_xy_mm':[48.29,46.252], 'coordinate_status':'manufacturer_STEP_nominal_not_sample_measured', 'evidence':'TinyC6D.step ANT1 center from pinned manufacturer source; see c6d-evidence.json for transform and SHA256'},'U3':{'radio':'Zigbee','connector':'U.FL / MHF1','estimated_xy_mm':[79,31], 'evidence':'Bottom-left U.FL on official component-side USB-up front pinout: https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_front_pinout.png'}}

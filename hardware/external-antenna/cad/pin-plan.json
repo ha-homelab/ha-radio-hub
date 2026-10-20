@@ -1,11 +1,11 @@
 {
-  "status": "MC2-B classic ESP32 external-antenna engineering prototype; physical validation pending",
+  "status": "MC2-C classic ESP32 / TinyC6[D] external-antenna engineering prototype; physical validation pending",
   "board": "ESP32-DevKitC-VIE",
   "soc": "ESP32",
   "flash_bytes": 8388608,
   "psram_bytes": 8388608,
   "psram_mode": "quad",
-  "physical_attachment": "Factory male headers solder directly into MC2-B plated holes; DevKitC V4 has two 19-pin rows, 25.40mm apart",
+  "physical_attachment": "Factory male headers solder directly into MC2-C plated holes; DevKitC V4 has two 19-pin rows, 25.40mm apart",
   "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html",
   "spi_bus_sharing": true,
   "application_gpio_count": 21,
@@ -140,7 +140,7 @@
       "baud": 460800,
       "reset": "EN",
       "boot": 9,
-      "board": "Unexpected Maker TinyC6-U-01",
+      "board": "Unexpected Maker TinyC6[D]",
       "header_pins": {
         "rx": "12",
         "tx": "13",
@@ -158,10 +158,23 @@
         "pullup_ohms": 10000,
         "rail": "C6_LOCAL_3V3",
         "header_pin": "10"
-      }
+      },
+      "sku": "TC6D-01",
+      "antenna": {
+        "mode": "external",
+        "rf_path": "U.FL",
+        "expander": "FXL6408",
+        "i2c_address": 67,
+        "sda": 6,
+        "scl": 7,
+        "select_pin": "XIO0",
+        "select_level": 1,
+        "initialized_before_radio": true
+      },
+      "source": "https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3"
     }
   },
-  "caveat": "Classic ESP32 BLE4.2 supports legacy advertising/connections, not BLE5 extended advertising, 2M or Coded PHY. Input-only GPIO34/35/36/39 have no internal pull resistors. UART0 is remapped to LD2450; GPIO1/3 remain USB-UART only with runtime logging disabled. This is not MC2-A socket compatible.",
+  "caveat": "Classic ESP32 BLE4.2 supports legacy advertising/connections, not BLE5 extended advertising, 2M or Coded PHY. Input-only GPIO34/35/36/39 have no internal pull resistors. UART0 is remapped to LD2450; GPIO1/3 remain USB-UART only with runtime logging disabled. This is not MC2-A socket compatible. MC2-C uses TinyC6[D] and requires the MC2-C antenna-aware RCP firmware; historical MC2-B fixed-U.FL firmware is not suitable.",
   "bootstrap_requirements": {
     "GPIO12": {
       "level": 0,

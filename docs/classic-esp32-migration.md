@@ -1,5 +1,10 @@
 # MC2-B: previous-generation ESP32 host
 
+This records the host migration. The active **MC2-C** keeps this host and its
+pin assignments, but replaces the original TinyC6-U-01 with **TinyC6[D] /
+TC6D-01** and matching antenna-switch firmware. Use the [current shopping list](mc2-shopping.md)
+and [ordering record](pcb-order.md) for a new build.
+
 MC2-B replaces **ESP32-S3-DevKitC-1U-N8R8** with **Espressif ESP32-DevKitC-VIE**,
 using the **ESP32-WROVER-IE** module. This is a cost-focused host migration;
 TinyC6-U-01, XIAO MG24, WIZ850io, CC1101, ZAC93/WK2132, LD2450 and BME680 keep

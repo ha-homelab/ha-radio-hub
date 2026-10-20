@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "decision_date": "2026-10-18",
+  "decision_date": "2026-10-19",
   "documentation_review_date": "2026-10-19",
   "active_design": "MC2",
   "active_custom_pcb_count": 1,
   "active_directory": "hardware/external-antenna",
-  "priority": "Reduce host board cost with classic ESP32 while retaining local services, three independent external 2.4 GHz antennas and direct-solder finished modules.",
-  "active_layout_revision": "MC2-B",
+  "priority": "Keep the classic ESP32 host and all local services, with the available TC6D-01 Thread module, three independent external 2.4 GHz antennas and direct-solder finished modules.",
+  "active_layout_revision": "MC2-C",
   "active_host": "ESP32-DevKitC-VIE (ESP32-WROVER-IE)",
   "active_memory": {
     "flash_mb": 8,
@@ -14,13 +14,13 @@
     "psram_heap_mapped_mb": 4,
     "psram_bus": "quad, 40 MHz"
   },
-  "active_thread_rcp": "Unexpected Maker TinyC6-U-01",
+  "active_thread_rcp": "Unexpected Maker TinyC6[D] / TC6D-01",
   "active_pcb": {
     "width_mm": 100,
     "height_mm": 100,
     "copper_layers": 2,
     "nominal_thickness_mm": 1.6,
-    "layout_revision": "MC2-B"
+    "layout_revision": "MC2-C"
   },
   "assembly": {
     "female_module_sockets": 0,
@@ -29,10 +29,10 @@
     "component_sides": 1,
     "usb_cable_service_space": false,
     "initial_programming": "Program each loose controller before mounting; use the revision-specific network updater after assembly.",
-    "thread_preparation": "TinyC6-U-01 native USB, no H2 USB-UART resistor removal."
+    "thread_preparation": "TinyC6[D] native USB; MC2-C RCP selects external antenna through onboard FXL6408; no battery fitted."
   },
   "active_enclosure": {
-    "revision": "FH1-MC2-B",
+    "revision": "FH1-MC2-C",
     "status": "full-hub engineering prototype; physical fit, force, thermal and RF qualification outstanding",
     "directory": "mechanical/full-hub",
     "shell_envelope_mm": [
@@ -42,7 +42,7 @@
     ],
     "antenna_bulkhead_pitch_mm": 65,
     "antenna_mount": "Three independent standard-SMA bulkheads in fixed base wall; separate 150 mm U.FL-compatible pigtails. ZAC93 retains its stock antenna; CC1101 has a separate band-matched antenna.",
-    "scope": "MC2-B carrier, isolated Waveshare DC PoE splitter, Pololu buck, DFR0627 bridge, ZAC93, CC1101, DC adapter, fuse, lid-mounted LD2450 and attached ventilated BME680 pod.",
+    "scope": "MC2-C carrier, isolated Waveshare DC PoE splitter, Pololu buck, DFR0627 bridge, ZAC93, CC1101, DC adapter, fuse, lid-mounted LD2450 and attached ventilated BME680 pod.",
     "component_inventory": "mechanical/full-hub/components.json",
     "geometry_parameters": "mechanical/full-hub/parameters.json",
     "qualification": "Digital envelopes and print geometry only; check exact delivered hardware and connector variants before assembly."
@@ -110,6 +110,15 @@
       "directory": "hardware/external-antenna",
       "host": "ESP32-S3-DevKitC-1U-N8R8",
       "reason": "Superseded by classic ESP32 host in MC2-B; different footprint, pin map, target binary and node identity."
+    },
+    {
+      "id": "MC2-B",
+      "status": "historical_git_snapshot",
+      "commit": "614c0cd5750eda3b925750c4d893f08227f2991a",
+      "directory": "hardware/external-antenna",
+      "host": "ESP32-DevKitC-VIE",
+      "thread_rcp": "TinyC6-U-01 / TC6-U-01",
+      "reason": "Original fixed-U.FL C6 unavailable for US purchase; MC2-C selects TC6D-01 and board-specific antenna firmware."
     }
   ],
   "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",

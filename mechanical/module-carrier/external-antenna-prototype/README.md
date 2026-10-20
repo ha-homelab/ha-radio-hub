@@ -1,4 +1,4 @@
-# MC2-B external-antenna enclosure prototype
+# MC2-C external-antenna enclosure prototype
 
 **Historical carrier-only option.** For the complete device, including Zooz
 ZAC93, power modules, UART bridge, CC1101, LD2450 and an attached BME680 pod,
@@ -11,7 +11,14 @@ This package implements three independently labeled external antenna connections
 
 The nominal carrier shell is **190 × 160 × 58 mm**, plus a **4 mm ceiling spacing frame**. The carrier is 100 × 100 mm; its actual outline and mounting holes are read from the MC2 native KiCad board. The extra width reserves hand/tool access and initial 65 mm spacing between adjacent antenna connectors. That spacing is a starting mechanical layout, **not a demonstrated RF isolation distance or a promise of coverage over 1,000 ft²**.
 
-MC2-B uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
+MC2-C uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
+
+The Thread board is **Unexpected Maker TinyC6[D], TC6D-01**. Its 36.3 × 17.78 mm
+nominal PCB is aligned by the header centers, and its U.FL socket position is
+read from the revised native CAD. The Series D radio needs the MC2-C RCP
+firmware to select that external antenna. The same 150 mm cable and carrier
+mounts remain applicable; installed header height and formed coax bends still
+require a physical trial.
 
 This remains a **carrier-only housing**. The PoE splitter, converter, DFR0627, ZAC93, CC1101, LD2450 and BME680 remain in their separately allocated housings/locations. No free volume in this shell is permission to move them next to the RF cables. The system still receives one PoE cable from the existing network switch. The carrier's downstream WIZ Ethernet connector carries data after the external splitter; do not connect raw PoE to an ordinary WIZ jack.
 

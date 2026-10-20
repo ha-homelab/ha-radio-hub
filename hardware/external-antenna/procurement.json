@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "revision": "MC2-C",
+  "checked_on": "2026-10-19",
+  "scope": "Changed U2 target and bare-PCB prototype quotes; not a complete supplier stock audit",
+  "thread_rcp": {
+    "manufacturer": "Unexpected Maker",
+    "part": "TC6D-01",
+    "name": "TinyC6[D]",
+    "quantity_for_one_hub": 1,
+    "unit_price_usd": 18.0,
+    "observed_stock": 48,
+    "source": "https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851",
+    "observation": "Live manufacturer product page showed in-stock quantity, SKU and USD price. No reservation or order.",
+    "options": "Standard supplied male headers; no added female headers, antenna or battery",
+    "shipping": "Ships from Melbourne, Australia. Shipping, tax and import fees not quoted."
+  },
+  "superseded_part": {
+    "part": "TC6-U-01",
+    "reason": "US Mouser live page: obsolete, delivery restriction, not sold in region; user has not purchased it."
+  },
+  "pcb_quotes": {
+    "manufacturer": "PCBWay",
+    "url": "https://www.pcbway.com/orderonline.aspx",
+    "settings": "100x100 mm, 2 layers, FR4 1.6 mm, 1 oz, green mask, white silkscreen, lead-free HASL, tented vias, no stencil or assembly",
+    "destination": "United States; not a ZIP/address-specific checkout quote",
+    "currency": "USD",
+    "shipping_service": "Global Direct Shipping",
+    "shipping_estimate_business_days": [
+      6,
+      12
+    ],
+    "offers": [
+      {
+        "quantity": 5,
+        "boards": 5.0,
+        "shipping": 8.71,
+        "total_before_tax_duty": 13.71
+      },
+      {
+        "quantity": 10,
+        "boards": 18.18,
+        "shipping": 12.04,
+        "total_before_tax_duty": 30.22
+      },
+      {
+        "quantity": 20,
+        "boards": 51.36,
+        "shipping": 17.71,
+        "total_before_tax_duty": 69.07
+      }
+    ],
+    "status": "Calculator estimates before Gerber DFM review and address-specific checkout; no order placed",
+    "recommended_quantity": 5
+  }
+}

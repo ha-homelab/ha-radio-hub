@@ -1,5 +1,15 @@
 # One current design, retained engineering history
 
+On 19 October 2026 **MC2-C** replaced the obsolete/unavailable original
+**TinyC6-U-01** with **TinyC6[D] / TC6D-01**, while retaining the classic ESP32
+host and the other services. The new board's external antenna requires an
+I²C-controlled switch; the matching RCP firmware performs and verifies that
+selection before starting Thread. The carrier and FH1 geometry, pin contracts,
+shopping list and fabrication package were updated together. The
+[MC2-B source snapshot](https://github.com/ha-homelab/ha-radio-hub/tree/614c0cd5750eda3b925750c4d893f08227f2991a)
+preserves the previous fixed-U.FL build. Use the [current ordering record](pcb-order.md)
+for new boards.
+
 On 18 October 2026 **MC2-B** replaced the S3 host with the previous-generation
 **ESP32-DevKitC-VIE / WROVER-IE** to reduce the host purchase cost. Its new
 38-pin footprint, pin map, boot-strap resistors and classic-ESP32 binary are not

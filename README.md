@@ -1,14 +1,14 @@
-# HA Radio Hub — MC2-B
+# HA Radio Hub — MC2-C
 
 **Three independent external antennas: Zigbee, Thread and Bluetooth.** MC2 keeps
 a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
 Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
 100 × 100 mm carrier holds finished modules with direct-solder male headers.
 
-![Complete MC2-B hub with ZAC93 — AI exploded appearance concept](hardware/external-antenna/images/full-hub-exploded-concept.png)
+![Current MC2-C and FH1 exploded CAD view with ZAC93](mechanical/full-hub/exploded-preview.png)
 
-*AI-generated appearance concept, not a photograph. Module shapes, mounts,
-markings and small details are illustrative. Use the [full-hub CAD layout](mechanical/full-hub/layout.svg),
+*Generated from the current enclosure geometry with simplified electronic
+bodies, including the updated TinyC6[D] envelope. Use the [full-hub CAD layout](mechanical/full-hub/layout.svg),
 [print files](mechanical/full-hub/README.md) and [wiring guide](docs/full-hub-assembly.md)
 for construction. Antennas and most cables are omitted for visibility; connect
 the required antennas before operation.*
@@ -21,7 +21,7 @@ coverage, power consumption, mechanical fit or radio certification. The
 
 Follow [Start here](docs/start-here.md) for the ordered build, success checks,
 Home Assistant connections and troubleshooting. Program the loose boards before
-permanent assembly. The current hardware is **MC2-B + FH1**; older revisions are
+permanent assembly. The current hardware is **MC2-C + FH1**; older revisions are
 kept as references.
 
 For readable pages, searchable wiring and print downloads, clone or download
@@ -37,7 +37,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 `--port 0` if the default local port is occupied.
 
 [Start here](docs/start-here.md) ·
-[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-B-print-package.zip) ·
+[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-print-package.zip) ·
 [Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
 [Documentation index](docs/README.md)
 
@@ -47,17 +47,18 @@ folder. GitHub shows HTML source rather than running this guide. Use
 
 **Buying parts?** The [MC2 shopping guide](docs/mc2-shopping.md) gives quantities,
 exact order codes, inspected AliExpress variants and outstanding availability
-checks. MC2-B replaces the S3 host; it needs its own carrier and first flash,
-not an S3 OTA update. TinyC6 supply is unresolved; secure the original **TC6-U-01** before
-ordering a batch of carriers.
+checks. **MC2-C selects the available TinyC6[D] / TC6D-01** and its matching
+external-antenna firmware. The manufacturer showed 48 in stock at USD $18 on
+19 October 2026. Use the [PCB ordering record](docs/pcb-order.md) for the current
+fabrication package and five-board prototype recommendation.
 
 - **Espressif ESP32-DevKitC-VIE / ESP32-WROVER-IE:** previous-generation host
   with a factory external antenna connector, 8 MB flash and 8 MB physical PSRAM
   (4 MB directly addressable, quad 40 MHz); Ethernet host and active BLE 4.2 proxy.
-- **Unexpected Maker TinyC6-U-01:** external U.FL Thread RCP, 8 MB flash,
-  native USB and ordinary header-accessible recovery pins. Its two loose headers
-  require through-hole soldering. Availability was backorder/on-request when
-  checked on 18 October 2026; verify the exact SKU before ordering.
+- **Unexpected Maker TinyC6[D] / TC6D-01:** Thread RCP, 8 MB flash,
+  native USB and header-accessible recovery pins. MC2-C firmware verifies the
+  external U.FL antenna selection through the onboard I²C expander. Solder its
+  two supplied male headers; no battery, extra female headers or RF rework.
 - **Seeed XIAO MG24:** Ember NCP with explicit external-antenna firmware.
 - **WIZnet WIZ850io:** shared-SPI Ethernet; retain the isolated PoE splitter and
   regulated low-voltage supply from the battery-fed PoE switch.
@@ -79,23 +80,24 @@ modules, the selected finished PoE splitter and the power/cable accessories.
 
 ![MC2 carrier, all components on the front](hardware/external-antenna/cad/assembly-top.svg)
 
-![MC2-B bare carrier — AI surface-finish concept](hardware/external-antenna/images/mc2b-bare-concept.png)
+![Earlier MC2-B bare carrier — AI surface-finish concept](hardware/external-antenna/images/mc2b-bare-concept.png)
 
-*Bare-board appearance concept only. AI-generated traces, pads and labels are
-not fabrication data. [Image provenance and prompts](hardware/external-antenna/images/README.md).*
+*Earlier MC2-B appearance concept only. MC2-C's exact silkscreen and geometry
+come from the CAD drawing above. AI-generated traces, pads and labels are not
+fabrication data. [Image provenance and prompts](hardware/external-antenna/images/README.md).*
 
 ## Where the Z-Wave board and other parts go
 
-**Zooz ZAC93 sits in its own removable insulated cradle beside the MC2-B
+**Zooz ZAC93 sits in its own removable insulated cradle beside the MC2-C
 carrier.** Its underside 2×5 socket connects by a wired mating header to carrier
 **J4**; the **DFR0627 / WK2132** bridge connects to **J3** and provides its serial
 port. The ZAC93 does not plug into the ESP32 or a Raspberry Pi in this build.
 Keep its stock antenna clear of straps, cables and metal.
 
-![Source-driven full-hub exploded CAD view](mechanical/full-hub/exploded-preview.png)
+![Earlier MC2-B hub — AI exploded appearance concept](hardware/external-antenna/images/full-hub-exploded-concept.png)
 
-*Generated from the printable enclosure geometry with simplified electronic
-bodies. The numbered plan below locates all modules and cable reservations.*
+*Earlier MC2-B appearance concept, not a photograph or MC2-C construction drawing.
+The numbered CAD plan below locates the current modules and cable reservations.*
 
 ![Exact full-hub component placement and mounting](mechanical/full-hub/layout.svg)
 
