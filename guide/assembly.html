@@ -185,8 +185,8 @@ electrolytic capacitor</strong> directly between pin 1 (<strong>positive</strong
 do not omit it because the nominal input is only 5 V. Identify pins from the
 manufacturer drawing, not an assumed left-to-right cable order.</li>
 <li>The peripheral 3.3 V rail powers WIZ850io, DFR0627, ZAC93, CC1101 and BME680.
-The fused 5 V rail powers LD2450 and the three controller boards through their
-individual Schottky isolation diodes. <strong>Do not join the controller boards'
+The fused 5 V rail powers LD2450 directly; the three controller boards receive
+it through their individual Schottky isolation diodes D1–D3. <strong>Do not join the controller boards'
 local 3V3 outputs to the peripheral buck output.</strong></li>
 </ol>
 <p><img src="../hardware/external-antenna/power-wiring.svg" alt="RECOM supply and four-wire J2 connection" /></p>

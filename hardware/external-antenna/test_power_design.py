@@ -1,7 +1,5 @@
 """Fault-injection tests for the offboard regulator's electrical boundaries."""
-import copy
 import importlib.util
-import json
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET

@@ -137,8 +137,8 @@ power converter wired directly to the carrier.
    do not omit it because the nominal input is only 5 V. Identify pins from the
    manufacturer drawing, not an assumed left-to-right cable order.
 4. The peripheral 3.3 V rail powers WIZ850io, DFR0627, ZAC93, CC1101 and BME680.
-   The fused 5 V rail powers LD2450 and the three controller boards through their
-   individual Schottky isolation diodes. **Do not join the controller boards'
+   The fused 5 V rail powers LD2450 directly; the three controller boards receive
+   it through their individual Schottky isolation diodes D1–D3. **Do not join the controller boards'
    local 3V3 outputs to the peripheral buck output.**
 
 ![RECOM supply and four-wire J2 connection](../hardware/external-antenna/power-wiring.svg)
