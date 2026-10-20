@@ -8,7 +8,7 @@ Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
 ![Current MC2-C and FH1 exploded CAD view with ZAC93](mechanical/full-hub/exploded-preview.png)
 
 *Generated from the current enclosure geometry with simplified electronic
-bodies, including the updated TinyC6[D] envelope. Use the [full-hub CAD layout](mechanical/full-hub/layout.svg),
+bodies, including TinyC6[D] and the RECOM power assembly. Use the [full-hub CAD layout](mechanical/full-hub/layout.svg),
 [print files](mechanical/full-hub/README.md) and [wiring guide](docs/full-hub-assembly.md)
 for construction. Antennas and most cables are omitted for visibility; connect
 the required antennas before operation.*
@@ -38,7 +38,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 
 [Start here](docs/start-here.md) ·
 [Versioned engineering build package](docs/releases.md) ·
-[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip) ·
+[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip) ·
 [Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
 [Documentation index](docs/README.md)
 
@@ -63,10 +63,14 @@ fabrication package and five-board prototype recommendation.
 - **Seeed XIAO MG24:** Ember NCP with explicit external-antenna firmware.
 - **WIZnet WIZ850io:** shared-SPI Ethernet; retain the isolated PoE splitter and
   regulated low-voltage supply from the battery-fed PoE switch.
+- **RECOM R-78K3.3-1.0:** the peripheral 5 V → 3.3 V converter, replacing
+  Pololu D24V22F3. It connects to the existing J2 harness, with a local input
+  capacitor and a new removable mount. The MC2-C copper and firmware stay the same.
+  [Power connections and limits](docs/full-hub-assembly.md#power-and-ethernet).
 - **Three TE ANT-2.4-LCW-SMA antennas and three Taoglas CAB.618.E cables:**
   separate 50 Ω paths, standard SMA bulkheads, no combiner. The
   [updated selection](docs/pigtail-selection.md) saves $74.43 on three cables;
-  use the **FH1-MC2-C-RF1** enclosure and fit coupon.
+  use the **FH1-MC2-C-PWR1** enclosure and fit coupon.
 
 Classic ESP32 retains the configured services and three active BLE connections,
 but does not support BLE 5 extended advertising or Coded PHY. Lower power
@@ -97,10 +101,11 @@ carrier.** Its underside 2×5 socket connects by a wired mating header to carrie
 port. The ZAC93 does not plug into the ESP32 or a Raspberry Pi in this build.
 Keep its stock antenna clear of straps, cables and metal.
 
-![Earlier MC2-B hub — AI exploded appearance concept](hardware/external-antenna/images/full-hub-exploded-concept.png)
+![Current MC2-C hub with RECOM power assembly](mechanical/full-hub/full-assembly-preview.png)
 
-*Earlier MC2-B appearance concept, not a photograph or MC2-C construction drawing.
-The numbered CAD plan below locates the current modules and cable reservations.*
+*Current CAD assembly with simplified component bodies. Earlier AI appearance
+concepts remain in the [historical image record](hardware/external-antenna/images/README.md);
+use the current numbered CAD plan for module and cable placement.*
 
 ![Exact full-hub component placement and mounting](mechanical/full-hub/layout.svg)
 
@@ -113,6 +118,21 @@ gap. Three independent 2.4 GHz bulkheads remain on the fixed base.
 [Exploded CAD and print files](mechanical/full-hub/README.md) ·
 [Complete assembly and ZAC93 pin mapping](docs/full-hub-assembly.md) ·
 [Graphical wiring](hardware/external-antenna/full-hub-wiring.svg)
+
+## The smaller power assembly
+
+The isolated PoE splitter supplies **5 V**. The **RECOM R-78K3.3-1.0** supplies
+**3.3 V only to the peripherals**, through J2. Its 27 µF input capacitor and
+insulated wire links fit on a 24 × 24 mm perfboard in the new **PWR1** holder.
+Print the matching PWR1 base and holder together. No second custom PCB order
+is needed. The converter and capacitor total **$4.38**, before shipping and tax,
+versus $26.95 for the previous converter; see the dated [shopping record](docs/mc2-shopping.md).
+
+![Current RECOM power assembly and removable perfboard holder](mechanical/full-hub/power-assembly-preview.png)
+
+[Power and capacitor wiring](hardware/external-antenna/power-wiring.svg) ·
+[Perfboard: component and solder sides](hardware/external-antenna/power-perfboard.svg) ·
+[Assembly and power checks](docs/full-hub-assembly.md#power-and-ethernet)
 
 ## Build and inspect
 

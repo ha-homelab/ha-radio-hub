@@ -24,7 +24,7 @@ where parts sit. The <a href="../hardware/external-antenna/cad/connectors.json">
 is authoritative for carrier pad numbers.</p>
 <h2 id="fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</h2>
 <p>Use <strong>3 × Taoglas CAB.618.E</strong> with <strong>3 × TE/Linx ANT-2.4-LCW-SMA</strong> and the
-<strong>FH1-MC2-C-RF1</strong> print package. Print its connector coupon first: the round
+<strong>FH1-MC2-C-PWR1</strong> print package. Print its connector coupon first: the round
 6.8 mm clearance hole passes through the same 3 mm thickness as the case wall.
 Check the actual bulkhead, washer, nut and mating antenna before printing the
 main shell. Hold the metal shoulder while tightening; the round hole does not
@@ -177,21 +177,55 @@ with a meter before connecting the electronics. The project carries a
 <strong>1.5 A time-delay fuse</strong> as the starting specification; validate inrush,
 temperature derating, wire gauge and contact rating under the completed load.
 A 25 W splitter rating does not authorize 25 W through this carrier harness.</li>
-<li>Connect <strong>J2.1 → Pololu D24V22F3 VIN</strong>, <strong>J2.2 → GND</strong>,
-<strong>J2.3 ← VOUT (3.3 V)</strong> and <strong>J2.4 → GND</strong>. The two ground contacts may terminate
-at the same regulator ground node. Its <code>EN</code> and <code>PG</code> pins remain unused.
-Identify the Pololu labels, not an assumed left-to-right header order.</li>
+<li>Connect <strong>J2.1 → RECOM R-78K3.3-1.0 pin 1 (+VIN)</strong>,
+<strong>J2.2 → pin 2 (GND)</strong>, <strong>J2.3 ← pin 3 (+VOUT, 3.3 V)</strong> and
+<strong>J2.4 → the same pin-2 ground node</strong>. Add the specified <strong>27 µF input
+electrolytic capacitor</strong> directly between pin 1 (<strong>positive</strong>) and pin 2
+(<strong>negative</strong>). This is part of the assembly for power connection transients;
+do not omit it because the nominal input is only 5 V. Identify pins from the
+manufacturer drawing, not an assumed left-to-right cable order.</li>
 <li>The peripheral 3.3 V rail powers WIZ850io, DFR0627, ZAC93, CC1101 and BME680.
 The fused 5 V rail powers LD2450 and the three controller boards through their
 individual Schottky isolation diodes. <strong>Do not join the controller boards'
 local 3V3 outputs to the peripheral buck output.</strong></li>
 </ol>
-<p>Use insulated power terminations, strain relief at the splitter and input lead,
-and a removable fuse holder that cannot fall onto the PCB. Fit the buck above
-its insulating support with air space around the inductor and switching parts.
-The D24V22F3 current headline is specified under conditions different from this
-5 V installation; measure the actual output, temperatures and start-up behaviour.
-<a href="https://www.pololu.com/product/2857">Pololu connections and thermal/current information</a>.</p>
+<p><img src="../hardware/external-antenna/power-wiring.svg" alt="RECOM supply and four-wire J2 connection" /></p>
+<p>RECOM takes its input from <strong>fused 5 V before D1–D3</strong>, not from a controller's
+3.3 V pin or a diode-dropped 5 V output. Its specified input range starts at
+<strong>4.5 V</strong>: measure the voltage at its actual input pins during simultaneous load
+and startup, including losses in the fuse, connector and cable. Verify the
+peripheral rail under load before connecting the radios. The 1 A rating is a
+component limit subject to the datasheet conditions, not a measured hub current.
+See the <a href="../hardware/external-antenna/power-design.json">current load budget and acceptance criteria</a>.</p>
+<p>Fit the SIP3 converter and capacitor on the specified small <strong>isolated-pad
+perfboard</strong>, in the new removable PWR1 tray. Insulate solder joints, strain-relieve
+the harness and keep ventilation around the converter. No screw passes through
+the converter or capacitor. The old Pololu two-hole mount is not suitable.
+The RECOM is non-isolated; the selected PoE splitter provides isolation.</p>
+<p><img src="../hardware/external-antenna/power-perfboard.svg" alt="Component side and mirrored solder side of the power perfboard" /></p>
+<p>Cut a <strong>24 × 24 × 1.6 mm</strong> piece with isolated pads on a 2.54 mm grid. Follow
+the labeled A–H / 1–8 drawing, leaving a 2 mm copper-free rim and removing
+row-8 pads for the rear retaining strap. Fit RECOM pins 1/2/3 at <strong>B3/C3/D3</strong>,
+the capacitor positive/negative at <strong>G3/H3</strong>, and J2 wires 1/2/3/4 at
+<strong>A7/B7/C7/D7</strong>. Gently form the capacitor's 2 mm leads to the 2.54 mm spacing
+without bending at the seal. The solder-side drawing is mirrored deliberately.</p>
+<p>Make the six shown connections with insulated wire, keeping solder, trimmed
+leads and wire within the 2 mm underside allowance. Crossings are insulated;
+only named pads join. Check continuity against <a href="../hardware/external-antenna/power-design.json">the connection ledger</a>,
+then test the detached assembly from a current-limited 5 V source before
+connecting J2. Use the <strong>PWR1 base and tray together</strong>; the earlier tray's
+mounting pattern is different. <a href="print.html">Mount and print details</a>.</p>
+<p>The RECOM output must not be backfed. Program the radio boards loose as directed
+in <a href="start-here.html">Start here</a>; do not attach powered USB or an external supply
+to the assembled, unpowered hub. The controller supply diodes do not prevent
+all possible backfeed paths through signal pins.</p>
+<p>The MC2-C PCB's J2 is already a generic four-wire supply interface. Its frozen
+native CAD/BOM retains the earlier D24V22F3 description for export provenance;
+the <strong>current off-board purchase and assembly is RECOM</strong>, as specified here and
+in the <a href="shopping.html">shopping list</a>. Copper, pin assignments and firmware are
+unchanged. This does not qualify the new power assembly physically: measure
+startup, ripple, temperatures and concurrent operation before deployment.
+<a href="https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf">RECOM datasheet and pin drawing</a>.</p>
 <h2 id="other-off-carrier-modules">Other off-carrier modules</h2>
 <h3 id="cc1101-carrier-j5">CC1101: carrier J5</h3>
 <p>Retain the <strong>433.92 MHz CC1101 module</strong> and its matching antenna. A clone's
@@ -298,9 +332,9 @@ calibrated CO₂/VOC concentration.
 All electronic modules need a restraint; connector friction alone is not a mount.</p>
 <ol>
 <li>Fit the case fasteners, carrier standoffs and peripheral cradles with the base
-empty. Print and check the small fit coupons before committing to a full case.</li>
-<li>Install the PoE splitter and fuse in the power bay, then the isolated buck
-on its support. Restrain their low-voltage leads before fitting the carrier.</li>
+empty. Print and check the small fit coupons and new power tray before committing to a full case.</li>
+<li>Install the PoE splitter and fuse in the power bay, then the RECOM buck
+and its input capacitor on the perfboard support. Restrain their low-voltage leads before fitting the carrier.</li>
 <li>Fit the MC2-C carrier to its four mounting positions. The finished U1–U4
 modules are supported by the carrier as designed; check solder-tail clearance.</li>
 <li>Fit the DFR0627 and CC1101 to their trays. Place the ZAC93 in its own cradle

@@ -30,7 +30,7 @@ COLORS = {'carrier':'#23725c','poe_splitter':'#303842','buck':'#18608c',
           'wk2132':'#25699c','zwave':'#346baa','cc1101':'#17663d',
           'ld2450':'#4c83ac','bme680':'#6938a1','dc_adapter':'#354548','fuse_holder':'#aa7440'}
 LABELS = {'carrier':'MC2-C carrier + U1–U4','poe_splitter':'Isolated PoE splitter',
-          'buck':'3.3 V regulator','wk2132':'DFR0627 / WK2132','zwave':'Zooz ZAC93 Z-Wave',
+          'buck':'RECOM 3.3 V + 27 µF','wk2132':'DFR0627 / WK2132','zwave':'Zooz ZAC93 Z-Wave',
           'cc1101':'CC1101 RF transceiver','ld2450':'LD2450 radar → room','bme680':'BME680 ambient sensor','dc_adapter':'Insulated 5 V DC adapter','fuse_holder':'Insulated inline DC fuse'}
 
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -71,6 +71,36 @@ def cradle(size, raised=False):
     if raised: cuts.append(c.box(max(x-10,8),max(y-8,8),2.6).move((9,8,-.1)))
     return c.subtract(plate,*cuts)
 
+def regulator_cradle(size):
+    """Edge supports leave a real underside cavity for hand-soldered wires."""
+    x,y,z=size;w=x+8;d=y+8
+    plate=c.box(w,d,2.4)
+    # PCB lower face is 6 mm above tray origin. No post enters its solder area.
+    plate=c.union(plate,c.box(2,y,6).move((4,4,0)),c.box(2,y,6).move((x+2,4,0)),
+                  c.box(2,y,9).move((1,4,0)),c.box(2,y,9).move((w-3,4,0)),
+                  c.box(x,1,7).move((4,2,0)),c.box(x,1,7).move((4,d-3,0)))
+    cuts=[c.cylinder(2.2,2.6).move((a,b,-.1)) for a,b in [(2,2),(w-2,2),(2,d-2),(w-2,d-2)]]
+    # One loose nonconductive strap bears on the cleared rear FR4 band.
+    for sx in [2, w-4]: cuts.append(c.box(2,2.5,12).move((sx,24.5,-.1)))
+    # Raised anchor behind the board, so a harness bundle never occupies the
+    # restricted solder cavity underneath it. Fit a soft loop through this eye.
+    plate=c.union(plate,c.box(7,3,8).move((w/2-3.5,d-3,0)))
+    cuts.append(c.cylinder(2.5,7.2).rotate((0,90,0)).move((w/2-3.6,d-1.5,5)))
+    return c.subtract(plate,*cuts)
+
+
+def regulator_details(p,m):
+    x,y,z=p['placements']['buck'];mount=m['buck']['mount']
+    board=bounds([x,y,mount['pcb_underside_z_mm']],mount['perfboard_mm'])
+    def detail(origin_key,size_key):
+        origin=mount[origin_key];size=mount[size_key]
+        return bounds([x+origin[0],y+origin[1],z+origin[2]],size)
+    return {'perfboard':board,
+            'regulator':detail('regulator_local_body_origin_mm','regulator_max_body_mm'),
+            'input_capacitor':detail('capacitor_local_body_origin_mm','capacitor_max_body_mm'),
+            'underside_solder':bounds([x+2,y+2,mount['pcb_underside_z_mm']-mount['maximum_tail_below_board_mm']],[20,20,mount['maximum_tail_below_board_mm']])}
+
+
 def geometry(p,m,s):
     q=p['case']; W=q['width'];D=q['length'];H=q['height'];t=q['wall'];f=q['floor'];lt=q['lid']
     placements=p['placements']; bb={k:bounds(placements[k],m[k]['design_envelope_mm']) for k in placements}
@@ -93,13 +123,7 @@ def geometry(p,m,s):
         size=m[key]['design_envelope_mm']; x,y,z=placements[key];tw=size[0]+8;td=size[1]+8
         origin=[x-4,y-4,6]; name=key.replace('_','-')+'-tray'
         nodes[name]=cradle(size,key=='zwave'); poses[name]=((0,0,0),origin)
-        if key=='buck':
-            # Nominal PCB underside at z13.1; bottom components extend to z12.
-            # Exact published opposite-corner M2 pattern, no compression strap.
-            for hx,hy in m['buck']['mount']['holes_mm']:
-                post=c.cylinder(4,7.1).move((hx+4,hy+4,0))
-                nodes[name]=c.union(nodes[name],post)
-                nodes[name]=c.subtract(nodes[name],c.cylinder(1.7,7.3).move((hx+4,hy+4,-.1)))
+        if key=='buck':nodes[name]=regulator_cradle(size)
         holes=[(origin[0]+u,origin[1]+v) for u,v in [(2,2),(tw-2,2),(2,td-2),(tw-2,td-2)]]
         base=c.union(base,*[c.cylinder(5,6).move((hx,hy,0)) for hx,hy in holes])
         cuts += [c.cylinder(1.7,5.2).move((hx,hy,1)) for hx,hy in holes]
@@ -107,7 +131,7 @@ def geometry(p,m,s):
                        'tray_inner_xy_mm':bounds([x-2,y-2,0],[size[0]+4,size[1]+4,100]),'case_xy_mm':holes,
                        'seat_or_pad_top_z_mm':26.4 if key=='zwave' else 12,'hardware':'4 × M2 × 6 mm thread-forming screws; measure pilot coupon first',
                        'requires':'insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival'}
-    mounting['buck'].update({'kind':'published two-hole M2 pattern on insulated standoffs, in screwed tray','pcb_underside_z_mm':13.1,'local_hole_centres_mm':m['buck']['mount']['holes_mm'],'hardware':'4 × M2 × 6 mm tray screws + 2 × M2 × 4 mm PCB screws; no pressure on components'})
+    mounting['buck'].update({'kind':'24 x 24 mm perfboard on two insulated edge supports with rear-band restraint','pcb_underside_z_mm':12,'maximum_tail_below_board_mm':2,'minimum_solder_to_floor_gap_mm':1.6,'local_hole_centres_mm':[],'restraint_band_local_y_mm':[20.5,23],'hardware':'4 × M2 × 6 mm tray screws and one soft nonconductive board strap; separate harness loop','requires':'2 mm copper-free board rim and cleared rear restraint band; SIP body seated on board; capacitor vent clear; no loose live solder joints'})
     mounting['zwave'].update({'pcb_underside_z_mm':26.4,'socket_envelope_mm':[placements['zwave'][0]+2,placements['zwave'][1]+2,17.4,placements['zwave'][0]+10,placements['zwave'][1]+15,26.4],'antenna_half_direction':'+X toward the plastic right wall','restraint':'one soft strap on electronics/connector half at x147.5; no strap over antenna half'})
     # One shared, positively retained utility tray holds both insulated power
     # accessories. Neither the DC adapter nor fuse holder hangs from its wires.
@@ -259,7 +283,7 @@ def cable_routes(p,s):
     add('j3-wk2132', [jack('J3'),[122,82,48],[122,141,48],[126,141,23]], ['carrier','wk2132'], 'J3 six-wire harness:3.3V,GND,SDA,SCL,TX1,RX1; UART returns through carrier to J4')
     add('j4-zac93', [jack('J4'),[122,91,46],[122,78,46],[149,78,16],[149,91,16]], ['carrier','zwave'], 'J4 five-wire harness to ZAC93 pins1/6/9/8/10:3.3V,twoGND,RX,TX')
     add('j5-cc1101', [jack('J5'),[123,89,46],[130,58,46],[137,58,22]], ['carrier','cc1101'], 'J5 shared SPI and RF GPIOs to CC1101')
-    add('j2-buck', [jack('J2'),[jack('J2')[0],jack('J2')[1],48],[122,113,48],[122,159,48],[180,159,48],[180,141,32],[185,141,21]], ['carrier','buck'], 'Four-wire J2 harness: fused5V VIN,GND,regulated3.3V VOUT,GND; keep lead impedance low')
+    add('j2-buck', [jack('J2'),[jack('J2')[0],jack('J2')[1],48],[122,113,48],[122,159,48],[180,159,48],[180,154,24],[187,148.35,17]], ['carrier','buck'], 'Four-wire J2 harness to RECOM perfboard: fused5V VIN,GND,regulated3.3V VOUT,GND; both grounds join SIP pin2; 27uF at VIN/GND')
     add('poe-dc-adapter', [[129,192,25],[153,192,37],[153,173,37],[166,173,24]], ['poe_splitter','dc_adapter'], 'Captive5V lead to insulated female barrel adapter')
     add('dc-adapter-fuse', [[185,180,24],[185,186,24],[185,191,24]], ['dc_adapter','fuse_holder'], '5V feed through inline fuse before branching')
     add('fuse-j1', [[167,199,25],[154,199,42],[154,172,48],[122,172,48],[122,122,48],[jack('J1')[0],jack('J1')[1],48],jack('J1')], ['fuse_holder','carrier'], 'Fused5V to J1')
@@ -286,6 +310,8 @@ def validate(p,m,s,g):
     for key,bb in boxes.items():
         space=main if key!='bme680' else bounds([v+2 for v in p['pod']['origin']],[p['pod']['size'][i]-4 for i in range(3)])
         assert contains(space,bb),f'{key} body exceeds its enclosure: {bb} not in {space}'
+    for name,box in regulator_details(p,m).items():
+        assert contains(boxes['buck'],box),f'Regulator {name} escapes allocated assembly envelope'
     keys=list(boxes)
     for i,a in enumerate(keys):
         for b in keys[i+1:]:assert not overlap(boxes[a],boxes[b]),f'Component overlap {a} / {b}'
@@ -356,7 +382,7 @@ def validate(p,m,s,g):
     z=p['placements']['zwave'];zx,zy,zz=z
     detailed={
       'zwave':[[zx,zy,26.4,zx+28.5,zy+28.5,28.0],[zx+2,zy+2,17.4,zx+10,zy+15,26.4],[zx+8,zy+6,28,zx+18,zy+19,30]],
-      'buck':[[183,132,13.1,200.8,149.8,14.12],[187,136,12,197,146,13.1],[187,136,14.12,197,146,20.2]]}
+      'buck':list(regulator_details(p,m).values())}
     connector_boxes={
       'zac93-underside-mating-header':[zx+2,zy+2,12,zx+10,zy+15,17.4],
       'zac93-socket-exit':[zx+2,zy-6,9,zx+10,zy+2,18],
@@ -406,8 +432,25 @@ def validate(p,m,s,g):
     return {'interior_component_containment':True,'pairwise_component_boxes_clear':True,'mount_containment':True,
             'native_rj45_access_clear':True,'zac93_antenna_air_space_clear':True,'cable_envelopes_clear':True,
             'plastic_body_intersections_mm3':plastic_collisions,'keepouts_mm':keepouts,'routes':routes,
-            'thread_radio_nominal_fit':thread_fit,
+            'thread_radio_nominal_fit':thread_fit,'regulator_subassembly_mm':regulator_details(p,m),
             'cable_sweeps_clear_of_printed_parts':True,'cable_sweeps_clear_of_native_modules':True,'native_module_boxes_mm':module_boxes,'carrier_mated_headers_clear':True,'carrier_mated_header_boxes_mm':native_header_boxes,'mated_connector_boxes_mm':connector_boxes,'detailed_component_solids_mm':detailed,'physical_fit_verified':False,'verification_scope':'Conservative digital envelopes and generated plastic only. Does not establish header orientation, material RF loss, purchased-part fit, thermal bias or RF coverage.'}
+
+def regulator_shapes(p,m):
+    """Sourced body envelopes with the same 2.54 mm pad plan as the wiring guide."""
+    details=regulator_details(p,m);x,y,z=p['placements']['buck'];shapes=[]
+    shapes.append((bodybox(details['perfboard']),'#9e844e'))
+    reg=details['regulator'];shapes.append((bodybox(reg),'#252a30'))
+    cap=details['input_capacitor'];diameter=cap[3]-cap[0]
+    shapes.append((c.cylinder(diameter,cap[5]-cap[2]).move(((cap[0]+cap[3])/2,(cap[1]+cap[4])/2,cap[2])),'#46586c'))
+    shapes.append((c.cylinder(diameter*.85,.2).move(((cap[0]+cap[3])/2,(cap[1]+cap[4])/2,cap[5])),'#a6b4c0'))
+    # Row eight is cleared for the soft board restraint, as are the outer edges.
+    for col in range(8):
+        for row in range(7):
+            shapes.append((c.cylinder(1.5,.05).move((x+3.11+col*2.54,y+3.11+row*2.54,13.6)),'#ceab6c'))
+    for px in [5.65,8.19,10.73,18.35,20.89]:
+        shapes.append((c.cylinder(.64,3.6).move((x+px,y+8.19,10)),'#b4bec4'))
+    return shapes
+
 
 def electronics(p,m,s,g):
     """Simplified, consistently located electronic solids for CAD explanation."""
@@ -423,7 +466,9 @@ def electronics(p,m,s,g):
                 result.append((c.box(aa-a,bb2-b,1.6).move((x+a,y+b,z+9)),'#183947'))
                 result.append((c.box((aa-a)*.75,(bb2-b)*.6,5 if part['ref']!='U4' else 12).move((x+a+(aa-a)*.12,y+b+2,z+10.6)),'#b5bec4'))
             continue
-        board_z=z+d-3.6 if key=='zwave' else 13.1 if key=='buck' else z+3
+        if key=='buck':
+            result.extend(regulator_shapes(p,m));continue
+        board_z=z+d-3.6 if key=='zwave' else z+3
         result.append((c.box(w,h,1.6).move((x,y,board_z)),color))
         if key=='zwave':
             result.append((c.box(8,13,9).move((x+2,y+2,board_z-9)),'#202226'))
@@ -506,6 +551,24 @@ def preview(out,p,m,s,g):
         fig.savefig(out/(name+'.png'),dpi=130,facecolor=fig.get_facecolor());plt.close(fig)
 
 
+def regulator_preview(out,p,m,g):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    fig=plt.figure(figsize=(14,7),facecolor='#0d1b29')
+    for i,raised in enumerate([False,True]):
+        ax=fig.add_axes([.02+i*.49,.20,.47,.65]);ax.axis('off')
+        shapes=[(g['assembled']['buck-tray'],'#8caeb2')]
+        shapes += [(node.move((0,0,14 if raised else 0)),color) for node,color in regulator_shapes(p,m)]
+        ax.imshow(old.render_meshes(shapes,width=1000,height=850))
+        ax.set_title('Installed on edge supports' if not raised else 'Perfboard lifted to show solder clearance',color='#e9f2f7',fontsize=16)
+    fig.suptitle('PWR1 · RECOM R-78K3.3-1.0 + 27 µF input capacitor',color='#e9f2f7',fontsize=20,y=.96)
+    fig.text(.04,.12,'24 × 24 × 1.6 mm isolated-pad board · four M2 tray screws · no holes in regulator or capacitor',color='#e9f2f7',fontsize=12)
+    fig.text(.04,.08,'Clear rear band takes a soft strap; restrain the J2 harness separately. Keep capacitor vent open.',color='#e9f2f7',fontsize=12)
+    fig.text(.04,.04,'CAD body envelopes; point-to-point wires and straps omitted for clarity. Physical fit and operation unverified.',color='#ffd294',fontsize=11)
+    fig.savefig(out/'power-assembly-preview.png',dpi=140,facecolor=fig.get_facecolor());plt.close(fig)
+
+
 def generate(out,p,package=True):
     m=manifest();s=source();g=geometry(p,m,s);checks=validate(p,m,s,g);out.mkdir(parents=True,exist_ok=True)
     report={'revision':p['revision'],'status':p['status'],'native_pcb_revision':s['design']['revision'],
@@ -532,9 +595,9 @@ def generate(out,p,package=True):
         dz=115 if c.mesh_of(node).bounds[0][2]>=60 else 65
         exploded.append('color("'+color+'") {'+node.move((0,0,dz)).scad+'}')
     (out/'exploded.scad').write_text('// Exploded review only, not printable. Lid displaced sideways; component XY unchanged, Z offsets explanatory.\n'+'\n'.join(exploded)+'\n')
-    (out/'layout.svg').write_text(svg(p,m,g,checks));preview(out,p,m,s,g)
-    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p><strong>FH1-MC2-C-RF1: MC2-C with TinyC6[D] TC6D-01.</strong> RF1 uses Taoglas CAB.618.E cables, round 6.8 mm ports and a matching 3 mm thick fit coupon. Earlier D-hole base files are superseded. <a href="rf-evidence.json">RF fit evidence</a>. The Thread board outline and relocated U.FL socket follow the manufacturer STEP model. Use the MC2-C RCP firmware to select the external antenna. <a href="sources.md#tinyc6d-revision-change">Source and fit evidence</a>.</p><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
-    outputs=[name+suffix for name in g['nodes'] for suffix in ['.stl','.scad']]+['assembly.scad','exploded.scad','layout.svg','full-assembly-preview.png','exploded-preview.png','index.html']
+    (out/'layout.svg').write_text(svg(p,m,g,checks));preview(out,p,m,s,g);regulator_preview(out,p,m,g)
+    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p><strong>FH1-MC2-C-PWR1: MC2-C with TinyC6[D] TC6D-01.</strong> PWR1 adds the RECOM R-78K3.3-1.0 and 27 µF input capacitor on a 24 × 24 mm perfboard with a revised tray. It retains RF1 Taoglas CAB.618.E cables, round 6.8 mm ports and a matching 3 mm thick fit coupon. Earlier D-hole base files are superseded. <a href="rf-evidence.json">RF fit evidence</a>. The Thread board outline and relocated U.FL socket follow the manufacturer STEP model. Use the MC2-C RCP firmware to select the external antenna. <a href="sources.md#tinyc6d-revision-change">Source and fit evidence</a>.</p><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>RECOM power assembly</h2><img src="power-assembly-preview.png" alt="RECOM and input capacitor on a removable 24 mm perfboard tray, installed and lifted views"><p>Use the cleared rear band for a soft board restraint and a separate loop for cable strain relief. No mounting holes are assumed in either purchased component. <a href="README.md">Assembly details</a>.</p><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
+    outputs=[name+suffix for name in g['nodes'] for suffix in ['.stl','.scad']]+['assembly.scad','exploded.scad','layout.svg','full-assembly-preview.png','exploded-preview.png','power-assembly-preview.png','index.html']
     report['generated_sha256']={name:sha(out/name) for name in sorted(outputs)}
     report=json.loads(json.dumps(report))
     (out/'verification.json').write_text(json.dumps(report,indent=2)+'\n')

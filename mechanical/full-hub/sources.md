@@ -1,6 +1,6 @@
 # Full-hub mechanical source ledger
 
-Reviewed 2026-10-19. The user confirmed the delivered Z-Wave board is a **Zooz
+Power assembly updated 2026-10-20; other evidence reviewed 2026-10-19. The user confirmed the delivered Z-Wave board is a **Zooz
 ZAC93**. No board, connector or enclosure has been physically measured in this
 work. [components.json](components.json) separates published nominal dimensions
 from the larger engineering envelopes used for layout. Envelopes include the
@@ -89,16 +89,32 @@ the earlier Silvertel EvalPoE option **for this enclosure**; ownership of the
 Waveshare splitter has not been confirmed. Check its actual tail lengths,
 exit orientation and input-plug access before printing the main case.
 
-The [Pololu D24V22F3 page](https://www.pololu.com/product/2857) specifies
-17.8 x 17.8 x 8 mm. Its
-[drawing](https://www.pololu.com/file/0J1031/d24v22fx-step-down-voltage-regulator-dimension-diagram.pdf)
-defines two diagonal 2.18 mm mounting holes, nominally 2.3 mm from the adjacent
-edges, a 1.02 mm PCB and underside components reaching 1.1 mm below it.
-Use insulated M2 supports or an open tray; do not press the underside onto a
-solid adhesive pad. The manifest converts the hole coordinates to a lower-left
-origin. The larger 12 mm installed-height allocation includes wiring allowance.
-The supply's thermal capability at the actual 5 V input and enclosed load still
-requires measurement.
+PWR1 selects **RECOM R-78K3.3-1.0**. The
+[manufacturer datasheet, Rev. 6-2025, page 7](https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf)
+gives a nominal 11.5 × 7.55 × 10.2 mm body, three 0.64 ± 0.1 mm pins on
+2.54 mm pitch, 4.1 mm nominal exposed leads and a 1.7 g typical weight.
+Dimensions with one decimal have ±0.5 mm tolerance; two decimals have
+±0.25 mm tolerance. The model conservatively reserves the full tolerance
+range around the planned pad position. The package has no mounting holes.
+Pin mapping and electrical qualification belong to the electrical guide.
+
+Page 2 requires a **27 µF input electrolytic for hard plugging or input slew
+above 10 V/µs**. The selected **Panasonic EEU-FS1H270** is 27 µF / 50 V;
+its [FS-series datasheet](https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1255.pdf)
+lists a 5 mm diameter × 11 mm body, with +0.5 mm diameter and +1.5 mm length
+tolerance. The model reserves 5.5 × 5.5 × 12.5 mm, and keeps the vent clear.
+Its 2 mm lead pitch must be formed gently for the 2.54 mm pad grid without
+loading the seal.
+
+The project-cut **24 × 24 × 1.6 mm isolated-pad perfboard** is an engineering
+mounting choice, not a commercial board footprint. Two ledges support its
+copper-free edges at z=12 mm; the tray floor top is z=8.4 mm. Trimmed solder
+and insulated wiring may project at most 2 mm below the board, leaving a
+1.6 mm clearance to the floor. A cleared rear band accepts a soft restraint,
+and a separate loop relieves cable load. No screws or drilling through the
+RECOM body are permitted. The PWR1 tray and base have a new screw pattern;
+the main enclosure size, other trays, RF1 holes and cable paths are retained.
+Nominal fit does not establish printed fit, temperature or electrical operation.
 
 ### CC1101
 

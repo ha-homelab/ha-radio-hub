@@ -5,11 +5,11 @@
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html" aria-current="page">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/full-hub/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#zac93-location-and-attachment">ZAC93 location and attachment</a></li><li><a href="#print-package">Print package</a></li><li><a href="#fasteners-and-retention">Fasteners and retention</a></li><li><a href="#fit-the-complete-assembly">Fit the complete assembly</a></li><li><a href="#evidence-and-remaining-physical-checks">Evidence and remaining physical checks</a></li><li><a href="#rebuild-and-check">Rebuild and check</a></li></ul></details><article class="article"><h1 id="fh1--complete-mc2-c-radio-hub-enclosure">FH1 — complete MC2-C radio-hub enclosure</h1>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/full-hub/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#recom-power-module-and-its-input-capacitor">RECOM power module and its input capacitor</a></li><li><a href="#zac93-location-and-attachment">ZAC93 location and attachment</a></li><li><a href="#print-package">Print package</a></li><li><a href="#fasteners-and-retention">Fasteners and retention</a></li><li><a href="#fit-the-complete-assembly">Fit the complete assembly</a></li><li><a href="#evidence-and-remaining-physical-checks">Evidence and remaining physical checks</a></li><li><a href="#rebuild-and-check">Rebuild and check</a></li></ul></details><article class="article"><h1 id="fh1--complete-mc2-c-radio-hub-enclosure">FH1 — complete MC2-C radio-hub enclosure</h1>
 <p><strong>Current Thread board: Unexpected Maker TinyC6[D], TC6D-01.</strong> This package
 uses the longer Series D board outline and its corrected U.FL position from
 the manufacturer STEP model. It retains the 215 × 215 × 78 mm shell and checks
-the three separate 150 mm coax routes. The current <strong>RF1</strong> print revision uses
+the three separate 150 mm coax routes. The current <strong>PWR1</strong> print revision adds the RECOM regulator assembly and retains
 <strong>Taoglas CAB.618.E</strong> pigtails, round 6.8 mm SMA holes and a 3 mm fit coupon
 matching the wall. The original D-hole base is superseded. See the <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/full-hub/sources.md#tinyc6d-revision-change">source and fit ledger</a>
 for the header alignment, nominal dimensions and remaining physical checks.
@@ -28,6 +28,29 @@ simplified envelopes, not detailed supplier STEP models. Use the numbered plan
 for locations and the electrical guide for signal names; a render is not a
 mating-side connector diagram.</p>
 <p><img src="../mechanical/full-hub/layout.svg" alt="Numbered component layout" /></p>
+<h2 id="recom-power-module-and-its-input-capacitor">RECOM power module and its input capacitor</h2>
+<p><img src="../mechanical/full-hub/power-assembly-preview.png" alt="RECOM regulator and capacitor on their removable perfboard tray" /></p>
+<p><strong>PWR1 replaces the Pololu mount with a 24 × 24 mm perfboard tray.</strong> The
+carrier remains MC2-C; J2 still carries fused 5 V, ground, 3.3 V return and
+ground. Both ground wires terminate at the common regulator ground node.
+The exact parts are <strong>RECOM R-78K3.3-1.0</strong> and <strong>Panasonic EEU-FS1H270</strong>,
+27 µF / 50 V, with the capacitor at the regulator input. The converter does
+not take raw PoE or battery voltage.</p>
+<p>Cut 1.6 mm isolated-pad FR4 to 24 × 24 mm, deburr it, and clear a 2 mm copper-free
+rim plus the rear y=20.5…23 mm restraint band. Assemble the
+<a href="assembly.html">electrical perfboard layout</a> before mounting.
+The printed ledges support only the board edges, 12 mm above the case floor
+origin. Seat the regulator body against the insulating board and keep solder
+and wires at most 2 mm below its underside; this leaves 1.6 mm above the tray
+floor. The capacitor's maximum body allowance is 5.5 mm diameter × 12.5 mm,
+including published tolerances. Leave the vent unobstructed.</p>
+<p>A soft nonconductive strap crosses the blank rear band; a separate loop
+restrains the J2 cable. Do not tighten a strap over the capacitor top or use
+its leads as a cable anchor. The tray screws to the base with four M2 screws;
+neither the regulator nor capacitor has mounting holes. The new tray and
+base must be printed together because their mounting pattern changed. The
+outer shell, lid, RF holes and the other trays retain their RF1 geometry.
+Fit and temperature under simultaneous load still need physical verification.</p>
 <h2 id="zac93-location-and-attachment">ZAC93 location and attachment</h2>
 <p><strong>The ZAC93 is beside the carrier in its own removable cradle.</strong> Its factory
 2×5 socket faces downward into the opening, leaving space for a wired mating
@@ -42,7 +65,7 @@ cradle uses edge support and nonconductive retention. Trial socket/board
 heights must be compared with the actual delivered revision before tightening
 or plugging in the harness.</p>
 <h2 id="print-package">Print package</h2>
-<p><strong><a href="../mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip">Download the complete FH1 print ZIP</a></strong> — all 14
+<p><strong><a href="../mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip">Download the complete FH1 print ZIP</a></strong> — all 14
 current STL files, a <a href="../mechanical/full-hub/PRINT-FIRST.txt">print-first checklist</a>, and a
 <a href="../mechanical/full-hub/print-manifest.json">machine-readable quantity/hash manifest</a>. The archive
 contains 13 installed pieces, one trial coupon and one optional blank. <strong>Print
@@ -102,12 +125,12 @@ ventilated enclosure has no ingress-protection or structural-load rating.</p>
 <li>4 × M2.5 carrier bolts with nonconductive nuts and suitable washers.</li>
 <li>4 × M3 lid screws for the tested printed pilots.</li>
 <li>24 × M2 screws: four for each of the six removable trays.</li>
-<li>2 × M2 fasteners for the Pololu's two native mounting holes.</li>
+<li>One soft nonconductive strap for the RECOM perfboard; no regulator mounting screws.</li>
 <li>4 × M2 radar-holder screws.</li>
 <li>2 × M3 through-bolts and nuts for the pod arms at the main wall.</li>
 <li>2 × M2 bolts and nuts for the pod-to-arm connection; 2 × M2 pod-lid screws.</li>
-<li>At least eight soft nonconductive module-retention straps: two for the
-splitter, one each for ZAC93, DFR0627, CC1101, DC adapter, fuse and BME680.
+<li>At least nine soft nonconductive module-retention straps: two for the
+splitter, one each for ZAC93, DFR0627, CC1101, DC adapter, fuse and BME680, plus the regulator perfboard.
 Add the radar's board-end restraints and separate loose cable-restraint loops.</li>
 </ul>
 <p>Select screw length from the actual printed stack and the mount records in
@@ -124,14 +147,14 @@ Confirm fastener pilots and bulkhead engagement before printing the base.</li>
 modules remain soldered to that carrier. Check the underside solder tails,
 board height and Ethernet-jack support/access with the actual populated PCB.</li>
 <li>Secure the peripheral trays to the base, then retain each module in its own
-tray. Place insulation only at component-free contact points. Keep buck
-underside components, inductors and radio antenna regions clear. A cable
+tray. Place insulation only at component-free contact points. Keep solder
+tails, capacitor vents and radio antenna regions clear. A cable
 connector alone is not retention.</li>
 <li>Install the <strong>Waveshare POE-SPLITTER-25W-5.5-2.1</strong> finished isolated splitter
 with its original case intact. This bay is not designed for the historical
 Silvertel EvalPoE arrangement. Secure the DC adapter and fuse in their
 utility tray. Route its data-only RJ45 tail to WIZ850io; route fused 5 V to J1
-and the Pololu converter to J2 as the electrical guide specifies.</li>
+and the RECOM perfboard assembly to J2 as the electrical guide specifies.</li>
 <li>Install the three fixed-base SMA bulkheads and route their separate
 Taoglas CAB.618.E 150 mm coax leads to BLE, Thread and Zigbee.
 The checked routes use a conservative 144 mm usable-length budget, retain

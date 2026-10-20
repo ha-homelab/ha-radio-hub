@@ -3,7 +3,7 @@
 **Current Thread board: Unexpected Maker TinyC6[D], TC6D-01.** This package
 uses the longer Series D board outline and its corrected U.FL position from
 the manufacturer STEP model. It retains the 215 × 215 × 78 mm shell and checks
-the three separate 150 mm coax routes. The current **RF1** print revision uses
+the three separate 150 mm coax routes. The current **PWR1** print revision adds the RECOM regulator assembly and retains
 **Taoglas CAB.618.E** pigtails, round 6.8 mm SMA holes and a 3 mm fit coupon
 matching the wall. The original D-hole base is superseded. See the [source and fit ledger](sources.md#tinyc6d-revision-change)
 for the header alignment, nominal dimensions and remaining physical checks.
@@ -28,6 +28,34 @@ mating-side connector diagram.
 
 ![Numbered component layout](layout.svg)
 
+## RECOM power module and its input capacitor
+
+![RECOM regulator and capacitor on their removable perfboard tray](power-assembly-preview.png)
+
+**PWR1 replaces the Pololu mount with a 24 × 24 mm perfboard tray.** The
+carrier remains MC2-C; J2 still carries fused 5 V, ground, 3.3 V return and
+ground. Both ground wires terminate at the common regulator ground node.
+The exact parts are **RECOM R-78K3.3-1.0** and **Panasonic EEU-FS1H270**,
+27 µF / 50 V, with the capacitor at the regulator input. The converter does
+not take raw PoE or battery voltage.
+
+Cut 1.6 mm isolated-pad FR4 to 24 × 24 mm, deburr it, and clear a 2 mm copper-free
+rim plus the rear y=20.5…23 mm restraint band. Assemble the
+[electrical perfboard layout](../../docs/full-hub-assembly.md) before mounting.
+The printed ledges support only the board edges, 12 mm above the case floor
+origin. Seat the regulator body against the insulating board and keep solder
+and wires at most 2 mm below its underside; this leaves 1.6 mm above the tray
+floor. The capacitor's maximum body allowance is 5.5 mm diameter × 12.5 mm,
+including published tolerances. Leave the vent unobstructed.
+
+A soft nonconductive strap crosses the blank rear band; a separate loop
+restrains the J2 cable. Do not tighten a strap over the capacitor top or use
+its leads as a cable anchor. The tray screws to the base with four M2 screws;
+neither the regulator nor capacitor has mounting holes. The new tray and
+base must be printed together because their mounting pattern changed. The
+outer shell, lid, RF holes and the other trays retain their RF1 geometry.
+Fit and temperature under simultaneous load still need physical verification.
+
 ## ZAC93 location and attachment
 
 **The ZAC93 is beside the carrier in its own removable cradle.** Its factory
@@ -46,7 +74,7 @@ or plugging in the harness.
 
 ## Print package
 
-**[Download the complete FH1 print ZIP](FH1-MC2-C-RF1-print-package.zip)** — all 14
+**[Download the complete FH1 print ZIP](FH1-MC2-C-PWR1-print-package.zip)** — all 14
 current STL files, a [print-first checklist](PRINT-FIRST.txt), and a
 [machine-readable quantity/hash manifest](print-manifest.json). The archive
 contains 13 installed pieces, one trial coupon and one optional blank. **Print
@@ -110,12 +138,12 @@ The initial hardware schedule is:
 - 4 × M2.5 carrier bolts with nonconductive nuts and suitable washers.
 - 4 × M3 lid screws for the tested printed pilots.
 - 24 × M2 screws: four for each of the six removable trays.
-- 2 × M2 fasteners for the Pololu's two native mounting holes.
+- One soft nonconductive strap for the RECOM perfboard; no regulator mounting screws.
 - 4 × M2 radar-holder screws.
 - 2 × M3 through-bolts and nuts for the pod arms at the main wall.
 - 2 × M2 bolts and nuts for the pod-to-arm connection; 2 × M2 pod-lid screws.
-- At least eight soft nonconductive module-retention straps: two for the
-  splitter, one each for ZAC93, DFR0627, CC1101, DC adapter, fuse and BME680.
+- At least nine soft nonconductive module-retention straps: two for the
+  splitter, one each for ZAC93, DFR0627, CC1101, DC adapter, fuse and BME680, plus the regulator perfboard.
   Add the radar's board-end restraints and separate loose cable-restraint loops.
 
 Select screw length from the actual printed stack and the mount records in
@@ -133,14 +161,14 @@ those during the unpowered dry fit.
    modules remain soldered to that carrier. Check the underside solder tails,
    board height and Ethernet-jack support/access with the actual populated PCB.
 3. Secure the peripheral trays to the base, then retain each module in its own
-   tray. Place insulation only at component-free contact points. Keep buck
-   underside components, inductors and radio antenna regions clear. A cable
+   tray. Place insulation only at component-free contact points. Keep solder
+   tails, capacitor vents and radio antenna regions clear. A cable
    connector alone is not retention.
 4. Install the **Waveshare POE-SPLITTER-25W-5.5-2.1** finished isolated splitter
    with its original case intact. This bay is not designed for the historical
    Silvertel EvalPoE arrangement. Secure the DC adapter and fuse in their
    utility tray. Route its data-only RJ45 tail to WIZ850io; route fused 5 V to J1
-   and the Pololu converter to J2 as the electrical guide specifies.
+   and the RECOM perfboard assembly to J2 as the electrical guide specifies.
 5. Install the three fixed-base SMA bulkheads and route their separate
    Taoglas CAB.618.E 150 mm coax leads to BLE, Thread and Zigbee.
    The checked routes use a conservative 144 mm usable-length budget, retain

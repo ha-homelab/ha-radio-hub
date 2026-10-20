@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "revision": "MC2-C-PWR1",
+  "checked_on": "2026-10-20",
+  "status": "Engineering assembly substitution; physical measurements pending",
+  "hardware_measured": false,
+  "carrier_revision": "MC2-C",
+  "native_copper_changed": false,
+  "legacy_native_label": "D24V22F3 external assembled buck",
+  "legacy_label_rule": "The unchanged native J2 model records the original regulator. This file and harnesses.json select the current offboard assembly; do not purchase the legacy regulator for PWR1.",
+  "regulator": {
+    "manufacturer": "RECOM",
+    "part": "R-78K3.3-1.0",
+    "input_v": [
+      4.5,
+      36
+    ],
+    "output_v": 3.3,
+    "rated_output_ma": 1000,
+    "body_mm": [
+      11.5,
+      7.55,
+      10.2
+    ],
+    "pin_pitch_mm": 2.54,
+    "lead_length_mm": 4.1,
+    "lead_section_mm": 0.64,
+    "pin_map": {
+      "1": "VIN",
+      "2": "GND",
+      "3": "VOUT"
+    },
+    "pin_orientation": "Identify the pin-1 dot on the broad face. With that face towards you, dot at lower left and leads down, pins 1, 2, 3 run left to right. PCB top view and underside view must not be confused.",
+    "efficiency_reference_percent": 88,
+    "efficiency_reference_condition": "Datasheet full-load value at minimum input; not a measured hub efficiency or a constant at all loads.",
+    "maximum_input_slew_v_per_us": 10,
+    "protection": [
+      "undervoltage lockout",
+      "continuous short-circuit protection with automatic recovery"
+    ],
+    "unprovided_protection": [
+      "No reverse-polarity protection assumed",
+      "No protection against externally driven VOUT assumed"
+    ],
+    "source": "https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf",
+    "source_revision": "Rev. 6-2025, pages 1, 2, 5 and 7"
+  },
+  "input_capacitor": {
+    "reference": "CIN",
+    "part": "Panasonic EEU-FS1H270",
+    "capacitance_uf": 27,
+    "voltage_rating_v": 50,
+    "temperature_rating_c": 105,
+    "body_nominal_mm": [
+      5,
+      11
+    ],
+    "body_max_envelope_mm": [
+      5.5,
+      12.5
+    ],
+    "lead_pitch_mm": 2,
+    "positive_regulator_pin": "1",
+    "negative_regulator_pin": "2",
+    "reason": "RECOM requires a 27 uF electrolytic at VIN-GND for hard plugging or excessive input slew; the 5 V assembly includes it rather than treating the >18 V emphasis as an exemption.",
+    "source": "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1255.pdf"
+  },
+  "input_connection": {
+    "source": "Active isolated 5 V PoE splitter through inline fuse and carrier J1",
+    "carrier_net": "+5V",
+    "before_radio_isolation_diodes": true,
+    "minimum_at_regulator_v": 4.5,
+    "nominal_headroom_v": 0.5,
+    "headroom_rule": "Verify >=4.5 V at regulator pins 1-2 once input has entered regulated operation, including turn-on load transients and simultaneous load. Account for splitter tolerance, fuse, wire and contact drop. Verify clean startup without UVLO cycling during the initial ramp from zero. UVLO below 4.5 V does not extend the specified operating range. Never connect raw PoE or battery voltage."
+  },
+  "j2_mapping": [
+    {
+      "carrier_pin": "1",
+      "net": "+5V",
+      "regulator_pin": "1"
+    },
+    {
+      "carrier_pin": "2",
+      "net": "GND",
+      "regulator_pin": "2"
+    },
+    {
+      "carrier_pin": "3",
+      "net": "+3V3",
+      "regulator_pin": "3"
+    },
+    {
+      "carrier_pin": "4",
+      "net": "GND",
+      "regulator_pin": "2"
+    }
+  ],
+  "rail_loads": [
+    {
+      "id": "ethernet",
+      "part": "WIZ850io",
+      "carrier_supply": "U4.J2.2/U4.J2.3",
+      "engineering_reserve_ma": 200,
+      "published_current_ma": 141,
+      "published_current_kind": "normal typical; not guaranteed maximum",
+      "source": "https://docs.wiznet.io/Product/ioModule/WIZ850io"
+    },
+    {
+      "id": "zwave",
+      "part": "Zooz ZAC93",
+      "carrier_supply": "J4.1",
+      "engineering_reserve_ma": 100,
+      "published_current_ma": null,
+      "published_current_kind": "Manufacturer specifies 3.3 V; no worst-case module current published in referenced specification",
+      "source": "https://www.support.getzooz.com/kb/article/1380-zac93-800-z-wave-long-range-gpio-module-specs/"
+    },
+    {
+      "id": "rf",
+      "part": "Retained unamplified CC1101 module",
+      "carrier_supply": "J5.1",
+      "engineering_reserve_ma": 40,
+      "published_current_ma": null,
+      "published_current_kind": "TI chip current varies with RF power, frequency and temperature; this is a module reserve, not a certified maximum. A PA-equipped replacement requires a new budget.",
+      "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf"
+    },
+    {
+      "id": "uart",
+      "part": "DFRobot DFR0627 / WK2132",
+      "carrier_supply": "J3.1",
+      "engineering_reserve_ma": 10,
+      "published_current_ma": 3,
+      "published_current_kind": "Manufacturer operating current is less than 3 mA",
+      "source": "https://wiki.dfrobot.com/dfr0627/"
+    },
+    {
+      "id": "environment",
+      "part": "Adafruit BME680 breakout 3660",
+      "carrier_supply": "J7.2",
+      "engineering_reserve_ma": 30,
+      "published_current_ma": 18,
+      "published_current_kind": "Bosch Table 2 bare-sensor heater-start peak maximum under its stated conditions; not the breakout's guaranteed total",
+      "source": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf"
+    },
+    {
+      "id": "misc",
+      "part": "Carrier and module pull-ups, indicators and allowance",
+      "carrier_supply": "+3V3",
+      "engineering_reserve_ma": 20,
+      "published_current_ma": null,
+      "published_current_kind": "Engineering allowance, not measured",
+      "source": "cad/design.json"
+    }
+  ],
+  "budget": {
+    "peripheral_reserve_ma": 400,
+    "unused_rated_capacity_ma": 600,
+    "rated_capacity_to_reserve_ratio": 2.5,
+    "excluded_loads": [
+      "U1 host: +5V_HOST through D1 and its own regulator",
+      "U2 TinyC6[D]: +5V_C6 through D2 and its own regulator",
+      "U3 XIAO MG24: +5V_ZB through D3 and its own regulator",
+      "LD2450: fused +5V via J6.1"
+    ],
+    "interpretation": "Sizing reserve for the present peripheral rail only; not an idle-current estimate, measured peak, whole-hub power budget or PoE input-power prediction."
+  },
+  "perfboard": {
+    "size_mm": [
+      24,
+      24,
+      1.6
+    ],
+    "type": "Isolated pads, not connected stripboard",
+    "grid": "8 columns A-H left to right, 8 rows 1-8 top to bottom, component-side view",
+    "grid_pitch_mm": 2.54,
+    "first_pad_center_mm": [
+      3.11,
+      3.11
+    ],
+    "copper_free_edge_mm": 2,
+    "maximum_underside_protrusion_mm": 2,
+    "regulator_pads": {
+      "1": "B3",
+      "2": "C3",
+      "3": "D3"
+    },
+    "capacitor_pads": {
+      "positive": "G3",
+      "negative": "H3"
+    },
+    "harness_pads": {
+      "1": "A7",
+      "2": "B7",
+      "3": "C7",
+      "4": "D7"
+    },
+    "links": [
+      {
+        "from": "A7",
+        "to": "B3",
+        "net": "+5V"
+      },
+      {
+        "from": "B3",
+        "to": "G3",
+        "net": "+5V"
+      },
+      {
+        "from": "B7",
+        "to": "C3",
+        "net": "GND"
+      },
+      {
+        "from": "D7",
+        "to": "C3",
+        "net": "GND"
+      },
+      {
+        "from": "C3",
+        "to": "H3",
+        "net": "GND"
+      },
+      {
+        "from": "C7",
+        "to": "D3",
+        "net": "+3V3"
+      }
+    ],
+    "build_rule": "Use insulated point-to-point links on the solder side; crossings are insulated, never solder-bridged. Gently form the capacitor's 2.0 mm leads to the 2.54 mm pad spacing without bending at the seal. Seat and restrain both bodies; do not use the SIP leads as structural supports. Route the J2 cable through strain relief. Verify all three nets by continuity before powering. Remove all unused row-8 pads and any copper in the rear strap band Y20.5-23 mm. Route the harness away from this band.",
+    "removed_pad_rows": [
+      8
+    ],
+    "bare_strap_band_y_mm": [
+      20.5,
+      23
+    ]
+  },
+  "acceptance": {
+    "status": "not_run",
+    "input_min_v": 4.5,
+    "output_target_v": 3.3,
+    "output_acceptance_v": [
+      3.135,
+      3.465
+    ],
+    "load_test_ma": [
+      0,
+      400,
+      750
+    ],
+    "load_step_ma": [
+      100,
+      750
+    ],
+    "output_limit_note": "Project +/-5% acceptance target measured at the farthest module, including ripple/transients; not a tighter RECOM manufacturer guarantee.",
+    "checks": [
+      "Power the offboard assembly first from a correctly polarized, current-limited 5 V supply, with J2 disconnected; verify VIN, VOUT and capacitor polarity.",
+      "Verify no short between VIN, GND and VOUT, and both J2 ground wires reach regulator pin 2.",
+      "Measure input/output startup and shutdown, hard plug at the external splitter, and 100-750 mA load steps with a scope; observe input-slew limit and rail targets. Do not hot-plug internal J2 or radio harnesses.",
+      "Exercise Ethernet, Z-Wave TX, CC1101 TX and BME680 heater concurrently; measure current and far-end voltage. The 400 mA figure remains an engineering reserve until measured.",
+      "Run the assembled enclosed hub to thermal equilibrium at its maximum intended ambient; respect the lowest component limit and RECOM derating, not its marketing temperature headline.",
+      "Flash boards while loose before soldering into the carrier. After assembly use supported OTA; USB service requires a separately verified power-isolation arrangement, or desoldering the board for loose-board service. Do not power an assembled radio alone from USB: D1-D3 do not block signal-pin backpower into the unpowered peripheral rail and VOUT.",
+      "Do not connect any board's local 3.3 V output to +3V3. No output-blocking diode is fitted, because its drop would alter the rail design."
+    ],
+    "emc_status": "System emissions not tested. The datasheet's EN55032 Class B result requires its external filter; the 27 uF input capacitor alone does not establish Class B compliance."
+  }
+}

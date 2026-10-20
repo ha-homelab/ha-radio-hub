@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "revision": "FH1-MC2-C-RF1",
+  "revision": "FH1-MC2-C-PWR1",
   "native_pcb_revision": "MC2-C",
   "units": "mm",
   "scale_percent": 100,
   "physical_fit_verified": false,
-  "source_report_sha256": "b1b59b8cfbfe9716ddef18a9024e772caadf24397b93f755e58000f444a3c163",
+  "source_report_sha256": "9bc4172a87163cc0f5be907a5f5f6bc16bcb98d712182cb22cf20f24d90f960e",
   "unique_stl_files": 14,
   "installed_pieces": 13,
   "trial_only_pieces": 1,
@@ -46,11 +46,11 @@
       "stage": 2,
       "stage_label": "Check small parts",
       "file": "buck-tray.stl",
-      "label": "Pololu regulator tray",
+      "label": "RECOM regulator and capacitor tray",
       "quantity": 1,
       "role": "installed",
-      "sha256": "623412386365de5c36b1c834a7a87cd3553eb64871cd829b598631c58e907557",
-      "note": "Check D24V22F3 underside clearance and the two native mounting holes."
+      "sha256": "4d20167a5c068c02c929ed95f0dbf739852ccddb0f224afe0fbd768c30be4453",
+      "note": "Check the 24 x 24 mm perfboard, 2 mm maximum solder tails and rear-band restraint; keep the capacitor vent clear."
     },
     {
       "stage": 2,
@@ -129,7 +129,7 @@
       "label": "Main enclosure base",
       "quantity": 1,
       "role": "installed",
-      "sha256": "792cc5430a6fccf83ef97d4064054474a48a1cbcdcc1721ddf0cff133a0deea3",
+      "sha256": "9049c367d6e2491b7b7bf95cf6b4f59f6dc6fd7c044746872a65d5c3fc53b490",
       "note": "Print only after all actual modules and tray fits have been checked."
     },
     {

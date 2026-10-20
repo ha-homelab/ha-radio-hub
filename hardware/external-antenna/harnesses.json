@@ -28,37 +28,41 @@
     },
     {
       "ref": "J2",
-      "device": "Pololu D24V22F3 buck converter",
+      "device": "RECOM R-78K3.3-1.0 peripheral buck assembly",
       "source_anchor": "power-and-ethernet",
-      "note": "Identify VIN, VOUT and GND on the actual regulator; this is a harness map, not its physical pad order. Both ground wires may terminate at the same regulator ground node. Leave EN and PG unused.",
+      "note": "Retain the MC2-C four-wire J2 interface. RECOM SIP pins are 1 VIN, 2 GND, 3 VOUT; identify the pin-1 dot, not a mirrored cable view. Both J2 ground wires join pin 2 on the supported power daughterboard. Fit Panasonic EEU-FS1H270 27 uF input capacitor: positive to pin 1, negative stripe to pin 2. J2.1 uses fused +5V before D1-D3. No EN or PG pins exist. Do not plug the three-pin regulator directly into J2.",
       "pins": [
         {
           "carrier_pin": "1",
           "net": "+5V",
-          "device_contact": "VIN",
+          "device_contact": "Pin 1 VIN (+5 V)",
           "direction": "to_device",
-          "function": "Carrier 5 V supplies the regulator"
+          "function": "Carrier 5 V supplies the regulator",
+          "device_pin": "1"
         },
         {
           "carrier_pin": "2",
           "net": "GND",
-          "device_contact": "GND",
+          "device_contact": "Pin 2 GND (shared ground node)",
           "direction": "ground",
-          "function": "Input ground return"
+          "function": "Input ground return",
+          "device_pin": "2"
         },
         {
           "carrier_pin": "3",
           "net": "+3V3",
-          "device_contact": "VOUT (3.3 V)",
+          "device_contact": "Pin 3 VOUT (3.3 V)",
           "direction": "to_carrier",
-          "function": "Regulator powers the peripheral 3.3 V rail"
+          "function": "Regulator powers the peripheral 3.3 V rail",
+          "device_pin": "3"
         },
         {
           "carrier_pin": "4",
           "net": "GND",
-          "device_contact": "GND",
+          "device_contact": "Pin 2 GND (shared ground node)",
           "direction": "ground",
-          "function": "Output ground return"
+          "function": "Output ground return",
+          "device_pin": "2"
         }
       ]
     },

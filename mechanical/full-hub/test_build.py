@@ -75,10 +75,27 @@ class FullHubTests(unittest.TestCase):
         for name,box in self.g['bounds'].items():
             self.assertFalse(b.overlap(box,self.checks['keepouts_mm']['zac93-outboard-antenna-air-reservation']),name)
 
-    def test_regulator_uses_published_holes(self):
-        self.assertEqual(self.g['mounting']['buck']['local_hole_centres_mm'],self.m['buck']['mount']['holes_mm'])
-        self.assertEqual(len(self.g['mounting']['buck']['local_hole_centres_mm']),2)
-        self.assertGreater(self.g['mounting']['buck']['pcb_underside_z_mm'],self.p['placements']['buck'][2])
+    def test_regulator_board_support_and_solder_clearance(self):
+        mount=self.g['mounting']['buck'];details=self.checks['regulator_subassembly_mm']
+        self.assertEqual(mount['local_hole_centres_mm'],[])
+        self.assertEqual(details['perfboard'][2],12)
+        self.assertAlmostEqual(details['underside_solder'][2]-8.4,1.6)
+        self.assertEqual(self.m['buck']['mount']['perfboard_mm'],[24,24,1.6])
+        for box in details.values():self.assertTrue(b.contains(self.g['bounds']['buck'],box))
+        self.assertGreater(self.m['buck']['mount']['strap_band_local_y_mm'][0],
+                           self.m['buck']['mount']['capacitor_local_body_origin_mm'][1]+5.5)
+
+    def test_untrimmed_regulator_leads_are_rejected(self):
+        bad=copy.deepcopy(self.m)
+        bad['buck']['mount']['maximum_tail_below_board_mm']=5
+        with self.assertRaisesRegex(AssertionError,'Regulator underside_solder escapes'):
+            b.validate(self.p,bad,self.s,self.g)
+
+    def test_oversize_replacement_input_capacitor_is_rejected(self):
+        bad=copy.deepcopy(self.m)
+        bad['buck']['mount']['capacitor_max_body_mm'][2]=25
+        with self.assertRaisesRegex(AssertionError,'Regulator input_capacitor escapes'):
+            b.validate(self.p,bad,self.s,self.g)
 
     def test_all_power_and_data_branches_have_routes(self):
         ids={v['id']for v in self.checks['routes']}

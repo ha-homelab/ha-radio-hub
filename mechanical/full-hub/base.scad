@@ -35,10 +35,10 @@ translate([130.5, 175.6, 0]) { cylinder(d=5,h=6,$fn=48); }
 translate([24, 209.2, 0]) { cylinder(d=5,h=6,$fn=48); }
 translate([130.5, 209.2, 0]) { cylinder(d=5,h=6,$fn=48); }
 }
-translate([181, 130, 0]) { cylinder(d=5,h=6,$fn=48); }
-translate([202.8, 130, 0]) { cylinder(d=5,h=6,$fn=48); }
-translate([181, 151.8, 0]) { cylinder(d=5,h=6,$fn=48); }
-translate([202.8, 151.8, 0]) { cylinder(d=5,h=6,$fn=48); }
+translate([179, 128, 0]) { cylinder(d=5,h=6,$fn=48); }
+translate([207, 128, 0]) { cylinder(d=5,h=6,$fn=48); }
+translate([179, 156, 0]) { cylinder(d=5,h=6,$fn=48); }
+translate([207, 156, 0]) { cylinder(d=5,h=6,$fn=48); }
 }
 translate([130, 124, 0]) { cylinder(d=5,h=6,$fn=48); }
 translate([166.5, 124, 0]) { cylinder(d=5,h=6,$fn=48); }
@@ -116,10 +116,10 @@ translate([24, 175.6, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([130.5, 175.6, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([24, 209.2, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([130.5, 209.2, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
-translate([181, 130, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
-translate([202.8, 130, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
-translate([181, 151.8, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
-translate([202.8, 151.8, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
+translate([179, 128, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
+translate([207, 128, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
+translate([179, 156, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
+translate([207, 156, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([130, 124, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([166.5, 124, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }
 translate([130, 155, 1]) { cylinder(d=1.7,h=5.2,$fn=48); }

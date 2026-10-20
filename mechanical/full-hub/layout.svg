@@ -8,8 +8,8 @@
 <text x="242.0" y="375.0" text-anchor="middle" class="s">1</text>
 <rect x="128" y="652.8" width="307.5" height="88.79999999999998" fill="#303842" stroke="#d2e1e8" stroke-dasharray="0"/>
 <text x="281.75" y="697.1999999999999" text-anchor="middle" class="s">2</text>
-<rect x="599" y="516" width="53.400000000000034" height="53.400000000000034" fill="#18608c" stroke="#d2e1e8" stroke-dasharray="0"/>
-<text x="625.7" y="542.7" text-anchor="middle" class="s">3</text>
+<rect x="593" y="510" width="72" height="72" fill="#18608c" stroke="#d2e1e8" stroke-dasharray="0"/>
+<text x="629.0" y="546.0" text-anchor="middle" class="s">3</text>
 <rect x="446" y="498" width="97.5" height="81" fill="#25699c" stroke="#d2e1e8" stroke-dasharray="0"/>
 <text x="494.75" y="538.5" text-anchor="middle" class="s">4</text>
 <rect x="476" y="381" width="85.5" height="85.5" fill="#346baa" stroke="#d2e1e8" stroke-dasharray="0"/>
@@ -38,7 +38,7 @@
 <polyline points="330.04999999999995,366.0 416,366 416,543 428,543" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="326.24,393.0 416,393 416,354 497,354 497,393" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="238.67000000000002,387.0 419,387 440,294 461,294" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
-<polyline points="223.43,459.0 223.43,459.0 416,459 416,597 590,597 590,543 605,543" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
+<polyline points="223.43,459.0 223.43,459.0 416,459 416,597 590,597 590,582 611,565.05" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="437,696 509,696 509,639 548,639" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="605,660 605,678 605,693" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="551,717 512,717 512,636 416,636 416,486 215.81,486.0 215.81,486.0" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
@@ -49,8 +49,8 @@
 <text x="900" y="165" class="n">Envelope 100 × 102 × 30 mm</text>
 <text x="900" y="202" class="s">2. Isolated PoE splitter</text>
 <text x="900" y="227" class="n">Envelope 102.5 × 29.6 × 24.8 mm</text>
-<text x="900" y="264" class="s">3. 3.3 V regulator</text>
-<text x="900" y="289" class="n">Envelope 17.8 × 17.8 × 12 mm</text>
+<text x="900" y="264" class="s">3. RECOM 3.3 V + 27 µF</text>
+<text x="900" y="289" class="n">Envelope 24 × 24 × 18 mm</text>
 <text x="900" y="326" class="s">4. DFR0627 / WK2132</text>
 <text x="900" y="351" class="n">Envelope 32.5 × 27 × 16 mm</text>
 <text x="900" y="388" class="s">5. Zooz ZAC93 Z-Wave</text>

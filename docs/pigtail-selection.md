@@ -4,7 +4,7 @@ Checked **19 October 2026** for one prototype delivered to the United States.
 Buy **3 × Taoglas CAB.618.E**, one each for BLE, Thread and Zigbee. Keep the
 three **TE/Linx ANT-2.4-LCW-SMA** antennas. This replaces the previously selected
 Amphenol cables without changing the carrier PCB or radio firmware. Use the
-matching **FH1-MC2-C-RF1** enclosure and connector coupon.
+matching **FH1-MC2-C-PWR1** enclosure and connector coupon.
 
 ## Exact part and observed cost
 
