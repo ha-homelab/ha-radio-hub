@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2290" viewBox="0 0 1600 2290" role="img" aria-labelledby="title desc">
+<title id="title">MC2-C complete hub wiring and ZAC93 installation</title>
+<desc id="desc">Electrical overview with isolated PoE power, five remapped ZAC93 connections through a DFR0627 UART bridge, CC1101, LD2450, BME680, and three external 2.4 GHz antennas. This is not a connector mating-side view.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#52677b"/></marker></defs>
+<rect width="1600" height="2290" fill="#f1f5f9"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#14263b}.title{font-size:38px;font-weight:700}.section{font-size:28px;font-weight:700}.label{font-size:24px;font-weight:700}.body{font-size:21px}.small{font-size:18px}.mono{font-family:Menlo,Consolas,monospace;font-size:21px}.muted{fill:#52677b}.white{fill:white}</style>
+<text x="44" y="62" class="title">MC2-C · the complete hub, connected</text>
+<text x="44" y="99" class="body">Carrier pad numbers are not the physical pin numbers on the external modules.</text>
+<rect x="32" y="124" width="1536" height="303" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
+<text x="58" y="166" class="section">1  Power + wired Ethernet</text>
+<rect x="60" y="190" width="350" height="103" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
+<text x="80" y="226" class="body">Battery-fed PoE switch</text>
+<text x="80" y="262" class="body">Active PoE → one Ethernet cable</text>
+<rect x="495" y="190" width="430" height="103" rx="16" fill="#e4f1ed" stroke="#d5dee8" stroke-width="2"/>
+<text x="517" y="226" class="body">Isolated active PoE splitter</text>
+<text x="517" y="262" class="body">Selected output: regulated 5 V</text>
+<path d="M414 240 L488 240" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1065" y="187" width="465" height="110" rx="16" fill="#e8edf9" stroke="#d5dee8" stroke-width="2"/>
+<text x="1086" y="223" class="body">U4 · WIZ850io RJ45</text>
+<text x="1086" y="259" class="body">Data-only output from splitter</text>
+<path d="M931 239 L1055 239" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="957" y="219" class="small">DATA</text>
+<polyline points="708,296 708,324 510,324 510,362" fill="none" stroke="#c96b25" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="733" y="329" class="small">5 V DC</text>
+<text x="61" y="360" class="mono">5 V → inline fuse → J1.1</text>
+<text x="61" y="393" class="mono">Splitter GND → J1.2</text>
+<rect x="580" y="347" width="950" height="60" rx="10" fill="#fff5e7" stroke="#e6c79b" stroke-width="2"/>
+<text x="598" y="385" class="mono">J2: 1→buck VIN   2→GND   3←3.3 V OUT   4→GND</text>
+<rect x="32" y="447" width="1536" height="684" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
+<text x="58" y="489" class="section">2  Z-Wave · separate cradle, five-wire harness</text>
+<text x="58" y="527" class="body">ZAC93 is a GPIO radio with a 2×5 socket underneath. It does not plug onto carrier J4.</text>
+<rect x="60" y="553" width="430" height="175" rx="16" fill="#eaf5f5" stroke="#abd2d2" stroke-width="2"/>
+<text x="80" y="590" class="label">U1 host → carrier J3</text>
+<text x="80" y="627" class="mono">GPIO21 / SDA → J3.3</text>
+<text x="80" y="662" class="mono">GPIO22 / SCL → J3.4</text>
+<text x="80" y="697" class="mono">3.3 V J3.1 · GND J3.2</text>
+<rect x="580" y="553" width="460" height="175" rx="16" fill="#eaf5f5" stroke="#abd2d2" stroke-width="2"/>
+<text x="600" y="590" class="label">DFR0627 / WK2132</text>
+<text x="600" y="627" class="small">D=SDA · C=SCL · +=3.3 V · −=GND</text>
+<text x="600" y="662" class="small">UART1: 115200 8N1 · IA1=1 IA0=1</text>
+<text x="600" y="697" class="small">I²C register 0x70 · FIFO 0x71</text>
+<path d="M498 647 L570 647" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="503" y="626" class="small">I²C</text>
+<rect x="1130" y="553" width="400" height="175" rx="16" fill="#fff1cf" stroke="#ddba61" stroke-width="2"/>
+<text x="1150" y="590" class="label">Zooz ZAC93</text>
+<text x="1150" y="628" class="body">3.3 V supply + UART data</text>
+<text x="1150" y="663" class="body">Stock PCB antenna stays fitted</text>
+<text x="1150" y="698" class="body">Horizontal printed cradle</text>
+<path d="M1047 647 L1121 647" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="1051" y="626" class="small">UART</text>
+<text x="60" y="773" class="label">CARRIER J4</text>
+<text x="591" y="773" class="label">ZAC93 PHYSICAL PIN</text>
+<text x="1063" y="773" class="label">SIGNAL PATH</text>
+<rect x="60" y="782" width="90" height="34" rx="6" fill="#f1f5f9" stroke="#c96b25" stroke-width="2"/>
+<text x="94" y="807" class="mono">1</text>
+<path d="M168 799 L566 799" fill="none" stroke="#c96b25" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="592" y="807" class="mono">1 · 3V3</text>
+<text x="1063" y="807" class="small">Peripheral buck supply</text>
+<rect x="60" y="831" width="90" height="34" rx="6" fill="#f1f5f9" stroke="#52677b" stroke-width="2"/>
+<text x="94" y="856" class="mono">2</text>
+<path d="M168 848 L566 848" fill="none" stroke="#52677b" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="592" y="856" class="mono">6 · GND</text>
+<text x="1063" y="856" class="small">Common ground</text>
+<rect x="60" y="880" width="90" height="34" rx="6" fill="#f1f5f9" stroke="#52677b" stroke-width="2"/>
+<text x="94" y="905" class="mono">3</text>
+<path d="M168 897 L566 897" fill="none" stroke="#52677b" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="592" y="905" class="mono">9 · GND</text>
+<text x="1063" y="905" class="small">Second ground return</text>
+<rect x="60" y="929" width="90" height="34" rx="6" fill="#f1f5f9" stroke="#1a7480" stroke-width="2"/>
+<text x="94" y="954" class="mono">4</text>
+<path d="M168 946 L566 946" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="592" y="954" class="mono">8 · RX</text>
+<text x="1063" y="954" class="small">J3.5 ← DFR0627 UART1 T</text>
+<rect x="60" y="978" width="90" height="34" rx="6" fill="#f1f5f9" stroke="#4b62ae" stroke-width="2"/>
+<text x="94" y="1003" class="mono">5</text>
+<path d="M566 995 L168 995" fill="none" stroke="#4b62ae" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="592" y="1003" class="mono">10 · TX</text>
+<text x="1063" y="1003" class="small">J3.6 → DFR0627 UART1 R</text>
+<text x="60" y="1081" class="body">Leave ZAC93 pins 2 / 3 / 4 / 5 / 7 unconnected. Pin 7 is RESET on hardware v2.</text>
+<text x="60" y="1111" class="small muted">Use the physical 3V3 / GND / RX / TX markings. Turning the module over mirrors its apparent pin layout.</text>
+<rect x="32" y="1151" width="748" height="492" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
+<rect x="800" y="1151" width="768" height="492" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
+<text x="58" y="1193" class="section">3  CC1101 · 433.92 MHz</text>
+<text x="58" y="1229" class="body">Carrier J5 → actual module signal labels</text>
+<text x="61" y="1275" class="mono">1 → VCC</text>
+<text x="342" y="1275" class="mono">3.3 V</text>
+<text x="61" y="1311" class="mono">2 → GND</text>
+<text x="342" y="1311" class="mono">Common ground</text>
+<text x="61" y="1347" class="mono">3 → SCLK</text>
+<text x="342" y="1347" class="mono">GPIO12</text>
+<text x="61" y="1383" class="mono">4 → SI / MOSI</text>
+<text x="342" y="1383" class="mono">GPIO2</text>
+<text x="61" y="1419" class="mono">5 ← SO / MISO</text>
+<text x="342" y="1419" class="mono">GPIO19</text>
+<text x="61" y="1455" class="mono">6 → CSn</text>
+<text x="342" y="1455" class="mono">GPIO13</text>
+<text x="61" y="1491" class="mono">7 ↔ GDO0</text>
+<text x="342" y="1491" class="mono">GPIO25 · TX path</text>
+<text x="61" y="1527" class="mono">8 ← GDO2</text>
+<text x="342" y="1527" class="mono">GPIO35 · RX path</text>
+<text x="60" y="1592" class="small">Retain 4.7 kΩ GDO0 pull-up and boot straps.</text>
+<text x="60" y="1621" class="small">Use a matching 433 MHz antenna, not a 2.4 GHz one.</text>
+<text x="826" y="1193" class="section">4  Radar + environment</text>
+<text x="826" y="1237" class="label">J6 → LD2450 · 256000 baud</text>
+<text x="828" y="1282" class="mono">1 → 5V      2 → GND</text>
+<text x="828" y="1317" class="mono">3 → RX      host GPIO23 / TX</text>
+<text x="828" y="1352" class="mono">4 ← TX      host GPIO18 / RX</text>
+<text x="828" y="1395" class="small">5 V power, 3.3 V UART. Antenna face toward room.</text>
+<text x="826" y="1447" class="label">J7 → BME680 · shared 400 kHz I²C</text>
+<text x="828" y="1492" class="mono">1 → GND     2 → 3.3 V input</text>
+<text x="828" y="1527" class="mono">3 ↔ SDA/SDI  host GPIO21</text>
+<text x="828" y="1562" class="mono">4 → SCL/SCK  host GPIO22</text>
+<text x="828" y="1607" class="small">Adafruit 3660 default 0x77 · attached ventilated pod</text>
+<rect x="32" y="1663" width="1536" height="304" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
+<text x="58" y="1705" class="section">5  Carrier modules + antennas</text>
+<rect x="60" y="1740" width="352" height="146" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
+<text x="76" y="1778" class="body">U1 · ESP32-WROVER-IE</text>
+<text x="76" y="1820" class="small">BLE 4.2 + Ethernet host</text>
+<text x="76" y="1856" class="small">U.FL → BLE bulkhead</text>
+<rect x="432" y="1740" width="352" height="146" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
+<text x="448" y="1778" class="body">U2 · TinyC6[D]</text>
+<text x="448" y="1820" class="small">Dedicated Thread RCP</text>
+<text x="448" y="1856" class="small">U.FL → THREAD bulkhead</text>
+<rect x="804" y="1740" width="352" height="146" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
+<text x="820" y="1778" class="body">U3 · XIAO MG24</text>
+<text x="820" y="1820" class="small">External-antenna Ember NCP</text>
+<text x="820" y="1856" class="small">U.FL → ZIGBEE bulkhead</text>
+<rect x="1176" y="1740" width="352" height="146" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
+<text x="1192" y="1778" class="body">Other RF paths</text>
+<text x="1192" y="1820" class="small">ZAC93: stock PCB antenna</text>
+<text x="1192" y="1856" class="small">CC1101: retained 433 MHz</text>
+<text x="60" y="1920" class="body">Three independent 2.4 GHz paths: TE ANT-2.4-LCW-SMA + Amphenol 095-902-545-150 pigtails.</text>
+<text x="60" y="1951" class="small">No combiner. No coax or retaining strap over the ZAC93 PCB antenna or the LD2450 active face.</text>
+<rect x="32" y="1987" width="1536" height="260" rx="16" fill="#142c47" stroke="#142c47" stroke-width="2"/>
+<text x="58" y="2028" class="section white">6  Before closing the case</text>
+<text x="60" y="2070" class="body white">Check each harness with power off. First measure the disconnected 5 V and 3.3 V rails.</text>
+<text x="60" y="2108" class="body white">Secure every module and cable; keep converter heat away from the external BME680 pod.</text>
+<text x="60" y="2146" class="body white">Z-Wave JS: esphome://mc2-classic-hub.local:6053?key=URL_ENCODED_API_KEY</text>
+<text x="60" y="2184" class="body white">Zigbee uses TCP 6638. HA Z-Wave connects to the Z-Wave JS server, not directly to this port.</text>
+<text x="44" y="2275" class="small muted">Source: MC2-C native CAD connector ledger + pinned firmware. Electrical map only; assembled hardware remains to be tested.</text>
+</svg>

@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "revision": "FH1-MC2-C-RF1",
+  "native_pcb_revision": "MC2-C",
+  "units": "mm",
+  "scale_percent": 100,
+  "physical_fit_verified": false,
+  "source_report_sha256": "b1b59b8cfbfe9716ddef18a9024e772caadf24397b93f755e58000f444a3c163",
+  "unique_stl_files": 14,
+  "installed_pieces": 13,
+  "trial_only_pieces": 1,
+  "optional_pieces": 1,
+  "pieces_including_trial_and_optional": 15,
+  "parts": [
+    {
+      "stage": 1,
+      "stage_label": "Print first",
+      "file": "fit-coupon.stl",
+      "label": "Fastener and SMA fit coupon",
+      "quantity": 1,
+      "role": "trial",
+      "sha256": "1c5246110495828eab952fc94a30a292792eee2ee670e4fe14745434a660e5c8",
+      "note": "Check screw pilots and the actual SMA bulkhead before larger prints."
+    },
+    {
+      "stage": 1,
+      "stage_label": "Print first",
+      "file": "zwave-tray.stl",
+      "label": "Zooz ZAC93 cradle",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "a2f9540e30726bb0926cdb9cadcf89442f91772095560a48098213a02e9c752c",
+      "note": "Trial fit the delivered ZAC93, underside socket and mating header first; reuse this cradle if it fits."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "poe-splitter-tray.stl",
+      "label": "PoE splitter tray",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "f784744bf809a3355ec8acf7460482f502bd82cb3a1c128757a540ccb9e8bae1",
+      "note": "For the intact Waveshare POE-SPLITTER-25W-5.5-2.1 case; check captive tails."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "buck-tray.stl",
+      "label": "Pololu regulator tray",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "623412386365de5c36b1c834a7a87cd3553eb64871cd829b598631c58e907557",
+      "note": "Check D24V22F3 underside clearance and the two native mounting holes."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "wk2132-tray.stl",
+      "label": "DFR0627 UART bridge tray",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "f781e755dbf4c0315c83f08ea4b8094c2d4f87bb739a3a0f4576a31a802e249a",
+      "note": "Use insulated edge support and a soft restraint; check actual board edges."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "cc1101-tray.stl",
+      "label": "CC1101 tray",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "9eea5ec1b1d53d1d0bcc26792fac4a2f8bb1a782ddd95bc2130b1026f6ab330f",
+      "note": "Existing CC1101 vendor variant is unknown; measure it before printing."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "power-utility-tray.stl",
+      "label": "DC adapter and fuse tray",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "625d2ac5cf41c9182520cadd6d8708243f190af0a9faf19523f8d4fc1fc98564",
+      "note": "Adapter and fuse dimensions are allocations; confirm both actual parts."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "radar-holder.stl",
+      "label": "LD2450 lid holder",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "7e0df8f6e86e21d6ede542d0ad3be8f3c4e6cf0a8693f6d446dcdb57e90e5412",
+      "note": "Keep restraints at board ends, clear of the active antenna face."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "bme680-pod.stl",
+      "label": "BME680 ventilated pod",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "b8849ab122f3984e7e6391e27e93b2729f6a2e2db9a5a84557f9de2e8ce03514",
+      "note": "For Adafruit BME680 STEMMA QT 3660; check wire passage and sensor clearance."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "bme680-pod-lid.stl",
+      "label": "BME680 pod lid",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "2745d070858790f6a9b532ea747de14c7a3224749a0c9b694dd06752a0574b8b",
+      "note": "Check the sensor and cable are not compressed on closure."
+    },
+    {
+      "stage": 2,
+      "stage_label": "Check small parts",
+      "file": "pod-arm.stl",
+      "label": "BME680 pod support arm",
+      "quantity": 2,
+      "role": "installed",
+      "sha256": "961010fb46c2d5f5a5f45a3437b7b0f7bccfbdbf385f8a9c580c207f9e30aa40",
+      "note": "Print TWO identical arms; one STL file supplies both copies."
+    },
+    {
+      "stage": 3,
+      "stage_label": "Print large shell last",
+      "file": "base.stl",
+      "label": "Main enclosure base",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "792cc5430a6fccf83ef97d4064054474a48a1cbcdcc1721ddf0cff133a0deea3",
+      "note": "Print only after all actual modules and tray fits have been checked."
+    },
+    {
+      "stage": 3,
+      "stage_label": "Print large shell last",
+      "file": "lid.stl",
+      "label": "Main enclosure lid",
+      "quantity": 1,
+      "role": "installed",
+      "sha256": "5bc30b3593ebf87ff7c748885b6f0accf642a3744606dd9f58f5132874a2a7bf",
+      "note": "Check the 0.8 mm radar window in the slicer; fit and radar performance remain unverified."
+    },
+    {
+      "stage": 4,
+      "stage_label": "Optional",
+      "file": "cc1101-port-blank.stl",
+      "label": "CC1101 trial-opening blank",
+      "quantity": 1,
+      "role": "optional",
+      "sha256": "1f06fd33424e60e95c5d09508be492ee7edc3675036078dc617a19e9d1abd4d6",
+      "note": "Print only if closing the unused trial opening; it is not an antenna adapter."
+    }
+  ]
+}

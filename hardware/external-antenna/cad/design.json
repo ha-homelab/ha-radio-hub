@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": "MC2-B",
-  "status": "engineering_prototype_not_fabrication_release",
+  "revision": "MC2-C",
+  "status": "prototype_fabrication_candidate",
   "board": {
     "width_mm": 100,
     "height_mm": 100,
@@ -25,7 +25,7 @@
     ],
     "area_mm2": 10000,
     "copper_layers": 2,
-    "assembly": "All components front; direct-solder male headers; TinyC6 headers supplied loose",
+    "assembly": "All components front; direct-solder male headers; TinyC6[D] male headers must be fitted",
     "signal_track_mm": 0.25,
     "power_track_mm": 0.8,
     "via_diameter_mm": 0.8,
@@ -38,7 +38,10 @@
     "host_layout": "https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_pcb_layout.pdf",
     "wiz_schematic": "https://docs.wiznet.io/assets/files/wiz850io_sch_v110-3fcc19fc2acaf16f15c5f08f9c8330cb.pdf",
     "host_dimensions": "https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_dimensions.pdf",
-    "c6": "https://github.com/UnexpectedMaker/esp32c6/tree/7c3137962e469be55a295d0eb7ccebed2a6354d1/TinyC6",
+    "c6": "https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3",
+    "c6_schematic": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/schematics/schematic-tinyc6-p1.pdf",
+    "c6_step": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step",
+    "c6_pinout": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/pinout_cards/TinyC6D_pinout.webp",
     "xiao": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip",
     "wiz_photo": "https://docs.wiznet.io/img/products/wiz850io/wiz850io.png",
     "wiz_pinmap": "https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png",
@@ -55,12 +58,76 @@
       "front_module_gap_measured_mm": null,
       "physical_fit_qualified": false,
       "assembly_order": [
-        "Solder supplied TinyC6 1x11 and1x12 headers; inspect",
+        "Solder TinyC6[D] 1x11 and1x12 male headers; inspect",
         "Fit low axial parts and all male harness headers; solder from back",
         "Fit all four modules; solder from back",
         "Fit three pigtails and secure cable strain relief"
       ],
       "acceptance": "No front/rear component body overlap; verify module/header seating, solder tails, pigtail engagement, jack support and case clearance physically."
+    },
+    "module_geometry": {
+      "U2": {
+        "source": "3d models/TinyC6D.step",
+        "datum": "Carrier U2 footprint local mm: X=STEP Y+0.11; Y=STEP X+0.632; Z=STEP Z. The point(0,0) is a footprint datum, not PCB center.",
+        "pcb_bounds_step_mm": [
+          -18.15,
+          -8.89,
+          0,
+          18.15,
+          8.89,
+          0.91
+        ],
+        "pcb_bounds_local_mm": [
+          -8.78,
+          -17.518,
+          9,
+          18.782
+        ],
+        "usb_bounds_local_mm": [
+          -4.33,
+          -18.958,
+          4.61,
+          -11.058
+        ],
+        "rf_center_local_mm": [
+          -5.49,
+          16.252
+        ],
+        "rf_center_step_mm": [
+          15.62,
+          -5.6,
+          0.995
+        ],
+        "height_basis": "Vendor STEP without user-soldered headers. Physical header seating and cable strain relief must still be measured on the supplied boards.",
+        "assembly_bounds_step_mm": [
+          -19.59,
+          -8.89,
+          -0.075,
+          18.15,
+          8.89,
+          4.205
+        ],
+        "assembly_bounds_local_mm": [
+          -8.78,
+          -18.958,
+          -0.075,
+          9,
+          18.782,
+          4.205
+        ],
+        "usb_bounds_step_mm": [
+          -19.59,
+          -4.44,
+          -0.005,
+          -11.69,
+          4.5,
+          4.205
+        ],
+        "model_height_mm": 4.28,
+        "model_top_z_mm": 4.205,
+        "model_bottom_z_mm": -0.075,
+        "verification_method": "Nominal bounds verified from the pinned STEP BRep using CadQuery 2.8.0 / Open CASCADE 7.9; 1089 imported solids. Header centers, ANT1 datum and coordinate transform cross-checked against STEP entities and the manufacturer pinout."
+      }
     },
     "rj45": {
       "pcb_bounds_local_mm": [
@@ -143,10 +210,10 @@
         70.0
       ],
       "U2": [
-        49.57,
-        11.282,
-        58.21,
-        19.11
+        49.45,
+        11.042,
+        58.39,
+        18.942
       ],
       "U3": [
         79.39,
@@ -214,9 +281,11 @@
         "radio": "Thread",
         "connector": "U.FL / MHF1",
         "estimated_xy_mm": [
-          59,
-          43
-        ]
+          48.29,
+          46.252
+        ],
+        "coordinate_status": "manufacturer_STEP_nominal_not_sample_measured",
+        "evidence": "TinyC6D.step ANT1 center from pinned manufacturer source; see c6d-evidence.json for transform and SHA256"
       },
       "U3": {
         "radio": "Zigbee",
@@ -595,8 +664,8 @@
     },
     {
       "ref": "U2",
-      "model": "Unexpected Maker TinyC6-U-01",
-      "footprint": "MC2:TinyC6_U",
+      "model": "Unexpected Maker TinyC6[D] TC6D-01",
+      "footprint": "MC2:TinyC6_D",
       "pins": {
         "1": null,
         "2": "GND",
@@ -631,12 +700,12 @@
       ],
       "rotation": 0,
       "source": "c6",
-      "notes": "Original TC6-U-01 fixed U.FL; NOT TC6D-01; solder supplied 1x12 + 1x11 male headers; native USB no bridge; ROM RX17 TX16; EN/BOOT9 accessible; no LiPo fitted",
+      "notes": "TC6D-01; solder 1x12 + 1x11 male headers; native USB no UART bridge; ROM RX17 TX16; EN/BOOT9 accessible; external antenna requires MC2-C firmware: FXL6408 0x43 XIO0 HIGH via local GPIO6 SDA/7 SCL; no LiPo fitted",
       "body_bounds_local_mm": [
         -8.78,
-        -18,
+        -17.518,
         9,
-        16.67735
+        18.782
       ],
       "pad_centers_mm": [
         {
@@ -803,9 +872,9 @@
       ],
       "body_bounds_global_mm": [
         45.0,
-        12.0,
+        12.482,
         62.78,
-        46.6774
+        48.782
       ]
     },
     {

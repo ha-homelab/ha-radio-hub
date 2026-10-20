@@ -1,0 +1,181 @@
+{
+  "revision": "FH1-MC2-C-RF1",
+  "status": "digitally_checked_prototype_physical_fit_unverified",
+  "units": "mm",
+  "case": {
+    "width": 215,
+    "length": 215,
+    "height": 75,
+    "wall": 3,
+    "floor": 3,
+    "lid": 3,
+    "print_bed": [
+      220,
+      220
+    ],
+    "carrier_origin": [
+      14,
+      34,
+      15
+    ],
+    "radome_skin": 0.8
+  },
+  "placements": {
+    "carrier": [
+      14,
+      34,
+      15
+    ],
+    "poe_splitter": [
+      26,
+      177.6,
+      12
+    ],
+    "buck": [
+      183,
+      132,
+      12
+    ],
+    "wk2132": [
+      132,
+      126,
+      12
+    ],
+    "zwave": [
+      142,
+      87,
+      12
+    ],
+    "cc1101": [
+      142,
+      41,
+      12
+    ],
+    "ld2450": [
+      45,
+      86,
+      59.9
+    ],
+    "bme680": [
+      240,
+      149,
+      24
+    ],
+    "dc_adapter": [
+      166,
+      165,
+      12
+    ],
+    "fuse_holder": [
+      166,
+      190,
+      12
+    ]
+  },
+  "rf_ports": [
+    {
+      "label": "BLE",
+      "ref": "U1",
+      "center": [
+        35,
+        0,
+        38
+      ]
+    },
+    {
+      "label": "THREAD",
+      "ref": "U2",
+      "center": [
+        100,
+        0,
+        38
+      ]
+    },
+    {
+      "label": "ZIGBEE",
+      "ref": "U3",
+      "center": [
+        165,
+        0,
+        38
+      ]
+    }
+  ],
+  "poe_entry": {
+    "center_y": 192.4,
+    "center_z": 24,
+    "opening_yz": [
+      22,
+      22
+    ]
+  },
+  "cc1101_antenna": {
+    "center": [
+      215,
+      55,
+      26
+    ],
+    "opening_diameter": 10,
+    "retention": "use a purchased matching bulkhead or split grommet; stock antenna exits here unmodified"
+  },
+  "pod": {
+    "origin": [
+      232,
+      143,
+      16
+    ],
+    "size": [
+      45,
+      35,
+      23
+    ],
+    "air_gap": 17
+  },
+  "engineering_notes": [
+    "All purchased-part heights and cable routing remain provisional until measured.",
+    "ZAC93 has a stock on-board antenna, not an added SMA connector. Preserve it unmodified.",
+    "LD2450 antenna face points toward +Z through the lid; mount the unit with that face toward the room.",
+    "Cradles use insulated edge support and soft nylon straps, never invented holes through a module.",
+    "The PoE splitter must be an isolated 802.3af/at PD; battery voltage never enters this enclosure directly.",
+    "Ambient pod is screwed to two stand-off arms; no loose external sensor box."
+  ],
+  "printer_profiles": {
+    "owned": {
+      "model": "TRONXY XY-3 original",
+      "bed_mm": [
+        310,
+        310
+      ],
+      "height_mm": 330,
+      "brim_mm": 5
+    },
+    "generic": {
+      "bed_mm": [
+        220,
+        220
+      ],
+      "brim_mm": 2
+    }
+  },
+  "radar": {
+    "antenna_plane_z_mm": 64.8,
+    "inner_window_z_mm": 77.2,
+    "air_gap_mm": 12.4,
+    "status": "nominal antenna plane and nonconductive window; confirm delivered PCB and printed material"
+  },
+  "rf_harness": {
+    "part": "Taoglas CAB.618.E",
+    "nominal_length_mm": 150,
+    "project_length_shortfall_allowance_mm": 6,
+    "minimum_length_budget_mm": 144,
+    "minimum_bend_radius_mm": 6.8,
+    "service_slack_mm": 25,
+    "cutout_shape": "round",
+    "nominal_hole_diameter_mm": 6.6,
+    "print_allowance_mm": 0.2,
+    "bulkhead_straight_reservation_mm": 27,
+    "heatshrink_reference_length_mm": 17,
+    "source_evidence": "rf-evidence.json",
+    "unbent_connector_allowance_mm": 21
+  }
+}

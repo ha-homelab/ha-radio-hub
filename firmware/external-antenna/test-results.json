@@ -1,12 +1,12 @@
 {
   "hardware_tested": false,
   "host": "macOS arm64",
-  "date": "2026-10-18",
-  "profile": "MC2-B classic ESP32",
+  "date": "2026-10-19",
+  "profile": "MC2-C classic ESP32 with TinyC6[D]",
   "commands": [
     {
       "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/external-antenna/tests -v",
-      "passed": 26,
+      "passed": 35,
       "skipped": 0
     },
     {
@@ -15,8 +15,8 @@
       "skipped": 0
     },
     {
-      "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s tests -v",
-      "passed": 77,
+      "command": "RF_CPP_SANITIZERS=1 /path/to/pinned/esphome-venv/bin/python -m unittest discover -s tests -v",
+      "passed": 83,
       "skipped": 0
     },
     {
@@ -25,6 +25,5 @@
       "skipped": 0
     }
   ],
-  "historical_mc1_esphome_configuration": "valid with unchanged GPIO4/GPIO5 RF defaults",
-  "scope": "Host-compiled production fault/update helpers, RMT lifecycle, serial transport and real loopback socket tests. MC2-B image chip/revision checks and unchanged historical MC1 profile configuration were checked. No radio, deployed ESPHome endpoint or Home Assistant was contacted."
+  "scope": "Host-compiled production antenna, fault/update helpers, RMT lifecycle, serial transport and real loopback socket tests. C6[D] selector cold/warm startup, all I2C failure positions, wrong expander identity and three output configuration readback failures were checked. Input Status is deliberately not treated as output feedback. Old C6 metadata and renamed old binaries are rejected. No radio, deployed ESPHome endpoint or Home Assistant was contacted."
 }

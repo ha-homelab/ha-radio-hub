@@ -75,6 +75,44 @@ def d_hole(diameter, flat_dimension, thickness):
     disk = c.cylinder(diameter, thickness).rotate((90, 0, 0))
     return c.subtract(disk, c.box(diameter+2, thickness+2, diameter+2).move((-r-1, -thickness-1, flat_dimension-r)))
 
+def rounded_coax_path(points,radius,straight_minimum):
+    """Round each 3-D guide corner with a true circular, radius-limited arc.
+
+    Ten-degree chords stay within 0.026 mm of a 6.8 mm arc; the 1.5 mm
+    collision sweep exceeds the physical cable radius by over 0.9 mm.
+    """
+    corners=[];tangents=[0.0]*len(points)
+    for i in range(1,len(points)-1):
+        u=[(points[i][k]-points[i-1][k])/math.dist(points[i],points[i-1]) for k in range(3)]
+        v=[(points[i+1][k]-points[i][k])/math.dist(points[i+1],points[i]) for k in range(3)]
+        cosine=max(-1,min(1,sum(a*b for a,b in zip(u,v))));angle=math.acos(cosine)
+        assert angle<math.pi-1e-6,'Coax reversal cannot satisfy its bend radius'
+        tangent=radius*math.tan(angle/2);tangents[i]=tangent
+        corners.append((i,u,v,angle,tangent))
+    for i in range(len(points)-1):
+        assert tangents[i]+tangents[i+1]<=math.dist(points[i],points[i+1]),'Coax bend radius requires more straight length'
+    lead=math.dist(points[0],points[1])-tangents[1]
+    assert lead>=straight_minimum,'Coax bend reaches the bulkhead heatshrink'
+    result=[points[0]];arcs=[]
+    for i,u,v,angle,tangent in corners:
+        start=[points[i][k]-u[k]*tangent for k in range(3)]
+        if angle<1e-6:
+            result.append(points[i]);continue
+        normal=[(v[k]-u[k]*math.cos(angle))/math.sin(angle) for k in range(3)]
+        center=[start[k]+normal[k]*radius for k in range(3)]
+        steps=max(1,math.ceil(math.degrees(angle)/10))
+        for j in range(steps+1):
+            a=angle*j/steps
+            # The SVG uses these coordinates verbatim. Quantize far below
+            # physical tolerances so different libm implementations reproduce
+            # the same source drawing rather than disagreeing in the last bit.
+            result.append([round(center[k]-normal[k]*radius*math.cos(a)+u[k]*radius*math.sin(a),9) for k in range(3)])
+        arcs.append({'center_mm':center,'radius_mm':radius,'angle_degrees':math.degrees(angle)})
+    result.append(points[-1])
+    return result,arcs,lead
+
+
+
 def geometry(s, p):
     q = p['case']; r = p['rf']
     W,H,Z = q['width'],q['length'],q['height']; t=q['wall']; f=q['floor']; lt=q['lid']
@@ -103,9 +141,11 @@ def geometry(s, p):
         assert support[0] == start[0] and support[1]-start[1] >= r['internal_straight_reservation'], 'Bulkhead straight lead-in reservation is too short'
         end=[bx+endpoint[0],by+endpoint[1],r['module_connector_z_trial']]
         guide_length=math.dist(start,support)+math.dist(support,end)
-        assert guide_length+30 <= r['cable_length_trial'], 'Trial cable lacks 30 mm connector/slack allowance'
+        assert r['cable_length_minimum_budget'] == r['cable_length_trial']-r['cable_length_shortfall_allowance'], 'Cable minimum budget omits the shortfall allowance'
+        assert guide_length+30 <= r['cable_length_minimum_budget'], 'Trial cable lacks 30 mm connector/slack allowance'
+        smooth,arcs,lead=rounded_coax_path([start,support,end],r['cable_bend_radius_trial'],r['unbent_connector_allowance'])
         routes.append({'radio':port['label'],'module_ref':port['module_ref'],'points_mm':[start,support,end],
-                       'polyline_guide_length_mm':round(guide_length,3),'cable_length_trial_mm':r['cable_length_trial'],
+                       'polyline_guide_length_mm':round(guide_length,3),'cable_length_trial_mm':r['cable_length_trial'],'cable_length_minimum_budget_mm':r['cable_length_minimum_budget'],'minimum_bend_radius_mm':r['cable_bend_radius_trial'],'rounded_points_mm':smooth,'bend_arcs':arcs,'straight_bulkhead_lead_mm':lead,
                        'status':'XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured'})
     corners=[(8,8),(W-8,8),(8,H-8),(W-8,H-8)]
     # The antenna wall remains attached to the base when the lid is removed.
@@ -129,11 +169,11 @@ def geometry(s, p):
     for port in r['ports']:
         x,y,z=port['center']
         assert y==0 and 18<=x<=W-18 and 20<=z<=Z-12
-        holes.append(d_hole(r['nominal_hole_diameter']+r['print_allowance'],r['nominal_hole_flat_dimension']+r['print_allowance'],t+.2).move((x,t+.1,z)))
+        holes.append(c.cylinder(r['nominal_hole_diameter']+r['print_allowance'],t+.2).rotate((90,0,0)).move((x,t+.1,z)))
         holes.append(lettering(port['label'],x,z-12))
         sx,sy=port['strap_xy']
         # Paired towers support a soft loop at bulkhead height without loading the AMC jack.
-        pillar=c.box(12,6,z-f).move((sx-6,sy-3,f))
+        pillar=c.box(12,6,z-f-2).move((sx-6,sy-3,f))
         loop=c.box(8,6.2,2).move((sx-4,sy-3.1,z-5))
         straps.append(c.subtract(pillar,loop))
     base=c.subtract(c.union(base,*straps),*holes)
@@ -150,7 +190,7 @@ def geometry(s, p):
     # Test this small coupon first, with the purchased pigtail and actual print settings.
     coupon=c.box(45,24,t)
     for i,allowance in enumerate([0.0,.2,.4]):
-        cut=d_hole(r['nominal_hole_diameter']+allowance,r['nominal_hole_flat_dimension']+allowance,t+.2).rotate((-90,0,0)).move((8+14*i,12,-.1))
+        cut=c.cylinder(r['nominal_hole_diameter']+allowance,t+.2).move((8+14*i,12,-.1))
         coupon=c.subtract(coupon,cut)
         for j in range(i+1): coupon=c.subtract(coupon,c.box(.8,3,.6).move((5+14*i+j*1.4,3,t-.5)))
     distances=[math.dist(a['center'],b['center']) for i,a in enumerate(r['ports']) for b in r['ports'][i+1:]]
@@ -193,9 +233,9 @@ def svg(s,p,g):
     notes=[('Enclosure',f'{q["width"]:g} × {q["length"]:g} × {q["height"]+q["lid"]:g} mm; +{q["ceiling_spacing"]:g} mm ceiling spacer.'),
            ('Three independent 50 Ω paths','SMA female → AMC / U.FL-compatible cable → one radio.'),
            ('Fixed-wall ports','Lid lifts without pulling the three coax leads.'),
-           ('D-hole and tool access','6.6 / 6.1 mm nominal + 0.2 mm trial print allowance.'),
+           ('Round-hole and tool access','6.6 mm project clearance + 0.2 mm trial print allowance.'),
            ('Strain relief','Soft loops at three towers. Do not crush micro-coax.'),
-           ('Cable length','150 mm trial; dashed guides end at estimated radio XY.'),
+           ('Cable length','150 mm nominal; 144 mm project budget including 6 mm shortfall.'),
            ('Antenna orientation','83.1 mm candidate: keep bodies outside, parallel and clear.'),
            ('Low-voltage rear bay','Separate splitter supplies power; this RJ45 is data-only.'),
            ('Not installed here','PoE converter, Z-Wave, sub-GHz radio and sensors.')]
@@ -204,7 +244,7 @@ def svg(s,p,g):
         a += [f'<text x="790" y="{yy}" class="s">{title}</text>',f'<text x="790" y="{yy+25}" class="n">{body}</text>']
     a += [f'<text x="{ox}" y="{oy+q["length"]*sc+35}" class="s">Rear split cable opening · restraint required before connection to modules</text>',
           '<text x="40" y="865" class="h">First print: bulkhead-fit-coupon.stl</text>',
-          '<text x="40" y="901" class="s">Three D-hole tolerances (left to right): nominal, +0.2 mm, +0.4 mm. Select from the real connector.</text>',
+          '<text x="40" y="901" class="s">Three round-hole tolerances (left to right): nominal, +0.2 mm, +0.4 mm. Select from the real connector.</text>',
           '<text x="40" y="939" class="s">Verify nut engagement, anti-rotation, module clearance and formed cable routes before printing the full shell.</text>',
           '<text x="40" y="987" class="s warning">No coverage promise for 1,000 ft². Test all radios concurrently, closed case, at the central ceiling position.</text>','</svg>']
     return '\n'.join(a)+'\n'
@@ -257,7 +297,7 @@ def preview(output,g,p):
         ax.imshow(render_meshes([(g['nodes'][name],color)],width=760,height=700))
         ax.set_title(name.replace('-',' ').title(),color='#e2edf3',fontsize=18)
     fig.suptitle('MC2 generated printable geometry · antennas and electronics omitted',fontsize=20,color='#e2edf3')
-    fig.text(.04,.08,'Separate printed parts. Relative panel scales differ. Print and measure the D-hole coupon first.',color='#c3d5dd',fontsize=14)
+    fig.text(.04,.08,'Separate printed parts. Relative panel scales differ. Print and measure the round-hole coupon first.',color='#c3d5dd',fontsize=14)
     fig.text(.04,.035,'Prototype: no test print, material strength, module fit, thermal or RF qualification.',color='#ffc670',fontsize=14)
     fig.savefig(output/'print-parts.png',dpi=130,facecolor=fig.get_facecolor());plt.close(fig)
     fig=plt.figure(figsize=(12,9),facecolor='#0d1b29');ax=fig.add_axes([.02,.16,.96,.72]);ax.set_axis_off()
@@ -289,7 +329,7 @@ def generate(output,p):
         report['parts'][name]={'watertight':True,'single_solid':True,'volume_mm3':round(float(actual.volume),3),'bounds_mm':actual.bounds.round(4).tolist(),'sha256':sha(path)}
     (output/'assembly.scad').write_text('// REVIEW ONLY: assembled coordinates. Not a part to print.\n'+'\n'.join(f'color("{color}") {{ {g["assembled"][name].scad} }}' for name,color in [('base','Teal'),('cover','SkyBlue'),('ceiling-spacing-frame','Purple'),('cable-bar','Orange')])+'\n')
     (output/'enclosure.svg').write_text(svg(s,p,g));preview(output,g,p)
-    (output/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>MC2 external-antenna shell prototype</title><style>body{margin:0;background:#0d1b29;color:#e2edf3;font:18px system-ui}main{max-width:1400px;margin:auto;padding:24px}a{color:#77ddbb}img{width:100%;height:auto}p{line-height:1.6}</style><main><h1>MC2 external-antenna enclosure</h1><p><a href="README.md">Assembly and limits</a> · <a href="parameters.json">Trial dimensions</a> · <a href="verification.json">Digital checks</a></p><img src="assembly-preview.png" alt="Generated MC2 shell with simplified external antenna envelopes"><img src="enclosure.svg" alt="MC2 native carrier shell with separate Zigbee, Thread and BLE SMA ports"><img src="print-parts.png" alt="Actual generated base, lid and D-hole coupon meshes"><p>Print files: <a href="base.stl">base</a> · <a href="cover.stl">cover</a> · <a href="ceiling-spacing-frame.stl">spacing frame</a> · <a href="cable-bar.stl">cable bar</a> · <a href="bulkhead-fit-coupon.stl">first-print fit coupon</a>. All dimensions in mm. This is an engineering prototype with unmeasured fit and no RF range guarantee.</p></main></html>\n')
+    (output/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>MC2 external-antenna shell prototype</title><style>body{margin:0;background:#0d1b29;color:#e2edf3;font:18px system-ui}main{max-width:1400px;margin:auto;padding:24px}a{color:#77ddbb}img{width:100%;height:auto}p{line-height:1.6}</style><main><h1>MC2 external-antenna enclosure</h1><p><a href="README.md">Assembly and limits</a> · <a href="parameters.json">Trial dimensions</a> · <a href="verification.json">Digital checks</a></p><img src="assembly-preview.png" alt="Generated MC2 shell with simplified external antenna envelopes"><img src="enclosure.svg" alt="MC2 native carrier shell with separate Zigbee, Thread and BLE SMA ports"><img src="print-parts.png" alt="Actual generated base, lid and round-hole coupon meshes"><p>Print files: <a href="base.stl">base</a> · <a href="cover.stl">cover</a> · <a href="ceiling-spacing-frame.stl">spacing frame</a> · <a href="cable-bar.stl">cable bar</a> · <a href="bulkhead-fit-coupon.stl">first-print fit coupon</a>. All dimensions in mm. This is an engineering prototype with unmeasured fit and no RF range guarantee.</p></main></html>\n')
     report['generated_sha256']={f.name:sha(f) for f in sorted(output.iterdir()) if f.suffix in ['.svg','.scad','.stl','.html','.png']}
     (output/'verification.json').write_text(json.dumps(report,indent=2)+'\n');return report
 

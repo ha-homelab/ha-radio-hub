@@ -3,7 +3,7 @@
   "hardware_tested": false,
   "esphome": "2026.9.1",
   "esp_idf": "5.5.5",
-  "profile": "MC2-B classic ESP32 external antenna",
+  "profile": "MC2-C classic ESP32 external antenna",
   "board": "ESP32-DevKitC-VIE",
   "sdkconfig_verified": {
     "CONFIG_OPENTHREAD_FTD": "y",
@@ -42,16 +42,16 @@
   },
   "artifacts": {
     "mc2-classic-hub.bin": {
-      "bytes": 1708944,
-      "sha256": "3368120f885b729feafa902e97381e667f0898433aaec1fe3fb8f9b448083a73"
+      "bytes": 1708928,
+      "sha256": "a672e41360b7d2b2f313998eaac265141624154863f1b0634da5cd4672349cce"
     },
     "firmware.factory.bin": {
-      "bytes": 1774480,
-      "sha256": "dbed9dce7b33f715ee14b3a60b3ed2aa7ff964726a2f27339efc64c4e678a5af"
+      "bytes": 1774464,
+      "sha256": "ab1325a8a6f351f4d137e8da700fac48310fafa618d72e84a79b83036a76e772"
     },
     "firmware.ota.bin": {
-      "bytes": 1708944,
-      "sha256": "3368120f885b729feafa902e97381e667f0898433aaec1fe3fb8f9b448083a73"
+      "bytes": 1708928,
+      "sha256": "a672e41360b7d2b2f313998eaac265141624154863f1b0634da5cd4672349cce"
     }
   },
   "c6_service_gpio": {
@@ -119,7 +119,7 @@
       "subtype": "ota_0",
       "offset": 65536,
       "bytes": 3932160,
-      "image_margin_bytes": 2223216
+      "image_margin_bytes": 2223232
     },
     {
       "name": "app1",
@@ -127,7 +127,7 @@
       "subtype": "ota_1",
       "offset": 3997696,
       "bytes": 3932160,
-      "image_margin_bytes": 2223216
+      "image_margin_bytes": 2223232
     },
     {
       "name": "nvs",
@@ -167,10 +167,11 @@
   "framework_cache_manually_modified": false,
   "sdk_patches_applied": false,
   "recipe_sha256": {
-    "hub.yaml": "7eef42c8236ad86a8ba98b162b9e3e87124f265a3294a8fbb50295d446aaad3b",
+    "hub.yaml": "f3c1f94d49fdb2ac0e03b78f05f2b00793be5de57228f15e7db86465914a43e8",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
-    "pin-plan.json": "cd877bc25823ab20e3e1450452d1cab90266b4239c1b383818267a9cb1e475e2",
-    "mc2_contract.py": "39317b1b02590b4d8360ffaba8083fefece8ce8bd2396c477572b6dab3414856",
-    "validate.py": "4b338e143c259fa080395f8a25db24b4f1a7e98f80ed866b3a41c923c92b3a74"
+    "pin-plan.json": "15d73b3387d5c6f7f7321c56096ad687d423ac0c698e6ce062108dea95e20955",
+    "mc2_contract.py": "b209f37138ce7b9387c018b79f5d4a1c8a9596795368bc51728a0934f92d71b9",
+    "c6_identity.py": "1add7655cd1387ff3202af73d914b0d4ff8fba54c53949403f72be6bf1d2db97",
+    "validate.py": "52e7069bbc4614ea6eba29bab5451268942abca80c0bdbaa50fa3c0622f96049"
   }
 }

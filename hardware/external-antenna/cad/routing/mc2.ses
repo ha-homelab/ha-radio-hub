@@ -1,5 +1,5 @@
-(session "mc2-b-fixed"
-  (base_design "mc2-b-fixed")
+(session "mc2-c-tc6d"
+  (base_design "mc2-c-tc6d")
   (placement
     (resolution um 10)
     (component 
@@ -49,7 +49,7 @@
     (component MC2:XIAO_MG24
       (place U3 762700 -149210 front 0)
     )
-    (component MC2:TinyC6_U
+    (component MC2:TinyC6_D
       (place U2 537800 -300000 front 0)
     )
     (component MC2:ESP32_DevKitC_VIE

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hardware reference · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><article class="article"><h1 id="mc2-c--three-external-24-ghz-antennas">MC2-C — three external 2.4 GHz antennas</h1>
+<p>The current engineering prototype uses an ESP32-DevKitC-VIE (WROVER-IE, 8 MB flash / 8 MB quad PSRAM) host, a TinyC6[D] / TC6D-01 Thread RCP, and a XIAO MG24 Zigbee NCP. Each radio has its own external antenna. The previous MC1 Nano and MC2-A S3 remain historical and are not pin or binary compatible. All 21 application signals remain; R4/R5 constrain the classic ESP32 boot straps. Bluetooth uses legacy BLE4.2 advertising and connections, not BLE5 extended advertisements or Coded PHY.</p>
+<ul>
+<li><a href="../hardware/external-antenna/index.html">Visual assembly and antenna guide</a></li>
+<li><a href="assembly.html">Full device assembly and ZAC93 pin map</a></li>
+<li><a href="print.html">Exploded enclosure, all component mounts and print files</a></li>
+<li><a href="../hardware/external-antenna/full-hub-wiring.svg">Full-hub wiring drawing</a></li>
+<li><a href="shopping.html">Exact shopping list and AliExpress checks</a></li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/images/README.md">Historical MC2-A appearance concepts and provenance</a></li>
+<li><a href="cad.html">Editable carrier, exact pinout, assembly and checks</a></li>
+<li><a href="../hardware/external-antenna/cad/assembly-top.svg">Front assembly drawing</a></li>
+<li><a href="../hardware/external-antenna/cad/schematic.svg">Schematic</a>, <a href="../hardware/external-antenna/cad/schematic.pdf">PDF</a></li>
+<li><a href="../hardware/external-antenna/cad/board-top.svg">PCB copper front</a>, <a href="../hardware/external-antenna/cad/board-bottom.svg">back</a></li>
+<li><a href="../hardware/external-antenna/cad/BOM.csv">Controller/peripheral BOM</a>, <a href="../hardware/external-antenna/rf-bom.json">RF parts</a></li>
+<li><a href="../hardware/external-antenna/wiring.json">Net wiring</a>, <a href="../hardware/external-antenna/cad/connectors.json">physical connector coordinates</a></li>
+</ul>
+<p>This is a routed design package, not a claim of measured RF coverage or approved hardware. The MC2-C selection replaces the obsolete original TinyC6 with the available TC6D-01 and matching antenna-switch firmware. See the <a href="pcb-order.html">prototype ordering record</a>. Fit and RF acceptance must be completed on the physical assembly.</p>
+</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

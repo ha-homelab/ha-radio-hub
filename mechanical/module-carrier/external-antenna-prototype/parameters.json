@@ -1,5 +1,5 @@
 {
-  "revision": "MC2-B-external-antenna",
+  "revision": "MC2-C-external-antenna-RF1",
   "status": "printable_engineering_prototype_not_fit_qualified",
   "units": "mm",
   "source_directory": "hardware/external-antenna/cad",
@@ -23,15 +23,14 @@
     "closure_hole": 3.3
   },
   "rf": {
-    "bulkhead_family": "Amphenol 095-902-545-XXX",
-    "bulkhead_drawing": "https://www.amphenolrf.com/en-us/assets/file/4068032676/",
-    "connector": "Standard polarity SMA female / AMC (U.FL-compatible) right-angle plug, 50 ohm",
+    "bulkhead_family": "Taoglas CAB.618.E",
+    "bulkhead_drawing": "https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf",
+    "connector": "Standard polarity SMA female / I-PEX MHF I (U.FL-compatible) right-angle plug, 50 ohm",
     "nominal_hole_diameter": 6.6,
-    "nominal_hole_flat_dimension": 6.1,
     "print_allowance": 0.2,
     "tool_clearance_diameter": 20.0,
-    "internal_straight_reservation": 23.0,
-    "cable_bend_radius_trial": 10.0,
+    "internal_straight_reservation": 27,
+    "cable_bend_radius_trial": 6.8,
     "cable_length_trial": 150.0,
     "minimum_center_spacing_trial": 65.0,
     "antenna_candidate": "TE ANT-2.4-LCW-SMA / L9000082-01",
@@ -49,7 +48,7 @@
         ],
         "strap_xy": [
           30.0,
-          26.0
+          30
         ]
       },
       {
@@ -63,7 +62,7 @@
         ],
         "strap_xy": [
           95.0,
-          26.0
+          30
         ]
       },
       {
@@ -77,11 +76,16 @@
         ],
         "strap_xy": [
           160.0,
-          26.0
+          30
         ]
       }
     ],
-    "module_connector_z_trial": 29.0
+    "module_connector_z_trial": 29.0,
+    "cutout_shape": "round",
+    "cable_length_shortfall_allowance": 6,
+    "cable_length_minimum_budget": 144,
+    "heatshrink_reference_length": 17,
+    "unbent_connector_allowance": 21
   },
   "measured": {
     "pcb_width_and_length": null,

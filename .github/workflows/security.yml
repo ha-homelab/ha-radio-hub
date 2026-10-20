@@ -14,7 +14,7 @@ concurrency:
 jobs:
   security:
     # Pin the reusable workflow and its nested change-scope workflow together.
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/security-scan.yml@5d827f345c66fdb493efba9c24cf79575b681fdb
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/security-scan.yml@6b2d99519d513d2b871d2a845ddd6134dea4af2c
     permissions:
       contents: read
       actions: read

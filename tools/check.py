@@ -119,6 +119,17 @@ def main() -> int:
         'hardware/README.md', 'hardware/wiring.md', 'docs/enclosure.md',
         'docs/firmware.md', 'docs/home-assistant.md', 'docs/thread-devices.md',
         'mechanical/generated/base.stl', 'mechanical/generated/lid.stl',
+        'docs/full-hub-assembly.md',
+        'hardware/external-antenna/full-hub-wiring.svg',
+        'mechanical/full-hub/README.md',
+        'mechanical/full-hub/components.json',
+        'mechanical/full-hub/verification.json',
+        'mechanical/full-hub/base.stl', 'mechanical/full-hub/lid.stl',
+        'mechanical/full-hub/zwave-tray.stl',
+        'docs/start-here.md', 'guide/index.html', 'guide/public-files.json',
+        'tools/preview.py', 'hardware/external-antenna/harnesses.json',
+        'hardware/external-antenna/harness.csv',
+        'mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip',
     ]
     errors.extend(f'Missing or non-regular deliverable: {name}' for name in required
                   if not public_file(ROOT, ROOT / name))

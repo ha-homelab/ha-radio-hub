@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Choose RF cables · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/pigtail-selection.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#exact-part-and-observed-cost">Exact part and observed cost</a></li><li><a href="#why-this-cable">Why this cable</a></li><li><a href="#rf-evidence-and-its-limits">RF evidence and its limits</a></li></ul></details><article class="article"><h1 id="mc2-c-pigtail-selection">MC2-C pigtail selection</h1>
+<p>Checked <strong>19 October 2026</strong> for one prototype delivered to the United States.
+Buy <strong>3 × Taoglas CAB.618.E</strong>, one each for BLE, Thread and Zigbee. Keep the
+three <strong>TE/Linx ANT-2.4-LCW-SMA</strong> antennas. This replaces the previously selected
+Amphenol cables without changing the carrier PCB or radio firmware. Use the
+matching <strong>FH1-MC2-C-RF1</strong> enclosure and connector coupon.</p>
+<h2 id="exact-part-and-observed-cost">Exact part and observed cost</h2>
+<p><a href="https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261">DigiKey 931-CAB.618.E-ND</a>
+showed <strong>48 in stock</strong> and <strong>$4.66 each</strong>, so three cost <strong>$13.98</strong> before
+shipping, tax and any tariff. Against the previous $29.47-per-cable offer,
+the reduction is <strong>$74.43 for one hub</strong> ($88.41 → $13.98, about 84%).
+This is an observed offer, not reserved stock or a checkout total; DigiKey
+specifically states that a US tariff may appear in the cart.</p>
+<p>The <a href="https://www.taoglas.com/product/cab-618-e-i-pex-mhf-i-u-fl-to-150mm-1-13mm-coax-black-cable-smaf-bulkhead-straight/">Taoglas product page</a>
+identifies a <strong>150 mm, 1.13 mm micro-coax</strong> assembly with a right-angle
+<strong>I-PEX MHF I / U.FL-compatible</strong> radio connection and a straight
+<strong>standard-polarity SMA female bulkhead</strong>. The SMA end has a center socket;
+the selected antenna has the mating center pin. Do not substitute RP-SMA
+or the smaller MHF4/IPEX4 connector.</p>
+<h2 id="why-this-cable">Why this cable</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th style="text-align:right">Observed unit price</th>
+<th>Availability</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261">Taoglas CAB.618.E</a></td>
+<td style="text-align:right">$4.66</td>
+<td>48 at DigiKey</td>
+<td>Selected: stated nominal length and connector family; published family drawing and cable-type specification support the RF1 design</td>
+</tr>
+<tr>
+<td><a href="https://www.digikey.com/en/products/detail/gct/CABLE-348-RF-150-A-1/12822383">GCT CABLE 348 RF-150-A-1</a></td>
+<td style="text-align:right">$2.93</td>
+<td>318 at DigiKey</td>
+<td>Research candidate: matching basic connector family and nominal length, but its bulkhead and complete routing have not been qualified for RF1</td>
+</tr>
+<tr>
+<td><a href="https://www.sparkfun.com/sma-to-u-fl-cable-150mm.html">SparkFun WRL-18568</a></td>
+<td style="text-align:right">$2.75</td>
+<td>In stock</td>
+<td>Less expensive; its checked product documentation does not provide the same dimensional and RF evidence</td>
+</tr>
+<tr>
+<td><a href="https://www.adafruit.com/product/851">Adafruit 851</a></td>
+<td style="text-align:right">$3.95</td>
+<td>In stock</td>
+<td>Product description says SMA, but its linked drawing labels RP-SMA; this conflicting evidence prevents qualification</td>
+</tr>
+</tbody>
+</table></div>
+<p>The alternatives may work, but they are not the released enclosure's selected
+assembly. Savings alone do not establish that a different bulkhead, nut or cable
+will fit. The existing unverified AliExpress offers remain sample candidates.
+In particular, Adafruit's
+<a href="https://cdn-shop.adafruit.com/product-files/851/C934-001_datasheet.pdf">linked C934-001 drawing</a>
+labels both “SMA Female RP” and “RP - SMA Female”. That conflicts with the
+standard-SMA product description; it is not proof that the item actually
+shipped has reverse polarity.</p>
+<h2 id="rf-evidence-and-its-limits">RF evidence and its limits</h2>
+<p>Taoglas publishes a
+<a href="https://cdn.taoglas.com/specifications/30021F0020000A_Taoglas.pdf">1.13 mm black micro-coax specification</a>
+with <strong>50 ±3 Ω</strong>, <strong>6.8 mm minimum bend radius</strong>, and attenuation of
+<strong>3.1 dB/m at 2400 MHz</strong>. RF1 uses these cable-type values as its engineering
+basis; the checked sources do not prove that this exact wire part is used
+in every CAB.618.E manufacturing lot. Multiplying by the nominal 0.150 m gives an
+estimated <strong>0.465 dB cable-only loss</strong>. This excludes both connectors,
+mismatch and assembly variation; it is not a measured insertion-loss result
+for the complete CAB.618.E or this hub.</p>
+<p>Manufacturer geometry references are the
+<a href="https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf">cable assembly catalog, CAB.618.E drawing on PDF page 11</a>
+and a <a href="https://www.taoglas.com/assets/3d-models/CAB.618.E_Web.STEP">published CAB.618.E STEP link</a>.
+The STEP download was blocked and was not inspected; no dimensions were taken from it.
+The catalog groups the 150 mm CAB.618.E with several cable lengths, but its
+shared drawing labels <strong>200 ±6 mm</strong>. It does <strong>not</strong> establish an exact
+150 mm length tolerance. The project therefore reserves a <strong>6 mm shortfall
+allowance</strong>, giving a <strong>144 mm minimum design budget</strong>. This is a conservative
+engineering assumption, not a supplier guarantee; check the received cable.</p>
+<p>The same family drawing specifies a <strong>14.8 ±0.3 mm</strong> SMA body, <strong>11.4 ±0.3 mm</strong>
+threaded portion, <strong>1.75 ±0.2 mm</strong> nut and <strong>1.1 ±0.3 mm</strong> washer, with a
+<strong>1/4-36 UNS-2A</strong> thread. These dimensions support the enclosure review,
+while the final nut position and antenna engagement must be checked physically.
+RF1 provides <strong>6.8 mm round bulkhead holes</strong> and a coupon with the same
+<strong>3 mm mounting thickness</strong> as the enclosure. Its routing reserves
+<strong>25 mm service slack within the 144 mm design budget</strong>.
+Use the current <a href="assembly.html">full-hub assembly instructions</a>, connector
+coupon and generated fit report for the corresponding mounting and routing.
+Do not mix an older coupon or routing illustration with the new cable.</p>
+<p>Before closing the first enclosure, check the delivered cable against its
+specified dimensions, mount the bulkhead without twisting the micro-coax,
+and confirm that the cable reaches with service slack and bends no tighter
+than 6.8 mm radius. Seat each miniature connector squarely; leave no tension
+on the radio socket. Confirm usable antenna engagement with the supplied
+washer and nut. The drawing review does not replace this first-article fit
+check or an in-home BLE/Thread/Zigbee coverage test.</p>
+<p>See the <a href="shopping.html">radio shopping list</a> for the remaining radio parts
+and the <a href="pcb-order.html">PCB ordering guide</a> for the unchanged MC2-C Gerbers.</p>
+</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

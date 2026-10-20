@@ -1,4 +1,9 @@
-# MC2-B external-antenna enclosure prototype
+# MC2-C external-antenna enclosure prototype
+
+**Historical carrier-only option.** For the complete device, including Zooz
+ZAC93, power modules, UART bridge, CC1101, LD2450 and an attached BME680 pod,
+use the [FH1 full-hub enclosure](../../full-hub/README.md). This smaller housing
+does not contain those additional modules.
 
 [Illustrated plan](index.html) · [dimensioned drawing](enclosure.svg) · [actual printable meshes](print-parts.png) · [assembly with antenna envelopes](assembly-preview.png) · [trial parameters](parameters.json) · [digital checks](verification.json)
 
@@ -6,7 +11,14 @@ This package implements three independently labeled external antenna connections
 
 The nominal carrier shell is **190 × 160 × 58 mm**, plus a **4 mm ceiling spacing frame**. The carrier is 100 × 100 mm; its actual outline and mounting holes are read from the MC2 native KiCad board. The extra width reserves hand/tool access and initial 65 mm spacing between adjacent antenna connectors. That spacing is a starting mechanical layout, **not a demonstrated RF isolation distance or a promise of coverage over 1,000 ft²**.
 
-MC2-B uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
+MC2-C uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
+
+The Thread board is **Unexpected Maker TinyC6[D], TC6D-01**. Its 36.3 × 17.78 mm
+nominal PCB is aligned by the header centers, and its U.FL socket position is
+read from the revised native CAD. The Series D radio needs the MC2-C RCP
+firmware to select that external antenna. The same 150 mm cable and carrier
+mounts remain applicable; installed header height and formed coax bends still
+require a physical trial.
 
 This remains a **carrier-only housing**. The PoE splitter, converter, DFR0627, ZAC93, CC1101, LD2450 and BME680 remain in their separately allocated housings/locations. No free volume in this shell is permission to move them next to the RF cables. The system still receives one PoE cable from the existing network switch. The carrier's downstream WIZ Ethernet connector carries data after the external splitter; do not connect raw PoE to an ordinary WIZ jack.
 
@@ -16,16 +28,34 @@ This remains a **carrier-only housing**. The PoE splitter, converter, DFR0627, Z
 - [cover.stl](cover.stl): flat cover with four closure holes. Print its outside face on the bed.
 - [ceiling-spacing-frame.stl](ceiling-spacing-frame.stl): 4 mm frame to clear base hardware; install it between tray and ceiling.
 - [cable-bar.stl](cable-bar.stl): low-voltage rear harness restraint. Two M3 fasteners attach it to the base and soft ties pass through the two center slots. It does not touch or support an RF connector.
-- [bulkhead-fit-coupon.stl](bulkhead-fit-coupon.stl): **print this first**. Viewed in its print orientation, left to right the D holes have zero, +0.2 mm and +0.4 mm nominal allowance, identified by one, two and three shallow notches. Select allowance using the actual bulkhead, then set `rf.print_allowance` and regenerate the full shell.
+- [bulkhead-fit-coupon.stl](bulkhead-fit-coupon.stl): **print this first**. Viewed in its print orientation, left to right the round holes have zero, +0.2 mm and +0.4 mm nominal allowance, identified by one, two and three shallow notches. Select allowance using the actual bulkhead, then set `rf.print_allowance` and regenerate the full shell.
 - [assembly.scad](assembly.scad): assembled inspection view only. Do not print the merged assembly.
 
 All STL units are millimetres. The base sits floor-down; other parts are supplied flat on the bed. Side holes and the short soft-loop supports may need local supports or bridging settings specific to the printer. Inspect the slice and remove support debris before inserting electronics. No print material, layer adhesion or mounting load has been certified. Use an electrically insulating, unfilled material suitable for the measured ceiling temperature; conductive/metal-filled prints change the RF environment.
 
 ## Connector and antenna fit contract
 
-The mechanical reference is the **Amphenol 095-902-545-XXX** family: normal-polarity SMA female bulkhead to a right-angle AMC plug, compatible with standard U.FL. The family is 50 Ω and uses 1.13 mm micro-coax. The manufacturer's customer drawing defines a nominal **6.60 mm D hole with a 6.10 mm flat dimension**, a 1/4–36 thread and 11 mm/1/4-inch wrench features. The current model adds a **trial 0.20 mm hole allowance**, uses a **3 mm wall**, and reserves a **20 mm diameter internal tool envelope**. Actual nut/O-ring/washer engagement and anti-rotation must pass the coupon test. Do not substitute a cable based only on an “IPEX” marketplace title: MHF4, MHF III and RP-SMA are different interfaces. [Amphenol product and drawing](https://www.amphenolrf.com/en-us/part/095-902-545-100/8896/).
+The current **RF1** reference is **Taoglas CAB.618.E**: standard SMA female
+bulkhead to right-angle I-PEX MHF I/U.FL, 50 ohm, 1.13 mm micro-coax. The round
+cutout is **6.6 mm project clearance plus 0.2 mm trial print allowance**, with a
+3 mm wall and matching 3 mm coupon. This is not a vendor-specified cutout. A
+20 mm internal tool envelope remains clear. Fit the supplied washer and nut;
+hold the connector shoulder so antenna tightening does not twist the coax.
+Check thread engagement on the actual coupon. The former D-hole base is
+superseded. MHF4, MHF III and RP-SMA are different interfaces.
 
-The initial harness length is **150 mm** (`095-902-545-150`); the 100 mm version is an option only after the formed route has been measured with sufficient slack. The current 10 mm bend-radius reservation and 23 mm straight lead-in are **engineering allowances, not cable-maker minimum bend-radius specifications**. The restraint centers sit 23 mm inward from the wall's inner surface. Retain the maker's requirement if stricter, and do not bend the heat-shrink or lever against the miniature plug. A shorter cable is useful only if it stays slack during assembly and service.
+The nominal harness is **150 mm**, with a conservative **144 mm project budget**
+and 30 mm connector/service allowance for this smaller shell. The grouped
+[catalogue drawing](https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf)
+shows ±6 mm on a 200 mm sibling, not an explicit tolerance for this 150 mm SKU;
+measure delivered usable length. The [cable specification](https://cdn.taoglas.com/specifications/30021F0020000A_Taoglas.pdf)
+gives a **6.8 mm minimum bend radius** for the cable family used as our
+engineering basis; the exact internal wire SKU of CAB.618.E remains unconfirmed.
+Circular guide bends must fit between tangency points while leaving **21 mm**
+unbent for the 17 mm reference heatshrink plus up to 4 mm connector flange.
+Retainer centres sit 27 mm inward from the wall. These calculations do not replace
+formed-route, nut-engagement and strain-relief tests with the actual parts.
+See the [RF source ledger](../../full-hub/rf-evidence.json).
 
 The external antenna candidate is **TE ANT-2.4-LCW-SMA / L9000082-01**, normal SMA male, approximately 83.1 mm long and 10 mm diameter. Reserve its external volume and hinge motion at the installed location. Keep all three radiating bodies outside the shell; initially orient them parallel and away from nearby metal, ceiling framework, Ethernet cabling and other antennas. Test different orientations at the actual mounting point. Do not derive swept-body clearance or coverage from a connector-to-connector distance alone. [TE antenna reference](https://www.te.com/en/product-L9000082-01.html).
 
