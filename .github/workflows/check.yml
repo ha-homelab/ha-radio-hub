@@ -291,6 +291,10 @@ jobs:
         run: |
           .venv/bin/python -m unittest discover -s mechanical/module-carrier/external-antenna-prototype -p 'test_*.py'
           .venv/bin/python mechanical/module-carrier/external-antenna-prototype/build.py --check
+      - name: Verify full-hub component mounts and print geometry
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical/full-hub -p 'test_*.py'
+          .venv/bin/python mechanical/full-hub/build.py --check
       - name: Compile complete MC2-B classic ESP32 image
         run: .venv/bin/python firmware/external-antenna/validate.py .build/mc2 --esphome .venv/bin/esphome --compile
       - name: Compile and verify matching C6 RCP

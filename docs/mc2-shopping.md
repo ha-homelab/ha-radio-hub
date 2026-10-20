@@ -105,7 +105,12 @@ not resolve this dependency.
 Also retain or source **1 × WIZ850io**, the isolated PoE splitter, regulated
 5 V/3.3 V supplies, fuses, DFR0627, regional ZAC93, CC1101, LD2450, BME680 and
 harnesses described in the assembly guide. They are not included in the radio
-prices above. The present enclosure houses the carrier only.
+prices above. The [FH1 full-hub inventory](../mechanical/full-hub/components.json)
+and [assembly guide](full-hub-assembly.md) select the finished Waveshare
+POE-SPLITTER-25W-5.5-2.1 and specify the modules, power accessories and mounts
+for the complete enclosure. The ZAC93 has been received; do not order a second
+one for this build. Existing CC1101 and other delivered-part dimensions still
+need to be checked against the reserved envelopes.
 
 Connect antennas before powering the radios; the README's assembled concept
 omits cables to show the board. Actual pinout and routing come from CAD, not

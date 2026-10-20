@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "revision": "FH1",
+  "review_date": "2026-10-19",
+  "design": "MC2-B",
+  "status": "engineering prototype; component fit and assembled operation not physically verified",
+  "units": "mm",
+  "coordinate_convention": "Each local envelope uses lower-left-bottom origin [0,0,0]. design_envelope_mm includes allocated installed pins, socket and body height but not the external cable service space explicitly listed in keepouts. Positions and rotations are defined by the enclosure layout, not this inventory.",
+  "rules": [
+    "Unknown means unmeasured; null is not zero.",
+    "Manufacturer nominal dimensions do not establish printed fit.",
+    "Do not infer purchased model or exact revision from a generic product photo.",
+    "Do not drill additional holes in purchased PCBs.",
+    "All main-module mounting supports must avoid live pads, components and antenna areas."
+  ],
+  "components": [
+    {
+      "id": "carrier",
+      "model": "MC2-B carrier with ESP32-DevKitC-VIE, TinyC6-U-01, XIAO MG24 and WIZ850io",
+      "quantity": 1,
+      "body_mm": [
+        100,
+        100,
+        1.6
+      ],
+      "body_status": "PCB outline, holes and nominal thickness from project CAD; populated height unmeasured",
+      "design_envelope_mm": [
+        100,
+        102,
+        30
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "four nylon M2.5 supports and separate RJ45 support",
+        "holes_mm": [
+          [
+            4,
+            4
+          ],
+          [
+            96,
+            4
+          ],
+          [
+            4,
+            96
+          ],
+          [
+            96,
+            96
+          ]
+        ],
+        "hole_diameter_mm": 2.7,
+        "max_head_diameter_mm": 5
+      },
+      "notes": [
+        "The 100x100 bare PCB is not the complete populated envelope. WIZ850io jack face is at local y=102.",
+        "All four fitted modules, carrier headers, D1-D3 and R1-R5 are retained; they do not each need independent enclosure screws.",
+        "Reserve access above the service headers and component-side reset/boot buttons."
+      ],
+      "keepouts": [
+        {
+          "kind": "RJ45 insertion and latch service",
+          "local_xy_bounds_mm": [
+            58,
+            102,
+            85,
+            138
+          ],
+          "basis": "project engineering reservation; verify actual plug/boot"
+        },
+        {
+          "kind": "three radio coax connectors",
+          "basis": "Separate slack/strain relief; no bulkhead torque on module U.FL sockets."
+        }
+      ],
+      "sources": [
+        "../../hardware/external-antenna/cad/design.json",
+        "../../hardware/external-antenna/cad/connectors.json"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "poe_splitter",
+      "model": "Waveshare POE-SPLITTER-25W-5.5-2.1 (DC port version)",
+      "quantity": 1,
+      "body_mm": [
+        102.5,
+        29.6,
+        24.8
+      ],
+      "body_status": "manufacturer nominal metal body; cable tails excluded",
+      "design_envelope_mm": [
+        102.5,
+        29.6,
+        24.8
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "two insulated straps in a ventilated cradle",
+        "holes_mm": []
+      },
+      "notes": [
+        "This full-hub layout selects the finished isolated 5 V DC splitter, not Silvertel EvalPoE or a bare Ag97000 module.",
+        "Keep the factory metal enclosure intact. Body figures do not include cable exits, strain reliefs or RJ45/DC plugs.",
+        "Exact purchased splitter and cable-tail lengths remain unconfirmed."
+      ],
+      "keepouts": [
+        {
+          "kind": "captive Ethernet/DC tail bend and service bay",
+          "basis": "layout allocation; measured tail length and minimum bend radius still required"
+        },
+        {
+          "kind": "input RJ45 plug insertion",
+          "basis": "external cable must reach input without sharp bending at the printed wall"
+        },
+        {
+          "kind": "thermal",
+          "basis": "Do not cover case with foam or place BME680 in its exhaust/heat path."
+        }
+      ],
+      "sources": [
+        "https://www.waveshare.com/product/accessories/power-heat-sinks/poe-splitter-25w-type-c.htm"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "buck",
+      "model": "Pololu D24V22F3, item 2857",
+      "quantity": 1,
+      "body_mm": [
+        17.8,
+        17.8,
+        8
+      ],
+      "body_status": "manufacturer nominal body; installed wiring height allocated",
+      "design_envelope_mm": [
+        17.8,
+        17.8,
+        12
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "M2 insulated standoffs or insulated open tray",
+        "holes_mm": [
+          [
+            2.3,
+            15.5
+          ],
+          [
+            15.5,
+            2.3
+          ]
+        ],
+        "hole_diameter_mm": 2.18,
+        "holes_coordinate_note": "Lower-left-origin conversion of official TOP VIEW: diagonal corner pair. Rotate complete module as needed.",
+        "pcb_thickness_mm": 1.02,
+        "underside_components_mm": 1.1
+      },
+      "notes": [
+        "Do not use an adhesive pad against the populated underside. Maintain clearance below components.",
+        "M2 hardware must not press adjacent capacitor/inductor/pads; route wiring away from hot parts.",
+        "5 V in to 3.3 V out; do not combine peripheral 3.3 V with controller regulator outputs."
+      ],
+      "keepouts": [],
+      "sources": [
+        "https://www.pololu.com/product/2857",
+        "https://www.pololu.com/file/0J1031/d24v22fx-step-down-voltage-regulator-dimension-diagram.pdf"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "wk2132",
+      "model": "DFRobot Gravity I2C to Dual UART DFR0627",
+      "quantity": 1,
+      "body_mm": [
+        32.5,
+        27,
+        1.6
+      ],
+      "body_status": "manufacturer PCB plan dimensions and thickness; installed height unmeasured",
+      "design_envelope_mm": [
+        32.5,
+        27,
+        16
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "adjustable insulated edge/strap tray",
+        "holes_mm": [],
+        "known_hole_pitch_mm": 20,
+        "hole_pattern_status": "Drawing gives two same-edge holes at 20mm pitch; diameter and x offset not dimensioned. No fixed screw pattern inferred."
+      },
+      "notes": [
+        "Keep address switches, reset pads, I2C Gravity plug and UART1 header accessible.",
+        "Use IA1=IA0=1 and UART1 (software channel0).",
+        "Keep straps off headers, address switches and IC packages; verify contact locations on delivered board."
+      ],
+      "keepouts": [],
+      "sources": [
+        "https://wiki.dfrobot.com/dfr0627/",
+        "https://dfimg.dfrobot.com/wiki/20531/DFR0627_i2c-to-uart-module_dimension_V1.0.pdf"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "zwave",
+      "model": "Zooz ZAC93 LR, correct regional version",
+      "quantity": 1,
+      "body_mm": [
+        27.94,
+        27.94,
+        null
+      ],
+      "body_status": "manufacturer says 1.1in square; rounded nominal size, board/header height not specified",
+      "design_envelope_mm": [
+        28.5,
+        28.5,
+        18
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "insulated edge cradle with underside socket opening and nonconductive retention",
+        "holes_mm": [],
+        "hole_pattern_status": "No qualified mounting-hole drawing; no invented screw holes."
+      },
+      "notes": [
+        "User confirmed the delivered module is Zooz ZAC93 on 2026-10-19; exact PCB revision, height and header mating clearance still require physical inspection.",
+        "The factory 2x5 socket belongs on the ZAC93 underside; a wired mating header connects to carrier J4. This is not a Raspberry Pi HAT in this hub.",
+        "3.3 V only. ZAC physical pins1=3.3V,6/9=GND,8=RX,10=TX. Pin numbering must be verified against the received board.",
+        "Orient the stock antenna toward the outer plastic wall; keep the socket and wiring on the inner side."
+      ],
+      "keepouts": [
+        {
+          "kind": "stock antenna",
+          "provisional_margin_mm": 10,
+          "basis": "Engineering reservation outside antenna edge, not a Zooz-approved numeric keepout; no metal/straps/cables over antenna. Locate antenna on actual revision before assembly."
+        },
+        {
+          "kind": "underside socket",
+          "basis": "Open cradle center and measured mating-header clearance; never force connector."
+        }
+      ],
+      "sources": [
+        "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf",
+        "https://www.support.getzooz.com/kb/article/1215-zac93-800-gpio-module-installation-guide/"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "cc1101",
+      "model": "Existing 433.92 MHz CC1101 module with accessible GDO2",
+      "quantity": 1,
+      "body_mm": [
+        null,
+        null,
+        null
+      ],
+      "body_status": "existing board vendor/revision/dimensions unknown; no chip-datasheet dimensions substituted",
+      "design_envelope_mm": [
+        55,
+        30,
+        18
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "adjustable insulated edge/strap tray",
+        "holes_mm": []
+      },
+      "notes": [
+        "55x30x18 is maximum reserved installed module envelope, not a claim about the existing board.",
+        "Verify GDO0/GDO2, power pin order and antenna connector before moving existing hardware.",
+        "Retain its matched 433.92 MHz antenna; do not use the 2.4 GHz antennas or assume SMA polarity."
+      ],
+      "keepouts": [
+        {
+          "kind": "433 MHz antenna feed",
+          "basis": "Configurable side-wall feed opening; final bulkhead/extension depends on actual SMA/RP-SMA/spring-antenna revision."
+        }
+      ],
+      "sources": [
+        "https://www.ti.com/product/CC1101",
+        "../../hardware/external-antenna/cad/connectors.json"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "ld2450",
+      "model": "Hi-Link HLK-LD2450",
+      "quantity": 1,
+      "body_mm": [
+        44,
+        15,
+        null
+      ],
+      "body_status": "manufacturer nominal PCB plan; installed connector and component height allocated",
+      "design_envelope_mm": [
+        44,
+        15,
+        10
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "nonconductive edge rails in removable radar cassette",
+        "holes_mm": []
+      },
+      "notes": [
+        "Keep the stock printed antenna array on the room-facing side, clear of retention features.",
+        "Plan wall mounting with array orientation per manufacturer, normally at 1.5-2m; ceiling installation needs separate coverage testing.",
+        "5 V supply and 3.3 V logic; pin order follows actual cable connector, not wire color."
+      ],
+      "keepouts": [
+        {
+          "kind": "radar aperture",
+          "basis": "No metal, copper, wire bundles, screws or ribs over active face. Thin unfilled plastic window is provisional until material/thickness and sensor air gap are tested."
+        }
+      ],
+      "sources": [
+        "https://www.hlktech.com/cn/Goods-352.html",
+        "https://www.hlktech.net/index.php?id=1262",
+        "https://h.hlktech.com/download/HLK-LD2450-24G/1/%E6%AF%AB%E7%B1%B3%E6%B3%A2%E4%BC%A0%E6%84%9F%E5%99%A8%E5%A4%A9%E7%BA%BF%E7%BD%A9%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97_%E6%B5%B7%E5%87%8C%E7%A7%91.pdf",
+        "https://h.hlktech.com/download/HLK-LD2450-24G/1/HLK-LD2450--3D%E5%9B%BE.zip"
+      ],
+      "fit_verified": false
+    },
+    {
+      "id": "bme680",
+      "model": "Adafruit BME680 STEMMA QT, product 3660",
+      "quantity": 1,
+      "body_mm": [
+        25.4,
+        17.78,
+        null
+      ],
+      "body_status": "QT-revision PCB plan from manufacturer CAD; installed plug height allocated",
+      "design_envelope_mm": [
+        25.4,
+        17.78,
+        10
+      ],
+      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "mount": {
+        "kind": "open edge tray inside detachable ventilated sensor pod",
+        "holes_mm": [],
+        "known_manufacturer_holes_mm": [
+          {
+            "xy": [
+              2.54,
+              2.54
+            ],
+            "diameter": 2.54,
+            "type": "non-plated"
+          },
+          {
+            "xy": [
+              22.86,
+              2.54
+            ],
+            "diameter": 2.54,
+            "type": "non-plated"
+          },
+          {
+            "xy": [
+              2.54,
+              15.24
+            ],
+            "diameter": 2.5,
+            "type": "plated"
+          },
+          {
+            "xy": [
+              22.86,
+              15.24
+            ],
+            "diameter": 2.5,
+            "type": "plated"
+          }
+        ],
+        "known_manufacturer_holes_note": "Extracted from Adafruit BME680.brd (STEMMA QT), Eagle board coordinates, lower-left origin. Listed as evidence; current enclosure may use edge retention instead."
+      },
+      "notes": [
+        "Keep outside the warm main enclosure in its own ventilated pod.",
+        "Match STEMMA QT revision; the pre-2020 board has a different shape.",
+        "Leave sensor vent and both QT sockets accessible; avoid adhesive, foam or strap contact over sensor lid.",
+        "3.3 V I2C; gas resistance is not a CO2 measurement."
+      ],
+      "keepouts": [],
+      "sources": [
+        "https://www.adafruit.com/product/3660",
+        "https://github.com/adafruit/Adafruit-BME680-PCB",
+        "https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas/downloads",
+        "https://raw.githubusercontent.com/adafruit/Adafruit-BME680-PCB/master/Adafruit%20BME680.brd"
+      ],
+      "fit_verified": false
+    }
+  ],
+  "accessories": [
+    {
+      "id": "dc_adapter",
+      "quantity": 1,
+      "model": "Insulated female 5.5x2.1mm DC to two-terminal adapter or equivalent soldered insulated harness",
+      "design_envelope_mm": [
+        40,
+        16,
+        18
+      ],
+      "status": "engineering allowance; exact SKU unselected",
+      "mount": "retained utility/cable bay, terminals inaccessible after closure; do not let the adapter hang from the splitter lead",
+      "sources": []
+    },
+    {
+      "id": "fuse_holder",
+      "quantity": 1,
+      "model": "Insulated inline low-voltage DC fuse holder",
+      "design_envelope_mm": [
+        35,
+        18,
+        18
+      ],
+      "status": "engineering allowance; select exact holder and fuse against wire gauge and measured inrush/load",
+      "mount": "retained utility bay with service access; before carrier J1, not loose over electronics",
+      "sources": [
+        "../../hardware/external-antenna/cad/connectors.json"
+      ]
+    },
+    {
+      "id": "antenna_24ghz",
+      "quantity": 3,
+      "model": "TE Connectivity / Linx ANT-2.4-LCW-SMA",
+      "body_mm": [
+        10,
+        10,
+        83.1
+      ],
+      "status": "manufacturer nominal; swivel motion outside case needs additional sweep clearance",
+      "mount": "three separate standard-SMA bulkheads, fixed base wall",
+      "sources": [
+        "https://www.te.com/en/product-L9000082-01.html",
+        "../../hardware/external-antenna/rf-bom.json"
+      ]
+    },
+    {
+      "id": "pigtail_24ghz",
+      "quantity": 3,
+      "model": "Amphenol RF 095-902-545-150",
+      "length_mm": 150,
+      "cable_diameter_mm": 1.13,
+      "panel_cutout_mm": {
+        "round_diameter": 6.6,
+        "flat_dimension": 6.1
+      },
+      "status": "manufacturer nominal, assembled route and connector clearance unmeasured",
+      "mount": "fixed-wall bulkhead with strain relief/slack at U.FL-compatible AMC radio plug; no sharp bends",
+      "sources": [
+        "https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/",
+        "https://www.amphenolrf.com/en-us/assets/file/4068032676/"
+      ]
+    },
+    {
+      "id": "antenna_433mhz",
+      "quantity": 1,
+      "model": "Existing matched 433.92MHz antenna and compatible feed",
+      "body_mm": [
+        null,
+        null,
+        null
+      ],
+      "status": "existing revision unmeasured; inspect SMA/RP-SMA polarity before choosing extension",
+      "mount": "external to main shell through configurable feed bay, electrically independent of all 2.4GHz feeds",
+      "sources": [
+        "../../hardware/external-antenna/rf-bom.json"
+      ]
+    },
+    {
+      "id": "wiring_harnesses",
+      "quantity": 1,
+      "model": "J1-J7 power/data harness set plus captive Ethernet tail, BME QT cable and ZAC93 2x5 mating header",
+      "status": "connector models, wire gauge, lengths and bend radii must be matched to actual parts",
+      "mount": "dedicated cable corridor and cable bars; retain connectors without pulling module headers",
+      "sources": [
+        "../../hardware/external-antenna/cad/connectors.json"
+      ]
+    },
+    {
+      "id": "fasteners",
+      "quantity": 1,
+      "model": "Nonconductive PCB supports, enclosure screws/nuts, sensor cassette screws and nonconductive retention straps",
+      "status": "exact counts and lengths belong to generated enclosure assembly BOM",
+      "mount": "use specified mount holes/slots; screws must not intrude into wiring or RF/radar apertures",
+      "sources": []
+    }
+  ],
+  "not_inside_case": [
+    "Battery bank and its protection",
+    "PoE Ethernet switch/PSE",
+    "Home Assistant server",
+    "Linux SBC, internal Ethernet switch, USB hub, and Silvertel EvalPoE from historical alternatives"
+  ]
+}

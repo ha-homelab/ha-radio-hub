@@ -1,6 +1,6 @@
 # MC2-B verification record
 
-Review date: 18 October 2026. This record describes **digital verification of an
+Review date: 19 October 2026. This record describes **digital verification of an
 engineering prototype**. No assembled MC2 board was powered, flashed or connected
 to Home Assistant during this work. Physical acceptance is outstanding.
 
@@ -45,11 +45,18 @@ These tests do not prove RF connectivity, electrical reset timing or on-device O
 
 ## Enclosure and RF acceptance
 
-The [mechanical evidence](../../mechanical/module-carrier/external-antenna-prototype/verification.json)
-binds the printable parts to native board geometry and checks mesh validity,
-mount alignment, cable-route allowances and the carrier-only scope. Its fit
-assumptions are explicitly unmeasured; STL validity does not prove a successful
-print, load capacity or connector engagement.
+The [FH1 mechanical evidence](../../mechanical/full-hub/verification.json)
+binds the full-hub printable parts to native carrier geometry and the
+[component inventory](../../mechanical/full-hub/components.json). The new
+package includes mounts for ZAC93, DFR0627, CC1101, isolated power modules,
+LD2450 and the attached BME680 pod. Its checks cover the modelled envelopes,
+mounts, mesh validity and print-bed dimensions; read the report for the exact
+scope. Physical measurements remain unverified: nominal or allocated heights,
+unselected accessory SKUs and routing allowances are not measurements of the
+delivered assembly. STL validity does not prove a successful print, load
+capacity, connector engagement, radar-window performance or thermal accuracy.
+The [earlier carrier-only evidence](../../mechanical/module-carrier/external-antenna-prototype/verification.json)
+remains tied to the smaller historical housing.
 
 Use the [RF commissioning procedure](../../docs/rf-commissioning.md) and
 [results sheet](coverage-results.csv) for the 1,000 ft² / about 93 m² requirement.
