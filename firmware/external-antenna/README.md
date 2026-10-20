@@ -6,7 +6,7 @@ The **Unexpected Maker TinyC6-U-01** Thread RCP and **Seeed XIAO MG24** Zigbee N
 
 The [host build evidence](build-evidence.json) records the compiled image, both OTA slots, DRAM/IRAM usage and actual ESP32 image header. **Hardware remains untested.** Static linker headroom does not establish runtime heap capacity or concurrent protocol reliability. Before migration, measure minimum internal heap, largest free block, free PSRAM and loop time with all three BLE connections, Thread traffic, Zigbee, Z-Wave and RF activity running together. The [C6 evidence](c6-build-evidence.json) and [host tests](test-results.json) remain separately identified.
 
-The ESP32-WROVER-IE and C6 have fixed external RF paths. MG24 requires the [shared XIAO recipe](../module-carrier/zigbee/README.md) built with **`--antenna external`**; PB04 and PB05 must be high before the radio stack starts. Attach all antennas before operating the radios. Follow the [RF acceptance procedure](../../docs/rf-commissioning.md).
+The ESP32-WROVER-IE and C6 have fixed external RF paths. Follow the [MC2-B XIAO MG24 programming guide](../../docs/mc2-zigbee.md) to build and program its **`--antenna external`** image; PB04 and PB05 must be high before the radio stack starts. That guide uses the shared recipe with the current MC2-B connections and output selection. Attach all antennas before operating the radios. Follow the [RF acceptance procedure](../../docs/rf-commissioning.md).
 
 ## Pin and memory contract
 

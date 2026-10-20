@@ -18,7 +18,7 @@ For the authorized update, set `MC1_API_KEY` to the deployed encrypted ESPHome A
 
 ## Zigbee application
 
-Use **`mc1-xiao-mg24-external-ncp.gbl`** and its matching `build-report.json` from the shared XIAO recipe. MC2 requires explicit external-antenna metadata with **PB04=1 and PB05=1**. It rejects onboard and old unlabelled reports. Keep the external antenna attached.
+Use **`mc1-xiao-mg24-external-ncp.gbl`** and its matching `build-report.json` from the [MC2-B XIAO programming guide](../../../docs/mc2-zigbee.md). MC2 requires explicit external-antenna metadata with **PB04=1 and PB05=1**. It rejects onboard and old unlabelled reports. Keep the external antenna attached.
 
 ```sh
 python3 firmware/external-antenna/updates/update.py mg24 \
@@ -26,7 +26,7 @@ python3 firmware/external-antenna/updates/update.py mg24 \
   --report /path/to/build-report.json
 ```
 
-After backing up the Zigbee network and stopping its single ZHA/Zigbee2MQTT owner, add `--coordinator-stopped --execute`. This updates only the application through existing TCP6638; it does not flash the initial HEX or bootloader. Initial USB/CMSIS-DAP and J8 recovery follow the [XIAO guide](../../module-carrier/zigbee/README.md#initial-programming-and-recovery).
+After backing up the Zigbee network and stopping its single ZHA/Zigbee2MQTT owner, add `--coordinator-stopped --execute`. This updates only the application through existing TCP6638; it does not flash the initial HEX or bootloader. Initial USB/CMSIS-DAP and J8 recovery follow the [MC2-B XIAO guide](../../../docs/mc2-zigbee.md#updates-and-recovery).
 
 MC2-B classic ESP32 app-only OTA uses ESPHome after the correct MC2-B factory partition layout has been installed. Back up deployment secrets and Thread credentials separately. No update has been executed on assembled hardware as part of development validation.
 

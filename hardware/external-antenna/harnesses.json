@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "revision": "MC2-B",
+  "source": "../../docs/full-hub-assembly.md",
+  "orientation": "Carrier component-side view, in the same orientation as the native assembly drawing. The square pad is pin 1. Looking into a cable socket reverses the apparent order; identify contacts by continuity, not by wire colour.",
+  "harnesses": [
+    {
+      "ref": "J1",
+      "device": "Isolated PoE splitter / fused 5 V input",
+      "source_anchor": "power-and-ethernet",
+      "note": "The selected Waveshare splitter provides regulated 5 V. Its data-only RJ45 lead goes to WIZ850io U4. No raw PoE voltage enters J1. Confirm polarity with a meter.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "+5V",
+          "device_contact": "Splitter +5 V, after inline fuse",
+          "direction": "to_carrier",
+          "function": "5 V power enters the carrier"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "GND",
+          "device_contact": "Splitter GND",
+          "direction": "ground",
+          "function": "Common ground return"
+        }
+      ]
+    },
+    {
+      "ref": "J2",
+      "device": "Pololu D24V22F3 buck converter",
+      "source_anchor": "power-and-ethernet",
+      "note": "Identify VIN, VOUT and GND on the actual regulator; this is a harness map, not its physical pad order. Both ground wires may terminate at the same regulator ground node. Leave EN and PG unused.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "+5V",
+          "device_contact": "VIN",
+          "direction": "to_device",
+          "function": "Carrier 5 V supplies the regulator"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "GND",
+          "device_contact": "GND",
+          "direction": "ground",
+          "function": "Input ground return"
+        },
+        {
+          "carrier_pin": "3",
+          "net": "+3V3",
+          "device_contact": "VOUT (3.3 V)",
+          "direction": "to_carrier",
+          "function": "Regulator powers the peripheral 3.3 V rail"
+        },
+        {
+          "carrier_pin": "4",
+          "net": "GND",
+          "device_contact": "GND",
+          "direction": "ground",
+          "function": "Output ground return"
+        }
+      ]
+    },
+    {
+      "ref": "J3",
+      "device": "DFRobot DFR0627 / WK2132 UART bridge",
+      "source_anchor": "fit-the-uart-bridge-and-verify-the-complete-signal-path",
+      "note": "These six wires reach separate I²C and UART1 contacts, not one six-pin module header. Set IA1 = 1 and IA0 = 1: register 0x70, FIFO 0x71; UART1 115200 8N1. UART2, RST and IRQ remain unused.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "+3V3",
+          "device_contact": "+ / VCC",
+          "direction": "to_device",
+          "function": "Peripheral 3.3 V; do not supply 5 V"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "GND",
+          "device_contact": "− / GND",
+          "direction": "ground",
+          "function": "Common ground return"
+        },
+        {
+          "carrier_pin": "3",
+          "net": "I2C_SDA",
+          "device_contact": "D / SDA",
+          "direction": "bidirectional",
+          "function": "I²C data, host GPIO21"
+        },
+        {
+          "carrier_pin": "4",
+          "net": "I2C_SCL",
+          "device_contact": "C / SCL",
+          "direction": "to_device",
+          "function": "I²C clock, host GPIO22"
+        },
+        {
+          "carrier_pin": "5",
+          "net": "ZWAVE_RX",
+          "device_contact": "UART1 T / TX1",
+          "direction": "to_carrier",
+          "function": "Bridge transmitter → J4.4 → ZAC93 pin 8 RX"
+        },
+        {
+          "carrier_pin": "6",
+          "net": "ZWAVE_TX",
+          "device_contact": "UART1 R / RX1",
+          "direction": "to_device",
+          "function": "ZAC93 pin 10 TX → J4.5 → bridge receiver"
+        }
+      ]
+    },
+    {
+      "ref": "J4",
+      "device": "Zooz ZAC93 Z-Wave board",
+      "source_anchor": "install-the-zac93",
+      "note": "Remapped five-wire harness into the underside 2×5 socket; not a straight-through ribbon. Verify the actual 3V3 / GND / RX / TX markings and Zooz numbering before mating. Leave ZAC93 pins 2, 3, 4, 5 and 7 unconnected. Pin 7 is RESET on hardware 2.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "+3V3",
+          "device_contact": "Physical pin 1 — 3V3",
+          "direction": "to_device",
+          "function": "Peripheral 3.3 V supply",
+          "device_pin": "1"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "GND",
+          "device_contact": "Physical pin 6 — GND",
+          "direction": "ground",
+          "function": "First ground return",
+          "device_pin": "6"
+        },
+        {
+          "carrier_pin": "3",
+          "net": "GND",
+          "device_contact": "Physical pin 9 — GND",
+          "direction": "ground",
+          "function": "Second ground return",
+          "device_pin": "9"
+        },
+        {
+          "carrier_pin": "4",
+          "net": "ZWAVE_RX",
+          "device_contact": "Physical pin 8 — RX",
+          "direction": "to_device",
+          "function": "J3.5 / bridge TX1 → ZAC93 receiver",
+          "device_pin": "8"
+        },
+        {
+          "carrier_pin": "5",
+          "net": "ZWAVE_TX",
+          "device_contact": "Physical pin 10 — TX",
+          "direction": "to_carrier",
+          "function": "ZAC93 transmitter → J3.6 / bridge RX1",
+          "device_pin": "10"
+        }
+      ]
+    },
+    {
+      "ref": "J5",
+      "device": "CC1101 433.92 MHz radio",
+      "source_anchor": "cc1101-carrier-j5",
+      "note": "Use signal names on the retained module; clone pin order is not standardized. Keep this harness short with ground beside clock/data wires: WIZ850io also puts 10 MHz edges on the shared SPI clock. Retain the 433.92 MHz antenna.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "+3V3",
+          "device_contact": "VCC",
+          "direction": "to_device",
+          "function": "Peripheral 3.3 V supply"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "GND",
+          "device_contact": "GND",
+          "direction": "ground",
+          "function": "Common ground return"
+        },
+        {
+          "carrier_pin": "3",
+          "net": "SPI_SCK",
+          "device_contact": "SCLK / SCK",
+          "direction": "to_device",
+          "function": "SPI clock from host GPIO12"
+        },
+        {
+          "carrier_pin": "4",
+          "net": "SPI_MOSI",
+          "device_contact": "SI / MOSI",
+          "direction": "to_device",
+          "function": "SPI data from host GPIO2"
+        },
+        {
+          "carrier_pin": "5",
+          "net": "SPI_MISO",
+          "device_contact": "SO / MISO",
+          "direction": "to_carrier",
+          "function": "SPI data to host GPIO19"
+        },
+        {
+          "carrier_pin": "6",
+          "net": "RF_CS",
+          "device_contact": "CSn / CS",
+          "direction": "to_device",
+          "function": "RF chip select from host GPIO13"
+        },
+        {
+          "carrier_pin": "7",
+          "net": "RF_GDO0",
+          "device_contact": "GDO0",
+          "direction": "to_device",
+          "function": "Transmit path from GPIO25; open-drain with carrier 4.7 kΩ pull-up"
+        },
+        {
+          "carrier_pin": "8",
+          "net": "RF_GDO2",
+          "device_contact": "GDO2",
+          "direction": "to_carrier",
+          "function": "Receive path to host GPIO35"
+        }
+      ]
+    },
+    {
+      "ref": "J6",
+      "device": "Hi-Link LD2450 radar",
+      "source_anchor": "ld2450-carrier-j6",
+      "note": "5 V supply, 3.3 V UART logic; 256000 baud. Identify 5V / GND / RX / TX markings on the module, not wire colours or an assumed cable order.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "+5V",
+          "device_contact": "5V",
+          "direction": "to_device",
+          "function": "Fused 5 V supply"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "GND",
+          "device_contact": "GND",
+          "direction": "ground",
+          "function": "Common ground return"
+        },
+        {
+          "carrier_pin": "3",
+          "net": "RADAR_RX",
+          "device_contact": "RX",
+          "direction": "to_device",
+          "function": "Host GPIO23 TX → radar receiver"
+        },
+        {
+          "carrier_pin": "4",
+          "net": "RADAR_TX",
+          "device_contact": "TX",
+          "direction": "to_carrier",
+          "function": "Radar transmitter → host GPIO18 RX"
+        }
+      ]
+    },
+    {
+      "ref": "J7",
+      "device": "Adafruit BME680 breakout 3660",
+      "source_anchor": "bme680-carrier-j7",
+      "note": "Use VIN or the STEMMA QT power input, not the regulator-output pin. Default I²C address 0x77; configured bus 400 kHz. Check actual pull-ups and the routed pod cable under load before closing the case.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "GND",
+          "device_contact": "GND",
+          "direction": "ground",
+          "function": "Common ground return"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "+3V3",
+          "device_contact": "VIN / STEMMA QT power input",
+          "direction": "to_device",
+          "function": "Peripheral 3.3 V supply"
+        },
+        {
+          "carrier_pin": "3",
+          "net": "I2C_SDA",
+          "device_contact": "SDA / SDI",
+          "direction": "bidirectional",
+          "function": "I²C data, host GPIO21"
+        },
+        {
+          "carrier_pin": "4",
+          "net": "I2C_SCL",
+          "device_contact": "SCL / SCK",
+          "direction": "to_device",
+          "function": "I²C clock, host GPIO22"
+        }
+      ]
+    }
+  ]
+}

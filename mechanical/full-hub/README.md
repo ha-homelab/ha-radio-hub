@@ -6,7 +6,7 @@ regulator, DC adapter, fuse, LD2450 and an attached BME680 pod. It supersedes th
 smaller carrier-only housing for a complete assembly. It is an **engineering
 prototype**, with digital checks and explicitly unmeasured fit assumptions.
 
-[Open illustrated layout](index.html) · [Electrical assembly](../../docs/full-hub-assembly.md) ·
+[Build guide](../../guide/index.html) · [Open illustrated layout](index.html) · [Electrical assembly](../../docs/full-hub-assembly.md) ·
 [Component inventory](components.json) · [Sources](sources.md) ·
 [Parameters](parameters.json) · [Digital verification](verification.json)
 
@@ -36,6 +36,26 @@ heights must be compared with the actual delivered revision before tightening
 or plugging in the harness.
 
 ## Print package
+
+**[Download the complete FH1 print ZIP](FH1-MC2-B-print-package.zip)** — all 14
+current STL files, a [print-first checklist](PRINT-FIRST.txt), and a
+[machine-readable quantity/hash manifest](print-manifest.json). The archive
+contains 13 installed pieces, one trial coupon and one optional blank. **Print
+two copies of `pod-arm.stl`.** A single STL is intentionally supplied for that
+identical pair. Reuse the ZAC93 trial cradle if it fits; do not print a second
+cradle just for final assembly.
+
+1. **First:** the fit coupon and ZAC93 cradle. Check the actual socket, mating
+   header, fasteners and SMA bulkhead with power disconnected.
+2. **Next:** measure each delivered module and trial-fit the remaining small
+   trays, radar holder and pod pieces. Resolve the unknown CC1101, adapter and
+   fuse dimensions before printing the main shell.
+3. **Last:** the large base and lid. The port blank is optional and only closes
+   an unused trial opening. No G-code or combined assembly model is included.
+
+The [illustrated print table](index.html#print-parts) lists every quantity,
+print stage and fit check. Import STLs at **100% scale**; the archive is a
+convenient download, not evidence of physically verified fit.
 
 Print each STL separately in its supplied bed orientation, in **millimetres**.
 The assembly and exploded SCAD files are inspection models; do not print either
@@ -165,6 +185,14 @@ python mechanical/full-hub/build.py --check
 python hardware/external-antenna/render.py --check
 python tools/check.py
 ```
+
+The deterministic ZIP uses an explicit part allowlist, sorted entries, fixed
+1980 timestamps and uncompressed storage to avoid platform-specific compressor
+output. Its manifest validates every STL against the checked-in verification
+hashes and records the two-arm quantity. `build.py --check` checks CAD geometry
+portably, then independently verifies the ZIP against the stored STL bytes.
+To rebuild only the archive after a valid CAD generation, run
+`python mechanical/full-hub/print_package.py` (or add `--check` to verify it).
 
 The CI checks the full-hub package alongside the retained carrier-only and
 firmware regression targets. AI appearance images are separate presentation

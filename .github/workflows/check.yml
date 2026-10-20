@@ -33,6 +33,13 @@ jobs:
         run: |
           python3 -m venv .venv
           .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt -r mechanical/diy/requirements.txt
+      - name: Check readable guide and connector lookup
+        run: |
+          python3 -m venv .venv-guide
+          .venv-guide/bin/pip install -r guide/requirements.txt
+          .venv-guide/bin/python -m unittest discover -s guide -p 'test_*.py'
+          .venv-guide/bin/python guide/build.py --check
+          python3 -m unittest discover -s hardware/external-antenna -p 'test_*.py'
       - name: Check DIY print scale, orientation and source freshness
         run: |
           .venv/bin/python -m unittest discover -s mechanical/diy -p 'test_*.py'

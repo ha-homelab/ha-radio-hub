@@ -1,9 +1,13 @@
-# Connecting to Home Assistant
+# Connecting to Home Assistant — historical Pi design
 
 <!-- MC2-CURRENT-DESIGN -->
-> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
+> **Historical Pi design.** For the active **MC2-B / FH1** build, follow
+> [Start here](start-here.md#5-bring-up-one-service-at-a-time) for Home Assistant
+> endpoints and commissioning, and [full-hub assembly](full-hub-assembly.md)
+> for wiring. The Pi addresses, `ser2net` setup and ESPHome node names below
+> belong to the original design.
 
-The appliance appears in HA through standard integrations. Its logical networks remain independent: Zigbee through ZHA, Thread through OTBR, Matter through Matter Server, Bluetooth and sensors through ESPHome, and Z-Wave through the existing Z-Wave JS driver. A second Home Assistant instance on the Pi is not required.
+The original Pi-based appliance appears in HA through standard integrations. Its logical networks remain independent: Zigbee through ZHA, Thread through OTBR, Matter through Matter Server, Bluetooth and sensors through ESPHome, and Z-Wave through the existing Z-Wave JS driver. A second Home Assistant instance on the Pi is not required.
 
 ## Zigbee
 
