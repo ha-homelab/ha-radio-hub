@@ -1,6 +1,6 @@
-# MC2-B full-hub assembly and Z-Wave installation
+# MC2-C full-hub assembly and Z-Wave installation
 
-The **Zooz ZAC93 sits in its own printed cradle beside the MC2-B carrier**. It
+The **Zooz ZAC93 sits in its own printed cradle beside the MC2-C carrier**. It
 connects by a five-wire harness to **carrier J4**, with serial data passing through
 **DFRobot DFR0627 / WK2132 on carrier J3**. It does not plug onto the ESP32, into
 USB, or directly onto J4: the ZAC93 has a different **2×5 socket**.
@@ -12,7 +12,7 @@ ZAC93, UART bridge, CC1101, radar, BME680, PoE splitter, buck converter and fuse
 Its models are a fit-check prototype: compare the received modules and connectors
 with the documented envelopes before printing or powering the assembly.
 
-![Complete MC2-B low-voltage wiring, with enlarged ZAC93 and bridge pin maps](../hardware/external-antenna/full-hub-wiring.svg)
+![Complete MC2-C low-voltage wiring, with enlarged ZAC93 and bridge pin maps](../hardware/external-antenna/full-hub-wiring.svg)
 
 [Open the wiring image at full size](../hardware/external-antenna/full-hub-wiring.svg).
 The image shows electrical relationships, not cable lengths or a mating-side
@@ -70,7 +70,7 @@ operation through compatible host software.
 
 ## Fit the UART bridge and verify the complete signal path
 
-DFR0627 is a finished **I²C-to-two-UART module** using WK2132. The MC2-B host's
+DFR0627 is a finished **I²C-to-two-UART module** using WK2132. The MC2-C host's
 native UARTs already serve Thread, Zigbee and radar, so Z-Wave uses this bridge.
 Set **IA1 = 1 and IA0 = 1**. The pinned driver uses register address **0x70**,
 FIFO address **0x71**, and **UART1 at 115200, 8 data bits, no parity, 1 stop bit**.
@@ -89,7 +89,7 @@ itself supports one.
 
 These six wires go to the module's I²C and UART1 connectors according to their
 labels; they are not a claim that DFR0627 has one six-pin connector in this order.
-DFR0627's `RST` and `IRQ` pads are not wired by MC2-B. Its UART channel reset in
+DFR0627's `RST` and `IRQ` pads are not wired by MC2-C. Its UART channel reset in
 the driver is not the ZAC93 reset. The bridge and BME680 share I²C; the ZAC93's
 own pins 3/5 are **not** connected to I²C.
 [DFRobot pin labels and module specification](https://wiki.dfrobot.com/dfr0627),
@@ -205,7 +205,7 @@ All electronic modules need a restraint; connector friction alone is not a mount
    empty. Print and check the small fit coupons before committing to a full case.
 2. Install the PoE splitter and fuse in the power bay, then the isolated buck
    on its support. Restrain their low-voltage leads before fitting the carrier.
-3. Fit the MC2-B carrier to its four mounting positions. The finished U1–U4
+3. Fit the MC2-C carrier to its four mounting positions. The finished U1–U4
    modules are supported by the carrier as designed; check solder-tail clearance.
 4. Fit the DFR0627 and CC1101 to their trays. Place the ZAC93 in its own cradle
    with the antenna area clear and connect the remapped J4 harness from below.
@@ -225,7 +225,7 @@ All electronic modules need a restraint; connector friction alone is not a mount
 
 ## First power and Home Assistant
 
-Program the three loose controllers with their **MC2-B host, TinyC6 and external-antenna MG24 images** following the [firmware guide](../firmware/external-antenna/README.md)
+Program the three loose controllers with their **MC2-C host, TinyC6 and external-antenna MG24 images** following the [firmware guide](../firmware/external-antenna/README.md)
 before assembling; use the exact external-antenna MG24 image. The ZAC93 arrives
 with its own radio firmware. Remove USB power before attaching the PoE-fed
 assembly. Attach the correct antennas before transmitting.

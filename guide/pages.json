@@ -1,17 +1,98 @@
 [
-  {"slug":"start-here","source":"docs/start-here.md","label":"Start here","description":"Follow the build in order, with a checkpoint at each stage."},
-  {"slug":"shopping","source":"docs/mc2-shopping.md","label":"Choose parts","description":"Check exact ESP modules, antenna connectors and availability."},
-  {"slug":"firmware","source":"firmware/external-antenna/README.md","label":"Flash firmware","description":"Prepare private settings and program the three loose radio boards."},
-  {"slug":"print","source":"mechanical/full-hub/README.md","label":"Print and fit","description":"Download the enclosure, start with the fit coupon and ZAC93 cradle."},
-  {"slug":"assembly","source":"docs/full-hub-assembly.md","label":"Wire the hub","description":"Connect power, the UART bridge, ZAC93 and each sensor."},
-  {"slug":"commissioning","source":"docs/rf-commissioning.md","label":"Test coverage","description":"Compare open, closed and installed behavior before moving Home Assistant."},
-  {"slug":"updates","source":"firmware/external-antenna/updates/README.md","label":"Update and recover","description":"Use the correct update path for the confirmed board and image."},
-  {"slug":"antennas","source":"docs/external-antennas.md","label":"Antenna details","description":"Review the three independent antenna paths and hardware constraints."},
-  {"slug":"hardware","source":"hardware/external-antenna/README.md","label":"Hardware reference","description":"Find the current carrier, circuit and verification sources."},
-  {"slug":"cad","source":"hardware/external-antenna/cad/README.md","label":"Carrier CAD","description":"Inspect fabrication files, the board contract and connector drawings."},
-  {"slug":"zigbee-firmware","source":"docs/mc2-zigbee.md","label":"MG24 programming","description":"Build the XIAO MG24 NCP with the required external antenna selection."},
-  {"slug":"host-migration","source":"docs/classic-esp32-migration.md","label":"Host revision","description":"Understand the move from S3 to the classic ESP32-WROVER-IE."},
-  {"slug":"history","source":"docs/design-history.md","label":"Design history","description":"Identify historical designs before reusing their files."},
-  {"slug":"documentation","source":"docs/README.md","label":"All references","description":"Browse the active documentation index."},
-  {"slug":"overview","source":"README.md","label":"Project overview","description":"See the complete hub and its current capabilities."}
+  {
+    "slug": "start-here",
+    "source": "docs/start-here.md",
+    "label": "Start here",
+    "description": "Follow the build in order, with a checkpoint at each stage."
+  },
+  {
+    "slug": "shopping",
+    "source": "docs/mc2-shopping.md",
+    "label": "Choose parts",
+    "description": "Check exact ESP modules, antenna connectors and availability."
+  },
+  {
+    "slug": "pcb-order",
+    "source": "docs/pcb-order.md",
+    "label": "Order the PCB",
+    "description": "Download the MC2-C prototype fabrication package and check quantities, finish and shipping."
+  },
+  {
+    "slug": "firmware",
+    "source": "firmware/external-antenna/README.md",
+    "label": "Flash firmware",
+    "description": "Prepare private settings and program the three loose radio boards."
+  },
+  {
+    "slug": "print",
+    "source": "mechanical/full-hub/README.md",
+    "label": "Print and fit",
+    "description": "Download the enclosure, start with the fit coupon and ZAC93 cradle."
+  },
+  {
+    "slug": "assembly",
+    "source": "docs/full-hub-assembly.md",
+    "label": "Wire the hub",
+    "description": "Connect power, the UART bridge, ZAC93 and each sensor."
+  },
+  {
+    "slug": "commissioning",
+    "source": "docs/rf-commissioning.md",
+    "label": "Test coverage",
+    "description": "Compare open, closed and installed behavior before moving Home Assistant."
+  },
+  {
+    "slug": "updates",
+    "source": "firmware/external-antenna/updates/README.md",
+    "label": "Update and recover",
+    "description": "Use the correct update path for the confirmed board and image."
+  },
+  {
+    "slug": "antennas",
+    "source": "docs/external-antennas.md",
+    "label": "Antenna details",
+    "description": "Review the three independent antenna paths and hardware constraints."
+  },
+  {
+    "slug": "hardware",
+    "source": "hardware/external-antenna/README.md",
+    "label": "Hardware reference",
+    "description": "Find the current carrier, circuit and verification sources."
+  },
+  {
+    "slug": "cad",
+    "source": "hardware/external-antenna/cad/README.md",
+    "label": "Carrier CAD",
+    "description": "Inspect fabrication files, the board contract and connector drawings."
+  },
+  {
+    "slug": "zigbee-firmware",
+    "source": "docs/mc2-zigbee.md",
+    "label": "MG24 programming",
+    "description": "Build the XIAO MG24 NCP with the required external antenna selection."
+  },
+  {
+    "slug": "host-migration",
+    "source": "docs/classic-esp32-migration.md",
+    "label": "Host revision",
+    "description": "Understand the move from S3 to the classic ESP32-WROVER-IE."
+  },
+  {
+    "slug": "history",
+    "source": "docs/design-history.md",
+    "label": "Design history",
+    "description": "Identify historical designs before reusing their files."
+  },
+  {
+    "slug": "documentation",
+    "source": "docs/README.md",
+    "label": "All references",
+    "description": "Browse the active documentation index."
+  },
+  {
+    "slug": "overview",
+    "source": "README.md",
+    "label": "Project overview",
+    "description": "See the complete hub and its current capabilities."
+  }
 ]

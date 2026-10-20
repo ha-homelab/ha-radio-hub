@@ -36,6 +36,23 @@ class FullHubTests(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError,'Component overlap'):
             b.validate(self.p,self.m,self.s,bad)
 
+    def test_replacement_radio_must_fit_populated_carrier_reservation(self):
+        bad=copy.deepcopy(self.s)
+        radio=next(p for p in bad['design']['parts'] if p['ref']=='U2')
+        radio['body_bounds_global_mm'][2]=101
+        with self.assertRaisesRegex(AssertionError,'U2 module exceeds'):
+            b.validate(self.p,self.m,bad,self.g)
+
+    def test_taller_radio_or_usb_shell_cannot_escape_fit_checks(self):
+        bad=copy.deepcopy(self.s)
+        bad['design']['mechanics']['module_geometry']['U2']['model_height_mm']=9
+        with self.assertRaisesRegex(AssertionError,'U2 nominal model exceeds'):
+            b.validate(self.p,self.m,bad,self.g)
+        bad=copy.deepcopy(self.s)
+        bad['design']['mechanics']['physical_usb_shells_mm']['U2'][1]=-1
+        with self.assertRaisesRegex(AssertionError,'U2 module exceeds'):
+            b.validate(self.p,self.m,bad,self.g)
+
     def test_zac93_has_socket_and_underneath_header_clearance(self):
         z=self.checks['detailed_component_solids_mm']['zwave']
         header=self.checks['mated_connector_boxes_mm']['zac93-underside-mating-header']

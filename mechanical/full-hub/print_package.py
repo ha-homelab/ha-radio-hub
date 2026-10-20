@@ -13,8 +13,9 @@ import json
 import zipfile
 
 HERE = Path(__file__).resolve().parent
-REVISION = 'FH1-MC2-B'
-ARCHIVE = 'FH1-MC2-B-print-package.zip'
+REVISION = 'FH1-MC2-C'
+PCB_REVISION = 'MC2-C'
+ARCHIVE = 'FH1-MC2-C-print-package.zip'
 OUTPUTS = ('PRINT-FIRST.txt', 'print-manifest.json', ARCHIVE)
 # Explicit inventory, not a directory glob. A spare/private STL is never included.
 # stage, stem, label, quantity, role, fit/check note
@@ -49,7 +50,9 @@ def regular_bytes(path):
 
 def make_manifest(directory, report):
     if report.get('revision') != REVISION or report.get('units') != 'mm':
-        raise ValueError('The print package requires the current FH1-MC2-B report in millimetres')
+        raise ValueError('The print package requires the current FH1-MC2-C report in millimetres')
+    if report.get('native_pcb_revision') != PCB_REVISION:
+        raise ValueError('The print package must be checked against the current MC2-C native carrier')
     expected = {row[1] for row in PARTS}
     if set(report.get('parts', {})) != expected:
         raise ValueError('Print inventory differs from the explicit FH1 part allowlist')
@@ -65,7 +68,7 @@ def make_manifest(directory, report):
         rows.append({'stage': stage, 'stage_label': STAGES[stage], 'file': name,
                      'label': label, 'quantity': quantity, 'role': role,
                      'sha256': digest, 'note': note})
-    return {'schema_version': 1, 'revision': REVISION, 'units': 'mm',
+    return {'schema_version': 1, 'revision': REVISION, 'native_pcb_revision': PCB_REVISION, 'units': 'mm',
             'scale_percent': 100, 'physical_fit_verified': False,
             'source_report_sha256': sha(regular_bytes(directory / 'verification.json')),
             'unique_stl_files': len(rows),
@@ -77,8 +80,11 @@ def make_manifest(directory, report):
 
 def instructions(manifest):
     lines = [
-        'FH1-MC2-B PRINT PACKAGE — READ BEFORE SLICING',
+        'FH1-MC2-C PRINT PACKAGE — READ BEFORE SLICING',
         'Engineering prototype. Digital checks do not verify physical fit.',
+        'For MC2-C with TinyC6[D] TC6D-01, ESP32-DevKitC-VIE and XIAO MG24.',
+        'The Series D Thread radio needs the MC2-C RCP firmware to select',
+        'its external U.FL antenna; the original TC6-U-01 firmware will not.',
         '',
         '1. Print fit-coupon.stl and zwave-tray.stl FIRST.',
         '   With power disconnected, check the real ZAC93 underside socket,',

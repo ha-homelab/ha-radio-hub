@@ -19,7 +19,7 @@ class PrintPackageTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.directory = Path(self.temp.name)
-        self.report = {'revision': p.REVISION, 'units': 'mm', 'parts': {}, 'generated_sha256': {}}
+        self.report = {'revision': p.REVISION, 'native_pcb_revision': p.PCB_REVISION, 'units': 'mm', 'parts': {}, 'generated_sha256': {}}
         for _, stem, _, quantity, _, _ in p.PARTS:
             data = f'solid {stem}\nendsolid {stem}\n'.encode()
             (self.directory/(stem+'.stl')).write_bytes(data)
@@ -102,6 +102,11 @@ class PrintPackageTests(unittest.TestCase):
             report = dict(self.report); report[key] = value
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'current FH1'):
                 p.make_manifest(self.directory, report)
+
+    def test_enclosure_checked_against_old_carrier_cannot_be_packaged(self):
+        report = dict(self.report); report['native_pcb_revision'] = 'MC2-B'
+        with self.assertRaisesRegex(ValueError, 'current MC2-C native carrier'):
+            p.make_manifest(self.directory, report)
 
 
 if __name__ == '__main__':

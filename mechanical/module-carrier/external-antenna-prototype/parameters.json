@@ -1,5 +1,5 @@
 {
-  "revision": "MC2-B-external-antenna",
+  "revision": "MC2-C-external-antenna",
   "status": "printable_engineering_prototype_not_fit_qualified",
   "units": "mm",
   "source_directory": "hardware/external-antenna/cad",

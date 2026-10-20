@@ -4,6 +4,7 @@ import json
 import re
 import struct
 from pathlib import Path
+from c6_identity import ANTENNA, BOARD, SKU
 STUDY = Path(__file__).resolve().parent
 
 def require(condition, message):
@@ -19,7 +20,8 @@ def c6_pin_contract():
     expected = {"rx": 17, "tx": 16, "baud": 460800, "reset": "EN", "boot": 9}
     require({key: plan.get(key) for key in expected} == expected,
             "C6 plan must use ROM RX17/TX16, 460800 baud, EN and BOOT9")
-    require(plan.get("board") == "Unexpected Maker TinyC6-U-01", "Wrong factory external-antenna C6 board")
+    require(plan.get("board") == BOARD and plan.get("sku") == SKU, "Wrong MC2-C TinyC6[D] board")
+    require(plan.get("antenna") == ANTENNA, "C6 requires the verified FXL6408 external antenna selector")
     require(plan.get("download_strap") == {"gpio": 8, "level": 1, "pullup_ohms": 10000,
                                          "rail": "C6_LOCAL_3V3", "header_pin": "10"},
             "C6 ROM download requires GPIO8 pulled high from the C6-local 3.3 V rail")
@@ -109,9 +111,9 @@ def verify_app_header(data):
     require(len(data) >= 24 and data[0] == 0xE9, "Invalid ESP application header")
     chip_id = struct.unpack_from("<H", data, 12)[0]
     minimum_revision = struct.unpack_from("<H", data, 15)[0]
-    require(chip_id == 0, "MC2-B application must target classic ESP32, never ESP32-S3")
-    require(minimum_revision == 300, "MC2-B application must require ESP32 ECO V3")
-    require(data[3] >> 4 == 3, "MC2-B application must declare 8 MB flash")
+    require(chip_id == 0, "MC2-C application must target classic ESP32, never ESP32-S3")
+    require(minimum_revision == 300, "MC2-C application must require ESP32 ECO V3")
+    require(data[3] >> 4 == 3, "MC2-C application must declare 8 MB flash")
     return {"chip_id": chip_id, "soc": "ESP32", "minimum_revision_full": minimum_revision,
             "flash_bytes": 8388608}
 

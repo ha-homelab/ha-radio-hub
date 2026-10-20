@@ -6,7 +6,7 @@ Module footprints use manufacturer hole centers; external modules use harnesses.
 import argparse, csv, json, uuid, re, math, hashlib
 from pathlib import Path
 import pcbnew as pcb
-from design import ROOT, parts, SOURCES, hostnames, c6names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES, BODY_BOUNDS, RF_POUR_ONLY_KEEPOUTS, USB_SOCKET_BOUNDS_LOCAL, BOARD_OUTLINE, MOUNT_REFS, RAIL_COPPER_KEEPOUTS, RF_PORTS
+from design import ROOT, parts, SOURCES, hostnames, c6names, WIZ_MECHANICS, BOARD_W, BOARD_H, MOUNT_HOLES, RF_KEEPOUTS, USB_ENVELOPES, BODY_BOUNDS, RF_POUR_ONLY_KEEPOUTS, USB_SOCKET_BOUNDS_LOCAL, BOARD_OUTLINE, MOUNT_REFS, RAIL_COPPER_KEEPOUTS, RF_PORTS, C6D_EVIDENCE
 ap=argparse.ArgumentParser(); ap.add_argument('--libraries', type=Path, required=True); a=ap.parse_args()
 LIB=a.libraries; LOCAL=ROOT/'MC2.pretty'; LOCAL.mkdir(exist_ok=True); BUILD=ROOT/'.build'; BUILD.mkdir(exist_ok=True)
 U=lambda s:str(uuid.uuid5(uuid.NAMESPACE_URL,'https://ha-radio-hub/MC2/'+s)); Q=lambda s:json.dumps(str(s))
@@ -25,8 +25,9 @@ def module_fp(name,pads,rect,description):
     if name=='XIAO_MG24':lines=[line.replace('(layer "F.SilkS")','(layer "F.Fab")') for line in lines]
     lines.append(')');(LOCAL/(name+'.kicad_mod')).write_text('\n'.join(lines)+'\n')
 module_fp('ESP32_DevKitC_VIE',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J2',0),('J3',25.40)] for i in range(19)],BODY_BOUNDS['U1'],'Espressif DevKitC V4 VIE;38 holes 2.54mm pitch;25.40mm rows;27.94x48.26mm PCB plus module projection; WROVER-IE external UFL')
-# Pad locations independently transcribed from manufacturer public TinyC6 footprint.
-module_fp('TinyC6_U',[(str(i+1),7.73,-13.936+i*2.54) for i in range(11)]+[(str(i+12),-7.51,14.004-i*2.54) for i in range(12)],BODY_BOUNDS['U2'],'Unexpected Maker TC6-U-01; 1x11 and1x12 rows15.24mm apart; nativeUSB; fixedexternalUFL; supplied maleheaders require soldering')
+# TinyC6[D] STEP hole centers retain the original public TinyC6 footprint grid;
+# c6d-evidence.json independently records the full D-series header contract.
+module_fp('TinyC6_D',[(str(i+1),7.73,-13.936+i*2.54) for i in range(11)]+[(str(i+12),-7.51,14.004-i*2.54) for i in range(12)],BODY_BOUNDS['U2'],'Unexpected Maker TC6D-01; 1x11 and1x12 rows15.24mm apart; nativeUSB; firmware selects externalUFL via FXL6408 XIO0; solder maleheaders')
 module_fp('XIAO_MG24',[(str(i+1),0,i*2.54) for i in range(7)]+[(str(14-i),15.24,i*2.54) for i in range(7)],(-1.27,-2.921,16.51,18.034),'Seeed official XIAO MG24 260114 nativePCB inner headerhole centers;15.24rowspacing;2.54pitch;D0pad1upperleft USBup;presoldered102010690')
 module_fp('WIZ850io',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J2',20.32)] for i in range(6)],(-1.34,-9.1,21.66,18.6),'WIZnet dimension and top-view pinmap;20.32rowspacing;2.54pitch;RJ45extends2.7mm beyond23x25PCB;direct pins')
 # RJ45 aperture edge and outward arrow are explicit assembly geometry, not copper.
@@ -78,9 +79,11 @@ for ix,p in enumerate(parts):
 (ROOT/'MC2.kicad_sym').write_text('(kicad_symbol_lib (version 20250114) (generator "kicad_symbol_editor")\n'+'\n'.join(symbols)+'\n)\n')
 (ROOT/'sym-lib-table').write_text('(sym_lib_table (version 7) (lib (name "MC2")(type "KiCad")(uri "${KIPRJMOD}/MC2.kicad_sym")(options "")(descr "MC2 all physical module pins")))\n')
 embed=[s.replace('(symbol "Module_', '(symbol "MC2:Module_',1) for s in symbols]
-sch=f'(kicad_sch (version 20250114) (generator "eeschema") (uuid "{rootid}") (paper "A3") (title_block (title "MC2-B ESP32 external antennas - engineering prototype") (date "2026-10-18") (rev "MC2-B") (comment 1 "Direct-solder THT male pins; all parts front; no carrier SMT") (comment 2 "External isolated fused 5V; separate peripheral 3V3; module 3V3 outputs never joined"))\n(lib_symbols\n'+'\n'.join(embed)+')\n'+'\n'.join(wires+labels+ncs+instances)+'\n)\n';(ROOT/'mc2.kicad_sch').write_text(sch)
+sch=f'(kicad_sch (version 20250114) (generator "eeschema") (uuid "{rootid}") (paper "A3") (title_block (title "MC2-C ESP32 external antennas - engineering prototype") (date "2026-10-19") (rev "MC2-C") (comment 1 "Direct-solder THT male pins; all parts front; no carrier SMT") (comment 2 "External isolated fused 5V; separate peripheral 3V3; module 3V3 outputs never joined"))\n(lib_symbols\n'+'\n'.join(embed)+')\n'+'\n'.join(wires+labels+ncs+instances)+'\n)\n';(ROOT/'mc2.kicad_sch').write_text(sch)
 
-board=pcb.BOARD(); board.SetCopperLayerCount(2); st=board.GetDesignSettings(); st.m_TrackMinWidth=pcb.FromMM(.2);st.m_MinClearance=pcb.FromMM(.2);st.m_ViasMinSize=pcb.FromMM(.8);st.m_MinThroughDrill=pcb.FromMM(.4)
+board=pcb.BOARD(); board.SetCopperLayerCount(2);
+title=board.GetTitleBlock(); title.SetTitle("MC2-C ESP32 and TinyC6[D] external-antenna carrier"); title.SetRevision("MC2-C"); title.SetDate("2026-10-19"); board.SetTitleBlock(title)
+st=board.GetDesignSettings(); st.m_TrackMinWidth=pcb.FromMM(.2);st.m_MinClearance=pcb.FromMM(.2);st.m_ViasMinSize=pcb.FromMM(.8);st.m_MinThroughDrill=pcb.FromMM(.4)
 nets={}
 for p in parts:
     for n in p['pins'].values():
@@ -110,7 +113,7 @@ for p,q in zip(BOARD_OUTLINE,BOARD_OUTLINE[1:]+BOARD_OUTLINE[:1]):
 for i,(x,y) in enumerate(MOUNT_HOLES,1):
     fp=pcb.FOOTPRINT(board);fp.SetReference(MOUNT_REFS[i-1]);fp.SetValue('M2.5 NYLON NPTH');fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));fp.Reference().SetVisible(False);fp.Value().SetVisible(False);fp.SetAttributes(pcb.FP_EXCLUDE_FROM_BOM|pcb.FP_EXCLUDE_FROM_POS_FILES|pcb.FP_BOARD_ONLY)
     pd=pcb.PAD(fp);pd.SetAttribute(pcb.PAD_ATTRIB_NPTH);pd.SetShape(pcb.PAD_SHAPE_CIRCLE);pd.SetSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetDrillSize(pcb.VECTOR2I(pcb.FromMM(2.7),pcb.FromMM(2.7)));pd.SetLayerSet(pcb.LSET.AllCuMask());fp.Add(pd);board.Add(fp)
-for txt,x,y,size in [('MC2-B ESP32',22,85,1),(f'{BOARD_W} x {BOARD_H}',22,89,1)]:
+for txt,x,y,size in [('MC2-C ESP32',22,85,1),(f'{BOARD_W} x {BOARD_H}',22,89,1)]:
     t=pcb.PCB_TEXT(board);t.SetText(txt);t.SetPosition(pcb.VECTOR2I(pcb.FromMM(x),pcb.FromMM(y)));t.SetTextSize(pcb.VECTOR2I(pcb.FromMM(size),pcb.FromMM(size)));t.SetTextThickness(pcb.FromMM(.13));t.SetLayer(pcb.F_SilkS);board.Add(t)
 # Optional RF exclusions. MC2 uses external radiators for all three radios.
 for bounds in RF_KEEPOUTS:
@@ -171,16 +174,16 @@ def global_bounds(p,rect):
     return [round(min(v[0] for v in points),4),round(min(v[1] for v in points),4),round(max(v[0] for v in points),4),round(max(v[1] for v in points),4)]
 for p in ledger:
     p['body_bounds_global_mm']=global_bounds(p,p['body_bounds_local_mm']) if p['body_bounds_local_mm'] else None
-stack={'carrier_nominal_thickness_mm':1.6,'all_parts_front':True,'front_module_gap_measured_mm':None,'physical_fit_qualified':False,'assembly_order':['Solder supplied TinyC6 1x11 and1x12 headers; inspect','Fit low axial parts and all male harness headers; solder from back','Fit all four modules; solder from back','Fit three pigtails and secure cable strain relief'],'acceptance':'No front/rear component body overlap; verify module/header seating, solder tails, pigtail engagement, jack support and case clearance physically.'}
+stack={'carrier_nominal_thickness_mm':1.6,'all_parts_front':True,'front_module_gap_measured_mm':None,'physical_fit_qualified':False,'assembly_order':['Solder TinyC6[D] 1x11 and1x12 male headers; inspect','Fit low axial parts and all male harness headers; solder from back','Fit all four modules; solder from back','Fit three pigtails and secure cable strain relief'],'acceptance':'No front/rear component body overlap; verify module/header seating, solder tails, pigtail engagement, jack support and case clearance physically.'}
 physical_shells={p['ref']:global_bounds(p,USB_SOCKET_BOUNDS_LOCAL[p['ref']]) for p in ledger if p['ref'] in USB_SOCKET_BOUNDS_LOCAL}
-metadata=dict(schema_version=1,revision='MC2-B',status='engineering_prototype_not_fabrication_release',board=dict(width_mm=BOARD_W,height_mm=BOARD_H,outline_mm=BOARD_OUTLINE,area_mm2=10000,copper_layers=2,assembly='All components front; direct-solder male headers; TinyC6 headers supplied loose',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={'stack':stack,'rj45':rj45,'usb_service_envelopes_mm':USB_ENVELOPES,'physical_usb_shells_mm':physical_shells,'header_mating_envelopes_mm':headers,'rf_copper_keepouts_mm':RF_KEEPOUTS,'rf_ports':RF_PORTS,'mounting_holes_mm':MOUNT_HOLES,'mounting_hole_refs':MOUNT_REFS,'mounting':{'drill_mm':2.7,'hardware':'4 nylon M2.5 PCB supports, maximum5mm head; separate case support and RJ45 cradle'}},parts=ledger)
+metadata=dict(schema_version=1,revision='MC2-C',status='prototype_fabrication_candidate',board=dict(width_mm=BOARD_W,height_mm=BOARD_H,outline_mm=BOARD_OUTLINE,area_mm2=10000,copper_layers=2,assembly='All components front; direct-solder male headers; TinyC6[D] male headers must be fitted',signal_track_mm=.25,power_track_mm=.8,via_diameter_mm=.8,via_drill_mm=.4),sources=SOURCES,mechanics={'stack':stack,'module_geometry':{'U2':C6D_EVIDENCE['mechanics']},'rj45':rj45,'usb_service_envelopes_mm':USB_ENVELOPES,'physical_usb_shells_mm':physical_shells,'header_mating_envelopes_mm':headers,'rf_copper_keepouts_mm':RF_KEEPOUTS,'rf_ports':RF_PORTS,'mounting_holes_mm':MOUNT_HOLES,'mounting_hole_refs':MOUNT_REFS,'mounting':{'drill_mm':2.7,'hardware':'4 nylon M2.5 PCB supports, maximum5mm head; separate case support and RJ45 cradle'}},parts=ledger)
 (ROOT/'design.json').write_text(json.dumps(metadata,indent=2)+'\n')
-(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC2-B',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
+(ROOT/'connectors.json').write_text(json.dumps(dict(schema_version=1,revision='MC2-C',connectors=[r for r in ledger if r['ref'].startswith(('U','J'))]),indent=2)+'\n')
 nets_ledger={}
 for p in ledger:
     for num,net in p['pins'].items():
         if net:nets_ledger.setdefault(net,[]).append(p['ref']+'.'+num)
-(ROOT.parent/'wiring.json').write_text(json.dumps(dict(revision='MC2-B',source='cad/design.py',source_sha256=hashlib.sha256((ROOT/'design.py').read_bytes()).hexdigest(),nets=nets_ledger),indent=2)+'\n')
+(ROOT.parent/'wiring.json').write_text(json.dumps(dict(revision='MC2-C',source='cad/design.py',source_sha256=hashlib.sha256((ROOT/'design.py').read_bytes()).hexdigest(),nets=nets_ledger),indent=2)+'\n')
 with (ROOT/'BOM.csv').open('w',newline='') as f:
     w=csv.writer(f);w.writerow(['Reference','Quantity','Fitted','Part / module','Carrier footprint','Side','Assembly note','Source'])
     for p in parts:w.writerow([p['ref'],int(p['fitted']),str(p['fitted']).lower(),p['model'],p['footprint'],p['side'].capitalize(),p['notes'],SOURCES.get(p['source'],'')])

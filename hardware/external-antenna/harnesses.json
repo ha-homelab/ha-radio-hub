@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": "MC2-B",
+  "revision": "MC2-C",
   "source": "../../docs/full-hub-assembly.md",
   "orientation": "Carrier component-side view, in the same orientation as the native assembly drawing. The square pad is pin 1. Looking into a cable socket reverses the apparent order; identify contacts by continuity, not by wire colour.",
   "harnesses": [

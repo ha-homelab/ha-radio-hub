@@ -1,7 +1,7 @@
 # Connecting to Home Assistant — historical Pi design
 
 <!-- MC2-CURRENT-DESIGN -->
-> **Historical Pi design.** For the active **MC2-B / FH1** build, follow
+> **Historical Pi design.** For the active **MC2-C / FH1** build, follow
 > [Start here](start-here.md#5-bring-up-one-service-at-a-time) for Home Assistant
 > endpoints and commissioning, and [full-hub assembly](full-hub-assembly.md)
 > for wiring. The Pi addresses, `ser2net` setup and ESPHome node names below

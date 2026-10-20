@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import struct
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -41,9 +42,19 @@ class UpdateImageTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.image = Path(self.tmp.name) / "app.bin"
         self.report = Path(self.tmp.name) / "report.json"
-        data = b"\xe9" + b"a" * 63
+        data = bytearray(288)
+        data[0] = 0xE9
+        data[3] = 0x30
+        struct.pack_into("<H", data, 12, 13)
+        struct.pack_into("<I", data, 32, 0xABCD5432)
+        version = update.APP_VERSION.encode()
+        data[48:48 + len(version)] = version
+        data[80:90] = b"esp_ot_rcp"
         self.image.write_bytes(data)
-        self.metadata = {"rom_uart_connected": True, "application_flash_offset": 65536,
+        self.metadata = {"board": update.BOARD, "board_sku": update.SKU,
+                         "hardware_revision": "MC2-C", "antenna": dict(update.ANTENNA),
+                         "application_header": update.verify_c6_image(data),
+                         "rom_uart_connected": True, "application_flash_offset": 65536,
                          "required_download_strap": {"gpio": 8, "level": 1, "pullup_ohms": 10000,
                                                      "rail": "C6_LOCAL_3V3", "header_pin": "10"},
                          "sdkconfig_verified": {"CONFIG_IDF_TARGET": '"esp32c6"',
@@ -52,7 +63,7 @@ class UpdateImageTests(unittest.TestCase):
         self.save()
     def save(self): self.report.write_text(json.dumps(self.metadata))
     def test_matching_application(self):
-        self.assertEqual(update.checked_image("c6", self.image, self.report)["bytes"], 64)
+        self.assertEqual(update.checked_image("c6", self.image, self.report)["bytes"], 288)
     def test_tampered_image(self):
         self.image.write_bytes(b"\xe9" + b"b" * 63)
         with self.assertRaises(ValueError): update.checked_image("c6", self.image, self.report)
@@ -66,6 +77,40 @@ class UpdateImageTests(unittest.TestCase):
         del self.metadata["required_download_strap"]
         self.save()
         with self.assertRaisesRegex(ValueError, "GPIO8 pull-up"):
+            update.checked_image("c6", self.image, self.report)
+
+    def test_obsolete_board_and_unlabelled_reports_are_rejected(self):
+        for sku in (None, "TC6-U-01"):
+            self.metadata["board_sku"] = sku
+            self.save()
+            with self.assertRaisesRegex(ValueError, "TC6D-01"):
+                update.checked_image("c6", self.image, self.report)
+
+    def test_onboard_antenna_and_wrong_expander_are_rejected(self):
+        for key, value in (("mode", "onboard"), ("i2c_address", 0x44),
+                           ("sda", 7), ("select_pin", "GPIO0"),
+                           ("initialized_before_radio", False)):
+            self.metadata["antenna"] = dict(update.ANTENNA) | {key: value}
+            self.save()
+            with self.assertRaisesRegex(ValueError, "FXL6408"):
+                update.checked_image("c6", self.image, self.report)
+
+    def test_renamed_obsolete_image_is_rejected_even_with_matching_hash(self):
+        data = bytearray(self.image.read_bytes())
+        data[48:80] = b"1" + bytes(31)
+        self.image.write_bytes(data)
+        self.metadata["artifacts"]["esp_ot_rcp.bin"]["sha256"] = hashlib.sha256(data).hexdigest()
+        self.save()
+        with self.assertRaisesRegex(ValueError, "identify the MC2-C"):
+            update.checked_image("c6", self.image, self.report)
+
+    def test_wrong_chip_header_is_rejected_even_with_matching_metadata(self):
+        data = bytearray(self.image.read_bytes())
+        struct.pack_into("<H", data, 12, 9)
+        self.image.write_bytes(data)
+        self.metadata["artifacts"]["esp_ot_rcp.bin"]["sha256"] = hashlib.sha256(data).hexdigest()
+        self.save()
+        with self.assertRaisesRegex(ValueError, "target ESP32-C6"):
             update.checked_image("c6", self.image, self.report)
 
     def test_old_wrong_uart(self):
@@ -177,7 +222,7 @@ class UpdateTunnelTests(unittest.IsolatedAsyncioTestCase):
 
 
 class HubConnectionTests(unittest.IsolatedAsyncioTestCase):
-    def test_client_binds_to_mc2b_identity_and_expected_mac(self):
+    def test_client_binds_to_classic_host_identity_and_expected_mac(self):
         client = Mock()
         with patch.dict(sys.modules, {"aioesphomeapi": SimpleNamespace(APIClient=client)}):
             update.HubAPI("hub.invalid", "test-key", "AA:BB:CC:DD:EE:FF")

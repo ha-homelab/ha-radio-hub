@@ -1,4 +1,4 @@
-# MC2-B verification record
+# MC2-C verification record
 
 Review date: 19 October 2026. This record describes **digital verification of an
 engineering prototype**. No assembled MC2 board was powered, flashed or connected
@@ -13,26 +13,34 @@ compares the generated connector/BOM ledgers and native copper/pad topology afte
 regenerating from source and the frozen routing session. Source hashes bind the
 record to the tested revision; object UUIDs are not treated as geometry.
 
-Independent review checked the ESP32-DevKitC-VIE's 38 physical header positions and the original
-TinyC6's 23 positions against manufacturer drawings. The C6 review found a missing
-GPIO8 boot strap: **R3, 10 kΩ, now connects GPIO8 to the C6's own local 3.3 V rail**.
-That rail is separate from peripheral 3.3 V. Loose-module programming requires
-the temporary equivalent pull-up before carrier assembly. The XIAO RF connector's
-estimated cable endpoint was also checked against the actual connector location;
-these estimates still require measurement on delivered modules. MC2-B adds R4/R5, 10 kΩ pull-downs on GPIO12/SCK and GPIO2/MOSI. The former preserves 3.3 V VDD_SDIO; the latter permits serial recovery. WIZ850io v1.1 has no pull-ups on those two input nets. Actual CC1101 modules and warm/cold boot behavior still require inspection and testing.
+Independent review checked the ESP32-DevKitC-VIE's 38 physical header positions
+and TinyC6[D]'s 23 positions against manufacturer source files. MC2-C uses
+**TC6D-01**. Its connected pads preserve RX17/TX16, EN, BOOT9, power and the
+GPIO8 strap; unused pad17 is now GPIO10. The updated body and USB envelopes and
+U.FL center come from the pinned Series D STEP model. The exact source hashes,
+transformation and pin ledger are in [the C6[D] evidence](cad/c6d-evidence.json).
+
+**R3, 10 kΩ**, connects GPIO8 to the C6's own local 3.3 V rail, separate from
+peripheral 3.3 V. Loose-module programming requires the temporary equivalent
+pull-up. R4/R5 remain 10 kΩ pull-downs on host GPIO12/SCK and GPIO2/MOSI, preserving
+3.3 V VDD_SDIO and serial recovery. WIZ850io v1.1 has no pull-ups on those inputs.
+Actual CC1101 modules and warm/cold boot behaviour still require inspection.
 
 ## Firmware
 
 Actual build reports are retained for:
 
-- [MC2-B ESP32](../../firmware/external-antenna/build-evidence.json): all 21 application
+- [MC2-C ESP32](../../firmware/external-antenna/build-evidence.json): all 21 application
   GPIO, shared SPI, three legacy BLE4.2 connections, C6 update API and memory layout.
   The report records the actual linked application and partition sizes. Static
   RAM allocation is not a measurement of runtime free heap or simultaneous-load peaks.
   BLE5 extended advertisements and Coded PHY are not supported by this older SoC.
-- [C6 RCP](../../firmware/external-antenna/c6-build-evidence.json): 235,456-byte
+- [C6 RCP](../../firmware/external-antenna/c6-build-evidence.json): 257,552-byte
   application, ESP-IDF 5.5.5, 8 MB flash, ROM-compatible RX17/TX16 and required
-  GPIO8 high/BOOT9 low entry contract.
+  GPIO8 high/BOOT9 low entry contract. The MC2-C image identifies TC6D-01, initializes
+  the FXL6408 antenna selector before radio startup, and fails closed on I²C,
+  device-identity or configuration-register readback errors. Input-status registers
+  do not report driven outputs and are deliberately excluded from this check.
 - [External MG24](../../firmware/module-carrier/zigbee/build-evidence-external.json)
   and [onboard MG24](../../firmware/module-carrier/zigbee/build-evidence-onboard.json):
   both builds and bootloader/application conversions passed. The regenerated
@@ -55,6 +63,10 @@ scope. Physical measurements remain unverified: nominal or allocated heights,
 unselected accessory SKUs and routing allowances are not measurements of the
 delivered assembly. STL validity does not prove a successful print, load
 capacity, connector engagement, radar-window performance or thermal accuracy.
+For MC2-C, the corrected TinyC6[D] U.FL endpoint gives a modelled Thread coax
+route of 100.203 mm, or 125.203 mm with the 25 mm slack allowance. The selected
+150 mm cable remains within budget. The 215 × 215 × 78 mm main shell and its
+module mounts need no enlargement.
 The [earlier carrier-only evidence](../../mechanical/module-carrier/external-antenna-prototype/verification.json)
 remains tied to the smaller historical housing.
 

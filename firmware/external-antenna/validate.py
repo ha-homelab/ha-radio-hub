@@ -71,7 +71,7 @@ def verify(profile: Path):
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.9.1","esp_idf":"5.5.5",
-            "profile":"MC2-B classic ESP32 external antenna", "board":"ESP32-DevKitC-VIE",
+            "profile":"MC2-C classic ESP32 external antenna", "board":"ESP32-DevKitC-VIE",
             "sdkconfig_verified":required,"artifacts":artifacts,"c6_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "uart_source_sha256":uart_checks,"application_header":header,
@@ -87,7 +87,7 @@ def verify(profile: Path):
                          "hardware_tested":False},
             "framework_cache_manually_modified":False,"sdk_patches_applied":False}
     result["recipe_sha256"] = {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
-                               for name in ("hub.yaml", "health.yaml", "pin-plan.json", "mc2_contract.py", "validate.py")}
+                               for name in ("hub.yaml", "health.yaml", "pin-plan.json", "mc2_contract.py", "c6_identity.py", "validate.py")}
     (profile.parent/"build-result.json").write_text(json.dumps(result,indent=2)+"\n")
     return result
 

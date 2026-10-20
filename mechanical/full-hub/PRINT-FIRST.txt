@@ -1,5 +1,8 @@
-FH1-MC2-B PRINT PACKAGE — READ BEFORE SLICING
+FH1-MC2-C PRINT PACKAGE — READ BEFORE SLICING
 Engineering prototype. Digital checks do not verify physical fit.
+For MC2-C with TinyC6[D] TC6D-01, ESP32-DevKitC-VIE and XIAO MG24.
+The Series D Thread radio needs the MC2-C RCP firmware to select
+its external U.FL antenna; the original TC6-U-01 firmware will not.
 
 1. Print fit-coupon.stl and zwave-tray.stl FIRST.
    With power disconnected, check the real ZAC93 underside socket,

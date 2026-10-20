@@ -1,6 +1,6 @@
-# MC2-B: exact radio and antenna shopping list
+# MC2-C: exact radio and antenna shopping list
 
-Checked **18 October 2026** for one MC2 hub. This is the radio/antenna purchase
+Updated **19 October 2026** for one MC2-C hub. This is the radio/antenna purchase
 list, not the complete hub BOM. The [carrier BOM](../hardware/external-antenna/cad/BOM.csv),
 [RF BOM](../hardware/external-antenna/rf-bom.json) and
 [assembly guide](external-antennas.md) remain the engineering references.
@@ -21,29 +21,34 @@ discount eligibility, tax, delivery and stock can change.
    [Mouser exact-part listing](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D)
    was indexed at **$9.48 for one** on 18 October 2026. Its live page blocked
    automated rechecking, so confirm the current offer, stock and delivery at
-   checkout. No exact AliExpress VIE variant has been qualified for MC2-B.
+   checkout. No exact AliExpress VIE variant has been qualified for MC2-C.
    The previous S3 offer was $15.20 promotional / $22.00 crossed-out price,
    before $5.93 shipping: the observed board-only reduction is $5.72 (37.6%)
    against that promotional price, **not a delivered-cost quote**.
-   This purchase requires the **MC2-B** carrier and initial USB-UART flash;
+   This purchase requires the **MC2-C** carrier and initial USB-UART flash;
    it is not a drop-in replacement on the older MC2-A PCB.
 
-2. **1 × Unexpected Maker TinyC6 with fixed U.FL, order code TC6-U-01**.
-   Project documents call this **TinyC6-U-01**. It is the original board with
-   8 MB flash, native USB and supplied loose 1×12 + 1×11 headers.
-   It runs the dedicated Thread RCP. **AliExpress supply was not found and
-   immediate availability remains unconfirmed.**
-   [Mouser exact-part listing](https://www.mouser.com/en/ProductDetail/Unexpected-Maker/TC6-U-01?qs=Z%252BL2brAPG1IKH7BFgNUR0g%3D%3D)
-   was previously on backorder; its live stock page could not be rechecked.
-   The fresh [Kamami listing](https://kamami.pl/en/retired-products/1201003-tinyc6-esp32-c6-development-board-with-esp32-c6-module-ufl-connector-5902186336612.html)
-   now redirects into retired products. Old search snippets showing stock are
-   not a purchase confirmation. Secure an actual TC6-U-01 before ordering
-   carriers. Do not substitute TC6-01, TinyC6[D]/TC6D-01, XIAO ESP32C6,
-   ESP32-C6 SuperMini or an H2 board: the present carrier and firmware are
-   tied to this layout. [Original manufacturer design files](https://github.com/UnexpectedMaker/esp32c6)
-   document the original board; the newer
-   [Series D antenna selection](https://unexpectedmaker.com/getting-started.php?mcu=esp32c6)
-   uses a different software-controlled RF path.
+2. **1 × Unexpected Maker TinyC6[D], order code TC6D-01**.
+   Buy the finished development board with 8 MB flash, native USB and its
+   supplied loose 1×12 + 1×11 male headers. The
+   [manufacturer's exact product](https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851)
+   showed **USD $18.00 and 48 in stock on 19 October 2026**. It ships from
+   Melbourne, Australia; delivery, tax and any import fees are additional and
+   have not been quoted. Stock is an observation, not a reservation.
+   Leave the extra female-header and antenna options unchecked: this carrier
+   uses direct-solder male headers and the specified SMA pigtail/antenna below.
+   Do not fit the supplied battery connector or a LiPo.
+
+   This is the **MC2-C** Thread RCP target. Its onboard antenna is selected at
+   reset; our matching firmware selects and verifies the external U.FL path
+   through **FXL6408 XIO0**, on the C6's own I²C bus (SDA6/SCL7, address 0x43),
+   before starting Thread. This bus is separate from the host's sensor bus.
+   Use the [MC2-C firmware instructions](../firmware/external-antenna/README.md);
+   an original TinyC6 RCP binary is not an acceptable substitute.
+   [Pinned manufacturer files](https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3)
+   define this board. The old **TC6-U-01** is no longer the shopping target:
+   Mouser's US listing now marks it obsolete and unavailable in the region.
+   XIAO ESP32C6, ESP32-C6 SuperMini and H2 boards are not pin-compatible substitutes.
 
 3. **1 × Seeed Studio XIAO MG24, pre-soldered, SKU 102010690**.
    This is a Silicon Labs EFR32MG24 board, **not an ESP32**. It runs our
@@ -96,11 +101,11 @@ ZAC93 keeps its original regional antenna and LD2450 its printed radar array.
 
 ## Before committing the full parts order
 
-The unresolved item is **the original TC6-U-01**. The board design is digitally
-checked, but that does not establish supply. If the original cannot be sourced,
-the next engineering step is to qualify an available C6 board and update the
-carrier, recovery wiring and firmware together. Ordering a lookalike first does
-not resolve this dependency.
+Order the **MC2-C fabrication package**, with **TC6D-01** as U2. MC2-B is the
+previous fixed-antenna TinyC6 assembly. The [revision and ordering record](pcb-order.md)
+ties the current PCB, firmware and enclosure together. Start with five bare
+PCBs and components for one complete prototype; the extra PCBs are spares, not a
+reason to buy five untested sets of electronics.
 
 Also retain or source **1 × WIZ850io**, the isolated PoE splitter, regulated
 5 V/3.3 V supplies, fuses, DFR0627, regional ZAC93, CC1101, LD2450, BME680 and

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
 <style>text{font-family:Arial,sans-serif;fill:#e7f0f5}.h{font-size:27px;font-weight:bold}.s{font-size:18px}.n{font-size:15px}</style>
 <rect width="1400" height="1000" fill="#10202e"/>
-<text x="40" y="45" class="h">FH1 full-hub enclosure · MC2-B + Z-Wave + RF + radar + ambient sensors</text>
+<text x="40" y="45" class="h">FH1 full-hub enclosure · MC2-C + Z-Wave + RF + radar + ambient sensors</text>
 <text x="40" y="79" class="s">Top view, lid removed. Solid areas are component envelopes; dashed areas are reserved access/cable space.</text>
 <rect x="50" y="120" width="645" height="645" fill="#263f4e" stroke="#7b9caa" stroke-width="8"/>
 <rect x="92" y="222" width="300.0" height="306.0" fill="#23725c" stroke="#d2e1e8" stroke-dasharray="0"/>
@@ -27,7 +27,7 @@
 <rect x="266" y="528" width="81" height="108" fill="none" stroke="#edc27a" stroke-width="2" stroke-dasharray="6 4"/>
 <rect x="575" y="366" width="111" height="126" fill="none" stroke="#edc27a" stroke-width="2" stroke-dasharray="6 4"/>
 <polyline points="155,129 155,174 155,198 167,270 167,270" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
-<polyline points="350,129 350,174 350,198 269,351 269,351" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
+<polyline points="350,129 350,174 350,198 236.87,360.75600000000003 236.87,360.75600000000003" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="545,129 545,174 545,198 425,198 329,315 329,315" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="303.5,531 303.5,612 494,612 494,699 437,699" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
 <polyline points="416,360 416,573" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>
@@ -45,7 +45,7 @@
 <text x="155" y="108" class="n" text-anchor="middle">BLE</text>
 <text x="350" y="108" class="n" text-anchor="middle">THREAD</text>
 <text x="545" y="108" class="n" text-anchor="middle">ZIGBEE</text>
-<text x="900" y="140" class="s">1. MC2-B carrier + U1–U4</text>
+<text x="900" y="140" class="s">1. MC2-C carrier + U1–U4</text>
 <text x="900" y="165" class="n">Envelope 100 × 102 × 30 mm</text>
 <text x="900" y="202" class="s">2. Isolated PoE splitter</text>
 <text x="900" y="227" class="n">Envelope 102.5 × 29.6 × 24.8 mm</text>
