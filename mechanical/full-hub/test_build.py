@@ -67,7 +67,7 @@ class FullHubTests(unittest.TestCase):
         ids={v['id']for v in self.checks['routes']}
         self.assertNotIn('wk2132-zac93-uart',ids)
         self.assertNotIn('fuse-buck-input',ids)
-        self.assertTrue({'j3-wk2132','j4-zac93','j5-cc1101','j2-buck','poe-dc-adapter','dc-adapter-fuse','fuse-j1','ambient-harness','radar-service-loop','ethernet'}<=ids)
+        self.assertLessEqual({'j3-wk2132','j4-zac93','j5-cc1101','j2-buck','poe-dc-adapter','dc-adapter-fuse','fuse-j1','ambient-harness','radar-service-loop','ethernet'},ids)
         for route in self.checks['routes']:
             self.assertGreater(route['length_mm'],0)
             self.assertEqual(len(route['segment_envelopes_mm']),len(route['points_mm'])-1)

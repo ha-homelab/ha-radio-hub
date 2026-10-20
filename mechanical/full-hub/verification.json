@@ -3,8 +3,8 @@
   "status": "digitally_checked_prototype_physical_fit_unverified",
   "native_pcb_revision": "MC2-B",
   "source_sha256": {
-    "build.py": "a32358759fe6665799f425c3768deb7f4b4b3ef51172242c9a30918f17370b75",
-    "test_build.py": "5ca8a3162b6e235983d4010c842c45771c1ccbabf671b5b66cffc3c8fcce1ccf",
+    "build.py": "c6e88b80b6507380c7552de18cadb1146cdbb8d5b9e305f663b7d872f5ef8b55",
+    "test_build.py": "3f4b693df7a6c83602fccb69a93e73f6f2a944ea53320c9a868c2ad144ae7e93",
     "parameters.json": "2027523422ae8fa3a922c806583b38acc2fade3c96d2aaacd54e6e1e1b73301c",
     "components.json": "9c4c129a7628862f08a6f9feadb0e56e93fcc452cfafc262eb4f9897f7ad7dc4",
     "mc2.kicad_pcb": "3f8c4497140c946b53162c7ee87e7adb0259c2a0f6a31820d07f05b26d73e1e5",

@@ -188,7 +188,7 @@ def geometry(p,m,s):
     # Arms below the pod floor; a thin wall tab remains beside it.
     arm_poses=[((0,0,0),(W,y-4,13)) for y in [147,171]]
     poses['pod-arm']=arm_poses[0]
-    po=p['pod']['origin'];pw,pd,ph=p['pod']['size'];pt=2
+    po=p['pod']['origin'];pw,pd,ph=p['pod']['size']
     pod=c.subtract(c.box(pw,pd,ph-2),c.box(pw-4,pd-4,ph).move((2,2,2)))
     podcorners=[(4,4),(pw-4,pd-4)]
     pod=c.union(pod,*[c.cylinder(6,ph-2).move((x,y,0)) for x,y in podcorners])
@@ -268,7 +268,7 @@ def capsule(a,b,r):
 
 def validate(p,m,s,g):
     W,D,H=p['case']['width'],p['case']['length'],p['case']['height'];t=p['case']['wall'];f=p['case']['floor']
-    main=[t,t,f,W-t,D-t,H];boxes=g['bounds'];rows=[]
+    main=[t,t,f,W-t,D-t,H];boxes=g['bounds']
     for key,bb in boxes.items():
         space=main if key!='bme680' else bounds([v+2 for v in p['pod']['origin']],[p['pod']['size'][i]-4 for i in range(3)])
         assert contains(space,bb),f'{key} body exceeds its enclosure: {bb} not in {space}'
@@ -408,7 +408,7 @@ def svg(p,m,g,checks):
        '<text x="40" y="79" class="s">Top view, lid removed. Solid areas are component envelopes; dashed areas are reserved access/cable space.</text>',
        f'<rect x="{ox}" y="{oy}" width="{W*scale}" height="{D*scale}" fill="#263f4e" stroke="#7b9caa" stroke-width="8"/>']
     for key,bb in g['bounds'].items():
-        x,y,z,x2,y2,z2=bb
+        x,y,x2,y2=bb[0],bb[1],bb[3],bb[4]
         a.append(f'<rect x="{ox+x*scale}" y="{oy+y*scale}" width="{(x2-x)*scale}" height="{(y2-y)*scale}" fill="{COLORS[key]}" stroke="#d2e1e8" stroke-dasharray="{6 if key=="ld2450" else 0}"/>')
         num=list(g['bounds']).index(key)+1
         a.append(f'<text x="{ox+(x+x2)/2*scale}" y="{oy+(y+y2)/2*scale}" text-anchor="middle" class="s">{num}</text>')
@@ -418,9 +418,9 @@ def svg(p,m,g,checks):
         pts=' '.join(f'{ox+pt[0]*scale},{oy+pt[1]*scale}' for pt in row['points_mm'])
         a.append(f'<polyline points="{pts}" fill="none" stroke="#92cdd2" stroke-width="3" stroke-dasharray="4 5"/>')
     for port in p['rf_ports']:
-        x,y,z=port['center'];a.append(f'<text x="{ox+x*scale}" y="{oy-12}" class="n" text-anchor="middle">{port["label"]}</text>')
-    for i,(key,bb) in enumerate(g['bounds'].items()):
-        yy=140+i*62;size=m[key]['design_envelope_mm'];x,y,z=bb[:3]
+        x=port['center'][0];a.append(f'<text x="{ox+x*scale}" y="{oy-12}" class="n" text-anchor="middle">{port["label"]}</text>')
+    for i,key in enumerate(g['bounds']):
+        yy=140+i*62;size=m[key]['design_envelope_mm']
         a += [f'<text x="900" y="{yy}" class="s">{i+1}. {html.escape(LABELS[key])}</text>',f'<text x="900" y="{yy+25}" class="n">Envelope {size[0]:g} × {size[1]:g} × {size[2]:g} mm</text>']
     a += ['<text x="40" y="840" class="s">215 × 215 × 78 mm main case; attached ambient pod extends overall width to 277 mm.</text>',
           '<text x="40" y="873" class="s">ZAC93: 2×5 socket faces downward into the open cradle; stock antenna faces the plastic right wall.</text>',
