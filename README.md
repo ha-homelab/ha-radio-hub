@@ -37,6 +37,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 `--port 0` if the default local port is occupied.
 
 [Start here](docs/start-here.md) ·
+[Versioned engineering build package](docs/releases.md) ·
 [Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip) ·
 [Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
 [Documentation index](docs/README.md)
