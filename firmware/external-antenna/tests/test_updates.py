@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("mc2_update", ROOT / "updates/update.py")
 update = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(update)
+from c6_identity import APP_VERSION
 
 class UpdatePolicyTests(unittest.TestCase):
     @classmethod
@@ -47,7 +48,7 @@ class UpdateImageTests(unittest.TestCase):
         data[3] = 0x30
         struct.pack_into("<H", data, 12, 13)
         struct.pack_into("<I", data, 32, 0xABCD5432)
-        version = update.APP_VERSION.encode()
+        version = APP_VERSION.encode()
         data[48:48 + len(version)] = version
         data[80:90] = b"esp_ot_rcp"
         self.image.write_bytes(data)

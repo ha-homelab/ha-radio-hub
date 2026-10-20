@@ -15,7 +15,7 @@ import sys
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
-from c6_identity import ANTENNA, APP_VERSION, BOARD, SKU, verify_c6_image
+from c6_identity import ANTENNA, BOARD, SKU, verify_c6_image
 
 
 def normalized_mac(value):
