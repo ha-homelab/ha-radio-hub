@@ -6,6 +6,7 @@ The current engineering prototype uses an ESP32-DevKitC-VIE (WROVER-IE, 8 MB fla
 - [Full device assembly and ZAC93 pin map](../../docs/full-hub-assembly.md)
 - [Exploded enclosure, all component mounts and print files](../../mechanical/full-hub/README.md)
 - [Full-hub wiring drawing](full-hub-wiring.svg)
+- [RECOM power wiring](power-wiring.svg) and [current power budget](power-design.json)
 - [Exact shopping list and AliExpress checks](../../docs/mc2-shopping.md)
 - [Historical MC2-A appearance concepts and provenance](images/README.md)
 - [Editable carrier, exact pinout, assembly and checks](cad/README.md)
@@ -16,3 +17,8 @@ The current engineering prototype uses an ESP32-DevKitC-VIE (WROVER-IE, 8 MB fla
 - [Net wiring](wiring.json), [physical connector coordinates](cad/connectors.json)
 
 This is a routed design package, not a claim of measured RF coverage or approved hardware. The MC2-C selection replaces the obsolete original TinyC6 with the available TC6D-01 and matching antenna-switch firmware. See the [prototype ordering record](../../docs/pcb-order.md). Fit and RF acceptance must be completed on the physical assembly.
+
+The current **PWR1 off-board power assembly** replaces Pololu D24V22F3 with
+RECOM R-78K3.3-1.0 plus a 27 µF input capacitor. The MC2-C copper and J2 pinout
+are unchanged. The frozen native CAD's former converter description is historical;
+use the current shopping list and full-hub assembly instructions for this harness.

@@ -26,7 +26,8 @@ Check the labels on the four carrier modules:
 - **U3: Seeed XIAO MG24**, pre-soldered SKU 102010690, for external-antenna Zigbee.
 - **U4: WIZ850io**, the data-only SPI Ethernet module.
 
-The off-carrier parts include the isolated 5 V PoE splitter, 3.3 V buck,
+The off-carrier parts include the isolated 5 V PoE splitter, **RECOM R-78K3.3-1.0
+3.3 V buck with its 27 µF input capacitor and perfboard mount**,
 DFR0627 UART bridge, regional **Zooz ZAC93**, CC1101 and its 433.92 MHz antenna,
 LD2450 and BME680. The ZAC93 is already received for this project; do not buy a
 second one by default. Each of the three 2.4 GHz radios needs its own specified
@@ -95,6 +96,10 @@ the connector's mating-side orientation.
 - The power path is **existing battery-fed PoE switch → isolated 5 V splitter →
   fuse/J1 → buck/J2 and controller rails**. The splitter's data-only RJ45 plugs
   into WIZ850io. Raw PoE does not connect to the carrier.
+- The RECOM replaces the earlier Pololu at the same J2 interface. Use the new
+  PWR1 power tray and [power wiring](full-hub-assembly.md#power-and-ethernet),
+  including both ground returns and correct capacitor polarity. Its input must
+  remain at least 4.5 V under load; take 5 V before the controller isolation diodes.
 - With power disconnected, continuity-check J1–J7 and look for shorts between
   5 V, 3.3 V and ground. Preserve the specified boot pull-ups/pull-downs and
   keep controller-local 3.3 V outputs separate from the peripheral buck rail.

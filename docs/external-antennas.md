@@ -67,7 +67,7 @@ before operating the radios. Inspect the physical cable route before final
 assembly. The enclosure's 65 mm adjacent bulkhead pitch is a starting layout,
 **not a measured isolation rating**. The 150 mm cable selection still needs a
 physical dry fit; do not pull it taut to reach a bulkhead.
-Use the **FH1-MC2-C-RF1** print package: its round-hole coupon matches the
+Use the **FH1-MC2-C-PWR1** print package: its round-hole coupon matches the
 3 mm wall, and the revised routes reserve a 6 mm cable-length shortfall
 allowance plus 25 mm service slack. That shortfall is an engineering budget,
 not a manufacturer-guaranteed tolerance. See the [pigtail selection](pigtail-selection.md).

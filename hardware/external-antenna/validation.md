@@ -1,6 +1,6 @@
 # MC2-C verification record
 
-Review date: 19 October 2026. This record describes **digital verification of an
+Review date: 20 October 2026. This record describes **digital verification of an
 engineering prototype**. No assembled MC2 board was powered, flashed or connected
 to Home Assistant during this work. Physical acceptance is outstanding.
 
@@ -25,6 +25,21 @@ peripheral 3.3 V. Loose-module programming requires the temporary equivalent
 pull-up. R4/R5 remain 10 kΩ pull-downs on host GPIO12/SCK and GPIO2/MOSI, preserving
 3.3 V VDD_SDIO and serial recovery. WIZ850io v1.1 has no pull-ups on those inputs.
 Actual CC1101 modules and warm/cold boot behaviour still require inspection.
+
+## Peripheral power revision PWR1
+
+The [power design](power-design.json) qualifies the RECOM R-78K3.3-1.0 as the
+engineering replacement for the former Pololu converter at J2. The new
+assembly adds a local 27 µF input capacitor and insulated perfboard mount.
+Its budget separates the 3.3 V peripherals from the three controller boards
+and radar on the 5 V rail. It records engineering current allowances separately
+from manufacturer figures; no physical current or thermal measurement is claimed.
+
+The native MC2-C copper and firmware sources remain unchanged. Their existing
+evidence is retained, not represented as a new native export. Validate loaded
+input headroom, output ripple, startup and temperature on the complete PWR1
+assembly before using it. Do not power USB or externally drive the peripheral
+rail while the assembled converter is unpowered; its output must not be backfed.
 
 ## Firmware
 

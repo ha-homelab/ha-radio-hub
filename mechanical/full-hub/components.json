@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": "FH1",
-  "review_date": "2026-10-19",
+  "revision": "FH1-MC2-C-PWR1",
+  "review_date": "2026-10-20",
   "design": "MC2-C",
   "status": "engineering prototype; component fit and assembled operation not physically verified",
   "units": "mm",
@@ -130,46 +130,75 @@
     },
     {
       "id": "buck",
-      "model": "Pololu D24V22F3, item 2857",
+      "model": "RECOM R-78K3.3-1.0 + Panasonic EEU-FS1H270 on a 24 x 24 mm isolated-pad perfboard",
       "quantity": 1,
       "body_mm": [
-        17.8,
-        17.8,
-        8
+        11.5,
+        7.55,
+        10.2
       ],
-      "body_status": "manufacturer nominal body; installed wiring height allocated",
+      "body_status": "RECOM nominal SIP3 body only; external leads, capacitor and perfboard excluded",
       "design_envelope_mm": [
-        17.8,
-        17.8,
-        12
+        24,
+        24,
+        18
       ],
-      "envelope_status": "engineering allocation, verify against delivered hardware",
+      "envelope_status": "Engineering assembly envelope includes trimmed leads, 1.6 mm board, regulator and maximum capacitor body; physical fit unverified",
       "mount": {
-        "kind": "M2 insulated standoffs or insulated open tray",
-        "holes_mm": [
-          [
-            2.3,
-            15.5
-          ],
-          [
-            15.5,
-            2.3
-          ]
+        "kind": "edge-supported isolated-pad perfboard in a removable tray, with a soft strap over a copper-free rear band",
+        "holes_mm": [],
+        "perfboard_mm": [
+          24,
+          24,
+          1.6
         ],
-        "hole_diameter_mm": 2.18,
-        "holes_coordinate_note": "Lower-left-origin conversion of official TOP VIEW: diagonal corner pair. Rotate complete module as needed.",
-        "pcb_thickness_mm": 1.02,
-        "underside_components_mm": 1.1
+        "pcb_underside_z_mm": 12,
+        "maximum_tail_below_board_mm": 2,
+        "edge_keepout_mm": 2,
+        "regulator_local_body_origin_mm": [
+          2.19,
+          2.39,
+          3.6
+        ],
+        "regulator_max_body_mm": [
+          12,
+          8.05,
+          10.7
+        ],
+        "capacitor_model": "Panasonic EEU-FS1H270, 27 uF / 50 V",
+        "capacitor_local_body_origin_mm": [
+          16.87,
+          5.44,
+          3.6
+        ],
+        "capacitor_max_body_mm": [
+          5.5,
+          5.5,
+          12.5
+        ],
+        "pcb_local_origin_mm": [
+          0,
+          0,
+          2
+        ],
+        "strap_band_local_y_mm": [
+          20.5,
+          23
+        ]
       },
       "notes": [
-        "Do not use an adhesive pad against the populated underside. Maintain clearance below components.",
-        "M2 hardware must not press adjacent capacitor/inductor/pads; route wiring away from hot parts.",
-        "5 V in to 3.3 V out; do not combine peripheral 3.3 V with controller regulator outputs."
+        "Solder the regulator and input capacitor on a 24 x 24 mm isolated-pad perfboard; keep a 2 mm copper-free rim for supports, straps and handling. Never substitute uncut stripboard tracks.",
+        "Seat the SIP3 body on the insulating board without bending its pins. The 1.7 g module is soldered to the perfboard; secure the harness separately so its loads do not reach the SIP leads.",
+        "Trim and insulate underside joints; permit at most 2 mm projection below the board. Use the raised rear eye for J2 harness strain relief; keep the cable bundle out of the underside solder cavity.",
+        "Keep the capacitor polarity marking visible and its top vent unobstructed. Do not tighten a loop over the vent or lead seal; inspect both component solder joints after handling.",
+        "The 27 uF capacitor sits directly between VIN and GND at the converter. Follow the electrical guide for the RECOM pin orientation and the four-wire-to-three-node J2 harness.",
+        "5 V input to 3.3 V peripheral output only; do not connect this rail to local controller regulator outputs.",
+        "Remove copper from the rear y=20.5..23 mm retention band. The soft strap bears on this blank FR4 band, not component bodies or live pads."
       ],
       "keepouts": [],
       "sources": [
-        "https://www.pololu.com/product/2857",
-        "https://www.pololu.com/file/0J1031/d24v22fx-step-down-voltage-regulator-dimension-diagram.pdf"
+        "https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf",
+        "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1255.pdf"
       ],
       "fit_verified": false
     },

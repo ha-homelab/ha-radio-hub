@@ -58,7 +58,7 @@
       "nominal_cable_only_db": 0.465,
       "qualification": "Engineering estimate using published Taoglas 1.13 mm black coax family data; CAB.618.E documentation does not identify the exact internal wire part number. Excludes connectors/mismatch; not a measured or guaranteed assembly loss."
     },
-    "routing_status": "Use FH1-MC2-C-RF1 and its 3 mm fit coupon. Verify received length, 25 mm service allowance, bend radius, thread engagement and unstrained connector fit physically.",
+    "routing_status": "Use FH1-MC2-C-PWR1 and its 3 mm fit coupon. Verify received length, 25 mm service allowance, bend radius, thread engagement and unstrained connector fit physically.",
     "bend_radius_basis": "6.8 mm engineering routing minimum from Taoglas 1.13 mm black coax family data; confirm with supplied assembly if its requirement is stricter."
   },
   "paths": [

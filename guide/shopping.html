@@ -5,16 +5,19 @@
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html" aria-current="page">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-shopping.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#the-two-esp-boards-and-the-zigbee-board">The two ESP boards and the Zigbee board</a></li><li><a href="#three-antennas-and-three-pigtails">Three antennas and three pigtails</a></li><li><a href="#major-component-cost-and-availability">Major-component cost and availability</a></li><li><a href="#before-committing-the-full-parts-order">Before committing the full parts order</a></li></ul></details><article class="article"><h1 id="mc2-c-parts-availability-and-observed-prices">MC2-C: parts, availability and observed prices</h1>
-<p>Updated <strong>19 October 2026</strong> for one MC2-C hub. The priced list covers the major
-modules and RF accessories; smaller assembly materials are listed separately
-and still need pricing. The <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a>,
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-shopping.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#the-two-esp-boards-and-the-zigbee-board">The two ESP boards and the Zigbee board</a></li><li><a href="#power-parts-retain-the-splitter-replace-the-expensive-buck">Power parts: retain the splitter, replace the expensive buck</a></li><li><a href="#three-antennas-and-three-pigtails">Three antennas and three pigtails</a></li><li><a href="#major-component-cost-and-availability">Major-component cost and availability</a></li><li><a href="#before-committing-the-full-parts-order">Before committing the full parts order</a></li></ul></details><article class="article"><h1 id="mc2-c-parts-availability-and-observed-prices">MC2-C: parts, availability and observed prices</h1>
+<p>Updated <strong>20 October 2026</strong> for one MC2-C hub with the <strong>PWR1 power assembly</strong>.
+The RECOM regulator and its input capacitor were checked on 20 October; other
+module offers and the PCB estimate retain their <strong>19 October 2026</strong> observations.
+The priced list covers major modules, RF accessories and the input capacitor;
+remaining assembly materials are listed separately and still need pricing. The <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a>,
 <a href="../hardware/external-antenna/rf-bom.json">RF BOM</a> and
 <a href="antennas.html">assembly guide</a> remain the engineering references.
 No order has been placed. Prices below are observed offers, not checkout totals;
 discount eligibility, tax, delivery and stock can change.</p>
-<p><strong>Current priced subtotal: $182.04 for the 11 major component lines</strong>, or
-<strong>$195.75 including the five-PCB quote and PCB shipping</strong>. Smaller assembly
+<p><strong>Current priced components: $159.47</strong> — $159.07 for the 11 major component
+lines plus $0.40 for the input capacitor — or <strong>$173.18 including the five-PCB
+quote and PCB shipping</strong>. Smaller assembly
 materials, electronics shipping, taxes and import charges remain additional.
 The received ZAC93 and existing CC1101/433 MHz antenna do not need to be bought
 again. <a href="#major-component-cost-and-availability">Jump to all prices and availability</a>.</p>
@@ -74,8 +77,43 @@ so its MG24/pre-soldered variant, seller, price and stock are <strong>unverified
 Prefer the exact Seeed part until those details are checked.</p>
 </li>
 </ol>
+<h2 id="power-parts-retain-the-splitter-replace-the-expensive-buck">Power parts: retain the splitter, replace the expensive buck</h2>
+<p>Buy <strong>1 × RECOM R-78K3.3-1.0</strong> and <strong>1 × Panasonic EEU-FS1H270</strong> input capacitor.
+The RECOM costs <strong>$3.98</strong> instead of the previous Pololu's $26.95; the capacitor
+adds <strong>$0.40</strong>, so the replacement power parts total <strong>$4.38</strong>. The observed
+reduction is <strong>$22.57 including the new capacitor</strong>, before mounting materials,
+shipping and tax. Do not buy the old D24V22F3 as well.</p>
+<p>The existing <strong>Waveshare POE-SPLITTER-25W-5.5-2.1, SKU 27737</strong> remains the selected
+isolated <strong>5 V DC-barrel</strong> splitter. Its fused 5 V output supplies the controller
+boards and LD2450 directly, and also feeds the RECOM through J2. The RECOM supplies
+<strong>3.3 V peripherals</strong>: WIZ850io, DFR0627, ZAC93, CC1101 and BME680. The development
+boards use their own regulators; their local 3.3 V outputs must remain separate.</p>
+<ul>
+<li><strong>RECOM R-78K3.3-1.0</strong>, DigiKey <strong>945-R-78K3.3-1.0-ND</strong>: 4.5–36 V input,
+3.3 V / 1 A output, SIP-3, 11.5 × 7.55 × 10.2 mm body. Its exact input range
+includes the splitter's 5 V output. Do not substitute <strong>R-78E3.3-0.5</strong>, which
+needs at least 6 V. See the <a href="https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf">RECOM datasheet</a>.</li>
+<li><strong>Panasonic EEU-FS1H270</strong>, DigiKey <strong>P122402-ND</strong>: 27 µF, 50 V, ±20%, radial
+electrolytic, 105 °C, FS-A series. The 50 V marking is the capacitor's rating;
+this assembly still receives <strong>5 V only</strong>. Body is nominally Ø5 × 11 mm,
+with Ø5.5 × 12.5 mm reserved for tolerance, and 2 mm lead spacing.
+Its 5,000-hour rating at 105 °C is an endurance specification, not a promise
+about the lifetime of the complete hub.
+<a href="https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1255.pdf">Panasonic datasheet</a>.</li>
+<li><strong>1 × 24 × 24 × 1.6 mm isolated-pad perfboard cutoff</strong>, 2.54 mm pitch,
+plus insulated hookup wire, individual heat-shrink sleeves and the printed
+PWR1 tray/restraints. Suitable workshop stock can be reused; these materials
+are not priced below. Use the actual PWR1 pad/wire layout, not uncut stripboard.</li>
+</ul>
+<p>The capacitor is fitted close to <strong>VIN and GND</strong> for the datasheet's hard-plugging
+condition: positive to VIN, negative to GND. J2 remains the four-wire carrier
+interface: <strong>J2.1 → VIN, J2.2/J2.4 → GND, J2.3 ← VOUT</strong>. The RECOM itself has only
+three pins; pin <strong>1 = VIN, 2 = GND, 3 = VOUT</strong>. Follow the
+<a href="assembly.html#power-and-ethernet">assembly drawing</a> for orientation,
+lead insulation, polarity checks and the initial load test. This is an
+engineering assembly selection; physical startup and thermal tests remain due.</p>
 <h2 id="three-antennas-and-three-pigtails">Three antennas and three pigtails</h2>
-<p>The current engineering selection, with the <strong>FH1-MC2-C-RF1</strong> enclosure, is:</p>
+<p>The current engineering selection, with the <strong>FH1-MC2-C-PWR1</strong> enclosure, is:</p>
 <ul>
 <li><strong>3 × TE Connectivity / Linx ANT-2.4-LCW-SMA</strong>
 (<a href="https://www.te.com/en/product-L9000082-01.html">manufacturer</a>,
@@ -119,7 +157,8 @@ The existing CC1101 still needs its separate matching 433.92 MHz antenna;
 ZAC93 keeps its original regional antenna and LD2450 its printed radar array.</p>
 <h2 id="major-component-cost-and-availability">Major-component cost and availability</h2>
 <p>These are observed USD offers for the exact selections, before electronics
-shipping, tax and import charges. “Orderable” means the page offered Add to Cart
+shipping, tax and import charges. RECOM and Panasonic observations are dated
+<strong>20 October 2026</strong>; every other row is dated <strong>19 October 2026</strong>. “Orderable” means the page offered Add to Cart
 without an explicit stock count; it is not confirmation of immediate dispatch.
 The machine-readable record is <a href="../hardware/external-antenna/procurement.json">procurement.json</a>.</p>
 <div class="table-scroll"><table>
@@ -170,10 +209,17 @@ The machine-readable record is <a href="../hardware/external-antenna/procurement
 </tr>
 <tr>
 <td style="text-align:right">1</td>
-<td><a href="https://www.digikey.com/en/products/detail/pololu/2857/10451182">D24V22F3, Pololu 2857 — DigiKey Marketplace</a></td>
-<td style="text-align:right">$26.95</td>
-<td style="text-align:right">$26.95</td>
-<td>149; fulfilled by Pololu</td>
+<td><a href="https://www.digikey.com/en/products/detail/recom-power/R-78K3-3-1-0/18093033">RECOM R-78K3.3-1.0 — DigiKey</a></td>
+<td style="text-align:right">$3.98</td>
+<td style="text-align:right">$3.98</td>
+<td>3,242; a separate 989 at factory</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.digikey.com/en/products/detail/panasonic-industry/EEU-FS1H270/7381268">Panasonic EEU-FS1H270, 27 µF input capacitor — DigiKey</a></td>
+<td style="text-align:right">$0.40</td>
+<td style="text-align:right">$0.40</td>
+<td>4,822</td>
 </tr>
 <tr>
 <td style="text-align:right">1</td>
@@ -212,13 +258,16 @@ The machine-readable record is <a href="../hardware/external-antenna/procurement
 </tr>
 </tbody>
 </table></div>
-<p><strong>Major-component subtotal: $182.04</strong>, down from $256.47 with the previous cables.
-Adding the <a href="pcb-order.html#quantity-and-delivery">five-PCB quote with its quoted shipping</a>
-of $13.71 gives <strong>$195.75 in priced items</strong>. This is <strong>not the complete delivered
+<p><strong>Major-component subtotal: $159.07; with the input capacitor: $159.47.</strong>
+The previous set with the same RF cables and the Pololu was $182.04. Adding the
+<a href="pcb-order.html#quantity-and-delivery">five-PCB quote with its quoted shipping</a>
+of $13.71 gives <strong>$173.18 in priced items</strong>. This is <strong>not the complete delivered
 hub price</strong>. The received ZAC93 and existing CC1101/433 MHz antenna are excluded
 from this owner's additional purchase cost; a new builder must buy them too.</p>
 <p>Also required, and <strong>not yet priced</strong>:</p>
 <ul>
+<li>One 24 × 24 × 1.6 mm isolated-pad perfboard cutoff, insulated wire and
+heat-shrink for the RECOM/capacitor assembly; PWR1 tray restraints.</li>
 <li>Three 1N5819 diodes and five axial resistors: one 4.7 kΩ and four 10 kΩ.</li>
 <li>J1–J7 headers and insulated mating contacts, ZAC93 2×5 mating header,
 BME680 QT lead and module wiring.</li>
@@ -228,12 +277,12 @@ a starting selection; verify inrush, wire/contact ratings and derating as
 described in the <a href="assembly.html#power-and-ethernet">assembly guide</a>.</li>
 <li>Electronics delivery, tax, duties/tariffs and any PCB checkout/DFM adjustment.</li>
 </ul>
-<p>The Pololu item is a <strong>Marketplace</strong> shipment and may attract separate freight
-even in the same DigiKey cart. Its <a href="https://www.pololu.com/product/2857">direct product page</a>
-labels it <strong>Rationed (Active and Preferred)</strong>; do not mistake allowed backorders
-for direct-stock confirmation. Group the WIZ850io, three antennas and three
-pigtails in one DigiKey quote, then compare the separately fulfilled regulator
-at checkout. No combined delivery total to ZIP 94121 has been established.</p>
+<p>Group the RECOM, Panasonic capacitor, WIZ850io, three antennas and three
+pigtails in one DigiKey quote to compare delivery charges at checkout.
+The Pololu is no longer in this shopping list. No combined delivery total
+to ZIP 94121 has been established. RECOM quantity breaks were $3.83 each at
+five and $3.767 at ten; buying extra regulators saves cents per unit but
+increases this single-prototype order. Buy one electronics set first.</p>
 <h2 id="before-committing-the-full-parts-order">Before committing the full parts order</h2>
 <p>Order the <strong>MC2-C fabrication package</strong>, with <strong>TC6D-01</strong> as U2. MC2-B is the
 previous fixed-antenna TinyC6 assembly. The <a href="pcb-order.html">revision and ordering record</a>
@@ -241,7 +290,7 @@ ties the current PCB, firmware and enclosure together. Start with five bare
 PCBs and components for one complete prototype; the extra PCBs are spares, not a
 reason to buy five untested sets of electronics.</p>
 <p>Also retain or source <strong>1 × WIZ850io</strong>, the isolated PoE splitter, regulated
-5 V/3.3 V supplies, fuses, DFR0627, regional ZAC93, CC1101, LD2450, BME680 and
+5 V output plus the RECOM 3.3 V assembly, fuses, DFR0627, regional ZAC93, CC1101, LD2450, BME680 and
 harnesses described in the assembly guide. Use the priced lines and explicit
 exclusions above together. The <a href="../mechanical/full-hub/components.json">FH1 full-hub inventory</a>
 and <a href="assembly.html">assembly guide</a> select the finished Waveshare

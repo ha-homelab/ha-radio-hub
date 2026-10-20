@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2290" viewBox="0 0 1600 2290" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2330" viewBox="0 0 1600 2330" role="img" aria-labelledby="title desc">
 <title id="title">MC2-C complete hub wiring and ZAC93 installation</title>
 <desc id="desc">Electrical overview with isolated PoE power, five remapped ZAC93 connections through a DFR0627 UART bridge, CC1101, LD2450, BME680, and three external 2.4 GHz antennas. This is not a connector mating-side view.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#52677b"/></marker></defs>
-<rect width="1600" height="2290" fill="#f1f5f9"/>
+<rect width="1600" height="2330" fill="#f1f5f9"/>
 <style>text{font-family:Arial,Helvetica,sans-serif;fill:#14263b}.title{font-size:38px;font-weight:700}.section{font-size:28px;font-weight:700}.label{font-size:24px;font-weight:700}.body{font-size:21px}.small{font-size:18px}.mono{font-family:Menlo,Consolas,monospace;font-size:21px}.muted{fill:#52677b}.white{fill:white}</style>
 <text x="44" y="62" class="title">MC2-C · the complete hub, connected</text>
 <text x="44" y="99" class="body">Carrier pad numbers are not the physical pin numbers on the external modules.</text>
@@ -25,7 +25,7 @@
 <text x="61" y="360" class="mono">5 V → inline fuse → J1.1</text>
 <text x="61" y="393" class="mono">Splitter GND → J1.2</text>
 <rect x="580" y="347" width="950" height="60" rx="10" fill="#fff5e7" stroke="#e6c79b" stroke-width="2"/>
-<text x="598" y="385" class="mono">J2: 1→buck VIN   2→GND   3←3.3 V OUT   4→GND</text>
+<text x="598" y="385" class="mono">J2 → RECOM: 1→VIN1   2+4→GND2   3←OUT3</text>
 <rect x="32" y="447" width="1536" height="684" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
 <text x="58" y="489" class="section">2  Z-Wave · separate cradle, five-wire harness</text>
 <text x="58" y="527" class="body">ZAC93 is a GPIO radio with a 2×5 socket underneath. It does not plug onto carrier J4.</text>
@@ -129,7 +129,7 @@
 <text x="1192" y="1778" class="body">Other RF paths</text>
 <text x="1192" y="1820" class="small">ZAC93: stock PCB antenna</text>
 <text x="1192" y="1856" class="small">CC1101: retained 433 MHz</text>
-<text x="60" y="1920" class="body">Three independent 2.4 GHz paths: TE ANT-2.4-LCW-SMA + Amphenol 095-902-545-150 pigtails.</text>
+<text x="60" y="1920" class="body">Three independent 2.4 GHz paths: TE ANT-2.4-LCW-SMA + Taoglas CAB.618.E pigtails.</text>
 <text x="60" y="1951" class="small">No combiner. No coax or retaining strap over the ZAC93 PCB antenna or the LD2450 active face.</text>
 <rect x="32" y="1987" width="1536" height="260" rx="16" fill="#142c47" stroke="#142c47" stroke-width="2"/>
 <text x="58" y="2028" class="section white">6  Before closing the case</text>
@@ -138,4 +138,5 @@
 <text x="60" y="2146" class="body white">Z-Wave JS: esphome://mc2-classic-hub.local:6053?key=URL_ENCODED_API_KEY</text>
 <text x="60" y="2184" class="body white">Zigbee uses TCP 6638. HA Z-Wave connects to the Z-Wave JS server, not directly to this port.</text>
 <text x="44" y="2275" class="small muted">Source: MC2-C native CAD connector ledger + pinned firmware. Electrical map only; assembled hardware remains to be tested.</text>
+<text x="60" y="2305" class="small">PWR1: R-78K3.3-1.0 + local 27 µF input capacitor. See power-wiring.svg for polarity and exact connections.</text>
 </svg>

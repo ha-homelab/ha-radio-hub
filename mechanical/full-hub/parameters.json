@@ -1,5 +1,5 @@
 {
-  "revision": "FH1-MC2-C-RF1",
+  "revision": "FH1-MC2-C-PWR1",
   "status": "digitally_checked_prototype_physical_fit_unverified",
   "units": "mm",
   "case": {
@@ -32,9 +32,9 @@
       12
     ],
     "buck": [
-      183,
-      132,
-      12
+      181,
+      130,
+      10
     ],
     "wk2132": [
       132,
@@ -137,7 +137,8 @@
     "LD2450 antenna face points toward +Z through the lid; mount the unit with that face toward the room.",
     "Cradles use insulated edge support and soft nylon straps, never invented holes through a module.",
     "The PoE splitter must be an isolated 802.3af/at PD; battery voltage never enters this enclosure directly.",
-    "Ambient pod is screwed to two stand-off arms; no loose external sensor box."
+    "Ambient pod is screwed to two stand-off arms; no loose external sensor box.",
+    "PWR1 replaces the Pololu tray with a 24 x 24 mm insulated perfboard assembly for RECOM R-78K3.3-1.0 and its 27 uF input capacitor; no mounting holes are assumed in either component."
   ],
   "printer_profiles": {
     "owned": {

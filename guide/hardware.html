@@ -12,6 +12,7 @@
 <li><a href="assembly.html">Full device assembly and ZAC93 pin map</a></li>
 <li><a href="print.html">Exploded enclosure, all component mounts and print files</a></li>
 <li><a href="../hardware/external-antenna/full-hub-wiring.svg">Full-hub wiring drawing</a></li>
+<li><a href="../hardware/external-antenna/power-wiring.svg">RECOM power wiring</a> and <a href="../hardware/external-antenna/power-design.json">current power budget</a></li>
 <li><a href="shopping.html">Exact shopping list and AliExpress checks</a></li>
 <li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/images/README.md">Historical MC2-A appearance concepts and provenance</a></li>
 <li><a href="cad.html">Editable carrier, exact pinout, assembly and checks</a></li>
@@ -22,5 +23,9 @@
 <li><a href="../hardware/external-antenna/wiring.json">Net wiring</a>, <a href="../hardware/external-antenna/cad/connectors.json">physical connector coordinates</a></li>
 </ul>
 <p>This is a routed design package, not a claim of measured RF coverage or approved hardware. The MC2-C selection replaces the obsolete original TinyC6 with the available TC6D-01 and matching antenna-switch firmware. See the <a href="pcb-order.html">prototype ordering record</a>. Fit and RF acceptance must be completed on the physical assembly.</p>
+<p>The current <strong>PWR1 off-board power assembly</strong> replaces Pololu D24V22F3 with
+RECOM R-78K3.3-1.0 plus a 27 µF input capacitor. The MC2-C copper and J2 pinout
+are unchanged. The frozen native CAD's former converter description is historical;
+use the current shopping list and full-hub assembly instructions for this harness.</p>
 </article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

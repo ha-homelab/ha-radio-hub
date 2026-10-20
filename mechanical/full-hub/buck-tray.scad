@@ -1,29 +1,22 @@
 // Generated FH1 print part; mm. See parameters.json and physical-fit limits.
 difference() {
 union() {
-difference() {
 union() {
-difference() {
-union() {
-cube([25.8,25.8,2.4]);
-translate([0, 4, 0]) { cube([2,17.8,16]); }
-translate([23.8, 4, 0]) { cube([2,17.8,16]); }
+cube([32,32,2.4]);
+translate([4, 4, 0]) { cube([2,24,6]); }
+translate([26, 4, 0]) { cube([2,24,6]); }
+translate([1, 4, 0]) { cube([2,24,9]); }
+translate([29, 4, 0]) { cube([2,24,9]); }
+translate([4, 2, 0]) { cube([24,1,7]); }
+translate([4, 29, 0]) { cube([24,1,7]); }
+}
+translate([12.5, 29, 0]) { cube([7,3,8]); }
 }
 translate([2, 2, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
-translate([23.8, 2, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
-translate([2, 23.8, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
-translate([23.8, 23.8, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
-translate([7.74, 2.5, -0.1]) { cube([3,3,2.6]); }
-translate([7.74, 20.3, -0.1]) { cube([3,3,2.6]); }
-translate([18.06, 2.5, -0.1]) { cube([3,3,2.6]); }
-translate([18.06, 20.3, -0.1]) { cube([3,3,2.6]); }
-translate([-0.1, 6, 5.8]) { cube([4.2,13.8,20]); }
-}
-translate([6.3, 19.5, 0]) { cylinder(d=4,h=7.1,$fn=48); }
-}
-translate([6.3, 19.5, -0.1]) { cylinder(d=1.7,h=7.3,$fn=48); }
-}
-translate([19.5, 6.3, 0]) { cylinder(d=4,h=7.1,$fn=48); }
-}
-translate([19.5, 6.3, -0.1]) { cylinder(d=1.7,h=7.3,$fn=48); }
+translate([30, 2, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
+translate([2, 30, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
+translate([30, 30, -0.1]) { cylinder(d=2.2,h=2.6,$fn=48); }
+translate([2, 24.5, -0.1]) { cube([2,2.5,12]); }
+translate([28, 24.5, -0.1]) { cube([2,2.5,12]); }
+translate([12.4, 30.5, 5]) { rotate([0, 90, 0]) { cylinder(d=2.5,h=7.2,$fn=48); } }
 }

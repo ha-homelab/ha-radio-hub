@@ -70,14 +70,18 @@ a demonstrated cheaper delivered alternative. The observed values are stored in
   when purchasing.
 - **U3:** XIAO MG24, pre-soldered **102010690**, with the external-antenna NCP image.
 - **U4:** WIZ850io; data-only Ethernet from the isolated 5 V PoE splitter.
+- **Power:** RECOM R-78K3.3-1.0 and its 27 µF input capacitor, on the
+  off-board PWR1 mount. J2 remains 5 V / GND / 3.3 V / GND; see
+  [the exact connection](full-hub-assembly.md#power-and-ethernet).
 - **Firmware:** current MC2-C host and TinyC6[D] RCP. The latter verifies the
   FXL6408-controlled external antenna before starting Thread. An old TinyC6
   RCP image lacks this step.
 - **RF accessories:** three **Taoglas CAB.618.E** pigtails and three
   **TE ANT-2.4-LCW-SMA** antennas; see the [selection record](pigtail-selection.md).
-- **Enclosure:** [FH1-MC2-C-RF1 print package](../mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip),
+- **Enclosure:** [FH1-MC2-C-PWR1 print package](../mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip),
   with round SMA cutouts, a wall-thickness-matched coupon and shorter coax routes.
-  RF1 is a mechanical revision; the MC2-C PCB and firmware are unchanged.
+  PWR1 retains the RF1 cable geometry and adds the RECOM converter/capacitor mount.
+  The MC2-C PCB and firmware are unchanged.
 
 The [full shopping list](mc2-shopping.md), [carrier BOM](../hardware/external-antenna/cad/BOM.csv)
 and [full-hub inventory](../mechanical/full-hub/components.json) cover the remaining

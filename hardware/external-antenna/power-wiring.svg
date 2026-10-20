@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1100" viewBox="0 0 1440 1100" role="img" aria-labelledby="title desc">
+<title id="title">MC2-C PWR1 — RECOM peripheral power wiring</title>
+<desc id="desc">The isolated PoE splitter supplies fused five volts to J1. J2 pin one feeds RECOM pin one; J2 two and four join RECOM ground pin two; RECOM output pin three returns to J2 three. A 27 microfarad capacitor connects positive to input and negative to ground. Only the peripheral rail receives the converter output. The lower view shows pin numbering with the identification dot at left.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65788a"/></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#193347}.h1{font-size:34px;font-weight:700}.h2{font-size:24px;font-weight:700}.t{font-size:20px}.s{font-size:17px}.tiny{font-size:15px}.muted{fill:#5e7281}.box{fill:white;stroke:#b9ced5;stroke-width:2}.five{stroke:#c36518}.three{stroke:#087f78}.ground{stroke:#617383}.wire{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}</style>
+<rect width="1440" height="1100" fill="#edf4f5"/>
+<text x="40" y="58" class="h1">PWR1 · one 5 V input, two supply rails</text>
+<text x="40" y="95" class="t muted">Same MC2-C carrier copper and firmware · new converter, local capacitor and mount</text>
+<rect x="35" y="126" width="310" height="112" rx="12" class="box"/>
+<text x="55" y="163" class="h2">Existing PoE switch</text><text x="55" y="197" class="t">Battery-backed Ethernet</text>
+<path d="M346 181H395" class="wire ground" marker-end="url(#arrow)"/>
+<rect x="405" y="126" width="410" height="112" rx="12" class="box"/>
+<text x="426" y="162" class="h2">Isolated PoE splitter · 5 V</text><text x="426" y="196" class="t">DC output → fuse → J1.1 / J1.2</text><text x="426" y="222" class="s muted">Data-only RJ45 → WIZ850io</text>
+<path d="M816 181H855" class="wire five" marker-end="url(#arrow)"/>
+<rect x="866" y="126" width="538" height="112" rx="12" class="box"/>
+<text x="886" y="162" class="h2">Fused 5 V distribution</text><text x="886" y="196" class="t">LD2450 direct · U1/U2/U3 via D1–D3</text><text x="886" y="222" class="s muted">J2 takes its 5 V BEFORE the controller diodes</text>
+<rect x="35" y="273" width="1370" height="480" rx="14" class="box"/>
+<text x="60" y="316" class="h2">Four-wire J2 harness · logical connections, not physical cable order</text>
+<rect x="65" y="354" width="320" height="252" rx="10" fill="#eaf1f9"/>
+<text x="85" y="388" class="h2">MC2-C connector J2</text>
+<text x="85" y="429" class="t">1 · +5 V to converter</text><text x="85" y="477" class="t">2 · GND</text><text x="85" y="525" class="t">3 · +3.3 V from converter</text><text x="85" y="573" class="t">4 · GND</text>
+<rect x="865" y="354" width="485" height="252" rx="10" fill="#102f41"/>
+<text x="891" y="388" class="h2" style="fill:#fff">RECOM R-78K3.3-1.0</text>
+<text x="891" y="429" class="t" style="fill:#ffc28f">Pin 1 · +VIN</text><text x="891" y="477" class="t" style="fill:#dae4ea">Pin 2 · GND</text><text x="891" y="525" class="t" style="fill:#81e0d0">Pin 3 · +VOUT = 3.3 V</text><text x="891" y="570" class="s" style="fill:#dae4ea">Rated 1 A · subject to datasheet limits</text>
+<path d="M370 423H860" class="wire five"/><path d="M370 471H860M370 567H430V471" class="wire ground"/><path d="M370 519H860" class="wire three"/>
+<circle cx="430" cy="471" r="6" fill="#617383"/>
+<path d="M535 423V437M535 453V471" class="wire ground"/><path d="M518 438H552M518 452H552" stroke="#193347" stroke-width="4"/>
+<circle cx="535" cy="423" r="6" fill="#c36518"/><circle cx="535" cy="471" r="6" fill="#617383"/>
+<text x="508" y="430" class="s">+</text><text x="575" y="449" class="s">27 µF input capacitor</text>
+<text x="65" y="644" class="t">Capacitor: Panasonic EEU-FS1H270 · 27 µF / 50 V · stripe / negative lead → GND</text>
+<text x="65" y="682" class="t">3.3 V loads: WIZ850io, DFR0627, ZAC93, CC1101 and BME680</text>
+<text x="65" y="718" class="s muted">Keep both ground returns. Mount the capacitor close to the converter input; insulate every exposed joint.</text>
+<rect x="35" y="777" width="615" height="280" rx="14" class="box"/>
+<text x="60" y="814" class="h2">Identify the three leads before soldering</text>
+<rect x="75" y="840" width="252" height="113" rx="5" fill="#173747"/>
+<circle cx="103" cy="930" r="8" fill="#eee6cf"/>
+<text x="122" y="882" class="s" style="fill:white">R-78K3.3-1.0</text><text x="110" y="913" class="tiny" style="fill:white">Marked face · dot at left</text>
+<path d="M103 953V995M201 953V995M299 953V995" stroke="#9ca9ae" stroke-width="9"/>
+<text x="87" y="1025" class="s">1 VIN</text><text x="175" y="1025" class="s">2 GND</text><text x="275" y="1025" class="s">3 OUT</text>
+<text x="355" y="865" class="s">Leads point down.</text><text x="355" y="898" class="s">Back view is mirrored.</text><text x="355" y="931" class="s">Not a drill template.</text><text x="355" y="977" class="tiny muted">Verify against the manufacturer</text><text x="355" y="1003" class="tiny muted">pin drawing and received part.</text>
+<rect x="673" y="777" width="731" height="280" rx="14" class="box"/>
+<text x="697" y="814" class="h2">Assembly and first power-up</text>
+<text x="697" y="857" class="t">• Use the PWR1 insulated perfboard tray.</text><text x="697" y="897" class="t">• Check VIN ≥ 4.5 V at the loaded converter pins.</text><text x="697" y="937" class="t">• Do not join the radio boards’ local 3V3 outputs.</text><text x="697" y="977" class="t">• No USB / external backfeed into an unpowered hub.</text><text x="697" y="1017" class="s muted">Physical startup, ripple and thermal validation remain required.</text>
+<text x="40" y="1086" class="tiny muted">Source: RECOM R-78K-1.0 datasheet · current assembly: docs/full-hub-assembly.md · power-design.json</text>
+</svg>

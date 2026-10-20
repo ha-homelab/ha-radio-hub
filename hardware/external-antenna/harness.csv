@@ -1,10 +1,10 @@
 Carrier connector,Carrier pad,Net,Device,Device contact,Direction,Function
 J1,1,+5V,Isolated PoE splitter / fused 5 V input,"Splitter +5 V, after inline fuse",Device to carrier,5 V power enters the carrier
 J1,2,GND,Isolated PoE splitter / fused 5 V input,Splitter GND,Common ground,Common ground return
-J2,1,+5V,Pololu D24V22F3 buck converter,VIN,Carrier to device,Carrier 5 V supplies the regulator
-J2,2,GND,Pololu D24V22F3 buck converter,GND,Common ground,Input ground return
-J2,3,+3V3,Pololu D24V22F3 buck converter,VOUT (3.3 V),Device to carrier,Regulator powers the peripheral 3.3 V rail
-J2,4,GND,Pololu D24V22F3 buck converter,GND,Common ground,Output ground return
+J2,1,+5V,RECOM R-78K3.3-1.0 peripheral buck assembly,Pin 1 VIN (+5 V),Carrier to device,Carrier 5 V supplies the regulator
+J2,2,GND,RECOM R-78K3.3-1.0 peripheral buck assembly,Pin 2 GND (shared ground node),Common ground,Input ground return
+J2,3,+3V3,RECOM R-78K3.3-1.0 peripheral buck assembly,Pin 3 VOUT (3.3 V),Device to carrier,Regulator powers the peripheral 3.3 V rail
+J2,4,GND,RECOM R-78K3.3-1.0 peripheral buck assembly,Pin 2 GND (shared ground node),Common ground,Output ground return
 J3,1,+3V3,DFRobot DFR0627 / WK2132 UART bridge,+ / VCC,Carrier to device,Peripheral 3.3 V; do not supply 5 V
 J3,2,GND,DFRobot DFR0627 / WK2132 UART bridge,− / GND,Common ground,Common ground return
 J3,3,I2C_SDA,DFRobot DFR0627 / WK2132 UART bridge,D / SDA,Bidirectional,"I²C data, host GPIO21"

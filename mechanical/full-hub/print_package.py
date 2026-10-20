@@ -13,9 +13,9 @@ import json
 import zipfile
 
 HERE = Path(__file__).resolve().parent
-REVISION = 'FH1-MC2-C-RF1'
+REVISION = 'FH1-MC2-C-PWR1'
 PCB_REVISION = 'MC2-C'
-ARCHIVE = 'FH1-MC2-C-RF1-print-package.zip'
+ARCHIVE = 'FH1-MC2-C-PWR1-print-package.zip'
 OUTPUTS = ('PRINT-FIRST.txt', 'print-manifest.json', ARCHIVE)
 # Explicit inventory, not a directory glob. A spare/private STL is never included.
 # stage, stem, label, quantity, role, fit/check note
@@ -23,7 +23,7 @@ PARTS = (
     (1, 'fit-coupon', 'Fastener and SMA fit coupon', 1, 'trial', 'Check screw pilots and the actual SMA bulkhead before larger prints.'),
     (1, 'zwave-tray', 'Zooz ZAC93 cradle', 1, 'installed', 'Trial fit the delivered ZAC93, underside socket and mating header first; reuse this cradle if it fits.'),
     (2, 'poe-splitter-tray', 'PoE splitter tray', 1, 'installed', 'For the intact Waveshare POE-SPLITTER-25W-5.5-2.1 case; check captive tails.'),
-    (2, 'buck-tray', 'Pololu regulator tray', 1, 'installed', 'Check D24V22F3 underside clearance and the two native mounting holes.'),
+    (2, 'buck-tray', 'RECOM regulator and capacitor tray', 1, 'installed', 'Check the 24 x 24 mm perfboard, 2 mm maximum solder tails and rear-band restraint; keep the capacitor vent clear.'),
     (2, 'wk2132-tray', 'DFR0627 UART bridge tray', 1, 'installed', 'Use insulated edge support and a soft restraint; check actual board edges.'),
     (2, 'cc1101-tray', 'CC1101 tray', 1, 'installed', 'Existing CC1101 vendor variant is unknown; measure it before printing.'),
     (2, 'power-utility-tray', 'DC adapter and fuse tray', 1, 'installed', 'Adapter and fuse dimensions are allocations; confirm both actual parts.'),
@@ -50,7 +50,7 @@ def regular_bytes(path):
 
 def make_manifest(directory, report):
     if report.get('revision') != REVISION or report.get('units') != 'mm':
-        raise ValueError('The print package requires the current FH1-MC2-C-RF1 report in millimetres')
+        raise ValueError('The print package requires the current FH1-MC2-C-PWR1 report in millimetres')
     if report.get('native_pcb_revision') != PCB_REVISION:
         raise ValueError('The print package must be checked against the current MC2-C native carrier')
     expected = {row[1] for row in PARTS}
@@ -80,12 +80,13 @@ def make_manifest(directory, report):
 
 def instructions(manifest):
     lines = [
-        'FH1-MC2-C-RF1 PRINT PACKAGE — READ BEFORE SLICING',
+        'FH1-MC2-C-PWR1 PRINT PACKAGE — READ BEFORE SLICING',
         'Engineering prototype. Digital checks do not verify physical fit.',
         'For MC2-C with TinyC6[D] TC6D-01, ESP32-DevKitC-VIE and XIAO MG24.',
         'The Series D Thread radio needs the MC2-C RCP firmware to select',
         'its external U.FL antenna; the original TC6-U-01 firmware will not.',
-        'RF1 uses Taoglas CAB.618.E pigtails and ROUND 6.8 mm base holes.',
+        'PWR1 adds a RECOM R-78K3.3-1.0 + 27 uF input-capacitor tray.',
+        'It retains RF1 Taoglas CAB.618.E pigtails and ROUND 6.8 mm holes.',
         'Use the 3 mm thick coupon to check supplied nut/washer engagement.',
         '',
         '1. Print fit-coupon.stl and zwave-tray.stl FIRST.',

@@ -1,14 +1,14 @@
 {
-  "revision": "FH1-MC2-C-RF1",
+  "revision": "FH1-MC2-C-PWR1",
   "status": "digitally_checked_prototype_physical_fit_unverified",
   "native_pcb_revision": "MC2-C",
   "source_sha256": {
-    "build.py": "3604957a4faf7aae68eba675bf84dec33a0319e652b186ee29fa4aad9fc50267",
-    "test_build.py": "b51581fd9bfca21d2bde24d6ca2d191d4ac494b741f2e7ead2997fb9adb39a21",
-    "print_package.py": "1988330a47bf9db964ce0bf2a14ea2909f57ac5c3b9e3af100e76e4d4507c77d",
+    "build.py": "f002fa3414d5803941093ce033a886de3eed9cb312c5f84459737f84e0c1904d",
+    "test_build.py": "c75477d9be9c1fed5782189278c1ae895649a9a55b7bea8e83ba0fd3299e25b3",
+    "print_package.py": "747cb05bf101f40d8a29a4c5ff21b3baed1e6d8b4aebd7407c27dd86cb7f6fc5",
     "test_print_package.py": "8958ba3cad6f9c84dd98e41d5f2be99774c83de7d0e8d393c0e520e8bc4c548d",
-    "parameters.json": "919973f134011152fab0b8d11c31e6fc9c7bfc764edc54371919d016fb650579",
-    "components.json": "7d17260d1f51ff13cb1143bab1a92c0a2bfdf8d0feec86a1b4c48b8eb06cd082",
+    "parameters.json": "cc2c3dcfea160010a1924f896bb3d5c8ce54ad3224195042eaafed8c790324ab",
+    "components.json": "2a44360feaf2e03503a0ca0b1f838cf19835e0ba30d8c93cbc749fe88f0b8d2f",
     "rf-evidence.json": "d76f121e48383e4bddb2ba2fef8f3fca221d395d379387428c813fb7355dd21c",
     "../module-carrier/external-antenna-prototype/build.py": "8edca6d978e738b6ae65843072641e9aed2245b49cef8e18197b0b49bb902c97",
     "mc2.kicad_pcb": "3fd66fcac66053d10ba4b36df2f72b9f06d609a33c33229fd51f1e3ea2d9cc17",
@@ -1504,13 +1504,13 @@
           ],
           [
             180,
-            141,
-            32
+            154,
+            24
           ],
           [
-            185,
-            141,
-            21
+            187,
+            148.35,
+            17
           ]
         ],
         "radius_mm": 1.5,
@@ -1518,8 +1518,8 @@
           "carrier",
           "buck"
         ],
-        "kind": "Four-wire J2 harness: fused5V VIN,GND,regulated3.3V VOUT,GND; keep lead impedance low",
-        "length_mm": 222.356,
+        "kind": "Four-wire J2 harness to RECOM perfboard: fused5V VIN,GND,regulated3.3V VOUT,GND; both grounds join SIP pin2; 27uF at VIN/GND",
+        "length_mm": 222.104,
         "segment_envelopes_mm": [
           [
             56.31,
@@ -1555,19 +1555,19 @@
           ],
           [
             178.5,
-            139.5,
-            30.5,
+            152.5,
+            22.5,
             181.5,
             160.5,
             49.5
           ],
           [
             178.5,
-            139.5,
-            19.5,
-            186.5,
-            142.5,
-            33.5
+            146.85,
+            15.5,
+            188.5,
+            155.5,
+            25.5
           ]
         ]
       },
@@ -1849,6 +1849,40 @@
       "coax_length_budget_mm": 144,
       "status": "Nominal PCB and RF connector XY checked against manufacturer STEP; header seating, mated plug and formed bends require physical fit."
     },
+    "regulator_subassembly_mm": {
+      "perfboard": [
+        181,
+        130,
+        12,
+        205,
+        154,
+        13.6
+      ],
+      "regulator": [
+        183.19,
+        132.39,
+        13.6,
+        195.19,
+        140.44,
+        24.299999999999997
+      ],
+      "input_capacitor": [
+        197.87,
+        135.44,
+        13.6,
+        203.37,
+        140.94,
+        26.1
+      ],
+      "underside_solder": [
+        183,
+        132,
+        10,
+        203,
+        152,
+        12
+      ]
+    },
     "cable_sweeps_clear_of_printed_parts": true,
     "cable_sweeps_clear_of_native_modules": true,
     "native_module_boxes_mm": {
@@ -2023,28 +2057,36 @@
       ],
       "buck": [
         [
+          181,
+          130,
+          12,
+          205,
+          154,
+          13.6
+        ],
+        [
+          183.19,
+          132.39,
+          13.6,
+          195.19,
+          140.44,
+          24.299999999999997
+        ],
+        [
+          197.87,
+          135.44,
+          13.6,
+          203.37,
+          140.94,
+          26.1
+        ],
+        [
           183,
           132,
-          13.1,
-          200.8,
-          149.8,
-          14.12
-        ],
-        [
-          187,
-          136,
-          12,
-          197,
-          146,
-          13.1
-        ],
-        [
-          187,
-          136,
-          14.12,
-          197,
-          146,
-          20.2
+          10,
+          203,
+          152,
+          12
         ]
       ]
     },
@@ -2069,12 +2111,12 @@
       36.8
     ],
     "buck": [
-      183,
-      132,
-      12,
-      200.8,
-      149.8,
-      24
+      181,
+      130,
+      10,
+      205,
+      154,
+      28
     ],
     "wk2132": [
       132,
@@ -2195,52 +2237,49 @@
       "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival"
     },
     "buck": {
-      "kind": "published two-hole M2 pattern on insulated standoffs, in screwed tray",
+      "kind": "24 x 24 mm perfboard on two insulated edge supports with rear-band restraint",
       "tray": "buck-tray",
       "tray_origin_mm": [
-        179,
-        128,
+        177,
+        126,
         6
       ],
       "tray_inner_xy_mm": [
-        181,
-        130,
+        179,
+        128,
         0,
-        202.8,
-        151.8,
+        207,
+        156,
         100
       ],
       "case_xy_mm": [
         [
-          181,
-          130
+          179,
+          128
         ],
         [
-          202.8,
-          130
+          207,
+          128
         ],
         [
-          181,
-          151.8
+          179,
+          156
         ],
         [
-          202.8,
-          151.8
+          207,
+          156
         ]
       ],
       "seat_or_pad_top_z_mm": 12,
-      "hardware": "4 \u00d7 M2 \u00d7 6 mm tray screws + 2 \u00d7 M2 \u00d7 4 mm PCB screws; no pressure on components",
-      "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival",
-      "pcb_underside_z_mm": 13.1,
-      "local_hole_centres_mm": [
-        [
-          2.3,
-          15.5
-        ],
-        [
-          15.5,
-          2.3
-        ]
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm tray screws and one soft nonconductive board strap; separate harness loop",
+      "requires": "2 mm copper-free board rim and cleared rear restraint band; SIP body seated on board; capacitor vent clear; no loose live solder joints",
+      "pcb_underside_z_mm": 12,
+      "maximum_tail_below_board_mm": 2,
+      "minimum_solder_to_floor_gap_mm": 1.6,
+      "local_hole_centres_mm": [],
+      "restraint_band_local_y_mm": [
+        20.5,
+        23
       ]
     },
     "wk2132": {
@@ -2520,13 +2559,13 @@
           0.0
         ],
         [
-          25.8,
-          25.8,
-          16.0
+          32.0,
+          32.0,
+          9.0
         ]
       ],
-      "volume_mm3": 2254.613,
-      "sha256": "623412386365de5c36b1c834a7a87cd3553eb64871cd829b598631c58e907557",
+      "volume_mm3": 3615.102,
+      "sha256": "4d20167a5c068c02c929ed95f0dbf739852ccddb0f224afe0fbd768c30be4453",
       "fits_220x220_plate": true
     },
     "wk2132-tray": {
@@ -2626,7 +2665,7 @@
         ]
       ],
       "volume_mm3": 353708.236,
-      "sha256": "792cc5430a6fccf83ef97d4064054474a48a1cbcdcc1721ddf0cff133a0deea3",
+      "sha256": "9049c367d6e2491b7b7bf95cf6b4f59f6dc6fd7c044746872a65d5c3fc53b490",
       "fits_220x220_plate": true
     },
     "lid": {
@@ -2771,32 +2810,33 @@
     }
   },
   "generated_sha256": {
-    "assembly.scad": "1c3048624979c121a5ec11dac83d40d87a63c60c981b3da9c515310b16a7cfb4",
-    "base.scad": "76f87c16814638352b3a8d01cb726bbbfc1484cc1d86e0b8e40b4863f073ebd8",
-    "base.stl": "792cc5430a6fccf83ef97d4064054474a48a1cbcdcc1721ddf0cff133a0deea3",
+    "assembly.scad": "bbe7d4a597f8e1fb69561edbe891a5502c9087bc839c05803b445d29ba0d981b",
+    "base.scad": "150ffdb9646e929204bf02788f611c964e5135d98898058f522284fcec51d14b",
+    "base.stl": "9049c367d6e2491b7b7bf95cf6b4f59f6dc6fd7c044746872a65d5c3fc53b490",
     "bme680-pod-lid.scad": "c3f3abdb1fc955191c2f438ab8e5216de808cc59cee32730cadfd9dcccaaafbf",
     "bme680-pod-lid.stl": "2745d070858790f6a9b532ea747de14c7a3224749a0c9b694dd06752a0574b8b",
     "bme680-pod.scad": "24177862bf3c87addcb8270cedb95e6aa1311f2a5e96f9141eef9ecdafec36a5",
     "bme680-pod.stl": "b8849ab122f3984e7e6391e27e93b2729f6a2e2db9a5a84557f9de2e8ce03514",
-    "buck-tray.scad": "8419d4ca24dac99268a9d5abaec7bee539a962d3d67b42f4f8d83ba77990da6a",
-    "buck-tray.stl": "623412386365de5c36b1c834a7a87cd3553eb64871cd829b598631c58e907557",
+    "buck-tray.scad": "3b00b53d82fe1fb3ea66629aa6398f1808d5348cd2db22fcaf334f6c79dc2fae",
+    "buck-tray.stl": "4d20167a5c068c02c929ed95f0dbf739852ccddb0f224afe0fbd768c30be4453",
     "cc1101-port-blank.scad": "745ec19bebbd052238ebc4c6610c6d3069127928012fa04aebd754b89a688734",
     "cc1101-port-blank.stl": "1f06fd33424e60e95c5d09508be492ee7edc3675036078dc617a19e9d1abd4d6",
     "cc1101-tray.scad": "953eddd0ca964d2d4f5b71e209bf78068e4b669525613404c0ae678a63c6215d",
     "cc1101-tray.stl": "9eea5ec1b1d53d1d0bcc26792fac4a2f8bb1a782ddd95bc2130b1026f6ab330f",
-    "exploded-preview.png": "b49ccee4a2adb9d7461a38c9661fd1a5998ffe4b8841c0ca16ae0d7e8334fea9",
-    "exploded.scad": "970648504d5c9a88348a43f5f575d2b5c7ad06f88ae124c0fd6f598aeaed892e",
+    "exploded-preview.png": "702097cd872660a397b0461f8cb3e1cc744837f7c62e90aafbb886a6882029b0",
+    "exploded.scad": "177720c4b0929cd3d17425e432f0df087741adfa81af453332c8753188f5d101",
     "fit-coupon.scad": "4634221c640ae433c8317d4a4c67607e353435c837a7c189614e49f6d071fefa",
     "fit-coupon.stl": "1c5246110495828eab952fc94a30a292792eee2ee670e4fe14745434a660e5c8",
-    "full-assembly-preview.png": "02f90ca1cac687b978923811150d9c398e599b7dbe661c6bb1acd14cc38b85b3",
-    "index.html": "84637a324c8be2857236e88197cad0abfe5ac78b0c188869edd90cf21a0ce72c",
-    "layout.svg": "dbf1ce750bdf21be25d8fe5e29abe9da4f180f90a399e1926e3ff769cbfba2e4",
+    "full-assembly-preview.png": "502087e909c0b7596e41b51aaa43b2b6700adb4ac2b9d34404e7d7cfc4bccf46",
+    "index.html": "5a3db26b19ee0836c223ce3a6e8cc72cb63071abae274bb93ad78b5cb06cdc14",
+    "layout.svg": "b2f5a4e67292140f4bb06f081fc0e225570d193d02e5a179c90d60aa342128e7",
     "lid.scad": "ea115b6c53b8f60bf34b6b223d386c3a9102033c02ec6f4d481633976afaf617",
     "lid.stl": "5bc30b3593ebf87ff7c748885b6f0accf642a3744606dd9f58f5132874a2a7bf",
     "pod-arm.scad": "3a207bfb60ebfb1a6931893c9b479f53200f8ad8a3664a415b9879209e1730a9",
     "pod-arm.stl": "961010fb46c2d5f5a5f45a3437b7b0f7bccfbdbf385f8a9c580c207f9e30aa40",
     "poe-splitter-tray.scad": "05915e38fd1b4b8f817492628f7acb5bc4de5079024338303127866139aeb1f4",
     "poe-splitter-tray.stl": "f784744bf809a3355ec8acf7460482f502bd82cb3a1c128757a540ccb9e8bae1",
+    "power-assembly-preview.png": "0b49cbd8b88d8237b8d749acaea915957a9a31b0a5916efcc88125f1e6a46c30",
     "power-utility-tray.scad": "82ebe7043521e23f2e0d0d3986f87f1eda62a7bb13051ee8cca18f6d6533b9b1",
     "power-utility-tray.stl": "625d2ac5cf41c9182520cadd6d8708243f190af0a9faf19523f8d4fc1fc98564",
     "radar-holder.scad": "6679d262c76fc2f90c57d340caf219e5bd4a2fcd2ea593e84f2661694c210eab",

@@ -40,6 +40,7 @@ jobs:
           .venv-guide/bin/python -m unittest discover -s guide -p 'test_*.py'
           .venv-guide/bin/python guide/build.py --check
           python3 -m unittest discover -s hardware/external-antenna -p 'test_*.py'
+          python3 hardware/external-antenna/power_design.py
       - name: Check DIY print scale, orientation and source freshness
         run: |
           .venv/bin/python -m unittest discover -s mechanical/diy -p 'test_*.py'

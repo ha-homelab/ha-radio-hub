@@ -57,7 +57,7 @@
     "slug": "pigtails",
     "source": "docs/pigtail-selection.md",
     "label": "Choose RF cables",
-    "description": "Check the Taoglas replacement, lower price, length allowance and RF1 enclosure fit."
+    "description": "Check the Taoglas replacement, lower price, length allowance and the retained RF1 cable geometry in PWR1."
   },
   {
     "slug": "hardware",

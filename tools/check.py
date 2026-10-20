@@ -121,6 +121,8 @@ def main() -> int:
         'mechanical/generated/base.stl', 'mechanical/generated/lid.stl',
         'docs/full-hub-assembly.md',
         'hardware/external-antenna/full-hub-wiring.svg',
+        'hardware/external-antenna/power-wiring.svg',
+        'hardware/external-antenna/power-design.json',
         'mechanical/full-hub/README.md',
         'mechanical/full-hub/components.json',
         'mechanical/full-hub/verification.json',
@@ -129,7 +131,7 @@ def main() -> int:
         'docs/start-here.md', 'guide/index.html', 'guide/public-files.json',
         'tools/preview.py', 'hardware/external-antenna/harnesses.json',
         'hardware/external-antenna/harness.csv',
-        'mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip',
+        'mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip',
     ]
     errors.extend(f'Missing or non-regular deliverable: {name}' for name in required
                   if not public_file(ROOT, ROOT / name))
