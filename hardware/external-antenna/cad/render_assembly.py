@@ -7,10 +7,10 @@ S=7;OX=45;OY=100
 out=['<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="970" viewBox="0 0 1160 970">','<rect width="100%" height="100%" fill="#0b1420"/><style>text{font-family:Arial,sans-serif}</style>']
 def t(x,y,text,size=16,color='#e6edf4',anchor='start'):out.append(f'<text x="{x}" y="{y}" font-size="{size}" fill="{color}" text-anchor="{anchor}">{html.escape(text)}</text>')
 def rect(b,fill,stroke='#76899d',dash=False):out.append(f'<rect x="{OX+b[0]*S}" y="{OY+b[1]*S}" width="{(b[2]-b[0])*S}" height="{(b[3]-b[1])*S}" fill="{fill}" stroke="{stroke}"'+(' stroke-dasharray="5 4"' if dash else '')+'/>')
-t(45,40,'MC2-B · CLASSIC ESP32 + THREE ANTENNAS',28);t(45,72,'100 × 100 mm · front view · all components on this side · prototype',16,'#b8c6d8')
+t(45,40,'MC2-C · CLASSIC ESP32 + THREE ANTENNAS',28);t(45,72,'100 × 100 mm · front view · all components on this side · prototype',16,'#b8c6d8')
 rect([0,0,100,100],'#164845','#80bbac')
 for x,y in D['mechanics']['mounting_holes_mm']:out.append(f'<circle cx="{OX+x*S}" cy="{OY+y*S}" r="{1.35*S}" fill="#0b1420" stroke="#d2e1d9"/>')
-labels={'U1':['ESP32 DevKitC-VIE','8 MB / 8 MB','BLE4.2 host'],'U2':['TinyC6-U','Thread RCP'],'U3':['XIAO MG24','Zigbee NCP'],'U4':['WIZ850io','Ethernet']}
+labels={'U1':['ESP32 DevKitC-VIE','8 MB / 8 MB','BLE4.2 host'],'U2':['TinyC6[D]','Thread RCP'],'U3':['XIAO MG24','Zigbee NCP'],'U4':['WIZ850io','Ethernet']}
 for p in D['parts']:
  b=p['body_bounds_global_mm'];pads=p['pad_centers_mm'];ref=p['ref']
  if b:
@@ -29,7 +29,7 @@ for ref,p in D['mechanics']['rf_ports'].items():
  t(cx,cy-13,p['radio']+' U.FL*',12,'#ffc96a','middle')
 a,b=D['mechanics']['rj45']['face_global_mm'];rect([min(a[0],b[0]),99.3,max(a[0],b[0]),102],'#aab4be')
 t(OX+(a[0]+b[0])*S/2,OY+110*S,'RJ45 cable ↓',16,'#80e2bf','middle')
-notes=[('THREE SEPARATE RF PATHS','BLE, Thread and Zigbee: no splitter.'),('MATCHED 50 Ω PIGTAILS','U.FL / MHF1 to SMA female bulkhead.'),('EXTERNAL ANTENNA REQUIRED','Connect before radio operation.'),('C6 PREPARATION','Solder its supplied 1×11 + 1×12 headers.'),('NO C6 UART-BRIDGE REWORK','Native USB; ROM RX17 / TX16.'),('HOST BOOT STRAPS','R4 / R5: GPIO12 / GPIO2 LOW at reset.'),('CASE & RF CHECK STILL REQUIRED','No measured coverage or fit claim.'),('* RF SOCKET LOCATIONS','Planning estimates: measure real boards.')]
+notes=[('THREE SEPARATE RF PATHS','BLE, Thread and Zigbee: no splitter.'),('MATCHED 50 Ω PIGTAILS','U.FL / MHF1 to SMA female bulkhead.'),('EXTERNAL ANTENNA REQUIRED','Connect before radio operation.'),('C6 PREPARATION','Solder its 1×11 + 1×12 male headers.'),('C6 EXTERNAL ANTENNA SELECTION','MC2-C RCP firmware sets FXL6408 XIO0.'),('HOST BOOT STRAPS','R4 / R5: GPIO12 / GPIO2 LOW at reset.'),('CASE & RF CHECK STILL REQUIRED','No measured coverage or fit claim.'),('* RF SOCKET LOCATIONS','C6: vendor STEP; others: estimates.')]
 for i,(a,b) in enumerate(notes):t(775,120+75*i,a,15,'#8ce0c2');t(775,145+75*i,b,12)
-t(45,932,'Blue: physical USB shell bounds. Gold: approximate RF socket positions. All dimensions require sample fit verification.',13,'#c6d0df')
+t(45,932,'Blue: physical USB shell bounds. Gold: C6 vendor STEP center; other RF positions approximate. All dimensions require sample fit verification.',13,'#c6d0df')
 out.append('</svg>');(R/'assembly-top.svg').write_text('\n'.join(out)+'\n')

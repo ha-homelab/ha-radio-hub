@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": "MC2-B",
+  "revision": "MC2-C",
   "connectors": [
     {
       "ref": "U1",
@@ -339,8 +339,8 @@
     },
     {
       "ref": "U2",
-      "model": "Unexpected Maker TinyC6-U-01",
-      "footprint": "MC2:TinyC6_U",
+      "model": "Unexpected Maker TinyC6[D] TC6D-01",
+      "footprint": "MC2:TinyC6_D",
       "pins": {
         "1": null,
         "2": "GND",
@@ -375,12 +375,12 @@
       ],
       "rotation": 0,
       "source": "c6",
-      "notes": "Original TC6-U-01 fixed U.FL; NOT TC6D-01; solder supplied 1x12 + 1x11 male headers; native USB no bridge; ROM RX17 TX16; EN/BOOT9 accessible; no LiPo fitted",
+      "notes": "TC6D-01; solder 1x12 + 1x11 male headers; native USB no UART bridge; ROM RX17 TX16; EN/BOOT9 accessible; external antenna requires MC2-C firmware: FXL6408 0x43 XIO0 HIGH via local GPIO6 SDA/7 SCL; no LiPo fitted",
       "body_bounds_local_mm": [
         -8.78,
-        -18,
+        -17.518,
         9,
-        16.67735
+        18.782
       ],
       "pad_centers_mm": [
         {
@@ -547,9 +547,9 @@
       ],
       "body_bounds_global_mm": [
         45.0,
-        12.0,
+        12.482,
         62.78,
-        46.6774
+        48.782
       ]
     },
     {

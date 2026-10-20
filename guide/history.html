@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Design history · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/design-history.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#why-the-alternatives-are-retained">Why the alternatives are retained</a></li><li><a href="#reading-images-and-claims">Reading images and claims</a></li><li><a href="#single-anchor-split-rail-revision">Single-anchor split-rail revision</a></li></ul></details><article class="article"><h1 id="one-current-design-retained-engineering-history">One current design, retained engineering history</h1>
+<p>On 19 October 2026 <strong>MC2-C</strong> replaced the obsolete/unavailable original
+<strong>TinyC6-U-01</strong> with <strong>TinyC6[D] / TC6D-01</strong>, while retaining the classic ESP32
+host and the other services. The new board's external antenna requires an
+I²C-controlled switch; the matching RCP firmware performs and verifies that
+selection before starting Thread. The carrier and FH1 geometry, pin contracts,
+shopping list and fabrication package were updated together. The
+<a href="https://github.com/ha-homelab/ha-radio-hub/tree/614c0cd5750eda3b925750c4d893f08227f2991a">MC2-B source snapshot</a>
+preserves the previous fixed-U.FL build. Use the <a href="pcb-order.html">current ordering record</a>
+for new boards.</p>
+<p>On 18 October 2026 <strong>MC2-B</strong> replaced the S3 host with the previous-generation
+<strong>ESP32-DevKitC-VIE / WROVER-IE</strong> to reduce the host purchase cost. Its new
+38-pin footprint, pin map, boot-strap resistors and classic-ESP32 binary are not
+interchangeable with MC2-A. It retains the C6/MG24 radio paths and application
+services; BLE is limited to the original ESP32's 4.2 feature set. See the
+<a href="host-migration.html">migration record</a>.</p>
+<p>Earlier on 18 October 2026 <strong>MC2-A</strong> introduced a 100 × 100 mm carrier
+with factory external-antenna S3/C6 modules and external-mode XIAO MG24 firmware.
+It retained local services while separating all three 2.4 GHz antenna feeds.
+The <a href="https://github.com/ha-homelab/ha-radio-hub/tree/fee52fb67c3286e3f22925347ef7a35a720c2a55">MC2-A source snapshot</a>
+preserves its S3 CAD, firmware and appearance concepts.
+MC1 remains historical and continues to have regression checks. Its last
+47.5 × 75 mm layout, Nano 16 MB flash target and H2 pin map are not MC2.</p>
+<p>On 17 October 2026 the project chose <strong>MC1: one carrier for finished modules</strong>.
+The decision prioritizes existing functions and Home Assistant compatibility over
+using identical ESP32-H2 processors everywhere. Factory male module pins are
+soldered directly into plated carrier holes; female module sockets are excluded.</p>
+<p>The <a href="../hardware/designs.json">design registry</a> identifies the only active custom
+PCB design. The <a href="antennas.html">current assembly guide</a> and
+<a href="../hardware/external-antenna/index.html">current visual guide</a> are the starting points.</p>
+<h2 id="why-the-alternatives-are-retained">Why the alternatives are retained</h2>
+<p>The first MC1 layout used a 160 × 100 mm outline, followed by a 100 × 90 mm
+full-size S3 carrier, then an 80 × 90 mm Nano carrier with USB cable corridors.
+The subsequent <strong>65 × 75 mm Nano carrier</strong> removed those corridors, retained
+physical USB shells and implemented preassembly programming plus network updates.
+It introduced H2 RX23/TX24 and the documented R7 removal so the standard ROM
+loader is reachable, while retaining shared SPI and independent radio controllers.</p>
+<p>The historical <strong>51 × 75 mm two-sided carrier</strong> placed S3/H2/MG24 toward the room
+and WIZ850io, male harness headers and five axial parts toward the ceiling.
+Its electrical pin assignments and firmware are unchanged from the 65 × 75 mm
+revision. Staged solder access and measured opposing-tail clearance are now
+explicit assembly requirements. Previous snapshots are historical; use the
+current front and back drawings together.</p>
+<p>The previous C0/M0, I0 and D0 sources, measurements, build proofs and renders remain
+available to reproduce earlier work. They are historical references, not additional
+shopping lists or alternative current MC1 builds. Replacing an old board image with
+an MC1 image under the old filename would misrepresent its source and provenance.</p>
+<ul>
+<li><strong>Original modular assembly:</strong> Raspberry Pi, internal Ethernet switch and two
+Ethernet ESP controllers. Its enclosure and wiring are not MC1 geometry.</li>
+<li><strong>LP-P0:</strong> the earlier S3 software/electrical baseline, retained for regression
+testing and shared component implementation.</li>
+<li><strong>C0 + M0:</strong> carrier plus a separately manufactured MG24 adapter.</li>
+<li><strong>I0:</strong> integrated radio board with its own power, Ethernet and support circuits.</li>
+<li><strong>D0:</strong> home-etched carrier with wire links and adapter boards.</li>
+<li><strong>H2 Quartet:</strong> a useful feasibility experiment, rejected as the compatibility
+baseline. It introduced an unimplemented H2 local border router, different Zigbee
+backup/integration behavior and a new interprocessor transport.</li>
+</ul>
+<h2 id="reading-images-and-claims">Reading images and claims</h2>
+<p>MC1 CAD renders are generated from its own PCB sources. Assembly illustrations are
+labeled separately from CAD and from photographs. No rendering establishes that a
+physical board has been assembled, tested, certified or measured.</p>
+<p>The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/h2-quartet-function-audit.md">H2 function audit</a> records why making all
+processors identical would not currently be a function-preserving simplification.
+The earlier hardware has not been physically qualified either; its compiled
+firmware and documented interfaces are the comparison baseline, not field-test
+evidence.</p>
+<p>An intermediate mounting revision added a 6 × 27 mm ear for a fourth support beside
+RJ45 (57 × 75 mm overall). Two lower supports straddled its opening. Axial
+parts may use arbitrary angles where the final routed result improves; all
+functions and firmware pin assignments remain unchanged. See the
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/module-carrier/studies/mounting-routing/review.md">mounting and routing review</a>.</p>
+<p>The following four-hole revision returned to a <strong>51 × 75 mm rectangle</strong>: WIZ moves 6 mm
+toward the center, XIAO rotates, and a support fits between U2 and U3. It keeps
+four mounting points without the ear. The required assembly order is now
+explicitly <strong>the complete back first, then the front</strong>. Rear-first solder access
+and unchanged electrical connectivity are checked separately from physical
+height and insertion-force qualification. The former ear layout is preserved
+under the mounting study.</p>
+<h2 id="single-anchor-split-rail-revision">Single-anchor split-rail revision</h2>
+<p>The final MC1 <code>nano-single-anchor-rails</code> revision is <strong>47.5 × 75 mm</strong>. It removes
+H1, H2 and H4, retains H3 between U2 and U3, and uses split enclosure rails for
+edge support. The PCB is 6.86% smaller than the previous four-hole 51 × 75 mm
+rectangle. S3 and H2 move closer together; narrow clear edge lands remain for
+the enclosure lips. All back components are still soldered before the front.
+No sockets, new electronics, pin-map or firmware changes are introduced.</p>
+<p>The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/module-carrier/rail-mount/baseline/README.md">preceding four-hole native board</a>
+is immutable comparison evidence. The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/module-carrier/rail-mount/README.md">mounting study</a>
+defines the split support interface and fit coupons. The
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/module-carrier/enclosure-prototype/README.md">carrier enclosure prototype</a>
+extends that interface into printable housing parts. It does not house the
+external power, UART bridge, sensors and other radio modules. Actual module and
+cable fit, printed tolerances, RF behavior and load capacity remain unqualified.</p>
+</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

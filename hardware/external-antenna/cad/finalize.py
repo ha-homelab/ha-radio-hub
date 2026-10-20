@@ -35,6 +35,28 @@ for layer in [pcb.F_Cu,pcb.B_Cu]:
     for x,y in [(1,1.8),(BOARD_W-1,1.8),(BOARD_W-1,BOARD_H-1),(1,BOARD_H-1)]:po.Append(pcb.FromMM(x),pcb.FromMM(y))
     board.Add(z)
 board.BuildListOfNets();board.BuildConnectivity();pcb.ZONE_FILLER(board).Fill(board.Zones());pcb.SaveBoard(str(ROOT/'mc2.kicad_pcb'),board)
+# KiCad 10's Python wrapper does not expose BOARD_STACKUP setters. Record the
+# nominal order stackup in the native file, then require native parsing and DRC.
+# 1.51 mm dielectric + 2*35 um copper + 2*10 um mask = nominal 1.60 mm.
+path=ROOT/'mc2.kicad_pcb'
+text=path.read_text()
+assert '\t\t(stackup' not in text, 'Unexpected input stackup: review before replacing'
+stackup='''\t\t(stackup
+\t\t\t(layer "F.SilkS" (type "Top Silk Screen") (color "White"))
+\t\t\t(layer "F.Mask" (type "Top Solder Mask") (thickness 0.01) (color "Green"))
+\t\t\t(layer "F.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "dielectric 1" (type "core") (thickness 1.51) (material "FR4") (epsilon_r 4.5) (loss_tangent 0.02))
+\t\t\t(layer "B.Cu" (type "copper") (thickness 0.035))
+\t\t\t(layer "B.Mask" (type "Bottom Solder Mask") (thickness 0.01) (color "Green"))
+\t\t\t(layer "B.SilkS" (type "Bottom Silk Screen") (color "White"))
+\t\t\t(copper_finish "HASL lead-free")
+\t\t\t(dielectric_constraints no)
+\t\t)
+'''
+assert text.count('\t(setup\n')==1
+path.write_text(text.replace('\t(setup\n','\t(setup\n'+stackup,1))
+# Parse immediately: malformed fabrication metadata must never leave a package.
+pcb.LoadBoard(str(path))
 print('Imported final routing:',len(list(board.GetTracks())),'track/via items')
 
 from project_rules import restore_project_rules

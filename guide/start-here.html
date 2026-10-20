@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Start here · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html" aria-current="page">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/start-here.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-identify-the-parts-before-ordering-or-soldering">1. Identify the parts before ordering or soldering</a></li><li><a href="#2-program-the-three-controllers-while-they-are-loose">2. Program the three controllers while they are loose</a></li><li><a href="#3-print-small-parts-dry-fit-then-assemble-the-carrier">3. Print small parts, dry-fit, then assemble the carrier</a></li><li><a href="#4-wire-and-test-the-power-before-connecting-home-assistant">4. Wire and test the power before connecting Home Assistant</a></li><li><a href="#5-bring-up-one-service-at-a-time">5. Bring up one service at a time</a></li><li><a href="#6-close-the-case-qualify-then-migrate">6. Close the case, qualify, then migrate</a></li><li><a href="#troubleshooting-symptom--first-checks">Troubleshooting: symptom → first checks</a></li></ul></details><article class="article"><h1 id="start-here-build-the-mc2-c--fh1-hub">Start here: build the MC2-C / FH1 hub</h1>
+<p>Use this route for the <strong>MC2-C carrier and FH1 full-hub enclosure</strong>. It takes
+you from loose parts to a tested Home Assistant node. The hardware is an
+engineering prototype: software and CAD checks have passed, but the physical
+assembly, thermal behaviour and house coverage still need measurement.</p>
+<p>For a readable local guide, run <code>python3 tools/preview.py</code> from the repository
+root and open the printed URL. It serves documentation; it does not flash boards
+or connect to Home Assistant. Stop it with <strong>Ctrl+C</strong> when finished.</p>
+<h2 id="1-identify-the-parts-before-ordering-or-soldering">1. Identify the parts before ordering or soldering</h2>
+<p>Start with the <a href="shopping.html">shopping list</a>, <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a>
+and <a href="../mechanical/full-hub/components.json">full-case inventory</a>. Those cover
+different parts of the same build; the carrier BOM alone is not a complete hub.</p>
+<p>Check the labels on the four carrier modules:</p>
+<ul>
+<li><strong>U1: ESP32-DevKitC-VIE / WROVER-IE</strong>, classic ESP32 with two 19-pin rows,
+external antenna, 8 MB flash and 8 MB physical PSRAM.</li>
+<li><strong>U2: Unexpected Maker TinyC6[D] / TC6D-01</strong>, the 8 MB board with switched
+onboard/U.FL antennas. Use the matching MC2-C RCP firmware, which selects the
+external path before starting Thread. The old TC6-U-01 and H2 are not the
+current purchase target.</li>
+<li><strong>U3: Seeed XIAO MG24</strong>, pre-soldered SKU 102010690, for external-antenna Zigbee.</li>
+<li><strong>U4: WIZ850io</strong>, the data-only SPI Ethernet module.</li>
+</ul>
+<p>The off-carrier parts include the isolated 5 V PoE splitter, 3.3 V buck,
+DFR0627 UART bridge, regional <strong>Zooz ZAC93</strong>, CC1101 and its 433.92 MHz antenna,
+LD2450 and BME680. The ZAC93 is already received for this project; do not buy a
+second one by default. Each of the three 2.4 GHz radios needs its own specified
+antenna and pigtail. Check actual dimensions, connectors and quantities against
+the <a href="../mechanical/full-hub/components.json">assembly inventory</a>.</p>
+<p><strong>Ready to continue:</strong> the received parts match the active revision, and every
+module, cable and antenna has an identified place in the inventory. Keep MC1,
+MC2-A/S3 and Pi-era instructions in the <a href="history.html">history section</a>.</p>
+<h2 id="2-program-the-three-controllers-while-they-are-loose">2. Program the three controllers while they are loose</h2>
+<p>Follow the <a href="firmware.html">MC2-C firmware guide</a> for
+tool versions, commands and board selection. Attach the appropriate antenna
+before a radio runs. Use USB power only for each loose board.</p>
+<ol>
+<li>Prepare a <strong>private deployment directory</strong> and replace its generated API,
+OTA and MQTT credentials, broker and RF topics with your intended values.
+The validation build has disposable credentials and <code>build-only/rf/*</code>
+topics; it is not a deployable household configuration.</li>
+<li>Give <strong>U1/VIE a full initial USB-UART flash</strong>, including its MC2-C partition
+table. The node name is <code>mc2-classic-hub</code>. An S3 or MC1 image, and an app-only
+OTA over an old partition layout, are not valid initial installations.</li>
+<li>Build and flash the <strong>TinyC6[D] RCP</strong> with the matching pinned ESP-IDF. For loose
+programming, temporarily fit the documented <strong>10 kΩ GPIO8-to-local-3.3 V
+pull-up</strong>; the carrier supplies it only after assembly. Check the build's
+TC6D-01 identity and external-antenna verification; the original fixed-U.FL
+firmware does not switch this board's antenna.</li>
+<li>Follow the <a href="zigbee-firmware.html">MC2-C XIAO MG24 programming guide</a>, which selects
+<strong><code>--antenna external</code></strong>, and program its external initial HEX through the
+XIAO's onboard CMSIS-DAP probe. Output filenames retain <code>mc1</code> because the
+build recipe is shared; the guide gives the current MC2-C host connections.</li>
+<li>Leave the <strong>ZAC93 on its Zooz firmware</strong>. It is not an ESPHome target.</li>
+</ol>
+<p><strong>Ready to continue:</strong> programming and verification succeed for all three
+selected boards; keep the exact private configuration, image hashes and build
+reports. Loose-module programming does not yet verify Ethernet or the radios
+working together. Unplug USB before assembling the PoE-powered hub.</p>
+<h2 id="3-print-small-parts-dry-fit-then-assemble-the-carrier">3. Print small parts, dry-fit, then assemble the carrier</h2>
+<p>Use the <a href="print.html">FH1 print instructions</a> and
+<a href="../mechanical/full-hub/index.html">exploded layout</a>. Print the <strong>fit coupon and
+ZAC93 tray first</strong>, then check the real board and its underside mating socket.
+The largest part is 215 × 215 mm; the identified TRONXY XY-3 has a nominal
+310 × 310 mm bed. Check the slicer's usable area and brim before printing.</p>
+<p>Dry-fit every received component, mated plug, solder tail and cable route.
+Follow the <a href="antennas.html#pin-connections-and-initial-programming">MC2-C assembly order</a>:
+all modules face the same side, low axial parts and headers go first, and module
+joints are soldered from the back. The historical MC1 rear-first assembly is a
+different carrier. Install each off-board module's restraint, the radar holder
+and the ventilated BME680 pod; do not rely on cable friction to hold boards.</p>
+<p><strong>Ready to continue:</strong> no board or plug is forced into position, miniature coax
+plugs have slack, the ZAC93 antenna area is clear, the radar faces its window,
+and the lid closes without compressing a wire. A rendered fit is not this test.</p>
+<h2 id="4-wire-and-test-the-power-before-connecting-home-assistant">4. Wire and test the power before connecting Home Assistant</h2>
+<p>Keep the <a href="../hardware/external-antenna/full-hub-wiring.svg">full wiring image</a>
+beside the <a href="assembly.html">pin-by-pin assembly instructions</a>. Read
+actual pad numbers and module labels; drawings and cable colours do not define
+the connector's mating-side orientation.</p>
+<ul>
+<li>The power path is <strong>existing battery-fed PoE switch → isolated 5 V splitter →
+fuse/J1 → buck/J2 and controller rails</strong>. The splitter's data-only RJ45 plugs
+into WIZ850io. Raw PoE does not connect to the carrier.</li>
+<li>With power disconnected, continuity-check J1–J7 and look for shorts between
+5 V, 3.3 V and ground. Preserve the specified boot pull-ups/pull-downs and
+keep controller-local 3.3 V outputs separate from the peripheral buck rail.</li>
+<li>Meter the disconnected splitter and buck first. Then connect the electronics
+and check the rails again under load, including at ZAC93. Disconnect power
+before changing any wiring.</li>
+<li><strong>ZAC93 uses a remapped cable:</strong> J4.1→pin 1, J4.2→pin 6, J4.3→pin 9,
+J4.4→pin 8/RX, J4.5→pin 10/TX. It is not a straight-through 2×5 cable.
+Its DFR0627 bridge is on J3; set <strong>IA1=1, IA0=1</strong> and use UART1 at 115200 8N1.</li>
+</ul>
+<p><strong>Ready to continue:</strong> measured rails and polarity agree with the component
+requirements, no component overheats, Ethernet links, and the router gives the
+hub an address. Record that address; use it if <code>.local</code> names do not resolve.</p>
+<h2 id="5-bring-up-one-service-at-a-time">5. Bring up one service at a time</h2>
+<p>Use <strong>Settings → Devices &amp; services → Add integration</strong> in Home Assistant.
+Keep the lid open for the first checks. Replace <code>HUB_IP</code> below with the measured
+hub address; the placeholder is not a real hostname.</p>
+<ol>
+<li><strong>ESPHome:</strong> add <code>mc2-classic-hub</code> (or <code>HUB_IP</code>) with the private encrypted
+API key. It uses <strong>TCP 6053</strong>. Confirm <code>Hub Uptime</code> advances and inspect the
+<a href="../firmware/external-antenna/health.yaml">health entities</a>. Read running logs
+through the encrypted API; the USB-UART application console is disabled.
+Verify a real LD2450 movement event and fresh BME680 readings (default update
+interval 60 s). Check a compatible Bluetooth sensor through its HA integration;
+add an active-connection test if your devices use GATT.</li>
+<li><strong>Zigbee:</strong> give the coordinator exactly one owner. For ZHA choose the
+Silicon Labs EZSP/Ember radio with <strong><code>socket://HUB_IP:6638</code></strong> and 115200 baud.
+For Zigbee2MQTT instead use <strong><code>tcp://HUB_IP:6638</code></strong>, <code>adapter: ember</code> and
+115200 baud. The firmware supplies physical RTS/CTS. Confirm the NCP is
+identified and a spare test device reports and responds.</li>
+<li><strong>Thread:</strong> add <strong>OpenThread Border Router</strong> at <strong><code>http://HUB_IP:8081</code></strong>.
+OTBR runs on this hub; it does not require another Linux border router.
+<code>ready_uncommissioned_or_disabled</code> can be normal before a network is set up;
+after joining/creating the intended network, verify Thread state and an
+actual device. Use the <a href="https://www.home-assistant.io/integrations/thread/">HA Thread procedure</a>
+to check the chosen dataset and phone credentials. A matching network name
+alone does not mean matching credentials.</li>
+<li><strong>Matter-over-Thread:</strong> use the HA Matter integration/server and Companion
+app with the device's setup code. The hub supplies Thread transport, not a
+Matter controller. The phone's Bluetooth, IPv6 and multicast connectivity
+still matter; this hub's BLE proxy does not replace phone commissioning.
+Follow <a href="https://www.home-assistant.io/integrations/matter/">HA's Matter setup</a>
+and the <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/thread-devices.md">Thread device guide</a>, then test a real command.</li>
+<li><strong>Z-Wave:</strong> configure Z-Wave JS / Z-Wave JS UI with the native ESPHome
+transport from the <a href="assembly.html#first-power-and-home-assistant">ZAC93 instructions</a>.
+It uses <strong>6053 plus the URL-encoded API key</strong>. The HA Z-Wave integration
+connects to that Z-Wave JS server's <strong>WebSocket</strong>, not directly to the hub.
+Confirm ZAC93 is identified in the correct region and test a device. Use one
+Z-Wave driver only; port 6638 is Zigbee.</li>
+<li><strong>433 MHz RF:</strong> confirm the private MQTT broker and topic contract, then
+receive a known remote event. Test transmission against an intended test
+receiver and verify reception resumes. Compiling successfully does not
+establish that learned codes or the household's MQTT topics were retained.</li>
+</ol>
+<p><strong>Ready to continue:</strong> each intended service has passed a physical event or
+command test. A connected TCP socket or visible HA integration alone is not
+end-to-end evidence. See <a href="https://www.home-assistant.io/integrations/otbr/">HA's external OTBR configuration</a>
+for the REST endpoint and <a href="https://www.home-assistant.io/integrations/bluetooth/">Bluetooth integrations</a>
+for supported remote adapters.</p>
+<h2 id="6-close-the-case-qualify-then-migrate">6. Close the case, qualify, then migrate</h2>
+<p>Repeat the same tests with the case closed and at its final position. Follow
+the <a href="commissioning.html">RF commissioning procedure</a>, including simultaneous
+traffic, intended active BLE connections, measured heap/temperature/supply
+behaviour, recovery after PoE loss and the 72-hour soak. Record results in the
+<a href="../hardware/external-antenna/coverage-results.csv">coverage sheet</a>.</p>
+<p>Before switching an existing home, save HA configuration, private firmware
+secrets, Thread credentials and Zigbee/Z-Wave backups. Keep the old coordinator
+configuration available. Move one service at a time, stop its previous driver,
+and verify the same test events before moving the next service. Do not erase
+radio state or re-include devices simply to change a host connection.</p>
+<p><strong>Rollback:</strong> stop the new service's driver before restoring the previous
+connection and its appropriate backup. Do not run two owners of one Zigbee or
+Z-Wave radio. A moved ZAC93 keeps its network state unless reset; return that
+same radio to its old host if needed. A later firmware rollback requires a
+known-good image for this exact hardware and partition layout; use the
+<a href="updates.html">checked network update and recovery guide</a>.</p>
+<h2 id="troubleshooting-symptom--first-checks">Troubleshooting: symptom → first checks</h2>
+<ul>
+<li><strong>No DHCP address / HA cannot reach the hub:</strong> check PoE switch power, measured
+5 V/3.3 V, the splitter's data output into U4 and Ethernet link. Try its DHCP
+address instead of <code>.local</code>. An address proves neither ESPHome credentials
+nor Thread's IPv6 path; test those separately.</li>
+<li><strong>USB connects but no running logs appear:</strong> expected after boot. UART0 serves
+the radar and console output is disabled. Use encrypted ESPHome API logs;
+USB-UART is retained for initial flashing and recovery.</li>
+<li><strong>Host fails to boot or reports missing PSRAM:</strong> check the exact VIE/WROVER-IE
+board and factory image, then inspect the GPIO12/GPIO2 boot pull-downs and
+supply integrity. Do not change eFuses to disguise a wrong module or strap.</li>
+<li><strong>Thread says <code>quarantined</code> or <code>maintenance</code>:</strong> read <code>Thread Last Fault</code> and
+<code>C6 UART Update State</code>. Check C6 image, power, UART wiring and boot straps.
+Complete an interrupted update if necessary, then use <strong>Retry Quarantined
+Thread</strong> after correcting the cause. Do not erase the host's Thread dataset.</li>
+<li><strong>Zigbee times out:</strong> close any second ZHA/Zigbee2MQTT client. Check TCP 6638,
+all four UART/RTS/CTS wires, the external-antenna MG24 image and open J8 during
+normal operation. Poor range also warrants checking the U.FL path and antenna.</li>
+<li><strong>ZAC93 is missing or stops responding:</strong> check the J4 remap, 3.3 V at ZAC93,
+bridge address jumpers, UART1 and the API key used by Z-Wave JS. A
+<code>wk2132_uart</code> log saying <strong><code>UART stream invalid</code></strong> requires a device restart
+after its cause is corrected; reconnection alone does not reset the bridge
+driver. A host restart is not a ZAC93 power cycle. If the radio needs a power
+cycle, stop its driver and cycle PoE with USB disconnected; do not factory reset.</li>
+<li><strong>BME680 absent / temperature reads high:</strong> check J7, the default 0x77 address
+(or the private <code>bme680_address</code> override for 0x76), 3.3 V pull-ups and the
+shared bus harness. Keep the sensor opening clear in its external pod and
+compare after thermal equilibrium. Gas resistance is not calibrated CO₂.</li>
+<li><strong>LD2450 has no updates:</strong> check J6 power and TX→RX crossing at <strong>256000 baud</strong>.
+Compare with the lid open to separate a serial fault from window/placement
+effects; keep metal and wires away from the radar face.</li>
+<li><strong>RF events reach the wrong topic or never reach HA:</strong> inspect the private
+broker credentials, topic substitutions and learned-code overrides first.
+<code>build-only/rf/*</code> means the proof configuration was not prepared for deployment.</li>
+<li><strong>Works on the bench, fails with the lid or combined traffic:</strong> compare the
+recorded open/closed-case results; inspect cable compression, antenna spacing,
+power/temperature and <code>Hub Minimum Free Heap</code>/<code>Hub Largest Heap Block</code>. Follow
+the <a href="commissioning.html">RF acceptance workflow</a> rather than assuming gain or
+enclosure clearance guarantees coverage.</li>
+</ul>
+</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

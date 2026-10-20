@@ -12,7 +12,7 @@ concurrency:
 jobs:
   baseline:
     name: Modular prototype
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     steps:
       - name: Audit runner network access
@@ -33,6 +33,13 @@ jobs:
         run: |
           python3 -m venv .venv
           .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt -r mechanical/diy/requirements.txt
+      - name: Check readable guide and connector lookup
+        run: |
+          python3 -m venv .venv-guide
+          .venv-guide/bin/pip install -r guide/requirements.txt
+          .venv-guide/bin/python -m unittest discover -s guide -p 'test_*.py'
+          .venv-guide/bin/python guide/build.py --check
+          python3 -m unittest discover -s hardware/external-antenna -p 'test_*.py'
       - name: Check DIY print scale, orientation and source freshness
         run: |
           .venv/bin/python -m unittest discover -s mechanical/diy -p 'test_*.py'
@@ -57,7 +64,7 @@ jobs:
         run: docker build -t ha-radio-hub/ser2net:ci software/ser2net
   low-power:
     name: Single-host low-power prototype
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
       - name: Audit runner network access
@@ -101,7 +108,7 @@ jobs:
           .venv/bin/python mechanical/low-power/build.py --check
   pcb:
     name: Carrier, integrated and DIY PCB validation
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     env:
       KICAD_IMAGE: kicad/kicad:10.0.6@sha256:18693567392b80da435f9fa952ce3a3e534c66eb5a6033f5b9c80aa3b19dd3ec
@@ -140,13 +147,15 @@ jobs:
               kicad-cli sch erc --exit-code-violations --severity-all --format json --output hardware/external-antenna/cad/checks/erc.json hardware/external-antenna/cad/mc2.kicad_sch
               kicad-cli pcb drc --exit-code-violations --severity-all --schematic-parity --format json --output hardware/external-antenna/cad/checks/drc.json hardware/external-antenna/cad/mc2.kicad_pcb
               python3 hardware/external-antenna/cad/test_design.py
+              python3 hardware/external-antenna/fabrication/package.py --check
+              python3 -m unittest discover -s hardware/external-antenna/fabrication -p "test_*.py"
               python3 hardware/external-antenna/cad/reproduce_check.py --python python3 --cli kicad-cli --libraries /usr/share/kicad
             '
   check:
     name: check
     if: always()
     needs: [baseline, low-power, mg24, pcb, module-carrier, external-antenna]
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 2
     steps:
       - name: Require all prototype validations
@@ -166,7 +175,7 @@ jobs:
           test "$MC2_RESULT" = success
   mg24:
     name: MG24 Zigbee NCP and bootloader
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     env:
       QT_QPA_PLATFORM: offscreen
@@ -221,7 +230,7 @@ jobs:
 
   module-carrier:
     name: MC1 historical regression
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
       - name: Audit runner network access
@@ -266,8 +275,8 @@ jobs:
           python "$GITHUB_WORKSPACE/firmware/module-carrier/verify_h2.py" "$GITHUB_WORKSPACE/.build/mc1-h2"
 
   external-antenna:
-    name: MC2-B classic ESP32 and C6 RCP
-    runs-on: ubuntu-latest
+    name: MC2-C classic ESP32 and C6 RCP
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     steps:
       - name: Audit runner network access
@@ -291,7 +300,11 @@ jobs:
         run: |
           .venv/bin/python -m unittest discover -s mechanical/module-carrier/external-antenna-prototype -p 'test_*.py'
           .venv/bin/python mechanical/module-carrier/external-antenna-prototype/build.py --check
-      - name: Compile complete MC2-B classic ESP32 image
+      - name: Verify full-hub component mounts and print geometry
+        run: |
+          .venv/bin/python -m unittest discover -s mechanical/full-hub -p 'test_*.py'
+          .venv/bin/python mechanical/full-hub/build.py --check
+      - name: Compile complete MC2-C classic ESP32 image
         run: .venv/bin/python firmware/external-antenna/validate.py .build/mc2 --esphome .venv/bin/esphome --compile
       - name: Compile and verify matching C6 RCP
         run: |

@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "board": "Unexpected Maker TinyC6[D]",
+  "sku": "TC6D-01",
+  "manufacturer_hardware_revision": "P1",
+  "source_commit": "70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3",
+  "sources": {
+    "3d models/TinyC6D.step": {
+      "url": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step",
+      "sha256": "7fa649e387d6d74545534458d30804cd8a4ef99b6d99a1f551e2e5b39285539e"
+    },
+    "schematics/schematic-tinyc6-p1.pdf": {
+      "url": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/schematics/schematic-tinyc6-p1.pdf",
+      "sha256": "1af481279db18f0a015a3c5a94d2eb45e229a70795877142fe63ecfcb1a3576a"
+    },
+    "pinout_cards/TinyC6D_pinout.webp": {
+      "url": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/pinout_cards/TinyC6D_pinout.webp",
+      "sha256": "ff51a7786b18ebbf31c8ff2b8e3d7c752b95e971921c8f5519d71c699b7cdee7"
+    },
+    "code/esp-idf/um_seriesd_helper/components/um_seriesd/include/um_seriesd_pins.h": {
+      "url": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/code/esp-idf/um_seriesd_helper/components/um_seriesd/include/um_seriesd_pins.h",
+      "sha256": "c63dcbc2d53c28654baac2378c046aa9dd55c2ba0da5c5d26cfecffe75f9305e"
+    }
+  },
+  "licensing": "Manufacturer reference files remain upstream; only independently transcribed interface facts are included here.",
+  "header": {
+    "pitch_mm": 2.54,
+    "row_spacing_mm": 15.24,
+    "counts": [
+      11,
+      12
+    ],
+    "pad_map": {
+      "1": {
+        "name": "VBAT",
+        "local_mm": [
+          7.73,
+          -13.936
+        ]
+      },
+      "2": {
+        "name": "GND",
+        "local_mm": [
+          7.73,
+          -11.396
+        ]
+      },
+      "3": {
+        "name": "5V",
+        "local_mm": [
+          7.73,
+          -8.856
+        ]
+      },
+      "4": {
+        "name": "3V3",
+        "local_mm": [
+          7.73,
+          -6.316
+        ]
+      },
+      "5": {
+        "name": "GPIO3",
+        "local_mm": [
+          7.73,
+          -3.776
+        ]
+      },
+      "6": {
+        "name": "GPIO2",
+        "local_mm": [
+          7.73,
+          -1.236
+        ]
+      },
+      "7": {
+        "name": "GPIO1",
+        "local_mm": [
+          7.73,
+          1.304
+        ]
+      },
+      "8": {
+        "name": "GPIO0",
+        "local_mm": [
+          7.73,
+          3.844
+        ]
+      },
+      "9": {
+        "name": "GPIO11",
+        "local_mm": [
+          7.73,
+          6.384
+        ]
+      },
+      "10": {
+        "name": "GPIO8",
+        "local_mm": [
+          7.73,
+          8.924
+        ]
+      },
+      "11": {
+        "name": "GPIO9",
+        "local_mm": [
+          7.73,
+          11.464
+        ]
+      },
+      "12": {
+        "name": "GPIO17",
+        "local_mm": [
+          -7.51,
+          14.004
+        ]
+      },
+      "13": {
+        "name": "GPIO16",
+        "local_mm": [
+          -7.51,
+          11.464
+        ]
+      },
+      "14": {
+        "name": "GND",
+        "local_mm": [
+          -7.51,
+          8.924
+        ]
+      },
+      "15": {
+        "name": "EN",
+        "local_mm": [
+          -7.51,
+          6.384
+        ]
+      },
+      "16": {
+        "name": "GPIO15",
+        "local_mm": [
+          -7.51,
+          3.844
+        ]
+      },
+      "17": {
+        "name": "GPIO10",
+        "local_mm": [
+          -7.51,
+          1.304
+        ]
+      },
+      "18": {
+        "name": "GPIO6",
+        "local_mm": [
+          -7.51,
+          -1.236
+        ]
+      },
+      "19": {
+        "name": "GPIO7",
+        "local_mm": [
+          -7.51,
+          -3.776
+        ]
+      },
+      "20": {
+        "name": "GPIO18",
+        "local_mm": [
+          -7.51,
+          -6.316
+        ]
+      },
+      "21": {
+        "name": "GPIO19",
+        "local_mm": [
+          -7.51,
+          -8.856
+        ]
+      },
+      "22": {
+        "name": "GPIO20",
+        "local_mm": [
+          -7.51,
+          -11.396
+        ]
+      },
+      "23": {
+        "name": "GPIO21",
+        "local_mm": [
+          -7.51,
+          -13.936
+        ]
+      }
+    },
+    "manufacturer_numbers": "Carrier pads1-11 = manufacturer J3.1-11; carrier pads12-23 = manufacturer J4.12-1."
+  },
+  "mechanics": {
+    "source": "3d models/TinyC6D.step",
+    "datum": "Carrier U2 footprint local mm: X=STEP Y+0.11; Y=STEP X+0.632; Z=STEP Z. The point(0,0) is a footprint datum, not PCB center.",
+    "pcb_bounds_step_mm": [
+      -18.15,
+      -8.89,
+      0,
+      18.15,
+      8.89,
+      0.91
+    ],
+    "pcb_bounds_local_mm": [
+      -8.78,
+      -17.518,
+      9,
+      18.782
+    ],
+    "usb_bounds_local_mm": [
+      -4.33,
+      -18.958,
+      4.61,
+      -11.058
+    ],
+    "rf_center_local_mm": [
+      -5.49,
+      16.252
+    ],
+    "rf_center_step_mm": [
+      15.62,
+      -5.6,
+      0.995
+    ],
+    "height_basis": "Vendor STEP without user-soldered headers. Physical header seating and cable strain relief must still be measured on the supplied boards.",
+    "assembly_bounds_step_mm": [
+      -19.59,
+      -8.89,
+      -0.075,
+      18.15,
+      8.89,
+      4.205
+    ],
+    "assembly_bounds_local_mm": [
+      -8.78,
+      -18.958,
+      -0.075,
+      9,
+      18.782,
+      4.205
+    ],
+    "usb_bounds_step_mm": [
+      -19.59,
+      -4.44,
+      -0.005,
+      -11.69,
+      4.5,
+      4.205
+    ],
+    "model_height_mm": 4.28,
+    "model_top_z_mm": 4.205,
+    "model_bottom_z_mm": -0.075,
+    "verification_method": "Nominal bounds verified from the pinned STEP BRep using CadQuery 2.8.0 / Open CASCADE 7.9; 1089 imported solids. Header centers, ANT1 datum and coordinate transform cross-checked against STEP entities and the manufacturer pinout."
+  },
+  "electrical": {
+    "supply": "5V header to onboard 3.3V regulator; no battery fitted; do not join local3V3 to carrier peripheral3V3",
+    "uart": {
+      "rx": 17,
+      "tx": 16,
+      "baud": 460800
+    },
+    "boot": {
+      "gpio": 9,
+      "active_level": 0,
+      "factory_pullup_ohms": 10000,
+      "reset": "EN",
+      "strap_gpio8": "Must remain HIGH for ROM download; carrier R3 10k to C6_LOCAL_3V3 retained."
+    },
+    "antenna": {
+      "rf_path": "U.FL",
+      "expander": "FXL6408",
+      "i2c_address": 67,
+      "sda": 6,
+      "scl": 7,
+      "select_pin": "XIO0",
+      "select_level": 1,
+      "factory_i2c_pullup_ohms": 10000,
+      "external_before_radio": true
+    },
+    "carrier_unused_pads": [
+      "1",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23"
+    ],
+    "historical_difference": "Pad17 is GPIO10 on TinyC6[D], GPIO5 on original TinyC6-U. It is unconnected on this carrier. The external RF path now requires firmware selection."
+  },
+  "carrier_compatibility": {
+    "baseline_git_commit": "614c0cd5750eda3b925750c4d893f08227f2991a",
+    "baseline_revision": "MC2-B",
+    "compared": "All connected pad positions and all track/via geometry and nets; no-connect symbolic names excluded.",
+    "connected_topology_sha256": "8a060cac17c4a7eb9c5d5508be777a93bca63c23e3205f1f944f5a3f050d1d16",
+    "track_and_via_items": 310
+  }
+}

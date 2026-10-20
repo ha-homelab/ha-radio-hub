@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Host revision · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/classic-esp32-migration.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#why-this-exact-board">Why this exact board</a></li><li><a href="#cost-and-limits">Cost and limits</a></li><li><a href="#assembly-and-verification">Assembly and verification</a></li></ul></details><article class="article"><h1 id="mc2-b-previous-generation-esp32-host">MC2-B: previous-generation ESP32 host</h1>
+<p>This records the host migration. The active <strong>MC2-C</strong> keeps this host and its
+pin assignments, but replaces the original TinyC6-U-01 with <strong>TinyC6[D] /
+TC6D-01</strong> and matching antenna-switch firmware. Use the <a href="shopping.html">current shopping list</a>
+and <a href="pcb-order.html">ordering record</a> for a new build.</p>
+<p>MC2-B replaces <strong>ESP32-S3-DevKitC-1U-N8R8</strong> with <strong>Espressif ESP32-DevKitC-VIE</strong>,
+using the <strong>ESP32-WROVER-IE</strong> module. This is a cost-focused host migration;
+TinyC6-U-01, XIAO MG24, WIZ850io, CC1101, ZAC93/WK2132, LD2450 and BME680 keep
+their existing roles. The PoE source remains the battery-fed switch, followed
+by the isolated splitter and regulated low-voltage supplies.</p>
+<h2 id="why-this-exact-board">Why this exact board</h2>
+<p>The VIE has a factory external antenna connector, two 19-pin male headers,
+8 MB flash and 8 MB physical PSRAM. These are the specifications of the
+<strong>complete board</strong>, not an assumption based on the WROVER module family.
+<a href="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html#ordering-information">Espressif's ordering table</a>
+identifies this exact configuration. An unqualified “ESP32 DevKit” listing is
+not sufficient: the WROOM variants lack the selected PSRAM, and VE uses a
+printed antenna.</p>
+<p>The original ESP32 has three hardware UART controllers. They serve the radar,
+Zigbee NCP and Thread RCP; the existing I²C UART bridge still serves Z-Wave.
+Ethernet and CC1101 share SPI with separate chip selects. Keeping these
+interfaces avoids adding another controller or dropping an existing service.
+The module uses ECOv3 silicon; the build requires revision 3 or newer.</p>
+<p>We retain PSRAM because this is a combined OTBR, Ethernet and BLE application,
+not a minimal single-purpose BLE proxy. A no-PSRAM WROOM or a smaller C3 is not
+a qualified replacement for this full build. Moving Z-Wave, Thread or radar to
+another processor would be a different architecture, not a cheaper host swap.</p>
+<h2 id="cost-and-limits">Cost and limits</h2>
+<p>The <a href="shopping.html">shopping guide</a> records the exact source and verification
+level. The indexed one-board VIE offer was <strong>$9.48</strong>, versus the previously
+inspected S3 promotion at <strong>$15.20</strong>: <strong>$5.72 / 37.6% less for the host board</strong>.
+Shipping, taxes, promotions and stock can change. This is not a claim that the
+whole hub costs 37.6% less; antennas, radios and the other modules remain.
+If an MC2-A board has already been manufactured, replacing that carrier adds
+cost and can erase the saving on a single unit.</p>
+<p>Tradeoffs are explicit:</p>
+<ul>
+<li><strong>BLE 4.2:</strong> legacy advertisements and three active HA proxy connections are
+configured. BLE 5 extended advertising and LE Coded PHY are unavailable.
+An external antenna does not add those capabilities or guarantee the same
+coverage as another radio. <a href="https://documentation.espressif.com/esp32-wrover-e_esp32-wrover-ie_datasheet_en.html">Module datasheet</a>.</li>
+<li><strong>4 MB directly addressable PSRAM:</strong> the module physically contains 8 MB, but the classic
+ESP32's direct memory mapping covers 4 MB. We do not count the rest as
+available heap. PSRAM is set to <strong>quad 40 MHz</strong> to avoid the additional SPI
+host reservation needed at 80 MHz. <a href="https://docs.espressif.com/projects/esp-idf/en/v5.5.5/esp32/api-guides/external-ram.html">ESP-IDF memory restrictions</a>.</li>
+<li><strong>Different carrier:</strong> VIE is a 38-pin board; the previous S3 board was
+44-pin with a different row spacing. MC2-B adds explicit boot-strap biasing.
+Never insert VIE into the MC2-A footprint or reuse the old pin map.</li>
+<li><strong>Different binary and first flash:</strong> the new host uses the <code>esp32</code> target,
+new factory image and <code>mc2-classic-hub</code> node identity. S3 firmware is not an
+OTA migration path. The USB-UART bridge programs the loose board; runtime
+UART logging is disabled to reserve all three hardware UARTs.</li>
+<li><strong>Power is unmeasured:</strong> an older or cheaper processor is not evidence of
+lower energy consumption. Keep the simultaneous-load and 72-hour tests.</li>
+</ul>
+<h2 id="assembly-and-verification">Assembly and verification</h2>
+<p>Use only the current <a href="antennas.html">pin-to-pin assembly guide</a>,
+<a href="../hardware/external-antenna/cad/connectors.json">generated connector ledger</a>
+and <a href="firmware.html">firmware instructions</a>.
+The 10 kΩ pull-downs on GPIO12/SCK and GPIO2/MOSI are part of the design, not
+optional accessories. GPIO12 must be low at reset for the selected module's
+3.3 V flash domain, and GPIO2 low for UART download entry. Preserve the
+separate local 3.3 V rails and all other documented straps.</p>
+<p>The authoritative digital results are the <a href="../firmware/external-antenna/build-evidence.json">firmware build record</a>,
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/validation.md">hardware checks</a> and
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/module-carrier/external-antenna-prototype/README.md">enclosure verification</a>.
+The compiled MC2-B application is <strong>1,708,944 bytes</strong>, leaving <strong>2,223,216 bytes</strong>
+in each 3,932,160-byte OTA slot. The final image header identifies classic
+ESP32 and minimum revision 3.0. KiCad reports zero ERC, DRC, unconnected-item
+and schematic-parity errors. The 15 enclosure tests pass; its five printable
+meshes remain byte-identical because the outline and supports did not move.</p>
+<p>Compilation and routing checks do not prove free runtime heap or reliable
+simultaneous traffic. Before deployment, record internal free/largest heap,
+PSRAM availability, reset/recovery behavior, BLE connections, RF RX/TX,
+Zigbee flow control, Thread routing, Z-Wave and radar traffic together.</p>
+<p>The device has not been flashed or switched in Home Assistant as part of this
+source migration. Back up credentials and network state before a later
+physical migration. The <a href="https://github.com/ha-homelab/ha-radio-hub/tree/fee52fb67c3286e3f22925347ef7a35a720c2a55">MC2-A snapshot</a>
+retains the original S3 design and its build evidence.</p>
+</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

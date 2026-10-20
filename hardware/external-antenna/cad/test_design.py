@@ -2,9 +2,14 @@
 """MC2 physical-ledger, pin-contract, and native-check acceptance."""
 import json, hashlib
 from pathlib import Path
-from design import parts, hostnames, BOARD_W, BOARD_H
+from design import parts, hostnames, c6names, C6D_EVIDENCE, BOARD_W, BOARD_H
 R=Path(__file__).resolve().parent
 D=json.loads((R/'design.json').read_text()); P={p['ref']:p for p in D['parts']}
+assert D['revision']=='MC2-C'
+native=(R/'mc2.kicad_pcb').read_text()
+assert '(rev \"MC2-C\")' in native
+assert '(copper_finish \"HASL lead-free\")' in native
+assert '(material \"FR4\")' in native
 assert (BOARD_W,BOARD_H)==(100,100)
 assert all(p['side']=='front' for p in parts)
 assert len(P['U1']['pins'])==38 and len(P['U2']['pins'])==23
@@ -45,6 +50,25 @@ assert plan['bootstrap_requirements']['GPIO2']['level']==0
 for pin,net in {'J2.10':'THREAD_RX','J2.3':'THREAD_TX','J2.11':'THREAD_EN','J3.16':'THREAD_BOOT','J3.9':'RADAR_TX'}.items():assert P['U1']['pins'][pin]==net
 for pin,net in {'12':'THREAD_RX','13':'THREAD_TX','15':'THREAD_EN','11':'THREAD_BOOT','3':'+5V_C6'}.items():assert P['U2']['pins'][pin]==net
 assert P['U1']['pins']['J2.1'] is None and P['U2']['pins']['4']=='C6_LOCAL_3V3' and P['U3']['pins']['12'] is None
+# Check every physical D-series pad against the independently transcribed
+# manufacturer interface, including unused pads; GPIO5 became GPIO10 on pad17.
+assert P['U2']['model']=='Unexpected Maker TinyC6[D] TC6D-01'
+assert P['U2']['footprint']=='MC2:TinyC6_D'
+assert C6D_EVIDENCE['source_commit']=='70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3'
+for pad in P['U2']['pad_centers_mm']:
+ evidence=C6D_EVIDENCE['header']['pad_map'][pad['number']]
+ name=c6names[pad['number']]
+ assert evidence['name']==('GPIO'+name if name.isdigit() else name)
+ assert [round(pad['x']-P['U2']['xy'][0],4),round(pad['y']-P['U2']['xy'][1],4)]==evidence['local_mm'],pad
+for number in C6D_EVIDENCE['electrical']['carrier_unused_pads']:
+ assert P['U2']['pins'][number] is None,number
+assert c6names['17']=='10'
+assert P['U2']['body_bounds_local_mm']==[-8.78,-17.518,9,18.782]
+assert D['mechanics']['module_geometry']['U2']==C6D_EVIDENCE['mechanics']
+assert D['mechanics']['rf_ports']['U2']['estimated_xy_mm']==[48.29,46.252]
+c6=plan['external_controller_contract']['c6']
+assert c6['board']==C6D_EVIDENCE['board'] and c6['sku']==C6D_EVIDENCE['sku']
+assert c6['antenna']=={'mode':'external','rf_path':'U.FL','expander':'FXL6408','i2c_address':67,'sda':6,'scl':7,'select_pin':'XIO0','select_level':1,'initialized_before_radio':True}
 assert D['mechanics']['rj45']['outward_normal_global']==[0.0,1.0]
 assert D['mechanics']['rj45']['mouth_beyond_bottom_edge_mm']==2
 assert D['mechanics']['mounting_holes_mm']==[[4,4],[96,4],[4,96],[96,96]]
@@ -63,6 +87,7 @@ assert not any(n=='+3V3' for n in P['R3']['pins'].values())
 
 if (R/'verification.json').exists():
     recorded=json.loads((R/'verification.json').read_text())
+    assert recorded['connected_topology_sha256']==C6D_EVIDENCE['carrier_compatibility']['connected_topology_sha256']
     for name,digest in recorded['source_sha256'].items():
         assert hashlib.sha256((R/name).read_bytes()).hexdigest()==digest,('Stale verification input',name)
 print('MC2: exact header pin map, module separation, 3 independent RF paths, native ERC/DRC/parity PASS')
