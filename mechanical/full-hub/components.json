@@ -446,19 +446,24 @@
     {
       "id": "pigtail_24ghz",
       "quantity": 3,
-      "model": "Amphenol RF 095-902-545-150",
+      "model": "Taoglas CAB.618.E",
       "length_mm": 150,
       "cable_diameter_mm": 1.13,
       "panel_cutout_mm": {
-        "round_diameter": 6.6,
-        "flat_dimension": 6.1
+        "shape": "round",
+        "diameter": 6.6,
+        "print_allowance": 0.2,
+        "basis": "project clearance for 1/4-36 SMA barrel; not a vendor-specified panel cutout"
       },
-      "status": "manufacturer nominal, assembled route and connector clearance unmeasured",
+      "status": "published 150 mm model; 144 mm project route budget; delivered length, thread engagement and formed routing unmeasured",
       "mount": "fixed-wall bulkhead with strain relief/slack at U.FL-compatible AMC radio plug; no sharp bends",
       "sources": [
-        "https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/",
-        "https://www.amphenolrf.com/en-us/assets/file/4068032676/"
-      ]
+        "https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf",
+        "https://cdn.taoglas.com/specifications/30021F0020000A_Taoglas.pdf",
+        "rf-evidence.json"
+      ],
+      "minimum_bend_radius_mm": 6.8,
+      "project_length_shortfall_allowance_mm": 6
     },
     {
       "id": "antenna_433mhz",

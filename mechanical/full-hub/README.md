@@ -3,7 +3,9 @@
 **Current Thread board: Unexpected Maker TinyC6[D], TC6D-01.** This package
 uses the longer Series D board outline and its corrected U.FL position from
 the manufacturer STEP model. It retains the 215 × 215 × 78 mm shell and checks
-the three separate 150 mm coax routes. See the [source and fit ledger](sources.md#tinyc6d-revision-change)
+the three separate 150 mm coax routes. The current **RF1** print revision uses
+**Taoglas CAB.618.E** pigtails, round 6.8 mm SMA holes and a 3 mm fit coupon
+matching the wall. The original D-hole base is superseded. See the [source and fit ledger](sources.md#tinyc6d-revision-change)
 for the header alignment, nominal dimensions and remaining physical checks.
 Use the MC2-C RCP firmware to enable the Series D external antenna.
 
@@ -44,7 +46,7 @@ or plugging in the harness.
 
 ## Print package
 
-**[Download the complete FH1 print ZIP](FH1-MC2-C-print-package.zip)** — all 14
+**[Download the complete FH1 print ZIP](FH1-MC2-C-RF1-print-package.zip)** — all 14
 current STL files, a [print-first checklist](PRINT-FIRST.txt), and a
 [machine-readable quantity/hash manifest](print-manifest.json). The archive
 contains 13 installed pieces, one trial coupon and one optional blank. **Print
@@ -140,7 +142,11 @@ those during the unpowered dry fit.
    utility tray. Route its data-only RJ45 tail to WIZ850io; route fused 5 V to J1
    and the Pololu converter to J2 as the electrical guide specifies.
 5. Install the three fixed-base SMA bulkheads and route their separate
-   150 mm coax leads to BLE, Thread and Zigbee. Use loose, protective soft loops
+   Taoglas CAB.618.E 150 mm coax leads to BLE, Thread and Zigbee.
+   The checked routes use a conservative 144 mm usable-length budget, retain
+   25 mm service slack and have 6.8 mm minimum-radius bends. Measure actual
+   leads; the 6 mm shortfall is a project allowance, not a manufacturer
+   tolerance guarantee. Use loose, protective soft loops
    at the restraint points; never tighten a cable tie directly onto micro-coax.
    Keep the existing CC1101's separate 433.92 MHz feed matched to its actual
    connector. The trial side opening is not proof that an unknown adapter fits.

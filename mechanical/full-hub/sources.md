@@ -149,11 +149,35 @@ The selected three **TE/Linx ANT-2.4-LCW-SMA** antennas are external to the shel
 [manufacturer source](https://www.te.com/en/product-L9000082-01.html). Their
 nominal 83.1 mm length and 10 mm maximum width are in the existing
 [RF BOM](../../hardware/external-antenna/rf-bom.json); allow additional swivel
-sweep. The three **Amphenol 095-902-545-150** cables are 150 mm with 1.13 mm cable:
-[product](https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/) and
-[drawing](https://www.amphenolrf.com/en-us/assets/file/4068032676/). The SMA
-bulkhead drawing uses a 6.6 mm round / 6.1 mm flat panel cutout. Printed clearance
-and nut engagement require the fit coupon and the actual parts.
+sweep. The three **Taoglas CAB.618.E** cables are nominally 150 mm, 50 ohm,
+1.13 mm coax, I-PEX MHF I/U.FL right-angle plug to standard SMA female bulkhead.
+The [manufacturer catalogue](https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf)
+(page 11) gives the grouped drawing and includes this 150 mm SKU. Its illustrated
+200 mm sibling is labelled ±6 mm; that **does not establish the exact tolerance
+of CAB.618.E**. RF1 conservatively budgets **144 mm**, retaining 25 mm of service
+slack. The [cable specification](https://cdn.taoglas.com/specifications/30021F0020000A_Taoglas.pdf)
+gives a **6.8 mm minimum bend radius** for that cable family. Its exact internal
+wire part number is not established for CAB.618.E, so this is the project
+engineering basis; obey any stricter requirement supplied with the cable.
+The generator uses circular bends with
+that radius and collision-checks their sampled paths, not only sharp-corner
+guides. Straight lead-in remaining before the first bend must be at least **21 mm**:
+17 mm reference heatshrink plus up to 4 mm flange/body length, calculated from
+the grouped drawing. A 27 mm guide lead-in leaves that clearance after the
+first bend.
+
+RF1 replaces the former Amphenol-specific D holes with **round 6.8 mm holes**:
+6.6 mm project clearance plus 0.2 mm trial print allowance. This is a project
+cutout, **not a Taoglas panel recommendation**. The 3 mm-thick coupon now matches
+the 3 mm wall and offers 6.6/6.8/7.0 mm trials. The 1/4–36 threaded barrel must
+seat without force; fit the supplied washer and nut and hold the shoulder
+against rotation when fitting the antenna. The drawing's 11.4±0.3 mm projection,
+1.75±0.2 mm nut and 1.1±0.3 mm washer leave a nominal 5.55 mm after the 3 mm wall
+(4.75 mm using the most adverse stated dimensions). This arithmetic **does not
+prove full antenna thread engagement**: test the complete stack on the coupon.
+The linked STEP download was challenged and was not used for geometry claims.
+[rf-evidence.json](rf-evidence.json) records source hashes, derived allowances and
+remaining checks. The PCB and radio firmware remain MC2-C.
 
 The inline fuse holder and female 5.5 x 2.1 mm DC adapter have no selected
 manufacturer part numbers. Their listed 35 x 18 x 18 mm and 40 x 16 x 18 mm

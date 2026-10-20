@@ -5,13 +5,19 @@
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html" aria-current="page">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-shopping.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#the-two-esp-boards-and-the-zigbee-board">The two ESP boards and the Zigbee board</a></li><li><a href="#three-antennas-and-three-pigtails">Three antennas and three pigtails</a></li><li><a href="#before-committing-the-full-parts-order">Before committing the full parts order</a></li></ul></details><article class="article"><h1 id="mc2-c-exact-radio-and-antenna-shopping-list">MC2-C: exact radio and antenna shopping list</h1>
-<p>Updated <strong>19 October 2026</strong> for one MC2-C hub. This is the radio/antenna purchase
-list, not the complete hub BOM. The <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a>,
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-shopping.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#the-two-esp-boards-and-the-zigbee-board">The two ESP boards and the Zigbee board</a></li><li><a href="#three-antennas-and-three-pigtails">Three antennas and three pigtails</a></li><li><a href="#major-component-cost-and-availability">Major-component cost and availability</a></li><li><a href="#before-committing-the-full-parts-order">Before committing the full parts order</a></li></ul></details><article class="article"><h1 id="mc2-c-parts-availability-and-observed-prices">MC2-C: parts, availability and observed prices</h1>
+<p>Updated <strong>19 October 2026</strong> for one MC2-C hub. The priced list covers the major
+modules and RF accessories; smaller assembly materials are listed separately
+and still need pricing. The <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a>,
 <a href="../hardware/external-antenna/rf-bom.json">RF BOM</a> and
 <a href="antennas.html">assembly guide</a> remain the engineering references.
 No order has been placed. Prices below are observed offers, not checkout totals;
 discount eligibility, tax, delivery and stock can change.</p>
+<p><strong>Current priced subtotal: $182.04 for the 11 major component lines</strong>, or
+<strong>$195.75 including the five-PCB quote and PCB shipping</strong>. Smaller assembly
+materials, electronics shipping, taxes and import charges remain additional.
+The received ZAC93 and existing CC1101/433 MHz antenna do not need to be bought
+again. <a href="#major-component-cost-and-availability">Jump to all prices and availability</a>.</p>
 <h2 id="the-two-esp-boards-and-the-zigbee-board">The two ESP boards and the Zigbee board</h2>
 <ol>
 <li>
@@ -25,9 +31,9 @@ BLE 4.2 proxy and Thread Border Router.
 <a href="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html#ordering-information">Espressif's exact ordering table</a>
 confirms the memory and antenna variant.
 <a href="https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&amp;qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D">Mouser exact-part listing</a>
-was indexed at <strong>$9.48 for one</strong> on 18 October 2026. Its live page blocked
-automated rechecking, so confirm the current offer, stock and delivery at
-checkout. No exact AliExpress VIE variant has been qualified for MC2-C.
+showed <strong>$9.48 for one and 488 in stock</strong> on its live US page on
+19 October 2026. Confirm the offer and delivery at checkout.
+No exact AliExpress VIE variant has been qualified for MC2-C.
 The previous S3 offer was $15.20 promotional / $22.00 crossed-out price,
 before $5.93 shipping: the observed board-only reduction is $5.72 (37.6%)
 against that promotional price, <strong>not a delivered-cost quote</strong>.
@@ -69,19 +75,25 @@ Prefer the exact Seeed part until those details are checked.</p>
 </li>
 </ol>
 <h2 id="three-antennas-and-three-pigtails">Three antennas and three pigtails</h2>
-<p>The exact existing MC2 engineering selection is:</p>
+<p>The current engineering selection, with the <strong>FH1-MC2-C-RF1</strong> enclosure, is:</p>
 <ul>
 <li><strong>3 × TE Connectivity / Linx ANT-2.4-LCW-SMA</strong>
 (<a href="https://www.te.com/en/product-L9000082-01.html">manufacturer</a>,
 <a href="https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-2-4-LCW-SMA/9607799">DigiKey listing</a>).
 2400–2485 MHz, 50 Ω, 2.8 dBi peak gain, 83.1 mm long,
-standard SMA male with a center pin. One each for BLE, Thread and Zigbee.</li>
-<li><strong>3 × Amphenol RF 095-902-545-150</strong>
-(<a href="https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/">manufacturer</a>,
-<a href="https://www.mouser.com/ProductDetail/Amphenol-RF/095-902-545-150?qs=DRkmTr78QASFS985qeOImw%3D%3D">Mouser listing</a>).
-150 mm, 50 Ω, 1.13 mm coax, AMC/U.FL-compatible right-angle board plug
+standard SMA male with a center pin. One each for BLE, Thread and Zigbee.
+DigiKey showed <strong>$3.76 each, 2,777 available</strong>; three total <strong>$11.28</strong>.</li>
+<li><strong>3 × Taoglas CAB.618.E</strong>
+(<a href="https://www.taoglas.com/product/cab-618-e-i-pex-mhf-i-u-fl-to-150mm-1-13mm-coax-black-cable-smaf-bulkhead-straight/">manufacturer</a>,
+<a href="https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261">DigiKey 931-CAB.618.E-ND</a>).
+150 mm, 50 Ω, 1.13 mm coax, I-PEX MHF I/U.FL-compatible right-angle board plug
 to straight standard SMA female bulkhead with a center socket.
-These are the specific bulkhead dimensions used by the enclosure fit coupon.</li>
+DigiKey showed <strong>$4.66 each, 48 available</strong>; three total <strong>$13.98</strong>.
+This saves <strong>$74.43</strong> against the previous three Amphenol cables at $88.41.
+Use the RF1 round-hole coupon and revised cable routing. The
+<a href="pigtails.html">selection record</a> explains the length allowance,
+bend radius and physical checks; the supplier's shared drawing does not
+guarantee the exact 150 mm SKU's length tolerance.</li>
 </ul>
 <p>AliExpress options for a lower-cost <strong>sample</strong>, not qualified BOM replacements:</p>
 <ul>
@@ -105,6 +117,123 @@ bulkhead → SMA male 2.4 GHz antenna</strong>. Repeat it three times. There is 
 Do not buy RP-SMA, IPEX4/MHF4, 433 MHz or 868/915 MHz antennas for these three paths.
 The existing CC1101 still needs its separate matching 433.92 MHz antenna;
 ZAC93 keeps its original regional antenna and LD2450 its printed radar array.</p>
+<h2 id="major-component-cost-and-availability">Major-component cost and availability</h2>
+<p>These are observed USD offers for the exact selections, before electronics
+shipping, tax and import charges. “Orderable” means the page offered Add to Cart
+without an explicit stock count; it is not confirmation of immediate dispatch.
+The machine-readable record is <a href="../hardware/external-antenna/procurement.json">procurement.json</a>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th style="text-align:right">Qty</th>
+<th>Exact item and checked seller</th>
+<th style="text-align:right">Unit price</th>
+<th style="text-align:right">Line total</th>
+<th>Availability observed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&amp;qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D">ESP32-DevKitC-VIE — Mouser</a></td>
+<td style="text-align:right">$9.48</td>
+<td style="text-align:right">$9.48</td>
+<td>488</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851">TinyC6[D] TC6D-01 — manufacturer</a></td>
+<td style="text-align:right">$18.00</td>
+<td style="text-align:right">$18.00</td>
+<td>48; ships from Australia</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.seeedstudio.com/Seeed-Studio-XIAO-MG24-Pre-Soldered-p-6381.html">XIAO MG24 pre-soldered 102010690 — Seeed</a></td>
+<td style="text-align:right">$8.90</td>
+<td style="text-align:right">$8.90</td>
+<td>In stock</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.digikey.com/en/products/detail/wiznet/WIZ850IO/8789619">WIZ850io — DigiKey</a></td>
+<td style="text-align:right">$24.52</td>
+<td style="text-align:right">$24.52</td>
+<td>1,433</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.waveshare.com/poe-splitter-25w-type-c.htm?sku=27737">POE-SPLITTER-25W-5.5-2.1, SKU 27737 — Waveshare</a></td>
+<td style="text-align:right">$19.99</td>
+<td style="text-align:right">$19.99</td>
+<td>Orderable; select the 5 V DC barrel version</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.digikey.com/en/products/detail/pololu/2857/10451182">D24V22F3, Pololu 2857 — DigiKey Marketplace</a></td>
+<td style="text-align:right">$26.95</td>
+<td style="text-align:right">$26.95</td>
+<td>149; fulfilled by Pololu</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.dfrobot.com/product-2001.html">DFR0627 — DFRobot</a></td>
+<td style="text-align:right">$8.00</td>
+<td style="text-align:right">$8.00</td>
+<td>Orderable</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://www.adafruit.com/product/3660">BME680 STEMMA QT, 3660 — Adafruit</a></td>
+<td style="text-align:right">$18.95</td>
+<td style="text-align:right">$18.95</td>
+<td>In stock</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><a href="https://alexnld.com/product/hi-link-hlk-ld2450-24ghz-motion-target-tracking-radar-sensor-module-distance-angle-measurement-for-smart-hotel-home-led/">HLK-LD2450 module — Alexnld</a></td>
+<td style="text-align:right">$21.99</td>
+<td style="text-align:right">$21.99</td>
+<td>Seller reports In Stock; select the module variant</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td><a href="https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-2-4-LCW-SMA/9607799">ANT-2.4-LCW-SMA — DigiKey</a></td>
+<td style="text-align:right">$3.76</td>
+<td style="text-align:right">$11.28</td>
+<td>2,777</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td><a href="https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261">CAB.618.E — DigiKey</a></td>
+<td style="text-align:right">$4.66</td>
+<td style="text-align:right">$13.98</td>
+<td>48; US tariff may be added in cart</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Major-component subtotal: $182.04</strong>, down from $256.47 with the previous cables.
+Adding the <a href="pcb-order.html#quantity-and-delivery">five-PCB quote with its quoted shipping</a>
+of $13.71 gives <strong>$195.75 in priced items</strong>. This is <strong>not the complete delivered
+hub price</strong>. The received ZAC93 and existing CC1101/433 MHz antenna are excluded
+from this owner's additional purchase cost; a new builder must buy them too.</p>
+<p>Also required, and <strong>not yet priced</strong>:</p>
+<ul>
+<li>Three 1N5819 diodes and five axial resistors: one 4.7 kΩ and four 10 kΩ.</li>
+<li>J1–J7 headers and insulated mating contacts, ZAC93 2×5 mating header,
+BME680 QT lead and module wiring.</li>
+<li>1.5 A time-delay fuse with insulated holder, 5.5/2.1 mm DC adapter,
+cable restraints, fasteners, insulation and printed parts. The fuse rating is
+a starting selection; verify inrush, wire/contact ratings and derating as
+described in the <a href="assembly.html#power-and-ethernet">assembly guide</a>.</li>
+<li>Electronics delivery, tax, duties/tariffs and any PCB checkout/DFM adjustment.</li>
+</ul>
+<p>The Pololu item is a <strong>Marketplace</strong> shipment and may attract separate freight
+even in the same DigiKey cart. Its <a href="https://www.pololu.com/product/2857">direct product page</a>
+labels it <strong>Rationed (Active and Preferred)</strong>; do not mistake allowed backorders
+for direct-stock confirmation. Group the WIZ850io, three antennas and three
+pigtails in one DigiKey quote, then compare the separately fulfilled regulator
+at checkout. No combined delivery total to ZIP 94121 has been established.</p>
 <h2 id="before-committing-the-full-parts-order">Before committing the full parts order</h2>
 <p>Order the <strong>MC2-C fabrication package</strong>, with <strong>TC6D-01</strong> as U2. MC2-B is the
 previous fixed-antenna TinyC6 assembly. The <a href="pcb-order.html">revision and ordering record</a>
@@ -113,8 +242,8 @@ PCBs and components for one complete prototype; the extra PCBs are spares, not a
 reason to buy five untested sets of electronics.</p>
 <p>Also retain or source <strong>1 × WIZ850io</strong>, the isolated PoE splitter, regulated
 5 V/3.3 V supplies, fuses, DFR0627, regional ZAC93, CC1101, LD2450, BME680 and
-harnesses described in the assembly guide. They are not included in the radio
-prices above. The <a href="../mechanical/full-hub/components.json">FH1 full-hub inventory</a>
+harnesses described in the assembly guide. Use the priced lines and explicit
+exclusions above together. The <a href="../mechanical/full-hub/components.json">FH1 full-hub inventory</a>
 and <a href="assembly.html">assembly guide</a> select the finished Waveshare
 POE-SPLITTER-25W-5.5-2.1 and specify the modules, power accessories and mounts
 for the complete enclosure. The ZAC93 has been received; do not order a second

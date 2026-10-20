@@ -97,6 +97,44 @@ class FullHubTests(unittest.TestCase):
             self.assertLess((pin.solid^self.g['nodes']['base'].solid).volume(),.1)
         self.assertEqual(self.g['poses']['base'],((0,0,0),(0,0,0)))
 
+    def test_full_round_sma_barrel_fits_and_coupon_matches_wall(self):
+        wall=self.p['case']['wall']
+        for port in self.p['rf_ports']:
+            x,y,z=port['center']
+            barrel=b.c.cylinder(6.35,wall+.2).rotate((90,0,0)).move((x,wall+.1,z))
+            self.assertLess((barrel.solid^self.g['nodes']['base'].solid).volume(),.01)
+        self.assertAlmostEqual(b.c.mesh_of(self.g['nodes']['fit-coupon']).extents[2],wall)
+
+    def test_coax_shortfall_and_service_slack_are_both_reserved(self):
+        rf=self.p['rf_harness']
+        self.assertEqual(rf['minimum_length_budget_mm'],144)
+        for route in self.checks['routes']:
+            if 'coax' not in route['id']:continue
+            self.assertLessEqual(route['guide_length_upper_bound_mm']+25,144)
+            self.assertGreaterEqual(route['straight_bulkhead_lead_mm'],21)
+            self.assertTrue(route['bend_arcs'])
+            self.assertTrue(all(arc['radius_mm']>=6.8 for arc in route['bend_arcs']))
+        bad=copy.deepcopy(self.p)
+        bad['rf_harness']['minimum_length_budget_mm']=150
+        with self.assertRaisesRegex(AssertionError,'shortfall allowance'):
+            b.validate(bad,self.m,self.s,self.g)
+        bad=copy.deepcopy(self.p)
+        bad['rf_harness'].update(nominal_length_mm=130,minimum_length_budget_mm=124)
+        with self.assertRaisesRegex(AssertionError,'insufficient coax length'):
+            b.validate(bad,self.m,self.s,self.g)
+
+    def test_coax_bend_radius_is_geometric_not_only_a_label(self):
+        points,arcs,lead=b.rounded_coax_path([[0,0,0],[30,0,0],[30,30,0]],6.8,17)
+        self.assertAlmostEqual(lead,23.2)
+        self.assertAlmostEqual(arcs[0]['center_mm'][0],23.2)
+        self.assertAlmostEqual(arcs[0]['center_mm'][1],6.8)
+        for point in points[1:-1]:
+            self.assertAlmostEqual(b.math.dist(point,arcs[0]['center_mm']),6.8)
+        with self.assertRaisesRegex(AssertionError,'bend radius'):
+            b.rounded_coax_path([[0,0,0],[5,0,0],[5,5,0]],6.8,0)
+        with self.assertRaisesRegex(AssertionError,'heatshrink'):
+            b.rounded_coax_path([[0,0,0],[20,0,0],[20,30,0]],6.8,17)
+
     def test_radar_window_has_solid_skin_and_nominal_gap(self):
         p=self.p;mount=self.g['mounting']['ld2450']
         self.assertAlmostEqual(p['radar']['inner_window_z_mm']-p['radar']['antenna_plane_z_mm'],12.4)

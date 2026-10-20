@@ -20,21 +20,46 @@
     "source": "https://www.te.com/en/product-L9000082-01.html"
   },
   "pigtail": {
-    "manufacturer": "Amphenol RF",
-    "part": "095-902-545-150",
+    "manufacturer": "Taoglas",
+    "part": "CAB.618.E",
     "quantity": 3,
     "nominal_length_mm": 150,
+    "project_length_shortfall_allowance_mm": 6,
+    "project_minimum_length_budget_mm": 144,
+    "length_tolerance_note": "Shared catalogue drawing labels 200 +/-6 mm while listing this 150 mm SKU; 144 mm is a project routing budget, not a guaranteed minimum supplied length.",
     "impedance_ohm": 50,
     "cable_od_mm": 1.13,
-    "radio_end": "AMC right-angle plug; U.FL-compatible family, not MHF III/4",
-    "enclosure_end": "SMA straight bulkhead jack, standard polarity, center socket",
-    "drawing_panel_cutout_mm": {
-      "round_diameter": 6.6,
-      "flat_dimension": 6.1
+    "minimum_bend_radius_mm": 6.8,
+    "radio_end": "I-PEX MHF I right-angle plug; U.FL-compatible, not MHF III/4",
+    "enclosure_end": "Standard-polarity SMA female bulkhead, center socket; front mounting nut and washer",
+    "project_panel_cutout_mm": {
+      "shape": "round",
+      "nominal_diameter": 6.6,
+      "print_allowance": 0.2,
+      "printed_diameter": 6.8
     },
-    "source": "https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/",
-    "drawing": "https://www.amphenolrf.com/en-us/assets/file/4068032676/",
-    "routing_status": "Nominal length must pass the enclosure route check and a physical dry fit; never tension the module connector"
+    "panel_cutout_note": "Project clearance hole, not a manufacturer specified cutout; hold connector shoulder against rotation during assembly.",
+    "family_drawing_mm": {
+      "thread": "1/4-36 UNS-2A",
+      "threaded_length": 11.4,
+      "threaded_length_tolerance": 0.3,
+      "nut_thickness": 1.75,
+      "nut_thickness_tolerance": 0.2,
+      "washer_thickness": 1.1,
+      "washer_thickness_tolerance": 0.3
+    },
+    "source": "https://www.taoglas.com/product/cab-618-e-i-pex-mhf-i-u-fl-to-150mm-1-13mm-coax-black-cable-smaf-bulkhead-straight/",
+    "drawing": "https://www.taoglas.com/datasheets/Taoglas_Cable_Assembly_Catalog.pdf",
+    "drawing_page": 11,
+    "cable_specification": "https://cdn.taoglas.com/specifications/30021F0020000A_Taoglas.pdf",
+    "loss_estimate": {
+      "frequency_mhz": 2400,
+      "cable_db_per_m": 3.1,
+      "nominal_cable_only_db": 0.465,
+      "qualification": "Engineering estimate using published Taoglas 1.13 mm black coax family data; CAB.618.E documentation does not identify the exact internal wire part number. Excludes connectors/mismatch; not a measured or guaranteed assembly loss."
+    },
+    "routing_status": "Use FH1-MC2-C-RF1 and its 3 mm fit coupon. Verify received length, 25 mm service allowance, bend radius, thread engagement and unstrained connector fit physically.",
+    "bend_radius_basis": "6.8 mm engineering routing minimum from Taoglas 1.13 mm black coax family data; confirm with supplied assembly if its requirement is stricter."
   },
   "paths": [
     {

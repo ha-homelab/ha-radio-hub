@@ -37,7 +37,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 `--port 0` if the default local port is occupied.
 
 [Start here](docs/start-here.md) ·
-[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-print-package.zip) ·
+[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-RF1-print-package.zip) ·
 [Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
 [Documentation index](docs/README.md)
 
@@ -62,8 +62,10 @@ fabrication package and five-board prototype recommendation.
 - **Seeed XIAO MG24:** Ember NCP with explicit external-antenna firmware.
 - **WIZnet WIZ850io:** shared-SPI Ethernet; retain the isolated PoE splitter and
   regulated low-voltage supply from the battery-fed PoE switch.
-- **Three TE ANT-2.4-LCW-SMA antennas and three Amphenol 095-902-545-150 cables:**
-  separate 50 Ω paths, standard SMA bulkheads, no combiner.
+- **Three TE ANT-2.4-LCW-SMA antennas and three Taoglas CAB.618.E cables:**
+  separate 50 Ω paths, standard SMA bulkheads, no combiner. The
+  [updated selection](docs/pigtail-selection.md) saves $74.43 on three cables;
+  use the **FH1-MC2-C-RF1** enclosure and fit coupon.
 
 Classic ESP32 retains the configured services and three active BLE connections,
 but does not support BLE 5 extended advertising or Coded PHY. Lower power

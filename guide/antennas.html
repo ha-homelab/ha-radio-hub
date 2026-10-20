@@ -51,8 +51,8 @@ and <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a> must be u
 with the retained off-board equipment below. MC1's old price estimate does not
 price MC2.</p>
 <h2 id="three-antenna-paths">Three antenna paths</h2>
-<p>Buy <strong>three TE Connectivity/Linx ANT-2.4-LCW-SMA antennas</strong> and <strong>three Amphenol RF
-095-902-545-150 pigtails</strong>. Each 150 mm cable has an AMC/U.FL-compatible right-angle
+<p>Buy <strong>three TE Connectivity/Linx ANT-2.4-LCW-SMA antennas</strong> and <strong>three Taoglas
+CAB.618.E pigtails</strong>. Each 150 mm cable has an I-PEX MHF I/U.FL-compatible right-angle
 radio plug and a standard SMA female bulkhead. Each antenna has the matching
 standard SMA male plug, 50 Ω impedance, 2400–2485 MHz specification and 2.8 dBi
 peak gain. These are <strong>not RP-SMA</strong> connectors. Confirm center contacts and the
@@ -67,9 +67,13 @@ secure the cable away from the connector and leave slack. Connect the antennas
 before operating the radios. Inspect the physical cable route before final
 assembly. The enclosure's 65 mm adjacent bulkhead pitch is a starting layout,
 <strong>not a measured isolation rating</strong>. The 150 mm cable selection still needs a
-physical dry fit; do not pull it taut to reach a bulkhead.</p>
+physical dry fit; do not pull it taut to reach a bulkhead.
+Use the <strong>FH1-MC2-C-RF1</strong> print package: its round-hole coupon matches the
+3 mm wall, and the revised routes reserve a 6 mm cable-length shortfall
+allowance plus 25 mm service slack. That shortfall is an engineering budget,
+not a manufacturer-guaranteed tolerance. See the <a href="pigtails.html">pigtail selection</a>.</p>
 <p>Primary specifications: <a href="https://www.te.com/en/product-L9000082-01.html">TE antenna</a>,
-<a href="https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/">Amphenol 150 mm assembly</a>.</p>
+<a href="https://www.taoglas.com/product/cab-618-e-i-pex-mhf-i-u-fl-to-150mm-1-13mm-coax-black-cable-smaf-bulkhead-straight/">Taoglas 150 mm assembly</a>.</p>
 <h2 id="pin-connections-and-initial-programming">Pin connections and initial programming</h2>
 <p>Use the <a href="../hardware/external-antenna/cad/connectors.json">generated connector ledger</a>
 and <a href="../hardware/external-antenna/cad/schematic.svg">schematic</a>, rather than MC1

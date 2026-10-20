@@ -15,6 +15,8 @@ troubleshooting. To view the guide locally as rendered HTML, run
 ## Active build references
 
 - [Prototype PCB order, quantity and matched revision](pcb-order.md).
+- [Exact parts, availability and priced subtotal](mc2-shopping.md).
+- [Lower-cost pigtails, connector fit and RF evidence](pigtail-selection.md).
 - [Classic ESP32 migration, cost and compatibility](classic-esp32-migration.md).
 - [Assembly, exact parts and antenna connections](external-antennas.md).
 - [Visual guide with pin-to-pin lookup](../hardware/external-antenna/index.html).
