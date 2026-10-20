@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MG24 programming · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><a href="updates.html">Update and recover</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-zigbee.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-prepare-the-tools">1. Prepare the tools</a></li><li><a href="#2-generate-and-build-the-external-image">2. Generate and build the external image</a></li><li><a href="#3-program-the-loose-xiao-through-its-usb-c-port">3. Program the loose XIAO through its USB-C port</a></li><li><a href="#4-connect-and-test-on-mc2-b">4. Connect and test on MC2-B</a></li><li><a href="#updates-and-recovery">Updates and recovery</a></li></ul></details><article class="article"><h1 id="mc2-b-zigbee-program-the-xiao-mg24-external-antenna-image">MC2-B Zigbee: program the XIAO MG24 external antenna image</h1>
+<p>This is the current programming route for <strong>U3, Seeed XIAO MG24 Pre-Soldered
+SKU 102010690</strong>, on the MC2-B carrier. Use <strong><code>--antenna external</code></strong> throughout:
+the application drives <strong>PB04=1 and PB05=1</strong> before starting Zigbee, selecting
+the U.FL connector. Attach the specified 2.4 GHz antenna before running it.</p>
+<p>The recipe is shared with MC1 and its files retain <code>mc1</code> in their names. This
+does not make MC1 host wiring or its default onboard-antenna example suitable
+for MC2-B. Build and offline validation have passed; actual radio operation
+and physical commissioning still need verification.</p>
+<h2 id="1-prepare-the-tools">1. Prepare the tools</h2>
+<p>Use these pinned tools and set their paths in your shell:</p>
+<ul>
+<li><code>SISDK_DIR</code>: <strong>Simplicity SDK 2025.6.3</strong> directory.</li>
+<li><code>SLC_BIN</code>: <strong>SLC 6.0.15</strong> executable.</li>
+<li><code>ARM_GCC_DIR</code>: <strong>Arm GNU 12.2.Rel1 / GCC 12.2.1</strong> toolchain root containing <code>bin/</code>.</li>
+<li><code>SILABS_PYTHON_PACK</code>: Silicon Labs <strong>Python 3.10.1 adapter pack</strong> directory
+containing <code>apack.json</code> and its native JEP library. Its manifest reports
+3.10.5; an ordinary Python installation is not a replacement for this pack.</li>
+<li><code>JAVA21_DIR</code>: <strong>Java 21</strong> installation.</li>
+<li><code>COMMANDER_BIN</code>: <strong>Simplicity Commander 1.25.0 build1995</strong> executable.</li>
+</ul>
+<p>The <a href="../firmware/low-power/mg24/bootstrap_linux.py">Linux dependency bootstrap</a>
+and <a href="../firmware/low-power/mg24/dependencies-linux.json">version/checksum lock</a>
+cover these build dependencies. For initial programming, also locate the
+<strong>OpenOCD 0.12.0-arduino1-static</strong> executable and scripts from the Silicon Labs
+Arduino package: set <code>OPENOCD_BIN</code> and <code>OPENOCD_SCRIPTS</code>. The scripts must include
+<code>target/efm32s2_g23.cfg</code>; generic OpenOCD installations may lack this target.</p>
+<p>Choose a new, <strong>absolute</strong> output path outside the repository and set
+<code>MC2_BUILD_DIR</code> to it. It must not already exist. Keep it separate from any
+MC1/onboard build. Run the following commands from the repository root.</p>
+<h2 id="2-generate-and-build-the-external-image">2. Generate and build the external image</h2>
+<p>These commands create files only; they do not program a board:</p>
+<pre><code class="language-sh">python3 firmware/module-carrier/zigbee/generate.py \
+  --sdk &quot;$SISDK_DIR&quot; --slc &quot;$SLC_BIN&quot; --gcc &quot;$ARM_GCC_DIR&quot; \
+  --python-pack &quot;$SILABS_PYTHON_PACK&quot; --java-home &quot;$JAVA21_DIR&quot; \
+  --antenna external --output &quot;$MC2_BUILD_DIR&quot;
+
+python3 firmware/module-carrier/zigbee/build.py \
+  --project &quot;$MC2_BUILD_DIR&quot; --gcc &quot;$ARM_GCC_DIR&quot; \
+  --commander &quot;$COMMANDER_BIN&quot;
+</code></pre>
+<p>The build emits the following under <code>$MC2_BUILD_DIR/artifacts/</code>:</p>
+<ul>
+<li><strong><code>mc1-xiao-mg24-external-initial.hex</code></strong>: initial CMSIS-DAP programming image,
+containing the bootloader and application. The application starts at
+<code>0x08006000</code>, after the reserved 24 KiB bootloader region.</li>
+<li><strong><code>mc1-xiao-mg24-external-ncp.gbl</code></strong>: application-only image for later network
+updates through the Gecko UART bootloader.</li>
+<li><strong><code>build-report.json</code></strong>: board, target, antenna configuration, image hashes
+and offline validation results. Confirm <code>status</code> is
+<code>build-and-offline-validation-pass</code>, <code>board_sku</code> is <code>102010690</code>, and <code>antenna</code>
+records <code>mode: external</code>, <code>rf_path: RF2/U.FL</code>, <code>select_level: 1</code> and
+<code>enable_level: 1</code>. Retain this report with its images.</li>
+</ul>
+<p>Do not rename an onboard image to make it appear external. The RF selection is
+compiled into the application; the MC2 updater checks the matching metadata.
+The exact command schema and filenames come from the shared
+<a href="../firmware/module-carrier/zigbee/generate.py">generator</a>,
+<a href="../firmware/module-carrier/zigbee/build.py">builder</a> and
+<a href="../firmware/module-carrier/zigbee/antenna.py">antenna contract</a>.</p>
+<h2 id="3-program-the-loose-xiao-through-its-usb-c-port">3. Program the loose XIAO through its USB-C port</h2>
+<p>Perform initial programming <strong>before soldering the XIAO into the carrier</strong>.
+Connect only the intended loose XIAO to USB, with its antenna attached. Its
+onboard SAMD11 provides the CMSIS-DAP probe; no separate SWD probe is required.
+Use a USB data cable. Leave other CMSIS-DAP programmers disconnected so target
+selection is unambiguous.</p>
+<p>After identifying the board and checking the image against its build report,
+the following command <strong>writes the initial image to the connected XIAO</strong>:</p>
+<pre><code class="language-sh">MC2_INITIAL_HEX=&quot;$MC2_BUILD_DIR/artifacts/mc1-xiao-mg24-external-initial.hex&quot;
+&quot;$OPENOCD_BIN&quot; -s &quot;$OPENOCD_SCRIPTS&quot; \
+  -f interface/cmsis-dap.cfg -f target/efm32s2_g23.cfg \
+  -c 'init; reset_config srst_nogate; reset halt' \
+  -c &quot;program {$MC2_INITIAL_HEX} verify&quot; \
+  -c 'reset run; exit'
+</code></pre>
+<p><strong>Checkpoint:</strong> OpenOCD finishes programming and verification without errors.
+Disconnect USB before mounting the board or applying the assembled hub's PoE
+supply. A successful verification checks written bytes, not Zigbee range.</p>
+<p>Do not copy this loose-board power procedure onto a soldered carrier. In-circuit
+USB service requires checking the complete assembly's power isolation and
+backfeed behaviour; use the normal MC2 network update route when available.</p>
+<h2 id="4-connect-and-test-on-mc2-b">4. Connect and test on MC2-B</h2>
+<p>Use the <a href="../hardware/external-antenna/cad/connectors.json">current MC2-B connector ledger</a>
+and <a href="antennas.html#pin-connections-and-initial-programming">pin guide</a>.
+The host is the classic ESP32, not the S3 described in historical MC1 material:</p>
+<ul>
+<li>Host GPIO32/TX → XIAO D7/PC07/RX.</li>
+<li>XIAO D6/PC06/TX → host GPIO39/RX.</li>
+<li>Host GPIO33/RTS → XIAO D4/PC04/CTS.</li>
+<li>XIAO D5/PC05/RTS → host GPIO14/CTS.</li>
+</ul>
+<p>The application and bootloader use <strong>115200 baud, 8N1, hardware RTS/CTS</strong> over
+these header pins. The XIAO's USB port is the programming/debug probe, not a
+second Zigbee serial adapter. Keep <strong>J8 open</strong> for normal operation.</p>
+<p>After <a href="start-here.html#4-wire-and-test-the-power-before-connecting-home-assistant">wiring and power checks</a>,
+give the radio one owner: <strong>ZHA</strong> with <code>socket://HUB_IP:6638</code> and Silicon Labs
+EZSP/Ember, or <strong>Zigbee2MQTT</strong> with <code>tcp://HUB_IP:6638</code> and <code>adapter: ember</code>.
+Use 115200 baud in either case. Replace <code>HUB_IP</code> with the hub's actual address.
+The host firmware handles the physical RTS/CTS signals.</p>
+<p><strong>Checkpoint:</strong> the host identifies the NCP, then a spare test device joins,
+reports and responds. Check the reported SDK/EZSP version against the recipe's
+<strong>EmberZNet 8.2.3 / EZSP18</strong> target and run the
+<a href="commissioning.html">RF acceptance procedure</a>. An existing household network
+needs its backup/migration process before replacing its coordinator.</p>
+<h2 id="updates-and-recovery">Updates and recovery</h2>
+<p>For later application updates, back up Zigbee state, stop the sole coordinator
+owner and follow the <strong><a href="updates.html#zigbee-application">MC2 network update guide</a></strong>
+with the external NCP GBL and matching report. Use the MC2 updater, which checks
+the required external antenna mode. The initial HEX is not a network-update image.</p>
+<p>If local UART bootloader recovery is needed, MC2 <strong>J8.1</strong> is XIAO D0/PC00 and
+<strong>J8.2</strong> is ground. Temporarily short those service pads while resetting the
+XIAO, then remove the short. Normal operation requires J8 open. A missing or
+damaged bootloader instead needs CMSIS-DAP recovery and an appropriate service
+power arrangement; do not power only one connected module through USB.</p>
+<p>The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/firmware/module-carrier/zigbee/README.md">shared MG24 engineering reference</a>
+contains advanced clock, image-layout and build-validation detail. Its <strong>MC1/S3
+host pin assignments and onboard-image example are historical</strong>; the commands
+and connections on this page are the MC2-B route.</p>
+</article><footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

@@ -1,0 +1,34 @@
+Carrier connector,Carrier pad,Net,Device,Device contact,Direction,Function
+J1,1,+5V,Isolated PoE splitter / fused 5 V input,"Splitter +5 V, after inline fuse",Device to carrier,5 V power enters the carrier
+J1,2,GND,Isolated PoE splitter / fused 5 V input,Splitter GND,Common ground,Common ground return
+J2,1,+5V,Pololu D24V22F3 buck converter,VIN,Carrier to device,Carrier 5 V supplies the regulator
+J2,2,GND,Pololu D24V22F3 buck converter,GND,Common ground,Input ground return
+J2,3,+3V3,Pololu D24V22F3 buck converter,VOUT (3.3 V),Device to carrier,Regulator powers the peripheral 3.3 V rail
+J2,4,GND,Pololu D24V22F3 buck converter,GND,Common ground,Output ground return
+J3,1,+3V3,DFRobot DFR0627 / WK2132 UART bridge,+ / VCC,Carrier to device,Peripheral 3.3 V; do not supply 5 V
+J3,2,GND,DFRobot DFR0627 / WK2132 UART bridge,− / GND,Common ground,Common ground return
+J3,3,I2C_SDA,DFRobot DFR0627 / WK2132 UART bridge,D / SDA,Bidirectional,"I²C data, host GPIO21"
+J3,4,I2C_SCL,DFRobot DFR0627 / WK2132 UART bridge,C / SCL,Carrier to device,"I²C clock, host GPIO22"
+J3,5,ZWAVE_RX,DFRobot DFR0627 / WK2132 UART bridge,UART1 T / TX1,Device to carrier,Bridge transmitter → J4.4 → ZAC93 pin 8 RX
+J3,6,ZWAVE_TX,DFRobot DFR0627 / WK2132 UART bridge,UART1 R / RX1,Carrier to device,ZAC93 pin 10 TX → J4.5 → bridge receiver
+J4,1,+3V3,Zooz ZAC93 Z-Wave board,Physical pin 1 — 3V3,Carrier to device,Peripheral 3.3 V supply
+J4,2,GND,Zooz ZAC93 Z-Wave board,Physical pin 6 — GND,Common ground,First ground return
+J4,3,GND,Zooz ZAC93 Z-Wave board,Physical pin 9 — GND,Common ground,Second ground return
+J4,4,ZWAVE_RX,Zooz ZAC93 Z-Wave board,Physical pin 8 — RX,Carrier to device,J3.5 / bridge TX1 → ZAC93 receiver
+J4,5,ZWAVE_TX,Zooz ZAC93 Z-Wave board,Physical pin 10 — TX,Device to carrier,ZAC93 transmitter → J3.6 / bridge RX1
+J5,1,+3V3,CC1101 433.92 MHz radio,VCC,Carrier to device,Peripheral 3.3 V supply
+J5,2,GND,CC1101 433.92 MHz radio,GND,Common ground,Common ground return
+J5,3,SPI_SCK,CC1101 433.92 MHz radio,SCLK / SCK,Carrier to device,SPI clock from host GPIO12
+J5,4,SPI_MOSI,CC1101 433.92 MHz radio,SI / MOSI,Carrier to device,SPI data from host GPIO2
+J5,5,SPI_MISO,CC1101 433.92 MHz radio,SO / MISO,Device to carrier,SPI data to host GPIO19
+J5,6,RF_CS,CC1101 433.92 MHz radio,CSn / CS,Carrier to device,RF chip select from host GPIO13
+J5,7,RF_GDO0,CC1101 433.92 MHz radio,GDO0,Carrier to device,Transmit path from GPIO25; open-drain with carrier 4.7 kΩ pull-up
+J5,8,RF_GDO2,CC1101 433.92 MHz radio,GDO2,Device to carrier,Receive path to host GPIO35
+J6,1,+5V,Hi-Link LD2450 radar,5V,Carrier to device,Fused 5 V supply
+J6,2,GND,Hi-Link LD2450 radar,GND,Common ground,Common ground return
+J6,3,RADAR_RX,Hi-Link LD2450 radar,RX,Carrier to device,Host GPIO23 TX → radar receiver
+J6,4,RADAR_TX,Hi-Link LD2450 radar,TX,Device to carrier,Radar transmitter → host GPIO18 RX
+J7,1,GND,Adafruit BME680 breakout 3660,GND,Common ground,Common ground return
+J7,2,+3V3,Adafruit BME680 breakout 3660,VIN / STEMMA QT power input,Carrier to device,Peripheral 3.3 V supply
+J7,3,I2C_SDA,Adafruit BME680 breakout 3660,SDA / SDI,Bidirectional,"I²C data, host GPIO21"
+J7,4,I2C_SCL,Adafruit BME680 breakout 3660,SCL / SCK,Carrier to device,"I²C clock, host GPIO22"

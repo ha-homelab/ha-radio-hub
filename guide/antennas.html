@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antenna details · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><a href="updates.html">Update and recover</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/external-antennas.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#exact-module-selection">Exact module selection</a></li><li><a href="#three-antenna-paths">Three antenna paths</a></li><li><a href="#pin-connections-and-initial-programming">Pin connections and initial programming</a></li><li><a href="#poe-and-retained-equipment">PoE and retained equipment</a></li><li><a href="#bluetooth-compatibility-and-coverage">Bluetooth compatibility and coverage</a></li></ul></details><article class="article"><h1 id="mc2-b-three-external-antennas">MC2-B: three external antennas</h1>
+<p>MC2-B is the current <strong>100 × 100 mm, two-copper-layer</strong> carrier for finished
+modules. It retains the local Thread Border Router, Ember Zigbee, active Bluetooth
+proxy, Z-Wave transport, CC1101 RX/TX, LD2450 and BME680. Its change is three
+independent external 2.4 GHz radio paths. <strong>This is an engineering prototype</strong>:
+builds and CAD checks do not demonstrate house coverage or physical fit.</p>
+<p>Start with the <a href="../hardware/external-antenna/index.html">visual guide and pin lookup</a>,
+<a href="hardware.html">native hardware</a>,
+<a href="firmware.html">firmware instructions</a>, and
+<a href="print.html">full-hub printable enclosure</a>.</p>
+<h2 id="exact-module-selection">Exact module selection</h2>
+<ul>
+<li><strong>U1: Espressif ESP32-DevKitC-VIE / ESP32-WROVER-IE.</strong> Classic ESP32 ECOv3,
+factory external RF connector, 8 MB flash and 8 MB physical PSRAM; two 19-pin
+rows. The application maps 4 MB PSRAM for capability-based allocation at quad 40 MHz.
+It runs Ethernet, the BLE 4.2 proxy and local Thread Border Router. Do not
+substitute WROOM (no PSRAM), VE (onboard antenna), an older WROVER revision,
+or the former S3 board. <strong>MC2-A and MC2-B footprints and binaries differ.</strong></li>
+<li><strong>U2: Unexpected Maker TinyC6-U-01.</strong> Factory U.FL variant, 8 MB flash and native
+USB. It runs the dedicated Thread RCP. Its ordinary through-hole headers expose
+RX17, TX16, EN and BOOT9. Fit its supplied <strong>1×12 and 1×11 loose headers</strong> first.
+The carrier adds a 10 kΩ pull-up from the TinyC6 local 3.3 V pin (header 4)
+to its GPIO8 strap (header 10), required for reliable ROM download entry.
+There is no competing USB-UART transmitter and no H2 R7 removal step. Do not
+substitute TinyC6[D], an onboard-antenna TinyC6, or an H2 image.</li>
+<li><strong>U3: Seeed XIAO MG24.</strong> Retain the same Ember protocol family, with a separately
+built <strong>external-antenna firmware</strong>. PB04=1 and PB05=1 select its U.FL path before
+radio initialization. Its onboard antenna and external path are alternatives,
+not two simultaneous radiators.</li>
+<li><strong>U4: WIZnet WIZ850io.</strong> Retain the SPI Ethernet module. Its RJ45 is a data port;
+the separate standards-compliant PoE splitter supplies the low-voltage circuit.</li>
+</ul>
+<p>Module sources: <a href="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html">Espressif ordering and pin guide</a>,
+<a href="https://github.com/UnexpectedMaker/esp32c6">Unexpected Maker design files</a>,
+<a href="https://wiki.seeedstudio.com/xiao_mg24_getting_started/">Seeed antenna selection</a>.</p>
+<p><strong>Procurement caveat, 18 October 2026:</strong> TinyC6-U-01 was not available for immediate
+shipment in the checked listings; Mouser 392-TC6-U-01 showed zero stock/backorder
+and TinyTronics showed on-request availability. This is an exact-part design,
+not a claim that every part can be ordered for next-day delivery. Recheck the
+specific U.FL SKU before ordering the carrier. The <a href="../hardware/external-antenna/rf-bom.json">RF BOM</a>
+and <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a> must be used together
+with the retained off-board equipment below. MC1's old price estimate does not
+price MC2.</p>
+<h2 id="three-antenna-paths">Three antenna paths</h2>
+<p>Buy <strong>three TE Connectivity/Linx ANT-2.4-LCW-SMA antennas</strong> and <strong>three Amphenol RF
+095-902-545-150 pigtails</strong>. Each 150 mm cable has an AMC/U.FL-compatible right-angle
+radio plug and a standard SMA female bulkhead. Each antenna has the matching
+standard SMA male plug, 50 Ω impedance, 2400–2485 MHz specification and 2.8 dBi
+peak gain. These are <strong>not RP-SMA</strong> connectors. Confirm center contacts and the
+exact connector family; MHF III/4 miniature plugs are not interchangeable.</p>
+<ol>
+<li>WROVER-IE U.FL → its cable → <strong>BLE</strong> bulkhead → antenna.</li>
+<li>TinyC6-U U.FL → its cable → <strong>THREAD</strong> bulkhead → antenna.</li>
+<li>XIAO MG24 U.FL → its cable → <strong>ZIGBEE</strong> bulkhead → antenna.</li>
+</ol>
+<p>No RF combiner is used. Mate miniature connectors squarely with power removed;
+secure the cable away from the connector and leave slack. Connect the antennas
+before operating the radios. Inspect the physical cable route before final
+assembly. The enclosure's 65 mm adjacent bulkhead pitch is a starting layout,
+<strong>not a measured isolation rating</strong>. The 150 mm cable selection still needs a
+physical dry fit; do not pull it taut to reach a bulkhead.</p>
+<p>Primary specifications: <a href="https://www.te.com/en/product-L9000082-01.html">TE antenna</a>,
+<a href="https://www.amphenolrf.com/en-us/part/095-902-545-150/8897/">Amphenol 150 mm assembly</a>.</p>
+<h2 id="pin-connections-and-initial-programming">Pin connections and initial programming</h2>
+<p>Use the <a href="../hardware/external-antenna/cad/connectors.json">generated connector ledger</a>
+and <a href="../hardware/external-antenna/cad/schematic.svg">schematic</a>, rather than MC1
+pin numbers. Net names such as THREAD_RX and ZB_RX describe the <strong>radio end</strong>:
+therefore the host transmitter connects to that RX net.</p>
+<ul>
+<li>ESP32 GPIO26/TX → C6 GPIO17/RX, header 12; C6 GPIO16/TX, header 13 → ESP32 GPIO36/RX.</li>
+<li>ESP32 GPIO27 → C6 EN/RST, header 15; ESP32 GPIO15 → C6 BOOT9, header 11.
+Recovery outputs are open-drain.</li>
+<li>ESP32 GPIO32/TX → MG24 D7/PC07 RX; MG24 D6/PC06 TX → ESP32 GPIO39/RX.
+ESP32 GPIO33/RTS → MG24 D4/PC04 CTS; MG24 D5/PC05 RTS → ESP32 GPIO14/CTS.</li>
+<li>LD2450 TX → ESP32 GPIO18/RX; ESP32 GPIO23/TX → LD2450 RX.</li>
+<li>I²C uses GPIO21/SDA and GPIO22/SCL with 3.3 V logic. Retain the documented
+WK2132 bridge and BME680 address/pull-up configuration; never add 5 V pull-ups.</li>
+<li>Shared SPI: GPIO12/SCK, GPIO2/MOSI, GPIO19/MISO. WIZ850io uses GPIO5/CS,
+GPIO34/IRQ and GPIO4/RESET; CC1101 uses GPIO13/CS, GPIO25/GDO0 TX and
+GPIO35/GDO2 RX. Do not use other breakout boards with unknown strap pull-ups.</li>
+</ul>
+<p>GPIO6–11 belong to flash, GPIO16/17 to PSRAM, GPIO1/3 to the board's USB-UART
+bridge, and GPIO0 to ROM download entry. GPIO34/35/36/39 are input-only and have
+no internal pulls. <strong>Fit the carrier's 10 kΩ pull-downs on GPIO12 and GPIO2</strong>:
+GPIO12 must be low at reset for the selected module's 3.3 V flash supply;
+GPIO2 must be low for UART download mode. They connect only to SPI peripheral
+inputs. Preserve the documented chip-select and C6 boot pull-ups and the C6
+local-3.3-V GPIO8 strap. Never apply an eFuse workaround to an unknown module.</p>
+<p>The UART0 logger is disabled and the IDF application console is off so UART0 can
+serve the radar after boot. Zigbee uses UART1, Thread uses UART2. USB-UART remains
+available for ROM programming on GPIO1/3, but is not a running application log
+port. The firmware locks the supported silicon to ECOv3 or newer.</p>
+<p>Program and verify each controller <strong>while loose</strong>, using the MC2-B classic-ESP32 factory
+image, C6 RCP and external MG24 NCP/bootloader. For loose TinyC6 ROM programming,
+fit a temporary 10 kΩ pull-up from GPIO8 (header 10) to its local 3.3 V
+(header 4): carrier R3 is not connected yet. The BOOT button only pulls GPIO9 low.
+Neither an MC1 nor MC2-A S3 OTA image is compatible with this processor.
+Flash the new host over its Micro-B USB-UART connection first, under the new
+<code>mc2-classic-hub</code> identity. Do not reuse an S3 factory image or its boot offset.
+Keep physical recovery possible before soldering. All carrier
+components face the same side; solder low axial parts and headers first, then
+modules from the back. Check pad numbers, diode cathodes, continuity, supply
+polarity and clearance before applying power. The C6's loose headers require
+ordinary through-hole soldering; no RF resistor relocation is specified.</p>
+<p>The <a href="firmware.html">firmware guide</a> and
+<a href="updates.html">network update instructions</a>
+provide reproducible commands and reject the wrong radio target/antenna mode.
+Keep one deployed node with the configured identity. Back up Thread credentials,
+Zigbee state and HA configuration before a future physical migration.</p>
+<h2 id="poe-and-retained-equipment">PoE and retained equipment</h2>
+<p>Power remains <strong>battery-fed PoE switch → Ethernet cable → isolated PoE splitter
+→ regulated/fused low-voltage rails</strong>. The splitter's data output feeds WIZ850io;
+its DC output feeds the documented regulators. No direct battery connection to
+this carrier, new injector or raw PoE-voltage input is introduced. Check the
+actual splitter rating, regulator headroom and switch port budget under all
+radios' simultaneous load.</p>
+<p>Retain the WK2132/DFR0627 UART bridge, existing regional ZAC93, band-matched
+433.92 MHz CC1101 and antenna, LD2450, BME680, power converters, fuses and harnesses.
+Their exact carrier endpoints are in the connector ledger. ZAC93 retains its
+stock antenna; LD2450 retains its 24 GHz printed array. Neither belongs on a
+2.4 GHz SMA antenna. Locate BME680 away from the converters and warm electronics,
+and keep metal and wires out of the radar's active face.</p>
+<p>The <strong>FH1 full-hub housing</strong> has a nominal 215 × 215 × 78 mm main shell.
+Individual removable trays retain the isolated splitter, buck, DFR0627, ZAC93
+and CC1101; a utility tray secures the insulated DC adapter and fuse. The
+LD2450 sits behind the room-facing lid window, and the BME680 has a ventilated
+pod attached outside the main shell with an air gap. The pod and external
+antennas increase the installed envelope. Bulkheads and coax stay on the base
+when the lid is removed; disconnect the radar harness before removing it fully.
+See the <a href="assembly.html">complete assembly and ZAC93 pin map</a> and
+<a href="print.html">mechanical package</a> for exact placement,
+print files, mount hardware and the limits of the digital fit checks. The
+selected finished splitter is Waveshare POE-SPLITTER-25W-5.5-2.1; the historical
+Silvertel EvalPoE assembly is not a substitute within this layout. Print the
+fit coupon first and verify delivered module heights, mated plugs, solder tails,
+cable bends and attachment strength. The earlier carrier-only shell is retained
+as a historical option.</p>
+<h2 id="bluetooth-compatibility-and-coverage">Bluetooth compatibility and coverage</h2>
+<p>The classic ESP32 supports BLE 4.2 legacy advertisements and active connections.
+The configured three-connection HA proxy is retained, but BLE 5 extended
+advertisements and LE Coded PHY are unavailable. External antennas do not add
+those features. Confirm any sensor requiring them before changing the host.</p>
+<p>External antennas move the radiators away from the carrier ground planes,
+Ethernet metalwork and converters. They improve placement options; they do not
+guarantee coverage of <strong>1,000 ft² / about 93 m²</strong>. Layout, walls, interference,
+end-device transmit power and installed mesh routers still matter. BLE sensors
+that are not mesh devices do not gain a Thread/Zigbee mesh route.</p>
+<p>Follow the <a href="commissioning.html">RF commissioning procedure</a>, including weak-room
+measurements, simultaneous traffic and at least a 72-hour soak. The
+<a href="../hardware/external-antenna/coverage-results.csv">results sheet</a> deliberately
+starts with <code>not_run</code>. If coverage is inadequate, first adjust placement and
+antenna orientation, then add appropriate powered Zigbee/Thread routers or a
+second Ethernet BLE proxy. Do not compensate with arbitrary transmit-power
+increases. Hardware operation, measured energy use and regulatory compliance
+remain separate from compilation and CAD validation.</p>
+<p>The <a href="host-migration.html">host migration record</a> explains the exact board
+choice, memory budget and limitations.</p>
+<p>The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/module-carrier.md">historical MC1 guide</a> remains available for existing
+boards. Its Nano/H2 pin map, compact case and onboard MG24 image are not MC2 parts.</p>
+</article><footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

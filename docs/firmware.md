@@ -1,11 +1,15 @@
-# Firmware and software
+# Firmware and software — historical Pi design
 
 <!-- MC2-CURRENT-DESIGN -->
-> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
+> **Historical Pi design.** For the active **MC2-B / FH1** build, follow
+> [Start here](start-here.md), the [MC2-B firmware guide](../firmware/external-antenna/README.md)
+> and its [network update procedure](../firmware/external-antenna/updates/README.md).
+> The Pi, S3-ETH and Docker commands below do not program the current classic
+> ESP32 host or TinyC6 radio.
 
-Use the [MC1 firmware and build instructions](../firmware/module-carrier/README.md), [matched GPIO plan](../firmware/module-carrier/pin-plan.json) and [network update guide](../firmware/module-carrier/updates/README.md) for the current hardware. The Pi and S3-ETH instructions below belong to the original assembly.
+For an existing **historical MC1** carrier, use its [firmware and build instructions](../firmware/module-carrier/README.md), [matched GPIO plan](../firmware/module-carrier/pin-plan.json) and [network update guide](../firmware/module-carrier/updates/README.md). The Pi and S3-ETH instructions below belong to the original assembly.
 
-The main build uses a Raspberry Pi 4 running Linux, two independent USB radios, and a Waveshare **ESP32-S3-ETH-M** with 16 MB flash. The S3 runs Ethernet, a Bluetooth proxy, LD2450, BME680, and a UART proxy for the existing Zooz ZAC93. A separate second S3-ETH-M with CC1101 handles the wired RF Airbridge; the previous ESP8266 is retained for rollback. All boards share the PoE power system. Private configuration and HA registry migration are handled separately using the migration guide.
+The original build uses a Raspberry Pi 4 running Linux, two independent USB radios, and a Waveshare **ESP32-S3-ETH-M** with 16 MB flash. The S3 runs Ethernet, a Bluetooth proxy, LD2450, BME680, and a UART proxy for the existing Zooz ZAC93. A separate second S3-ETH-M with CC1101 handles the wired RF Airbridge; the previous ESP8266 is retained for rollback. All boards share the PoE power system. Private configuration and HA registry migration are handled separately using the migration guide.
 
 ## What has actually been verified
 

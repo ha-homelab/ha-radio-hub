@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Print and fit · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="firmware.html">Flash firmware</a><a href="print.html" aria-current="page">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><a href="updates.html">Update and recover</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/full-hub/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#zac93-location-and-attachment">ZAC93 location and attachment</a></li><li><a href="#print-package">Print package</a></li><li><a href="#fasteners-and-retention">Fasteners and retention</a></li><li><a href="#fit-the-complete-assembly">Fit the complete assembly</a></li><li><a href="#evidence-and-remaining-physical-checks">Evidence and remaining physical checks</a></li><li><a href="#rebuild-and-check">Rebuild and check</a></li></ul></details><article class="article"><h1 id="fh1--complete-mc2-b-radio-hub-enclosure">FH1 — complete MC2-B radio-hub enclosure</h1>
+<p>This package adds physical accommodation for the <strong>whole hub</strong>: the MC2-B
+carrier, Zooz ZAC93, DFR0627 UART bridge, CC1101, isolated PoE splitter, 3.3 V
+regulator, DC adapter, fuse, LD2450 and an attached BME680 pod. It supersedes the
+smaller carrier-only housing for a complete assembly. It is an <strong>engineering
+prototype</strong>, with digital checks and explicitly unmeasured fit assumptions.</p>
+<p><a href="../guide/index.html">Build guide</a> · <a href="../mechanical/full-hub/index.html">Open illustrated layout</a> · <a href="assembly.html">Electrical assembly</a> ·
+<a href="../mechanical/full-hub/components.json">Component inventory</a> · <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/full-hub/sources.md">Sources</a> ·
+<a href="../mechanical/full-hub/parameters.json">Parameters</a> · <a href="../mechanical/full-hub/verification.json">Digital verification</a></p>
+<p><img src="../mechanical/full-hub/exploded-preview.png" alt="Exploded geometry" /></p>
+<p>The exploded drawing separates parts for visibility. The component shapes are
+simplified envelopes, not detailed supplier STEP models. Use the numbered plan
+for locations and the electrical guide for signal names; a render is not a
+mating-side connector diagram.</p>
+<p><img src="../mechanical/full-hub/layout.svg" alt="Numbered component layout" /></p>
+<h2 id="zac93-location-and-attachment">ZAC93 location and attachment</h2>
+<p><strong>The ZAC93 is beside the carrier in its own removable cradle.</strong> Its factory
+2×5 socket faces downward into the opening, leaving space for a wired mating
+header. The five-wire cable goes to carrier <strong>J4</strong>, not directly to the ESP32.
+The adjacent <strong>DFR0627 / WK2132 connects to J3</strong>. Its UART1 provides the ZAC93's
+serial link. The <a href="../hardware/external-antenna/full-hub-wiring.svg">full wiring drawing</a>
+shows the pin remapping.</p>
+<p>Orient the ZAC93's stock antenna toward the outer plastic wall. Keep the
+antenna area free of straps, wires and metal; the lid-mounted radar is placed
+away from that area. Do not drill mounting holes in the ZAC93. The printed
+cradle uses edge support and nonconductive retention. Trial socket/board
+heights must be compared with the actual delivered revision before tightening
+or plugging in the harness.</p>
+<h2 id="print-package">Print package</h2>
+<p><strong><a href="../mechanical/full-hub/FH1-MC2-B-print-package.zip">Download the complete FH1 print ZIP</a></strong> — all 14
+current STL files, a <a href="../mechanical/full-hub/PRINT-FIRST.txt">print-first checklist</a>, and a
+<a href="../mechanical/full-hub/print-manifest.json">machine-readable quantity/hash manifest</a>. The archive
+contains 13 installed pieces, one trial coupon and one optional blank. <strong>Print
+two copies of <code>pod-arm.stl</code>.</strong> A single STL is intentionally supplied for that
+identical pair. Reuse the ZAC93 trial cradle if it fits; do not print a second
+cradle just for final assembly.</p>
+<ol>
+<li><strong>First:</strong> the fit coupon and ZAC93 cradle. Check the actual socket, mating
+header, fasteners and SMA bulkhead with power disconnected.</li>
+<li><strong>Next:</strong> measure each delivered module and trial-fit the remaining small
+trays, radar holder and pod pieces. Resolve the unknown CC1101, adapter and
+fuse dimensions before printing the main shell.</li>
+<li><strong>Last:</strong> the large base and lid. The port blank is optional and only closes
+an unused trial opening. No G-code or combined assembly model is included.</li>
+</ol>
+<p>The <a href="../mechanical/full-hub/index.html#print-parts">illustrated print table</a> lists every quantity,
+print stage and fit check. Import STLs at <strong>100% scale</strong>; the archive is a
+convenient download, not evidence of physically verified fit.</p>
+<p>Print each STL separately in its supplied bed orientation, in <strong>millimetres</strong>.
+The assembly and exploded SCAD files are inspection models; do not print either
+as a single solid.</p>
+<ul>
+<li><a href="../mechanical/full-hub/base.stl">Base</a> and <a href="../mechanical/full-hub/lid.stl">lid</a>: main housing, carrier supports, fixed-base
+RF bulkheads, cable passages and mounting points.</li>
+<li><a href="../mechanical/full-hub/zwave-tray.stl">Z-Wave cradle</a>: ZAC93 support with underside socket space.</li>
+<li><a href="../mechanical/full-hub/wk2132-tray.stl">UART-bridge tray</a> and <a href="../mechanical/full-hub/cc1101-tray.stl">CC1101 tray</a>.</li>
+<li><a href="../mechanical/full-hub/poe-splitter-tray.stl">PoE-splitter tray</a>, <a href="../mechanical/full-hub/buck-tray.stl">buck-regulator tray</a>
+and <a href="../mechanical/full-hub/power-utility-tray.stl">DC-adapter/fuse utility tray</a>.</li>
+<li><a href="../mechanical/full-hub/radar-holder.stl">Radar holder</a>: LD2450 support behind the lid's room-facing
+window. Retention must not cross the active antenna face.</li>
+<li><a href="../mechanical/full-hub/bme680-pod.stl">BME680 pod</a>, <a href="../mechanical/full-hub/bme680-pod-lid.stl">pod lid</a> and <strong>two</strong>
+<a href="../mechanical/full-hub/pod-arm.stl">pod arms</a>: an attached ventilated compartment outside the warm
+main shell.</li>
+<li><a href="../mechanical/full-hub/fit-coupon.stl">Fit coupon</a>: print first to check fastener pilots and the
+selected SMA bulkhead against actual hardware.</li>
+<li><a href="../mechanical/full-hub/cc1101-port-blank.stl">CC1101 port blank</a>: optional closure for an unused
+trial feed opening. It is not an RF connector or antenna adapter.</li>
+<li><a href="../mechanical/full-hub/assembly.scad">Assembled SCAD</a> and <a href="../mechanical/full-hub/exploded.scad">exploded SCAD</a>.</li>
+</ul>
+<p>The main body is <strong>215 × 215 × 78 mm</strong>. The attached pod increases body width to
+<strong>277 mm</strong> before antenna and cable projection. The largest individual print
+is 215 × 215 mm. The selected <strong>TRONXY XY-3 (original)</strong> has a nominal
+310 × 310 × 330 mm print volume, leaving room for a brim. A generic 220 × 220 mm
+bed leaves only 2.5 mm per edge; inspect the slicer's printable region and brim
+before trying it on that smaller machine.</p>
+<p>Use electrically insulating, unfilled material and validate it at the actual
+operating temperature. Metal/carbon-filled filament is unsuitable around the
+radio/radar apertures. The initial radar window is 0.8 mm thick, with a nominal 12.4 mm gap
+from the antenna face to its inner surface. These follow the Hi-Link radome
+guide as a starting point; actual material, board height and detection still
+need a test. Inspect bridging/supports around horizontal openings,
+remove debris, and check the slice before inserting any electronics. This
+ventilated enclosure has no ingress-protection or structural-load rating.</p>
+<h2 id="fasteners-and-retention">Fasteners and retention</h2>
+<p>The initial hardware schedule is:</p>
+<ul>
+<li>4 × M2.5 carrier bolts with nonconductive nuts and suitable washers.</li>
+<li>4 × M3 lid screws for the tested printed pilots.</li>
+<li>24 × M2 screws: four for each of the six removable trays.</li>
+<li>2 × M2 fasteners for the Pololu's two native mounting holes.</li>
+<li>4 × M2 radar-holder screws.</li>
+<li>2 × M3 through-bolts and nuts for the pod arms at the main wall.</li>
+<li>2 × M2 bolts and nuts for the pod-to-arm connection; 2 × M2 pod-lid screws.</li>
+<li>At least eight soft nonconductive module-retention straps: two for the
+splitter, one each for ZAC93, DFR0627, CC1101, DC adapter, fuse and BME680.
+Add the radar's board-end restraints and separate loose cable-restraint loops.</li>
+</ul>
+<p>Select screw length from the actual printed stack and the mount records in
+<a href="../mechanical/full-hub/verification.json">verification.json</a>. Check pilots with the coupon first.
+Fasteners must not bottom out, crack a boss, contact a circuit or intrude into a
+cable/antenna space. Nuts, washers and real screw heads occupy space too; verify
+those during the unpowered dry fit.</p>
+<h2 id="fit-the-complete-assembly">Fit the complete assembly</h2>
+<ol>
+<li>Print the coupon and ZAC93 cradle first. Test the actual ZAC93 socket,
+mating header, antenna clearance and soft retention, with power disconnected.
+Confirm fastener pilots and bulkhead engagement before printing the base.</li>
+<li>Install the carrier on its four native mounting holes. The separate U1–U4
+modules remain soldered to that carrier. Check the underside solder tails,
+board height and Ethernet-jack support/access with the actual populated PCB.</li>
+<li>Secure the peripheral trays to the base, then retain each module in its own
+tray. Place insulation only at component-free contact points. Keep buck
+underside components, inductors and radio antenna regions clear. A cable
+connector alone is not retention.</li>
+<li>Install the <strong>Waveshare POE-SPLITTER-25W-5.5-2.1</strong> finished isolated splitter
+with its original case intact. This bay is not designed for the historical
+Silvertel EvalPoE arrangement. Secure the DC adapter and fuse in their
+utility tray. Route its data-only RJ45 tail to WIZ850io; route fused 5 V to J1
+and the Pololu converter to J2 as the electrical guide specifies.</li>
+<li>Install the three fixed-base SMA bulkheads and route their separate
+150 mm coax leads to BLE, Thread and Zigbee. Use loose, protective soft loops
+at the restraint points; never tighten a cable tie directly onto micro-coax.
+Keep the existing CC1101's separate 433.92 MHz feed matched to its actual
+connector. The trial side opening is not proof that an unknown adapter fits.</li>
+<li>Fit the ZAC93's remapped J4 harness, the J3 bridge harness and J5 RF harness.
+Leave all connectors accessible and restrain wires away from antenna areas,
+screw tips and the closure seam. Follow the actual module's labels.</li>
+<li>Attach the BME680 pod using both arms. Its air gap and ventilation reduce
+heating but do not establish temperature accuracy. Route the I²C harness
+through the reserved passage; check bus rise time and reliability with the
+final cable. Mount the LD2450 to the lid holder facing the room and connect
+J6. Leave service slack and unplug this lead before fully removing the lid.</li>
+<li>Dry-fit the closed enclosure. Check that nothing is compressed and the
+input Ethernet plug, internal RJ45 latch, fuse and module connectors can be
+serviced. Test rails, firmware and each radio with the lid open, then repeat
+under simultaneous load with the lid closed. Follow the
+<a href="commissioning.html">RF commissioning procedure</a>.</li>
+</ol>
+<h2 id="evidence-and-remaining-physical-checks">Evidence and remaining physical checks</h2>
+<p>The generator reads the current native MC2-B carrier geometry and
+<code>components.json</code>, rather than assuming that all boards are interchangeable.
+<code>verification.json</code> records the modelled component bounds, keepouts, mount
+positions, cable-route allowances, print-part dimensions and source hashes.
+These checks are against declared geometry, not measurements of your parts.</p>
+<p>ZAC93's nominal plan dimensions are sourced, but its delivered revision and
+socket stack need inspection. CC1101's existing vendor variant is unknown.
+DC-adapter and fuse-holder dimensions are allocations until exact parts are
+selected. The splitter's actual captive tails, plug boots, connector heights,
+coax bending and retention force need a dry fit. No digital pass resolves those
+unknowns. Use the parameters to revise the affected tray/clearance before
+printing if a delivered part differs.</p>
+<p>The main case is intended to present LD2450's face toward the room. Follow the
+sensor manufacturer's mounting/orientation guidance; a ceiling installation
+requires its own detection test. Compare BME680 to an independent ambient
+reference after thermal equilibrium. Record physical results separately;
+<code>fit_verified: false</code> must remain false until those checks are actually done.</p>
+<h2 id="rebuild-and-check">Rebuild and check</h2>
+<p>Install the pinned <code>mechanical/requirements.txt</code> in a Python virtual environment,
+then run these commands from the repository root:</p>
+<pre><code class="language-sh">python mechanical/full-hub/build.py
+python -m unittest discover -s mechanical/full-hub -p 'test_*.py'
+python mechanical/full-hub/build.py --check
+python hardware/external-antenna/render.py --check
+python tools/check.py
+</code></pre>
+<p>The deterministic ZIP uses an explicit part allowlist, sorted entries, fixed
+1980 timestamps and uncompressed storage to avoid platform-specific compressor
+output. Its manifest validates every STL against the checked-in verification
+hashes and records the two-arm quantity. <code>build.py --check</code> checks CAD geometry
+portably, then independently verifies the ZIP against the stored STL bytes.
+To rebuild only the archive after a valid CAD generation, run
+<code>python mechanical/full-hub/print_package.py</code> (or add <code>--check</code> to verify it).</p>
+<p>The CI checks the full-hub package alongside the retained carrier-only and
+firmware regression targets. AI appearance images are separate presentation
+assets; rebuilding the CAD does not regenerate them.</p>
+</article><footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

@@ -126,6 +126,10 @@ def main() -> int:
         'mechanical/full-hub/verification.json',
         'mechanical/full-hub/base.stl', 'mechanical/full-hub/lid.stl',
         'mechanical/full-hub/zwave-tray.stl',
+        'docs/start-here.md', 'guide/index.html', 'guide/public-files.json',
+        'tools/preview.py', 'hardware/external-antenna/harnesses.json',
+        'hardware/external-antenna/harness.csv',
+        'mechanical/full-hub/FH1-MC2-B-print-package.zip',
     ]
     errors.extend(f'Missing or non-regular deliverable: {name}' for name in required
                   if not public_file(ROOT, ROOT / name))

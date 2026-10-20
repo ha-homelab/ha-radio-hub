@@ -24,6 +24,7 @@ def load(name, path):
 c = load('fullhub_csg', ROOT / 'mechanical/build.py')
 old = load('fullhub_old', ROOT / 'mechanical/module-carrier/external-antenna-prototype/build.py')
 portable = load('fullhub_portable', ROOT / 'mechanical/module-carrier/portable_check.py')
+printing = load('fullhub_printing', HERE / 'print_package.py')
 
 COLORS = {'carrier':'#23725c','poe_splitter':'#303842','buck':'#18608c',
           'wk2132':'#25699c','zwave':'#346baa','cc1101':'#17663d',
@@ -470,10 +471,10 @@ def preview(out,p,m,s,g):
         fig.savefig(out/(name+'.png'),dpi=130,facecolor=fig.get_facecolor());plt.close(fig)
 
 
-def generate(out,p):
+def generate(out,p,package=True):
     m=manifest();s=source();g=geometry(p,m,s);checks=validate(p,m,s,g);out.mkdir(parents=True,exist_ok=True)
     report={'revision':p['revision'],'status':p['status'],'native_pcb_revision':s['design']['revision'],
-            'source_sha256':{'build.py':sha(HERE/'build.py'),'test_build.py':sha(HERE/'test_build.py'),'parameters.json':sha(HERE/'parameters.json'),'components.json':sha(HERE/'components.json'),**s['hashes']},
+            'source_sha256':{'build.py':sha(HERE/'build.py'),'test_build.py':sha(HERE/'test_build.py'),'print_package.py':sha(HERE/'print_package.py'),'test_print_package.py':sha(HERE/'test_print_package.py'),'parameters.json':sha(HERE/'parameters.json'),'components.json':sha(HERE/'components.json'),**s['hashes']},
             'units':'mm','printer_profiles':p['printer_profiles'],'outer_case_mm':[p['case']['width'],p['case']['length'],p['case']['height']+p['case']['lid']],
             'overall_with_pod_mm':[277,215,78],'checks':checks,'component_bounds_mm':g['bounds'],'mounting':g['mounting'],'parts':{}}
     for key,node in g['nodes'].items():
@@ -497,20 +498,24 @@ def generate(out,p):
         exploded.append('color("'+color+'") {'+node.move((0,0,dz)).scad+'}')
     (out/'exploded.scad').write_text('// Exploded review only, not printable. Lid displaced sideways; component XY unchanged, Z offsets explanatory.\n'+'\n'.join(exploded)+'\n')
     (out/'layout.svg').write_text(svg(p,m,g,checks));preview(out,p,m,s,g)
-    links=' · '.join(f'<a href="{k}.stl">{k} ×{v["quantity"]}</a>' for k,v in report['parts'].items())
-    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}img{width:100%}p{line-height:1.6}</style><main><h1>FH1 complete radio hub enclosure</h1><p><a href="README.md">Assembly instructions</a> · <a href="../../docs/full-hub-assembly.md">Full assembly handbook</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></p><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><h2>Print parts, individually within 220 × 220 mm</h2><p>'+links+'</p><p>Print the fit coupon first. Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
+    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
     outputs=[name+suffix for name in g['nodes'] for suffix in ['.stl','.scad']]+['assembly.scad','exploded.scad','layout.svg','full-assembly-preview.png','exploded-preview.png','index.html']
     report['generated_sha256']={name:sha(out/name) for name in sorted(outputs)}
     report=json.loads(json.dumps(report))
-    (out/'verification.json').write_text(json.dumps(report,indent=2)+'\n');return report
+    (out/'verification.json').write_text(json.dumps(report,indent=2)+'\n')
+    # ZIP and manifest describe these stored STL bytes, independent of a
+    # different platform's equivalent mesh serialization.
+    if package: printing.publish(out)
+    return report
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args();p=json.loads((HERE/'parameters.json').read_text())
     if args.check:
         with tempfile.TemporaryDirectory() as td:
-            generate(Path(td),p)
+            generate(Path(td),p,package=False)
             portable.check_outputs(HERE,Path(td),c)
-        print('FH1 full-hub geometry reproducible; all digital checks pass. Physical fit remains unverified.')
+        printing.publish(HERE,check=True)
+        print('FH1 full-hub geometry and print package reproducible; all digital checks pass. Physical fit remains unverified.')
     else:
         report=generate(HERE,p);print('Generated',len(report['parts']),'unique print parts; digital component/cable/mesh checks passed.')
 if __name__=='__main__':main()

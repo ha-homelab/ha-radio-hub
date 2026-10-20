@@ -1,9 +1,12 @@
-# HA Radio Hub enclosure — DRAFT V0
+# HA Radio Hub enclosure — historical DRAFT V0
 
 <!-- MC2-CURRENT-DESIGN -->
-> **Current build: [MC2 — three external antennas](external-antennas.md).** This page retains an earlier design or evaluation for reference. Its board images, pin maps, enclosure fit and alternative BOMs are not the current MC2 build.
+> **Historical Pi-era enclosure.** For the active **MC2-B / FH1** build, follow
+> [Start here](start-here.md) and the [FH1 full-hub print package](../mechanical/full-hub/README.md).
+> FH1 provides the current carrier, ZAC93 and peripheral mounts. The V0 dimensions,
+> STL files and assembly layout below belong to the original Pi design.
 
-The current [MC1 carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md) and [split-rail fit coupons](../mechanical/module-carrier/rail-mount/README.md) replace this Pi-era geometry. The new housing covers the carrier only; external power, bridge, radios and sensors need separate accommodation.
+The later [MC1 carrier enclosure prototype](../mechanical/module-carrier/enclosure-prototype/README.md) and [split-rail fit coupons](../mechanical/module-carrier/rail-mount/README.md) are also historical. They cover only the MC1 carrier; FH1 supersedes them for the complete current hub.
 
 The model is ready for a test print, but has **not yet been validated by assembling the actual parts**. The STL files are checked for watertight meshes, consistent face winding, and one connected body. These checks do not prove connector clearance, radio performance, cooling, or the accuracy of a particular printer.
 

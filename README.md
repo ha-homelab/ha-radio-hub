@@ -17,10 +17,29 @@ the required antennas before operation.*
 coverage, power consumption, mechanical fit or radio certification. The
 1,000 ft² house coverage target still requires testing.
 
-Start with the [assembly guide](docs/external-antennas.md),
-[visual wiring guide](hardware/external-antenna/index.html),
-[documentation index](docs/README.md) and
-[hardware files](hardware/external-antenna/README.md).
+## Start building
+
+Follow [Start here](docs/start-here.md) for the ordered build, success checks,
+Home Assistant connections and troubleshooting. Program the loose boards before
+permanent assembly. The current hardware is **MC2-B + FH1**; older revisions are
+kept as references.
+
+For readable pages, searchable wiring and print downloads, clone or download
+this repository and run from its root:
+
+```sh
+python3 tools/preview.py
+```
+
+This opens the local build guide in a browser; no Python packages are needed.
+Alternatively, open [guide/index.html](guide/index.html) from the downloaded
+folder. GitHub shows HTML source rather than running this guide. Use
+`--port 0` if the default local port is occupied.
+
+[Start here](docs/start-here.md) ·
+[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-B-print-package.zip) ·
+[Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
+[Documentation index](docs/README.md)
 
 ![MC2 independent antenna paths](hardware/external-antenna/antenna-paths.svg)
 

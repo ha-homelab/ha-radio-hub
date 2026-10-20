@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Test coverage · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html" aria-current="page">Test coverage</a><a href="updates.html">Update and recover</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/rf-commissioning.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#before-measuring">Before measuring</a></li><li><a href="#compare-three-physical-states">Compare three physical states</a></li><li><a href="#record-observable-outcomes">Record observable outcomes</a></li><li><a href="#if-a-position-fails">If a position fails</a></li><li><a href="#sources">Sources</a></li></ul></details><article class="article"><h1 id="rf-commissioning-for-the-external-antenna-hub">RF commissioning for the external-antenna hub</h1>
+<p>The engineering target is reliable service throughout a roughly <strong>1000 ft²
+(93 m²) home</strong>. This is a deployment requirement, not a measured range rating.
+External antennas let us move radiators away from the hub electronics and choose
+their orientation; they do not prove whole-home coverage.</p>
+<h2 id="before-measuring">Before measuring</h2>
+<ol>
+<li>For the active MC2-B revision, use its matching <strong>classic ESP32/WROVER-IE
+host</strong>, TinyC6 RCP and external-antenna MG24 images. MC2-A/S3 and MC1 images
+are not interchangeable. Connect all three 2.4 GHz antennas before enabling their transmitters.
+Check the Zigbee image's <strong>external</strong> antenna label: plugging a cable into the
+XIAO does not change its software-controlled antenna selection.</li>
+<li>Keep the existing 433.92 MHz antenna on the CC1101 path and the regional
+ZAC93 antenna on its own board. Neither belongs on a 2.4 GHz connector. The
+LD2450 has its own 24 GHz printed array; do not attach a whip to the radar.</li>
+<li>Start a separate test network. Record actual Wi-Fi, Zigbee and Thread channels
+without changing the production networks. Ethernet removes this hub's Wi-Fi
+traffic, but nearby Wi-Fi and its independent 2.4 GHz radios still matter.</li>
+<li>Record the firmware versions, antenna models, pigtail lengths, mounting height,
+orientation, test devices and normal reporting intervals. Do not infer link
+quality from advertised antenna gain alone.</li>
+</ol>
+<h2 id="compare-three-physical-states">Compare three physical states</h2>
+<p>Test the same devices and positions on an open bench, with the enclosure closed,
+and at the intended central ceiling position. Include the most distant room,
+closed doors, the far side of masonry or metal, and the intended locations of
+locks and battery sensors. Keep antenna orientation and transmit-power settings
+consistent when comparing enclosure effects.</p>
+<p>Test each protocol first with the other radios quiet, then with normal combined
+Thread, Zigbee, BLE, RF and Ethernet traffic. Also exercise active BLE connections,
+RF transmit/receive, network updates, and restoration after PoE power loss. Do not
+mistake an open-bench success for a completed installed-enclosure test.</p>
+<p>Use <a href="../hardware/external-antenna/coverage-results.csv">the blank results sheet</a>.
+Empty measurement fields mean <strong>not measured</strong>, never zero failures.</p>
+<h2 id="record-observable-outcomes">Record observable outcomes</h2>
+<ul>
+<li>Zigbee/Thread actuators: successful commands out of attempts, response latency,
+retries or route changes where available, and time to recover after a restart.</li>
+<li>Sensors: time since last report, gaps relative to the device's expected cadence,
+missed physical events and unexpected unavailable transitions.</li>
+<li>BLE: received advertisements, missed expected reporting intervals, successful
+GATT operations, disconnects and reconnect time. Passive reception and active
+GATT need separate tests with the actual intended devices.</li>
+<li>Thread diagnostics, if exposed by the selected build: neighbor and router
+tables, link quality and MAC counters. RSSI is supporting evidence; a strong
+RSSI value does not prove low packet loss or low interference.</li>
+</ul>
+<p>Agree command timeouts and sensor reporting expectations for each device before
+starting. As a project smoke test, run at least 100 actuator operations at each
+critical position and a 72-hour normal-use soak. Investigate every missed command,
+missed deliberate sensor event, unexplained outage or manual recovery. These are
+project acceptance procedures, not industry range-certification thresholds.</p>
+<h2 id="if-a-position-fails">If a position fails</h2>
+<p>First compare open/closed enclosure and single/combined-radio results. Reposition
+radiators, remove nearby metal or cable bundles, and check pigtail seating before
+raising transmit power. Keep external cable runs short; extra coax has loss.</p>
+<p>Zigbee and Thread need their <strong>own</strong> suitable powered router devices to extend
+their respective mesh networks. Battery end devices generally do not route.
+Those mesh networks do not extend ordinary BLE reception: add an Ethernet/PoE
+Bluetooth proxy near a weak BLE zone and repeat both passive and active tests.
+More than one proxy is supported by Home Assistant.</p>
+<p>A failed test is a reason to change the deployment or hardware, not to relabel an
+unmeasured 93 m² coverage claim as passed. Record the result and repeat the same
+positions after each material change.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://esphome.io/components/bluetooth_proxy/#improving-reception-performance">ESPHome: reception improvements</a>.</li>
+<li><a href="https://www.bluetooth.com/learn-about-bluetooth/key-attributes/range/">Bluetooth SIG: factors affecting range</a>.</li>
+<li><a href="https://www.home-assistant.io/integrations/bluetooth/#multiple-adapters">Home Assistant: multiple Bluetooth adapters</a>.</li>
+<li><a href="https://www.home-assistant.io/integrations/zha/#using-router-devices-to-add-more-devices">ZHA: powered router devices</a>.</li>
+<li><a href="https://openthread.io/guides/thread-primer/node-roles-and-types">OpenThread: node roles</a>.</li>
+<li><a href="https://openthread.io/reference/cli/commands">OpenThread CLI reference</a>.</li>
+<li><a href="https://www.ti.com/lit/an/swra161b/swra161b.pdf">TI: antenna selection guide</a>.</li>
+</ul>
+</article><footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

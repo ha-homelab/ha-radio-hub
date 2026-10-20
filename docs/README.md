@@ -6,6 +6,14 @@ PSRAM (4 MB directly addressable); its Thread radio is TinyC6-U-01. All componen
 The project is an engineering prototype, with physical and whole-house RF
 qualification still outstanding.
 
+**New build: [Start here — the complete MC2-B / FH1 build journey](start-here.md).**
+It orders parts verification, loose-board flashing, printing, wiring, first
+power and Home Assistant setup, with a checkpoint at each stage and symptom-based
+troubleshooting. To view the guide locally as rendered HTML, run
+`python3 tools/preview.py` from the repository root and open the printed URL.
+
+## Active build references
+
 - [Classic ESP32 migration, cost and compatibility](classic-esp32-migration.md).
 - [Assembly, exact parts and antenna connections](external-antennas.md).
 - [Visual guide with pin-to-pin lookup](../hardware/external-antenna/index.html).
@@ -15,6 +23,7 @@ qualification still outstanding.
   [connector ledger](../hardware/external-antenna/cad/connectors.json).
 - [ESP32/C6/MG24 build and programming instructions](../firmware/external-antenna/README.md)
   and [network updating](../firmware/external-antenna/updates/README.md).
+- [MC2-B MG24 external-antenna image: build, program and recover](mc2-zigbee.md).
 - [Full-hub enclosure, exploded layout and printable mounts](../mechanical/full-hub/README.md).
 - [Complete assembly, ZAC93 placement and pin-to-pin wiring](full-hub-assembly.md).
 - [Full-hub graphical wiring](../hardware/external-antenna/full-hub-wiring.svg).

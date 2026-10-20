@@ -1,0 +1,68 @@
+FH1-MC2-B PRINT PACKAGE — READ BEFORE SLICING
+Engineering prototype. Digital checks do not verify physical fit.
+
+1. Print fit-coupon.stl and zwave-tray.stl FIRST.
+   With power disconnected, check the real ZAC93 underside socket,
+   mating header, antenna clearance, screw pilots and SMA bulkhead.
+2. Measure every delivered module. Print and trial-fit the small trays,
+   radar holder and pod pieces. Unknown CC1101, fuse and adapter sizes
+   must be resolved before committing to the large enclosure.
+3. Print base.stl and lid.stl only after those checks pass.
+4. Print cc1101-port-blank.stl only if that trial opening is unused.
+
+14 unique STLs: 13 installed pieces + 1 fit coupon + 1 optional blank.
+The pod needs TWO copies of pod-arm.stl. Do not print two ZAC93 cradles:
+reuse the trial cradle if it fits. This package contains no G-code.
+
+SLICER SETTINGS / CHECKS
+- Millimetres; 100% scale; preserve each supplied bed orientation.
+- Import each STL separately. Assembly/exploded SCAD models are not
+  print parts and are deliberately excluded from this package.
+- Largest part: 215 x 215 mm. TRONXY XY-3 original nominal volume:
+  310 x 310 x 330 mm. Confirm the actual usable bed and nozzle travel.
+- A generic 220 x 220 mm bed has only 2.5 mm spare per edge. A 2 mm
+  brim is the checked allowance; a wider brim may not fit.
+- Use electrically insulating, unfilled filament. Check material
+  temperature suitability; no metal/carbon-filled material near radios.
+- Inspect layer preview, bridging and supports around horizontal holes.
+  Keep the lid radar window 0.8 mm thick; do not auto-fill or drill it.
+- No physical fit, structural, ingress-protection or RF approval is
+  implied. Dry-fit unpowered; inspect screw ends, wires and clearances.
+
+QUANTITIES AND PRINT ORDER
+[ ] Stage 1 | 1 x fit-coupon.stl | trial
+    Check screw pilots and the actual SMA bulkhead before larger prints.
+[ ] Stage 1 | 1 x zwave-tray.stl | installed
+    Trial fit the delivered ZAC93, underside socket and mating header first; reuse this cradle if it fits.
+[ ] Stage 2 | 1 x poe-splitter-tray.stl | installed
+    For the intact Waveshare POE-SPLITTER-25W-5.5-2.1 case; check captive tails.
+[ ] Stage 2 | 1 x buck-tray.stl | installed
+    Check D24V22F3 underside clearance and the two native mounting holes.
+[ ] Stage 2 | 1 x wk2132-tray.stl | installed
+    Use insulated edge support and a soft restraint; check actual board edges.
+[ ] Stage 2 | 1 x cc1101-tray.stl | installed
+    Existing CC1101 vendor variant is unknown; measure it before printing.
+[ ] Stage 2 | 1 x power-utility-tray.stl | installed
+    Adapter and fuse dimensions are allocations; confirm both actual parts.
+[ ] Stage 2 | 1 x radar-holder.stl | installed
+    Keep restraints at board ends, clear of the active antenna face.
+[ ] Stage 2 | 1 x bme680-pod.stl | installed
+    For Adafruit BME680 STEMMA QT 3660; check wire passage and sensor clearance.
+[ ] Stage 2 | 1 x bme680-pod-lid.stl | installed
+    Check the sensor and cable are not compressed on closure.
+[ ] Stage 2 | 2 x pod-arm.stl | installed
+    Print TWO identical arms; one STL file supplies both copies.
+[ ] Stage 3 | 1 x base.stl | installed
+    Print only after all actual modules and tray fits have been checked.
+[ ] Stage 3 | 1 x lid.stl | installed
+    Check the 0.8 mm radar window in the slicer; fit and radar performance remain unverified.
+[ ] Stage 4 | 1 x cc1101-port-blank.stl | optional
+    Print only if closing the unused trial opening; it is not an antenna adapter.
+
+Assembly and wiring:
+https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/full-hub-assembly.md
+Editable enclosure, dimensions, sources and fit limitations:
+https://github.com/ha-homelab/ha-radio-hub/tree/main/mechanical/full-hub
+
+print-manifest.json records each STL SHA-256 and required quantity.
+Hashes identify bytes, not a successful physical trial.

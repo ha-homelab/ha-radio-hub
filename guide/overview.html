@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project overview · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><a href="updates.html">Update and recover</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#start-building">Start building</a></li><li><a href="#selected-hardware">Selected hardware</a></li><li><a href="#where-the-z-wave-board-and-other-parts-go">Where the Z-Wave board and other parts go</a></li><li><a href="#build-and-inspect">Build and inspect</a></li><li><a href="#project-information">Project information</a></li></ul></details><article class="article"><h1 id="ha-radio-hub--mc2-b">HA Radio Hub — MC2-B</h1>
+<p><strong>Three independent external antennas: Zigbee, Thread and Bluetooth.</strong> MC2 keeps
+a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
+Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
+100 × 100 mm carrier holds finished modules with direct-solder male headers.</p>
+<p><img src="../hardware/external-antenna/images/full-hub-exploded-concept.png" alt="Complete MC2-B hub with ZAC93 — AI exploded appearance concept" /></p>
+<p><em>AI-generated appearance concept, not a photograph. Module shapes, mounts,
+markings and small details are illustrative. Use the <a href="../mechanical/full-hub/layout.svg">full-hub CAD layout</a>,
+<a href="print.html">print files</a> and <a href="assembly.html">wiring guide</a>
+for construction. Antennas and most cables are omitted for visibility; connect
+the required antennas before operation.</em></p>
+<p><strong>Engineering prototype.</strong> Source builds and CAD checks are not measurements of
+coverage, power consumption, mechanical fit or radio certification. The
+1,000 ft² house coverage target still requires testing.</p>
+<h2 id="start-building">Start building</h2>
+<p>Follow <a href="start-here.html">Start here</a> for the ordered build, success checks,
+Home Assistant connections and troubleshooting. Program the loose boards before
+permanent assembly. The current hardware is <strong>MC2-B + FH1</strong>; older revisions are
+kept as references.</p>
+<p>For readable pages, searchable wiring and print downloads, clone or download
+this repository and run from its root:</p>
+<pre><code class="language-sh">python3 tools/preview.py
+</code></pre>
+<p>This opens the local build guide in a browser; no Python packages are needed.
+Alternatively, open <a href="../guide/index.html">guide/index.html</a> from the downloaded
+folder. GitHub shows HTML source rather than running this guide. Use
+<code>--port 0</code> if the default local port is occupied.</p>
+<p><a href="start-here.html">Start here</a> ·
+<a href="../mechanical/full-hub/FH1-MC2-B-print-package.zip">Print package — all STLs and quantities</a> ·
+<a href="../hardware/external-antenna/harness.csv">Pin-to-pin harness CSV</a> ·
+<a href="documentation.html">Documentation index</a></p>
+<p><img src="../hardware/external-antenna/antenna-paths.svg" alt="MC2 independent antenna paths" /></p>
+<h2 id="selected-hardware">Selected hardware</h2>
+<p><strong>Buying parts?</strong> The <a href="shopping.html">MC2 shopping guide</a> gives quantities,
+exact order codes, inspected AliExpress variants and outstanding availability
+checks. MC2-B replaces the S3 host; it needs its own carrier and first flash,
+not an S3 OTA update. TinyC6 supply is unresolved; secure the original <strong>TC6-U-01</strong> before
+ordering a batch of carriers.</p>
+<ul>
+<li><strong>Espressif ESP32-DevKitC-VIE / ESP32-WROVER-IE:</strong> previous-generation host
+with a factory external antenna connector, 8 MB flash and 8 MB physical PSRAM
+(4 MB directly addressable, quad 40 MHz); Ethernet host and active BLE 4.2 proxy.</li>
+<li><strong>Unexpected Maker TinyC6-U-01:</strong> external U.FL Thread RCP, 8 MB flash,
+native USB and ordinary header-accessible recovery pins. Its two loose headers
+require through-hole soldering. Availability was backorder/on-request when
+checked on 18 October 2026; verify the exact SKU before ordering.</li>
+<li><strong>Seeed XIAO MG24:</strong> Ember NCP with explicit external-antenna firmware.</li>
+<li><strong>WIZnet WIZ850io:</strong> shared-SPI Ethernet; retain the isolated PoE splitter and
+regulated low-voltage supply from the battery-fed PoE switch.</li>
+<li><strong>Three TE ANT-2.4-LCW-SMA antennas and three Amphenol 095-902-545-150 cables:</strong>
+separate 50 Ω paths, standard SMA bulkheads, no combiner.</li>
+</ul>
+<p>Classic ESP32 retains the configured services and three active BLE connections,
+but does not support BLE 5 extended advertising or Coded PHY. Lower power
+consumption has not been established. See the <a href="host-migration.html">host migration</a>
+for the cost comparison, memory limits and compatibility checks.</p>
+<p>The WK2132 bridge, ZAC93, band-matched CC1101/433.92 MHz antenna, radar,
+environment sensor and power modules connect to the carrier by harnesses. The
+<a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a> and
+<a href="../hardware/external-antenna/rf-bom.json">antenna BOM</a> accompany the assembly guide;
+neither is a complete single-box shopping list on its own. The
+<a href="../mechanical/full-hub/components.json">full assembly inventory</a> includes these
+modules, the selected finished PoE splitter and the power/cable accessories.</p>
+<p><img src="../hardware/external-antenna/cad/assembly-top.svg" alt="MC2 carrier, all components on the front" /></p>
+<p><img src="../hardware/external-antenna/images/mc2b-bare-concept.png" alt="MC2-B bare carrier — AI surface-finish concept" /></p>
+<p><em>Bare-board appearance concept only. AI-generated traces, pads and labels are
+not fabrication data. <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/images/README.md">Image provenance and prompts</a>.</em></p>
+<h2 id="where-the-z-wave-board-and-other-parts-go">Where the Z-Wave board and other parts go</h2>
+<p><strong>Zooz ZAC93 sits in its own removable insulated cradle beside the MC2-B
+carrier.</strong> Its underside 2×5 socket connects by a wired mating header to carrier
+<strong>J4</strong>; the <strong>DFR0627 / WK2132</strong> bridge connects to <strong>J3</strong> and provides its serial
+port. The ZAC93 does not plug into the ESP32 or a Raspberry Pi in this build.
+Keep its stock antenna clear of straps, cables and metal.</p>
+<p><img src="../mechanical/full-hub/exploded-preview.png" alt="Source-driven full-hub exploded CAD view" /></p>
+<p><em>Generated from the printable enclosure geometry with simplified electronic
+bodies. The numbered plan below locates all modules and cable reservations.</em></p>
+<p><img src="../mechanical/full-hub/layout.svg" alt="Exact full-hub component placement and mounting" /></p>
+<p>The <strong>FH1 full-hub enclosure</strong> has a 215 × 215 × 78 mm main shell, dedicated
+mounts for the carrier, ZAC93, UART bridge, CC1101, PoE splitter and 3.3 V buck,
+and a restrained DC-adapter/fuse tray. LD2450 mounts behind the room-facing lid
+window. BME680 has a ventilated pod attached outside the warm shell with an air
+gap. Three independent 2.4 GHz bulkheads remain on the fixed base.</p>
+<p><a href="print.html">Exploded CAD and print files</a> ·
+<a href="assembly.html">Complete assembly and ZAC93 pin mapping</a> ·
+<a href="../hardware/external-antenna/full-hub-wiring.svg">Graphical wiring</a></p>
+<h2 id="build-and-inspect">Build and inspect</h2>
+<ul>
+<li><a href="hardware.html">Native CAD, schematic and connector map</a>.</li>
+<li><a href="firmware.html">Firmware builds and initial programming</a>.</li>
+<li><a href="updates.html">Verified-target network update workflow</a>.</li>
+<li><a href="print.html">Full-hub printable parts, component mounts and connector fit coupon</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/validation.md">Digital verification and remaining physical checks</a>.</li>
+<li><a href="commissioning.html">RF commissioning procedure</a> and
+<a href="../hardware/external-antenna/coverage-results.csv">results sheet</a>.</li>
+</ul>
+<p>The largest print is 215 × 215 mm, within the selected TRONXY XY-3's nominal
+310 × 310 × 330 mm print volume. The 65 mm adjacent antenna pitch and 150 mm
+coax routes still require physical fit and coexistence tests. Module heights,
+mating plugs, the existing CC1101 variant and printed tolerances must be checked
+against the delivered hardware. Digital geometry checks do not establish
+physical fit. The earlier <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/mechanical/module-carrier/external-antenna-prototype/README.md">carrier-only enclosure</a>
+remains a historical option, not the full-hub housing.</p>
+<p>MC2-A (S3) is preserved in a Git snapshot, and MC1 remains a regression target;
+see the <a href="history.html">engineering history</a>. MC1's Nano/H2 firmware,
+16 MB partition table and compact enclosure do not fit MC2. The <a href="../hardware/designs.json">design registry</a> identifies the one active
+revision. Do not mix images, pin maps or prices between revisions.</p>
+<h2 id="project-information">Project information</h2>
+<p>Repository settings are managed by
+<a href="https://github.com/4alvit/terraform-github-ha-homelab">terraform-github-ha-homelab</a>.
+No private network keys, learned household RF codes or installation credentials
+are distributed. See <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/infrastructure.md">infrastructure</a>,
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/SECURITY.md">security</a>, <a href="../LICENSE">license</a> and
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/THIRD_PARTY_NOTICES.md">third-party notices</a>.</p>
+<p>Run <code>python3 tools/check.py</code> for offline document/source checks. Hardware,
+firmware and mechanical guides list their reproducible validation commands.</p>
+</article><footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

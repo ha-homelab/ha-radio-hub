@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All references · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-B / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><a href="updates.html">Update and recover</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#active-build-references">Active build references</a></li></ul></details><article class="article"><h1 id="current-mc2-documentation">Current MC2 documentation</h1>
+<p>Updated 19 October 2026. <strong>MC2-B</strong> is the active 100 × 100 mm carrier with separate
+external Zigbee, Thread and BLE antennas. The selected ESP32-DevKitC-VIE has 8 MB flash and 8 MB physical
+PSRAM (4 MB directly addressable); its Thread radio is TinyC6-U-01. All components face the same side.
+The project is an engineering prototype, with physical and whole-house RF
+qualification still outstanding.</p>
+<p><strong>New build: <a href="start-here.html">Start here — the complete MC2-B / FH1 build journey</a>.</strong>
+It orders parts verification, loose-board flashing, printing, wiring, first
+power and Home Assistant setup, with a checkpoint at each stage and symptom-based
+troubleshooting. To view the guide locally as rendered HTML, run
+<code>python3 tools/preview.py</code> from the repository root and open the printed URL.</p>
+<h2 id="active-build-references">Active build references</h2>
+<ul>
+<li><a href="host-migration.html">Classic ESP32 migration, cost and compatibility</a>.</li>
+<li><a href="antennas.html">Assembly, exact parts and antenna connections</a>.</li>
+<li><a href="../hardware/external-antenna/index.html">Visual guide with pin-to-pin lookup</a>.</li>
+<li><a href="hardware.html">Hardware and carrier BOM</a>,
+<a href="../hardware/external-antenna/rf-bom.json">RF BOM</a>,
+<a href="../hardware/external-antenna/cad/schematic.svg">schematic</a> and
+<a href="../hardware/external-antenna/cad/connectors.json">connector ledger</a>.</li>
+<li><a href="firmware.html">ESP32/C6/MG24 build and programming instructions</a>
+and <a href="updates.html">network updating</a>.</li>
+<li><a href="zigbee-firmware.html">MC2-B MG24 external-antenna image: build, program and recover</a>.</li>
+<li><a href="print.html">Full-hub enclosure, exploded layout and printable mounts</a>.</li>
+<li><a href="assembly.html">Complete assembly, ZAC93 placement and pin-to-pin wiring</a>.</li>
+<li><a href="../hardware/external-antenna/full-hub-wiring.svg">Full-hub graphical wiring</a>.</li>
+<li><a href="commissioning.html">Coverage acceptance procedure</a> and
+<a href="../hardware/external-antenna/coverage-results.csv">unmeasured results sheet</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/validation.md">Digital verification record</a>.</li>
+<li><a href="../hardware/designs.json">Design registry</a> and <a href="history.html">engineering history</a>.</li>
+</ul>
+<p>The PoE switch supplies the isolated splitter and low-voltage rails. MC2 changes
+neither the battery installation nor the switch supply. The FH1 enclosure adds
+individual mounts for power, UART bridge, Z-Wave and 433 MHz radio, a lid-mounted
+radar and an attached ventilated environmental-sensor pod. Its exact selected
+modules and unmeasured dimensions are in the <a href="../mechanical/full-hub/components.json">assembly inventory</a>.
+TinyC6-U-01 was a backorder/on-request part when checked; verify availability of
+the exact external-antenna SKU before ordering the carrier.</p>
+<p>MC1 remains a <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/module-carrier.md">historical build</a>. Its software checks continue
+for regression coverage, but its Nano/H2 pin map, 16 MB flash layout, compact
+housing and cost estimate must not be combined with MC2.</p>
+</article><footer>MC2-B is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

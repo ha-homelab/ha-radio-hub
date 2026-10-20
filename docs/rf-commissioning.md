@@ -7,8 +7,9 @@ their orientation; they do not prove whole-home coverage.
 
 ## Before measuring
 
-1. Use the exact hardware revision and its matching S3, Thread RCP and Zigbee
-   images. Connect all three 2.4 GHz antennas before enabling their transmitters.
+1. For the active MC2-B revision, use its matching **classic ESP32/WROVER-IE
+   host**, TinyC6 RCP and external-antenna MG24 images. MC2-A/S3 and MC1 images
+   are not interchangeable. Connect all three 2.4 GHz antennas before enabling their transmitters.
    Check the Zigbee image's **external** antenna label: plugging a cable into the
    XIAO does not change its software-controlled antenna selection.
 2. Keep the existing 433.92 MHz antenna on the CC1101 path and the regional
