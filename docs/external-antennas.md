@@ -9,7 +9,7 @@ builds and CAD checks do not demonstrate house coverage or physical fit.
 Start with the [visual guide and pin lookup](../hardware/external-antenna/index.html),
 [native hardware](../hardware/external-antenna/README.md),
 [firmware instructions](../firmware/external-antenna/README.md), and
-[printable enclosure](../mechanical/module-carrier/external-antenna-prototype/README.md).
+[full-hub printable enclosure](../mechanical/full-hub/README.md).
 
 ## Exact module selection
 
@@ -136,13 +136,21 @@ stock antenna; LD2450 retains its 24 GHz printed array. Neither belongs on a
 2.4 GHz SMA antenna. Locate BME680 away from the converters and warm electronics,
 and keep metal and wires out of the radar's active face.
 
-The new printed housing is **carrier-only**. Its nominal shell is
-190 × 160 × 58 mm, with a required 4 mm ceiling frame, giving 62 mm installed
-body depth before antenna projection. Power modules, UART bridge, other radios
-and sensors need separate accommodation. Do not describe this as a completed
-single-box assembly. Bulkheads and coax remain on the fixed base when the lid
-is removed. Print the connector fit coupon before the full shell; validate
-actual module heights, solder tails, cable bends and attachment strength.
+The **FH1 full-hub housing** has a nominal 215 × 215 × 78 mm main shell.
+Individual removable trays retain the isolated splitter, buck, DFR0627, ZAC93
+and CC1101; a utility tray secures the insulated DC adapter and fuse. The
+LD2450 sits behind the room-facing lid window, and the BME680 has a ventilated
+pod attached outside the main shell with an air gap. The pod and external
+antennas increase the installed envelope. Bulkheads and coax stay on the base
+when the lid is removed; disconnect the radar harness before removing it fully.
+See the [complete assembly and ZAC93 pin map](full-hub-assembly.md) and
+[mechanical package](../mechanical/full-hub/README.md) for exact placement,
+print files, mount hardware and the limits of the digital fit checks. The
+selected finished splitter is Waveshare POE-SPLITTER-25W-5.5-2.1; the historical
+Silvertel EvalPoE assembly is not a substitute within this layout. Print the
+fit coupon first and verify delivered module heights, mated plugs, solder tails,
+cable bends and attachment strength. The earlier carrier-only shell is retained
+as a historical option.
 
 ## Bluetooth compatibility and coverage
 

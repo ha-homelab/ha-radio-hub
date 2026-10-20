@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19",
+  "tool": "built-in image_gen",
+  "mode": "reference-guided generation and two corrective edits",
+  "status": "AI appearance illustration; CAD and wiring remain authoritative",
+  "output": "full-hub-exploded-concept.png",
+  "output_sha256": "50ab0e6fe97496742584551da65ac7173a25769494dfa71c7d43253655010190",
+  "prompts": {
+    "full-hub-exploded-prompt.txt": "fcdc4787d8184e486db49b6ffa3c1fc115b837fcf96229bf7369da1007a0091a",
+    "full-hub-correction-prompt.txt": "c6a25d9d17ba3d0dc35a3c56022b6ec979482060ed6c0b6a8665802c034d9b54",
+    "full-hub-mount-correction-prompt.txt": "7428f6848c7cf800a4b5cabb4b8c67362dbc46427c3432fc86aedc2ae6a94357"
+  },
+  "references": [
+    "Intermediate FH1 source-driven exploded preview; later revised as geometry review progressed",
+    "Existing MC2-B assembled appearance concept",
+    "Updated FH1 exploded preview for first correction"
+  ],
+  "final_edit_input_sha256": "4f33cecd85a96d35668612c9d50d25bef053512f1523da4d9ac39639e92078b7",
+  "verification_limits": [
+    "Illustrative module geometry and mounting details, not manufacturing data",
+    "No physical fit, electrical, RF or thermal validation is implied",
+    "Antennas and most harnesses omitted for visibility"
+  ]
+}

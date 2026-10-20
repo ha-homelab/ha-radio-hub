@@ -1,0 +1,2083 @@
+{
+  "revision": "FH1-MC2-B",
+  "status": "digitally_checked_prototype_physical_fit_unverified",
+  "native_pcb_revision": "MC2-B",
+  "source_sha256": {
+    "build.py": "a32358759fe6665799f425c3768deb7f4b4b3ef51172242c9a30918f17370b75",
+    "test_build.py": "5ca8a3162b6e235983d4010c842c45771c1ccbabf671b5b66cffc3c8fcce1ccf",
+    "parameters.json": "2027523422ae8fa3a922c806583b38acc2fade3c96d2aaacd54e6e1e1b73301c",
+    "components.json": "9c4c129a7628862f08a6f9feadb0e56e93fcc452cfafc262eb4f9897f7ad7dc4",
+    "mc2.kicad_pcb": "3f8c4497140c946b53162c7ee87e7adb0259c2a0f6a31820d07f05b26d73e1e5",
+    "design.json": "efd88fd41038c5d1586547945eaca335ac195f3ba0c937704dcd3381861772eb"
+  },
+  "units": "mm",
+  "printer_profiles": {
+    "owned": {
+      "model": "TRONXY XY-3 original",
+      "bed_mm": [
+        310,
+        310
+      ],
+      "height_mm": 330,
+      "brim_mm": 5
+    },
+    "generic": {
+      "bed_mm": [
+        220,
+        220
+      ],
+      "brim_mm": 2
+    }
+  },
+  "outer_case_mm": [
+    215,
+    215,
+    78
+  ],
+  "overall_with_pod_mm": [
+    277,
+    215,
+    78
+  ],
+  "checks": {
+    "interior_component_containment": true,
+    "pairwise_component_boxes_clear": true,
+    "mount_containment": true,
+    "native_rj45_access_clear": true,
+    "zac93_antenna_air_space_clear": true,
+    "cable_envelopes_clear": true,
+    "plastic_body_intersections_mm3": [],
+    "keepouts_mm": {
+      "native-wiz850io-plug-and-latch": [
+        72,
+        136,
+        20,
+        99,
+        172,
+        44
+      ],
+      "zac93-outboard-antenna-air-reservation": [
+        175,
+        82,
+        10,
+        212,
+        124,
+        58
+      ]
+    },
+    "routes": [
+      {
+        "id": "ble-coax",
+        "points_mm": [
+          [
+            35,
+            3,
+            38
+          ],
+          [
+            35,
+            18,
+            40
+          ],
+          [
+            35,
+            26,
+            40
+          ],
+          [
+            39,
+            50,
+            40
+          ],
+          [
+            39,
+            50,
+            29
+          ]
+        ],
+        "radius_mm": 1.5,
+        "length_budget_mm": 150,
+        "slack_allowance_mm": 25,
+        "allowed_contact": [
+          "carrier"
+        ],
+        "kind": "50 ohm coax, endpoints and bends provisional",
+        "length_mm": 58.464,
+        "segment_envelopes_mm": [
+          [
+            33.5,
+            1.5,
+            36.5,
+            36.5,
+            19.5,
+            41.5
+          ],
+          [
+            33.5,
+            16.5,
+            38.5,
+            36.5,
+            27.5,
+            41.5
+          ],
+          [
+            33.5,
+            24.5,
+            38.5,
+            40.5,
+            51.5,
+            41.5
+          ],
+          [
+            37.5,
+            48.5,
+            27.5,
+            40.5,
+            51.5,
+            41.5
+          ]
+        ]
+      },
+      {
+        "id": "thread-coax",
+        "points_mm": [
+          [
+            100,
+            3,
+            38
+          ],
+          [
+            100,
+            18,
+            40
+          ],
+          [
+            100,
+            26,
+            40
+          ],
+          [
+            73,
+            77,
+            40
+          ],
+          [
+            73,
+            77,
+            29
+          ]
+        ],
+        "radius_mm": 1.5,
+        "length_budget_mm": 150,
+        "slack_allowance_mm": 25,
+        "allowed_contact": [
+          "carrier"
+        ],
+        "kind": "50 ohm coax, endpoints and bends provisional",
+        "length_mm": 91.839,
+        "segment_envelopes_mm": [
+          [
+            98.5,
+            1.5,
+            36.5,
+            101.5,
+            19.5,
+            41.5
+          ],
+          [
+            98.5,
+            16.5,
+            38.5,
+            101.5,
+            27.5,
+            41.5
+          ],
+          [
+            71.5,
+            24.5,
+            38.5,
+            101.5,
+            78.5,
+            41.5
+          ],
+          [
+            71.5,
+            75.5,
+            27.5,
+            74.5,
+            78.5,
+            41.5
+          ]
+        ]
+      },
+      {
+        "id": "zigbee-coax",
+        "points_mm": [
+          [
+            165,
+            3,
+            38
+          ],
+          [
+            165,
+            18,
+            40
+          ],
+          [
+            165,
+            26,
+            40
+          ],
+          [
+            125,
+            26,
+            42
+          ],
+          [
+            93,
+            65,
+            40
+          ],
+          [
+            93,
+            65,
+            29
+          ]
+        ],
+        "radius_mm": 1.5,
+        "length_budget_mm": 150,
+        "slack_allowance_mm": 25,
+        "allowed_contact": [
+          "carrier"
+        ],
+        "kind": "50 ohm coax, endpoints and bends provisional",
+        "length_mm": 124.67,
+        "segment_envelopes_mm": [
+          [
+            163.5,
+            1.5,
+            36.5,
+            166.5,
+            19.5,
+            41.5
+          ],
+          [
+            163.5,
+            16.5,
+            38.5,
+            166.5,
+            27.5,
+            41.5
+          ],
+          [
+            123.5,
+            24.5,
+            38.5,
+            166.5,
+            27.5,
+            43.5
+          ],
+          [
+            91.5,
+            24.5,
+            38.5,
+            126.5,
+            66.5,
+            43.5
+          ],
+          [
+            91.5,
+            63.5,
+            27.5,
+            94.5,
+            66.5,
+            41.5
+          ]
+        ]
+      },
+      {
+        "id": "ethernet",
+        "points_mm": [
+          [
+            84.5,
+            137,
+            30
+          ],
+          [
+            84.5,
+            164,
+            30
+          ],
+          [
+            148,
+            164,
+            30
+          ],
+          [
+            148,
+            193,
+            30
+          ],
+          [
+            129,
+            193,
+            25
+          ]
+        ],
+        "radius_mm": 3,
+        "allowed_contact": [
+          "poe_splitter",
+          "carrier"
+        ],
+        "kind": "splitter captive data tail to WIZ850io; no extra PoE entering carrier",
+        "length_mm": 139.147,
+        "segment_envelopes_mm": [
+          [
+            81.5,
+            134,
+            27,
+            87.5,
+            167,
+            33
+          ],
+          [
+            81.5,
+            161,
+            27,
+            151,
+            167,
+            33
+          ],
+          [
+            145,
+            161,
+            27,
+            151,
+            196,
+            33
+          ],
+          [
+            126,
+            190,
+            22,
+            151,
+            196,
+            33
+          ]
+        ]
+      },
+      {
+        "id": "main-harness",
+        "points_mm": [
+          [
+            122,
+            80,
+            50
+          ],
+          [
+            122,
+            151,
+            50
+          ]
+        ],
+        "radius_mm": 4,
+        "allowed_contact": [],
+        "kind": "overhead restrained low-voltage harness corridor",
+        "length_mm": 71.0,
+        "segment_envelopes_mm": [
+          [
+            118,
+            76,
+            46,
+            126,
+            155,
+            54
+          ]
+        ]
+      },
+      {
+        "id": "ambient-harness",
+        "points_mm": [
+          [
+            57.81,
+            105.0,
+            30
+          ],
+          [
+            122,
+            105,
+            50
+          ],
+          [
+            122,
+            151,
+            50
+          ],
+          [
+            209,
+            153,
+            52
+          ],
+          [
+            225,
+            153,
+            52
+          ],
+          [
+            225,
+            159,
+            30
+          ],
+          [
+            234,
+            159,
+            30
+          ],
+          [
+            240,
+            159,
+            30
+          ]
+        ],
+        "radius_mm": 2,
+        "allowed_contact": [
+          "bme680",
+          "carrier"
+        ],
+        "kind": "I2C/power to attached ambient pod",
+        "length_mm": 254.083,
+        "segment_envelopes_mm": [
+          [
+            55.81,
+            103.0,
+            28,
+            124,
+            107.0,
+            52
+          ],
+          [
+            120,
+            103,
+            48,
+            124,
+            153,
+            52
+          ],
+          [
+            120,
+            149,
+            48,
+            211,
+            155,
+            54
+          ],
+          [
+            207,
+            151,
+            50,
+            227,
+            155,
+            54
+          ],
+          [
+            223,
+            151,
+            28,
+            227,
+            161,
+            54
+          ],
+          [
+            223,
+            157,
+            28,
+            236,
+            161,
+            32
+          ],
+          [
+            232,
+            157,
+            28,
+            242,
+            161,
+            32
+          ]
+        ]
+      },
+      {
+        "id": "radar-service-loop",
+        "points_mm": [
+          [
+            57.81,
+            97,
+            30
+          ],
+          [
+            57.81,
+            97,
+            50
+          ],
+          [
+            32,
+            97,
+            50
+          ],
+          [
+            32,
+            93,
+            63
+          ],
+          [
+            40,
+            93,
+            63
+          ]
+        ],
+        "radius_mm": 2,
+        "allowed_contact": [
+          "ld2450",
+          "carrier"
+        ],
+        "kind": "removable lid harness; unplug before separating lid",
+        "length_mm": 67.411,
+        "segment_envelopes_mm": [
+          [
+            55.81,
+            95,
+            28,
+            59.81,
+            99,
+            52
+          ],
+          [
+            30,
+            95,
+            48,
+            59.81,
+            99,
+            52
+          ],
+          [
+            30,
+            91,
+            48,
+            34,
+            99,
+            65
+          ],
+          [
+            30,
+            91,
+            61,
+            42,
+            95,
+            65
+          ]
+        ]
+      },
+      {
+        "id": "poe-input",
+        "points_mm": [
+          [
+            -15,
+            192.4,
+            24
+          ],
+          [
+            25,
+            192.4,
+            24
+          ]
+        ],
+        "radius_mm": 4,
+        "allowed_contact": [
+          "poe_splitter"
+        ],
+        "kind": "one upstream PoE Ethernet cable, restrained at wall opening",
+        "length_mm": 40.0,
+        "segment_envelopes_mm": [
+          [
+            -19,
+            188.4,
+            20,
+            29,
+            196.4,
+            28
+          ]
+        ]
+      },
+      {
+        "id": "cc1101-stock-antenna",
+        "points_mm": [
+          [
+            199,
+            55,
+            26
+          ],
+          [
+            218,
+            55,
+            26
+          ]
+        ],
+        "radius_mm": 2,
+        "allowed_contact": [
+          "cc1101"
+        ],
+        "kind": "unmodified stock antenna or selected matching adapter; physical length unverified",
+        "length_mm": 19.0,
+        "segment_envelopes_mm": [
+          [
+            197,
+            53,
+            24,
+            220,
+            57,
+            28
+          ]
+        ]
+      },
+      {
+        "id": "j3-wk2132",
+        "points_mm": [
+          [
+            93.35,
+            82.0,
+            30
+          ],
+          [
+            122,
+            82,
+            48
+          ],
+          [
+            122,
+            141,
+            48
+          ],
+          [
+            126,
+            141,
+            23
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "carrier",
+          "wk2132"
+        ],
+        "kind": "J3 six-wire harness:3.3V,GND,SDA,SCL,TX1,RX1; UART returns through carrier to J4",
+        "length_mm": 118.153,
+        "segment_envelopes_mm": [
+          [
+            91.85,
+            80.5,
+            28.5,
+            123.5,
+            83.5,
+            49.5
+          ],
+          [
+            120.5,
+            80.5,
+            46.5,
+            123.5,
+            142.5,
+            49.5
+          ],
+          [
+            120.5,
+            139.5,
+            21.5,
+            127.5,
+            142.5,
+            49.5
+          ]
+        ]
+      },
+      {
+        "id": "j4-zac93",
+        "points_mm": [
+          [
+            92.08,
+            91.0,
+            30
+          ],
+          [
+            122,
+            91,
+            46
+          ],
+          [
+            122,
+            78,
+            46
+          ],
+          [
+            149,
+            78,
+            16
+          ],
+          [
+            149,
+            91,
+            16
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "carrier",
+          "zwave"
+        ],
+        "kind": "J4 five-wire harness to ZAC93 pins1/6/9/8/10:3.3V,twoGND,RX,TX",
+        "length_mm": 100.29,
+        "segment_envelopes_mm": [
+          [
+            90.58,
+            89.5,
+            28.5,
+            123.5,
+            92.5,
+            47.5
+          ],
+          [
+            120.5,
+            76.5,
+            44.5,
+            123.5,
+            92.5,
+            47.5
+          ],
+          [
+            120.5,
+            76.5,
+            14.5,
+            150.5,
+            79.5,
+            47.5
+          ],
+          [
+            147.5,
+            76.5,
+            14.5,
+            150.5,
+            92.5,
+            17.5
+          ]
+        ]
+      },
+      {
+        "id": "j5-cc1101",
+        "points_mm": [
+          [
+            62.89,
+            89.0,
+            30
+          ],
+          [
+            123,
+            89,
+            46
+          ],
+          [
+            130,
+            58,
+            46
+          ],
+          [
+            137,
+            58,
+            22
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "carrier",
+          "cc1101"
+        ],
+        "kind": "J5 shared SPI and RF GPIOs to CC1101",
+        "length_mm": 118.983,
+        "segment_envelopes_mm": [
+          [
+            61.39,
+            87.5,
+            28.5,
+            124.5,
+            90.5,
+            47.5
+          ],
+          [
+            121.5,
+            56.5,
+            44.5,
+            131.5,
+            90.5,
+            47.5
+          ],
+          [
+            128.5,
+            56.5,
+            20.5,
+            138.5,
+            59.5,
+            47.5
+          ]
+        ]
+      },
+      {
+        "id": "j2-buck",
+        "points_mm": [
+          [
+            57.81,
+            113.0,
+            30
+          ],
+          [
+            57.81,
+            113.0,
+            48
+          ],
+          [
+            122,
+            113,
+            48
+          ],
+          [
+            122,
+            159,
+            48
+          ],
+          [
+            180,
+            159,
+            48
+          ],
+          [
+            180,
+            141,
+            32
+          ],
+          [
+            185,
+            141,
+            21
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "carrier",
+          "buck"
+        ],
+        "kind": "Four-wire J2 harness: fused5V VIN,GND,regulated3.3V VOUT,GND; keep lead impedance low",
+        "length_mm": 222.356,
+        "segment_envelopes_mm": [
+          [
+            56.31,
+            111.5,
+            28.5,
+            59.31,
+            114.5,
+            49.5
+          ],
+          [
+            56.31,
+            111.5,
+            46.5,
+            123.5,
+            114.5,
+            49.5
+          ],
+          [
+            120.5,
+            111.5,
+            46.5,
+            123.5,
+            160.5,
+            49.5
+          ],
+          [
+            120.5,
+            157.5,
+            46.5,
+            181.5,
+            160.5,
+            49.5
+          ],
+          [
+            178.5,
+            139.5,
+            30.5,
+            181.5,
+            160.5,
+            49.5
+          ],
+          [
+            178.5,
+            139.5,
+            19.5,
+            186.5,
+            142.5,
+            33.5
+          ]
+        ]
+      },
+      {
+        "id": "poe-dc-adapter",
+        "points_mm": [
+          [
+            129,
+            192,
+            25
+          ],
+          [
+            153,
+            192,
+            37
+          ],
+          [
+            153,
+            173,
+            37
+          ],
+          [
+            166,
+            173,
+            24
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "poe_splitter",
+          "dc_adapter"
+        ],
+        "kind": "Captive5V lead to insulated female barrel adapter",
+        "length_mm": 64.218,
+        "segment_envelopes_mm": [
+          [
+            127.5,
+            190.5,
+            23.5,
+            154.5,
+            193.5,
+            38.5
+          ],
+          [
+            151.5,
+            171.5,
+            35.5,
+            154.5,
+            193.5,
+            38.5
+          ],
+          [
+            151.5,
+            171.5,
+            22.5,
+            167.5,
+            174.5,
+            38.5
+          ]
+        ]
+      },
+      {
+        "id": "dc-adapter-fuse",
+        "points_mm": [
+          [
+            185,
+            180,
+            24
+          ],
+          [
+            185,
+            186,
+            24
+          ],
+          [
+            185,
+            191,
+            24
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "dc_adapter",
+          "fuse_holder"
+        ],
+        "kind": "5V feed through inline fuse before branching",
+        "length_mm": 11.0,
+        "segment_envelopes_mm": [
+          [
+            183.5,
+            178.5,
+            22.5,
+            186.5,
+            187.5,
+            25.5
+          ],
+          [
+            183.5,
+            184.5,
+            22.5,
+            186.5,
+            192.5,
+            25.5
+          ]
+        ]
+      },
+      {
+        "id": "fuse-j1",
+        "points_mm": [
+          [
+            167,
+            199,
+            25
+          ],
+          [
+            154,
+            199,
+            42
+          ],
+          [
+            154,
+            172,
+            48
+          ],
+          [
+            122,
+            172,
+            48
+          ],
+          [
+            122,
+            122,
+            48
+          ],
+          [
+            55.269999999999996,
+            122.0,
+            48
+          ],
+          [
+            55.269999999999996,
+            122.0,
+            30
+          ]
+        ],
+        "radius_mm": 1.5,
+        "allowed_contact": [
+          "fuse_holder",
+          "carrier"
+        ],
+        "kind": "Fused5V to J1",
+        "length_mm": 215.79,
+        "segment_envelopes_mm": [
+          [
+            152.5,
+            197.5,
+            23.5,
+            168.5,
+            200.5,
+            43.5
+          ],
+          [
+            152.5,
+            170.5,
+            40.5,
+            155.5,
+            200.5,
+            49.5
+          ],
+          [
+            120.5,
+            170.5,
+            46.5,
+            155.5,
+            173.5,
+            49.5
+          ],
+          [
+            120.5,
+            120.5,
+            46.5,
+            123.5,
+            173.5,
+            49.5
+          ],
+          [
+            53.769999999999996,
+            120.5,
+            46.5,
+            123.5,
+            123.5,
+            49.5
+          ],
+          [
+            53.769999999999996,
+            120.5,
+            28.5,
+            56.769999999999996,
+            123.5,
+            49.5
+          ]
+        ]
+      }
+    ],
+    "cable_sweeps_clear_of_printed_parts": true,
+    "cable_sweeps_clear_of_native_modules": true,
+    "native_module_boxes_mm": {
+      "U1": [
+        22.0,
+        46.66,
+        24,
+        49.94,
+        100.99,
+        32
+      ],
+      "U2": [
+        59.0,
+        46.0,
+        24,
+        76.78,
+        80.6774,
+        32
+      ],
+      "U3": [
+        89.0,
+        46.0,
+        24,
+        106.78,
+        66.955,
+        32
+      ],
+      "U4": [
+        73.0,
+        108.3,
+        24,
+        96.0,
+        133.3,
+        38.6
+      ]
+    },
+    "carrier_mated_headers_clear": true,
+    "carrier_mated_header_boxes_mm": {
+      "J1": [
+        52.25,
+        119.25,
+        27,
+        58.29,
+        124.75,
+        40
+      ],
+      "J2": [
+        52.25,
+        110.25,
+        27,
+        63.37,
+        115.75,
+        40
+      ],
+      "J3": [
+        85.25,
+        79.25,
+        27,
+        101.45,
+        84.75,
+        40
+      ],
+      "J4": [
+        85.25,
+        88.25,
+        27,
+        98.91,
+        93.75,
+        40
+      ],
+      "J5": [
+        52.25,
+        86.25,
+        27,
+        73.53,
+        91.75,
+        40
+      ],
+      "J6": [
+        52.25,
+        94.25,
+        27,
+        63.37,
+        99.75,
+        40
+      ],
+      "J7": [
+        52.25,
+        102.25,
+        27,
+        63.37,
+        107.75,
+        40
+      ]
+    },
+    "mated_connector_boxes_mm": {
+      "zac93-underside-mating-header": [
+        144,
+        89,
+        12,
+        152,
+        102,
+        17.4
+      ],
+      "zac93-socket-exit": [
+        144,
+        81,
+        9,
+        152,
+        89,
+        18
+      ],
+      "cc1101-header": [
+        134,
+        50,
+        12,
+        142,
+        65,
+        27
+      ],
+      "dfr0627-header": [
+        124,
+        134,
+        12,
+        132,
+        151,
+        28
+      ],
+      "bme680-cable-plug": [
+        234,
+        155,
+        24,
+        240,
+        163,
+        34
+      ],
+      "ld2450-cable-plug": [
+        39,
+        90,
+        59.9,
+        45,
+        96,
+        67.9
+      ]
+    },
+    "detailed_component_solids_mm": {
+      "zwave": [
+        [
+          142,
+          87,
+          26.4,
+          170.5,
+          115.5,
+          28.0
+        ],
+        [
+          144,
+          89,
+          17.4,
+          152,
+          102,
+          26.4
+        ],
+        [
+          150,
+          93,
+          28,
+          160,
+          106,
+          30
+        ]
+      ],
+      "buck": [
+        [
+          183,
+          132,
+          13.1,
+          200.8,
+          149.8,
+          14.12
+        ],
+        [
+          187,
+          136,
+          12,
+          197,
+          146,
+          13.1
+        ],
+        [
+          187,
+          136,
+          14.12,
+          197,
+          146,
+          20.2
+        ]
+      ]
+    },
+    "physical_fit_verified": false,
+    "verification_scope": "Conservative digital envelopes and generated plastic only. Does not establish header orientation, material RF loss, purchased-part fit, thermal bias or RF coverage."
+  },
+  "component_bounds_mm": {
+    "carrier": [
+      14,
+      34,
+      15,
+      114.0,
+      136.0,
+      45
+    ],
+    "poe_splitter": [
+      26,
+      177.6,
+      12,
+      128.5,
+      207.2,
+      36.8
+    ],
+    "buck": [
+      183,
+      132,
+      12,
+      200.8,
+      149.8,
+      24
+    ],
+    "wk2132": [
+      132,
+      126,
+      12,
+      164.5,
+      153,
+      28
+    ],
+    "zwave": [
+      142,
+      87,
+      12,
+      170.5,
+      115.5,
+      30
+    ],
+    "cc1101": [
+      142,
+      41,
+      12,
+      197,
+      71,
+      30
+    ],
+    "ld2450": [
+      45,
+      86,
+      59.9,
+      89,
+      101,
+      69.9
+    ],
+    "bme680": [
+      240,
+      149,
+      24,
+      265.4,
+      166.78,
+      34
+    ],
+    "dc_adapter": [
+      166,
+      165,
+      12,
+      206,
+      181,
+      30
+    ],
+    "fuse_holder": [
+      166,
+      190,
+      12,
+      201,
+      208,
+      30
+    ]
+  },
+  "mounting": {
+    "carrier": {
+      "kind": "four native M2.5 mounting holes",
+      "case_xy_mm": [
+        [
+          110.0,
+          130.0
+        ],
+        [
+          110.0,
+          38.0
+        ],
+        [
+          18.0,
+          130.0
+        ],
+        [
+          18.0,
+          38.0
+        ]
+      ],
+      "seat_z_mm": 15
+    },
+    "poe_splitter": {
+      "kind": "screwed removable insulated tray and soft nylon straps",
+      "tray": "poe-splitter-tray",
+      "tray_origin_mm": [
+        22,
+        173.6,
+        6
+      ],
+      "tray_inner_xy_mm": [
+        24,
+        175.6,
+        0,
+        130.5,
+        209.2,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          24,
+          175.6
+        ],
+        [
+          130.5,
+          175.6
+        ],
+        [
+          24,
+          209.2
+        ],
+        [
+          130.5,
+          209.2
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 12,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm thread-forming screws; measure pilot coupon first",
+      "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival"
+    },
+    "buck": {
+      "kind": "published two-hole M2 pattern on insulated standoffs, in screwed tray",
+      "tray": "buck-tray",
+      "tray_origin_mm": [
+        179,
+        128,
+        6
+      ],
+      "tray_inner_xy_mm": [
+        181,
+        130,
+        0,
+        202.8,
+        151.8,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          181,
+          130
+        ],
+        [
+          202.8,
+          130
+        ],
+        [
+          181,
+          151.8
+        ],
+        [
+          202.8,
+          151.8
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 12,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm tray screws + 2 \u00d7 M2 \u00d7 4 mm PCB screws; no pressure on components",
+      "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival",
+      "pcb_underside_z_mm": 13.1,
+      "local_hole_centres_mm": [
+        [
+          2.3,
+          15.5
+        ],
+        [
+          15.5,
+          2.3
+        ]
+      ]
+    },
+    "wk2132": {
+      "kind": "screwed removable insulated tray and soft nylon straps",
+      "tray": "wk2132-tray",
+      "tray_origin_mm": [
+        128,
+        122,
+        6
+      ],
+      "tray_inner_xy_mm": [
+        130,
+        124,
+        0,
+        166.5,
+        155,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          130,
+          124
+        ],
+        [
+          166.5,
+          124
+        ],
+        [
+          130,
+          155
+        ],
+        [
+          166.5,
+          155
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 12,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm thread-forming screws; measure pilot coupon first",
+      "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival"
+    },
+    "zwave": {
+      "kind": "screwed removable insulated tray and soft nylon straps",
+      "tray": "zwave-tray",
+      "tray_origin_mm": [
+        138,
+        83,
+        6
+      ],
+      "tray_inner_xy_mm": [
+        140,
+        85,
+        0,
+        172.5,
+        117.5,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          140,
+          85
+        ],
+        [
+          172.5,
+          85
+        ],
+        [
+          140,
+          117.5
+        ],
+        [
+          172.5,
+          117.5
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 26.4,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm thread-forming screws; measure pilot coupon first",
+      "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival",
+      "pcb_underside_z_mm": 26.4,
+      "socket_envelope_mm": [
+        144,
+        89,
+        17.4,
+        152,
+        102,
+        26.4
+      ],
+      "antenna_half_direction": "+X toward the plastic right wall",
+      "restraint": "one soft strap on electronics/connector half at x147.5; no strap over antenna half"
+    },
+    "cc1101": {
+      "kind": "screwed removable insulated tray and soft nylon straps",
+      "tray": "cc1101-tray",
+      "tray_origin_mm": [
+        138,
+        37,
+        6
+      ],
+      "tray_inner_xy_mm": [
+        140,
+        39,
+        0,
+        199,
+        73,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          140,
+          39
+        ],
+        [
+          199,
+          39
+        ],
+        [
+          140,
+          73
+        ],
+        [
+          199,
+          73
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 12,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm thread-forming screws; measure pilot coupon first",
+      "requires": "insulating pads at measured component-free board edges; no drilling module; socket/header clearance verified on arrival"
+    },
+    "dc_adapter": {
+      "kind": "shared screw-fixed utility tray with separate soft straps",
+      "tray": "power-utility-tray",
+      "tray_inner_xy_mm": [
+        164,
+        161.5,
+        0,
+        208,
+        209.5,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          164,
+          161.5
+        ],
+        [
+          208,
+          161.5
+        ],
+        [
+          164,
+          209.5
+        ],
+        [
+          196,
+          209.5
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 12,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm screws total for the shared tray"
+    },
+    "fuse_holder": {
+      "kind": "shared screw-fixed utility tray with separate soft straps",
+      "tray": "power-utility-tray",
+      "tray_inner_xy_mm": [
+        164,
+        161.5,
+        0,
+        208,
+        209.5,
+        100
+      ],
+      "case_xy_mm": [
+        [
+          164,
+          161.5
+        ],
+        [
+          208,
+          161.5
+        ],
+        [
+          164,
+          209.5
+        ],
+        [
+          196,
+          209.5
+        ]
+      ],
+      "seat_or_pad_top_z_mm": 12,
+      "hardware": "4 \u00d7 M2 \u00d7 6 mm screws total for the shared tray"
+    },
+    "ld2450": {
+      "kind": "lid-mounted open frame plus insulated board-end restraint",
+      "tray": "radar-holder",
+      "case_xy_mm": [
+        [
+          38,
+          82
+        ],
+        [
+          96,
+          82
+        ],
+        [
+          38,
+          105
+        ],
+        [
+          96,
+          105
+        ]
+      ],
+      "front_direction": "+Z room facing",
+      "radome_skin_mm": 0.8,
+      "nominal_antenna_plane_z_mm": 64.8,
+      "nominal_air_gap_mm": 12.4,
+      "metal_free_window_case_xy_mm": [
+        42,
+        83,
+        50,
+        21
+      ],
+      "board_end_strap_x_ranges_mm": [
+        [
+          45,
+          47.5
+        ],
+        [
+          85,
+          87.5
+        ]
+      ]
+    },
+    "bme680": {
+      "kind": "vented pod, two bolted support arms, insulated pads and soft straps",
+      "air_gap_mm": 17,
+      "pod_bounds_mm": [
+        232,
+        143,
+        16,
+        277,
+        178,
+        39
+      ],
+      "arm_quantity": 2
+    }
+  },
+  "parts": {
+    "poe-splitter-tray": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          110.5,
+          37.6,
+          16.0
+        ]
+      ],
+      "volume_mm3": 10936.731,
+      "sha256": "f784744bf809a3355ec8acf7460482f502bd82cb3a1c128757a540ccb9e8bae1",
+      "fits_220x220_plate": true
+    },
+    "buck-tray": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          25.8,
+          25.8,
+          16.0
+        ]
+      ],
+      "volume_mm3": 2254.613,
+      "sha256": "623412386365de5c36b1c834a7a87cd3553eb64871cd829b598631c58e907557",
+      "fits_220x220_plate": true
+    },
+    "wk2132-tray": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          40.5,
+          35.0,
+          16.0
+        ]
+      ],
+      "volume_mm3": 4278.812,
+      "sha256": "f781e755dbf4c0315c83f08ea4b8094c2d4f87bb739a3a0f4576a31a802e249a",
+      "fits_220x220_plate": true
+    },
+    "zwave-tray": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          36.5,
+          36.5,
+          20.4
+        ]
+      ],
+      "volume_mm3": 4396.411,
+      "sha256": "a2f9540e30726bb0926cdb9cadcf89442f91772095560a48098213a02e9c752c",
+      "fits_220x220_plate": true
+    },
+    "cc1101-tray": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          63.0,
+          38.0,
+          16.0
+        ]
+      ],
+      "volume_mm3": 6724.412,
+      "sha256": "9eea5ec1b1d53d1d0bcc26792fac4a2f8bb1a782ddd95bc2130b1026f6ab330f",
+      "fits_220x220_plate": true
+    },
+    "power-utility-tray": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          48.0,
+          52.0,
+          16.0
+        ]
+      ],
+      "volume_mm3": 7646.095,
+      "sha256": "625d2ac5cf41c9182520cadd6d8708243f190af0a9faf19523f8d4fc1fc98564",
+      "fits_220x220_plate": true
+    },
+    "base": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          215.0,
+          215.0,
+          75.0
+        ]
+      ],
+      "volume_mm3": 354150.893,
+      "sha256": "16f2bac84aca98b70c6ad58297ad0a351d8eff645359ffad9a16d340238bcbea",
+      "fits_220x220_plate": true
+    },
+    "lid": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          215.0,
+          215.0,
+          18.1
+        ]
+      ],
+      "volume_mm3": 137893.128,
+      "sha256": "5bc30b3593ebf87ff7c748885b6f0accf642a3744606dd9f58f5132874a2a7bf",
+      "fits_220x220_plate": true
+    },
+    "radar-holder": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          64.0,
+          27.0,
+          2.0
+        ]
+      ],
+      "volume_mm3": 2573.676,
+      "sha256": "7e0df8f6e86e21d6ede542d0ad3be8f3c4e6cf0a8693f6d446dcdb57e90e5412",
+      "fits_220x220_plate": true
+    },
+    "pod-arm": {
+      "quantity": 2,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          31.0,
+          8.0,
+          13.0
+        ]
+      ],
+      "volume_mm3": 947.043,
+      "sha256": "961010fb46c2d5f5a5f45a3437b7b0f7bccfbdbf385f8a9c580c207f9e30aa40",
+      "fits_220x220_plate": true
+    },
+    "bme680-pod": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          45.0,
+          35.0,
+          21.0
+        ]
+      ],
+      "volume_mm3": 8972.332,
+      "sha256": "b8849ab122f3984e7e6391e27e93b2729f6a2e2db9a5a84557f9de2e8ce03514",
+      "fits_220x220_plate": true
+    },
+    "bme680-pod-lid": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          45.0,
+          35.0,
+          2.0
+        ]
+      ],
+      "volume_mm3": 2609.838,
+      "sha256": "2745d070858790f6a9b532ea747de14c7a3224749a0c9b694dd06752a0574b8b",
+      "fits_220x220_plate": true
+    },
+    "fit-coupon": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          90.0,
+          26.0,
+          5.0
+        ]
+      ],
+      "volume_mm3": 11025.606,
+      "sha256": "1e158e5df944d039e8eddfc9eab397536cd3e964a4fc7b3aaada458e87be7d8c",
+      "fits_220x220_plate": true
+    },
+    "cc1101-port-blank": {
+      "quantity": 1,
+      "watertight": true,
+      "single_solid": true,
+      "bounds_mm": [
+        [
+          -7.0,
+          -7.0,
+          0.0
+        ],
+        [
+          7.0,
+          7.0,
+          3.0
+        ]
+      ],
+      "volume_mm3": 314.115,
+      "sha256": "1f06fd33424e60e95c5d09508be492ee7edc3675036078dc617a19e9d1abd4d6",
+      "fits_220x220_plate": true
+    }
+  },
+  "generated_sha256": {
+    "assembly.scad": "e2409a8e3c925f3a679dc27ac183ee6d330602ff326288beaa3b44f1cc2f5e7c",
+    "base.scad": "0a915cb8c87c3e45a231f0e5f856afdb2c22603b44384f4e1558ea68cef48919",
+    "base.stl": "16f2bac84aca98b70c6ad58297ad0a351d8eff645359ffad9a16d340238bcbea",
+    "bme680-pod-lid.scad": "c3f3abdb1fc955191c2f438ab8e5216de808cc59cee32730cadfd9dcccaaafbf",
+    "bme680-pod-lid.stl": "2745d070858790f6a9b532ea747de14c7a3224749a0c9b694dd06752a0574b8b",
+    "bme680-pod.scad": "24177862bf3c87addcb8270cedb95e6aa1311f2a5e96f9141eef9ecdafec36a5",
+    "bme680-pod.stl": "b8849ab122f3984e7e6391e27e93b2729f6a2e2db9a5a84557f9de2e8ce03514",
+    "buck-tray.scad": "8419d4ca24dac99268a9d5abaec7bee539a962d3d67b42f4f8d83ba77990da6a",
+    "buck-tray.stl": "623412386365de5c36b1c834a7a87cd3553eb64871cd829b598631c58e907557",
+    "cc1101-port-blank.scad": "745ec19bebbd052238ebc4c6610c6d3069127928012fa04aebd754b89a688734",
+    "cc1101-port-blank.stl": "1f06fd33424e60e95c5d09508be492ee7edc3675036078dc617a19e9d1abd4d6",
+    "cc1101-tray.scad": "953eddd0ca964d2d4f5b71e209bf78068e4b669525613404c0ae678a63c6215d",
+    "cc1101-tray.stl": "9eea5ec1b1d53d1d0bcc26792fac4a2f8bb1a782ddd95bc2130b1026f6ab330f",
+    "exploded-preview.png": "fb0e0ebbdb49b389bd88a1c014c64d914ea9090134c0f0e2191e484089bc7104",
+    "exploded.scad": "256d654de41e61d4e28b02d6b324be320b530d7163f9e36b73bafe04c01f79f4",
+    "fit-coupon.scad": "f0e5f7ff190913f9a3a06588a6384fb56b63163d4367475fcd9311db7311fb2f",
+    "fit-coupon.stl": "1e158e5df944d039e8eddfc9eab397536cd3e964a4fc7b3aaada458e87be7d8c",
+    "full-assembly-preview.png": "734daece1524062ec22484e838b036fd89f8131689c9064c8a340bf78c67f1da",
+    "index.html": "a4be3e70e1ba113945f586fc586cfdd160528ba1497d5f2868e828df75896d0b",
+    "layout.svg": "a9014dffdd58a3b8cca030e40c33a3fcd9be0f096944a0b9c6a355da3348b425",
+    "lid.scad": "ea115b6c53b8f60bf34b6b223d386c3a9102033c02ec6f4d481633976afaf617",
+    "lid.stl": "5bc30b3593ebf87ff7c748885b6f0accf642a3744606dd9f58f5132874a2a7bf",
+    "pod-arm.scad": "3a207bfb60ebfb1a6931893c9b479f53200f8ad8a3664a415b9879209e1730a9",
+    "pod-arm.stl": "961010fb46c2d5f5a5f45a3437b7b0f7bccfbdbf385f8a9c580c207f9e30aa40",
+    "poe-splitter-tray.scad": "05915e38fd1b4b8f817492628f7acb5bc4de5079024338303127866139aeb1f4",
+    "poe-splitter-tray.stl": "f784744bf809a3355ec8acf7460482f502bd82cb3a1c128757a540ccb9e8bae1",
+    "power-utility-tray.scad": "82ebe7043521e23f2e0d0d3986f87f1eda62a7bb13051ee8cca18f6d6533b9b1",
+    "power-utility-tray.stl": "625d2ac5cf41c9182520cadd6d8708243f190af0a9faf19523f8d4fc1fc98564",
+    "radar-holder.scad": "6679d262c76fc2f90c57d340caf219e5bd4a2fcd2ea593e84f2661694c210eab",
+    "radar-holder.stl": "7e0df8f6e86e21d6ede542d0ad3be8f3c4e6cf0a8693f6d446dcdb57e90e5412",
+    "wk2132-tray.scad": "06f6a6b8b7cd12950a0e7cf613ba0018256f2e1148bbaa898c12cb7b518cba29",
+    "wk2132-tray.stl": "f781e755dbf4c0315c83f08ea4b8094c2d4f87bb739a3a0f4576a31a802e249a",
+    "zwave-tray.scad": "d1c1a4017b6d2827607ed028b0fa7f2bdc4d83710cb52f925e3e70834675f3f1",
+    "zwave-tray.stl": "a2f9540e30726bb0926cdb9cadcf89442f91772095560a48098213a02e9c752c"
+  }
+}

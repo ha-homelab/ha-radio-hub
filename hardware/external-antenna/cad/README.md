@@ -30,7 +30,7 @@ The existing network PoE switch feeds an **active, isolated, regulated 5 V split
 
 `design.json` is the geometry authority. Four 2.7 mm NPTH holes are at (4,4), (96,4), (4,96), (96,96) mm, front-view origin at the top left. Use insulating M2.5 supports no wider than 5 mm at the PCB. The WIZ850io front-facing footprint is rotated180°: its RJ45 mouth is at y102 mm, x62.45–78.55 mm, 2 mm beyond the carrier. Support its jack with the enclosure cradle so cable insertion force does not rely on header joints.
 
-The ledger retains physical USB shells, short USB service approaches and harness-mating envelopes. The three RF socket points are **explicitly labelled planning estimates**, not exact manufacturer coordinates; use sufficient pigtail slack and verify engagement, bend radius and strain relief with delivered boards. Never press a mismatched miniature coax connector into place. Carrier fit, connector height, printer tolerances and simultaneous-radio performance remain unmeasured. [MC2 enclosure](../../../mechanical/module-carrier/external-antenna-prototype/README.md).
+The ledger retains physical USB shells, short USB service approaches and harness-mating envelopes. The three RF socket points are **explicitly labelled planning estimates**, not exact manufacturer coordinates; use sufficient pigtail slack and verify engagement, bend radius and strain relief with delivered boards. Never press a mismatched miniature coax connector into place. Carrier fit, connector height, printer tolerances and simultaneous-radio performance remain unmeasured. [MC2 enclosure](../../../mechanical/full-hub/README.md).
 
 ## Checks and reproduction
 

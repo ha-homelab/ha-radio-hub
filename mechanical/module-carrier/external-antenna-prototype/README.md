@@ -1,5 +1,10 @@
 # MC2-B external-antenna enclosure prototype
 
+**Historical carrier-only option.** For the complete device, including Zooz
+ZAC93, power modules, UART bridge, CC1101, LD2450 and an attached BME680 pod,
+use the [FH1 full-hub enclosure](../../full-hub/README.md). This smaller housing
+does not contain those additional modules.
+
 [Illustrated plan](index.html) · [dimensioned drawing](enclosure.svg) · [actual printable meshes](print-parts.png) · [assembly with antenna envelopes](assembly-preview.png) · [trial parameters](parameters.json) · [digital checks](verification.json)
 
 This package implements three independently labeled external antenna connections for **MC2**: **BLE**, **THREAD** and **ZIGBEE**. Each uses its own 50 Ω cable. The ports are in the fixed base wall, so lifting the cover does not pull on the miniature radio connectors. This enclosure is a printable engineering prototype; physical fit, cable routing, strength, temperature and coverage are not yet qualified.

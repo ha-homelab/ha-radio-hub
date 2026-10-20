@@ -23,6 +23,31 @@ connector; a corrective pass removed those features before publication.
 - [Bare-board prompt](mc2b-bare-prompt.txt)
 - [Reference and output hashes](mc2b-provenance.json)
 
+## Full-hub FH1 exploded appearance
+
+[Full-hub illustration](full-hub-exploded-concept.png) was made on 19 October
+2026 with the built-in `image_gen` tool. It shows the intended full assembly,
+including the separate ZAC93 cradle, the power and peripheral trays, a raised
+radar/lid and the attached BME680 pod. Antennas, coax and most signal harnesses
+are omitted so the modules remain visible. They are required in the real build.
+
+This is a presentation image, **not a photograph, measured assembly, exact
+mount model or pinout**. The small board features, proportions, retention and
+connector details remain illustrative. Use [source-driven exploded CAD](../../../mechanical/full-hub/exploded-preview.png),
+[print files](../../../mechanical/full-hub/README.md) and
+[pin-to-pin wiring](../../../docs/full-hub-assembly.md) for construction.
+Never drill a module or copy apparent wiring from this image.
+
+The initial image was corrected to put the radar parallel to the lid and to
+remove invented through-board fasteners from the ZAC93, CC1101, UART bridge and
+radar. The regulator has two diagonal fasteners. Fine details are not a claim
+that the delivered boards or connectors have those exact shapes.
+
+- [Initial prompt](full-hub-exploded-prompt.txt)
+- [Placement and mount correction](full-hub-correction-prompt.txt)
+- [Final mount correction](full-hub-mount-correction-prompt.txt)
+- [Provenance and output hash](full-hub-provenance.json)
+
 ## Historical MC2-A appearance concepts
 
 These originals and their provenance refer to the
