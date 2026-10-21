@@ -216,7 +216,10 @@ Also required, and **not yet priced**:
 
 - One 24 × 24 × 1.6 mm isolated-pad perfboard cutoff, insulated wire and
   heat-shrink for the RECOM/capacitor assembly; PWR1 tray restraints.
-- Three 1N5819 diodes and four axial resistors: one 4.7 kΩ and three 10 kΩ.
+- Two 1N5819 diodes for D2/D3 and an insulated 22 AWG wire link for D1.
+  The submitted order contains three diodes: keep one spare. **Do not fit a
+  diode at D1**; its extra drop reduces the host regulator headroom.
+- Four axial resistors: one 4.7 kΩ and three 10 kΩ.
 - J1–J7 and J10 headers and insulated mating contacts, ZAC93 2×5 mating header,
   BME680 QT lead and module wiring.
 - 1.5 A time-delay fuse with insulated holder, 5.5/2.1 mm DC adapter,

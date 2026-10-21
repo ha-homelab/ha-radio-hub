@@ -65,8 +65,13 @@ Connect the **carrier J4** harness as follows:
 | **5** | **10 — TX** | ZAC93 transmit output → DFR0627 RX1 |
 
 **J4 pad 4 is not ZAC93 pin 4.** This is a remapped cable, not a straight-through
-ribbon. Fit insulated, correctly mating contacts; secure the harness on the
-printed cable restraint so pulling the cable cannot lift the board. Leave
+ribbon. For the purchased **Sullins PRPC005DAAN-RC**, insert the **5.84 mm long
+mating posts** into ZAC93. **Solder the five harness wires to the 3.05 mm short
+solder tails**, then insulate each joint separately with heat shrink. Do not
+push female jumper sockets onto the short tails: those are not mating posts.
+Cut the male ends off five M–F jumpers, retaining their female ends for carrier
+J4. Check continuity and isolation before mating the adapter. Secure the harness
+on the printed cable restraint so pulling the cable cannot lift the board. Leave
 ZAC93 pins **2, 3, 4, 5 and 7** unconnected. In particular, the Raspberry Pi's
 5 V header positions are not the supply used here.
 
@@ -121,6 +126,22 @@ own pins 3/5 are **not** connected to I²C.
 [DFRobot schematic](https://dfimg.dfrobot.com/wiki/20531/DFR0627_i2c-to-uart-module_schematics_V1.0.pdf),
 [pinned bridge driver](../firmware/module-carrier/components/wk2132_uart/transport.h).
 
+## Allocate the purchased harness parts
+
+The packs of 20 F–F and 20 M–F 150 mm jumpers are sufficient with this allocation:
+
+- **10 F–F:** two DFR0627 UART1 signals and all eight CC1101 connections.
+- **Four M–F:** extend the BME680 STEMMA QT breakout cable to J7.
+- **Five M–F:** retain the female ends for J4 and solder the cut ends to the ZAC93 adapter above.
+- **Up to four M–F:** retain female ends for J6 and splice to the LD2450's matching cable if required. Confirm that the purchased radar includes that cable.
+- **Two M–F female ends:** terminate the separate 30 AWG C6 TP8/TP2 leads at J10; insulate the splices and label EN/BOOT at both ends.
+- **DFR0627's supplied Gravity four-wire cable:** connect power and I²C to J3 by labels, not colour assumptions. [Manufacturer's included parts](https://www.dfrobot.com/product-2001.html).
+
+Use the separate **22 AWG wire and Harwin housings/contacts for J1/J2**;
+the thin jumper packs do not replace the main supply harness. Use a short
+insulated 22 AWG offcut for D1. Cut the 40-pin strip into J1=2, J2=4, J3=6,
+J4=5, J5=8, J6=4, J7=4 and J10=2 (35 pins); J8/J9 remain unpopulated.
+
 ## Power and Ethernet
 
 The power chain remains **battery → existing PoE switch → one Ethernet cable →
@@ -146,13 +167,15 @@ power converter wired directly to the carrier.
    do not omit it because the nominal input is only 5 V. Identify pins from the
    manufacturer drawing, not an assumed left-to-right cable order.
 4. The peripheral 3.3 V rail powers WIZ850io, DFR0627, ZAC93, CC1101 and BME680.
-   The fused 5 V rail powers LD2450 directly; the three controller boards receive
-   it through their individual Schottky isolation diodes D1–D3. **Do not join the controller boards'
+   The fused 5 V rail powers LD2450 directly. **Fit a 22 AWG insulated wire
+   link at D1, not a diode**, to feed U1 without the extra Schottky drop ahead
+   of its AMS1117. U2/U3 retain their 1N5819 diodes D2/D3 (banded ends at
+   pad 1 toward each module). The third purchased diode is a spare. **Do not join the controller boards'
    local 3V3 outputs to the peripheral buck output.**
 
 ![RECOM supply and four-wire J2 connection](../hardware/external-antenna/power-wiring.svg)
 
-RECOM takes its input from **fused 5 V before D1–D3**, not from a controller's
+RECOM takes its input from **fused 5 V at J2.1, upstream of the controller branches**, not from a controller's
 3.3 V pin or a diode-dropped 5 V output. Its specified input range starts at
 **4.5 V**: measure the voltage at its actual input pins during simultaneous load
 and startup, including losses in the fuse, connector and cable. Verify the
@@ -163,7 +186,7 @@ See the [current load budget and acceptance criteria](../hardware/external-anten
 Copy the [power measurement worksheet](../hardware/external-antenna/power-measurements.csv)
 and record this assembly's RECOM input/output, ZAC93 supply and each controller's
 independent local 3.3 V rail under simultaneous load. Measure U1's regulator
-input after D1 together with its output: required headroom comes from the fitted
+input after the D1 wire link together with its output: required headroom comes from the fitted
 regulator's guaranteed dropout at the measured current and temperature, not
 RECOM's 4.5 V minimum. Capture GPIO12 and GPIO2 around reset with a scope; a DMM
 average cannot verify boot straps. All worksheet entries start unmeasured.
@@ -192,7 +215,7 @@ mounting pattern is different. [Mount and print details](../mechanical/full-hub/
 
 The RECOM output must not be backfed. Program the radio boards loose as directed
 in [Start here](start-here.md); do not attach powered USB or an external supply
-to the assembled, unpowered hub. The controller supply diodes do not prevent
+to the assembled, unpowered hub. D1 is a wire link: host USB can energize the whole 5 V bus even with PoE off. The remaining controller supply diodes do not prevent
 all possible backfeed paths through signal pins.
 
 The MC2-D PCB retains the four-wire J2 interface and RECOM PWR1 power assembly.

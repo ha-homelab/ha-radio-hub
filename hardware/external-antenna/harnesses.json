@@ -30,7 +30,7 @@
       "ref": "J2",
       "device": "RECOM R-78K3.3-1.0 peripheral buck assembly",
       "source_anchor": "power-and-ethernet",
-      "note": "Retain the MC2-D four-wire J2 interface. RECOM SIP pins are 1 VIN, 2 GND, 3 VOUT; identify the pin-1 dot, not a mirrored cable view. Both J2 ground wires join pin 2 on the supported power daughterboard. Fit Panasonic EEU-FS1H270 27 uF input capacitor: positive to pin 1, negative stripe to pin 2. J2.1 uses fused +5V before D1-D3. No EN or PG pins exist. Do not plug the three-pin regulator directly into J2.",
+      "note": "Retain the MC2-D four-wire J2 interface. RECOM SIP pins are 1 VIN, 2 GND, 3 VOUT; identify the pin-1 dot, not a mirrored cable view. Both J2 ground wires join pin 2 on the supported power daughterboard. Fit Panasonic EEU-FS1H270 27 uF input capacitor: positive to pin 1, negative stripe to pin 2. J2.1 uses fused +5V upstream of the controller branches. D1 is a wire link, while D2/D3 remain diodes. No EN or PG pins exist. Do not plug the three-pin regulator directly into J2.",
       "pins": [
         {
           "carrier_pin": "1",

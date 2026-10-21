@@ -254,7 +254,7 @@
   ],
   "unpriced_requirements": [
     "1 x 24 x 24 x 1.6 mm isolated-pad 2.54 mm-pitch perfboard cutoff for the RECOM and input capacitor, insulated hookup wire, individual joint heat-shrink, and the PWR1 power-tray restraints; reuse suitable workshop stock if available",
-    "3 x 1N5819 diodes and 4 axial resistors (1 x 4.7 kohm, 3 x 10 kohm)",
+    "2 x 1N5819 diodes (D2/D3; third ordered diode is spare), 22AWG insulated wire link at D1 (NO DIODE), and 4 axial resistors (1 x 4.7 kohm, 3 x 10 kohm)",
     "Carrier J1-J7 and J10 headers, insulated mating harness contacts and ZAC93 2x5 mating header",
     "BME680 QT lead and required module harness wires",
     "1.5 A time-delay fuse and insulated holder, 5.5/2.1 mm DC adapter",

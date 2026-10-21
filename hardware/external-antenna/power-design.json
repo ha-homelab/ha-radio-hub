@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "revision": "MC2-D-PWR1",
-  "checked_on": "2026-10-20",
+  "checked_on": "2026-10-21",
   "status": "Engineering assembly substitution; physical measurements pending",
   "hardware_measured": false,
   "carrier_revision": "MC2-D",
@@ -155,7 +155,7 @@
     "unused_rated_capacity_ma": 600,
     "rated_capacity_to_reserve_ratio": 2.5,
     "excluded_loads": [
-      "U1 host: +5V_HOST through D1 and its own regulator",
+      "U1 host: +5V_HOST through D1 wire link and its own regulator",
       "U2 XIAO ESP32C6: +5V_C6 through D2 and its own regulator",
       "U3 XIAO MG24: +5V_ZB through D3 and its own regulator",
       "LD2450: fused +5V via J6.1"
@@ -256,7 +256,7 @@
       "worksheet": "power-measurements.csv",
       "instructions": "Copy the blank worksheet for each physical assembly. Record instrument, board revision, actual regulator marking, load, temperature and waveform filenames. Set up insulated probes with power off; use each named local ground. Controller 3V3 pads are measurement points only: do not wire them together. Never connect powered USB during these tests. A DMM average, software build or blank worksheet does not pass transient or boot-strap checks.",
       "load_conditions": "Check no-load startup first, then the assembled hub from cold start through thermal equilibrium with Ethernet traffic, three BLE connections, Thread and Zigbee radio activity, Z-Wave and CC1101 transmissions, LD2450 streaming and the BME680 heater. Scope startup, simultaneous-load transients, reset and power removal. Rail acceptance bands apply after the supply has entered regulation; initial zero-voltage ramp is not itself a failure. During the ramp and shutdown, verify clean reset and no damaging signal-pin injection between differently powered rails.",
-      "host_input_rule": "The Espressif DevKitC V4 schematic specifies an AMS1117-3.3 fed by EXT_5V. At U1.J2.19, after D1, require VIN(t)-VOUT(t) to exceed the fitted regulator manufacturer's guaranteed dropout for the relevant peak current and temperature, with allowance for measurement uncertainty and ripple. Record the fitted part and applicable datasheet bound; do not substitute the RECOM 4.5 V minimum or a typical dropout value. If that bound cannot be established, mark headroom unqualified even when a sample boots. Also pass the separate U1 local-3V3 measurement. Do not raise the shared splitter voltage to cure dropout: other modules remain on the specified 5 V supply.",
+      "host_input_rule": "The Espressif DevKitC V4 schematic specifies an AMS1117-3.3 fed by EXT_5V. D1 is an insulated 22AWG wire link, not a diode: this restores the intended direct external 5 V input path. At U1.J2.19, after the link, require VIN(t)-VOUT(t) to exceed the fitted regulator manufacturer's guaranteed dropout for the relevant peak current and temperature, with allowance for measurement uncertainty and ripple. Record the fitted part and applicable datasheet bound; do not substitute the RECOM 4.5 V minimum or a typical dropout value. If that bound cannot be established, mark headroom unqualified even when a sample boots. Also pass the separate U1 local-3V3 measurement. Do not raise the shared splitter voltage to cure dropout: other modules remain on the specified 5 V supply.",
       "rows": [
         {
           "id": "recom_input",
@@ -273,7 +273,10 @@
           "positive_probe": "J2.3 / RECOM pin 3 VOUT",
           "ground_probe": "J2.4 / RECOM pin 2 GND",
           "kind": "regulated_rail",
-          "acceptance_v": [3.135, 3.465],
+          "acceptance_v": [
+            3.135,
+            3.465
+          ],
           "conditions": "Detached loads 0/400/750 mA and 100-750 mA steps, then assembled simultaneous load",
           "acceptance": "Project 3.3 V +/-5% band including ripple and load transients after regulation; inspect startup/shutdown separately.",
           "source": "https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf"
@@ -283,14 +286,17 @@
           "positive_probe": "ZAC93 physical pin 1, at the module",
           "ground_probe": "ZAC93 physical pin 6, at the module",
           "kind": "regulated_rail",
-          "acceptance_v": [3.135, 3.465],
+          "acceptance_v": [
+            3.135,
+            3.465
+          ],
           "conditions": "Simultaneous load including Z-Wave transmission, cold start and thermal equilibrium",
           "acceptance": "Project 3.3 V +/-5% band at the cable destination, including ripple and load transients. Check both ZAC93 ground leads by unpowered continuity first.",
           "source": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf"
         },
         {
           "id": "host_regulator_input",
-          "positive_probe": "U1.J2.19 / D1 cathode / EXT_5V",
+          "positive_probe": "U1.J2.19 / D1 link pad 1 / EXT_5V",
           "ground_probe": "U1.J2.14 GND",
           "kind": "regulator_headroom",
           "conditions": "Measure simultaneously with U1 local 3V3 during peak load and at thermal equilibrium",
@@ -302,7 +308,10 @@
           "positive_probe": "U1.J2.1 local 3V3",
           "ground_probe": "U1.J2.14 GND",
           "kind": "regulated_rail",
-          "acceptance_v": [3.135, 3.465],
+          "acceptance_v": [
+            3.135,
+            3.465
+          ],
           "conditions": "Cold start, three BLE connections and all hub protocols active, through thermal equilibrium",
           "acceptance": "Project 3.3 V +/-5% band after regulation, including ripple and transients; no brownout/restart. The WROVER-IE operating range is 3.0-3.6 V; that wider range is not a substitute for this design target or the separate dropout check.",
           "source": "https://documentation.espressif.com/esp32-wrover-e_esp32-wrover-ie_datasheet_en.html"
@@ -312,7 +321,10 @@
           "positive_probe": "U2.12 local 3V3",
           "ground_probe": "U2.13 GND",
           "kind": "regulated_rail",
-          "acceptance_v": [3.135, 3.465],
+          "acceptance_v": [
+            3.135,
+            3.465
+          ],
           "conditions": "Cold start, Thread radio traffic, host-controlled reset and thermal equilibrium",
           "acceptance": "Project 3.3 V +/-5% band after regulation, including ripple and transients. The U2 header 5 V path has its own onboard diode and regulator; a good peripheral rail does not qualify this local rail.",
           "source": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH_260114.pdf"
@@ -322,7 +334,10 @@
           "positive_probe": "U3.12 local 3V3",
           "ground_probe": "U3.13 GND",
           "kind": "regulated_rail",
-          "acceptance_v": [3.135, 3.465],
+          "acceptance_v": [
+            3.135,
+            3.465
+          ],
           "conditions": "Cold start, Zigbee transmissions and thermal equilibrium",
           "acceptance": "Project 3.3 V +/-5% band after regulation, including ripple and transients. Check at the local regulator output; do not infer it from J2 or connect it to J2.3.",
           "source": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip"
@@ -355,9 +370,18 @@
       "Measure input/output startup and shutdown, hard plug at the external splitter, and 100-750 mA load steps with a scope; observe input-slew limit and rail targets. Do not hot-plug internal J2 or radio harnesses.",
       "Exercise Ethernet, Z-Wave TX, CC1101 TX and BME680 heater concurrently; measure current and far-end voltage. The 400 mA figure remains an engineering reserve until measured.",
       "Run the assembled enclosed hub to thermal equilibrium at its maximum intended ambient; respect the lowest component limit and RECOM derating, not its marketing temperature headline.",
-      "Flash boards while loose before soldering into the carrier. After assembly use supported OTA; USB service requires a separately verified power-isolation arrangement, or desoldering the board for loose-board service. Do not power an assembled radio alone from USB: D1-D3 do not block signal-pin backpower into the unpowered peripheral rail and VOUT.",
+      "Flash loose boards first. Assembled operation uses PoE and OTA only. Host USB can energize the complete 5V bus through the wire link; never attach powered USB, even with PoE disconnected. Onboard BAT760 blocks carrier-to-host-USB power, not host-USB-to-carrier power. D2/D3 also do not block signal-pin backpower. Never power a single assembled radio over USB.",
       "Do not connect any board's local 3.3 V output to +3V3. No output-blocking diode is fitted, because its drop would alter the rail design."
     ],
     "emc_status": "System emissions not tested. The datasheet's EN55032 Class B result requires its external filter; the 27 uF input capacitor alone does not establish Class B compliance."
+  },
+  "host_feed": {
+    "reference": "D1",
+    "assembly": "22AWG insulated wire link",
+    "legacy_pad_pitch_mm": 7.62,
+    "powered_usb_allowed_when_assembled": false,
+    "reason": "Remove the avoidable external Schottky forward drop ahead of the host AMS1117. No diode is fitted at D1. D2 and D3 remain 1N5819.",
+    "usb_policy": "Flash loose boards first. Assembled operation uses PoE and OTA only. Host USB can energize the complete 5V bus through the wire link; never attach powered USB, even with PoE disconnected. Onboard BAT760 blocks carrier-to-host-USB power, not host-USB-to-carrier power.",
+    "source": "https://dl.espressif.com/dl/schematics/esp32_devkitc_v4-sch.pdf"
   }
 }

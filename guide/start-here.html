@@ -4,7 +4,7 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html" aria-current="page">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="connections.html">Connection audit</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html" aria-current="page">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
 <main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/start-here.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-identify-the-parts-before-ordering-or-soldering">1. Identify the parts before ordering or soldering</a></li><li><a href="#2-program-the-three-controllers-while-they-are-loose">2. Program the three controllers while they are loose</a></li><li><a href="#3-print-small-parts-dry-fit-then-assemble-the-carrier">3. Print small parts, dry-fit, then assemble the carrier</a></li><li><a href="#4-wire-and-test-the-power-before-connecting-home-assistant">4. Wire and test the power before connecting Home Assistant</a></li><li><a href="#5-bring-up-one-service-at-a-time">5. Bring up one service at a time</a></li><li><a href="#6-close-the-case-qualify-then-migrate">6. Close the case, qualify, then migrate</a></li><li><a href="#troubleshooting-symptom--first-checks">Troubleshooting: symptom → first checks</a></li></ul></details><article class="article"><h1 id="start-here-build-the-mc2-d--fh1-hub">Start here: build the MC2-D / FH1 hub</h1>
 <p>Use this route for the <strong>MC2-D carrier and FH1 full-hub enclosure</strong>. It takes
 you from loose parts to a tested Home Assistant node. The hardware is an
@@ -91,7 +91,9 @@ into WIZ850io. Raw PoE does not connect to the carrier.</li>
 <li>The RECOM replaces the earlier Pololu at the same J2 interface. Use the new
 PWR1 power tray and <a href="assembly.html#power-and-ethernet">power wiring</a>,
 including both ground returns and correct capacitor polarity. Its input must
-remain at least 4.5 V under load; take 5 V before the controller isolation diodes.</li>
+remain at least 4.5 V under load; take 5 V before the controller branches. Fit a 22 AWG wire link at D1
+(no diode); D2/D3 remain 1N5819. Host USB would feed the whole bus through
+D1, so never attach powered USB after assembly, even with PoE off.</li>
 <li>With power disconnected, continuity-check J1–J7 and J10 (TP8/EN and TP2/BOOT)
 and look for shorts between
 5 V, 3.3 V and ground. Preserve the specified boot pull-ups/pull-downs and

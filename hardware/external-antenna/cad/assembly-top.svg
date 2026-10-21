@@ -146,7 +146,7 @@
 <circle cx="360.56" cy="597.0" r="4.8" fill="#d1b45c"/><circle cx="360.56" cy="597.0" r="2.6" fill="#142525"/>
 <circle cx="378.34" cy="597.0" r="4.8" fill="#d1b45c"/><circle cx="378.34" cy="597.0" r="2.6" fill="#142525"/>
 <rect x="316.59999999999997" y="749.6" width="70.14000000000001" height="16.80000000000004" fill="#243247" stroke="#76899d"/>
-<text x="325.0" y="746.0" font-size="11" fill="#e6edf4" text-anchor="start">D1</text>
+<text x="325.0" y="746.0" font-size="11" fill="#e6edf4" text-anchor="start">D1 WIRE / NO DIODE</text>
 <circle cx="325.0" cy="758.0" r="4.8" fill="#d1b45c"/><circle cx="325.0" cy="758.0" r="2.6" fill="#142525"/>
 <circle cx="378.34" cy="758.0" r="4.8" fill="#d1b45c"/><circle cx="378.34" cy="758.0" r="2.6" fill="#142525"/>
 <rect x="512.5999999999999" y="567.5999999999999" width="70.14000000000007" height="16.80000000000004" fill="#243247" stroke="#76899d"/>

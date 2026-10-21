@@ -18,7 +18,7 @@ for p in D['parts']:
   for i,label in enumerate(labels[ref]):t(cx,cy+16*i,label,12,'#143d39','middle')
  else:
   xs=[q['x'] for q in pads];ys=[q['y'] for q in pads];rect([min(xs)-1.2,min(ys)-1.2,max(xs)+1.2,max(ys)+1.2],'#243247')
-  t(OX+min(xs)*S,OY+min(ys)*S-12,ref+(' DNP' if not p['fitted'] else ''),11)
+  t(OX+min(xs)*S,OY+min(ys)*S-12,ref+(' WIRE / NO DIODE' if ref=='D1' else ' DNP' if not p['fitted'] else ''),11)
  for q in pads:
   x=OX+q['x']*S;y=OY+q['y']*S
   out.append(f'<circle cx="{x}" cy="{y}" r="4.8" fill="#d1b45c"/><circle cx="{x}" cy="{y}" r="2.6" fill="#142525"/>')

@@ -4,7 +4,7 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html" aria-current="page">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="connections.html">Connection audit</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html" aria-current="page">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
 <main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-shopping.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#the-two-esp-boards-and-the-zigbee-board">The two ESP boards and the Zigbee board</a></li><li><a href="#factory-assembled-connector-policy">Factory-assembled connector policy</a></li><li><a href="#power-parts-retain-the-splitter-replace-the-expensive-buck">Power parts: retain the splitter, replace the expensive buck</a></li><li><a href="#three-antennas-and-three-pigtails">Three antennas and three pigtails</a></li><li><a href="#major-component-cost-and-availability">Major-component cost and availability</a></li><li><a href="#before-committing-the-full-parts-order">Before committing the full parts order</a></li></ul></details><article class="article"><h1 id="mc2-d-parts-availability-and-observed-prices">MC2-D: parts, availability and observed prices</h1>
 <p>Updated <strong>20 October 2026</strong> for one MC2-D hub with the <strong>PWR1 power assembly</strong>.
 MC2-D replaces the Australian TinyC6[D] order with the <strong>Seeed XIAO ESP32C6
@@ -336,7 +336,10 @@ They are <strong>not complete delivered hub prices</strong>.</p>
 <ul>
 <li>One 24 × 24 × 1.6 mm isolated-pad perfboard cutoff, insulated wire and
 heat-shrink for the RECOM/capacitor assembly; PWR1 tray restraints.</li>
-<li>Three 1N5819 diodes and four axial resistors: one 4.7 kΩ and three 10 kΩ.</li>
+<li>Two 1N5819 diodes for D2/D3 and an insulated 22 AWG wire link for D1.
+The submitted order contains three diodes: keep one spare. <strong>Do not fit a
+diode at D1</strong>; its extra drop reduces the host regulator headroom.</li>
+<li>Four axial resistors: one 4.7 kΩ and three 10 kΩ.</li>
 <li>J1–J7 and J10 headers and insulated mating contacts, ZAC93 2×5 mating header,
 BME680 QT lead and module wiring.</li>
 <li>1.5 A time-delay fuse with insulated holder, 5.5/2.1 mm DC adapter,

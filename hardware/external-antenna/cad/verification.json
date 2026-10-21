@@ -17,19 +17,19 @@
   "topology_sha256": "27d8fed92b592859a824bee9866f75f6f87167352252db8d0543e2a068b6ee9d",
   "source_sha256": {
     "xiaoc6-evidence.json": "9117d6253c3c252749d0b8a2228bff3f93169ac08935d862c2e4919522591d89",
-    "design.py": "9069d292ad5510e1836a7edf5a0b07eedd00ad691120927150b288519d4e026f",
-    "generate.py": "070519d4f6cea1c3ea6336ba1fc584bfaaae15f2abc9942ff4447da1df2ca855",
+    "design.py": "7c394ae06d694e6572ffa52e4a7a187fcb308126b017d14590af8355c6c020ff",
+    "generate.py": "5b0b052fc914d41d9f94b653b824e1851749e2c72351fd57d7815f444fe5ed03",
     "finalize.py": "41e5c178c9eb61a49cb590c0d6030a6d12f27730df027c8904c15fe8fb2b246e",
     "project_rules.py": "908091b02b8f8df5462df53de3f1961919dcc73d8b4c80aba5fdac63bb4ce625",
     "routing/mc2.ses": "6faf1ef8f4705675673c663aa8068a85f74d6d4412c2607289bcb29f346758da",
     "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
-    "mc2.kicad_pcb": "a04d44fb8cdabd5fa4fff10b25f6431b674888d79b3d33331a73ce6e975bfdfc",
-    "mc2.kicad_sch": "51023081f45a8ffd3edb92c9dc9d8425f609b07d0dd75957999730e97dea674f",
+    "mc2.kicad_pcb": "4694d861ea868139afd5458115d5256baef9127a0fc1f72c28d6959b10868bbf",
+    "mc2.kicad_sch": "fe1cadbbc669094c03ab947f60ea514f55c60da7434f9a121bef38570844cde2",
     "mc2.kicad_pro": "443ab509b6840af317a8d7845ad9799835d0b086dad9bcb5ae7204b1a7d25d20",
-    "design.json": "a36f572fb398f45d5cbd8c5fd4554add0fbc94e67c7caddfbe24d52e44fdcd12",
-    "connectors.json": "9bc1f9cee2b45c4b1ac17f198f65e6d2fab4da666abecd5e47692a03b5a4710a",
-    "BOM.csv": "41fc8e1388e5aca6fdf7849f27cf4541278949a39a9398629cbe9e3fc2df1bc9",
-    "test_design.py": "0be79613469e7c651151655ff75d3a23b96dcef9d9775277ff16ccd21e641e6c"
+    "design.json": "c10324f97bf40f935b147475a2b01e770f177dd5f43912efb53dfbabe115cba5",
+    "connectors.json": "2ad579744bd3266c3777736fc75b205ff311871ea70eb8d4353c8331ab0d7324",
+    "BOM.csv": "2f206752b5a3276ae357fd5bd3be86307e3a98b10be7b9b399059e7131f36a12",
+    "test_design.py": "84636ab6bfff602427594210b10cf9ea793c7d8ab258c8656d943033466cec36"
   },
   "physical_rf_coverage_verified": false,
   "physical_assembly_fit_verified": false

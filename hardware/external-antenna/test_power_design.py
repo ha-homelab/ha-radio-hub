@@ -26,6 +26,15 @@ class PowerContractTests(unittest.TestCase):
         self.assertEqual(self.validate(), {'reserve_ma': 400, 'rated_ma': 1000, 'hardware_measured': False})
         power.validate_companions(self.data, power.read_json(HERE.parents[1] / 'mechanical/full-hub/components.json'), power.read_json(HERE / 'procurement.json'))
 
+    def test_host_diode_reintroduction_and_assembled_usb_are_rejected(self):
+        next(p for p in self.parts if p['ref'] == 'D1')['model'] = '1N5819 USB supply isolation'
+        with self.assertRaisesRegex(ValueError, 'wire link'):
+            self.validate()
+        self.setUp()
+        self.data['host_feed']['powered_usb_allowed_when_assembled'] = True
+        with self.assertRaisesRegex(ValueError, 'PoE-only'):
+            self.validate()
+
     def test_reversed_sip_pinout_is_rejected(self):
         self.data['regulator']['pin_map']['1'] = 'VOUT'
         with self.assertRaisesRegex(ValueError, 'SIP pin map'):

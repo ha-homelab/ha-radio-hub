@@ -32,6 +32,22 @@ module_fp('WIZ850io',[(f'{r}.{i+1}',x,i*2.54) for r,x in [('J1',0),('J2',20.32)]
 # RJ45 aperture edge and outward arrow are explicit assembly geometry, not copper.
 f=LOCAL/'WIZ850io.kicad_mod';raw=f.read_text().rstrip();raw=raw[:-1]+'\n(fp_line (start 2.11 -9.1) (end 18.21 -9.1) (stroke (width 0.4) (type solid)) (layer "F.Fab"))\n(fp_line (start 10.16 -9.1) (end 10.16 -14.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))\n(fp_line (start 10.16 -14.1) (end 8.91 -12.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))\n(fp_line (start 10.16 -14.1) (end 11.41 -12.1) (stroke (width 0.2) (type solid)) (layer "F.Fab"))\n)\n';f.write_text(raw)
 
+# Independent non-polar wire-link footprint: exact legacy D1 copper/drill geometry.
+(LOCAL/'Wire_Link_P7.62mm.kicad_mod').write_text('''(footprint "Wire_Link_P7.62mm"
+ (version 20250108) (generator "pcbnew") (layer "F.Cu")
+ (descr "Insulated 22AWG wire link at legacy D1 position; NO DIODE; preserved pad geometry")
+ (property "Reference" "REF**" (at 3.81 -2.47) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))
+ (property "Value" "WIRE LINK - NO DIODE" (at 3.81 2.47) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+ (attr through_hole)
+ (fp_line (start 1.34 0) (end 6.28 0) (stroke (width 0.3) (type solid)) (layer "F.SilkS"))
+ (fp_line (start 0 0) (end 7.62 0) (stroke (width 0.3) (type solid)) (layer "F.Fab"))
+ (fp_text user "NO DIODE" (at 3.81 2.47) (layer "F.SilkS") (effects (font (size 0.8 0.8) (thickness 0.13))))
+ (fp_rect (start -1.35 -1.6) (end 8.97 1.6) (stroke (width 0.05) (type solid)) (fill none) (layer "F.CrtYd"))
+ (pad "1" thru_hole roundrect (at 0 0) (size 2.2 2.2) (drill 1.1) (layers "*.Cu" "*.Mask") (remove_unused_layers no) (roundrect_rratio 0.113636))
+ (pad "2" thru_hole circle (at 7.62 0) (size 2.2 2.2) (drill 1.1) (layers "*.Cu" "*.Mask") (remove_unused_layers no))
+)
+''')
+
 for p in parts:
     fp=p['footprint']
     if fp.startswith('MC2:'):continue
@@ -51,7 +67,9 @@ for ix,p in enumerate(parts):
     ref=p['ref']; name='Module_'+ref; g,left=geometry(p); short=len(p['pins'])==2 and ref[0] in 'RD'
     sy=[f'(symbol {Q(name)} (pin_names (offset 0.508)) (in_bom yes) (on_board yes)',f'(property "Reference" {Q(ref)} (at 0 5.08 0) (effects (font (size 1.27 1.27))))',f'(property "Value" {Q(p["model"])} (at 0 2.54 0) (effects (font (size 1.27 1.27))))']
     if short:
-        if ref[0]=='D':
+        if ref=='D1':
+            body='(polyline (pts (xy -3.81 0) (xy 3.81 0)) (stroke (width 0.5) (type default)) (fill (type none)))'
+        elif ref[0]=='D':
             body='(polyline (pts (xy -2.54 -2.54) (xy -2.54 2.54)) (stroke (width 0.254) (type default)) (fill (type none))) (polyline (pts (xy -2.54 0) (xy 2.54 -2.54) (xy 2.54 2.54) (xy -2.54 0)) (stroke (width 0.254) (type default)) (fill (type none)))'
             body+='(polyline (pts (xy -3.81 0) (xy -2.54 0)) (stroke (width 0.254) (type default)) (fill (type none))) (polyline (pts (xy 2.54 0) (xy 3.81 0)) (stroke (width 0.254) (type default)) (fill (type none)))'
         else:body='(rectangle (start -3.81 -1.27) (end 3.81 1.27) (stroke (width 0.254) (type default)) (fill (type none)))'

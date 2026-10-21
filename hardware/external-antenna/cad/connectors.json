@@ -55,7 +55,7 @@
       ],
       "rotation": 0,
       "source": "host",
-      "notes": "Factory male pins; WROVER-IE external U.FL; 8MB flash/8MB quad PSRAM; 5V via D1; GPIO0 boot,1/3 USB-UART,6-11 flash,16/17 PSRAM reserved; BLE4.2, no BLE5 extended advertising",
+      "notes": "Factory male pins; WROVER-IE external U.FL; 8MB flash/8MB quad PSRAM; 5V via D1 wire link (NO DIODE); GPIO0 boot,1/3 USB-UART,6-11 flash,16/17 PSRAM reserved; BLE4.2, no BLE5 extended advertising",
       "body_bounds_local_mm": [
         -1.27,
         -7.34,

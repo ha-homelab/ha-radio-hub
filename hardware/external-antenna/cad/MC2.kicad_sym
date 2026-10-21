@@ -178,8 +178,8 @@
 ))
 (symbol "Module_D1" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
 (property "Reference" "D1" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
-(property "Value" "1N5819 USB supply isolation" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
-(symbol "Module_D1_0_1" (polyline (pts (xy -2.54 -2.54) (xy -2.54 2.54)) (stroke (width 0.254) (type default)) (fill (type none))) (polyline (pts (xy -2.54 0) (xy 2.54 -2.54) (xy 2.54 2.54) (xy -2.54 0)) (stroke (width 0.254) (type default)) (fill (type none)))(polyline (pts (xy -3.81 0) (xy -2.54 0)) (stroke (width 0.254) (type default)) (fill (type none))) (polyline (pts (xy 2.54 0) (xy 3.81 0)) (stroke (width 0.254) (type default)) (fill (type none))))
+(property "Value" "22AWG WIRE LINK - NO DIODE" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+(symbol "Module_D1_0_1" (polyline (pts (xy -3.81 0) (xy 3.81 0)) (stroke (width 0.5) (type default)) (fill (type none))))
 (symbol "Module_D1_1_1"
 (pin passive line (at -7.62 0 0) (length 3.81) (name "~" (effects (font (size 0.8 0.8)))) (number "1" (effects (font (size 1 1)))))
 (pin passive line (at 7.62 0 180) (length 3.81) (name "~" (effects (font (size 0.8 0.8)))) (number "2" (effects (font (size 1 1)))))

@@ -8,11 +8,11 @@
     "print_package.py": "341acb27e1ac8ed35853af2c0a5a2eb4944934b455b744faa917307e194e9707",
     "test_print_package.py": "736ee185ad8bab504288a3f5babc60761f9b163cd930ec252e51514451c88320",
     "parameters.json": "bd608c26a4792b5cb591e93a25042452d0afdc2ee1e206b8fe77270ea2db2d4d",
-    "components.json": "e08e5a7f1ee2ca77f62df0a6cca87bbf88af3b228b66641ba45c89c591ed9bed",
+    "components.json": "9806b76fd29b5a21a6726119fcbb10ac97976e9ff282cfd745d512ed725996e2",
     "rf-evidence.json": "d76f121e48383e4bddb2ba2fef8f3fca221d395d379387428c813fb7355dd21c",
     "../module-carrier/external-antenna-prototype/build.py": "8edca6d978e738b6ae65843072641e9aed2245b49cef8e18197b0b49bb902c97",
-    "mc2.kicad_pcb": "a04d44fb8cdabd5fa4fff10b25f6431b674888d79b3d33331a73ce6e975bfdfc",
-    "design.json": "a36f572fb398f45d5cbd8c5fd4554add0fbc94e67c7caddfbe24d52e44fdcd12"
+    "mc2.kicad_pcb": "4694d861ea868139afd5458115d5256baef9127a0fc1f72c28d6959b10868bbf",
+    "design.json": "c10324f97bf40f935b147475a2b01e770f177dd5f43912efb53dfbabe115cba5"
   },
   "units": "mm",
   "printer_profiles": {

@@ -125,9 +125,12 @@ orders are likewise not inferred from wire colors or generic listing photos.
 - J2.1 → RECOM pin1 VIN; J2.2 and J2.4 → pin2 GND; pin3 VOUT → J2.3.
   The input capacitor is positive to VIN and negative to GND. This input is
   before the controller diodes. [RECOM pinout](https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf).
-- D1/D2/D3 anodes connect to fused 5 V; their banded cathodes feed U1/U2/U3
-  respectively. Controller-local 3.3 V outputs U1.J2.1, U2.12 and U3.12 remain
-  unconnected to carrier power. [Diode polarity](https://www.vishay.com/docs/88525/1n5817.pdf).
+- **D1 is a 22 AWG wire link, not a diode**: pad 2 fused 5 V → pad 1 host
+  EXT_5V. This removes the extra Schottky drop ahead of the host AMS1117.
+  D2/D3 anodes connect to fused 5 V; their banded cathodes feed U2/U3.
+  Controller-local 3.3 V outputs U1.J2.1, U2.12 and U3.12 remain
+  unconnected to carrier power. Host USB can now energize the entire 5 V
+  bus: assembled operation is PoE/OTA only, and USB flashing is for loose boards. [Diode polarity](https://www.vishay.com/docs/88525/1n5817.pdf).
 - Peripheral 3.3 V feeds both WIZ850io supply pins, DFR0627, CC1101, BME680's
   input and ZAC93 pin1. ZAC93 pins6 and9 are returns; pins2/3/4/5/7 remain NC.
   LD2450 alone uses direct fused 5 V on J6.1.
@@ -154,7 +157,7 @@ removed from the case.
 
 Copy the [blank power worksheet](../hardware/external-antenna/power-measurements.csv)
 for the physical build. It covers RECOM input/output, ZAC93 supply, each local
-controller rail, the host's input after D1, and reset-time GPIO12/GPIO2 levels.
+controller rail, the host's input after the D1 wire link, and reset-time GPIO12/GPIO2 levels.
 U1's regulator needs its own dropout/headroom check; RECOM's 4.5 V minimum is
 not a pass threshold for U1. All worksheet measurements are still `not_run`.
 

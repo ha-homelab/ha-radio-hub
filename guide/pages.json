@@ -18,6 +18,12 @@
     "description": "Download the MC2-D prototype fabrication package and check quantities, finish and shipping."
   },
   {
+    "slug": "purchase-audit",
+    "source": "docs/pre-fabrication-audit.md",
+    "label": "Purchase audit",
+    "description": "Check the submitted component variants, D1 wire link, ZAC93 adapter and prototype order handoff."
+  },
+  {
     "slug": "firmware",
     "source": "firmware/external-antenna/README.md",
     "label": "Flash firmware",

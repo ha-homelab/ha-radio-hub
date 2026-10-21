@@ -4,7 +4,7 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="connections.html" aria-current="page">Connection audit</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
 <main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/connection-audit.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#required-correction-dfr0627-switch-a0">Required correction: DFR0627 switch A0</a></li><li><a href="#rf-startup-and-handoff-corrections">RF startup and handoff corrections</a></li><li><a href="#verified-signal-paths">Verified signal paths</a></li><li><a href="#verified-power-paths">Verified power paths</a></li><li><a href="#evidence-and-remaining-measurements">Evidence and remaining measurements</a></li></ul></details><article class="article"><h1 id="mc2-d-connection-audit">MC2-D connection audit</h1>
 <p>Review date: <strong>20 October 2026</strong>. Scope: the active MC2-D carrier, factory-header
 modules, PWR1 supply, external harnesses and matching firmware. Three independent
@@ -156,9 +156,12 @@ splitter's data-only RJ45 tail plugs into WIZ850io.</li>
 <li>J2.1 → RECOM pin1 VIN; J2.2 and J2.4 → pin2 GND; pin3 VOUT → J2.3.
 The input capacitor is positive to VIN and negative to GND. This input is
 before the controller diodes. <a href="https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf">RECOM pinout</a>.</li>
-<li>D1/D2/D3 anodes connect to fused 5 V; their banded cathodes feed U1/U2/U3
-respectively. Controller-local 3.3 V outputs U1.J2.1, U2.12 and U3.12 remain
-unconnected to carrier power. <a href="https://www.vishay.com/docs/88525/1n5817.pdf">Diode polarity</a>.</li>
+<li><strong>D1 is a 22 AWG wire link, not a diode</strong>: pad 2 fused 5 V → pad 1 host
+EXT_5V. This removes the extra Schottky drop ahead of the host AMS1117.
+D2/D3 anodes connect to fused 5 V; their banded cathodes feed U2/U3.
+Controller-local 3.3 V outputs U1.J2.1, U2.12 and U3.12 remain
+unconnected to carrier power. Host USB can now energize the entire 5 V
+bus: assembled operation is PoE/OTA only, and USB flashing is for loose boards. <a href="https://www.vishay.com/docs/88525/1n5817.pdf">Diode polarity</a>.</li>
 <li>Peripheral 3.3 V feeds both WIZ850io supply pins, DFR0627, CC1101, BME680's
 input and ZAC93 pin1. ZAC93 pins6 and9 are returns; pins2/3/4/5/7 remain NC.
 LD2450 alone uses direct fused 5 V on J6.1.</li>
@@ -182,7 +185,7 @@ specified clearance and strain relief; the window is accessed with the carrier
 removed from the case.</p>
 <p>Copy the <a href="../hardware/external-antenna/power-measurements.csv">blank power worksheet</a>
 for the physical build. It covers RECOM input/output, ZAC93 supply, each local
-controller rail, the host's input after D1, and reset-time GPIO12/GPIO2 levels.
+controller rail, the host's input after the D1 wire link, and reset-time GPIO12/GPIO2 levels.
 U1's regulator needs its own dropout/headroom check; RECOM's 4.5 V minimum is
 not a pass threshold for U1. All worksheet measurements are still <code>not_run</code>.</p>
 <p>Before calling the assembled connections qualified, verify:</p>

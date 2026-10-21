@@ -41,6 +41,10 @@ for role,net in role_nets.items():
 used={a['gpio'] for a in plan['assignments'].values()}
 assert not used.intersection({0,1,3,6,7,8,9,10,11,16,17})
 assert len(used)==21
+assert P['D1']['model']=='22AWG WIRE LINK - NO DIODE'
+assert P['D1']['footprint']=='MC2:Wire_Link_P7.62mm'
+assert P['D1']['pins']=={'1':'+5V_HOST','2':'+5V'}
+assert all(P[r]['model']=='1N5819 USB supply isolation' for r in ['D2','D3'])
 assert P['R4']['pins']=={'1':'GND','2':'SPI_SCK'}
 assert P['R5']['pins']=={'1':'GND','2':'SPI_MOSI'}
 assert plan['assignments']['ethernet_sck']['gpio']==12

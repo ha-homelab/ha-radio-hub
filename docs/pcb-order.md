@@ -11,6 +11,15 @@ prototype fabrication package. Digital checks do not establish physical fit,
 RF coverage, power headroom or long-term reliability; test the first assembly
 before purchasing electronics for a larger batch.
 
+## Final purchase check
+
+The [21 October purchase audit](pre-fabrication-audit.md) reconciles the submitted
+DigiKey order, the Mouser host and owner-confirmed modules with MC2-D. Use the
+updated package whose D1 position says **NO DIODE**: fit a short insulated
+22 AWG wire there; D2/D3 remain 1N5819. No purchased module needs replacement.
+The ZAC93 adapter uses soldered, individually insulated wires on the short
+header tails. Read these assembly corrections before fabrication.
+
 ## Files to send
 
 Upload only

@@ -55,7 +55,7 @@
       },
       "notes": [
         "The 100x100 bare PCB is not the complete populated envelope. WIZ850io jack face is at local y=102.",
-        "All four fitted modules, carrier headers, D1-D3 and R1-R5 are retained; they do not each need independent enclosure screws.",
+        "All four fitted modules, carrier headers, D1 wire link, D2/D3 diodes and R1-R5 are retained; they do not each need independent enclosure screws.",
         "Reserve access above the service headers and component-side reset/boot buttons.",
         "U2 is Seeed Studio XIAO ESP32C6 pre-soldered SKU 102010636: use the MC2-D footprint and firmware. Factory pin headers do not eliminate the two underside EN/BOOT service leads; follow the electrical assembly instructions before mounting.",
         "The compact 21 x 17.8 mm nominal U2 PCB and its U.FL endpoint are read from the MC2-D CAD source. Header mating height is an engineering allowance until the delivered pre-soldered board and its mounting are measured. Leave battery pads unconnected.",

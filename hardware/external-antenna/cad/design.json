@@ -385,7 +385,7 @@
       ],
       "rotation": 0,
       "source": "host",
-      "notes": "Factory male pins; WROVER-IE external U.FL; 8MB flash/8MB quad PSRAM; 5V via D1; GPIO0 boot,1/3 USB-UART,6-11 flash,16/17 PSRAM reserved; BLE4.2, no BLE5 extended advertising",
+      "notes": "Factory male pins; WROVER-IE external U.FL; 8MB flash/8MB quad PSRAM; 5V via D1 wire link (NO DIODE); GPIO0 boot,1/3 USB-UART,6-11 flash,16/17 PSRAM reserved; BLE4.2, no BLE5 extended advertising",
       "body_bounds_local_mm": [
         -1.27,
         -7.34,
@@ -1493,8 +1493,8 @@
     },
     {
       "ref": "D1",
-      "model": "1N5819 USB supply isolation",
-      "footprint": "MC2:D_DO-41_SOD81_P7.62mm_Horizontal",
+      "model": "22AWG WIRE LINK - NO DIODE",
+      "footprint": "MC2:Wire_Link_P7.62mm",
       "pins": {
         "1": "+5V_HOST",
         "2": "+5V"
@@ -1507,8 +1507,8 @@
         94
       ],
       "rotation": 0,
-      "source": "diode",
-      "notes": "Cathodepad1->board5V;anodepad2->fused5Vbus. VerifyUSBprogrammingpowerpaths;forwarddropheadroom.",
+      "source": "host_schematic",
+      "notes": "Legacy D1 location: fit insulated 22AWG wire, not a diode. Pad1 to host EXT_5V, pad2 to fused5V. Host USB would energize the whole bus: flash loose, then use PoE and OTA only.",
       "body_bounds_local_mm": null,
       "pad_centers_mm": [
         {

@@ -98,7 +98,9 @@ the connector's mating-side orientation.
 - The RECOM replaces the earlier Pololu at the same J2 interface. Use the new
   PWR1 power tray and [power wiring](full-hub-assembly.md#power-and-ethernet),
   including both ground returns and correct capacitor polarity. Its input must
-  remain at least 4.5 V under load; take 5 V before the controller isolation diodes.
+  remain at least 4.5 V under load; take 5 V before the controller branches. Fit a 22 AWG wire link at D1
+  (no diode); D2/D3 remain 1N5819. Host USB would feed the whole bus through
+  D1, so never attach powered USB after assembly, even with PoE off.
 - With power disconnected, continuity-check J1–J7 and J10 (TP8/EN and TP2/BOOT)
   and look for shorts between
   5 V, 3.3 V and ground. Preserve the specified boot pull-ups/pull-downs and

@@ -114,7 +114,8 @@ Flash the new host over its Micro-B USB-UART connection first, under the new
 `mc2-classic-hub` identity. Do not reuse an S3 factory image or its boot offset.
 Keep physical recovery possible before soldering. All carrier
 components face the same side; solder low axial parts and headers first, then
-modules from the back. Check pad numbers, diode cathodes, continuity, supply
+modules from the back. **D1 is an insulated 22 AWG wire link, not a diode;
+D2/D3 are the two 1N5819 diodes.** Check pad numbers, diode cathodes, continuity, supply
 polarity and clearance before applying power. The C6 and MG24 headers arrive
 pre-soldered; their tails still need soldering to the carrier. Fit and inspect
 the two C6 recovery leads before final assembly. No RF resistor relocation is specified.

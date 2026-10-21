@@ -39,6 +39,8 @@ def validate(data, parts, connectors, harnesses):
     require(data['input_connection']['carrier_net'] == '+5V' and data['input_connection']['before_radio_isolation_diodes'], 'buck must use fused 5 V before radio diodes')
     for ref, supply, pin in [('U1', '+5V_HOST', 'J2.19'), ('U2', '+5V_C6', '14'), ('U3', '+5V_ZB', '14')]:
         require(parts[ref]['pins'][pin] == supply and '+3V3' not in parts[ref]['pins'].values(), f'{ref} local regulator must not join peripheral rail')
+    require(parts['D1']['model'] == '22AWG WIRE LINK - NO DIODE' and parts['D1']['footprint'] == 'MC2:Wire_Link_P7.62mm', 'host D1 must be a wire link, not a dropout-producing diode')
+    require(data['host_feed']['assembly'] == '22AWG insulated wire link' and not data['host_feed']['powered_usb_allowed_when_assembled'], 'host link requires PoE-only assembled operation')
     for ref, supply in [('D1', '+5V_HOST'), ('D2', '+5V_C6'), ('D3', '+5V_ZB')]:
         require(parts[ref]['pins'] == {'1': supply, '2': '+5V'}, f'{ref} isolation/input boundary changed')
     require(parts['J6']['pins']['1'] == '+5V', 'radar must remain on 5 V')
@@ -83,7 +85,7 @@ def validate_measurement_plan(data, parts):
     require(rows['recom_input']['minimum_v'] >= data['regulator']['input_v'][0], 'measurement plan permits RECOM undervoltage')
     host = rows['host_regulator_input']
     require(host['kind'] == 'regulator_headroom' and 'minimum_v' not in host, 'host input needs a fitted-regulator dropout assessment, not a RECOM cutoff')
-    require(host['positive_probe'] == 'U1.J2.19 / D1 cathode / EXT_5V', 'host dropout must be measured after D1')
+    require(host['positive_probe'] == 'U1.J2.19 / D1 link pad 1 / EXT_5V', 'host dropout must be measured after D1')
     for key, probe in [('host_gpio12_boot', 'U1.J2.13 GPIO12 / R4.2'),
                        ('host_gpio2_download', 'U1.J3.15 GPIO2 / R5.2')]:
         require(rows[key]['kind'] == 'boot_low' and rows[key]['positive_probe'] == probe, 'boot measurement endpoint mismatch')
