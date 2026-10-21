@@ -2,14 +2,14 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Host revision · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
 <main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/classic-esp32-migration.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#why-this-exact-board">Why this exact board</a></li><li><a href="#cost-and-limits">Cost and limits</a></li><li><a href="#assembly-and-verification">Assembly and verification</a></li></ul></details><article class="article"><h1 id="mc2-b-previous-generation-esp32-host">MC2-B: previous-generation ESP32 host</h1>
-<p>This records the host migration. The active <strong>MC2-C</strong> keeps this host and its
-pin assignments, but replaces the original TinyC6-U-01 with <strong>TinyC6[D] /
-TC6D-01</strong> and matching antenna-switch firmware. Use the <a href="shopping.html">current shopping list</a>
-and <a href="pcb-order.html">ordering record</a> for a new build.</p>
+<p>This records the earlier host migration. The active <strong>MC2-D</strong> retains this
+ESP32-DevKitC-VIE host but uses <strong>XIAO ESP32C6 pre-soldered / 102010636</strong> for Thread,
+with a new carrier footprint and matching RF-switch firmware. See the
+<a href="shopping.html">current shopping list</a> and <a href="antennas.html">assembly guide</a>.</p>
 <p>MC2-B replaces <strong>ESP32-S3-DevKitC-1U-N8R8</strong> with <strong>Espressif ESP32-DevKitC-VIE</strong>,
 using the <strong>ESP32-WROVER-IE</strong> module. This is a cost-focused host migration;
 TinyC6-U-01, XIAO MG24, WIZ850io, CC1101, ZAC93/WK2132, LD2450 and BME680 keep
@@ -84,5 +84,5 @@ Zigbee flow control, Thread routing, Z-Wave and radar traffic together.</p>
 source migration. Back up credentials and network state before a later
 physical migration. The <a href="https://github.com/ha-homelab/ha-radio-hub/tree/fee52fb67c3286e3f22925347ef7a35a720c2a55">MC2-A snapshot</a>
 retains the original S3 design and its build evidence.</p>
-</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

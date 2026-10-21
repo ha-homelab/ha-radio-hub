@@ -118,7 +118,7 @@ def generate_harness(package):
     header += "Request current;\nvoid start_worker(" + declaration + ");\nvoid pump();\n"
     header += "void on_complete() {\n" + code(package["remote_transmitter"]["on_complete"]["then"]) + "\n}\n"
     header += "void begin_transmit() { assert(!tx_pending); ++tx_count; tx_pending=true; tx_due=now_ms+next_tx_delay;\n"
-    header += code(package["remote_transmitter"]["on_transmit"]["then"]) + "\n}\n"
+    header += code(package["remote_transmitter"].get("on_transmit", {}).get("then", [])) + "\n}\n"
     for action in package["api"]["actions"]:
         arguments = ",".join(types[t] + " " + n for n, t in action["variables"].items())
         header += "void " + action["action"] + "(" + arguments + ") {\n" + code(action["then"]) + "\n}\n"
@@ -166,7 +166,7 @@ int main(int argc,char **argv) {
     assert(tx_count==2);
     advance(2750); advance(4000);
     assert(!worker_running && messages.size()==4 && tx_count==2);
-    const std::vector<std::string> one={"receiver.suspend","radio.idle","pin.low","radio.tx",
+    const std::vector<std::string> one={"receiver.suspend","pin.release","radio.hiz","radio.idle","pin.low","radio.tx",
       "radio.idle","pin.release","radio.rx","receiver.resume"};
     auto expected=one; expected.insert(expected.end(),one.begin(),one.end());
     assert(trace==expected);
@@ -187,11 +187,34 @@ int main(int argc,char **argv) {
     assert(messages.size()==1 && rf_tx_error && rf_tx_fault && rf_tx_active && !rf_receiver.enabled);
     // A timed-out transaction may still own RMT. A digital_write here could
     // race or block on that transaction; only put CC1101 into idle mode.
-    assert((trace==std::vector<std::string>{"receiver.suspend","radio.idle","pin.low","radio.tx","radio.idle"}));
+    assert((trace==std::vector<std::string>{"receiver.suspend","pin.release","radio.hiz","radio.idle","pin.low","radio.tx","radio.idle"}));
     advance(30750); request(true);
     assert(messages.size()==2 && tx_count==1);
     advance(40000);
     assert(!rf_receiver.enabled && rf_tx_active && tx_count==1);
+  } else if (scenario=="hiz_error" || scenario=="idle_error" || scenario=="tx_error" || scenario=="unstable_state") {
+    rf_radio.fail_hiz = scenario=="hiz_error";
+    rf_radio.fail_idle = scenario=="idle_error";
+    rf_radio.fail_tx = scenario=="tx_error";
+    rf_radio.unstable_state = scenario=="unstable_state";
+    request(false);
+    assert(tx_count==0 && encoded_requests.empty() && messages.size()==1);
+    assert(rf_tx_error && rf_tx_fault && rf_tx_active && !rf_receiver.enabled);
+    if (scenario != "tx_error")
+      assert(std::find(trace.begin(), trace.end(), "pin.low") == trace.end());
+    else
+      assert(trace[trace.size()-2] == "pin.release");
+    advance(750); request(true);
+    assert(tx_count==0 && messages.size()==2);
+  } else if (scenario=="completion_idle_error" || scenario=="rx_error") {
+    request(false);
+    rf_radio.fail_idle = scenario=="completion_idle_error";
+    rf_radio.fail_rx = scenario=="rx_error";
+    advance(1000);
+    assert(tx_count==1 && messages.size()==1 && rf_tx_error && rf_tx_fault && rf_tx_active);
+    assert(!rf_receiver.enabled);
+    assert(std::find(trace.begin(), trace.end(), "receiver.resume") == trace.end());
+    assert(std::count(trace.begin(), trace.end(), "pin.release") == 2);
   } else if (scenario=="resume_error") {
     rf_receiver.fail_resume=true;
     request(true); advance(1000);
@@ -201,7 +224,11 @@ int main(int argc,char **argv) {
   } else { assert(false); }
 }
 '''
-    return header
+    # ESPHome rewrites component id member access to ->, while bare id(...)
+    # remains a pointer. Model both so a missing dereference at the helper
+    # boundary fails C++ compilation here, as it does in the real target.
+    return header.replace("id(rf_radio).", "id(rf_radio)->").replace(
+        "id(rf_transmitter).", "id(rf_transmitter)->")
 
 
 class TxSchedulerTest(unittest.TestCase):
@@ -267,6 +294,22 @@ class TxSchedulerTest(unittest.TestCase):
         for _, message in self.run_scenario("resume_error"):
             self.assertEqual(message["status"], "send_failed")
             self.assertIs(message["receiver_resumed"], False)
+
+    def test_failed_radio_handoff_never_starts_a_waveform_or_allows_retry(self):
+        for scenario in ("hiz_error", "idle_error", "tx_error", "unstable_state"):
+            with self.subTest(scenario=scenario):
+                messages = self.run_scenario(scenario)
+                self.assertEqual(len(messages), 2)
+                for _, message in messages:
+                    self.assertEqual(message["status"], "send_failed")
+                    self.assertIs(message["receiver_resumed"], False)
+
+    def test_failed_radio_return_never_resumes_receiver_or_claims_success(self):
+        for scenario in ("completion_idle_error", "rx_error"):
+            with self.subTest(scenario=scenario):
+                for _, message in self.run_scenario(scenario):
+                    self.assertEqual(message["status"], "send_failed")
+                    self.assertIs(message["receiver_resumed"], False)
 
     def test_api_names_electrical_modes_and_native_event_contract(self):
         actions = {action["action"]: action["variables"] for action in self.package["api"]["actions"]}

@@ -1,5 +1,5 @@
 {
-  "revision": "MC2-C-external-antenna-RF1",
+  "revision": "MC2-D-external-antenna-RF1",
   "status": "printable_engineering_prototype_not_fit_qualified",
   "units": "mm",
   "source_directory": "hardware/external-antenna/cad",
@@ -80,12 +80,13 @@
         ]
       }
     ],
-    "module_connector_z_trial": 29.0,
+    "module_connector_z_trial": 22.14,
     "cutout_shape": "round",
     "cable_length_shortfall_allowance": 6,
     "cable_length_minimum_budget": 144,
     "heatshrink_reference_length": 17,
-    "unbent_connector_allowance": 21
+    "unbent_connector_allowance": 21,
+    "module_connector_height_basis": "15 mm carrier seat +1.6 mm carrier +2.54 mm nominal factory header plastic +3 mm radio PCB/plug allowance; unmeasured, verify all three delivered radios"
   },
   "measured": {
     "pcb_width_and_length": null,

@@ -1,24 +1,20 @@
 {
   "schema_version": 1,
-  "revision": "MC2-C",
+  "revision": "MC2-D",
   "checked_on": "2026-10-20",
   "scope": "Observed purchase offers for 11 major component lines, one input capacitor and a five-board prototype batch; excludes owned parts and unpriced assembly materials. Not a complete delivered hub quote.",
   "thread_rcp": {
-    "manufacturer": "Unexpected Maker",
-    "part": "TC6D-01",
-    "name": "TinyC6[D]",
+    "manufacturer": "Seeed Studio",
+    "part": "102010636",
+    "name": "XIAO ESP32C6 (Pre-Soldered)",
     "quantity_for_one_hub": 1,
-    "unit_price_usd": 18.0,
-    "observed_stock": 48,
-    "source": "https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851",
-    "observation": "Live manufacturer product page showed in-stock quantity, SKU and USD price. No reservation or order.",
-    "options": "Standard supplied male headers; no added female headers, antenna or battery",
-    "shipping": "Ships from Melbourne, Australia. Shipping, tax and import fees not quoted.",
-    "checked_on": "2026-10-19"
-  },
-  "superseded_part": {
-    "part": "TC6-U-01",
-    "reason": "US Mouser live page: obsolete, delivery restriction, not sold in region; user has not purchased it."
+    "unit_price_usd": 6.38,
+    "observed_stock": 21,
+    "source": "https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010636/26553893",
+    "observation": "DigiKey US exact pre-soldered SKU; header(s) installed. Availability observation, no order/reservation.",
+    "options": "Factory-soldered 2 x 7 male headers. No loose-header or three-pack substitute. Two underside EN/BOOT recovery leads still require hand soldering.",
+    "shipping": "DigiKey US shipment. Published USPS Ground Advantage rate $4.99; not an address-specific cart quote. Tax and tariff extra. Combine other DigiKey items.",
+    "checked_on": "2026-10-20"
   },
   "pcb_quotes": {
     "manufacturer": "PCBWay",
@@ -53,7 +49,8 @@
     ],
     "status": "Calculator estimates before Gerber DFM review and address-specific checkout; no order placed",
     "recommended_quantity": 5,
-    "checked_on": "2026-10-19"
+    "checked_on": "2026-10-19",
+    "applies_to": "Historical calculator for the same nominal 100 x 100 mm, 2-layer fabrication class; MC2-D needs its own Gerber DFM acceptance and final checkout."
   },
   "major_component_offers": [
     {
@@ -65,20 +62,22 @@
       "observed_stock": 488,
       "seller": "Mouser",
       "source": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D",
-      "observation": "Live US listing; complete 38-pin WROVER-IE board.",
-      "checked_on": "2026-10-19"
+      "observation": "Owner confirmed ESP32-DevKitC-VIE ordered from Mouser on 20 October 2026; do not order again. Actual paid total not provided. Historical offer retained for build-cost comparison.",
+      "checked_on": "2026-10-19",
+      "purchase_status": "ordered_by_owner"
     },
     {
       "id": "thread",
-      "part": "TC6D-01",
+      "part": "Seeed XIAO ESP32C6 (Pre-Soldered) 102010636",
       "quantity": 1,
-      "unit_price_usd": 18.0,
-      "line_price_usd": 18.0,
-      "observed_stock": 48,
-      "seller": "Unexpected Maker",
-      "source": "https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851",
-      "observation": "Ships from Australia; standard supplied headers, no extras.",
-      "checked_on": "2026-10-19"
+      "unit_price_usd": 6.38,
+      "line_price_usd": 6.38,
+      "observed_stock": 21,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010636/26553893",
+      "observation": "1597-102010636-ND; factory 2 x 7 male headers. Separate EN/BOOT bottom-pad leads mandatory for network recovery.",
+      "checked_on": "2026-10-20",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "zigbee",
@@ -86,11 +85,13 @@
       "quantity": 1,
       "unit_price_usd": 8.9,
       "line_price_usd": 8.9,
-      "observed_stock": null,
-      "seller": "Seeed",
-      "source": "https://www.seeedstudio.com/Seeed-Studio-XIAO-MG24-Pre-Soldered-p-6381.html",
-      "observation": "In stock; pre-soldered non-Sense version.",
-      "checked_on": "2026-10-19"
+      "observed_stock": 16,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010690/26553865",
+      "observation": "1597-102010690-ND; 16 in stock, exact pre-soldered non-Sense version. Tariff may be added at checkout.",
+      "checked_on": "2026-10-20",
+      "options": "Factory-soldered 2 x 7 male headers, non-Sense SKU102010690 only.",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "ethernet",
@@ -102,7 +103,8 @@
       "seller": "DigiKey",
       "source": "https://www.digikey.com/en/products/detail/wiznet/WIZ850IO/8789619",
       "observation": "Live stock count.",
-      "checked_on": "2026-10-19"
+      "checked_on": "2026-10-19",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "poe",
@@ -114,7 +116,8 @@
       "seller": "Waveshare",
       "source": "https://www.waveshare.com/poe-splitter-25w-type-c.htm?sku=27737",
       "observation": "5 V DC barrel version selected despite Type-C URL; orderable, no explicit stock count.",
-      "checked_on": "2026-10-19"
+      "checked_on": "2026-10-19",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "buck",
@@ -153,7 +156,8 @@
           "minimum_quantity": 100,
           "unit_price": 3.5685
         }
-      ]
+      ],
+      "purchase_status": "not_ordered"
     },
     {
       "id": "uart",
@@ -161,11 +165,12 @@
       "quantity": 1,
       "unit_price_usd": 8.0,
       "line_price_usd": 8.0,
-      "observed_stock": null,
-      "seller": "DFRobot",
-      "source": "https://www.dfrobot.com/product-2001.html",
-      "observation": "Orderable; no explicit stock count.",
-      "checked_on": "2026-10-19"
+      "observed_stock": 121,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/dfrobot/DFR0627/12091972",
+      "observation": "1738-DFR0627-ND; finished Gravity module with fitted connectors; manufacturer includes one Gravity 4P I2C/UART cable. No bare WK2132 or loose-pin substitute.",
+      "checked_on": "2026-10-20",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "environment",
@@ -173,11 +178,12 @@
       "quantity": 1,
       "unit_price_usd": 18.95,
       "line_price_usd": 18.95,
-      "observed_stock": null,
-      "seller": "Adafruit",
-      "source": "https://www.adafruit.com/product/3660",
-      "observation": "In stock.",
-      "checked_on": "2026-10-19"
+      "observed_stock": 388,
+      "seller": "DigiKey",
+      "source": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3660/7915571",
+      "observation": "1528-2444-ND; use factory-fitted STEMMA QT socket and precrimped lead. Supplied loose 0.1 inch header is unused and need not be soldered.",
+      "checked_on": "2026-10-20",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "radar",
@@ -189,7 +195,8 @@
       "seller": "Alexnld",
       "source": "https://alexnld.com/product/hi-link-hlk-ld2450-24ghz-motion-target-tracking-radar-sensor-module-distance-angle-measurement-for-smart-hotel-home-led/",
       "observation": "Selected HLK-LD2450 Module; seller reports In Stock. Not claimed to be lowest market price.",
-      "checked_on": "2026-10-19"
+      "checked_on": "2026-10-19",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "antenna",
@@ -201,7 +208,8 @@
       "seller": "DigiKey",
       "source": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-2-4-LCW-SMA/9607799",
       "observation": "Standard SMA male center pin.",
-      "checked_on": "2026-10-19"
+      "checked_on": "2026-10-19",
+      "purchase_status": "not_ordered"
     },
     {
       "id": "pigtail",
@@ -213,24 +221,32 @@
       "seller": "DigiKey",
       "source": "https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261",
       "observation": "931-CAB.618.E-ND. US tariff may be added in cart. Use RF1 enclosure fit checks.",
-      "checked_on": "2026-10-19"
+      "checked_on": "2026-10-19",
+      "purchase_status": "not_ordered"
     }
   ],
   "cost_summary": {
-    "major_component_subtotal_usd": 159.07,
+    "major_component_subtotal_usd": 147.45,
     "five_bare_pcbs_and_quoted_shipping_usd": 13.71,
-    "known_subtotal_with_pcb_quote_usd": 173.18,
+    "known_subtotal_with_pcb_quote_usd": 161.56,
     "previous_three_pigtails_usd": 88.41,
     "new_three_pigtails_usd": 13.98,
     "pigtail_savings_usd": 74.43,
     "not_a_complete_delivered_total": true,
     "power_accessory_subtotal_usd": 0.4,
-    "known_component_subtotal_usd": 159.47,
+    "known_component_subtotal_usd": 147.85,
     "previous_buck_usd": 26.95,
     "new_buck_usd": 3.98,
     "buck_savings_usd": 22.97,
     "new_buck_and_input_capacitor_usd": 4.38,
-    "buck_savings_after_input_capacitor_usd": 22.57
+    "buck_savings_after_input_capacitor_usd": 22.57,
+    "already_ordered_host_historical_offer_usd": 9.48,
+    "remaining_known_components_excluding_ordered_host_usd": 138.37,
+    "remaining_known_with_historical_pcb_quote_usd": 152.08,
+    "previous_thread_board_usd": 18.0,
+    "new_thread_board_usd": 6.38,
+    "thread_board_savings_usd": 11.62,
+    "excluded_australian_thread_shipping_usd": 23.95
   },
   "excluded_owned_parts": [
     "Received Zooz ZAC93",
@@ -238,14 +254,15 @@
   ],
   "unpriced_requirements": [
     "1 x 24 x 24 x 1.6 mm isolated-pad 2.54 mm-pitch perfboard cutoff for the RECOM and input capacitor, insulated hookup wire, individual joint heat-shrink, and the PWR1 power-tray restraints; reuse suitable workshop stock if available",
-    "3 x 1N5819 diodes and 5 axial resistors (1 x 4.7 kohm, 4 x 10 kohm)",
-    "Carrier J1-J7 headers, insulated mating harness contacts and ZAC93 2x5 mating header",
+    "2 x 1N5819 diodes (D2/D3; third ordered diode is spare), 22AWG insulated wire link at D1 (NO DIODE), and 4 axial resistors (1 x 4.7 kohm, 3 x 10 kohm)",
+    "Carrier J1-J7 and J10 headers, insulated mating harness contacts and ZAC93 2x5 mating header",
     "BME680 QT lead and required module harness wires",
     "1.5 A time-delay fuse and insulated holder, 5.5/2.1 mm DC adapter",
     "Fasteners, insulating parts, cable restraints, filament or printing service",
-    "All electronics freight, sales tax, import/tariff charges and any later PCB DFM/checkout adjustments"
+    "All electronics freight, sales tax, import/tariff charges and any later PCB DFM/checkout adjustments",
+    "Two fine insulated XIAO underside EN/BOOT leads to J10, joint insulation and strain relief; factory headers do not include these recovery signals."
   ],
-  "ordering_status": "No parts reserved, purchased or paid for. Verify exact variants and final shipping/tax in checkout.",
+  "ordering_status": "Owner confirmed ESP32-DevKitC-VIE ordered; ZAC93 received and CC1101 already owned. No other new orders placed or reserved by this work. Historical host offer is not its actual paid total.",
   "observation_dates": "checked_on at top level is the latest partial refresh. Each offer and the PCB quote retain their own observation date; unrefreshed prices are not a fresh quote.",
   "power_accessory_offers": [
     {
@@ -261,5 +278,16 @@
       "observation": "P122402-ND; 27 uF, 50 V, +/-20%, radial electrolytic, FS-A series, 5000 hours at 105 C rated endurance. Nominal diameter 5 mm, body height 11 mm; allow diameter 5.5 mm and height 12.5 mm. Lead pitch 2 mm. Connect positive to RECOM VIN and negative to GND close to the converter.",
       "datasheet": "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1255.pdf"
     }
-  ]
+  ],
+  "superseded_parts": [
+    {
+      "part": "TC6-U-01",
+      "reason": "US Mouser live page: obsolete, delivery restriction, not sold in region; user has not purchased it."
+    },
+    {
+      "part": "TC6D-01",
+      "reason": "Superseded MC2-C: user cart $18.00 board + $23.95 Australian shipping = $41.95. Not purchased; MC2-D is a different footprint and firmware."
+    }
+  ],
+  "assembly_purchase_policy": "Buy factory-soldered headers/connectors wherever the exact selected module offers them. Prefer precrimped mating cables. This does not make a bare carrier plug-and-play: carrier joints, passive parts, power perfboard and two XIAO recovery pads still require soldering."
 }

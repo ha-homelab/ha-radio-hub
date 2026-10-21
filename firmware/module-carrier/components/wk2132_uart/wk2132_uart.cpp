@@ -98,7 +98,8 @@ void WK2132UART::load_settings(bool dump) {
   if (dump) dump_config();
 }
 void WK2132UART::dump_config() {
-  ESP_LOGCONFIG(TAG,"DFR0627 UART1: 115200 8N1, register0x70/FIFO0x71, dedicated 2ms worker");
+  ESP_LOGCONFIG(TAG,"DFR0627 UART1: 115200 8N1, register0x%02X/FIFO0x%02X, dedicated 2ms worker",
+                this->address_, this->address_ | 1);
   ESP_LOGCONFIG(TAG,"  2048-byte queues, 64-byte checked transfers; no silent truncation/replay");
   ESP_LOGCONFIG(TAG,"  Scheduler latency and concurrent radio traffic require hardware qualification");
 }

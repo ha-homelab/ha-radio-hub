@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
+<rect width="1200" height="850" fill="#0b1420"/><style>text{font-family:Arial,sans-serif}</style>
+<text x="40" y="45" fill="#e4eef8" font-size="30" text-anchor="start">MC2-D · XIAO ESP32C6 recovery wiring</text>
+<text x="40" y="78" fill="#afc9dd" font-size="18" text-anchor="start">Buy 102010636 with factory male headers. Add only these two underside signal leads.</text>
+<text x="210" y="130" fill="#e4eef8" font-size="23" text-anchor="middle">BOTTOM VIEW</text>
+<text x="210" y="159" fill="#afc9dd" font-size="16" text-anchor="middle">USB at top · mirrored left/right</text>
+<rect x="60" y="205" width="302.26" height="356.23499999999996" rx="8" fill="#194740" stroke="#81b9a8" stroke-width="2"/>
+<rect x="146.13" y="177" width="130" height="60" rx="0" fill="#a4afba" stroke="#81b9a8" stroke-width="2"/>
+<circle cx="340.67" cy="254.65699999999998" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="258.657" fill="#dfeee5" font-size="12" text-anchor="start">1</text>
+<circle cx="340.67" cy="297.837" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="301.837" fill="#dfeee5" font-size="12" text-anchor="start">2</text>
+<circle cx="340.67" cy="341.017" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="345.017" fill="#dfeee5" font-size="12" text-anchor="start">3</text>
+<circle cx="340.67" cy="384.197" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="388.197" fill="#dfeee5" font-size="12" text-anchor="start">4</text>
+<circle cx="340.67" cy="427.37699999999995" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="431.37699999999995" fill="#dfeee5" font-size="12" text-anchor="start">5</text>
+<circle cx="340.67" cy="470.55699999999996" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="474.55699999999996" fill="#dfeee5" font-size="12" text-anchor="start">6</text>
+<circle cx="340.67" cy="513.7370000000001" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="358.67" y="517.7370000000001" fill="#dfeee5" font-size="12" text-anchor="start">7</text>
+<circle cx="81.59000000000003" cy="513.7370000000001" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="517.7370000000001" fill="#dfeee5" font-size="12" text-anchor="end">8</text>
+<circle cx="81.59000000000003" cy="470.55699999999996" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="474.55699999999996" fill="#dfeee5" font-size="12" text-anchor="end">9</text>
+<circle cx="81.59000000000003" cy="427.37699999999995" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="431.37699999999995" fill="#dfeee5" font-size="12" text-anchor="end">10</text>
+<circle cx="81.59000000000003" cy="384.197" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="388.197" fill="#dfeee5" font-size="12" text-anchor="end">11</text>
+<circle cx="81.59000000000003" cy="341.017" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="345.017" fill="#dfeee5" font-size="12" text-anchor="end">12</text>
+<circle cx="81.59000000000003" cy="297.837" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="301.837" fill="#dfeee5" font-size="12" text-anchor="end">13</text>
+<circle cx="81.59000000000003" cy="254.65699999999998" r="8" fill="#c7ad53" stroke="#1d2822"/>
+<text x="63.59000000000003" y="258.657" fill="#dfeee5" font-size="12" text-anchor="end">14</text>
+<circle cx="232.77780000000004" cy="280.4035" r="9.7155" fill="#ffad69"/>
+<text x="214.77780000000004" y="285.4035" fill="#ffad69" font-size="16" text-anchor="end">TP8 EN</text>
+<circle cx="232.77780000000004" cy="366.7635" r="9.7155" fill="#c89bff"/>
+<text x="214.77780000000004" y="371.7635" fill="#c89bff" font-size="16" text-anchor="end">TP2 BOOT</text>
+<text x="211" y="600" fill="#afc9dd" font-size="16" text-anchor="middle">Each pad is only Ø1.143 mm.</text>
+<text x="211" y="626" fill="#afc9dd" font-size="16" text-anchor="middle">Confirm printed EN / BOOT labels.</text>
+<text x="211" y="651" fill="#afc9dd" font-size="16" text-anchor="middle">Do not use the battery pads.</text>
+<rect x="610" y="170" width="375" height="530" rx="6" fill="#214d40" stroke="#81b9a8" stroke-width="2"/>
+<rect x="653.35" y="215.0" width="266.70000000000005" height="314.325" rx="0" fill="#66958b" stroke="#81b9a8" stroke-width="2"/>
+<text x="804" y="131" fill="#e4eef8" font-size="23" text-anchor="middle">CARRIER FRONT VIEW</text>
+<rect x="722.65" y="254.29999999999998" width="90.0" height="163.5" rx="22.5" fill="#0b1420" stroke="#f5ca93" stroke-width="2"/>
+<circle cx="672.4" cy="258.815" r="7" fill="#d3b85b"/>
+<circle cx="672.4" cy="296.91499999999996" r="7" fill="#d3b85b"/>
+<circle cx="672.4" cy="335.015" r="7" fill="#d3b85b"/>
+<circle cx="672.4" cy="373.115" r="7" fill="#d3b85b"/>
+<circle cx="672.4" cy="411.21500000000003" r="7" fill="#d3b85b"/>
+<circle cx="672.4" cy="449.315" r="7" fill="#d3b85b"/>
+<circle cx="672.4" cy="487.415" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="258.815" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="296.91499999999996" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="335.015" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="373.115" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="411.21500000000003" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="449.315" r="7" fill="#d3b85b"/>
+<circle cx="901.0" cy="487.415" r="7" fill="#d3b85b"/>
+<path d="M 767.5989999999999 281.5325 L 736.0 296.5325 L 736.0 585.0 L 722.65 620.0" fill="none" stroke="#ffad69" stroke-width="4"/>
+<circle cx="722.65" cy="620.0" r="9" fill="#ffad69"/>
+<text x="722.65" y="650.0" fill="#ffad69" font-size="16" text-anchor="middle">1</text>
+<path d="M 767.5989999999999 357.73249999999996 L 776.5 372.73249999999996 L 776.5 585.0 L 760.75 620.0" fill="none" stroke="#c89bff" stroke-width="4"/>
+<circle cx="760.75" cy="620.0" r="9" fill="#c89bff"/>
+<text x="760.75" y="650.0" fill="#c89bff" font-size="16" text-anchor="middle">2</text>
+<text x="807" y="681" fill="#e4eef8" font-size="18" text-anchor="middle">J10: 1 EN · 2 BOOT</text>
+<text x="1010" y="255" fill="#f5ca93" font-size="16" text-anchor="start">Real window</text>
+<text x="1010" y="278" fill="#f5ca93" font-size="16" text-anchor="start">6 × 10.9 mm</text>
+<text x="1010" y="301" fill="#f5ca93" font-size="16" text-anchor="start">R1.5 corners</text>
+<text x="420" y="720" fill="#e4eef8" font-size="17" text-anchor="start">1  Solder / inspect with magnification before seating; use flux and short dwell.</text>
+<text x="420" y="748" fill="#e4eef8" font-size="17" text-anchor="start">2  Route 30 AWG leads above carrier, between rows; retain a small slack loop.</text>
+<text x="420" y="776" fill="#e4eef8" font-size="17" text-anchor="start">3  Keep ≥2.5 mm gap, wire OD ≤0.8 mm and joints ≤1.5 mm; strain-relieve.</text>
+<text x="40" y="824" fill="#afc9dd" font-size="16" text-anchor="start">Nominal manufacturer pad positions, not a sample fit approval. Window remains open from below; verify no shorts before power.</text>
+</svg>

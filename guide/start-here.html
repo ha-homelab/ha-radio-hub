@@ -2,11 +2,11 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Start here · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html" aria-current="page">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/start-here.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-identify-the-parts-before-ordering-or-soldering">1. Identify the parts before ordering or soldering</a></li><li><a href="#2-program-the-three-controllers-while-they-are-loose">2. Program the three controllers while they are loose</a></li><li><a href="#3-print-small-parts-dry-fit-then-assemble-the-carrier">3. Print small parts, dry-fit, then assemble the carrier</a></li><li><a href="#4-wire-and-test-the-power-before-connecting-home-assistant">4. Wire and test the power before connecting Home Assistant</a></li><li><a href="#5-bring-up-one-service-at-a-time">5. Bring up one service at a time</a></li><li><a href="#6-close-the-case-qualify-then-migrate">6. Close the case, qualify, then migrate</a></li><li><a href="#troubleshooting-symptom--first-checks">Troubleshooting: symptom → first checks</a></li></ul></details><article class="article"><h1 id="start-here-build-the-mc2-c--fh1-hub">Start here: build the MC2-C / FH1 hub</h1>
-<p>Use this route for the <strong>MC2-C carrier and FH1 full-hub enclosure</strong>. It takes
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html" aria-current="page">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/start-here.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-identify-the-parts-before-ordering-or-soldering">1. Identify the parts before ordering or soldering</a></li><li><a href="#2-program-the-three-controllers-while-they-are-loose">2. Program the three controllers while they are loose</a></li><li><a href="#3-print-small-parts-dry-fit-then-assemble-the-carrier">3. Print small parts, dry-fit, then assemble the carrier</a></li><li><a href="#4-wire-and-test-the-power-before-connecting-home-assistant">4. Wire and test the power before connecting Home Assistant</a></li><li><a href="#5-bring-up-one-service-at-a-time">5. Bring up one service at a time</a></li><li><a href="#6-close-the-case-qualify-then-migrate">6. Close the case, qualify, then migrate</a></li><li><a href="#troubleshooting-symptom--first-checks">Troubleshooting: symptom → first checks</a></li></ul></details><article class="article"><h1 id="start-here-build-the-mc2-d--fh1-hub">Start here: build the MC2-D / FH1 hub</h1>
+<p>Use this route for the <strong>MC2-D carrier and FH1 full-hub enclosure</strong>. It takes
 you from loose parts to a tested Home Assistant node. The hardware is an
 engineering prototype: software and CAD checks have passed, but the physical
 assembly, thermal behaviour and house coverage still need measurement.</p>
@@ -20,11 +20,10 @@ different parts of the same build; the carrier BOM alone is not a complete hub.<
 <p>Check the labels on the four carrier modules:</p>
 <ul>
 <li><strong>U1: ESP32-DevKitC-VIE / WROVER-IE</strong>, classic ESP32 with two 19-pin rows,
-external antenna, 8 MB flash and 8 MB physical PSRAM.</li>
-<li><strong>U2: Unexpected Maker TinyC6[D] / TC6D-01</strong>, the 8 MB board with switched
-onboard/U.FL antennas. Use the matching MC2-C RCP firmware, which selects the
-external path before starting Thread. The old TC6-U-01 and H2 are not the
-current purchase target.</li>
+external antenna, 8 MB flash and 8 MB physical PSRAM. Already ordered by the owner.</li>
+<li><strong>U2: Seeed XIAO ESP32C6 (Pre-Soldered), 102010636</strong>, the 4 MB board with
+factory 2×7 male headers. Use MC2-D RCP firmware with GPIO3/14 external
+antenna control. Its underside EN/BOOT pads need two recovery leads to J10.</li>
 <li><strong>U3: Seeed XIAO MG24</strong>, pre-soldered SKU 102010690, for external-antenna Zigbee.</li>
 <li><strong>U4: WIZ850io</strong>, the data-only SPI Ethernet module.</li>
 </ul>
@@ -39,7 +38,7 @@ the <a href="../mechanical/full-hub/components.json">assembly inventory</a>.</p>
 module, cable and antenna has an identified place in the inventory. Keep MC1,
 MC2-A/S3 and Pi-era instructions in the <a href="history.html">history section</a>.</p>
 <h2 id="2-program-the-three-controllers-while-they-are-loose">2. Program the three controllers while they are loose</h2>
-<p>Follow the <a href="firmware.html">MC2-C firmware guide</a> for
+<p>Follow the <a href="firmware.html">MC2-D firmware guide</a> for
 tool versions, commands and board selection. Attach the appropriate antenna
 before a radio runs. Use USB power only for each loose board.</p>
 <ol>
@@ -47,18 +46,17 @@ before a radio runs. Use USB power only for each loose board.</p>
 OTA and MQTT credentials, broker and RF topics with your intended values.
 The validation build has disposable credentials and <code>build-only/rf/*</code>
 topics; it is not a deployable household configuration.</li>
-<li>Give <strong>U1/VIE a full initial USB-UART flash</strong>, including its MC2-C partition
+<li>Give <strong>U1/VIE a full initial USB-UART flash</strong>, including its MC2-D partition
 table. The node name is <code>mc2-classic-hub</code>. An S3 or MC1 image, and an app-only
 OTA over an old partition layout, are not valid initial installations.</li>
-<li>Build and flash the <strong>TinyC6[D] RCP</strong> with the matching pinned ESP-IDF. For loose
-programming, temporarily fit the documented <strong>10 kΩ GPIO8-to-local-3.3 V
-pull-up</strong>; the carrier supplies it only after assembly. Check the build's
-TC6D-01 identity and external-antenna verification; the original fixed-U.FL
-firmware does not switch this board's antenna.</li>
-<li>Follow the <a href="zigbee-firmware.html">MC2-C XIAO MG24 programming guide</a>, which selects
+<li>Build and flash the <strong>XIAO ESP32C6 RCP</strong> with the matching pinned ESP-IDF.
+Use the factory BOOT/RESET buttons for loose-board USB download. The board
+already includes the GPIO8 pull-up. Verify the MC2-D XIAO identity and
+external-antenna selection; TinyC6 binaries are incompatible.</li>
+<li>Follow the <a href="zigbee-firmware.html">MC2-D XIAO MG24 programming guide</a>, which selects
 <strong><code>--antenna external</code></strong>, and program its external initial HEX through the
 XIAO's onboard CMSIS-DAP probe. Output filenames retain <code>mc1</code> because the
-build recipe is shared; the guide gives the current MC2-C host connections.</li>
+build recipe is shared; the guide gives the current MC2-D host connections.</li>
 <li>Leave the <strong>ZAC93 on its Zooz firmware</strong>. It is not an ESPHome target.</li>
 </ol>
 <p><strong>Ready to continue:</strong> programming and verification succeed for all three
@@ -72,9 +70,10 @@ ZAC93 tray first</strong>, then check the real board and its underside mating so
 The largest part is 215 × 215 mm; the identified TRONXY XY-3 has a nominal
 310 × 310 mm bed. Check the slicer's usable area and brim before printing.</p>
 <p>Dry-fit every received component, mated plug, solder tail and cable route.
-Follow the <a href="antennas.html#pin-connections-and-initial-programming">MC2-C assembly order</a>:
-all modules face the same side, low axial parts and headers go first, and module
-joints are soldered from the back. The historical MC1 rear-first assembly is a
+Follow the <a href="antennas.html#pin-connections-and-initial-programming">MC2-D assembly order</a>:
+all modules face the same side, low axial parts and carrier headers go first.
+The C6/MG24 modules use factory headers. Fit and inspect C6 underside EN/BOOT
+leads above the carrier, accessible through the service window with the carrier removed from the case; module tails are soldered from the back. The historical MC1 rear-first assembly is a
 different carrier. Install each off-board module's restraint, the radar holder
 and the ventilated BME680 pod; do not rely on cable friction to hold boards.</p>
 <p><strong>Ready to continue:</strong> no board or plug is forced into position, miniature coax
@@ -92,8 +91,11 @@ into WIZ850io. Raw PoE does not connect to the carrier.</li>
 <li>The RECOM replaces the earlier Pololu at the same J2 interface. Use the new
 PWR1 power tray and <a href="assembly.html#power-and-ethernet">power wiring</a>,
 including both ground returns and correct capacitor polarity. Its input must
-remain at least 4.5 V under load; take 5 V before the controller isolation diodes.</li>
-<li>With power disconnected, continuity-check J1–J7 and look for shorts between
+remain at least 4.5 V under load; take 5 V before the controller branches. Fit a 22 AWG wire link at D1
+(no diode); D2/D3 remain 1N5819. Host USB would feed the whole bus through
+D1, so never attach powered USB after assembly, even with PoE off.</li>
+<li>With power disconnected, continuity-check J1–J7 and J10 (TP8/EN and TP2/BOOT)
+and look for shorts between
 5 V, 3.3 V and ground. Preserve the specified boot pull-ups/pull-downs and
 keep controller-local 3.3 V outputs separate from the peripheral buck rail.</li>
 <li>Meter the disconnected splitter and buck first. Then connect the electronics
@@ -101,7 +103,9 @@ and check the rails again under load, including at ZAC93. Disconnect power
 before changing any wiring.</li>
 <li><strong>ZAC93 uses a remapped cable:</strong> J4.1→pin 1, J4.2→pin 6, J4.3→pin 9,
 J4.4→pin 8/RX, J4.5→pin 10/TX. It is not a straight-through 2×5 cable.
-Its DFR0627 bridge is on J3; set <strong>IA1=1, IA0=1</strong> and use UART1 at 115200 8N1.</li>
+Its DFR0627 bridge is on J3; set <strong>IA1=1, IA0=0</strong> and use UART1 at 115200 8N1
+with register/FIFO addresses <strong>0x50/0x51</strong>. Reserve <strong>0x50–0x57</strong> for the bridge;
+BME680 remains <strong>0x77</strong>. The former 1/1 setting overlaps BME680 and must not be used.</li>
 </ul>
 <p><strong>Ready to continue:</strong> measured rails and polarity agree with the component
 requirements, no component overheats, Ethernet links, and the router gives the
@@ -210,5 +214,5 @@ power/temperature and <code>Hub Minimum Free Heap</code>/<code>Hub Largest Heap 
 the <a href="commissioning.html">RF acceptance workflow</a> rather than assuming gain or
 enclosure clearance guarantees coverage.</li>
 </ul>
-</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

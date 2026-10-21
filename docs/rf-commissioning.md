@@ -7,8 +7,8 @@ their orientation; they do not prove whole-home coverage.
 
 ## Before measuring
 
-1. For the active MC2-C revision, use its matching **classic ESP32/WROVER-IE
-   host**, TinyC6 RCP and external-antenna MG24 images. MC2-A/S3 and MC1 images
+1. For the active MC2-D revision, use its matching **classic ESP32/WROVER-IE
+   host**, XIAO ESP32C6 RCP and external-antenna MG24 images. MC2-A/S3 and MC1 images
    are not interchangeable. Connect all three 2.4 GHz antennas before enabling their transmitters.
    Check the Zigbee image's **external** antenna label: plugging a cable into the
    XIAO does not change its software-controlled antenna selection.
@@ -21,6 +21,12 @@ their orientation; they do not prove whole-home coverage.
 4. Record the firmware versions, antenna models, pigtail lengths, mounting height,
    orientation, test devices and normal reporting intervals. Do not infer link
    quality from advertised antenna gain alone.
+
+Before a coverage run, check CC1101 GDO0 with an oscilloscope through power-up,
+host reset and RX→TX→RX transitions. Use a rebuilt host image containing the
+[RF startup and handoff corrections](connection-audit.md#rf-startup-and-handoff-corrections): the host
+must release this shared line while the radio drives it. This electrical check
+is separate from receiving packets successfully.
 
 ## Compare three physical states
 

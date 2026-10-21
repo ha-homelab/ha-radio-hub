@@ -1,21 +1,30 @@
-# MC2-C: parts, availability and observed prices
+# MC2-D: parts, availability and observed prices
 
-Updated **20 October 2026** for one MC2-C hub with the **PWR1 power assembly**.
-The RECOM regulator and its input capacitor were checked on 20 October; other
-module offers and the PCB estimate retain their **19 October 2026** observations.
-The priced list covers major modules, RF accessories and the input capacitor;
-remaining assembly materials are listed separately and still need pricing. The [carrier BOM](../hardware/external-antenna/cad/BOM.csv),
+Updated **20 October 2026** for one MC2-D hub with the **PWR1 power assembly**.
+MC2-D replaces the Australian TinyC6[D] order with the **Seeed XIAO ESP32C6
+pre-soldered SKU 102010636**. Buy factory-fitted headers/connectors wherever
+available. The [carrier BOM](../hardware/external-antenna/cad/BOM.csv),
 [RF BOM](../hardware/external-antenna/rf-bom.json) and
-[assembly guide](external-antennas.md) remain the engineering references.
-No order has been placed. Prices below are observed offers, not checkout totals;
-discount eligibility, tax, delivery and stock can change.
+[assembly guide](external-antennas.md) describe the same revision.
 
-**Current priced components: $159.47** — $159.07 for the 11 major component
-lines plus $0.40 for the input capacitor — or **$173.18 including the five-PCB
-quote and PCB shipping**. Smaller assembly
-materials, electronics shipping, taxes and import charges remain additional.
-The received ZAC93 and existing CC1101/433 MHz antenna do not need to be bought
-again. [Jump to all prices and availability](#major-component-cost-and-availability).
+**Already ordered: ESP32-DevKitC-VIE.** The owner confirmed the Mouser order;
+do not order it again. ZAC93 is received and CC1101/433 MHz antenna are already
+owned. Other rows remain offers, not purchases. Each offer retains its observation
+date in [procurement.json](../hardware/external-antenna/procurement.json).
+
+**Priced components: $147.85**, including the host's historical $9.48 offer,
+or **$138.37 still to buy after excluding that ordered host**. With the historical
+five-PCB-and-shipping estimate, the corresponding subtotals are **$161.56** and
+**$152.08**. These exclude the unpriced assembly materials, electronics delivery,
+tax and tariffs below. The actual paid host total was not provided; these are
+not a completed order ledger or a delivered total.
+
+The new Thread board costs **$6.38**, $11.62 below the previous $18 board.
+The owner's rejected TinyC6 cart also had **$23.95 Australian shipping**
+($41.95 total); that shipping is no longer needed. DigiKey lists USPS Ground
+Advantage at $4.99, making **$11.37 before tax/tariffs** an indicative standalone
+XIAO shipment, subject to checkout. Prefer one combined DigiKey order.
+[Published US delivery rates](https://www.digikey.com/en/help-support/delivery-information/delivery-time-and-cost).
 
 ## The two ESP boards and the Zigbee board
 
@@ -31,44 +40,62 @@ again. [Jump to all prices and availability](#major-component-cost-and-availabil
    [Mouser exact-part listing](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D)
    showed **$9.48 for one and 488 in stock** on its live US page on
    19 October 2026. Confirm the offer and delivery at checkout.
-   No exact AliExpress VIE variant has been qualified for MC2-C.
+   This host is already ordered. No exact AliExpress VIE variant has been qualified for MC2-D.
    The previous S3 offer was $15.20 promotional / $22.00 crossed-out price,
    before $5.93 shipping: the observed board-only reduction is $5.72 (37.6%)
    against that promotional price, **not a delivered-cost quote**.
-   This purchase requires the **MC2-C** carrier and initial USB-UART flash;
+   This purchase requires the **MC2-D** carrier and initial USB-UART flash;
    it is not a drop-in replacement on the older MC2-A PCB.
 
-2. **1 × Unexpected Maker TinyC6[D], order code TC6D-01**.
-   Buy the finished development board with 8 MB flash, native USB and its
-   supplied loose 1×12 + 1×11 male headers. The
-   [manufacturer's exact product](https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851)
-   showed **USD $18.00 and 48 in stock on 19 October 2026**. It ships from
-   Melbourne, Australia; delivery, tax and any import fees are additional and
-   have not been quoted. Stock is an observation, not a reservation.
-   Leave the extra female-header and antenna options unchecked: this carrier
-   uses direct-solder male headers and the specified SMA pigtail/antenna below.
-   Do not fit the supplied battery connector or a LiPo.
+2. **1 × Seeed Studio XIAO ESP32C6 (Pre-Soldered), SKU 102010636**.
+   [DigiKey 1597-102010636-ND](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010636/26553893)
+   showed **$6.38 and 21 in stock** on 20 October 2026. Select **102010636**,
+   with two factory-soldered 7-pin male headers. Do not substitute the unsoldered
+   **113991254**, three-pack **102010574**, or TinyC6. No extra female sockets
+   are used in the current direct-solder carrier height.
 
-   This is the **MC2-C** Thread RCP target. Its onboard antenna is selected at
-   reset; our matching firmware selects and verifies the external U.FL path
-   through **FXL6408 XIO0**, on the C6's own I²C bus (SDA6/SCL7, address 0x43),
-   before starting Thread. This bus is separate from the host's sensor bus.
-   Use the [MC2-C firmware instructions](../firmware/external-antenna/README.md);
-   an original TinyC6 RCP binary is not an acceptable substitute.
-   [Pinned manufacturer files](https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3)
-   define this board. The old **TC6-U-01** is no longer the shopping target:
-   Mouser's US listing now marks it obsolete and unavailable in the region.
-   XIAO ESP32C6, ESP32-C6 SuperMini and H2 boards are not pin-compatible substitutes.
+   This 4 MB board is the dedicated MC2-D Thread RCP. It has native USB and
+   a switched external U.FL path. MC2-D firmware sets **GPIO3 LOW, GPIO14 HIGH**
+   before Thread starts; TinyC6's I²C-expander firmware is incompatible.
+   [Manufacturer pin map and RF switch](https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/).
+
+   **Two small solder joints remain on the module:** EN and BOOT are underside
+   pads, not header pins. Fit flexible insulated 30 AWG leads from **TP8/EN to
+   J10.1** and **TP2/BOOT to J10.2**, with strain relief and the carrier's service
+   window. These are required for the existing automatic reset and network RCP
+   update/recovery functions. Do not omit them or confuse the bottom view with
+   a top view. Follow the [assembly guide](external-antennas.md).
+   GPIO8 already has a local pull-up on XIAO; the former carrier R3 is removed.
+   No battery connector or battery is needed.
 
 3. **1 × Seeed Studio XIAO MG24, pre-soldered, SKU 102010690**.
    This is a Silicon Labs EFR32MG24 board, **not an ESP32**. It runs our
    external-antenna Ember Zigbee firmware. The Sense variant is not needed.
-   [Seeed exact part](https://www.seeedstudio.com/Seeed-Studio-XIAO-MG24-Pre-Soldered-p-6381.html)
-   shows **$8.90** and in-stock status in the checked product page.
+   [DigiKey exact part](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010690/26553865)
+   showed **$8.90 and 16 in stock** on 20 October 2026.
    [AliExpress candidate](https://www.aliexpress.com/item/1005003282607003.html)
    is a mixed XIAO-family listing found in search; its live page failed to load,
    so its MG24/pre-soldered variant, seller, price and stock are **unverified**.
-   Prefer the exact Seeed part until those details are checked.
+   Prefer the exact DigiKey SKU until those details are checked.
+
+## Factory-assembled connector policy
+
+| Component | Buy this assembly | Work still needed |
+| --- | --- | --- |
+| ESP32-DevKitC-VIE | Complete 38-pin board with fitted headers; already ordered | Solder factory header tails into carrier |
+| XIAO ESP32C6 | **102010636**, factory 2×7 male headers | Two underside EN/BOOT leads, then carrier joints |
+| XIAO MG24 | **102010690**, factory 2×7 male headers; not Sense | Carrier joints; use onboard programming probe |
+| WIZ850io | Complete WIZnet plug-in module, both 1×6 headers and RJ45 fitted | Carrier joints |
+| DFR0627 | Finished Gravity module with fitted connectors | Connect the supplied Gravity cable and prepared UART harness |
+| Adafruit BME680 3660 | STEMMA QT revision with fitted JST-SH sockets | Plug in a ready-made QT lead; leave loose 0.1-inch header unused |
+| HLK-LD2450 | Complete module with factory connector; order a matching ready-made cable if absent | Connect cable according to pin labels |
+| Zooz ZAC93 / CC1101 | Reuse the received/existing modules | Remapped mating harnesses; no duplicate purchase |
+| RECOM R-78K3.3-1.0 | Finished SIP-3 converter with integral leads | Solder converter, capacitor and links on the PWR1 perfboard |
+
+Bare carrier PCBs are still ordered without assembly. Their headers, diodes and
+resistors, the RECOM perfboard and two C6 recovery leads require a soldering iron.
+Factory-soldered module headers reduce work; they do not make the complete hub
+solderless. Prefer precrimped mating wires over buying loose crimp contacts.
 
 ## Power parts: retain the splitter, replace the expensive buck
 
@@ -110,7 +137,7 @@ engineering assembly selection; physical startup and thermal tests remain due.
 
 ## Three antennas and three pigtails
 
-The current engineering selection, with the **FH1-MC2-C-PWR1** enclosure, is:
+The current engineering selection, with the **FH1-MC2-D-PWR1** enclosure, is:
 
 - **3 × TE Connectivity / Linx ANT-2.4-LCW-SMA**
   ([manufacturer](https://www.te.com/en/product-L9000082-01.html),
@@ -156,48 +183,55 @@ ZAC93 keeps its original regional antenna and LD2450 its printed radar array.
 ## Major-component cost and availability
 
 These are observed USD offers for the exact selections, before electronics
-shipping, tax and import charges. RECOM and Panasonic observations are dated
-**20 October 2026**; every other row is dated **19 October 2026**. “Orderable” means the page offered Add to Cart
-without an explicit stock count; it is not confirmation of immediate dispatch.
+shipping, tax and import charges. C6, MG24, DFR0627 and BME680 US offers were checked
+on **20 October 2026**, as were RECOM and Panasonic. The other prices retain their
+**19 October** observations. “Orderable” is not a guarantee of immediate dispatch.
 The machine-readable record is [procurement.json](../hardware/external-antenna/procurement.json).
 
 | Qty | Exact item and checked seller | Unit price | Line total | Availability observed |
 | ---: | --- | ---: | ---: | --- |
-| 1 | [ESP32-DevKitC-VIE — Mouser](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D) | $9.48 | $9.48 | 488 |
-| 1 | [TinyC6[D] TC6D-01 — manufacturer](https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851) | $18.00 | $18.00 | 48; ships from Australia |
-| 1 | [XIAO MG24 pre-soldered 102010690 — Seeed](https://www.seeedstudio.com/Seeed-Studio-XIAO-MG24-Pre-Soldered-p-6381.html) | $8.90 | $8.90 | In stock |
+| 1 | [ESP32-DevKitC-VIE — Mouser](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-DevKitC-VIE?mgh=1&qs=vmHwEFxEFR%252B9L5ZhUgeToA%3D%3D) | $9.48 historical | $9.48 historical | Already ordered; actual paid total not provided |
+| 1 | [XIAO ESP32C6 pre-soldered 102010636 — DigiKey](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010636/26553893) | $6.38 | $6.38 | 21; US distributor |
+| 1 | [XIAO MG24 pre-soldered 102010690 — DigiKey](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010690/26553865) | $8.90 | $8.90 | 16 |
 | 1 | [WIZ850io — DigiKey](https://www.digikey.com/en/products/detail/wiznet/WIZ850IO/8789619) | $24.52 | $24.52 | 1,433 |
 | 1 | [POE-SPLITTER-25W-5.5-2.1, SKU 27737 — Waveshare](https://www.waveshare.com/poe-splitter-25w-type-c.htm?sku=27737) | $19.99 | $19.99 | Orderable; select the 5 V DC barrel version |
 | 1 | [RECOM R-78K3.3-1.0 — DigiKey](https://www.digikey.com/en/products/detail/recom-power/R-78K3-3-1-0/18093033) | $3.98 | $3.98 | 3,242; a separate 989 at factory |
 | 1 | [Panasonic EEU-FS1H270, 27 µF input capacitor — DigiKey](https://www.digikey.com/en/products/detail/panasonic-industry/EEU-FS1H270/7381268) | $0.40 | $0.40 | 4,822 |
-| 1 | [DFR0627 — DFRobot](https://www.dfrobot.com/product-2001.html) | $8.00 | $8.00 | Orderable |
-| 1 | [BME680 STEMMA QT, 3660 — Adafruit](https://www.adafruit.com/product/3660) | $18.95 | $18.95 | In stock |
+| 1 | [DFR0627 — DigiKey](https://www.digikey.com/en/products/detail/dfrobot/DFR0627/12091972) | $8.00 | $8.00 | 121 |
+| 1 | [BME680 STEMMA QT, 3660 — DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3660/7915571) | $18.95 | $18.95 | 388 |
 | 1 | [HLK-LD2450 module — Alexnld](https://alexnld.com/product/hi-link-hlk-ld2450-24ghz-motion-target-tracking-radar-sensor-module-distance-angle-measurement-for-smart-hotel-home-led/) | $21.99 | $21.99 | Seller reports In Stock; select the module variant |
 | 3 | [ANT-2.4-LCW-SMA — DigiKey](https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-2-4-LCW-SMA/9607799) | $3.76 | $11.28 | 2,777 |
 | 3 | [CAB.618.E — DigiKey](https://www.digikey.com/en/products/detail/taoglas-limited/CAB-618-E/26766261) | $4.66 | $13.98 | 48; US tariff may be added in cart |
 
-**Major-component subtotal: $159.07; with the input capacitor: $159.47.**
-The previous set with the same RF cables and the Pololu was $182.04. Adding the
-[five-PCB quote with its quoted shipping](pcb-order.md#quantity-and-delivery)
-of $13.71 gives **$173.18 in priced items**. This is **not the complete delivered
-hub price**. The received ZAC93 and existing CC1101/433 MHz antenna are excluded
-from this owner's additional purchase cost; a new builder must buy them too.
+**Major-component subtotal: $147.45; with the input capacitor: $147.85.**
+After excluding the already ordered host's historical $9.48 offer, **$138.37**
+of priced components remain to buy. Adding the historical [five-PCB estimate](pcb-order.md#quantity-and-delivery)
+with its shipping gives **$161.56 including the host**, or **$152.08 excluding it**.
+The unchanged board size permits a like-for-like calculator comparison, but the
+new MC2-D Gerbers require fresh supplier DFM acceptance. These subtotals exclude
+received ZAC93 and existing CC1101/433 MHz antenna; new builders must buy them too.
+They are **not complete delivered hub prices**.
 
 Also required, and **not yet priced**:
 
 - One 24 × 24 × 1.6 mm isolated-pad perfboard cutoff, insulated wire and
   heat-shrink for the RECOM/capacitor assembly; PWR1 tray restraints.
-- Three 1N5819 diodes and five axial resistors: one 4.7 kΩ and four 10 kΩ.
-- J1–J7 headers and insulated mating contacts, ZAC93 2×5 mating header,
+- Two 1N5819 diodes for D2/D3 and an insulated 22 AWG wire link for D1.
+  The submitted order contains three diodes: keep one spare. **Do not fit a
+  diode at D1**; its extra drop reduces the host regulator headroom.
+- Four axial resistors: one 4.7 kΩ and three 10 kΩ.
+- J1–J7 and J10 headers and insulated mating contacts, ZAC93 2×5 mating header,
   BME680 QT lead and module wiring.
 - 1.5 A time-delay fuse with insulated holder, 5.5/2.1 mm DC adapter,
   cable restraints, fasteners, insulation and printed parts. The fuse rating is
   a starting selection; verify inrush, wire/contact ratings and derating as
   described in the [assembly guide](full-hub-assembly.md#power-and-ethernet).
+- Two flexible insulated 30 AWG recovery leads for XIAO TP8/EN and TP2/BOOT,
+  individual joint insulation and strain relief.
 - Electronics delivery, tax, duties/tariffs and any PCB checkout/DFM adjustment.
 
-Group the RECOM, Panasonic capacitor, WIZ850io, three antennas and three
-pigtails in one DigiKey quote to compare delivery charges at checkout.
+Group the pre-soldered XIAO C6, MG24, DFR0627, BME680, RECOM, Panasonic capacitor,
+WIZ850io, three antennas and three pigtails in one DigiKey quote to compare delivery charges at checkout.
 The Pololu is no longer in this shopping list. No combined delivery total
 to ZIP 94121 has been established. RECOM quantity breaks were $3.83 each at
 five and $3.767 at ten; buying extra regulators saves cents per unit but
@@ -205,8 +239,8 @@ increases this single-prototype order. Buy one electronics set first.
 
 ## Before committing the full parts order
 
-Order the **MC2-C fabrication package**, with **TC6D-01** as U2. MC2-B is the
-previous fixed-antenna TinyC6 assembly. The [revision and ordering record](pcb-order.md)
+Order the **MC2-D fabrication package**, with **102010636** as U2.
+MC2-C used TinyC6[D]; its Gerbers and RCP image are not substitutes for MC2-D. The [revision and ordering record](pcb-order.md)
 ties the current PCB, firmware and enclosure together. Start with five bare
 PCBs and components for one complete prototype; the extra PCBs are spares, not a
 reason to buy five untested sets of electronics.

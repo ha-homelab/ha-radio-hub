@@ -1,7 +1,7 @@
 # HA Radio Hub enclosure — historical DRAFT V0
 
 <!-- MC2-CURRENT-DESIGN -->
-> **Historical Pi-era enclosure.** For the active **MC2-C / FH1** build, follow
+> **Historical Pi-era enclosure.** For the active **MC2-D / FH1** build, follow
 > [Start here](start-here.md) and the [FH1 full-hub print package](../mechanical/full-hub/README.md).
 > FH1 provides the current carrier, ZAC93 and peripheral mounts. The V0 dimensions,
 > STL files and assembly layout below belong to the original Pi design.

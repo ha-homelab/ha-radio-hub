@@ -29,7 +29,7 @@ printing = load('fullhub_printing', HERE / 'print_package.py')
 COLORS = {'carrier':'#23725c','poe_splitter':'#303842','buck':'#18608c',
           'wk2132':'#25699c','zwave':'#346baa','cc1101':'#17663d',
           'ld2450':'#4c83ac','bme680':'#6938a1','dc_adapter':'#354548','fuse_holder':'#aa7440'}
-LABELS = {'carrier':'MC2-C carrier + U1–U4','poe_splitter':'Isolated PoE splitter',
+LABELS = {'carrier':'MC2-D carrier + U1–U4','poe_splitter':'Isolated PoE splitter',
           'buck':'RECOM 3.3 V + 27 µF','wk2132':'DFR0627 / WK2132','zwave':'Zooz ZAC93 Z-Wave',
           'cc1101':'CC1101 RF transceiver','ld2450':'LD2450 radar → room','bme680':'BME680 ambient sensor','dc_adapter':'Insulated 5 V DC adapter','fuse_holder':'Insulated inline DC fuse'}
 
@@ -253,13 +253,24 @@ def geometry(p,m,s):
 rounded_coax_path = old.rounded_coax_path
 
 
+def module_base_offset(p,ref):
+    if ref=='U2':return p['thread_mount']['pcb_underside_above_carrier_underside_mm']
+    return p['radio_mounts'][ref]['pcb_underside_above_carrier_underside_mm'] if ref in p['radio_mounts'] else 9
+
+
+def module_top_offset(p,ref):
+    height=p['radio_mounts'][ref]['board_and_top_components_allowance_mm'] if ref in p['radio_mounts'] else (8 if ref!='U4' else 14.6)
+    return module_base_offset(p,ref)+height
+
+
 def cable_routes(p,s):
     bx,by,bz=p['placements']['carrier']; routes=[]
     rf=p['rf_harness']
     for port in p['rf_ports']:
         endpoint=s['design']['mechanics']['rf_ports'][port['ref']]['estimated_xy_mm'];x,y,z=port['center']
         guide=[[x,p['case']['wall'],z],[x,p['case']['wall']+rf['bulkhead_straight_reservation_mm'],z],
-               [bx+endpoint[0],by+endpoint[1],40],[bx+endpoint[0],by+endpoint[1],bz+14]]
+               [bx+endpoint[0],by+endpoint[1],rf['approach_plane_z_mm']],
+               [bx+endpoint[0],by+endpoint[1],bz+module_base_offset(p,port['ref'])+rf['connector_above_radio_pcb_underside_mm']]]
         pts,arcs,lead=rounded_coax_path(guide,rf['minimum_bend_radius_mm'],rf['unbent_connector_allowance_mm'])
         routes.append({'id':port['label'].lower()+'-coax','points_mm':pts,'guide_points_mm':guide,
                        'guide_length_upper_bound_mm':round(sum(math.dist(a,b) for a,b in zip(guide,guide[1:])),3),
@@ -289,6 +300,21 @@ def cable_routes(p,s):
     add('fuse-j1', [[167,199,25],[154,199,42],[154,172,48],[122,172,48],[122,122,48],[jack('J1')[0],jack('J1')[1],48],jack('J1')], ['fuse_holder','carrier'], 'Fused5V to J1')
     ambient=next(v for v in routes if v['id']=='ambient-harness')
     ambient['points_mm']=[jack('J7'),[122,105,50]]+ambient['points_mm'];ambient['allowed_contact'].append('carrier')
+    # The two fine service wires stay ABOVE the carrier, in the factory-header
+    # gap. The cutout provides solder/tool access, not a below-carrier route.
+    thread=next(part for part in s['design']['parts'] if part['ref']=='U2')
+    j10=next(part for part in s['design']['parts'] if part['ref']=='J10')
+    z_wire=bz+module_base_offset(p,'U2')-p['thread_mount']['underside_wire_diameter_max_mm']/2
+    exit_y=by+thread['body_bounds_global_mm'][3]+2
+    for number,net in enumerate(['EN','BOOT'],1):
+        point=s['design']['mechanics']['bottom_service_pads_global_mm'][net]
+        pin=next(pin for pin in j10['pad_centers_mm'] if pin['number']==str(number))
+        px,py=bx+point[0],by+point[1]
+        lane=px+(-.7 if net=='EN' else .7)
+        target=[bx+pin['x'],by+pin['y'],30]
+        routes.append({'id':'c6-'+net.lower()+'-service','points_mm':[[px,py,z_wire],[lane,py+1,z_wire],[lane,exit_y,z_wire],[target[0],target[1],z_wire],target],
+                       'radius_mm':p['thread_mount']['underside_wire_diameter_max_mm']/2,
+                       'allowed_contact':['carrier'],'kind':'30 AWG insulated service wire above carrier, below XIAO; cutout only for solder/tool access'})
     for row in routes:
         pts=row['points_mm'];r=row['radius_mm']; row['length_mm']=round(sum(math.dist(a,b) for a,b in zip(pts,pts[1:])),3)
         row['segment_envelopes_mm']=[[min(a[i],b[i])-r for i in range(3)]+[max(a[i],b[i])+r for i in range(3)] for a,b in zip(pts,pts[1:])]
@@ -315,6 +341,21 @@ def validate(p,m,s,g):
     keys=list(boxes)
     for i,a in enumerate(keys):
         for b in keys[i+1:]:assert not overlap(boxes[a],boxes[b]),f'Component overlap {a} / {b}'
+    for ref,mount in p['radio_mounts'].items():
+        assert not mount['physical_fit_verified'],'Radio mounting allowance cannot assert measured fit'
+        assert math.isclose(mount['pcb_underside_above_carrier_underside_mm'],1.6+mount['header_plastic_standoff_nominal_mm']),f'{ref} header stack inconsistent'
+        assert mount['board_and_top_components_allowance_mm']>=8,f'{ref} body-height allocation must not shrink'
+    stack=p['thread_mount']
+    assert not stack['physical_fit_verified'],'Prototype header stack cannot assert measured fit'
+    assert math.isclose(stack['header_plastic_standoff_mm'],s['design']['mechanics']['module_geometry']['U2']['factory_header_spacer_nominal_mm']),'C6 header stack differs from the native assembly contract'
+    assert math.isclose(stack['pcb_underside_above_carrier_underside_mm'],stack['carrier_thickness_mm']+stack['header_plastic_standoff_mm']),'C6 header stack is inconsistent'
+    assert stack['header_plastic_standoff_mm']>=2.5,'C6 service wires require at least 2.5 mm header gap'
+    assert stack['underside_joint_protrusion_max_mm']<stack['header_plastic_standoff_mm'],'C6 service solder joints contact carrier'
+    assert stack['underside_wire_diameter_max_mm']<=.8,'C6 service wire exceeds reserved gap'
+    window=s['design']['mechanics']['service_cutout']['bounds_mm'];origin=p['placements']['carrier']
+    access=[origin[0]+window[0],origin[1]+window[1],f+.1,origin[0]+window[2],origin[1]+window[3],origin[2]]
+    for name,node in g['assembled'].items():
+        assert (node.solid ^ bodybox(access).solid).volume()<.1,f'C6 underside service window blocked by {name}'
     # Native RJ45 insertion/latch reservation gets a real Z envelope and must
     # remain unoccupied by all other components; it is NOT counted as PCB area.
     b=p['placements']['carrier'];cor=s['design']['mechanics']['rj45']['service_corridor_global_mm']
@@ -354,7 +395,7 @@ def validate(p,m,s,g):
         usb=s['design']['mechanics']['physical_usb_shells_mm'].get(part['ref'])
         if usb:
             x0,y0,x1,y1=min(x0,usb[0]),min(y0,usb[1]),max(x1,usb[2]),max(y1,usb[3])
-        module_boxes[part['ref']]=[carrier_origin[0]+x0,carrier_origin[1]+y0,carrier_origin[2]+9,carrier_origin[0]+x1,carrier_origin[1]+y1,carrier_origin[2]+(23.6 if part['ref']=='U4' else 17)]
+        module_boxes[part['ref']]=[carrier_origin[0]+x0,carrier_origin[1]+y0,carrier_origin[2]+module_base_offset(p,part['ref']),carrier_origin[0]+x1,carrier_origin[1]+y1,carrier_origin[2]+module_top_offset(p,part['ref'])]
         assert contains(boxes['carrier'],module_boxes[part['ref']]),f'{part["ref"]} module exceeds the populated carrier reservation'
         nominal=s['design']['mechanics']['module_geometry'].get(part['ref'])
         if nominal and 'model_height_mm' in nominal:
@@ -424,10 +465,12 @@ def validate(p,m,s,g):
         'model':thread_part['model'],
         'manufacturer_geometry':s['design']['mechanics']['module_geometry']['U2'],
         'allocated_envelope_case_mm':module_boxes['U2'],
+        'mounting_stack':p['thread_mount'],
+        'underside_access_case_mm':access,
         'coax_route_length_mm':thread_route['length_mm'],
         'coax_service_allowance_mm':thread_route['slack_allowance_mm'],
         'coax_length_budget_mm':thread_route['length_budget_mm'],
-        'status':'Nominal PCB and RF connector XY checked against manufacturer STEP; header seating, mated plug and formed bends require physical fit.'
+        'status':'Nominal PCB and RF connector XY follow the native CAD source; factory header seating, underside service wires, mated plug and formed bends require physical fit.'
     }
     return {'interior_component_containment':True,'pairwise_component_boxes_clear':True,'mount_containment':True,
             'native_rj45_access_clear':True,'zac93_antenna_air_space_clear':True,'cable_envelopes_clear':True,
@@ -459,12 +502,31 @@ def electronics(p,m,s,g):
         x,y,z=bb[:3];w,h,d=[bb[i+3]-bb[i] for i in range(3)];color=COLORS[key]
         if key in ['poe_splitter','dc_adapter','fuse_holder']:result.append((bodybox(bb),color));continue
         if key=='carrier':
-            result.append((c.box(s['width'],s['length'],1.6).move((x,y,z)),color))
+            carrier=c.box(s['width'],s['length'],1.6).move((x,y,z))
+            win=s['design']['mechanics']['service_cutout'];v=win['bounds_mm'];r=win['corner_radius_mm']
+            cut=c.union(c.box(v[2]-v[0]-2*r,v[3]-v[1],2).move((x+v[0]+r,y+v[1],z-.2)),
+                        c.box(v[2]-v[0],v[3]-v[1]-2*r,2).move((x+v[0],y+v[1]+r,z-.2)),
+                        *[c.cylinder(2*r,2).move((x+cx,y+cy,z-.2)) for cx in [v[0]+r,v[2]-r] for cy in [v[1]+r,v[3]-r]])
+            result.append((c.subtract(carrier,cut),color))
+            j10=next(part for part in s['design']['parts'] if part['ref']=='J10')
+            for pin in j10['pad_centers_mm']:
+                result.append((c.box(2.54,2.54,2.54).move((x+pin['x']-1.27,y+pin['y']-1.27,z+1.6)),'#222a31'))
+                result.append((c.box(.64,.64,9).move((x+pin['x']-.32,y+pin['y']-.32,z-1.2)),'#c4b688'))
+                result.append((c.box(2,2,7).move((x+pin['x']-1,y+pin['y']-1,z+7)),'#313c47'))
             for part in s['design']['parts']:
                 if not part['ref'].startswith('U'):continue
                 v=part['body_bounds_global_mm'];a,b,aa,bb2=v
-                result.append((c.box(aa-a,bb2-b,1.6).move((x+a,y+b,z+9)),'#183947'))
-                result.append((c.box((aa-a)*.75,(bb2-b)*.6,5 if part['ref']!='U4' else 12).move((x+a+(aa-a)*.12,y+b+2,z+10.6)),'#b5bec4'))
+                module_z=z+module_base_offset(p,part['ref'])
+                if part['ref'] in ['U1','U2','U3']:
+                    for pin in part['pad_centers_mm']:
+                        result.append((c.box(2.54,2.54,(p['thread_mount']['header_plastic_standoff_mm'] if part['ref']=='U2' else p['radio_mounts'][part['ref']]['header_plastic_standoff_nominal_mm'])).move((x+pin['x']-1.27,y+pin['y']-1.27,z+1.6)),'#222a31'))
+                        result.append((c.box(.64,.64,5.3).move((x+pin['x']-.32,y+pin['y']-.32,z-1.2)),'#c4b688'))
+                    for route in (cable_routes(p,s) if part['ref']=='U2' else []):
+                        if route['id'].startswith('c6-'):
+                            for start,end in zip(route['points_mm'],route['points_mm'][1:]):
+                                result.append((capsule(start,end,route['radius_mm']),'#e1a345' if 'en-' in route['id'] else '#88cdd3'))
+                result.append((c.box(aa-a,bb2-b,1.6).move((x+a,y+b,module_z)),'#183947'))
+                result.append((c.box((aa-a)*.75,(bb2-b)*.6,5 if part['ref']!='U4' else 12).move((x+a+(aa-a)*.12,y+b+2,module_z+1.6)),'#b5bec4'))
             continue
         if key=='buck':
             result.extend(regulator_shapes(p,m));continue
@@ -485,7 +547,7 @@ def svg(p,m,g,checks):
     a=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">',
        '<style>text{font-family:Arial,sans-serif;fill:#e7f0f5}.h{font-size:27px;font-weight:bold}.s{font-size:18px}.n{font-size:15px}</style>',
        '<rect width="1400" height="1000" fill="#10202e"/>',
-       '<text x="40" y="45" class="h">FH1 full-hub enclosure · MC2-C + Z-Wave + RF + radar + ambient sensors</text>',
+       '<text x="40" y="45" class="h">FH1 full-hub enclosure · MC2-D + Z-Wave + RF + radar + ambient sensors</text>',
        '<text x="40" y="79" class="s">Top view, lid removed. Solid areas are component envelopes; dashed areas are reserved access/cable space.</text>',
        f'<rect x="{ox}" y="{oy}" width="{W*scale}" height="{D*scale}" fill="#263f4e" stroke="#7b9caa" stroke-width="8"/>']
     for key,bb in g['bounds'].items():
@@ -569,6 +631,32 @@ def regulator_preview(out,p,m,g):
     fig.savefig(out/'power-assembly-preview.png',dpi=140,facecolor=fig.get_facecolor());plt.close(fig)
 
 
+def thread_preview(out,p,m,s,g):
+    """Two views of the actual carrier cutout and allocated service-wire route."""
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    ox,oy,oz=p['placements']['carrier']
+    clip=c.box(25,37,35).move((ox+42,oy+7,oz-3))
+    shapes=[]
+    for node,color in electronics(p,m,s,g):
+        solid=node.solid ^ clip.solid
+        if solid.volume()>.001:
+            shapes.append((c.Node(solid,'intersection(){'+node.scad+clip.scad+'}'),color))
+    fig=plt.figure(figsize=(14,8),facecolor='#0d1b29')
+    for i,bottom in enumerate([False,True]):
+        ax=fig.add_axes([.02+i*.49,.24,.47,.58]);ax.axis('off')
+        view=[(node.rotate((180,0,0)) if bottom else node,color) for node,color in shapes]
+        ax.imshow(old.render_meshes(view,width=1000,height=850))
+        ax.set_title('Top: factory headers and J10 service leads' if not bottom else 'Bottom: carrier access window under EN / BOOT',color='#e9f2f7',fontsize=14)
+    fig.suptitle('MC2-D · XIAO ESP32C6 102010636 mounting detail',color='#e9f2f7',fontsize=20,y=.96)
+    fig.text(.04,.17,'Factory male headers solder directly to the carrier. No additional female sockets.',color='#e9f2f7',fontsize=13)
+    fig.text(.04,.12,'Two insulated 30 AWG leads run ABOVE the carrier, in the nominal 2.54 mm gap, to J10.',color='#e9f2f7',fontsize=13)
+    fig.text(.04,.07,'The opening gives solder / inspection access. Do not put a support beneath it or fit a battery.',color='#e9f2f7',fontsize=12)
+    fig.text(.04,.03,'Cropped CAD envelopes, not a product photograph. Header height, solder and wire fit must be checked physically.',color='#ffd294',fontsize=11)
+    fig.savefig(out/'thread-assembly-preview.png',dpi=140,facecolor=fig.get_facecolor());plt.close(fig)
+
+
 def generate(out,p,package=True):
     m=manifest();s=source();g=geometry(p,m,s);checks=validate(p,m,s,g);out.mkdir(parents=True,exist_ok=True)
     report={'revision':p['revision'],'status':p['status'],'native_pcb_revision':s['design']['revision'],
@@ -595,9 +683,9 @@ def generate(out,p,package=True):
         dz=115 if c.mesh_of(node).bounds[0][2]>=60 else 65
         exploded.append('color("'+color+'") {'+node.move((0,0,dz)).scad+'}')
     (out/'exploded.scad').write_text('// Exploded review only, not printable. Lid displaced sideways; component XY unchanged, Z offsets explanatory.\n'+'\n'.join(exploded)+'\n')
-    (out/'layout.svg').write_text(svg(p,m,g,checks));preview(out,p,m,s,g);regulator_preview(out,p,m,g)
-    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p><strong>FH1-MC2-C-PWR1: MC2-C with TinyC6[D] TC6D-01.</strong> PWR1 adds the RECOM R-78K3.3-1.0 and 27 µF input capacitor on a 24 × 24 mm perfboard with a revised tray. It retains RF1 Taoglas CAB.618.E cables, round 6.8 mm ports and a matching 3 mm thick fit coupon. Earlier D-hole base files are superseded. <a href="rf-evidence.json">RF fit evidence</a>. The Thread board outline and relocated U.FL socket follow the manufacturer STEP model. Use the MC2-C RCP firmware to select the external antenna. <a href="sources.md#tinyc6d-revision-change">Source and fit evidence</a>.</p><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>RECOM power assembly</h2><img src="power-assembly-preview.png" alt="RECOM and input capacitor on a removable 24 mm perfboard tray, installed and lifted views"><p>Use the cleared rear band for a soft board restraint and a separate loop for cable strain relief. No mounting holes are assumed in either purchased component. <a href="README.md">Assembly details</a>.</p><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
-    outputs=[name+suffix for name in g['nodes'] for suffix in ['.stl','.scad']]+['assembly.scad','exploded.scad','layout.svg','full-assembly-preview.png','exploded-preview.png','power-assembly-preview.png','index.html']
+    (out/'layout.svg').write_text(svg(p,m,g,checks));preview(out,p,m,s,g);regulator_preview(out,p,m,g);thread_preview(out,p,m,s,g)
+    (out/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FH1 complete radio hub enclosure</title><style>body{background:#10202e;color:#e9f2f7;font:18px system-ui;margin:0}main{max-width:1400px;padding:24px;margin:auto}a{color:#84e7cf}a:focus-visible{outline:3px solid #fff;outline-offset:4px}img{width:100%}p,li{line-height:1.6}.download{display:inline-block;background:#84e7cf;color:#10202e;padding:12px 18px;font-weight:bold;border-radius:6px}.notice{border-left:4px solid #f6c575;padding:4px 20px;background:#192d3e}.table-scroll{overflow-x:auto}table{border-collapse:collapse;font-size:16px;width:100%}caption{text-align:left;margin:14px 0}th,td{padding:12px;border-bottom:1px solid #416073;text-align:left;vertical-align:top}thead{background:#192d3e}@media print{body{background:white;color:black}a{color:black}main{padding:0}.download{display:none}table{font-size:11px}th,td{padding:6px}.table-scroll{overflow:visible}}</style><main><h1>FH1 complete radio hub enclosure</h1><nav aria-label="Build navigation"><a href="../../guide/index.html">Build guide</a> · <a href="../../guide/print.html">Print and assembly instructions</a> · <a href="#print-parts">Download print parts</a> · <a href="verification.json">Digital verification</a> · <a href="components.json">Component sources and fit uncertainty</a> · <a href="assembly.scad">Editable assembly</a> · <a href="exploded.scad">Exploded model</a></nav><p><strong>FH1-MC2-D-PWR1: MC2-D with XIAO ESP32C6, pre-soldered SKU 102010636.</strong> PWR1 adds the RECOM R-78K3.3-1.0 and 27 µF input capacitor on a 24 × 24 mm perfboard with a revised tray. It retains RF1 Taoglas CAB.618.E cables, round 6.8 mm ports and a matching 3 mm thick fit coupon. Earlier D-hole base files are superseded. <a href="rf-evidence.json">RF fit evidence</a>. The compact Thread board outline and U.FL socket follow the native CAD ledger. Factory header height and underside service wiring require a physical trial. Use the MC2-D RCP firmware to select the external antenna. <a href="sources.md#xiao-esp32c6-revision-change">Source and fit evidence</a>.</p><p>Every module has a declared location and mechanical retention. Digital checks do not replace measuring the actual ZAC93, other purchased modules, connector access, print tolerance or RF testing.</p><section id="print-parts"><h2>Download and print in stages</h2><p><a class="download" download href="'+printing.ARCHIVE+'">Download all 14 STL files + print checklist (ZIP)</a></p><p><a href="PRINT-FIRST.txt">Read the print-first checklist</a> · <a href="print-manifest.json">Quantities and SHA-256 manifest</a> · <a href="README.md">Markdown instructions</a></p><div class="notice"><p><strong>Start with the fit coupon and ZAC93 cradle.</strong> Confirm the real socket, mating header, fasteners and SMA bulkhead fit with power disconnected. Then check the other small parts before printing the large base and lid. The existing CC1101, DC adapter and fuse must be measured.</p><p><strong>Print two pod arms.</strong> Reuse the first ZAC93 cradle if it fits. The CC1101 port blank is optional. Physical fit remains unverified.</p></div><p>Use millimetres, 100% scale and the supplied bed orientation. Largest part: 215 × 215 mm. The nominal TRONXY XY-3 bed is 310 × 310 mm; check the actual printable area and brim in the slicer. A generic 220 × 220 mm bed allows only 2.5 mm per edge. Assembly and exploded SCAD files are inspection models, not combined print jobs.</p>'+printing.print_table()+'</section><h2>XIAO ESP32C6 mounting</h2><img src="thread-assembly-preview.png" alt="MC2-D carrier section with factory header XIAO ESP32C6, two fine EN and BOOT leads, and underside solder access window"><p>Factory male headers solder directly to the carrier. Keep the two service wires above the carrier in the header gap; the opening is for solder and inspection access. Physical fit remains unverified.</p><h2>RECOM power assembly</h2><img src="power-assembly-preview.png" alt="RECOM and input capacitor on a removable 24 mm perfboard tray, installed and lifted views"><p>Use the cleared rear band for a soft board restraint and a separate loop for cable strain relief. No mounting holes are assumed in either purchased component. <a href="README.md">Assembly details</a>.</p><h2>Where the parts fit</h2><img src="exploded-preview.png" alt="Exploded full hub, generated from print meshes and component envelopes"><img src="layout.svg" alt="Numbered layout locating all hub components and cable reservations"><img src="full-assembly-preview.png" alt="Open full hub with every component"><p>Main shell 215 × 215 × 78 mm; BME680 pod attached across a 17 mm air gap. Radar faces the room through the lid. ZAC93 stock antenna stays unmodified.</p></main></html>\n')
+    outputs=[name+suffix for name in g['nodes'] for suffix in ['.stl','.scad']]+['assembly.scad','exploded.scad','layout.svg','full-assembly-preview.png','exploded-preview.png','power-assembly-preview.png','thread-assembly-preview.png','index.html']
     report['generated_sha256']={name:sha(out/name) for name in sorted(outputs)}
     report=json.loads(json.dumps(report))
     (out/'verification.json').write_text(json.dumps(report,indent=2)+'\n')

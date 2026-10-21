@@ -78,7 +78,14 @@ J1 receives fused, isolated, regulated 5 V from a finished active PoE splitter. 
 
 D1 feeds Nano JP1.15 VIN; JP1.12 VBUS and JP1.2 3V3 remain NC. D2 and D3 feed the H2 and XIAO branches. Diode pad1/cathode/band faces the module; pad2/anode faces common 5 V. Nano's onboard USB diode also feeds VIN. The selected input is below the vendor's advertised 6–21 V external-VIN range although its own USB powers the same rail below 5 V; measure loaded voltage, ripple, temperature and brownout margin. The diodes prevent supply backfeed between branches but do not prevent I/O-pin backpower.
 
-J3 is a harness to the separate DFR0627 WK2132 module, not its footprint. IA1=IA0=1 gives register address0x70/FIFO0x71; physical UART1 is software channel0. J4 is ZAC93, J5 CC1101, J6 LD2450 and J7 BME680. Exact pin assignments are in `connectors.json`.
+J3 is a harness to the separate DFR0627 WK2132 module, not its footprint.
+**Address correction, 20 October 2026:** use **IA1=1, IA0=0** for UART1
+register **0x50**, FIFO **0x51**, reserving **0x50–0x57**. Physical UART1 is
+software channel0. The old IA1=IA0=1 notes in frozen MC1 CAD ledgers select
+0x70–0x77 and collide with BME680 at0x77; those notes must not be used for
+assembly. Use the corrected current MC1 firmware and switch setting together.
+The copper is unchanged. J4 is ZAC93, J5 CC1101, J6 LD2450 and J7 BME680.
+Exact pin assignments are in `connectors.json`.
 
 All antenna exclusions are prototype engineering provisions. H2's nominal antenna lies beyond the carrier; Nano and XIAO ceramic ends partly overlap its projection. The XIAO retains a no-pour/no-via reservation the source-transformed bottom-edge region x8.5..17.5,y71.3..75, with only the existing 0.25 mm ZB_RX trace allowed through x16.48..17.5,y72.5..73.8. Regression tests inspect native copper for that exception. The [Kinghelm KH5220-A36 datasheet](https://www.kinghelm.com.cn/upload/file/20230213/KH5220-A36.pdf) gives an evaluation-board example, not approval for this complete carrier. The rotated XIAO ceramic is about 6.1 mm from the WIZ PCB edge and 9.55 mm from the jack lateral edge. No universal minimum for this complete XIAO carrier was found; this does not establish unchanged RF range. Keep enclosure metal and permanent wires away from antennas and test the assembled ceiling installation.
 

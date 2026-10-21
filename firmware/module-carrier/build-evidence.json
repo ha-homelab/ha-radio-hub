@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "tested_date_local": "2026-10-17",
+  "tested_date_local": "2026-10-20",
   "host_os": "macOS arm64",
   "esphome": "2026.9.1",
   "esp_idf": "5.5.5",
@@ -11,6 +11,20 @@
     "hardware_tested": false,
     "esphome": "2026.9.1",
     "esp_idf": "5.5.5",
+    "rf_tx_startup": {
+      "protected_gpio": 4,
+      "cc1101_source_sha256": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+      "handoff_sha256": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+      "stock_transmitter_sha256": "3925a8f3ba3ace5b9843c068800f6d86fa6b5e57743ea5c64ab4f4f88cf89f82",
+      "sdk_source_sha256": {
+        "components/esp_driver_rmt/src/rmt_tx.c": "a8413610fb7f729e50a517980a24925fbfb1a28620999a1ad8f34bb71419e4c6",
+        "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291"
+      },
+      "wrapper_sha256": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+      "elf_sha256": "c952b2fb995b72c1109446b1e5c005607ac707ea07be3e93468fd55018d11f47",
+      "linked_call_verified": true,
+      "hardware_tested": false
+    },
     "sdkconfig_verified": {
       "CONFIG_OPENTHREAD_FTD": "y",
       "CONFIG_OPENTHREAD_COMMISSIONER": "y",
@@ -40,16 +54,16 @@
     },
     "artifacts": {
       "module-carrier-hub.bin": {
-        "bytes": 1731456,
-        "sha256": "8ce7ab689de3373ade9a73f256d00267962a75cdf862e3df671e501d07b231c9"
+        "bytes": 1731872,
+        "sha256": "66206b5f01ae585bfe9041b107db4965d08397b4f6ad4e85796f92f245f9153c"
       },
       "firmware.factory.bin": {
-        "bytes": 1796992,
-        "sha256": "2d0186c77f46784ee8d6fce3effe3c527efa3fab6d118a5904364c2fd3dc281f"
+        "bytes": 1797408,
+        "sha256": "1a8d998a783ca4e7f056cf9fa47f4587ac02c8ed2e0dd0027dd5e9fc702bd658"
       },
       "firmware.ota.bin": {
-        "bytes": 1731456,
-        "sha256": "8ce7ab689de3373ade9a73f256d00267962a75cdf862e3df671e501d07b231c9"
+        "bytes": 1731872,
+        "sha256": "66206b5f01ae585bfe9041b107db4965d08397b4f6ad4e85796f92f245f9153c"
       }
     },
     "h2_service_gpio": {
@@ -59,7 +73,7 @@
       "idle_level": 1,
       "reset_low_ms": 10,
       "h2_firmware_update_supported": true,
-      "source_sha256": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b"
+      "source_sha256": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
     },
     "generated_pin_checks": {
       "all_assigned_gpio_verified": true,
@@ -104,7 +118,7 @@
         "subtype": "ota_0",
         "offset": 65536,
         "bytes": 8126464,
-        "image_margin_bytes": 6395008
+        "image_margin_bytes": 6394592
       },
       {
         "name": "app1",
@@ -112,7 +126,7 @@
         "subtype": "ota_1",
         "offset": 8192000,
         "bytes": 8126464,
-        "image_margin_bytes": 6395008
+        "image_margin_bytes": 6394592
       },
       {
         "name": "nvs",
@@ -123,15 +137,15 @@
       }
     ],
     "thread_source_sha256": {
-      "low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
+      "low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e",
       "low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
       "thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
       "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
-      "uart_update.cpp": "8e4bf766409fde571222cc8f3aa8edbf95f5e38949f6106df0674fb08df51408",
+      "uart_update.cpp": "0563edba5c1bbeff04eb15d5c9cea270434494a48a2d2f5a4bb02b0e0ce5960b",
       "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
     },
     "linked_memory": {
-      "static_ram_bytes": 163795,
+      "static_ram_bytes": 163771,
       "linker_ram_bytes": 341760,
       "runtime_measured": false
     },
@@ -144,7 +158,9 @@
       "hardware_tested": false
     },
     "framework_cache_manually_modified": false,
-    "sdk_patches_applied": false
+    "sdk_patches_applied": false,
+    "verified_date_local": "2026-10-20",
+    "build_scope": "Clean host baseline followed by incremental RF startup/runtime handoff guard build; disposable credentials; not flashed"
   },
   "h2_rcp": {
     "compiled": true,
@@ -184,31 +200,41 @@
   },
   "zigbee_evidence": "zigbee/build-evidence.json",
   "source_sha256": {
-    "firmware/low-power/components/low_power_otbr/__init__.py": "1b661e7ae8cb060a5db0b92e5d9c4a10d19dca19c542999c31c5e513498f7e3b",
-    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
+    "firmware/components/rf_tx_startup/README.md": "b9aacefc2882cc3741c40ad785fd938d312d7c335ab01d1f8d2cd7e8c54e052d",
+    "firmware/components/rf_tx_startup/__init__.py": "387de8bd15b2b3fef7316ff92ac0c5a9dc5151b275cf1edfc4c0265715ff56e9",
+    "firmware/components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+    "firmware/components/rf_tx_startup/verify.py": "f52c602f81e7c6e4adce3148b4a459efa0840fb5821c1e1b7aeedd53d8297ea8",
+    "firmware/include/rf_radio_handoff.h": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+    "firmware/low-power/components/low_power_otbr/__init__.py": "6a29db3440bfe14913057ebc3b947e3ee413d3bb63a3bf7afce8364bfba0db8a",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e",
     "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
     "firmware/low-power/components/low_power_otbr/rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
     "firmware/low-power/components/low_power_otbr/thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
-    "firmware/low-power/components/low_power_otbr/uart_update.cpp": "8e4bf766409fde571222cc8f3aa8edbf95f5e38949f6106df0674fb08df51408",
+    "firmware/low-power/components/low_power_otbr/uart_update.cpp": "0563edba5c1bbeff04eb15d5c9cea270434494a48a2d2f5a4bb02b0e0ce5960b",
     "firmware/low-power/components/low_power_otbr/update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3",
-    "firmware/module-carrier/contract.py": "464ef9b69ab0473733faad951a8543a7ca78ab0403e4d1b823d3056cd83593d1",
+    "firmware/module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
+    "firmware/module-carrier/components/wk2132_uart/address_plan.py": "4b1e9e756cf090dc95704f0d1e4e2155ad13df5b932e7692b19a9e9a66c2d0c8",
+    "firmware/module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+    "firmware/module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef",
+    "firmware/module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+    "firmware/module-carrier/contract.py": "7dfd9e828b84b69b99276d092b1ea236994dba056e7619c3eb40c6623bd1fefd",
     "firmware/module-carrier/health.yaml": "e83a3fc4eddaf8942da7c8ac6278465aba2e7f2ceb747caa08480219347d8e4b",
-    "firmware/module-carrier/hub.yaml": "59812865a7677db2ebd414c57e0f2e1896f24b5eced7702efb521f17b318e890",
-    "firmware/module-carrier/pin-plan.json": "8cfa8877133ba7dd5ee486cb1ce27b0e4732e1f6deaa184297fd70dce0f1b416",
+    "firmware/module-carrier/hub.yaml": "0ef80fe0334958639dcd17407e71e7ee754677359507b7124a861430e0c25c4e",
+    "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae",
     "firmware/module-carrier/prepare.py": "ce4a1e3f0d80bd75ee6fa807108a04724d0a43895de9e7b9a6ca04d9722e62ff",
-    "firmware/module-carrier/prepare_h2.py": "da87195b0f11034b283f55dd4cf925272e1ae5d839e805a02353c42fb3f0abd0",
+    "firmware/module-carrier/prepare_h2.py": "dcf47ad9dbaef8da0fe19e704aa8c376e0500b4f8b8907446ab962aa43e61483",
     "firmware/module-carrier/updates/requirements.txt": "395d28581bb88cbc2dd5ffdf5e2fcbef768a030d1eb33dfd7340ed1c66be9166",
-    "firmware/module-carrier/updates/update.py": "9b4ce1dec74751d93e00e762c88d86fc75cf4d990b89c9fa11d7c1c668184690",
-    "firmware/module-carrier/validate.py": "8f155737bc99dece56ba257e3d9fbfa6055e777c39eb980d7dceb236663c8d6c",
-    "firmware/module-carrier/verify_h2.py": "956a87473d7d0b9dbfd3c73a631fdf35f6bf5e47c6cacd67de2928ffc50ea3f1",
-    "firmware/packages/rf-airbridge.yaml": "649e0fdf405b618b23a55360723b5813cc12647423e98d8e436b11bd5016a2ac"
+    "firmware/module-carrier/updates/update.py": "288f3c930346dd7d701e68862a0207a94ca311bb25db9c5e3785f53b5ca0013a",
+    "firmware/module-carrier/validate.py": "e2a94c2d5a8214bbd0e9790b73e06443510a47c42f6ccd8c55a3664ad1d31f33",
+    "firmware/module-carrier/verify_h2.py": "c2df9300f8376de4ce841328314eb9ffc2c7071f1eeac9c9b78c49360c10e8fb",
+    "firmware/packages/rf-airbridge.yaml": "97dbf32441424723b3bebf31f8b053d7f56dfeb3f575cb52b9c629ca1808fd9b"
   },
-  "scope": "Complete active Nano-M image and H2 ROM-UART23/24 RCP compiled. MG24 existing matching GBL unchanged. Offline tests cover guard, transport, update interlocks, artifact validation and localhost binary tunneling. No physical flashing, radio fault injection, or concurrent-load qualification.",
+  "scope": "Complete active Nano-M host rebuilt with corrected DFR0627 address and RF startup/runtime handoff guard. Prior H2 RCP and MG24 evidence retained unchanged, not rebuilt in this audit. Offline tests cover guard, transport, update interlocks, artifact validation and localhost binary tunneling. No physical flashing, radio fault injection, or concurrent-load qualification.",
   "sdk_source_modified": false,
   "thread_guard": {
     "implemented": true,
     "host_fault_tests_passed": 27,
-    "full_suite_tests_passed": 55,
+    "full_suite_tests_passed": 70,
     "rest_contract_tests_passed": 2,
     "physical_fault_injection_tested": false,
     "terminal_fault_behavior": "one complete host restart then persistent Thread quarantine",
@@ -229,27 +255,18 @@
     "readme": "updates/README.md"
   },
   "revalidation": {
-    "tested_date_local": "2026-10-18",
-    "method": "Revalidated existing compiled S3/H2 artifacts and generated source with current contract scripts; no recompilation or flashing",
-    "s3_artifact_hashes_unchanged": true,
+    "tested_date_local": "2026-10-20",
+    "method": "Clean S3 baseline then incremental final RF guard build; verified actual generated source, SDK sources, linked calls, image and partition contracts",
+    "s3_rebuilt": true,
+    "h2_rebuilt": false,
     "h2_artifact_hashes_unchanged": true,
-    "h2_rom_uart": {
-      "rx": 23,
-      "tx": 24,
-      "baud": 460800
-    },
+    "host_tests_passed": 70,
+    "shared_rf_root_tests_passed": 103,
+    "focused_startup_tests_after_header_fix": 18,
     "s3_generated_gpio_verified": 21,
     "ble_slots_retained": 3,
-    "host_tests_passed": 56,
-    "rest_contract_tests_passed": 2,
-    "zigbee_recipe_tests_passed": 9,
-    "validator_sha256": {
-      "firmware/module-carrier/contract.py": "7cc229d36d3872f501f060f1d9cdf0bde97505e7726f378dffe29dcfafa83cd0",
-      "firmware/module-carrier/prepare_h2.py": "dcf47ad9dbaef8da0fe19e704aa8c376e0500b4f8b8907446ab962aa43e61483",
-      "firmware/module-carrier/verify_h2.py": "c2df9300f8376de4ce841328314eb9ffc2c7071f1eeac9c9b78c49360c10e8fb",
-      "firmware/module-carrier/validate.py": "8f155737bc99dece56ba257e3d9fbfa6055e777c39eb980d7dceb236663c8d6c",
-      "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae"
-    }
+    "zigbee_recipe_tests_passed": 13,
+    "hardware_tested": false
   },
   "review_followup": {
     "date": "2026-10-18",

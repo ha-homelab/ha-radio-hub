@@ -2,40 +2,50 @@
   "compiled": true,
   "hardware_tested": false,
   "esp_idf": "5.5.5",
-  "board": "Unexpected Maker TinyC6[D]",
-  "board_sku": "TC6D-01",
-  "hardware_revision": "MC2-C",
+  "board": "Seeed Studio XIAO ESP32C6",
+  "board_sku": "102010636",
+  "hardware_revision": "MC2-D",
   "antenna": {
     "mode": "external",
     "rf_path": "U.FL",
-    "expander": "FXL6408",
-    "i2c_address": 67,
-    "sda": 6,
-    "scl": 7,
-    "select_pin": "XIO0",
+    "enable_gpio": 3,
+    "enable_level": 0,
+    "select_gpio": 14,
     "select_level": 1,
     "initialized_before_radio": true
   },
   "application_header": {
     "chip_id": 13,
-    "flash_bytes": 8388608,
+    "flash_bytes": 4194304,
     "project": "esp_ot_rcp",
-    "version": "mc2c-tc6d-ext-v1"
+    "version": "mc2d-xiaoc6-ext-v1"
   },
   "antenna_source_sha256": {
-    "tinyc6d_antenna.c": "ed8e460b63ce39016ab26f2df0dc32d0017fffe284ed28014c65fd4af9e9a9f1",
-    "tinyc6d_antenna.h": "b307bdd7e96f889b7b374f694b18a9f044e1fc340a301126c4055c61e6f06868"
+    "xiaoc6_antenna.c": "0efa74fe67470637ad9717c061a96d07ef12e9a01681d76d915ed70630f95e29",
+    "xiaoc6_antenna.h": "68608efdb7d0730b398464e75366c1df8663664463c4925912d9ebb60f9bc655"
   },
   "required_download_strap": {
     "gpio": 8,
     "level": 1,
-    "pullup_ohms": 10000,
+    "pullup_ohms": 5100,
     "rail": "C6_LOCAL_3V3",
-    "header_pin": "10"
+    "location": "XIAO onboard; no carrier resistor"
+  },
+  "required_recovery_harness": {
+    "reset": {
+      "carrier_pin": "J10.1",
+      "module_pad": "TP8",
+      "net": "EN"
+    },
+    "boot": {
+      "carrier_pin": "J10.2",
+      "module_pad": "TP2",
+      "gpio": 9
+    }
   },
   "sdkconfig_verified": {
     "CONFIG_IDF_TARGET": "\"esp32c6\"",
-    "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
+    "CONFIG_ESPTOOLPY_FLASHSIZE_4MB": "y",
     "CONFIG_OPENTHREAD_RCP_UART": "y",
     "CONFIG_OPENTHREAD_RADIO_NATIVE": "y",
     "CONFIG_OPENTHREAD_UART_PIN_MANUAL": "y",
@@ -46,7 +56,7 @@
     "CONFIG_ESP_CONSOLE_UART_NUM": "-1",
     "CONFIG_ESP_CONSOLE_SECONDARY_NONE": "y",
     "CONFIG_LOG_DEFAULT_LEVEL_ERROR": "y",
-    "CONFIG_OPENTHREAD_PLATFORM_INFO": "\"MC2-C TC6D-01 external antenna\""
+    "CONFIG_OPENTHREAD_PLATFORM_INFO": "\"MC2-D 102010636 external antenna\""
   },
   "uart": {
     "baud": 460800,
@@ -57,12 +67,12 @@
   "rom_uart_connected": true,
   "artifacts": {
     "esp_ot_rcp.bin": {
-      "bytes": 257552,
-      "sha256": "8126db54c7b70f8a0682c9153f562c58dfc48e2388ddf3d2b063743c78a0d3f2"
+      "bytes": 248560,
+      "sha256": "176c3ea2133c99e71ab8ffeb5089f11359318d68cb0de1e686251d198c3fd6a3"
     },
     "bootloader/bootloader.bin": {
       "bytes": 17168,
-      "sha256": "570a5144c3f5df8c6192db1635097bf45b1b219ace955bfe56609861222e1523"
+      "sha256": "da6fa387b9dfc7a76b2a28c1eeb56f228112f4502c8e0d5444a6f70308a3230b"
     },
     "partition_table/partition-table.bin": {
       "bytes": 3072,
@@ -70,12 +80,14 @@
     }
   },
   "recipe_sha256": {
-    "prepare_c6.py": "434151fe773d45db51af0c4c97f104b81aeb4bfd1ce3c44b13d53ec0d1a5bca4",
-    "verify_c6.py": "3f8d6bd669c04de3f4bb0f0df73438ec031ce1efb9f321d8e73d594c633cc596",
-    "pin-plan.json": "15d73b3387d5c6f7f7321c56096ad687d423ac0c698e6ce062108dea95e20955",
-    "mc2_contract.py": "b209f37138ce7b9387c018b79f5d4a1c8a9596795368bc51728a0934f92d71b9",
-    "c6_identity.py": "1add7655cd1387ff3202af73d914b0d4ff8fba54c53949403f72be6bf1d2db97",
-    "tinyc6d_antenna.c": "ed8e460b63ce39016ab26f2df0dc32d0017fffe284ed28014c65fd4af9e9a9f1",
-    "tinyc6d_antenna.h": "b307bdd7e96f889b7b374f694b18a9f044e1fc340a301126c4055c61e6f06868"
-  }
+    "prepare_c6.py": "4126a29b2154af3f57b8a714a41ba0a3a62dd41b192bef5bb0f338cb440bc46c",
+    "verify_c6.py": "873c346a7931f65f42cd68d093de8d2fb5b7ee33d9d64a5a690ce0f44c310aab",
+    "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
+    "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
+    "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
+    "xiaoc6_antenna.c": "0efa74fe67470637ad9717c061a96d07ef12e9a01681d76d915ed70630f95e29",
+    "xiaoc6_antenna.h": "68608efdb7d0730b398464e75366c1df8663664463c4925912d9ebb60f9bc655"
+  },
+  "verified_date_local": "2026-10-20",
+  "verification_scope": "Existing unchanged C6 images revalidated with current shared pin contract; C6 not rebuilt or flashed in this connection audit"
 }

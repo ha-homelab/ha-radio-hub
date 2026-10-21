@@ -1,15 +1,15 @@
-# FH1 — complete MC2-C radio-hub enclosure
+# FH1 — complete MC2-D radio-hub enclosure
 
-**Current Thread board: Unexpected Maker TinyC6[D], TC6D-01.** This package
-uses the longer Series D board outline and its corrected U.FL position from
-the manufacturer STEP model. It retains the 215 × 215 × 78 mm shell and checks
-the three separate 150 mm coax routes. The current **PWR1** print revision adds the RECOM regulator assembly and retains
-**Taoglas CAB.618.E** pigtails, round 6.8 mm SMA holes and a 3 mm fit coupon
-matching the wall. The original D-hole base is superseded. See the [source and fit ledger](sources.md#tinyc6d-revision-change)
-for the header alignment, nominal dimensions and remaining physical checks.
-Use the MC2-C RCP firmware to enable the Series D external antenna.
+**Current Thread board: Seeed Studio XIAO ESP32C6, pre-soldered SKU 102010636.**
+This **FH1-MC2-D-PWR1** package follows the MC2-D carrier and its compact XIAO
+footprint. It retains the 215 × 215 × 78 mm shell, RECOM power tray and the
+three separate 150 mm **Taoglas CAB.618.E** coax routes. The carrier must be
+MC2-D; a TinyC6 board and its firmware are not interchangeable with this build.
+See the [source and fit ledger](sources.md#xiao-esp32c6-revision-change) for the
+header stack, nominal dimensions and remaining physical checks. Use the MC2-D
+RCP firmware to select the XIAO's external antenna.
 
-This package adds physical accommodation for the **whole hub**: the MC2-C
+This package adds physical accommodation for the **whole hub**: the MC2-D
 carrier, Zooz ZAC93, DFR0627 UART bridge, CC1101, isolated PoE splitter, 3.3 V
 regulator, DC adapter, fuse, LD2450 and an attached BME680 pod. It supersedes the
 smaller carrier-only housing for a complete assembly. It is an **engineering
@@ -28,12 +28,35 @@ mating-side connector diagram.
 
 ![Numbered component layout](layout.svg)
 
+All three radios use factory male headers soldered directly to the carrier.
+The model allocates a nominal 2.54 mm gap below each radio board and routes
+coax at z=32 mm before dropping to the connector. The factory spacer and actual
+RF socket heights still require measurement; see the
+[stack and coax evidence](sources.md#factory-header-stack-and-coax-approach).
+
+## XIAO ESP32C6 factory-header mounting
+
+![XIAO ESP32C6 mounting and underside service access](thread-assembly-preview.png)
+
+Buy **102010636 with factory-soldered male headers**. Solder those pins directly
+into the MC2-D carrier; no female sockets are added. The nominal 2.54 mm header
+plastic leaves a gap for two insulated 30 AWG EN and BOOT leads to J10. Keep
+wire outer diameter at most 0.8 mm and underside solder joints within 1.5 mm
+of the XIAO PCB. Measure the actual header gap before fitting the board.
+
+Make the two fine-wire joints before seating U2. Wires stay **above the carrier**
+and emerge at the lower edge of the XIAO toward J10. The window below the
+service pads provides inspection/solder-tool access; it is not a wire route
+under the carrier. The enclosure has no support beneath that window. Keep
+battery pads unconnected. Program the loose board over USB before soldering;
+post-assembly USB plug insertion has not been qualified.
+
 ## RECOM power module and its input capacitor
 
 ![RECOM regulator and capacitor on their removable perfboard tray](power-assembly-preview.png)
 
 **PWR1 replaces the Pololu mount with a 24 × 24 mm perfboard tray.** The
-carrier remains MC2-C; J2 still carries fused 5 V, ground, 3.3 V return and
+carrier remains MC2-D; J2 still carries fused 5 V, ground, 3.3 V return and
 ground. Both ground wires terminate at the common regulator ground node.
 The exact parts are **RECOM R-78K3.3-1.0** and **Panasonic EEU-FS1H270**,
 27 µF / 50 V, with the capacitor at the regulator input. The converter does
@@ -74,7 +97,7 @@ or plugging in the harness.
 
 ## Print package
 
-**[Download the complete FH1 print ZIP](FH1-MC2-C-PWR1-print-package.zip)** — all 14
+**[Download the complete FH1 print ZIP](FH1-MC2-D-PWR1-print-package.zip)** — all 14
 current STL files, a [print-first checklist](PRINT-FIRST.txt), and a
 [machine-readable quantity/hash manifest](print-manifest.json). The archive
 contains 13 installed pieces, one trial coupon and one optional blank. **Print
@@ -194,7 +217,7 @@ those during the unpowered dry fit.
 
 ## Evidence and remaining physical checks
 
-The generator reads the current native MC2-C carrier geometry and
+The generator reads the current native MC2-D carrier geometry and
 `components.json`, rather than assuming that all boards are interchangeable.
 `verification.json` records the modelled component bounds, keepouts, mount
 positions, cable-route allowances, print-part dimensions and source hashes.

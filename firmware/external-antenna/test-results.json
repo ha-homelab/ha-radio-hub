@@ -1,29 +1,36 @@
 {
   "hardware_tested": false,
   "host": "macOS arm64",
-  "date": "2026-10-19",
-  "profile": "MC2-C classic ESP32 with TinyC6[D]",
+  "date": "2026-10-20",
+  "profile": "MC2-D classic ESP32 with XIAO ESP32C6",
   "commands": [
     {
       "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/external-antenna/tests -v",
-      "passed": 35,
-      "skipped": 0
+      "passed": 36,
+      "skipped": 0,
+      "verified_date": "2026-10-20",
+      "duration_seconds": 4.217
     },
     {
       "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
-      "passed": 62,
-      "skipped": 0
+      "passed": 70,
+      "skipped": 0,
+      "verified_date": "2026-10-20"
     },
     {
       "command": "RF_CPP_SANITIZERS=1 /path/to/pinned/esphome-venv/bin/python -m unittest discover -s tests -v",
-      "passed": 83,
-      "skipped": 0
+      "passed": 103,
+      "skipped": 0,
+      "verified_date": "2026-10-20"
     },
     {
       "command": "python3 -m unittest discover -s firmware/module-carrier/zigbee -p test_recipe.py -v",
       "passed": 13,
-      "skipped": 0
+      "skipped": 0,
+      "verified_date": "2026-10-20"
     }
   ],
-  "scope": "Host-compiled production antenna, fault/update helpers, RMT lifecycle, serial transport and real loopback socket tests. C6[D] selector cold/warm startup, all I2C failure positions, wrong expander identity and three output configuration readback failures were checked. Input Status is deliberately not treated as output feedback. Old C6 metadata and renamed old binaries are rejected. No radio, deployed ESPHome endpoint or Home Assistant was contacted."
+  "scope": "Host-compiled production antenna, fault/update helpers, RMT lifecycle, serial transport and real loopback socket tests. XIAO GPIO3/GPIO14 RF selection was checked for cold/warm startup, every GPIO API failure, settling delay and both pin readback failures. GPIO readback does not verify RF connectivity. Wrong 8 MB C6 images, earlier board identities, missing onboard GPIO8 strap metadata and missing EN/BOOT service-lead metadata are rejected. No radio, deployed ESPHome endpoint or Home Assistant was contacted. Manufacturer-decoded DFR0627 address blocks are checked for other devices on the same I2C bus. Actual ESPHome rejects the former 0x70 base with either BME680 address; corrected MC2-D and historical MC1 profiles select IA1=1/IA0=0, UART1 register 0x50/FIFO 0x51. The RF startup wrapper is exercised with the pinned IDF output-order double, including controls reproducing the original LOW drive and init-level-only push-pull HIGH. All 11 native startup scenarios and 7 source/version/configuration guard tests pass. Actual ESPHome also validates the standalone Ethernet RF profile and the migrated 15-sensor fixture. The actual YAML scheduler also exercises failed Hi-Z readback, IDLE/TX entry, inconsistent MARCSTATE reads, and failed completion IDLE/RX return; no waveform starts after a failed preparation and receive capture cannot resume after a failed return. Build evidence rejects both a stale prepared recipe and a stale compiled WK2132 source copy; current RF and WK inputs are bound into fabrication package source hashes.",
+  "focused_startup_tests_after_header_fix": 18,
+  "focused_scheduler_tests_after_pointer_id_fix": 7
 }

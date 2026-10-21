@@ -1,5 +1,7 @@
 """Fault-injection tests for the offboard regulator's electrical boundaries."""
 import importlib.util
+import csv
+import io
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
@@ -24,6 +26,15 @@ class PowerContractTests(unittest.TestCase):
         self.assertEqual(self.validate(), {'reserve_ma': 400, 'rated_ma': 1000, 'hardware_measured': False})
         power.validate_companions(self.data, power.read_json(HERE.parents[1] / 'mechanical/full-hub/components.json'), power.read_json(HERE / 'procurement.json'))
 
+    def test_host_diode_reintroduction_and_assembled_usb_are_rejected(self):
+        next(p for p in self.parts if p['ref'] == 'D1')['model'] = '1N5819 USB supply isolation'
+        with self.assertRaisesRegex(ValueError, 'wire link'):
+            self.validate()
+        self.setUp()
+        self.data['host_feed']['powered_usb_allowed_when_assembled'] = True
+        with self.assertRaisesRegex(ValueError, 'PoE-only'):
+            self.validate()
+
     def test_reversed_sip_pinout_is_rejected(self):
         self.data['regulator']['pin_map']['1'] = 'VOUT'
         with self.assertRaisesRegex(ValueError, 'SIP pin map'):
@@ -41,7 +52,7 @@ class PowerContractTests(unittest.TestCase):
             self.validate()
 
     def test_radio_regulator_join_and_new_unbudgeted_load_are_rejected(self):
-        next(p for p in self.parts if p['ref'] == 'U2')['pins']['4'] = '+3V3'
+        next(p for p in self.parts if p['ref'] == 'U2')['pins']['12'] = '+3V3'
         with self.assertRaisesRegex(ValueError, 'local regulator'):
             self.validate()
         self.setUp()
@@ -93,6 +104,44 @@ class PowerContractTests(unittest.TestCase):
         self.assertTrue(any('COMPONENT SIDE' in text for text in texts))
         self.assertTrue(any('SOLDER SIDE' in text for text in texts))
         self.assertTrue(any('Crossing wires do NOT join' in text for text in texts))
+
+    def test_missing_local_rail_check_and_wrong_probe_are_rejected(self):
+        rows = self.data['acceptance']['measurement_plan']['rows']
+        rows[:] = [r for r in rows if r['id'] != 'host_local_3v3']
+        with self.assertRaisesRegex(ValueError, 'missing or duplicated'):
+            self.validate()
+        self.setUp()
+        row = next(r for r in self.data['acceptance']['measurement_plan']['rows'] if r['id'] == 'c6_local_3v3')
+        row['positive_probe'] = 'J2.3 peripheral 3V3'
+        with self.assertRaisesRegex(ValueError, 'own regulator'):
+            self.validate()
+
+    def test_recom_cutoff_cannot_substitute_for_host_dropout_assessment(self):
+        row = next(r for r in self.data['acceptance']['measurement_plan']['rows'] if r['id'] == 'host_regulator_input')
+        row['minimum_v'] = 4.5
+        with self.assertRaisesRegex(ValueError, 'dropout assessment'):
+            self.validate()
+
+    def test_invalid_boot_threshold_is_rejected(self):
+        row = next(r for r in self.data['acceptance']['measurement_plan']['rows'] if r['id'] == 'host_gpio12_boot')
+        row['maximum_fraction_of_local_vdd'] = 0.75
+        with self.assertRaisesRegex(ValueError, 'boot LOW'):
+            self.validate()
+
+    def test_blank_measurement_template_and_filled_result_preservation(self):
+        rendered = power.render_measurements(self.data)
+        self.assertEqual(rendered, (HERE / 'power-measurements.csv').read_text())
+        rows = list(csv.DictReader(io.StringIO(rendered)))
+        self.assertEqual(len(rows), 9)
+        self.assertTrue(all(r['status'] == 'not_run' and not r['measured_min_v'] for r in rows))
+        power.require_blank_worksheet(rendered)
+        rows[0]['measured_min_v'] = '4.9'
+        output = io.StringIO()
+        writer = csv.DictWriter(output, fieldnames=rows[0])
+        writer.writeheader()
+        writer.writerows(rows)
+        with self.assertRaisesRegex(ValueError, 'save filled measurement'):
+            power.require_blank_worksheet(output.getvalue())
 
 
 if __name__ == '__main__':

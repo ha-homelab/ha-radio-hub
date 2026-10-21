@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""Check the offboard power substitution against the unchanged MC2-C interface."""
+"""Check the offboard power substitution against the unchanged MC2-D interface."""
 import argparse
+import csv
+import io
 import json
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -35,8 +37,10 @@ def validate(data, parts, connectors, harnesses):
         require(harness['net'] == net and harness['device_pin'] == regulator_pin, 'J2 public harness mapping mismatch')
     require(parts['J1']['pins'] == {'1': '+5V', '2': 'GND'}, 'fused input must remain 5 V')
     require(data['input_connection']['carrier_net'] == '+5V' and data['input_connection']['before_radio_isolation_diodes'], 'buck must use fused 5 V before radio diodes')
-    for ref, supply, pin in [('U1', '+5V_HOST', 'J2.19'), ('U2', '+5V_C6', '3'), ('U3', '+5V_ZB', '14')]:
+    for ref, supply, pin in [('U1', '+5V_HOST', 'J2.19'), ('U2', '+5V_C6', '14'), ('U3', '+5V_ZB', '14')]:
         require(parts[ref]['pins'][pin] == supply and '+3V3' not in parts[ref]['pins'].values(), f'{ref} local regulator must not join peripheral rail')
+    require(parts['D1']['model'] == '22AWG WIRE LINK - NO DIODE' and parts['D1']['footprint'] == 'MC2:Wire_Link_P7.62mm', 'host D1 must be a wire link, not a dropout-producing diode')
+    require(data['host_feed']['assembly'] == '22AWG insulated wire link' and not data['host_feed']['powered_usb_allowed_when_assembled'], 'host link requires PoE-only assembled operation')
     for ref, supply in [('D1', '+5V_HOST'), ('D2', '+5V_C6'), ('D3', '+5V_ZB')]:
         require(parts[ref]['pins'] == {'1': supply, '2': '+5V'}, f'{ref} isolation/input boundary changed')
     require(parts['J6']['pins']['1'] == '+5V', 'radar must remain on 5 V')
@@ -55,8 +59,60 @@ def validate(data, parts, connectors, harnesses):
     cap = data['input_capacitor']
     require(cap['capacitance_uf'] == 27 and cap['voltage_rating_v'] >= 10, 'hard-plug input capacitor missing or unsuitable')
     require((cap['positive_regulator_pin'], cap['negative_regulator_pin']) == ('1', '2'), 'input capacitor polarity/rail mismatch')
+    validate_measurement_plan(data, parts)
     validate_perfboard(data)
     return {'reserve_ma': reserve, 'rated_ma': rated, 'hardware_measured': False}
+
+
+def validate_measurement_plan(data, parts):
+    """Keep the unmeasured bench gate separate from schematic/build evidence."""
+    plan = data['acceptance']['measurement_plan']
+    require(plan['status'] == 'not_run', 'measurement plan is not physical qualification')
+    require(plan['worksheet'] == 'power-measurements.csv', 'measurement worksheet path changed')
+    rows = {row['id']: row for row in plan['rows']}
+    expected = {'recom_input', 'peripheral_output', 'zac93_local_supply',
+                'host_regulator_input', 'host_local_3v3', 'c6_local_3v3',
+                'mg24_local_3v3', 'host_gpio12_boot', 'host_gpio2_download'}
+    require(set(rows) == expected and len(rows) == len(plan['rows']), 'missing or duplicated rail/strap measurement')
+    for key, ref, pin, ground in [('host_local_3v3', 'U1', 'J2.1', 'J2.14'),
+                                   ('c6_local_3v3', 'U2', '12', '13'),
+                                   ('mg24_local_3v3', 'U3', '12', '13')]:
+        require(rows[key]['positive_probe'] == f'{ref}.{pin} local 3V3', 'local rail measurement must probe its own regulator')
+        require(rows[key]['ground_probe'] == f'{ref}.{ground} GND', 'local rail measurement ground mismatch')
+        require(parts[ref]['pins'][pin] is None and parts[ref]['pins'][ground] == 'GND', 'local rail test point must remain unconnected except by the meter')
+    for key in ['peripheral_output', 'zac93_local_supply', 'host_local_3v3', 'c6_local_3v3', 'mg24_local_3v3']:
+        require(rows[key]['kind'] == 'regulated_rail' and rows[key]['acceptance_v'] == [3.135, 3.465], '3.3 V measurement target must include each independent rail')
+    require(rows['recom_input']['minimum_v'] >= data['regulator']['input_v'][0], 'measurement plan permits RECOM undervoltage')
+    host = rows['host_regulator_input']
+    require(host['kind'] == 'regulator_headroom' and 'minimum_v' not in host, 'host input needs a fitted-regulator dropout assessment, not a RECOM cutoff')
+    require(host['positive_probe'] == 'U1.J2.19 / D1 link pad 1 / EXT_5V', 'host dropout must be measured after D1')
+    for key, probe in [('host_gpio12_boot', 'U1.J2.13 GPIO12 / R4.2'),
+                       ('host_gpio2_download', 'U1.J3.15 GPIO2 / R5.2')]:
+        require(rows[key]['kind'] == 'boot_low' and rows[key]['positive_probe'] == probe, 'boot measurement endpoint mismatch')
+        require(rows[key]['maximum_fraction_of_local_vdd'] == 0.25, 'boot LOW limit must use local VDD and the datasheet threshold')
+
+
+def render_measurements(data):
+    """Export a blank copyable checklist; never overwrite an operator's results."""
+    fields = ['id', 'positive_probe', 'ground_probe', 'conditions', 'acceptance',
+              'source', 'measured_min_v', 'measured_max_v', 'load_ma',
+              'temperature_c', 'waveform_file', 'status', 'notes']
+    stream = io.StringIO(newline='')
+    writer = csv.DictWriter(stream, fieldnames=fields, lineterminator='\n')
+    writer.writeheader()
+    for row in data['acceptance']['measurement_plan']['rows']:
+        record = {key: row[key] for key in fields if key in row}
+        record['status'] = 'not_run'
+        writer.writerow(record)
+    return stream.getvalue()
+
+
+def require_blank_worksheet(text):
+    for row in csv.DictReader(io.StringIO(text)):
+        entered = any(row.get(key, '') for key in ['measured_min_v', 'measured_max_v',
+                      'load_ma', 'temperature_c', 'waveform_file', 'notes'])
+        require(not entered and row.get('status', '') in ['', 'not_run'],
+                'save filled measurement results under another name before regenerating the blank worksheet')
 
 
 def validate_perfboard(data):
@@ -180,16 +236,21 @@ def render_perfboard(data):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--render', action='store_true', help='regenerate the perfboard illustration after checking')
+    parser.add_argument('--render', action='store_true', help='regenerate the perfboard illustration and blank bench worksheet after checking')
     args=parser.parse_args()
     data=read_json(HERE/'power-design.json')
     result=validate(data, read_json(HERE/'cad/design.json')['parts'], read_json(HERE/'cad/connectors.json')['connectors'], read_json(HERE/'harnesses.json')['harnesses'])
     validate_companions(data, read_json(HERE.parents[1]/'mechanical/full-hub/components.json'), read_json(HERE/'procurement.json'))
     rendered=render_perfboard(data)
+    worksheet=render_measurements(data)
     if args.render:
+        if (HERE/'power-measurements.csv').exists():
+            require_blank_worksheet((HERE/'power-measurements.csv').read_text())
         (HERE/'power-perfboard.svg').write_text(rendered)
+        (HERE/'power-measurements.csv').write_text(worksheet)
     else:
         require((HERE/'power-perfboard.svg').read_text() == rendered, 'perfboard illustration stale; run power_design.py --render')
+        require((HERE/'power-measurements.csv').read_text() == worksheet, 'blank measurement worksheet stale; save filled results under another name before running power_design.py --render')
     print(json.dumps(result, sort_keys=True))
 
 

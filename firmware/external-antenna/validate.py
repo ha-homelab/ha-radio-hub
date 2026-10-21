@@ -2,12 +2,44 @@
 """Validate or compile MC2 in an isolated directory. Never upload to a device."""
 import argparse
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import subprocess
 from prepare import prepare, load_legacy
 from mc2_contract import (verify_generated, verify_shared_spi_sources, verify_partitions,
                           actual_partition_csv, verify_uart_sources, verify_app_header)
+
+RECIPE_INPUTS = (
+    "hub.yaml", "health.yaml", "pin-plan.json", "mc2_contract.py", "c6_identity.py", "validate.py",
+    "../packages/rf-airbridge.yaml", "../include/rf_radio_handoff.h",
+    "../components/rf_tx_startup/__init__.py", "../components/rf_tx_startup/rf_tx_startup.cpp",
+    "../components/rf_tx_startup/verify.py",
+    "../module-carrier/components/wk2132_uart/__init__.py",
+    "../module-carrier/components/wk2132_uart/address_plan.py",
+    "../module-carrier/components/wk2132_uart/transport.h",
+    "../module-carrier/components/wk2132_uart/wk2132_uart.h",
+    "../module-carrier/components/wk2132_uart/wk2132_uart.cpp",
+)
+
+def verify_recipe_inputs(prepared: Path, build_root: Path):
+    """Bind evidence to the prepared inputs and actual compiled local sources."""
+    result = {}
+    for name in RECIPE_INPUTS:
+        data = (prepared / name).read_bytes()
+        if data != (Path(__file__).parent / name).read_bytes():
+            raise RuntimeError("Prepared recipe differs from current source: " + name)
+        result[name] = hashlib.sha256(data).hexdigest()
+    compiled = {
+        "../include/rf_radio_handoff.h": "rf_radio_handoff.h",
+        "../components/rf_tx_startup/rf_tx_startup.cpp": "esphome/components/rf_tx_startup/rf_tx_startup.cpp",
+    }
+    for name in ("transport.h", "wk2132_uart.h", "wk2132_uart.cpp"):
+        compiled["../module-carrier/components/wk2132_uart/" + name] = "esphome/components/wk2132_uart/" + name
+    for name, destination in compiled.items():
+        if (prepared / name).read_bytes() != (build_root / "src" / destination).read_bytes():
+            raise RuntimeError("Compiled local source differs from prepared recipe: " + name)
+    return result
 
 def verify_service_gpio(source: str):
     # Check the source actually copied into the image, not just the YAML pins.
@@ -52,6 +84,11 @@ def verify(profile: Path):
     for key,value in required.items():
         if config.get(key)!=value:
             raise RuntimeError(f"Required option missing: {key}={value}")
+    startup_path=Path(__file__).resolve().parents[1]/"components/rf_tx_startup/verify.py"
+    startup_spec=importlib.util.spec_from_file_location("rf_startup_verify",startup_path)
+    startup=importlib.util.module_from_spec(startup_spec)
+    startup_spec.loader.exec_module(startup)
+    startup_checks=startup.verify(root, 25)
     generated=(root/"src/main.cpp").read_text()
     pin_checks=verify_generated(generated)
     spi_checks=verify_shared_spi_sources(root/"src/esphome")
@@ -71,8 +108,8 @@ def verify(profile: Path):
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.9.1","esp_idf":"5.5.5",
-            "profile":"MC2-C classic ESP32 external antenna", "board":"ESP32-DevKitC-VIE",
-            "sdkconfig_verified":required,"artifacts":artifacts,"c6_service_gpio":service,
+            "profile":"MC2-D classic ESP32 external antenna", "board":"ESP32-DevKitC-VIE",
+            "rf_tx_startup":startup_checks,"sdkconfig_verified":required,"artifacts":artifacts,"c6_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "uart_source_sha256":uart_checks,"application_header":header,
             "partitions":partitions,"thread_source_sha256":source_hashes,
@@ -86,8 +123,7 @@ def verify(profile: Path):
                          "requires_durable_maintenance":True,"max_arm_ms":60000,"max_session_ms":600000,
                          "hardware_tested":False},
             "framework_cache_manually_modified":False,"sdk_patches_applied":False}
-    result["recipe_sha256"] = {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
-                               for name in ("hub.yaml", "health.yaml", "pin-plan.json", "mc2_contract.py", "c6_identity.py", "validate.py")}
+    result["recipe_sha256"] = verify_recipe_inputs(profile.parent, root)
     (profile.parent/"build-result.json").write_text(json.dumps(result,indent=2)+"\n")
     return result
 

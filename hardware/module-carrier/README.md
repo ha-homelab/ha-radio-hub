@@ -2,6 +2,11 @@
 
 > **Historical MC1 revision.** The current [MC2 external-antenna build](../../docs/external-antennas.md) uses different modules, pins, flash layout and housing. Keep this material with MC1 boards only.
 
+> **I²C correction, 20 October 2026:** the current MC1 firmware now requires
+> DFR0627 **A1=1/A0=0**, UART1 **0x50/0x51**; reserve **0x50–0x57**.
+> Older frozen drawings/ledgers showing A1=A0=1 conflict with BME680 at0x77.
+> Use the corrected switch setting; carrier copper does not change.
+
 
 MC1 is the project's **single current custom PCB**: a carrier for finished
 S3, H2, MG24 and WIZ850io modules. Male module pins are soldered directly into

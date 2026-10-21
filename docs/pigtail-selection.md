@@ -1,10 +1,10 @@
-# MC2-C pigtail selection
+# MC2-D pigtail selection
 
 Checked **19 October 2026** for one prototype delivered to the United States.
 Buy **3 × Taoglas CAB.618.E**, one each for BLE, Thread and Zigbee. Keep the
 three **TE/Linx ANT-2.4-LCW-SMA** antennas. This replaces the previously selected
 Amphenol cables without changing the carrier PCB or radio firmware. Use the
-matching **FH1-MC2-C-PWR1** enclosure and connector coupon.
+matching **FH1-MC2-D-PWR1** enclosure and connector coupon.
 
 ## Exact part and observed cost
 
@@ -82,4 +82,4 @@ washer and nut. The drawing review does not replace this first-article fit
 check or an in-home BLE/Thread/Zigbee coverage test.
 
 See the [radio shopping list](mc2-shopping.md) for the remaining radio parts
-and the [PCB ordering guide](pcb-order.md) for the unchanged MC2-C Gerbers.
+and the [PCB ordering guide](pcb-order.md) for the MC2-D Gerbers and revised XIAO layout.

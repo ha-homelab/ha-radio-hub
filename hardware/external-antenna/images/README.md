@@ -1,9 +1,9 @@
 # MC2-B appearance concepts
 
-These raster concepts predate the **MC2-C / TinyC6[D]** revision. They illustrate
+These raster concepts predate the current **MC2-D / XIAO ESP32C6** revision. They illustrate
 the general arrangement, not the current module outline or U.FL position.
 Use the [current CAD assembly](../cad/assembly-top.svg) and
-[full-hub layout](../../../mechanical/full-hub/layout.svg) to build MC2-C.
+[full-hub layout](../../../mechanical/full-hub/layout.svg) to build MC2-D.
 
 The current README uses two new **AI-generated appearance concepts**, made on
 18 October 2026 with the built-in `image_gen` tool:

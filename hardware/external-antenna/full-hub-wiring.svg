@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2330" viewBox="0 0 1600 2330" role="img" aria-labelledby="title desc">
-<title id="title">MC2-C complete hub wiring and ZAC93 installation</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2630" viewBox="0 0 1600 2630" role="img" aria-labelledby="title desc">
+<title id="title">MC2-D complete hub wiring and ZAC93 installation</title>
 <desc id="desc">Electrical overview with isolated PoE power, five remapped ZAC93 connections through a DFR0627 UART bridge, CC1101, LD2450, BME680, and three external 2.4 GHz antennas. This is not a connector mating-side view.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#52677b"/></marker></defs>
-<rect width="1600" height="2330" fill="#f1f5f9"/>
+<rect width="1600" height="2630" fill="#f1f5f9"/>
 <style>text{font-family:Arial,Helvetica,sans-serif;fill:#14263b}.title{font-size:38px;font-weight:700}.section{font-size:28px;font-weight:700}.label{font-size:24px;font-weight:700}.body{font-size:21px}.small{font-size:18px}.mono{font-family:Menlo,Consolas,monospace;font-size:21px}.muted{fill:#52677b}.white{fill:white}</style>
-<text x="44" y="62" class="title">MC2-C · the complete hub, connected</text>
+<text x="44" y="62" class="title">MC2-D · the complete hub, connected</text>
 <text x="44" y="99" class="body">Carrier pad numbers are not the physical pin numbers on the external modules.</text>
 <rect x="32" y="124" width="1536" height="303" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
 <text x="58" y="166" class="section">1  Power + wired Ethernet</text>
@@ -37,8 +37,8 @@
 <rect x="580" y="553" width="460" height="175" rx="16" fill="#eaf5f5" stroke="#abd2d2" stroke-width="2"/>
 <text x="600" y="590" class="label">DFR0627 / WK2132</text>
 <text x="600" y="627" class="small">D=SDA · C=SCL · +=3.3 V · −=GND</text>
-<text x="600" y="662" class="small">UART1: 115200 8N1 · IA1=1 IA0=1</text>
-<text x="600" y="697" class="small">I²C register 0x70 · FIFO 0x71</text>
+<text x="600" y="662" class="small">UART1: 115200 8N1 · IA1=1 IA0=0</text>
+<text x="600" y="697" class="small">Register 0x50 · FIFO 0x51 · reserve 0x50–57</text>
 <path d="M498 647 L570 647" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
 <text x="503" y="626" class="small">I²C</text>
 <rect x="1130" y="553" width="400" height="175" rx="16" fill="#fff1cf" stroke="#ddba61" stroke-width="2"/>
@@ -118,7 +118,7 @@
 <text x="76" y="1820" class="small">BLE 4.2 + Ethernet host</text>
 <text x="76" y="1856" class="small">U.FL → BLE bulkhead</text>
 <rect x="432" y="1740" width="352" height="146" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
-<text x="448" y="1778" class="body">U2 · TinyC6[D]</text>
+<text x="448" y="1778" class="body">U2 · XIAO ESP32C6</text>
 <text x="448" y="1820" class="small">Dedicated Thread RCP</text>
 <text x="448" y="1856" class="small">U.FL → THREAD bulkhead</text>
 <rect x="804" y="1740" width="352" height="146" rx="16" fill="#edf2f7" stroke="#d5dee8" stroke-width="2"/>
@@ -131,12 +131,19 @@
 <text x="1192" y="1856" class="small">CC1101: retained 433 MHz</text>
 <text x="60" y="1920" class="body">Three independent 2.4 GHz paths: TE ANT-2.4-LCW-SMA + Taoglas CAB.618.E pigtails.</text>
 <text x="60" y="1951" class="small">No combiner. No coax or retaining strap over the ZAC93 PCB antenna or the LD2450 active face.</text>
-<rect x="32" y="1987" width="1536" height="260" rx="16" fill="#142c47" stroke="#142c47" stroke-width="2"/>
-<text x="58" y="2028" class="section white">6  Before closing the case</text>
-<text x="60" y="2070" class="body white">Check each harness with power off. First measure the disconnected 5 V and 3.3 V rails.</text>
-<text x="60" y="2108" class="body white">Secure every module and cable; keep converter heat away from the external BME680 pod.</text>
-<text x="60" y="2146" class="body white">Z-Wave JS: esphome://mc2-classic-hub.local:6053?key=URL_ENCODED_API_KEY</text>
-<text x="60" y="2184" class="body white">Zigbee uses TCP 6638. HA Z-Wave connects to the Z-Wave JS server, not directly to this port.</text>
-<text x="44" y="2275" class="small muted">Source: MC2-C native CAD connector ledger + pinned firmware. Electrical map only; assembled hardware remains to be tested.</text>
-<text x="60" y="2305" class="small">PWR1: R-78K3.3-1.0 + local 27 µF input capacitor. See power-wiring.svg for polarity and exact connections.</text>
+<rect x="32" y="1987" width="1536" height="280" rx="16" fill="#fff" stroke="#d5dee8" stroke-width="2"/>
+<text x="58" y="2028" class="section">6  XIAO recovery · two underside wires in addition to factory headers</text>
+<text x="60" y="2075" class="mono">Host GPIO27 → J10.1 THREAD_EN   → XIAO TP8 / EN (RESET)</text>
+<text x="60" y="2117" class="mono">Host GPIO15 → J10.2 THREAD_BOOT → XIAO TP2 / GPIO9 (BOOT)</text>
+<text x="60" y="2161" class="body">Short insulated 30 AWG leads above carrier; underside access via service window; add strain relief.</text>
+<text x="60" y="2200" class="body">U2 header: 7 TX16 · 8 RX17 · 13 GND · 14 VBUS. Pad 12 (local 3V3) unconnected.</text>
+<text x="60" y="2239" class="small">Use the bottom-view detail; this is a logical diagram. Onboard GPIO8 pull-up replaces R3. Never apply 5 V to test pads.</text>
+<rect x="32" y="2287" width="1536" height="260" rx="16" fill="#142c47" stroke="#142c47" stroke-width="2"/>
+<text x="58" y="2328" class="section white">7  Before closing the case</text>
+<text x="60" y="2370" class="body white">Check each harness with power off. First measure the disconnected 5 V and 3.3 V rails.</text>
+<text x="60" y="2408" class="body white">Secure every module and cable; keep converter heat away from the external BME680 pod.</text>
+<text x="60" y="2446" class="body white">Z-Wave JS: esphome://mc2-classic-hub.local:6053?key=URL_ENCODED_API_KEY</text>
+<text x="60" y="2484" class="body white">Zigbee uses TCP 6638. HA Z-Wave connects to the Z-Wave JS server, not directly to this port.</text>
+<text x="44" y="2575" class="small muted">Source: MC2-D native CAD connector ledger + pinned firmware. Electrical map only; assembled hardware remains to be tested.</text>
+<text x="60" y="2605" class="small">PWR1: R-78K3.3-1.0 + local 27 µF input capacitor. See power-wiring.svg for polarity and exact connections.</text>
 </svg>
