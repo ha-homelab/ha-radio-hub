@@ -1,6 +1,7 @@
-# MC2-C prototype fabrication package
+# MC2-D prototype fabrication package
 
-Upload **MC2-C-prototype-gerbers.zip** for a bare-board prototype order.
+Upload **MC2-D-prototype-gerbers.zip** for a bare-board prototype order.
+This revision adds a **6 × 10.9 mm internal routed opening with R1.5 mm corners** for XIAO recovery-pad access. The old TinyC6 MC2-C archive is incompatible and is retained only in its historical release. Obtain the manufacturer's DFM acceptance and a new checkout quote including this opening; the previous five-board price is a reference, not a binding quote for this revision.
 Use the [ordering instructions](../../../docs/pcb-order.md) for finish,
 dimensions and the five-board recommendation. `manifest.json` records the
 native source and evidence hashes, fabrication settings and every archive member.

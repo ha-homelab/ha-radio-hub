@@ -2,11 +2,11 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wire the hub · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html" aria-current="page">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/full-hub-assembly.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</a></li><li><a href="#install-the-zac93">Install the ZAC93</a></li><li><a href="#fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</a></li><li><a href="#power-and-ethernet">Power and Ethernet</a></li><li><a href="#other-off-carrier-modules">Other off-carrier modules</a></li><li><a href="#mounting-and-cable-order">Mounting and cable order</a></li><li><a href="#first-power-and-home-assistant">First power and Home Assistant</a></li></ul></details><article class="article"><h1 id="mc2-c-full-hub-assembly-and-z-wave-installation">MC2-C full-hub assembly and Z-Wave installation</h1>
-<p>The <strong>Zooz ZAC93 sits in its own printed cradle beside the MC2-C carrier</strong>. It
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/full-hub-assembly.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</a></li><li><a href="#install-the-zac93">Install the ZAC93</a></li><li><a href="#fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</a></li><li><a href="#power-and-ethernet">Power and Ethernet</a></li><li><a href="#thread-recovery-leads">Thread recovery leads</a></li><li><a href="#other-off-carrier-modules">Other off-carrier modules</a></li><li><a href="#mounting-and-cable-order">Mounting and cable order</a></li><li><a href="#first-power-and-home-assistant">First power and Home Assistant</a></li></ul></details><article class="article"><h1 id="mc2-d-full-hub-assembly-and-z-wave-installation">MC2-D full-hub assembly and Z-Wave installation</h1>
+<p>The <strong>Zooz ZAC93 sits in its own printed cradle beside the MC2-D carrier</strong>. It
 connects by a five-wire harness to <strong>carrier J4</strong>, with serial data passing through
 <strong>DFRobot DFR0627 / WK2132 on carrier J3</strong>. It does not plug onto the ESP32, into
 USB, or directly onto J4: the ZAC93 has a different <strong>2×5 socket</strong>.</p>
@@ -16,7 +16,7 @@ The new enclosure provides separate locations and restraints for the carrier,
 ZAC93, UART bridge, CC1101, radar, BME680, PoE splitter, buck converter and fuse.
 Its models are a fit-check prototype: compare the received modules and connectors
 with the documented envelopes before printing or powering the assembly.</p>
-<p><img src="../hardware/external-antenna/full-hub-wiring.svg" alt="Complete MC2-C low-voltage wiring, with enlarged ZAC93 and bridge pin maps" /></p>
+<p><img src="../hardware/external-antenna/full-hub-wiring.svg" alt="Complete MC2-D low-voltage wiring, with enlarged ZAC93 and bridge pin maps" /></p>
 <p><a href="../hardware/external-antenna/full-hub-wiring.svg">Open the wiring image at full size</a>.
 The image shows electrical relationships, not cable lengths or a mating-side
 connector view. The <a href="print.html">mechanical layout</a> shows
@@ -24,7 +24,7 @@ where parts sit. The <a href="../hardware/external-antenna/cad/connectors.json">
 is authoritative for carrier pad numbers.</p>
 <h2 id="fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</h2>
 <p>Use <strong>3 × Taoglas CAB.618.E</strong> with <strong>3 × TE/Linx ANT-2.4-LCW-SMA</strong> and the
-<strong>FH1-MC2-C-PWR1</strong> print package. Print its connector coupon first: the round
+<strong>FH1-MC2-D-PWR1</strong> print package. Print its connector coupon first: the round
 6.8 mm clearance hole passes through the same 3 mm thickness as the case wall.
 Check the actual bulkhead, washer, nut and mating antenna before printing the
 main shell. Hold the metal shoulder while tightening; the round hole does not
@@ -105,7 +105,7 @@ state and is a separate operation.
 onto the ZAC93. It retains Zooz firmware; supported ZAC93 updates are a separate
 operation through compatible host software.</p>
 <h2 id="fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</h2>
-<p>DFR0627 is a finished <strong>I²C-to-two-UART module</strong> using WK2132. The MC2-C host's
+<p>DFR0627 is a finished <strong>I²C-to-two-UART module</strong> using WK2132. The MC2-D host's
 native UARTs already serve Thread, Zigbee and radar, so Z-Wave uses this bridge.
 Set <strong>IA1 = 1 and IA0 = 1</strong>. The pinned driver uses register address <strong>0x70</strong>,
 FIFO address <strong>0x71</strong>, and <strong>UART1 at 115200, 8 data bits, no parity, 1 stop bit</strong>.
@@ -155,7 +155,7 @@ itself supports one.</p>
 </table></div>
 <p>These six wires go to the module's I²C and UART1 connectors according to their
 labels; they are not a claim that DFR0627 has one six-pin connector in this order.
-DFR0627's <code>RST</code> and <code>IRQ</code> pads are not wired by MC2-C. Its UART channel reset in
+DFR0627's <code>RST</code> and <code>IRQ</code> pads are not wired by MC2-D. Its UART channel reset in
 the driver is not the ZAC93 reset. The bridge and BME680 share I²C; the ZAC93's
 own pins 3/5 are <strong>not</strong> connected to I²C.
 <a href="https://wiki.dfrobot.com/dfr0627">DFRobot pin labels and module specification</a>,
@@ -219,13 +219,52 @@ mounting pattern is different. <a href="print.html">Mount and print details</a>.
 in <a href="start-here.html">Start here</a>; do not attach powered USB or an external supply
 to the assembled, unpowered hub. The controller supply diodes do not prevent
 all possible backfeed paths through signal pins.</p>
-<p>The MC2-C PCB's J2 is already a generic four-wire supply interface. Its frozen
-native CAD/BOM retains the earlier D24V22F3 description for export provenance;
-the <strong>current off-board purchase and assembly is RECOM</strong>, as specified here and
-in the <a href="shopping.html">shopping list</a>. Copper, pin assignments and firmware are
-unchanged. This does not qualify the new power assembly physically: measure
-startup, ripple, temperatures and concurrent operation before deployment.
+<p>The MC2-D PCB retains the four-wire J2 interface and RECOM PWR1 power assembly.
+The XIAO migration changes its own footprint and recovery connections, not the
+regulator wiring. Measure startup, ripple, temperatures and concurrent operation
+before deployment.
 <a href="https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf">RECOM datasheet and pin drawing</a>.</p>
+<h2 id="thread-recovery-leads">Thread recovery leads</h2>
+<p>Buy <strong>XIAO ESP32C6 (Pre-Soldered), 102010636</strong>. Its factory 2×7 male headers
+solder directly to U2; no female stacking headers are used. Before mounting,
+program the loose board with the <strong>MC2-D 4 MB XIAO RCP</strong> and attach two short,
+flexible, insulated <strong>30 AWG</strong> leads to its underside test pads:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Carrier</th>
+<th>XIAO underside contact</th>
+<th>Host signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>J10.1 — THREAD_EN</td>
+<td>TP8 — EN / RESET</td>
+<td>GPIO27</td>
+</tr>
+<tr>
+<td>J10.2 — THREAD_BOOT</td>
+<td>TP2 — BOOT / GPIO9</td>
+<td>GPIO15</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="../hardware/external-antenna/cad/c6-recovery.svg" alt="XIAO underside test pads and carrier recovery connection" /></p>
+<p><img src="../mechanical/full-hub/thread-assembly-preview.png" alt="XIAO factory headers, service leads and carrier access window" /></p>
+<p>These two contacts are <strong>not part of the factory headers</strong>. Fine pad soldering
+is still required; a pre-soldered board alone does not enable automatic recovery.
+Confirm orientation against the <a href="../hardware/external-antenna/cad/c6-recovery.svg">bottom-view drawing</a> and the <a href="../mechanical/full-hub/thread-assembly-preview.png">3D service-wire detail</a> before soldering. Do not
+mirror the top view or use neighbouring test pads. Neither lead carries 5 V.
+Route the leads above the carrier in the gap between the header rows, with
+the joints accessible through the dedicated window from below when the carrier
+is lifted out of the enclosure. The enclosure floor is not an access hatch. Do not trap them; leave a gentle service loop and strain-relieve each
+lead without covering test points or pulling on the pads. Inspect both joints
+with magnification, check continuity to J10 and check for adjacent-pad shorts.</p>
+<p>The XIAO's own GPIO8 pull-up is used; <strong>carrier R3 is not fitted in MC2-D</strong>.
+U2 pad 7 is TX/GPIO16, pad 8 is RX/GPIO17, pad 13 GND and pad 14 VBUS.
+U2 pad 12 (local 3V3 output) stays unconnected to the carrier peripheral rail.
+Keep the module power sources separated as shown in the schematic.</p>
 <h2 id="other-off-carrier-modules">Other off-carrier modules</h2>
 <h3 id="cc1101-carrier-j5">CC1101: carrier J5</h3>
 <p>Retain the <strong>433.92 MHz CC1101 module</strong> and its matching antenna. A clone's
@@ -335,8 +374,9 @@ All electronic modules need a restraint; connector friction alone is not a mount
 empty. Print and check the small fit coupons and new power tray before committing to a full case.</li>
 <li>Install the PoE splitter and fuse in the power bay, then the RECOM buck
 and its input capacitor on the perfboard support. Restrain their low-voltage leads before fitting the carrier.</li>
-<li>Fit the MC2-C carrier to its four mounting positions. The finished U1–U4
-modules are supported by the carrier as designed; check solder-tail clearance.</li>
+<li>Fit the MC2-D carrier to its four mounting positions. Use factory-soldered headers on U1–U4 where specified. Complete and inspect the
+two XIAO underside recovery leads before securing the carrier; check solder-tail
+and service-wire clearance against the access window.</li>
 <li>Fit the DFR0627 and CC1101 to their trays. Place the ZAC93 in its own cradle
 with the antenna area clear and connect the remapped J4 harness from below.
 Support the board while mating the socket, then secure only its non-antenna
@@ -354,12 +394,12 @@ dry fit. Keep the fasteners and cables needed for future fuse/radio access
 reachable without desoldering the carrier.</li>
 </ol>
 <h2 id="first-power-and-home-assistant">First power and Home Assistant</h2>
-<p>Program the three loose controllers with their <strong>MC2-C host, TinyC6 and external-antenna MG24 images</strong> following the <a href="firmware.html">firmware guide</a>
+<p>Program the three loose controllers with their <strong>MC2-D host, 4 MB XIAO ESP32C6 and external-antenna MG24 images</strong> following the <a href="firmware.html">firmware guide</a>
 before assembling; use the exact external-antenna MG24 image. The ZAC93 arrives
 with its own radio firmware. Remove USB power before attaching the PoE-fed
 assembly. Attach the correct antennas before transmitting.</p>
 <p>With power off, continuity-check every cable against the ledger, including
-J4.4→ZAC93 pin 8 and J4.5→ZAC93 pin 10. Check that 5 V and 3.3 V are not shorted
+J4.4→ZAC93 pin 8, J4.5→ZAC93 pin 10, J10.1→XIAO TP8 and J10.2→XIAO TP2. Check that 5 V and 3.3 V are not shorted
 to ground or to each other. Test the disconnected splitter/buck rails before
 connecting expensive modules; then verify voltages again under load and at the
 ZAC93 itself. Confirm I²C devices, bridge health, Ethernet link and radio startup
@@ -384,5 +424,5 @@ Repeat with the lid closed and at the final location, record temperatures and
 supply drop, and perform the <a href="commissioning.html">RF and stability acceptance</a>.
 Mechanical clearance, firmware compilation and electrical continuity are
 separate checks; none proves the completed hub has passed an operating test.</p>
-</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

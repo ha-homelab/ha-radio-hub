@@ -45,7 +45,7 @@ class UpdateImageTests(unittest.TestCase):
         self.report = Path(self.tmp.name) / "report.json"
         data = bytearray(288)
         data[0] = 0xE9
-        data[3] = 0x30
+        data[3] = 0x20
         struct.pack_into("<H", data, 12, 13)
         struct.pack_into("<I", data, 32, 0xABCD5432)
         version = APP_VERSION.encode()
@@ -53,13 +53,13 @@ class UpdateImageTests(unittest.TestCase):
         data[80:90] = b"esp_ot_rcp"
         self.image.write_bytes(data)
         self.metadata = {"board": update.BOARD, "board_sku": update.SKU,
-                         "hardware_revision": "MC2-C", "antenna": dict(update.ANTENNA),
+                         "hardware_revision": "MC2-D", "antenna": dict(update.ANTENNA),
                          "application_header": update.verify_c6_image(data),
                          "rom_uart_connected": True, "application_flash_offset": 65536,
-                         "required_download_strap": {"gpio": 8, "level": 1, "pullup_ohms": 10000,
-                                                     "rail": "C6_LOCAL_3V3", "header_pin": "10"},
+                         "required_download_strap": dict(update.DOWNLOAD_STRAP),
+                         "required_recovery_harness": dict(update.RECOVERY_HARNESS),
                          "sdkconfig_verified": {"CONFIG_IDF_TARGET": '"esp32c6"',
-                          "CONFIG_OPENTHREAD_UART_RX_PIN": "17", "CONFIG_OPENTHREAD_UART_TX_PIN": "16", "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y"},
+                          "CONFIG_OPENTHREAD_UART_RX_PIN": "17", "CONFIG_OPENTHREAD_UART_TX_PIN": "16", "CONFIG_ESPTOOLPY_FLASHSIZE_4MB": "y"},
                          "artifacts": {"esp_ot_rcp.bin": {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}}}
         self.save()
     def save(self): self.report.write_text(json.dumps(self.metadata))
@@ -80,20 +80,26 @@ class UpdateImageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "GPIO8 pull-up"):
             update.checked_image("c6", self.image, self.report)
 
+    def test_missing_recovery_lead_contract_is_rejected(self):
+        del self.metadata["required_recovery_harness"]
+        self.save()
+        with self.assertRaisesRegex(ValueError, "EN/BOOT service leads"):
+            update.checked_image("c6", self.image, self.report)
+
     def test_obsolete_board_and_unlabelled_reports_are_rejected(self):
-        for sku in (None, "TC6-U-01"):
+        for sku in (None, "TC6-U-01", "TC6D-01"):
             self.metadata["board_sku"] = sku
             self.save()
-            with self.assertRaisesRegex(ValueError, "TC6D-01"):
+            with self.assertRaisesRegex(ValueError, "102010636"):
                 update.checked_image("c6", self.image, self.report)
 
-    def test_onboard_antenna_and_wrong_expander_are_rejected(self):
-        for key, value in (("mode", "onboard"), ("i2c_address", 0x44),
-                           ("sda", 7), ("select_pin", "GPIO0"),
+    def test_onboard_antenna_and_wrong_gpio_are_rejected(self):
+        for key, value in (("mode", "onboard"), ("enable_level", 1),
+                           ("select_level", 0), ("select_gpio", 3),
                            ("initialized_before_radio", False)):
             self.metadata["antenna"] = dict(update.ANTENNA) | {key: value}
             self.save()
-            with self.assertRaisesRegex(ValueError, "FXL6408"):
+            with self.assertRaisesRegex(ValueError, "GPIO3/GPIO14"):
                 update.checked_image("c6", self.image, self.report)
 
     def test_renamed_obsolete_image_is_rejected_even_with_matching_hash(self):
@@ -102,7 +108,7 @@ class UpdateImageTests(unittest.TestCase):
         self.image.write_bytes(data)
         self.metadata["artifacts"]["esp_ot_rcp.bin"]["sha256"] = hashlib.sha256(data).hexdigest()
         self.save()
-        with self.assertRaisesRegex(ValueError, "identify the MC2-C"):
+        with self.assertRaisesRegex(ValueError, "identify the MC2-D"):
             update.checked_image("c6", self.image, self.report)
 
     def test_wrong_chip_header_is_rejected_even_with_matching_metadata(self):
@@ -112,6 +118,15 @@ class UpdateImageTests(unittest.TestCase):
         self.metadata["artifacts"]["esp_ot_rcp.bin"]["sha256"] = hashlib.sha256(data).hexdigest()
         self.save()
         with self.assertRaisesRegex(ValueError, "target ESP32-C6"):
+            update.checked_image("c6", self.image, self.report)
+
+    def test_eight_megabyte_tinyc6_image_is_rejected(self):
+        data = bytearray(self.image.read_bytes())
+        data[3] = 0x30
+        self.image.write_bytes(data)
+        self.metadata["artifacts"]["esp_ot_rcp.bin"]["sha256"] = hashlib.sha256(data).hexdigest()
+        self.save()
+        with self.assertRaisesRegex(ValueError, "4 MB flash"):
             update.checked_image("c6", self.image, self.report)
 
     def test_old_wrong_uart(self):

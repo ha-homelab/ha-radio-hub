@@ -1,4 +1,4 @@
-# MC2-C: ESP32-DevKitC-VIE / WROVER-IE, 8 MB flash / 8 MB quad PSRAM.
+# MC2-D: ESP32-DevKitC-VIE / WROVER-IE, 8 MB flash / 8 MB quad PSRAM.
 # ECO V3+; at most 4 MB PSRAM is directly mapped. New carrier and factory flash required.
 substitutions:
   build_jobs: "4"

@@ -1,14 +1,14 @@
-# HA Radio Hub — MC2-C
+# HA Radio Hub — MC2-D
 
 **Three independent external antennas: Zigbee, Thread and Bluetooth.** MC2 keeps
 a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
 Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
 100 × 100 mm carrier holds finished modules with direct-solder male headers.
 
-![Current MC2-C and FH1 exploded CAD view with ZAC93](mechanical/full-hub/exploded-preview.png)
+![Current MC2-D and FH1 exploded CAD view with ZAC93](mechanical/full-hub/exploded-preview.png)
 
 *Generated from the current enclosure geometry with simplified electronic
-bodies, including TinyC6[D] and the RECOM power assembly. Use the [full-hub CAD layout](mechanical/full-hub/layout.svg),
+bodies, including the pre-soldered XIAO ESP32C6 and the RECOM power assembly. Use the [full-hub CAD layout](mechanical/full-hub/layout.svg),
 [print files](mechanical/full-hub/README.md) and [wiring guide](docs/full-hub-assembly.md)
 for construction. Antennas and most cables are omitted for visibility; connect
 the required antennas before operation.*
@@ -21,7 +21,7 @@ coverage, power consumption, mechanical fit or radio certification. The
 
 Follow [Start here](docs/start-here.md) for the ordered build, success checks,
 Home Assistant connections and troubleshooting. Program the loose boards before
-permanent assembly. The current hardware is **MC2-C + FH1**; older revisions are
+permanent assembly. The current hardware is **MC2-D + FH1**; older revisions are
 kept as references.
 
 For readable pages, searchable wiring and print downloads, clone or download
@@ -38,7 +38,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 
 [Start here](docs/start-here.md) ·
 [Versioned engineering build package](docs/releases.md) ·
-[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip) ·
+[Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-D-PWR1-print-package.zip) ·
 [Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
 [Documentation index](docs/README.md)
 
@@ -48,29 +48,32 @@ folder. GitHub shows HTML source rather than running this guide. Use
 
 **Buying parts?** The [MC2 shopping guide](docs/mc2-shopping.md) gives quantities,
 exact order codes, inspected AliExpress variants and outstanding availability
-checks. **MC2-C selects the available TinyC6[D] / TC6D-01** and its matching
-external-antenna firmware. The manufacturer showed 48 in stock at USD $18 on
-19 October 2026. Use the [PCB ordering record](docs/pcb-order.md) for the current
-fabrication package and five-board prototype recommendation.
+checks. **MC2-D uses XIAO ESP32C6 pre-soldered SKU 102010636** for Thread.
+DigiKey showed 21 in stock at **$6.38** on 20 October 2026. The ESP32-DevKitC-VIE
+is already ordered; do not buy another. Use the [PCB ordering record](docs/pcb-order.md)
+for the new fabrication package and five-board prototype recommendation.
+Buy factory-fitted headers wherever available. Two fine recovery leads on the
+XIAO underside remain necessary; see the assembly instructions before soldering.
 
 - **Espressif ESP32-DevKitC-VIE / ESP32-WROVER-IE:** previous-generation host
   with a factory external antenna connector, 8 MB flash and 8 MB physical PSRAM
   (4 MB directly addressable, quad 40 MHz); Ethernet host and active BLE 4.2 proxy.
-- **Unexpected Maker TinyC6[D] / TC6D-01:** Thread RCP, 8 MB flash,
-  native USB and header-accessible recovery pins. MC2-C firmware verifies the
-  external U.FL antenna selection through the onboard I²C expander. Solder its
-  two supplied male headers; no battery, extra female headers or RF rework.
-- **Seeed XIAO MG24:** Ember NCP with explicit external-antenna firmware.
+- **Seeed XIAO ESP32C6 (Pre-Soldered), 102010636:** Thread RCP, 4 MB flash,
+  native USB and factory 2×7 male headers. MC2-D firmware drives GPIO3 LOW and
+  GPIO14 HIGH to select the external antenna. Two underside EN/BOOT wires to
+  J10 preserve automatic recovery; a carrier service window makes them accessible.
+- **Seeed XIAO MG24 (Pre-Soldered), 102010690:** Ember NCP with explicit
+  external-antenna firmware and factory 2×7 male headers.
 - **WIZnet WIZ850io:** shared-SPI Ethernet; retain the isolated PoE splitter and
   regulated low-voltage supply from the battery-fed PoE switch.
 - **RECOM R-78K3.3-1.0:** the peripheral 5 V → 3.3 V converter, replacing
   Pololu D24V22F3. It connects to the existing J2 harness, with a local input
-  capacitor and a new removable mount. The MC2-C copper and firmware stay the same.
+  capacitor and a removable mount. The power architecture is retained in MC2-D.
   [Power connections and limits](docs/full-hub-assembly.md#power-and-ethernet).
 - **Three TE ANT-2.4-LCW-SMA antennas and three Taoglas CAB.618.E cables:**
   separate 50 Ω paths, standard SMA bulkheads, no combiner. The
   [updated selection](docs/pigtail-selection.md) saves $74.43 on three cables;
-  use the **FH1-MC2-C-PWR1** enclosure and fit coupon.
+  use the **FH1-MC2-D-PWR1** enclosure and fit coupon.
 
 Classic ESP32 retains the configured services and three active BLE connections,
 but does not support BLE 5 extended advertising or Coded PHY. Lower power
@@ -87,21 +90,25 @@ modules, the selected finished PoE splitter and the power/cable accessories.
 
 ![MC2 carrier, all components on the front](hardware/external-antenna/cad/assembly-top.svg)
 
-![Earlier MC2-B bare carrier — AI surface-finish concept](hardware/external-antenna/images/mc2b-bare-concept.png)
+The current carrier above is generated from native CAD. Historical AI surface-finish
+concepts are kept in the [image record](hardware/external-antenna/images/README.md)
+and are not assembly references for MC2-D.
 
-*Earlier MC2-B appearance concept only. MC2-C's exact silkscreen and geometry
-come from the CAD drawing above. AI-generated traces, pads and labels are not
-fabrication data. [Image provenance and prompts](hardware/external-antenna/images/README.md).*
+![XIAO factory headers and underside recovery wires](mechanical/full-hub/thread-assembly-preview.png)
+
+*The two hand-soldered EN/BOOT leads supplement the factory headers.
+[Exact test-pad and J10 diagram](hardware/external-antenna/cad/c6-recovery.svg) ·
+[Assembly sequence](docs/full-hub-assembly.md#thread-recovery-leads).*
 
 ## Where the Z-Wave board and other parts go
 
-**Zooz ZAC93 sits in its own removable insulated cradle beside the MC2-C
+**Zooz ZAC93 sits in its own removable insulated cradle beside the MC2-D
 carrier.** Its underside 2×5 socket connects by a wired mating header to carrier
 **J4**; the **DFR0627 / WK2132** bridge connects to **J3** and provides its serial
 port. The ZAC93 does not plug into the ESP32 or a Raspberry Pi in this build.
 Keep its stock antenna clear of straps, cables and metal.
 
-![Current MC2-C hub with RECOM power assembly](mechanical/full-hub/full-assembly-preview.png)
+![Current MC2-D hub with RECOM power assembly](mechanical/full-hub/full-assembly-preview.png)
 
 *Current CAD assembly with simplified component bodies. Earlier AI appearance
 concepts remain in the [historical image record](hardware/external-antenna/images/README.md);

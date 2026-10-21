@@ -1,11 +1,11 @@
 # Firmware and software — historical Pi design
 
 <!-- MC2-CURRENT-DESIGN -->
-> **Historical Pi design.** For the active **MC2-C / FH1** build, follow
-> [Start here](start-here.md), the [MC2-C firmware guide](../firmware/external-antenna/README.md)
+> **Historical Pi design.** For the active **MC2-D / FH1** build, follow
+> [Start here](start-here.md), the [MC2-D firmware guide](../firmware/external-antenna/README.md)
 > and its [network update procedure](../firmware/external-antenna/updates/README.md).
 > The Pi, S3-ETH and Docker commands below do not program the current classic
-> ESP32 host or TinyC6 radio.
+> ESP32 host or XIAO ESP32C6 radio.
 
 For an existing **historical MC1** carrier, use its [firmware and build instructions](../firmware/module-carrier/README.md), [matched GPIO plan](../firmware/module-carrier/pin-plan.json) and [network update guide](../firmware/module-carrier/updates/README.md). The Pi and S3-ETH instructions below belong to the original assembly.
 

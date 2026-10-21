@@ -41,7 +41,7 @@ class PowerContractTests(unittest.TestCase):
             self.validate()
 
     def test_radio_regulator_join_and_new_unbudgeted_load_are_rejected(self):
-        next(p for p in self.parts if p['ref'] == 'U2')['pins']['4'] = '+3V3'
+        next(p for p in self.parts if p['ref'] == 'U2')['pins']['12'] = '+3V3'
         with self.assertRaisesRegex(ValueError, 'local regulator'):
             self.validate()
         self.setUp()

@@ -3,7 +3,7 @@
   "hardware_tested": false,
   "esphome": "2026.9.1",
   "esp_idf": "5.5.5",
-  "profile": "MC2-C classic ESP32 external antenna",
+  "profile": "MC2-D classic ESP32 external antenna",
   "board": "ESP32-DevKitC-VIE",
   "sdkconfig_verified": {
     "CONFIG_OPENTHREAD_FTD": "y",
@@ -43,15 +43,15 @@
   "artifacts": {
     "mc2-classic-hub.bin": {
       "bytes": 1708928,
-      "sha256": "a672e41360b7d2b2f313998eaac265141624154863f1b0634da5cd4672349cce"
+      "sha256": "c64d9153495babdc004d01947b6e81aca893b3cec0e05a04204aaeb71b27f24d"
     },
     "firmware.factory.bin": {
       "bytes": 1774464,
-      "sha256": "ab1325a8a6f351f4d137e8da700fac48310fafa618d72e84a79b83036a76e772"
+      "sha256": "9679c3d87347e672aa31059c16c3b1e3f47eb133e849d074d29763fadb3cc0b5"
     },
     "firmware.ota.bin": {
       "bytes": 1708928,
-      "sha256": "a672e41360b7d2b2f313998eaac265141624154863f1b0634da5cd4672349cce"
+      "sha256": "c64d9153495babdc004d01947b6e81aca893b3cec0e05a04204aaeb71b27f24d"
     }
   },
   "c6_service_gpio": {
@@ -167,11 +167,11 @@
   "framework_cache_manually_modified": false,
   "sdk_patches_applied": false,
   "recipe_sha256": {
-    "hub.yaml": "f3c1f94d49fdb2ac0e03b78f05f2b00793be5de57228f15e7db86465914a43e8",
+    "hub.yaml": "33b570f609b10180ebfa9bc3c2ceefb4c58b81b7386715aba4f32ef439bd0c3e",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
-    "pin-plan.json": "15d73b3387d5c6f7f7321c56096ad687d423ac0c698e6ce062108dea95e20955",
-    "mc2_contract.py": "b209f37138ce7b9387c018b79f5d4a1c8a9596795368bc51728a0934f92d71b9",
-    "c6_identity.py": "1add7655cd1387ff3202af73d914b0d4ff8fba54c53949403f72be6bf1d2db97",
-    "validate.py": "52e7069bbc4614ea6eba29bab5451268942abca80c0bdbaa50fa3c0622f96049"
+    "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
+    "mc2_contract.py": "4be94a48f4cf552c5ccd26546be524f78d1b0e4d3f6fd4fd1917e08aea4fb4bf",
+    "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
+    "validate.py": "2d94cef6c90e74c2705dd9d7ccb97230f33421f815d7ae051e69a188b57661ed"
   }
 }

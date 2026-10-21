@@ -25,9 +25,9 @@ class HarnessContractTests(unittest.TestCase):
     def validate(self):
         render.validate_harnesses(self.data, self.connectors, self.parts)
 
-    def test_all_33_connections_agree_with_native_schematic_and_board(self):
+    def test_all_35_connections_agree_with_native_schematic_and_board(self):
         self.validate()
-        self.assertEqual(sum(len(h['pins']) for h in self.harnesses.values()), 33)
+        self.assertEqual(sum(len(h['pins']) for h in self.harnesses.values()), 35)
 
     def test_missing_duplicate_and_additional_connectors_are_rejected(self):
         original = copy.deepcopy(self.data['harnesses'])
@@ -65,6 +65,11 @@ class HarnessContractTests(unittest.TestCase):
         self.assertEqual([p['device_pin'] for p in pins], ['1', '6', '9', '8', '10'])
         pins[3]['device_pin'] = '4'
         with self.assertRaisesRegex(ValueError, 'ZAC93 physical pin remap'):
+            self.validate()
+
+    def test_recovery_test_pads_cannot_be_swapped(self):
+        self.harnesses['J10']['pins'][0]['device_pin'] = 'TP2'
+        with self.assertRaisesRegex(ValueError, 'XIAO recovery test-pad map'):
             self.validate()
 
     def test_uart_receiver_names_match_direction_at_both_ends(self):

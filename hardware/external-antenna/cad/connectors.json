@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": "MC2-C",
+  "revision": "MC2-D",
   "connectors": [
     {
       "ref": "U1",
@@ -339,217 +339,145 @@
     },
     {
       "ref": "U2",
-      "model": "Unexpected Maker TinyC6[D] TC6D-01",
-      "footprint": "MC2:TinyC6_D",
+      "model": "Seeed XIAO ESP32C6 pre-soldered 102010636",
+      "footprint": "MC2:XIAO_ESP32C6",
       "pins": {
         "1": null,
-        "2": "GND",
-        "3": "+5V_C6",
-        "4": "C6_LOCAL_3V3",
+        "2": null,
+        "3": null,
+        "4": null,
         "5": null,
         "6": null,
-        "7": null,
-        "8": null,
+        "7": "THREAD_TX",
+        "8": "THREAD_RX",
         "9": null,
-        "10": "C6_STRAP8",
-        "11": "THREAD_BOOT",
-        "12": "THREAD_RX",
-        "13": "THREAD_TX",
-        "14": "GND",
-        "15": "THREAD_EN",
-        "16": null,
-        "17": null,
-        "18": null,
-        "19": null,
-        "20": null,
-        "21": null,
-        "22": null,
-        "23": null
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": "GND",
+        "14": "+5V_C6"
       },
       "types": {},
       "fitted": true,
       "side": "front",
       "xy": [
-        53.78,
-        30
+        46.16,
+        14.921
       ],
       "rotation": 0,
       "source": "c6",
-      "notes": "TC6D-01; solder 1x12 + 1x11 male headers; native USB no UART bridge; ROM RX17 TX16; EN/BOOT9 accessible; external antenna requires MC2-C firmware: FXL6408 0x43 XIO0 HIGH via local GPIO6 SDA/7 SCL; no LiPo fitted",
+      "notes": "Factory 2x7 male headers; native USB; ROM RX17/D7 TX16/D6; bottom TP8 EN and TP2 BOOT9 require J10 flying leads; onboard GPIO8 pullup; GPIO3 LOW and GPIO14 HIGH select external U.FL; no battery",
       "body_bounds_local_mm": [
-        -8.78,
-        -17.518,
-        9,
-        18.782
+        -1.27,
+        -2.921,
+        16.51,
+        18.034
       ],
       "pad_centers_mm": [
         {
           "number": "1",
           "net": null,
-          "x": 61.51,
-          "y": 16.064,
+          "x": 46.16,
+          "y": 14.921,
           "drill_mm": 1.1
         },
         {
           "number": "2",
-          "net": "GND",
-          "x": 61.51,
-          "y": 18.604,
+          "net": null,
+          "x": 46.16,
+          "y": 17.461,
           "drill_mm": 1.1
         },
         {
           "number": "3",
-          "net": "+5V_C6",
-          "x": 61.51,
-          "y": 21.144,
+          "net": null,
+          "x": 46.16,
+          "y": 20.001,
           "drill_mm": 1.1
         },
         {
           "number": "4",
-          "net": "C6_LOCAL_3V3",
-          "x": 61.51,
-          "y": 23.684,
+          "net": null,
+          "x": 46.16,
+          "y": 22.541,
           "drill_mm": 1.1
         },
         {
           "number": "5",
           "net": null,
-          "x": 61.51,
-          "y": 26.224,
+          "x": 46.16,
+          "y": 25.081,
           "drill_mm": 1.1
         },
         {
           "number": "6",
           "net": null,
-          "x": 61.51,
-          "y": 28.764,
+          "x": 46.16,
+          "y": 27.621,
           "drill_mm": 1.1
         },
         {
           "number": "7",
-          "net": null,
-          "x": 61.51,
-          "y": 31.304,
+          "net": "THREAD_TX",
+          "x": 46.16,
+          "y": 30.161,
           "drill_mm": 1.1
         },
         {
-          "number": "8",
+          "number": "14",
+          "net": "+5V_C6",
+          "x": 61.4,
+          "y": 14.921,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "13",
+          "net": "GND",
+          "x": 61.4,
+          "y": 17.461,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "12",
           "net": null,
-          "x": 61.51,
-          "y": 33.844,
+          "x": 61.4,
+          "y": 20.001,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "11",
+          "net": null,
+          "x": 61.4,
+          "y": 22.541,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "10",
+          "net": null,
+          "x": 61.4,
+          "y": 25.081,
           "drill_mm": 1.1
         },
         {
           "number": "9",
           "net": null,
-          "x": 61.51,
-          "y": 36.384,
+          "x": 61.4,
+          "y": 27.621,
           "drill_mm": 1.1
         },
         {
-          "number": "10",
-          "net": "C6_STRAP8",
-          "x": 61.51,
-          "y": 38.924,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "11",
-          "net": "THREAD_BOOT",
-          "x": 61.51,
-          "y": 41.464,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "12",
+          "number": "8",
           "net": "THREAD_RX",
-          "x": 46.27,
-          "y": 44.004,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "13",
-          "net": "THREAD_TX",
-          "x": 46.27,
-          "y": 41.464,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "14",
-          "net": "GND",
-          "x": 46.27,
-          "y": 38.924,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "15",
-          "net": "THREAD_EN",
-          "x": 46.27,
-          "y": 36.384,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "16",
-          "net": null,
-          "x": 46.27,
-          "y": 33.844,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "17",
-          "net": null,
-          "x": 46.27,
-          "y": 31.304,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "18",
-          "net": null,
-          "x": 46.27,
-          "y": 28.764,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "19",
-          "net": null,
-          "x": 46.27,
-          "y": 26.224,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "20",
-          "net": null,
-          "x": 46.27,
-          "y": 23.684,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "21",
-          "net": null,
-          "x": 46.27,
-          "y": 21.144,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "22",
-          "net": null,
-          "x": 46.27,
-          "y": 18.604,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "23",
-          "net": null,
-          "x": 46.27,
-          "y": 16.064,
+          "x": 61.4,
+          "y": 30.161,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
-        45.0,
-        12.482,
-        62.78,
-        48.782
+        44.89,
+        12.0,
+        62.67,
+        32.955
       ]
     },
     {
@@ -861,7 +789,7 @@
     },
     {
       "ref": "J2",
-      "model": "D24V22F3 external assembled buck",
+      "model": "RECOM R-78K3.3-1.0 offboard 3V3 converter",
       "footprint": "MC2:PinHeader_1x04_P2.54mm_Vertical",
       "pins": {
         "1": "+5V",
@@ -878,7 +806,7 @@
       ],
       "rotation": 90,
       "source": "connector",
-      "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module.",
+      "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. RECOM plus 27uF input capacitor stays on supported offboard perfboard.",
       "body_bounds_local_mm": null,
       "pad_centers_mm": [
         {
@@ -1302,6 +1230,43 @@
           "net": "GND",
           "x": 92.54,
           "y": 92.0,
+          "drill_mm": 1.0
+        }
+      ],
+      "body_bounds_global_mm": null
+    },
+    {
+      "ref": "J10",
+      "model": "C6 EN/BOOT underside recovery harness",
+      "footprint": "MC2:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "THREAD_EN",
+        "2": "THREAD_BOOT"
+      },
+      "types": {},
+      "fitted": true,
+      "side": "front",
+      "xy": [
+        49.51,
+        39
+      ],
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Two 30AWG insulated leads above carrier under module; window for access: J10.1->XIAO TP8 EN; J10.2->TP2 BOOT/GPIO9. Required for host reset and automatic RCP flashing. Fit before module seating; retain slack and strain relief.",
+      "body_bounds_local_mm": null,
+      "pad_centers_mm": [
+        {
+          "number": "1",
+          "net": "THREAD_EN",
+          "x": 49.51,
+          "y": 39.0,
+          "drill_mm": 1.0
+        },
+        {
+          "number": "2",
+          "net": "THREAD_BOOT",
+          "x": 52.05,
+          "y": 39.0,
           "drill_mm": 1.0
         }
       ],

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the offboard power substitution against the unchanged MC2-C interface."""
+"""Check the offboard power substitution against the unchanged MC2-D interface."""
 import argparse
 import json
 from pathlib import Path
@@ -35,7 +35,7 @@ def validate(data, parts, connectors, harnesses):
         require(harness['net'] == net and harness['device_pin'] == regulator_pin, 'J2 public harness mapping mismatch')
     require(parts['J1']['pins'] == {'1': '+5V', '2': 'GND'}, 'fused input must remain 5 V')
     require(data['input_connection']['carrier_net'] == '+5V' and data['input_connection']['before_radio_isolation_diodes'], 'buck must use fused 5 V before radio diodes')
-    for ref, supply, pin in [('U1', '+5V_HOST', 'J2.19'), ('U2', '+5V_C6', '3'), ('U3', '+5V_ZB', '14')]:
+    for ref, supply, pin in [('U1', '+5V_HOST', 'J2.19'), ('U2', '+5V_C6', '14'), ('U3', '+5V_ZB', '14')]:
         require(parts[ref]['pins'][pin] == supply and '+3V3' not in parts[ref]['pins'].values(), f'{ref} local regulator must not join peripheral rail')
     for ref, supply in [('D1', '+5V_HOST'), ('D2', '+5V_C6'), ('D3', '+5V_ZB')]:
         require(parts[ref]['pins'] == {'1': supply, '2': '+5V'}, f'{ref} isolation/input boundary changed')

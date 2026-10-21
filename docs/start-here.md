@@ -1,6 +1,6 @@
-# Start here: build the MC2-C / FH1 hub
+# Start here: build the MC2-D / FH1 hub
 
-Use this route for the **MC2-C carrier and FH1 full-hub enclosure**. It takes
+Use this route for the **MC2-D carrier and FH1 full-hub enclosure**. It takes
 you from loose parts to a tested Home Assistant node. The hardware is an
 engineering prototype: software and CAD checks have passed, but the physical
 assembly, thermal behaviour and house coverage still need measurement.
@@ -18,11 +18,10 @@ different parts of the same build; the carrier BOM alone is not a complete hub.
 Check the labels on the four carrier modules:
 
 - **U1: ESP32-DevKitC-VIE / WROVER-IE**, classic ESP32 with two 19-pin rows,
-  external antenna, 8 MB flash and 8 MB physical PSRAM.
-- **U2: Unexpected Maker TinyC6[D] / TC6D-01**, the 8 MB board with switched
-  onboard/U.FL antennas. Use the matching MC2-C RCP firmware, which selects the
-  external path before starting Thread. The old TC6-U-01 and H2 are not the
-  current purchase target.
+  external antenna, 8 MB flash and 8 MB physical PSRAM. Already ordered by the owner.
+- **U2: Seeed XIAO ESP32C6 (Pre-Soldered), 102010636**, the 4 MB board with
+  factory 2×7 male headers. Use MC2-D RCP firmware with GPIO3/14 external
+  antenna control. Its underside EN/BOOT pads need two recovery leads to J10.
 - **U3: Seeed XIAO MG24**, pre-soldered SKU 102010690, for external-antenna Zigbee.
 - **U4: WIZ850io**, the data-only SPI Ethernet module.
 
@@ -40,7 +39,7 @@ MC2-A/S3 and Pi-era instructions in the [history section](design-history.md).
 
 ## 2. Program the three controllers while they are loose
 
-Follow the [MC2-C firmware guide](../firmware/external-antenna/README.md) for
+Follow the [MC2-D firmware guide](../firmware/external-antenna/README.md) for
 tool versions, commands and board selection. Attach the appropriate antenna
 before a radio runs. Use USB power only for each loose board.
 
@@ -48,18 +47,17 @@ before a radio runs. Use USB power only for each loose board.
    OTA and MQTT credentials, broker and RF topics with your intended values.
    The validation build has disposable credentials and `build-only/rf/*`
    topics; it is not a deployable household configuration.
-2. Give **U1/VIE a full initial USB-UART flash**, including its MC2-C partition
+2. Give **U1/VIE a full initial USB-UART flash**, including its MC2-D partition
    table. The node name is `mc2-classic-hub`. An S3 or MC1 image, and an app-only
    OTA over an old partition layout, are not valid initial installations.
-3. Build and flash the **TinyC6[D] RCP** with the matching pinned ESP-IDF. For loose
-   programming, temporarily fit the documented **10 kΩ GPIO8-to-local-3.3 V
-   pull-up**; the carrier supplies it only after assembly. Check the build's
-   TC6D-01 identity and external-antenna verification; the original fixed-U.FL
-   firmware does not switch this board's antenna.
-4. Follow the [MC2-C XIAO MG24 programming guide](mc2-zigbee.md), which selects
+3. Build and flash the **XIAO ESP32C6 RCP** with the matching pinned ESP-IDF.
+   Use the factory BOOT/RESET buttons for loose-board USB download. The board
+   already includes the GPIO8 pull-up. Verify the MC2-D XIAO identity and
+   external-antenna selection; TinyC6 binaries are incompatible.
+4. Follow the [MC2-D XIAO MG24 programming guide](mc2-zigbee.md), which selects
    **`--antenna external`**, and program its external initial HEX through the
    XIAO's onboard CMSIS-DAP probe. Output filenames retain `mc1` because the
-   build recipe is shared; the guide gives the current MC2-C host connections.
+   build recipe is shared; the guide gives the current MC2-D host connections.
 5. Leave the **ZAC93 on its Zooz firmware**. It is not an ESPHome target.
 
 **Ready to continue:** programming and verification succeed for all three
@@ -76,9 +74,10 @@ The largest part is 215 × 215 mm; the identified TRONXY XY-3 has a nominal
 310 × 310 mm bed. Check the slicer's usable area and brim before printing.
 
 Dry-fit every received component, mated plug, solder tail and cable route.
-Follow the [MC2-C assembly order](external-antennas.md#pin-connections-and-initial-programming):
-all modules face the same side, low axial parts and headers go first, and module
-joints are soldered from the back. The historical MC1 rear-first assembly is a
+Follow the [MC2-D assembly order](external-antennas.md#pin-connections-and-initial-programming):
+all modules face the same side, low axial parts and carrier headers go first.
+The C6/MG24 modules use factory headers. Fit and inspect C6 underside EN/BOOT
+leads above the carrier, accessible through the service window with the carrier removed from the case; module tails are soldered from the back. The historical MC1 rear-first assembly is a
 different carrier. Install each off-board module's restraint, the radar holder
 and the ventilated BME680 pod; do not rely on cable friction to hold boards.
 
@@ -100,7 +99,8 @@ the connector's mating-side orientation.
   PWR1 power tray and [power wiring](full-hub-assembly.md#power-and-ethernet),
   including both ground returns and correct capacitor polarity. Its input must
   remain at least 4.5 V under load; take 5 V before the controller isolation diodes.
-- With power disconnected, continuity-check J1–J7 and look for shorts between
+- With power disconnected, continuity-check J1–J7 and J10 (TP8/EN and TP2/BOOT)
+  and look for shorts between
   5 V, 3.3 V and ground. Preserve the specified boot pull-ups/pull-downs and
   keep controller-local 3.3 V outputs separate from the peripheral buck rail.
 - Meter the disconnected splitter and buck first. Then connect the electronics

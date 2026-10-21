@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": "MC2-C",
+  "revision": "MC2-D",
   "status": "prototype_fabrication_candidate",
   "board": {
     "width_mm": 100,
@@ -25,7 +25,7 @@
     ],
     "area_mm2": 10000,
     "copper_layers": 2,
-    "assembly": "All components front; direct-solder male headers; TinyC6[D] male headers must be fitted",
+    "assembly": "All components front; direct-solder male headers; factory male headers; two underside C6 recovery leads",
     "signal_track_mm": 0.25,
     "power_track_mm": 0.8,
     "via_diameter_mm": 0.8,
@@ -38,10 +38,9 @@
     "host_layout": "https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_pcb_layout.pdf",
     "wiz_schematic": "https://docs.wiznet.io/assets/files/wiz850io_sch_v110-3fcc19fc2acaf16f15c5f08f9c8330cb.pdf",
     "host_dimensions": "https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_dimensions.pdf",
-    "c6": "https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3",
-    "c6_schematic": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/schematics/schematic-tinyc6-p1.pdf",
-    "c6_step": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step",
-    "c6_pinout": "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/pinout_cards/TinyC6D_pinout.webp",
+    "c6": "https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/",
+    "c6_schematic": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH_260114.pdf",
+    "c6_pcb": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH&PCB_260114.zip",
     "xiao": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip",
     "wiz_photo": "https://docs.wiznet.io/img/products/wiz850io/wiz850io.png",
     "wiz_pinmap": "https://docs.wiznet.io/img/products/wiz850io/wiz850io_pinmap.png",
@@ -58,7 +57,7 @@
       "front_module_gap_measured_mm": null,
       "physical_fit_qualified": false,
       "assembly_order": [
-        "Solder TinyC6[D] 1x11 and1x12 male headers; inspect",
+        "Buy factory-header102010636; solder30AWG leads to bottom TP8/TP2; inspect and strain relieve",
         "Fit low axial parts and all male harness headers; solder from back",
         "Fit all four modules; solder from back",
         "Fit three pigtails and secure cable strain relief"
@@ -67,66 +66,46 @@
     },
     "module_geometry": {
       "U2": {
-        "source": "3d models/TinyC6D.step",
-        "datum": "Carrier U2 footprint local mm: X=STEP Y+0.11; Y=STEP X+0.632; Z=STEP Z. The point(0,0) is a footprint datum, not PCB center.",
-        "pcb_bounds_step_mm": [
-          -18.15,
-          -8.89,
-          0,
-          18.15,
-          8.89,
-          0.91
-        ],
         "pcb_bounds_local_mm": [
-          -8.78,
-          -17.518,
-          9,
-          18.782
+          -1.27,
+          -2.921,
+          16.51,
+          18.034
         ],
         "usb_bounds_local_mm": [
-          -4.33,
-          -18.958,
-          4.61,
-          -11.058
+          3.1282,
+          -4.4543,
+          12.1198,
+          2.8863
         ],
         "rf_center_local_mm": [
-          -5.49,
-          16.252
+          3.324,
+          16.6275
         ],
-        "rf_center_step_mm": [
-          15.62,
-          -5.6,
-          0.995
-        ],
-        "height_basis": "Vendor STEP without user-soldered headers. Physical header seating and cable strain relief must still be measured on the supplied boards.",
-        "assembly_bounds_step_mm": [
-          -19.59,
-          -8.89,
-          -0.075,
-          18.15,
-          8.89,
-          4.205
-        ],
-        "assembly_bounds_local_mm": [
-          -8.78,
-          -18.958,
-          -0.075,
-          9,
-          18.782,
-          4.205
-        ],
-        "usb_bounds_step_mm": [
-          -19.59,
-          -4.44,
-          -0.005,
-          -11.69,
-          4.5,
-          4.205
-        ],
-        "model_height_mm": 4.28,
-        "model_top_z_mm": 4.205,
-        "model_bottom_z_mm": -0.075,
-        "verification_method": "Nominal bounds verified from the pinned STEP BRep using CadQuery 2.8.0 / Open CASCADE 7.9; 1089 imported solids. Header centers, ANT1 datum and coordinate transform cross-checked against STEP entities and the manufacturer pinout."
+        "coordinate_transform": "Carrier local X = native Y - 65.256; local Y = 116.0177 - native X. Origin inner header pad1; USB up, component view.",
+        "coordinate_status": "manufacturer_native_KiCad_nominal_not_sample_measured",
+        "factory_header_spacer_nominal_mm": 2.54,
+        "factory_header_spacer_verified": false,
+        "service_pads": {
+          "TP8": {
+            "net": "EN",
+            "local_mm": [
+              6.3466,
+              1.5145
+            ],
+            "pad_diameter_mm": 1.143,
+            "side": "bottom"
+          },
+          "TP2": {
+            "net": "BOOT/GPIO9",
+            "local_mm": [
+              6.3466,
+              6.5945
+            ],
+            "pad_diameter_mm": 1.143,
+            "side": "bottom"
+          }
+        }
       }
     },
     "rj45": {
@@ -193,7 +172,7 @@
         48,
         0,
         60,
-        12
+        10
       ],
       "U3": [
         77,
@@ -210,10 +189,10 @@
         70.0
       ],
       "U2": [
-        49.45,
-        11.042,
-        58.39,
-        18.942
+        49.2882,
+        10.4667,
+        58.2798,
+        17.8073
       ],
       "U3": [
         79.39,
@@ -264,6 +243,12 @@
         68.25,
         49.37,
         73.75
+      ],
+      "J10": [
+        47.76,
+        36.25,
+        53.8,
+        41.75
       ]
     },
     "rf_copper_keepouts_mm": [],
@@ -281,11 +266,11 @@
         "radio": "Thread",
         "connector": "U.FL / MHF1",
         "estimated_xy_mm": [
-          48.29,
-          46.252
+          49.484,
+          31.5485
         ],
-        "coordinate_status": "manufacturer_STEP_nominal_not_sample_measured",
-        "evidence": "TinyC6D.step ANT1 center from pinned manufacturer source; see c6d-evidence.json for transform and SHA256"
+        "coordinate_status": "manufacturer_native_KiCad_nominal_not_sample_measured",
+        "evidence": "Seeed official v1.0 KiCad ANT2 footprint origin; see xiaoc6-evidence.json source hashes and transform"
       },
       "U3": {
         "radio": "Zigbee",
@@ -296,6 +281,26 @@
         ],
         "evidence": "Bottom-left U.FL on official component-side USB-up front pinout: https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_front_pinout.png"
       }
+    },
+    "service_cutout": {
+      "bounds_mm": [
+        49.51,
+        14.62,
+        55.51,
+        25.52
+      ],
+      "corner_radius_mm": 1.5,
+      "purpose": "Access and route two 30AWG insulated EN/BOOT wires; no copper inside/within 0.5mm edge clearance"
+    },
+    "bottom_service_pads_global_mm": {
+      "EN": [
+        52.5066,
+        16.4355
+      ],
+      "BOOT": [
+        52.5066,
+        21.5155
+      ]
     },
     "mounting_holes_mm": [
       [
@@ -664,217 +669,145 @@
     },
     {
       "ref": "U2",
-      "model": "Unexpected Maker TinyC6[D] TC6D-01",
-      "footprint": "MC2:TinyC6_D",
+      "model": "Seeed XIAO ESP32C6 pre-soldered 102010636",
+      "footprint": "MC2:XIAO_ESP32C6",
       "pins": {
         "1": null,
-        "2": "GND",
-        "3": "+5V_C6",
-        "4": "C6_LOCAL_3V3",
+        "2": null,
+        "3": null,
+        "4": null,
         "5": null,
         "6": null,
-        "7": null,
-        "8": null,
+        "7": "THREAD_TX",
+        "8": "THREAD_RX",
         "9": null,
-        "10": "C6_STRAP8",
-        "11": "THREAD_BOOT",
-        "12": "THREAD_RX",
-        "13": "THREAD_TX",
-        "14": "GND",
-        "15": "THREAD_EN",
-        "16": null,
-        "17": null,
-        "18": null,
-        "19": null,
-        "20": null,
-        "21": null,
-        "22": null,
-        "23": null
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": "GND",
+        "14": "+5V_C6"
       },
       "types": {},
       "fitted": true,
       "side": "front",
       "xy": [
-        53.78,
-        30
+        46.16,
+        14.921
       ],
       "rotation": 0,
       "source": "c6",
-      "notes": "TC6D-01; solder 1x12 + 1x11 male headers; native USB no UART bridge; ROM RX17 TX16; EN/BOOT9 accessible; external antenna requires MC2-C firmware: FXL6408 0x43 XIO0 HIGH via local GPIO6 SDA/7 SCL; no LiPo fitted",
+      "notes": "Factory 2x7 male headers; native USB; ROM RX17/D7 TX16/D6; bottom TP8 EN and TP2 BOOT9 require J10 flying leads; onboard GPIO8 pullup; GPIO3 LOW and GPIO14 HIGH select external U.FL; no battery",
       "body_bounds_local_mm": [
-        -8.78,
-        -17.518,
-        9,
-        18.782
+        -1.27,
+        -2.921,
+        16.51,
+        18.034
       ],
       "pad_centers_mm": [
         {
           "number": "1",
           "net": null,
-          "x": 61.51,
-          "y": 16.064,
+          "x": 46.16,
+          "y": 14.921,
           "drill_mm": 1.1
         },
         {
           "number": "2",
-          "net": "GND",
-          "x": 61.51,
-          "y": 18.604,
+          "net": null,
+          "x": 46.16,
+          "y": 17.461,
           "drill_mm": 1.1
         },
         {
           "number": "3",
-          "net": "+5V_C6",
-          "x": 61.51,
-          "y": 21.144,
+          "net": null,
+          "x": 46.16,
+          "y": 20.001,
           "drill_mm": 1.1
         },
         {
           "number": "4",
-          "net": "C6_LOCAL_3V3",
-          "x": 61.51,
-          "y": 23.684,
+          "net": null,
+          "x": 46.16,
+          "y": 22.541,
           "drill_mm": 1.1
         },
         {
           "number": "5",
           "net": null,
-          "x": 61.51,
-          "y": 26.224,
+          "x": 46.16,
+          "y": 25.081,
           "drill_mm": 1.1
         },
         {
           "number": "6",
           "net": null,
-          "x": 61.51,
-          "y": 28.764,
+          "x": 46.16,
+          "y": 27.621,
           "drill_mm": 1.1
         },
         {
           "number": "7",
-          "net": null,
-          "x": 61.51,
-          "y": 31.304,
+          "net": "THREAD_TX",
+          "x": 46.16,
+          "y": 30.161,
           "drill_mm": 1.1
         },
         {
-          "number": "8",
+          "number": "14",
+          "net": "+5V_C6",
+          "x": 61.4,
+          "y": 14.921,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "13",
+          "net": "GND",
+          "x": 61.4,
+          "y": 17.461,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "12",
           "net": null,
-          "x": 61.51,
-          "y": 33.844,
+          "x": 61.4,
+          "y": 20.001,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "11",
+          "net": null,
+          "x": 61.4,
+          "y": 22.541,
+          "drill_mm": 1.1
+        },
+        {
+          "number": "10",
+          "net": null,
+          "x": 61.4,
+          "y": 25.081,
           "drill_mm": 1.1
         },
         {
           "number": "9",
           "net": null,
-          "x": 61.51,
-          "y": 36.384,
+          "x": 61.4,
+          "y": 27.621,
           "drill_mm": 1.1
         },
         {
-          "number": "10",
-          "net": "C6_STRAP8",
-          "x": 61.51,
-          "y": 38.924,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "11",
-          "net": "THREAD_BOOT",
-          "x": 61.51,
-          "y": 41.464,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "12",
+          "number": "8",
           "net": "THREAD_RX",
-          "x": 46.27,
-          "y": 44.004,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "13",
-          "net": "THREAD_TX",
-          "x": 46.27,
-          "y": 41.464,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "14",
-          "net": "GND",
-          "x": 46.27,
-          "y": 38.924,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "15",
-          "net": "THREAD_EN",
-          "x": 46.27,
-          "y": 36.384,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "16",
-          "net": null,
-          "x": 46.27,
-          "y": 33.844,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "17",
-          "net": null,
-          "x": 46.27,
-          "y": 31.304,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "18",
-          "net": null,
-          "x": 46.27,
-          "y": 28.764,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "19",
-          "net": null,
-          "x": 46.27,
-          "y": 26.224,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "20",
-          "net": null,
-          "x": 46.27,
-          "y": 23.684,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "21",
-          "net": null,
-          "x": 46.27,
-          "y": 21.144,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "22",
-          "net": null,
-          "x": 46.27,
-          "y": 18.604,
-          "drill_mm": 1.1
-        },
-        {
-          "number": "23",
-          "net": null,
-          "x": 46.27,
-          "y": 16.064,
+          "x": 61.4,
+          "y": 30.161,
           "drill_mm": 1.1
         }
       ],
       "body_bounds_global_mm": [
-        45.0,
-        12.482,
-        62.78,
-        48.782
+        44.89,
+        12.0,
+        62.67,
+        32.955
       ]
     },
     {
@@ -1186,7 +1119,7 @@
     },
     {
       "ref": "J2",
-      "model": "D24V22F3 external assembled buck",
+      "model": "RECOM R-78K3.3-1.0 offboard 3V3 converter",
       "footprint": "MC2:PinHeader_1x04_P2.54mm_Vertical",
       "pins": {
         "1": "+5V",
@@ -1203,7 +1136,7 @@
       ],
       "rotation": 90,
       "source": "connector",
-      "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. Buck remains separate ready module.",
+      "notes": "Harness interface only; pin1 buckVIN; pin2GND;pin3buckVOUT;pin4GND. RECOM plus 27uF input capacitor stays on supported offboard perfboard.",
       "body_bounds_local_mm": null,
       "pad_centers_mm": [
         {
@@ -1818,38 +1751,38 @@
       "body_bounds_global_mm": null
     },
     {
-      "ref": "R3",
-      "model": "10k C6 download strap GPIO8",
-      "footprint": "MC2:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "ref": "J10",
+      "model": "C6 EN/BOOT underside recovery harness",
+      "footprint": "MC2:PinHeader_1x02_P2.54mm_Vertical",
       "pins": {
-        "1": "C6_LOCAL_3V3",
-        "2": "C6_STRAP8"
+        "1": "THREAD_EN",
+        "2": "THREAD_BOOT"
       },
       "types": {},
       "fitted": true,
       "side": "front",
       "xy": [
-        69,
-        14
+        49.51,
+        39
       ],
-      "rotation": 270,
-      "source": "resistor",
-      "notes": "GPIO8 must be HIGH for UART download. Connect only to TinyC6 local3V3 pin4; never to shared peripheral3V3.",
+      "rotation": 90,
+      "source": "connector",
+      "notes": "Two 30AWG insulated leads above carrier under module; window for access: J10.1->XIAO TP8 EN; J10.2->TP2 BOOT/GPIO9. Required for host reset and automatic RCP flashing. Fit before module seating; retain slack and strain relief.",
       "body_bounds_local_mm": null,
       "pad_centers_mm": [
         {
           "number": "1",
-          "net": "C6_LOCAL_3V3",
-          "x": 69.0,
-          "y": 14.0,
-          "drill_mm": 0.8
+          "net": "THREAD_EN",
+          "x": 49.51,
+          "y": 39.0,
+          "drill_mm": 1.0
         },
         {
           "number": "2",
-          "net": "C6_STRAP8",
-          "x": 69.0,
-          "y": 21.62,
-          "drill_mm": 0.8
+          "net": "THREAD_BOOT",
+          "x": 52.05,
+          "y": 39.0,
+          "drill_mm": 1.0
         }
       ],
       "body_bounds_global_mm": null

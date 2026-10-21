@@ -1,14 +1,14 @@
 {
-  "revision": "MC2-C-external-antenna-RF1",
+  "revision": "MC2-D-external-antenna-RF1",
   "status": "printable_engineering_prototype_not_fit_qualified",
   "units": "mm",
   "native_source_sha256": {
-    "mc2.kicad_pcb": "3fd66fcac66053d10ba4b36df2f72b9f06d609a33c33229fd51f1e3ea2d9cc17",
-    "design.json": "55bf8d39542f8b153a61dd025a5ffe850b76e6dfb2cf5b5ddec73c0262e0d875"
+    "mc2.kicad_pcb": "a04d44fb8cdabd5fa4fff10b25f6431b674888d79b3d33331a73ce6e975bfdfc",
+    "design.json": "0dd397510ab15133679c3be1b63e00eb7fc241dc5f54f3acf65d0f40577147c4"
   },
   "generator_sha256": "8edca6d978e738b6ae65843072641e9aed2245b49cef8e18197b0b49bb902c97",
   "test_source_sha256": "8c1e4898662dfdb42bf9eca1a33fece733c5348dbe8704ee8d6b180b24280421",
-  "parameters_sha256": "b5c8d3ca6e28e8ffef64d54b98fb27b63e972676ef8c31b45fc530d95fc67ee4",
+  "parameters_sha256": "a6cab9bad3dd5e0204fe5630535224b98abb1ed543c8f857b85c100a32b095c1",
   "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
   "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
   "outer_dimensions_mm": [
@@ -39,10 +39,10 @@
         [
           60.0,
           56.0,
-          29.0
+          22.14
         ]
       ],
-      "polyline_guide_length_mm": 67.012,
+      "polyline_guide_length_mm": 68.433,
       "cable_length_trial_mm": 150.0,
       "cable_length_minimum_budget_mm": 144,
       "minimum_bend_radius_mm": 6.8,
@@ -54,52 +54,57 @@
         ],
         [
           30.0,
-          26.867048935,
+          26.746929969,
           34.0
         ],
         [
-          30.099773051,
-          28.035551931,
-          33.983371158
+          30.069821078,
+          27.754620521,
+          33.9723974
         ],
         [
-          30.396123978,
-          29.169292205,
-          33.933979337
+          30.277742515,
+          28.740059131,
+          33.890199126
         ],
         [
-          30.880236401,
-          30.234541218,
-          33.853293933
+          30.619172965,
+          29.681485228,
+          33.755220288
         ],
         [
-          31.537708076,
-          31.199608032,
-          33.743715321
+          31.086572921,
+          30.55811013,
+          33.570441505
         ],
         [
-          32.348979357,
-          32.035782109,
-          33.60850344
+          31.669621201,
+          31.350576102,
+          33.339943085
+        ],
+        [
+          32.355442865,
+          32.041383817,
+          33.068814921
         ],
         [
           60.0,
           56.0,
-          29.0
+          22.14
         ]
       ],
       "bend_arcs": [
         {
           "center_mm": [
-            36.70747868205858,
-            26.867048935470205,
-            32.88208688632357
+            36.32376641829471,
+            26.7469299685314,
+            31.500004342634156
           ],
           "radius_mm": 6.8,
-          "angle_degrees": 49.47370395668442
+          "angle_degrees": 51.13221970063673
         }
       ],
-      "straight_bulkhead_lead_mm": 23.867048935470205,
+      "straight_bulkhead_lead_mm": 23.7469299685314,
       "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
     },
     {
@@ -117,12 +122,12 @@
           34.0
         ],
         [
-          83.28999999999999,
-          86.25200000000001,
-          29.0
+          84.48400000000001,
+          71.5485,
+          22.14
         ]
       ],
-      "polyline_guide_length_mm": 84.675,
+      "polyline_guide_length_mm": 71.469,
       "cable_length_trial_mm": 150.0,
       "cable_length_minimum_budget_mm": 144,
       "minimum_bend_radius_mm": 6.8,
@@ -134,37 +139,42 @@
         ],
         [
           95.0,
-          29.240013561,
+          28.746946113,
           34.0
         ],
         [
-          94.961304502,
-          29.995297549,
-          33.983477584
+          94.966749718,
+          29.571017543,
+          33.962500158
         ],
         [
-          94.845696867,
-          30.741234829,
-          33.934114802
+          94.867489003,
+          30.382941663,
+          33.850553402
         ],
         [
-          83.28999999999999,
-          86.25200000000001,
-          29.0
+          94.703681016,
+          31.17075022,
+          33.665809894
+        ],
+        [
+          84.48400000000001,
+          71.5485,
+          22.14
         ]
       ],
       "bend_arcs": [
         {
           "center_mm": [
-            88.74622836013087,
-            29.240013561180742,
-            31.32973029894572
+            90.48861349101776,
+            28.746946113105636,
+            28.912034614251677
           ],
           "radius_mm": 6.8,
-          "angle_degrees": 12.754135537634095
+          "angle_degrees": 20.881833667044738
         }
       ],
-      "straight_bulkhead_lead_mm": 26.240013561180742,
+      "straight_bulkhead_lead_mm": 25.746946113105636,
       "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
     },
     {
@@ -184,10 +194,10 @@
         [
           114.0,
           71.0,
-          29.0
+          22.14
         ]
       ],
-      "polyline_guide_length_mm": 88.822,
+      "polyline_guide_length_mm": 89.751,
       "cable_length_trial_mm": 150.0,
       "cable_length_minimum_budget_mm": 144,
       "minimum_bend_radius_mm": 6.8,
@@ -199,52 +209,52 @@
         ],
         [
           160.0,
-          26.939940845,
+          26.886487629,
           34.0
         ],
         [
-          159.903526437,
-          28.084646617,
-          33.989513743
+          159.903119316,
+          28.048664672,
+          33.975021632
         ],
         [
-          159.616859266,
-          29.196680536,
-          33.958354268
+          159.615328091,
+          29.176643317,
+          33.900821547
         ],
         [
-          159.148180459,
-          30.244303257,
-          33.907410919
+          159.145094913,
+          30.237231493,
+          33.779583167
         ],
         [
-          158.510866906,
-          31.197613843,
-          33.838137707
+          158.506256934,
+          31.199220171,
+          33.61487407
         ],
         [
-          157.723108623,
-          32.029403184,
-          33.752511807
+          157.717612698,
+          32.034301725,
+          33.411541013
         ],
         [
           114.0,
           71.0,
-          29.0
+          22.14
         ]
       ],
       "bend_arcs": [
         {
           "center_mm": [
-            153.23981765112768,
-            26.93994084516717,
-            33.26519757077475
+            153.41533450561565,
+            26.886487629103282,
+            32.30230146166525
           ],
           "radius_mm": 6.8,
-          "angle_degrees": 48.456319622388804
+          "angle_degrees": 49.20319442126743
         }
       ],
-      "straight_bulkhead_lead_mm": 23.93994084516717,
+      "straight_bulkhead_lead_mm": 23.886487629103282,
       "status": "XY endpoint estimated by hardware layout; all Z and formed bend paths unmeasured"
     }
   ],
@@ -261,12 +271,12 @@
     },
     {
       "ref": "U2",
-      "model": "Unexpected Maker TinyC6[D] TC6D-01",
+      "model": "Seeed XIAO ESP32C6 pre-soldered 102010636",
       "bounds_case_mm": [
-        80.0,
-        52.482,
-        97.78,
-        88.782
+        79.89,
+        52.0,
+        97.67,
+        72.955
       ]
     },
     {
@@ -290,7 +300,7 @@
       ]
     }
   ],
-  "native_layout_revision": "MC2-C",
+  "native_layout_revision": "MC2-D",
   "rear_bay_x_mm": [
     89.0,
     124.0
@@ -420,7 +430,7 @@
     "ceiling-spacing-frame.stl": "5b61ee1e0060a849e02027fa69d0abda0de4b3772412e38de213b728123270d7",
     "cover.scad": "5d2ed6f501225e7b32b2e566b73828e239441e4325d5f6e2d942bfb3650aba87",
     "cover.stl": "90d1e9526143ef726e51ad973991be4e263ec203deac669a101ff98202ea022f",
-    "enclosure.svg": "fe1399e6b6ef54edd233eb195aea6c81ebf22941f5f07a85724ea93f70da300d",
+    "enclosure.svg": "87f0aca3cbacd1aa91f8f5df484ab82cf00e11b4d50609a36c250a5d1a3ea748",
     "index.html": "e6c7b74170ed9d5762f1804d6628ed707494f5ff07863cfd55318c512099ac31",
     "print-parts.png": "b3383823e94fc0cd3993158131eb8a1ac862f6683a1ae698db7e85d35812c2d1"
   }

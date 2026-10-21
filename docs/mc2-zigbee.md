@@ -1,13 +1,13 @@
-# MC2-C Zigbee: program the XIAO MG24 external antenna image
+# MC2-D Zigbee: program the XIAO MG24 external antenna image
 
 This is the current programming route for **U3, Seeed XIAO MG24 Pre-Soldered
-SKU 102010690**, on the MC2-C carrier. Use **`--antenna external`** throughout:
+SKU 102010690**, on the MC2-D carrier. Use **`--antenna external`** throughout:
 the application drives **PB04=1 and PB05=1** before starting Zigbee, selecting
 the U.FL connector. Attach the specified 2.4 GHz antenna before running it.
 
 The recipe is shared with MC1 and its files retain `mc1` in their names. This
 does not make MC1 host wiring or its default onboard-antenna example suitable
-for MC2-C. Build and offline validation have passed; actual radio operation
+for MC2-D. Build and offline validation have passed; actual radio operation
 and physical commissioning still need verification.
 
 ## 1. Prepare the tools
@@ -97,9 +97,9 @@ Do not copy this loose-board power procedure onto a soldered carrier. In-circuit
 USB service requires checking the complete assembly's power isolation and
 backfeed behaviour; use the normal MC2 network update route when available.
 
-## 4. Connect and test on MC2-C
+## 4. Connect and test on MC2-D
 
-Use the [current MC2-C connector ledger](../hardware/external-antenna/cad/connectors.json)
+Use the [current MC2-D connector ledger](../hardware/external-antenna/cad/connectors.json)
 and [pin guide](external-antennas.md#pin-connections-and-initial-programming).
 The host is the classic ESP32, not the S3 described in historical MC1 material:
 
@@ -140,4 +140,4 @@ power arrangement; do not power only one connected module through USB.
 The [shared MG24 engineering reference](../firmware/module-carrier/zigbee/README.md)
 contains advanced clock, image-layout and build-validation detail. Its **MC1/S3
 host pin assignments and onboard-image example are historical**; the commands
-and connections on this page are the MC2-C route.
+and connections on this page are the MC2-D route.

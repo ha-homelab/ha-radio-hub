@@ -2,17 +2,17 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MG24 programming · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-zigbee.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-prepare-the-tools">1. Prepare the tools</a></li><li><a href="#2-generate-and-build-the-external-image">2. Generate and build the external image</a></li><li><a href="#3-program-the-loose-xiao-through-its-usb-c-port">3. Program the loose XIAO through its USB-C port</a></li><li><a href="#4-connect-and-test-on-mc2-c">4. Connect and test on MC2-C</a></li><li><a href="#updates-and-recovery">Updates and recovery</a></li></ul></details><article class="article"><h1 id="mc2-c-zigbee-program-the-xiao-mg24-external-antenna-image">MC2-C Zigbee: program the XIAO MG24 external antenna image</h1>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/mc2-zigbee.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#1-prepare-the-tools">1. Prepare the tools</a></li><li><a href="#2-generate-and-build-the-external-image">2. Generate and build the external image</a></li><li><a href="#3-program-the-loose-xiao-through-its-usb-c-port">3. Program the loose XIAO through its USB-C port</a></li><li><a href="#4-connect-and-test-on-mc2-d">4. Connect and test on MC2-D</a></li><li><a href="#updates-and-recovery">Updates and recovery</a></li></ul></details><article class="article"><h1 id="mc2-d-zigbee-program-the-xiao-mg24-external-antenna-image">MC2-D Zigbee: program the XIAO MG24 external antenna image</h1>
 <p>This is the current programming route for <strong>U3, Seeed XIAO MG24 Pre-Soldered
-SKU 102010690</strong>, on the MC2-C carrier. Use <strong><code>--antenna external</code></strong> throughout:
+SKU 102010690</strong>, on the MC2-D carrier. Use <strong><code>--antenna external</code></strong> throughout:
 the application drives <strong>PB04=1 and PB05=1</strong> before starting Zigbee, selecting
 the U.FL connector. Attach the specified 2.4 GHz antenna before running it.</p>
 <p>The recipe is shared with MC1 and its files retain <code>mc1</code> in their names. This
 does not make MC1 host wiring or its default onboard-antenna example suitable
-for MC2-C. Build and offline validation have passed; actual radio operation
+for MC2-D. Build and offline validation have passed; actual radio operation
 and physical commissioning still need verification.</p>
 <h2 id="1-prepare-the-tools">1. Prepare the tools</h2>
 <p>Use these pinned tools and set their paths in your shell:</p>
@@ -86,8 +86,8 @@ supply. A successful verification checks written bytes, not Zigbee range.</p>
 <p>Do not copy this loose-board power procedure onto a soldered carrier. In-circuit
 USB service requires checking the complete assembly's power isolation and
 backfeed behaviour; use the normal MC2 network update route when available.</p>
-<h2 id="4-connect-and-test-on-mc2-c">4. Connect and test on MC2-C</h2>
-<p>Use the <a href="../hardware/external-antenna/cad/connectors.json">current MC2-C connector ledger</a>
+<h2 id="4-connect-and-test-on-mc2-d">4. Connect and test on MC2-D</h2>
+<p>Use the <a href="../hardware/external-antenna/cad/connectors.json">current MC2-D connector ledger</a>
 and <a href="antennas.html#pin-connections-and-initial-programming">pin guide</a>.
 The host is the classic ESP32, not the S3 described in historical MC1 material:</p>
 <ul>
@@ -122,6 +122,6 @@ power arrangement; do not power only one connected module through USB.</p>
 <p>The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/firmware/module-carrier/zigbee/README.md">shared MG24 engineering reference</a>
 contains advanced clock, image-layout and build-validation detail. Its <strong>MC1/S3
 host pin assignments and onboard-image example are historical</strong>; the commands
-and connections on this page are the MC2-C route.</p>
-</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+and connections on this page are the MC2-D route.</p>
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

@@ -15,7 +15,7 @@
     "slug": "pcb-order",
     "source": "docs/pcb-order.md",
     "label": "Order the PCB",
-    "description": "Download the MC2-C prototype fabrication package and check quantities, finish and shipping."
+    "description": "Download the MC2-D prototype fabrication package and check quantities, finish and shipping."
   },
   {
     "slug": "firmware",
@@ -57,7 +57,7 @@
     "slug": "pigtails",
     "source": "docs/pigtail-selection.md",
     "label": "Choose RF cables",
-    "description": "Check the Taoglas replacement, lower price, length allowance and the retained RF1 cable geometry in PWR1."
+    "description": "Check the Taoglas replacement, lower price, length allowance and the revised MC2-D route in the PWR1 enclosure."
   },
   {
     "slug": "hardware",

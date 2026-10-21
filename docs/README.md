@@ -1,12 +1,12 @@
 # Current MC2 documentation
 
-Updated 19 October 2026. **MC2-C** is the active 100 × 100 mm carrier with separate
+Updated 20 October 2026. **MC2-D** is the active 100 × 100 mm carrier with separate
 external Zigbee, Thread and BLE antennas. The selected ESP32-DevKitC-VIE has 8 MB flash and 8 MB physical
-PSRAM (4 MB directly addressable); its Thread radio is TinyC6[D] / TC6D-01. All components face the same side.
+PSRAM (4 MB directly addressable); its Thread radio is XIAO ESP32C6 pre-soldered / 102010636. All components face the same side.
 The project is an engineering prototype, with physical and whole-house RF
 qualification still outstanding.
 
-**New build: [Start here — the complete MC2-C / FH1 build journey](start-here.md).**
+**New build: [Start here — the complete MC2-D / FH1 build journey](start-here.md).**
 It orders parts verification, loose-board flashing, printing, wiring, first
 power and Home Assistant setup, with a checkpoint at each stage and symptom-based
 troubleshooting. To view the guide locally as rendered HTML, run
@@ -26,7 +26,7 @@ troubleshooting. To view the guide locally as rendered HTML, run
   [connector ledger](../hardware/external-antenna/cad/connectors.json).
 - [ESP32/C6/MG24 build and programming instructions](../firmware/external-antenna/README.md)
   and [network updating](../firmware/external-antenna/updates/README.md).
-- [MC2-C MG24 external-antenna image: build, program and recover](mc2-zigbee.md).
+- [MC2-D MG24 external-antenna image: build, program and recover](mc2-zigbee.md).
 - [Full-hub enclosure, exploded layout and printable mounts](../mechanical/full-hub/README.md).
 - [Complete assembly, ZAC93 placement and pin-to-pin wiring](full-hub-assembly.md).
 - [Full-hub graphical wiring](../hardware/external-antenna/full-hub-wiring.svg).
@@ -40,8 +40,8 @@ neither the battery installation nor the switch supply. The FH1 enclosure adds
 individual mounts for power, UART bridge, Z-Wave and 433 MHz radio, a lid-mounted
 radar and an attached ventilated environmental-sensor pod. Its exact selected
 modules and unmeasured dimensions are in the [assembly inventory](../mechanical/full-hub/components.json).
-The current TC6D-01 was in stock at the manufacturer on 19 October 2026. Use
-the [prototype ordering record](pcb-order.md) and matching MC2-C firmware.
+The selected 102010636 was in stock at DigiKey on 20 October 2026. Use
+the [prototype ordering record](pcb-order.md) and matching MC2-D firmware.
 
 MC1 remains a [historical build](module-carrier.md). Its software checks continue
 for regression coverage, but its Nano/H2 pin map, 16 MB flash layout, compact

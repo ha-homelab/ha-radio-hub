@@ -1,6 +1,6 @@
 # Full-hub mechanical source ledger
 
-Power assembly updated 2026-10-20; other evidence reviewed 2026-10-19. The user confirmed the delivered Z-Wave board is a **Zooz
+Thread-board and power assembly updated 2026-10-20; other evidence reviewed 2026-10-19. The user confirmed the delivered Z-Wave board is a **Zooz
 ZAC93**. No board, connector or enclosure has been physically measured in this
 work. [components.json](components.json) separates published nominal dimensions
 from the larger engineering envelopes used for layout. Envelopes include the
@@ -11,8 +11,8 @@ listed separately. They are not manufacturer tolerances or a fit certificate.
 
 ### Carrier and its four fitted modules
 
-The current carrier is MC2-C, with ESP32-DevKitC-VIE / ESP32-WROVER-IE,
-Unexpected Maker TinyC6[D] TC6D-01, Seeed XIAO MG24 and WIZnet WIZ850io. Its authoritative
+The current carrier is MC2-D, with ESP32-DevKitC-VIE / ESP32-WROVER-IE,
+Seeed Studio XIAO ESP32C6 pre-soldered SKU 102010636, Seeed XIAO MG24 and WIZnet WIZ850io. Its authoritative
 outline, four mounting holes and fitted-part plan geometry are in the project
 [CAD manifest](../../hardware/external-antenna/cad/design.json). The bare PCB is
 100 x 100 mm with four 2.7 mm holes at (4,4), (96,4), (4,96), (96,96).
@@ -23,32 +23,63 @@ supports the carrier and the Ethernet jack. Do not add screws through module
 PCBs. The wiring authority remains the
 [connector ledger](../../hardware/external-antenna/cad/connectors.json).
 
-### TinyC6[D] revision change
+### Factory-header stack and coax approach
 
-MC2-C selects **Unexpected Maker TinyC6[D], TC6D-01**, in place of the original
-TC6-U-01 used by MC2-B. The manufacturer's
-[Series D source revision](https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3)
-and [TinyC6D STEP model](https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step)
-define the new PCB and connector geometry. The nominal PCB is 36.3 × 17.78 mm;
-17.8 mm is the rounded published width. A BRep import using CadQuery 2.8.0 /
-Open CASCADE 7.9.3 confirms a 0.91 mm PCB and a complete unpinned model Z range
-of −0.075…4.205 mm, or 4.28 mm overall. The small negative extent belongs to
-underside features; it is not a header or mating clearance. The
-[native evidence ledger](../../hardware/external-antenna/cad/c6d-evidence.json)
-records the pinned STEP digest and nominal geometry. Its 1×11 and 1×12 header rows retain
-2.54 mm pitch and 15.24 mm separation. Do not use the old board-edge outline
-to locate the longer replacement: the carrier aligns the **header holes**.
-The native MC2-C CAD records the exact transformation and connector locations.
+U1 ESP32-DevKitC-VIE, U2 XIAO ESP32C6 102010636 and U3 XIAO MG24 102010690
+are purchased with male headers and soldered directly into the carrier.
+No female module sockets or raised stand-offs are specified. The model uses a
+**2.54 mm header-plastic gap as an engineering allocation**, placing each radio
+PCB underside 4.14 mm above the carrier underside. This is not a measured or
+manufacturer-certified spacer height: the
+[Espressif dimension drawing](https://dl.espressif.com/dl/schematics/esp32_devkitc_v4_dimensions.pdf)
+and [Seeed MG24 guide](https://wiki.seeedstudio.com/xiao_mg24_getting_started/)
+establish plan geometry but do not qualify the delivered header stack in Z.
+The existing 8 mm allowance above each radio PCB plane is retained for its PCB,
+components and connector envelope. Check the delivered boards against it.
 
-The new U.FL socket is near the opposite side of the Thread board from the
-previous estimated endpoint. Both enclosure generators consume the corrected
-native-CAD endpoint when checking the 150 mm coax route. A fitted AMC plug,
-header/socket stack and formed cable bend still need a dry fit; the STEP model
-does not include those purchased mating parts. The full enclosure retains its
-215 × 215 × 78 mm dimensions and a 30 mm populated-carrier height reservation.
-Do not fit the optional battery connector or a LiPo battery in this build.
-The external antenna also requires the MC2-C RCP firmware, which selects it via
-the Series D I²C expander; mechanically plugging in a pigtail is insufficient.
+The former generic 9 mm U1/U3 PCB plane made the last Zigbee coax leg look
+shorter. The current model lowers that plane and its connector endpoint,
+and routes the three coax cables through **z=32 mm**, rather than z=40 mm,
+before the final connector approach. With the nominal direct-header stack,
+the longest guide is 117.141 mm plus 25 mm service allowance, within the 144 mm
+project cable budget. The generator checks the full rounded sweeps against
+printed parts and all module envelopes. Confirm actual header height, socket
+height, the estimated U1/U3 socket XY and the formed 150 mm cables before
+final assembly; these calculations do not certify physical fit.
+
+### XIAO ESP32C6 revision change
+
+MC2-D selects **Seeed Studio XIAO ESP32C6 with factory-soldered headers,
+SKU 102010636**, replacing the TinyC6[D] fitted to historical MC2-C boards.
+The [manufacturer hardware guide](https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/)
+gives a nominal 21 × 17.8 mm PCB and links the manufacturer's KiCad sources.
+The current [native CAD ledger](../../hardware/external-antenna/cad/design.json)
+records the footprint, USB shell and external-antenna connector location.
+The bare 113991254 board and bundles without installed headers are not the
+selected purchase. A pre-soldered header does not eliminate the two underside
+EN and BOOT service connections required by this carrier; make those fine
+wire joints before seating the board. Keep the separate battery pads empty.
+
+Neither the public PCB dimensions nor a generic product picture establish
+factory-header height. The model retains an explicit engineering allowance
+for the installed stack and underneath service wires, which must be checked
+on the delivered board. Factory male headers solder directly into the carrier;
+no extra female sockets are specified. The nominal 2.54 mm header plastic puts
+the C6 PCB underside 4.14 mm above the carrier underside (1.6 + 2.54 mm).
+The native carrier includes an access window under the EN/BOOT pads. Keep
+each insulated fine wire at most 0.8 mm in outer diameter and underside solder
+joints within 1.5 mm of the module PCB. Header pitch is 2.54 mm, with two seven-pin rows;
+check the pin-one orientation and full seating before applying power.
+
+The enclosure generators consume the current native-CAD U.FL endpoint when
+checking the three separate 150 mm coax routes. A fitted AMC plug, header
+stack and formed cable bend still need a dry fit. The full enclosure retains
+its 215 × 215 × 78 mm outer dimensions and 30 mm populated-carrier reservation.
+Program the loose board over USB first; routine assembled updates use the
+documented host-to-RCP path. USB insertion into the assembled stack is not a
+qualified service route. Only the **MC2-D RCP firmware** selects the XIAO's
+external antenna using GPIO3 low and GPIO14 high. TinyC6[D] firmware is not
+interchangeable.
 
 ### Zooz ZAC93
 
@@ -193,7 +224,7 @@ against rotation when fitting the antenna. The drawing's 11.4±0.3 mm projection
 prove full antenna thread engagement**: test the complete stack on the coupon.
 The linked STEP download was challenged and was not used for geometry claims.
 [rf-evidence.json](rf-evidence.json) records source hashes, derived allowances and
-remaining checks. The PCB and radio firmware remain MC2-C.
+remaining checks. The current PCB and radio firmware are MC2-D.
 
 The inline fuse holder and female 5.5 x 2.1 mm DC adapter have no selected
 manufacturer part numbers. Their listed 35 x 18 x 18 mm and 40 x 16 x 18 mm

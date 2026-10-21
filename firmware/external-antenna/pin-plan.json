@@ -1,11 +1,11 @@
 {
-  "status": "MC2-C classic ESP32 / TinyC6[D] external-antenna engineering prototype; physical validation pending",
+  "status": "MC2-D classic ESP32 / factory-header XIAO ESP32C6 prototype; physical validation pending",
   "board": "ESP32-DevKitC-VIE",
   "soc": "ESP32",
   "flash_bytes": 8388608,
   "psram_bytes": 8388608,
   "psram_mode": "quad",
-  "physical_attachment": "Factory male headers solder directly into MC2-C plated holes; DevKitC V4 has two 19-pin rows, 25.40mm apart",
+  "physical_attachment": "Factory male headers solder directly into MC2-D plated holes; DevKitC V4 has two 19-pin rows, 25.40mm apart",
   "source": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html",
   "spi_bus_sharing": true,
   "application_gpio_count": 21,
@@ -140,41 +140,49 @@
       "baud": 460800,
       "reset": "EN",
       "boot": 9,
-      "board": "Unexpected Maker TinyC6[D]",
+      "board": "Seeed Studio XIAO ESP32C6",
       "header_pins": {
-        "rx": "12",
-        "tx": "13",
-        "reset": "15",
-        "boot": "11",
-        "5V": "3",
+        "rx": "8",
+        "tx": "7",
+        "5V": "14",
         "GND": [
-          "2",
-          "14"
+          "13"
         ]
       },
       "download_strap": {
         "gpio": 8,
         "level": 1,
-        "pullup_ohms": 10000,
+        "pullup_ohms": 5100,
         "rail": "C6_LOCAL_3V3",
-        "header_pin": "10"
+        "location": "XIAO onboard; no carrier resistor"
       },
-      "sku": "TC6D-01",
+      "sku": "102010636",
       "antenna": {
         "mode": "external",
         "rf_path": "U.FL",
-        "expander": "FXL6408",
-        "i2c_address": 67,
-        "sda": 6,
-        "scl": 7,
-        "select_pin": "XIO0",
+        "enable_gpio": 3,
+        "enable_level": 0,
+        "select_gpio": 14,
         "select_level": 1,
         "initialized_before_radio": true
       },
-      "source": "https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3"
+      "source": "https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/",
+      "recovery_harness": {
+        "reset": {
+          "carrier_pin": "J10.1",
+          "module_pad": "TP8",
+          "net": "EN"
+        },
+        "boot": {
+          "carrier_pin": "J10.2",
+          "module_pad": "TP2",
+          "gpio": 9
+        }
+      },
+      "flash_bytes": 4194304
     }
   },
-  "caveat": "Classic ESP32 BLE4.2 supports legacy advertising/connections, not BLE5 extended advertising, 2M or Coded PHY. Input-only GPIO34/35/36/39 have no internal pull resistors. UART0 is remapped to LD2450; GPIO1/3 remain USB-UART only with runtime logging disabled. This is not MC2-A socket compatible. MC2-C uses TinyC6[D] and requires the MC2-C antenna-aware RCP firmware; historical MC2-B fixed-U.FL firmware is not suitable.",
+  "caveat": "Classic ESP32 BLE4.2 legacy advertising/connections only; no BLE5 extended,2M,CodedPHY. Input-only GPIO34/35/36/39 lack internal pulls. UART0 remapped to LD2450; GPIO1/3 USB-UART only. MC2-D is not TinyC6 socket-compatible. XIAO requires MC2-D antenna-aware RCP firmware and two bottom-pad recovery leads.",
   "bootstrap_requirements": {
     "GPIO12": {
       "level": 0,
@@ -199,7 +207,7 @@
     "GPIO15": {
       "net": "THREAD_BOOT",
       "default_level": 1,
-      "pullup": "TinyC6 factory BOOT pull-up / host internal pull-up",
+      "pullup": "XIAO factory BOOT pull-up / host internal pull-up",
       "reason": "Host UART boot-log selection only; C6 BOOT normally high"
     }
   },

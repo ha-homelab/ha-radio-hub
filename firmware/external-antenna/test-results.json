@@ -1,8 +1,8 @@
 {
   "hardware_tested": false,
   "host": "macOS arm64",
-  "date": "2026-10-19",
-  "profile": "MC2-C classic ESP32 with TinyC6[D]",
+  "date": "2026-10-20",
+  "profile": "MC2-D classic ESP32 with XIAO ESP32C6",
   "commands": [
     {
       "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/external-antenna/tests -v",
@@ -25,5 +25,5 @@
       "skipped": 0
     }
   ],
-  "scope": "Host-compiled production antenna, fault/update helpers, RMT lifecycle, serial transport and real loopback socket tests. C6[D] selector cold/warm startup, all I2C failure positions, wrong expander identity and three output configuration readback failures were checked. Input Status is deliberately not treated as output feedback. Old C6 metadata and renamed old binaries are rejected. No radio, deployed ESPHome endpoint or Home Assistant was contacted."
+  "scope": "Host-compiled production antenna, fault/update helpers, RMT lifecycle, serial transport and real loopback socket tests. XIAO GPIO3/GPIO14 RF selection was checked for cold/warm startup, every GPIO API failure, settling delay and both pin readback failures. GPIO readback does not verify RF connectivity. Wrong 8 MB C6 images, earlier board identities, missing onboard GPIO8 strap metadata and missing EN/BOOT service-lead metadata are rejected. No radio, deployed ESPHome endpoint or Home Assistant was contacted."
 }

@@ -1,13 +1,12 @@
 {
   "schema_version": 1,
-  "revision": "MC2-C-PWR1",
+  "revision": "MC2-D-PWR1",
   "checked_on": "2026-10-20",
   "status": "Engineering assembly substitution; physical measurements pending",
   "hardware_measured": false,
-  "carrier_revision": "MC2-C",
+  "carrier_revision": "MC2-D",
   "native_copper_changed": false,
   "legacy_native_label": "D24V22F3 external assembled buck",
-  "legacy_label_rule": "The unchanged native J2 model records the original regulator. This file and harnesses.json select the current offboard assembly; do not purchase the legacy regulator for PWR1.",
   "regulator": {
     "manufacturer": "RECOM",
     "part": "R-78K3.3-1.0",
@@ -157,7 +156,7 @@
     "rated_capacity_to_reserve_ratio": 2.5,
     "excluded_loads": [
       "U1 host: +5V_HOST through D1 and its own regulator",
-      "U2 TinyC6[D]: +5V_C6 through D2 and its own regulator",
+      "U2 XIAO ESP32C6: +5V_C6 through D2 and its own regulator",
       "U3 XIAO MG24: +5V_ZB through D3 and its own regulator",
       "LD2450: fused +5V via J6.1"
     ],

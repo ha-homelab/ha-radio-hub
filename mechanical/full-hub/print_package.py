@@ -13,9 +13,9 @@ import json
 import zipfile
 
 HERE = Path(__file__).resolve().parent
-REVISION = 'FH1-MC2-C-PWR1'
-PCB_REVISION = 'MC2-C'
-ARCHIVE = 'FH1-MC2-C-PWR1-print-package.zip'
+REVISION = 'FH1-MC2-D-PWR1'
+PCB_REVISION = 'MC2-D'
+ARCHIVE = 'FH1-MC2-D-PWR1-print-package.zip'
 OUTPUTS = ('PRINT-FIRST.txt', 'print-manifest.json', ARCHIVE)
 # Explicit inventory, not a directory glob. A spare/private STL is never included.
 # stage, stem, label, quantity, role, fit/check note
@@ -50,9 +50,9 @@ def regular_bytes(path):
 
 def make_manifest(directory, report):
     if report.get('revision') != REVISION or report.get('units') != 'mm':
-        raise ValueError('The print package requires the current FH1-MC2-C-PWR1 report in millimetres')
+        raise ValueError('The print package requires the current FH1-MC2-D-PWR1 report in millimetres')
     if report.get('native_pcb_revision') != PCB_REVISION:
-        raise ValueError('The print package must be checked against the current MC2-C native carrier')
+        raise ValueError('The print package must be checked against the current MC2-D native carrier')
     expected = {row[1] for row in PARTS}
     if set(report.get('parts', {})) != expected:
         raise ValueError('Print inventory differs from the explicit FH1 part allowlist')
@@ -80,11 +80,11 @@ def make_manifest(directory, report):
 
 def instructions(manifest):
     lines = [
-        'FH1-MC2-C-PWR1 PRINT PACKAGE — READ BEFORE SLICING',
+        'FH1-MC2-D-PWR1 PRINT PACKAGE — READ BEFORE SLICING',
         'Engineering prototype. Digital checks do not verify physical fit.',
-        'For MC2-C with TinyC6[D] TC6D-01, ESP32-DevKitC-VIE and XIAO MG24.',
-        'The Series D Thread radio needs the MC2-C RCP firmware to select',
-        'its external U.FL antenna; the original TC6-U-01 firmware will not.',
+        'For MC2-D with XIAO ESP32C6 (102010636), ESP32-DevKitC-VIE and XIAO MG24.',
+        'The XIAO Thread radio needs the MC2-D RCP firmware to select',
+        'its external U.FL antenna; TinyC6 firmware is not compatible.',
         'PWR1 adds a RECOM R-78K3.3-1.0 + 27 uF input-capacitor tray.',
         'It retains RF1 Taoglas CAB.618.E pigtails and ROUND 6.8 mm holes.',
         'Use the 3 mm thick coupon to check supplied nut/washer engagement.',

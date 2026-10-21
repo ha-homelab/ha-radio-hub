@@ -1,11 +1,11 @@
 {
-  "revision": "MC2-C",
+  "revision": "MC2-D",
   "source": "cad/design.py",
-  "source_sha256": "54e1b5ee7f437378c9fd7a4270a5eff572fab9aeff345840c4251b7582f29950",
+  "source_sha256": "c896fac56b9121e86de6b0e11932e1c48714fa21f91a222c76d79fe12f11c9b9",
   "nets": {
     "THREAD_TX": [
       "U1.J2.3",
-      "U2.13"
+      "U2.7"
     ],
     "ZB_TX": [
       "U1.J2.4",
@@ -34,11 +34,11 @@
     ],
     "THREAD_RX": [
       "U1.J2.10",
-      "U2.12"
+      "U2.8"
     ],
     "THREAD_EN": [
       "U1.J2.11",
-      "U2.15"
+      "J10.1"
     ],
     "ZB_RTS": [
       "U1.J2.12",
@@ -54,8 +54,7 @@
       "U1.J2.14",
       "U1.J3.1",
       "U1.J3.7",
-      "U2.2",
-      "U2.14",
+      "U2.13",
       "U3.13",
       "U4.J1.1",
       "U4.J1.2",
@@ -126,19 +125,11 @@
     ],
     "THREAD_BOOT": [
       "U1.J3.16",
-      "U2.11"
+      "J10.2"
     ],
     "+5V_C6": [
-      "U2.3",
+      "U2.14",
       "D2.1"
-    ],
-    "C6_LOCAL_3V3": [
-      "U2.4",
-      "R3.1"
-    ],
-    "C6_STRAP8": [
-      "U2.10",
-      "R3.2"
     ],
     "ZB_BOOT_SERVICE": [
       "U3.1",

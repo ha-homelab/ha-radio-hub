@@ -1,13 +1,19 @@
 # Downloadable engineering build package
 
-The **v0.3.0-beta.2** package targets the current **MC2-C + FH1-MC2-C-PWR1**
+**Current source design: MC2-D / XIAO ESP32C6, 4 MB, factory headers.** The
+previous `v0.3.0-beta.2` release below remains MC2-C/TinyC6[D]; it is not the new
+purchase or fabrication package. Until an MC2-D release is explicitly published,
+use the reviewed MC2-D source commit and its matching Gerber/print archives.
+See [the current ordering guide](pcb-order.md).
+
+The **v0.3.0-beta.2** package targets the historical **MC2-C + FH1-MC2-C-PWR1**
 prototype with the RECOM PWR1 power assembly: a classic ESP32 host, TinyC6[D] Thread radio, external-antenna MG24
 Zigbee radio and three independent 2.4 GHz antenna paths. Download the ZIP and
 its checksum from [GitHub Releases](https://github.com/ha-homelab/ha-radio-hub/releases).
 This is a source, CAD and assembly package; no installation or physical
 acceptance is claimed.
 
-Start with [the ordered build guide](start-here.md), [MC2-C hardware](external-antennas.md),
+For new purchases, start with [the ordered build guide](start-here.md), [current hardware](external-antennas.md),
 [the full-hub assembly instructions](full-hub-assembly.md) and
 [the matching firmware guide](../firmware/external-antenna/README.md).
 The archive includes the committed sources, tests, documentation and historical
@@ -29,7 +35,7 @@ python3 tools/check.py
 python3 tools/preview.py
 ```
 
-For the current assembly, use these files from the same extracted archive:
+For that historical assembly, use these files from the same extracted archive:
 
 - `hardware/external-antenna/fabrication/MC2-C-prototype-gerbers.zip` and its
   manifest: the native PCB fabrication export, with [ordering instructions](pcb-order.md).
@@ -55,15 +61,14 @@ private. The source licenses and third-party notices are included.
 ## Earlier packages
 
 `v0.3.0-beta.1` retains the previous Pololu converter and FH1-MC2-C-RF1
-enclosure. Its files and hashes remain historical. Use beta.2 consistently for
-the RECOM converter, capacitor, wiring and mount; no native carrier copper or
-firmware change is required.
+enclosure. Its files and hashes remain historical. Beta.2 added the RECOM converter, capacitor, wiring and mount to MC2-C.
+It predates MC2-D and its XIAO footprint and firmware.
 
 `v0.1.0` and `v0.2.0` describe the original Pi-based assembly. The latter added the
 migrated RF Ethernet contracts, but predates the later D0 print/assembly material
-and the current MC2-C/FH1 design. Those archives are not current MC2 manufacturing
+and both later MC2-C and current MC2-D/FH1 designs. Those archives are not current MC2 manufacturing
 or deployment packages. MC1, LP-D0 and other historical sources remain available
-for reference and regression tests; their geometry and firmware are not MC2-C
+for reference and regression tests; their geometry and firmware are not MC2-D
 substitutes.
 
 ## Rebuild from a reviewed commit
