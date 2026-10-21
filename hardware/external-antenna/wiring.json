@@ -1,7 +1,7 @@
 {
   "revision": "MC2-D",
   "source": "cad/design.py",
-  "source_sha256": "c896fac56b9121e86de6b0e11932e1c48714fa21f91a222c76d79fe12f11c9b9",
+  "source_sha256": "9069d292ad5510e1836a7edf5a0b07eedd00ad691120927150b288519d4e026f",
   "nets": {
     "THREAD_TX": [
       "U1.J2.3",

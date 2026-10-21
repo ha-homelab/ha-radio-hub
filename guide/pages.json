@@ -36,6 +36,12 @@
     "description": "Connect power, the UART bridge, ZAC93 and each sensor."
   },
   {
+    "slug": "connections",
+    "source": "docs/connection-audit.md",
+    "label": "Connection audit",
+    "description": "Review verified paths, the DFR0627 address correction and remaining bench measurements."
+  },
+  {
     "slug": "commissioning",
     "source": "docs/rf-commissioning.md",
     "label": "Test coverage",

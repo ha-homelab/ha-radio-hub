@@ -1191,7 +1191,7 @@
       ],
       "rotation": 90,
       "source": "weikai",
-      "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=1; register address 0x70, FIFO 0x71; verify physical markings.",
+      "notes": "Harness to DFR0627 I2C and UART1, no WK2132 SMD on carrier. J3.5=module TX1;J3.6=module RX1; IA1=1 IA0=0; register address 0x50, FIFO 0x51; reserve 0x50-0x57; BME680 remains 0x77; verify physical markings.",
       "body_bounds_local_mm": null,
       "pad_centers_mm": [
         {

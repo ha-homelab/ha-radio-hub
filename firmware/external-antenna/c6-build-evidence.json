@@ -83,9 +83,11 @@
     "prepare_c6.py": "4126a29b2154af3f57b8a714a41ba0a3a62dd41b192bef5bb0f338cb440bc46c",
     "verify_c6.py": "873c346a7931f65f42cd68d093de8d2fb5b7ee33d9d64a5a690ce0f44c310aab",
     "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
-    "mc2_contract.py": "4be94a48f4cf552c5ccd26546be524f78d1b0e4d3f6fd4fd1917e08aea4fb4bf",
+    "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
     "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
     "xiaoc6_antenna.c": "0efa74fe67470637ad9717c061a96d07ef12e9a01681d76d915ed70630f95e29",
     "xiaoc6_antenna.h": "68608efdb7d0730b398464e75366c1df8663664463c4925912d9ebb60f9bc655"
-  }
+  },
+  "verified_date_local": "2026-10-20",
+  "verification_scope": "Existing unchanged C6 images revalidated with current shared pin contract; C6 not rebuilt or flashed in this connection audit"
 }

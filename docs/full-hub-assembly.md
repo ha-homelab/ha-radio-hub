@@ -88,11 +88,20 @@ operation through compatible host software.
 
 DFR0627 is a finished **I²C-to-two-UART module** using WK2132. The MC2-D host's
 native UARTs already serve Thread, Zigbee and radar, so Z-Wave uses this bridge.
-Set **IA1 = 1 and IA0 = 1**. The pinned driver uses register address **0x70**,
-FIFO address **0x71**, and **UART1 at 115200, 8 data bits, no parity, 1 stop bit**.
+Set **IA1 = 1 and IA0 = 0** (the module's A1/A0 DIP switches). The driver uses
+register address **0x50**, FIFO address **0x51**, and **UART1 at 115200,
+8 data bits, no parity, 1 stop bit**.
 UART2 is unused. Powering this bridge at 3.3 V also keeps its I²C pull-ups and UART
 signals at the correct voltage. Do not use a 5 V supply just because the bridge
 itself supports one.
+
+**Address correction:** reserve **0x50–0x57** for this bridge, even though only
+UART1 is used. WK2132 decodes an eight-address block, not just its register and
+FIFO addresses. The previous **A1=1/A0=1** setting selected **0x70–0x77** and
+collided with BME680 at **0x77**; changing BME680 to 0x76 would still collide.
+Power down before changing A0, then use firmware configured for **0x50**.
+No carrier trace or J3 wire needs to change. See the
+[manufacturer's address-bit definition](https://wiki.dfrobot.com/dfr0627/docs/20907).
 
 | Carrier J3 pad | DFR0627 marking | Connection |
 | --- | --- | --- |
@@ -150,6 +159,14 @@ and startup, including losses in the fuse, connector and cable. Verify the
 peripheral rail under load before connecting the radios. The 1 A rating is a
 component limit subject to the datasheet conditions, not a measured hub current.
 See the [current load budget and acceptance criteria](../hardware/external-antenna/power-design.json).
+
+Copy the [power measurement worksheet](../hardware/external-antenna/power-measurements.csv)
+and record this assembly's RECOM input/output, ZAC93 supply and each controller's
+independent local 3.3 V rail under simultaneous load. Measure U1's regulator
+input after D1 together with its output: required headroom comes from the fitted
+regulator's guaranteed dropout at the measured current and temperature, not
+RECOM's 4.5 V minimum. Capture GPIO12 and GPIO2 around reset with a scope; a DMM
+average cannot verify boot straps. All worksheet entries start unmeasured.
 
 Fit the SIP3 converter and capacitor on the specified small **isolated-pad
 perfboard**, in the new removable PWR1 tray. Insulate solder joints, strain-relieve
@@ -234,6 +251,11 @@ numbers and the required module **signal names**.
 | 7 | GDO0 | GPIO25, open-drain transmit path with carrier 4.7 kΩ pull-up |
 | 8 | GDO2 | GPIO35, receive path |
 
+Use a current rebuilt host image with the
+[RF startup and handoff corrections](connection-audit.md#rf-startup-and-handoff-corrections). The host
+must release GDO0 while CC1101 drives it; verify that state through power-up,
+reset and transmit/receive transitions with an oscilloscope.
+
 Mount the module in its separate cradle and use a short, direct harness with
 ground conductors beside clock/data conductors; avoid a large loop alongside
 the buck converter. WIZ850io transactions also put **10 MHz** clock edges on
@@ -269,6 +291,8 @@ regulator-output pin. The default address is **0x77**; if the actual breakout is
 configured for **0x76**, change `bme680_address` in the private firmware build.
 The shared bus runs at **400 kHz**. Existing breakout pull-ups must go to 3.3 V;
 do not add pull-ups or long cable extensions without checking the resulting bus.
+Keep BME680 at **0x77** (0x76 is also outside the corrected bridge block) and
+DFR0627 at **A1=1/A0=0**. Do not reconnect a bridge left at A1=1/A0=1.
 Allow roughly **250–300 mm** for the routed pod harness as a starting estimate,
 then cut to the measured service route. That length is not guaranteed at
 400 kHz: verify rise times, noise and reliable communication while the other

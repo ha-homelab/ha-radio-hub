@@ -2,6 +2,7 @@
 """Validate or compile MC1 in an isolated directory. Never upload to a device."""
 import argparse
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import subprocess
@@ -44,6 +45,11 @@ def verify(profile: Path):
     for key,value in required.items():
         if config.get(key)!=value:
             raise RuntimeError(f"Required option missing: {key}={value}")
+    startup_path=Path(__file__).resolve().parents[1]/"components/rf_tx_startup/verify.py"
+    startup_spec=importlib.util.spec_from_file_location("rf_startup_verify",startup_path)
+    startup=importlib.util.module_from_spec(startup_spec)
+    startup_spec.loader.exec_module(startup)
+    startup_checks=startup.verify(root, 4)
     generated=(root/"src/main.cpp").read_text()
     pin_checks=verify_generated(generated,"nano")
     spi_checks=verify_shared_spi_sources(root/"src/esphome")
@@ -60,7 +66,7 @@ def verify(profile: Path):
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.9.1","esp_idf":"5.5.5",
-            "sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service,
+            "rf_tx_startup":startup_checks,"sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "partitions":partitions,"thread_source_sha256":source_hashes,
             "linked_memory":{"static_ram_bytes":ram["used"],"linker_ram_bytes":ram["size"],"runtime_measured":False},

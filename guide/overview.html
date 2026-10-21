@@ -4,7 +4,7 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="connections.html">Connection audit</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
 <main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#start-building">Start building</a></li><li><a href="#selected-hardware">Selected hardware</a></li><li><a href="#where-the-z-wave-board-and-other-parts-go">Where the Z-Wave board and other parts go</a></li><li><a href="#the-smaller-power-assembly">The smaller power assembly</a></li><li><a href="#build-and-inspect">Build and inspect</a></li><li><a href="#project-information">Project information</a></li></ul></details><article class="article"><h1 id="ha-radio-hub--mc2-d">HA Radio Hub — MC2-D</h1>
 <p><strong>Three independent external antennas: Zigbee, Thread and Bluetooth.</strong> MC2 keeps
 a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
@@ -36,6 +36,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/releases.md">Versioned engineering build package</a> ·
 <a href="../mechanical/full-hub/FH1-MC2-D-PWR1-print-package.zip">Print package — all STLs and quantities</a> ·
 <a href="../hardware/external-antenna/harness.csv">Pin-to-pin harness CSV</a> ·
+<a href="connections.html">Connection audit and I²C correction</a> ·
 <a href="documentation.html">Documentation index</a></p>
 <p><img src="../hardware/external-antenna/antenna-paths.svg" alt="MC2 independent antenna paths" /></p>
 <h2 id="selected-hardware">Selected hardware</h2>

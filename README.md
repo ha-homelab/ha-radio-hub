@@ -40,6 +40,7 @@ folder. GitHub shows HTML source rather than running this guide. Use
 [Versioned engineering build package](docs/releases.md) ·
 [Print package — all STLs and quantities](mechanical/full-hub/FH1-MC2-D-PWR1-print-package.zip) ·
 [Pin-to-pin harness CSV](hardware/external-antenna/harness.csv) ·
+[Connection audit and I²C correction](docs/connection-audit.md) ·
 [Documentation index](docs/README.md)
 
 ![MC2 independent antenna paths](hardware/external-antenna/antenna-paths.svg)

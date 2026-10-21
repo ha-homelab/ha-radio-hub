@@ -124,11 +124,11 @@ packages:
   radar: !include ../packages/ld2450.yaml
   health: !include health.yaml
 
-# Factory DFR0627 module at 3.3 V, IA1=1 and IA0=1. UART1 only.
+# Factory DFR0627 at 3.3 V, IA1=1 and IA0=0. Reserve 0x50–0x57; BME680 uses 0x77.
 wk2132_uart:
   id: uart_zwave
   i2c_id: expansion_bus
-  address: 0x70
+  address: 0x50
 
 zwave_proxy:
   id: zwave_radio

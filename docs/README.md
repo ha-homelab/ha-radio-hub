@@ -30,6 +30,8 @@ troubleshooting. To view the guide locally as rendered HTML, run
 - [Full-hub enclosure, exploded layout and printable mounts](../mechanical/full-hub/README.md).
 - [Complete assembly, ZAC93 placement and pin-to-pin wiring](full-hub-assembly.md).
 - [Full-hub graphical wiring](../hardware/external-antenna/full-hub-wiring.svg).
+- [Independent connection audit and I²C address correction](connection-audit.md).
+- [Blank power and boot-strap measurement worksheet](../hardware/external-antenna/power-measurements.csv).
 - [Coverage acceptance procedure](rf-commissioning.md) and
   [unmeasured results sheet](../hardware/external-antenna/coverage-results.csv).
 - [Digital verification record](../hardware/external-antenna/validation.md).

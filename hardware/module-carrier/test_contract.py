@@ -121,7 +121,7 @@ class Contract(unittest.TestCase):
         self.assertEqual(PARTS['J3']['pins']['5'], PARTS['J4']['pins']['4'])
         self.assertEqual(PARTS['J3']['pins']['6'], PARTS['J4']['pins']['5'])
         self.assertNotEqual(PARTS['J3']['pins']['5'], PARTS['J3']['pins']['6'])
-        self.assertIn('address: 0x70', section('wk2132_uart'))
+        self.assertIn('address: 0x50', section('wk2132_uart'))
 
     def test_two_sided_revision_retains_every_electrical_assignment(self):
         previous = json.loads((HERE / 'layout-single-sided.json').read_text())

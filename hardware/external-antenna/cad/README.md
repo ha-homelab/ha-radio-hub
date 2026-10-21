@@ -14,6 +14,13 @@ All three use **U.FL / MHF1** mating coax, not MHF3 or MHF4. SMA bulkheads and a
 
 ## Electrical changes and connections
 
+**I²C address correction (20 October 2026):** set the external DFR0627 DIP
+switches **A1=1, A0=0**, with UART1 register/FIFO **0x50/0x51** and the entire
+**0x50–0x57** block reserved. BME680 remains **0x77**. The old 1/1 setting
+decoded **0x70–0x77**, including BME680's address. This correction changes
+firmware and external switch setup, not carrier copper. See the
+[connection audit](../../../docs/connection-audit.md).
+
 [pin-plan.json](pin-plan.json) is the MC2-D firmware contract. All 21 application signals remain on the host: three native UARTs, shared hardware SPI, I²C, Ethernet IRQ/reset and C6 reset/boot. GPIO0 is reserved for recovery; GPIO1/3 remain on the factory USB-UART bridge; GPIO6–11 belong to flash and GPIO16/17 to PSRAM. GPIO34/35/36/39 are input-only and have no internal pull resistors. Runtime UART logging is disabled; the LD2450 UART0 is remapped to GPIO23 TX / GPIO18 RX after boot.
 
 Host Thread TX/RX is **GPIO26 / GPIO36**, EN is GPIO27 and BOOT is GPIO15. XIAO carrier **pad8 / D7 / GPIO17** receives host TX; **pad7 / D6 / GPIO16** sends to host RX. Pad14 is diode-fed 5 V and pad13 is GND; pad12/local3V3 remains unconnected. **J10.1 goes to bottom TP8/EN; J10.2 goes to TP2/BOOT/GPIO9.** These are mandatory signal leads, not optional jumpers. GPIO8 already has the manufacturer's 5.1 kΩ pull-up and BOOT has 10 kΩ, so **R3 is removed** and no local C6 3.3 V rail is brought onto the carrier. Do not join the controller 3.3 V outputs to the peripheral rail.

@@ -4,6 +4,8 @@ The current engineering prototype uses an ESP32-DevKitC-VIE (WROVER-IE, 8 MB fla
 
 - [Visual assembly and antenna guide](index.html)
 - [Full device assembly and ZAC93 pin map](../../docs/full-hub-assembly.md)
+- [Independent connection audit and required I²C switch correction](../../docs/connection-audit.md)
+- [Blank power and boot-strap measurement worksheet](power-measurements.csv)
 - [Exploded enclosure, all component mounts and print files](../../mechanical/full-hub/README.md)
 - [Full-hub wiring drawing](full-hub-wiring.svg)
 - [RECOM power wiring](power-wiring.svg) and [current power budget](power-design.json)

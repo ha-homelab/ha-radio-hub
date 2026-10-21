@@ -9,9 +9,11 @@ Use `hub.yaml` with a **Waveshare ESP32-S3-Nano-M** (factory male headers), **ES
 
 The [build record](build-evidence.json) records the full image, partition margins and generated GPIO checks. The [host test record](test-results.json) distinguishes simulated fault coverage from physical testing. The separately compiled [XIAO MG24 firmware](zigbee/README.md) and matching H2 RCP retain their existing protocol interfaces; the H2 image is rebuilt for its ROM UART pins. No hardware has been flashed or qualified by this change.
 
-The complete guarded Nano image compiled with ESPHome 2026.9.1 / ESP-IDF 5.5.5: **1,731,456-byte OTA image**, **163,795 bytes static RAM**, and two **8,126,464-byte OTA slots**, each with **6,395,008 bytes** remaining. These are image/linker measurements, not peak runtime memory. All 61 host tests (C++ helpers under sanitizers plus Python image/tunnel/pin-contract tests) and both existing REST contract tests passed.
+The complete guarded Nano image compiled with ESPHome 2026.9.1 / ESP-IDF 5.5.5: **1,731,872-byte OTA image**, **163,771 bytes static RAM**, and two **8,126,464-byte OTA slots**, each with **6,394,592 bytes** remaining. These are image/linker measurements, not peak runtime memory. All **70 MC1 host tests** and **103 shared RF/root tests** passed. Prior H2 and MG24 build evidence is retained unchanged.
 
 The generated 16 MB factory partition layout differs from the historical 8 MB layout, including the NVS location. Export/back up the existing Thread dataset and deployment configuration before a first factory installation or partition migration. App-only OTA ordinarily keeps the installed partition table; it does not perform this migration. Verify the actual installed layout. Runtime dataset preservation described below assumes an unchanged, correctly installed partition table.
+
+The shared [RF startup guard](../components/rf_tx_startup/README.md) releases CC1101 GDO0 before ESP-IDF first routes the RMT output. It checks the pinned upstream source and SDK version, and build verification confirms the actual linked transmitter call reaches the narrow wrapper. Runtime transitions also verify GDO0 Hi-Z and IDLE/TX/RX status before transmitting or resuming capture; failed checks latch a fault and skip the waveform. No GPIO or carrier layout changes are required for this correction.
 
 ## Functions retained
 
@@ -35,7 +37,7 @@ The Nano has native USB on 19/20 and no USB-UART bridge on 43/44. ROM boot messa
 
 H2 control outputs are open-drain. BOOT stays released high, and each hardware reset holds EN low for 10 ms then waits 100 ms. MC1 uses the H2 DevKit EN pull-up and GPIO9's intrinsic reset-time pull-up. Verify actual levels and the strap hold interval on the assembled carrier. The [assembled-device update guide](updates/README.md) provides S3 OTA, authenticated temporary H2 ROM-UART transport plus host esptool, and MG24 application GBL updating through TCP6638. The H2 path requires isolating the DevKit v1.3 USB-UART transmitter by removing R7 before assembly. It arms only after a durable Thread maintenance restart; normal operation has no TCP6639 listener. The host tool defaults to an offline plan and performs no flash unless `--execute` is supplied. Do not run simultaneous programmers. Paused/quarantined Thread performs no automatic reset or retry; an explicitly authenticated update session controls reset separately. Initial programming happens before soldering. USB and local recovery remain emergency options with the limitations in the update guide.
 
-Power DFR0627 from 3.3 V; set IA1=1 and IA0=1. Its UART1 register address is 0x70 and FIFO address 0x71. TX1 goes to ZAC93 RX and RX1 comes from ZAC93 TX. UART2 is disabled. BME680 remains at 0x77.
+Power DFR0627 from 3.3 V; set **IA1=1 and IA0=0**. Its UART1 register address is **0x50** and FIFO address is **0x51**. Reserve the complete **0x50–0x57** address block for this module. TX1 goes to ZAC93 RX and RX1 comes from ZAC93 TX. UART2 is disabled. BME680 remains at 0x77 (or 0x76 if configured). Earlier instructions using IA1=1/IA0=1 and 0x70/0x71 were incorrect with BME680 on the same bus: the DFR0627 also acknowledges other channel/FIFO addresses in 0x70–0x77. Disabling UART2 does not remove that overlap. Change the physical switch before using the corrected firmware.
 
 ## Shared SPI contract
 

@@ -78,7 +78,7 @@ def verify_generated(main):
     call("expansion_bus", "set_sda_pin", str(pins["i2c_sda"]))
     call("expansion_bus", "set_scl_pin", str(pins["i2c_scl"]))
     call("expansion_bus", "set_frequency", "400000")
-    call("uart_zwave", "set_i2c_address", "0x70")
+    call("uart_zwave", "set_i2c_address", "0x50")
     call("uart_zwave", "set_baud_rate", "115200")
     call("zwave_radio", "set_uart_parent", "uart_zwave")
     require(code.count("->register_connection(") == 3, "BLE proxy must retain all three connection slots")

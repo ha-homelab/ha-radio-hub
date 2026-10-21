@@ -74,7 +74,7 @@ def current_sources() -> dict[str, str]:
         raise ValueError("Firmware pin plan differs from the native carrier")
     for report in (c6, host):
         for name, expected in report["recipe_sha256"].items():
-            path = firmware / name
+            path = (firmware / name).resolve()
             actual = sha(path.read_bytes())
             if actual != expected:
                 raise ValueError(f"Stale firmware evidence: {name}")

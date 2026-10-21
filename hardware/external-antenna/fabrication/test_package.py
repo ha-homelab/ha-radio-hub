@@ -39,6 +39,22 @@ class FabricationGuards(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Firmware pin plan differs"):
                 package.current_sources()
 
+    def test_radio_runtime_changes_after_build_are_rejected(self):
+        original_read = Path.read_bytes
+        for name in ("firmware/components/rf_tx_startup/rf_tx_startup.cpp",
+                     "firmware/include/rf_radio_handoff.h",
+                     "firmware/module-carrier/components/wk2132_uart/wk2132_uart.cpp"):
+            changed = package.ROOT / name
+            def read(path):
+                return b"changed radio runtime" if path == changed else original_read(path)
+            with self.subTest(name=name), patch.object(Path, "read_bytes", read):
+                with self.assertRaisesRegex(ValueError, "Stale firmware evidence"):
+                    package.current_sources()
+
+    def test_firmware_bindings_use_canonical_paths(self):
+        for name in package.current_sources():
+            self.assertNotIn("..", Path(name).parts)
+
     def test_native_pcb_changed_after_verification_is_rejected(self):
         changed = package.CAD / "mc2.kicad_pcb"
         original_read = Path.read_bytes

@@ -4,7 +4,7 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html" aria-current="page">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html" aria-current="page">Wire the hub</a><a href="connections.html">Connection audit</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
 <main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/full-hub-assembly.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#fit-the-three-24-ghz-pigtails">Fit the three 2.4 GHz pigtails</a></li><li><a href="#install-the-zac93">Install the ZAC93</a></li><li><a href="#fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</a></li><li><a href="#power-and-ethernet">Power and Ethernet</a></li><li><a href="#thread-recovery-leads">Thread recovery leads</a></li><li><a href="#other-off-carrier-modules">Other off-carrier modules</a></li><li><a href="#mounting-and-cable-order">Mounting and cable order</a></li><li><a href="#first-power-and-home-assistant">First power and Home Assistant</a></li></ul></details><article class="article"><h1 id="mc2-d-full-hub-assembly-and-z-wave-installation">MC2-D full-hub assembly and Z-Wave installation</h1>
 <p>The <strong>Zooz ZAC93 sits in its own printed cradle beside the MC2-D carrier</strong>. It
 connects by a five-wire harness to <strong>carrier J4</strong>, with serial data passing through
@@ -107,11 +107,19 @@ operation through compatible host software.</p>
 <h2 id="fit-the-uart-bridge-and-verify-the-complete-signal-path">Fit the UART bridge and verify the complete signal path</h2>
 <p>DFR0627 is a finished <strong>I²C-to-two-UART module</strong> using WK2132. The MC2-D host's
 native UARTs already serve Thread, Zigbee and radar, so Z-Wave uses this bridge.
-Set <strong>IA1 = 1 and IA0 = 1</strong>. The pinned driver uses register address <strong>0x70</strong>,
-FIFO address <strong>0x71</strong>, and <strong>UART1 at 115200, 8 data bits, no parity, 1 stop bit</strong>.
+Set <strong>IA1 = 1 and IA0 = 0</strong> (the module's A1/A0 DIP switches). The driver uses
+register address <strong>0x50</strong>, FIFO address <strong>0x51</strong>, and <strong>UART1 at 115200,
+8 data bits, no parity, 1 stop bit</strong>.
 UART2 is unused. Powering this bridge at 3.3 V also keeps its I²C pull-ups and UART
 signals at the correct voltage. Do not use a 5 V supply just because the bridge
 itself supports one.</p>
+<p><strong>Address correction:</strong> reserve <strong>0x50–0x57</strong> for this bridge, even though only
+UART1 is used. WK2132 decodes an eight-address block, not just its register and
+FIFO addresses. The previous <strong>A1=1/A0=1</strong> setting selected <strong>0x70–0x77</strong> and
+collided with BME680 at <strong>0x77</strong>; changing BME680 to 0x76 would still collide.
+Power down before changing A0, then use firmware configured for <strong>0x50</strong>.
+No carrier trace or J3 wire needs to change. See the
+<a href="https://wiki.dfrobot.com/dfr0627/docs/20907">manufacturer's address-bit definition</a>.</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -197,6 +205,13 @@ and startup, including losses in the fuse, connector and cable. Verify the
 peripheral rail under load before connecting the radios. The 1 A rating is a
 component limit subject to the datasheet conditions, not a measured hub current.
 See the <a href="../hardware/external-antenna/power-design.json">current load budget and acceptance criteria</a>.</p>
+<p>Copy the <a href="../hardware/external-antenna/power-measurements.csv">power measurement worksheet</a>
+and record this assembly's RECOM input/output, ZAC93 supply and each controller's
+independent local 3.3 V rail under simultaneous load. Measure U1's regulator
+input after D1 together with its output: required headroom comes from the fitted
+regulator's guaranteed dropout at the measured current and temperature, not
+RECOM's 4.5 V minimum. Capture GPIO12 and GPIO2 around reset with a scope; a DMM
+average cannot verify boot straps. All worksheet entries start unmeasured.</p>
 <p>Fit the SIP3 converter and capacitor on the specified small <strong>isolated-pad
 perfboard</strong>, in the new removable PWR1 tray. Insulate solder joints, strain-relieve
 the harness and keep ventilation around the converter. No screw passes through
@@ -321,6 +336,10 @@ numbers and the required module <strong>signal names</strong>.</p>
 </tr>
 </tbody>
 </table></div>
+<p>Use a current rebuilt host image with the
+<a href="connections.html#rf-startup-and-handoff-corrections">RF startup and handoff corrections</a>. The host
+must release GDO0 while CC1101 drives it; verify that state through power-up,
+reset and transmit/receive transitions with an oscilloscope.</p>
 <p>Mount the module in its separate cradle and use a short, direct harness with
 ground conductors beside clock/data conductors; avoid a large loop alongside
 the buck converter. WIZ850io transactions also put <strong>10 MHz</strong> clock edges on
@@ -354,6 +373,8 @@ regulator-output pin. The default address is <strong>0x77</strong>; if the actua
 configured for <strong>0x76</strong>, change <code>bme680_address</code> in the private firmware build.
 The shared bus runs at <strong>400 kHz</strong>. Existing breakout pull-ups must go to 3.3 V;
 do not add pull-ups or long cable extensions without checking the resulting bus.
+Keep BME680 at <strong>0x77</strong> (0x76 is also outside the corrected bridge block) and
+DFR0627 at <strong>A1=1/A0=0</strong>. Do not reconnect a bridge left at A1=1/A0=1.
 Allow roughly <strong>250–300 mm</strong> for the routed pod harness as a starting estimate,
 then cut to the measured service route. That length is not guaranteed at
 400 kHz: verify rise times, noise and reliable communication while the other

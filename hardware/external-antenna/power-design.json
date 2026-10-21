@@ -251,6 +251,104 @@
       750
     ],
     "output_limit_note": "Project +/-5% acceptance target measured at the farthest module, including ripple/transients; not a tighter RECOM manufacturer guarantee.",
+    "measurement_plan": {
+      "status": "not_run",
+      "worksheet": "power-measurements.csv",
+      "instructions": "Copy the blank worksheet for each physical assembly. Record instrument, board revision, actual regulator marking, load, temperature and waveform filenames. Set up insulated probes with power off; use each named local ground. Controller 3V3 pads are measurement points only: do not wire them together. Never connect powered USB during these tests. A DMM average, software build or blank worksheet does not pass transient or boot-strap checks.",
+      "load_conditions": "Check no-load startup first, then the assembled hub from cold start through thermal equilibrium with Ethernet traffic, three BLE connections, Thread and Zigbee radio activity, Z-Wave and CC1101 transmissions, LD2450 streaming and the BME680 heater. Scope startup, simultaneous-load transients, reset and power removal. Rail acceptance bands apply after the supply has entered regulation; initial zero-voltage ramp is not itself a failure. During the ramp and shutdown, verify clean reset and no damaging signal-pin injection between differently powered rails.",
+      "host_input_rule": "The Espressif DevKitC V4 schematic specifies an AMS1117-3.3 fed by EXT_5V. At U1.J2.19, after D1, require VIN(t)-VOUT(t) to exceed the fitted regulator manufacturer's guaranteed dropout for the relevant peak current and temperature, with allowance for measurement uncertainty and ripple. Record the fitted part and applicable datasheet bound; do not substitute the RECOM 4.5 V minimum or a typical dropout value. If that bound cannot be established, mark headroom unqualified even when a sample boots. Also pass the separate U1 local-3V3 measurement. Do not raise the shared splitter voltage to cure dropout: other modules remain on the specified 5 V supply.",
+      "rows": [
+        {
+          "id": "recom_input",
+          "positive_probe": "RECOM pin 1 VIN",
+          "ground_probe": "RECOM pin 2 GND",
+          "kind": "minimum_voltage",
+          "minimum_v": 4.5,
+          "conditions": "Initial detached test, then simultaneous load and thermal equilibrium",
+          "acceptance": "At least 4.5 V once regulated, including load transients; no repeated UVLO startup cycling. Confirm correct polarity before connecting J2.",
+          "source": "https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf"
+        },
+        {
+          "id": "peripheral_output",
+          "positive_probe": "J2.3 / RECOM pin 3 VOUT",
+          "ground_probe": "J2.4 / RECOM pin 2 GND",
+          "kind": "regulated_rail",
+          "acceptance_v": [3.135, 3.465],
+          "conditions": "Detached loads 0/400/750 mA and 100-750 mA steps, then assembled simultaneous load",
+          "acceptance": "Project 3.3 V +/-5% band including ripple and load transients after regulation; inspect startup/shutdown separately.",
+          "source": "https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf"
+        },
+        {
+          "id": "zac93_local_supply",
+          "positive_probe": "ZAC93 physical pin 1, at the module",
+          "ground_probe": "ZAC93 physical pin 6, at the module",
+          "kind": "regulated_rail",
+          "acceptance_v": [3.135, 3.465],
+          "conditions": "Simultaneous load including Z-Wave transmission, cold start and thermal equilibrium",
+          "acceptance": "Project 3.3 V +/-5% band at the cable destination, including ripple and load transients. Check both ZAC93 ground leads by unpowered continuity first.",
+          "source": "https://www.getzooz.com/downloads/zooz-z-wave-800-series-long-range-gpio-module-zac93-LR-manual.pdf"
+        },
+        {
+          "id": "host_regulator_input",
+          "positive_probe": "U1.J2.19 / D1 cathode / EXT_5V",
+          "ground_probe": "U1.J2.14 GND",
+          "kind": "regulator_headroom",
+          "conditions": "Measure simultaneously with U1 local 3V3 during peak load and at thermal equilibrium",
+          "acceptance": "Apply host_input_rule: VIN-VOUT must exceed the fitted regulator's guaranteed dropout at the tested current and temperature, plus ripple/measurement margin. Record the bound and measured minimum headroom in notes; no fixed 4.5 V pass threshold applies here.",
+          "source": "https://dl.espressif.com/dl/schematics/esp32_devkitc_v4-sch.pdf"
+        },
+        {
+          "id": "host_local_3v3",
+          "positive_probe": "U1.J2.1 local 3V3",
+          "ground_probe": "U1.J2.14 GND",
+          "kind": "regulated_rail",
+          "acceptance_v": [3.135, 3.465],
+          "conditions": "Cold start, three BLE connections and all hub protocols active, through thermal equilibrium",
+          "acceptance": "Project 3.3 V +/-5% band after regulation, including ripple and transients; no brownout/restart. The WROVER-IE operating range is 3.0-3.6 V; that wider range is not a substitute for this design target or the separate dropout check.",
+          "source": "https://documentation.espressif.com/esp32-wrover-e_esp32-wrover-ie_datasheet_en.html"
+        },
+        {
+          "id": "c6_local_3v3",
+          "positive_probe": "U2.12 local 3V3",
+          "ground_probe": "U2.13 GND",
+          "kind": "regulated_rail",
+          "acceptance_v": [3.135, 3.465],
+          "conditions": "Cold start, Thread radio traffic, host-controlled reset and thermal equilibrium",
+          "acceptance": "Project 3.3 V +/-5% band after regulation, including ripple and transients. The U2 header 5 V path has its own onboard diode and regulator; a good peripheral rail does not qualify this local rail.",
+          "source": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH_260114.pdf"
+        },
+        {
+          "id": "mg24_local_3v3",
+          "positive_probe": "U3.12 local 3V3",
+          "ground_probe": "U3.13 GND",
+          "kind": "regulated_rail",
+          "acceptance_v": [3.135, 3.465],
+          "conditions": "Cold start, Zigbee transmissions and thermal equilibrium",
+          "acceptance": "Project 3.3 V +/-5% band after regulation, including ripple and transients. Check at the local regulator output; do not infer it from J2 or connect it to J2.3.",
+          "source": "https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip"
+        },
+        {
+          "id": "host_gpio12_boot",
+          "positive_probe": "U1.J2.13 GPIO12 / R4.2",
+          "ground_probe": "U1.J2.14 GND",
+          "kind": "boot_low",
+          "maximum_fraction_of_local_vdd": 0.25,
+          "conditions": "Cold power-up and host EN reset, with WIZ850io and actual CC1101 connected",
+          "acceptance": "Remain at or below 0.25 times measured U1 local VDD during the datasheet strap-sampling interval around EN release. Use a scope; a later SPI waveform or DMM average cannot establish the boot level. GPIO12 LOW selects 3.3 V VDD_SDIO.",
+          "source": "https://documentation.espressif.com/esp32-wrover-e_esp32-wrover-ie_datasheet_en.html"
+        },
+        {
+          "id": "host_gpio2_download",
+          "positive_probe": "U1.J3.15 GPIO2 / R5.2",
+          "ground_probe": "U1.J3.7 GND",
+          "kind": "boot_low",
+          "maximum_fraction_of_local_vdd": 0.25,
+          "conditions": "Host EN reset with GPIO0 held LOW by J9 service short; all modules attached, no powered USB",
+          "acceptance": "Remain at or below 0.25 times measured U1 local VDD during the datasheet strap-sampling interval. This verifies the GPIO2 condition for UART download; it does not qualify USB power isolation or prove a complete flash operation. Remove J9 short afterwards.",
+          "source": "https://documentation.espressif.com/esp32-wrover-e_esp32-wrover-ie_datasheet_en.html"
+        }
+      ]
+    },
     "checks": [
       "Power the offboard assembly first from a correctly polarized, current-limited 5 V supply, with J2 disconnected; verify VIN, VOUT and capacitor polarity.",
       "Verify no short between VIN, GND and VOUT, and both J2 ground wires reach regulator pin 2.",

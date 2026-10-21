@@ -22,6 +22,12 @@ their orientation; they do not prove whole-home coverage.
    orientation, test devices and normal reporting intervals. Do not infer link
    quality from advertised antenna gain alone.
 
+Before a coverage run, check CC1101 GDO0 with an oscilloscope through power-up,
+host reset and RX→TX→RX transitions. Use a rebuilt host image containing the
+[RF startup and handoff corrections](connection-audit.md#rf-startup-and-handoff-corrections): the host
+must release this shared line while the radio drives it. This electrical check
+is separate from receiving packets successfully.
+
 ## Compare three physical states
 
 Test the same devices and positions on an open bench, with the enclosure closed,

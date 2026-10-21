@@ -108,7 +108,9 @@ the connector's mating-side orientation.
   before changing any wiring.
 - **ZAC93 uses a remapped cable:** J4.1→pin 1, J4.2→pin 6, J4.3→pin 9,
   J4.4→pin 8/RX, J4.5→pin 10/TX. It is not a straight-through 2×5 cable.
-  Its DFR0627 bridge is on J3; set **IA1=1, IA0=1** and use UART1 at 115200 8N1.
+  Its DFR0627 bridge is on J3; set **IA1=1, IA0=0** and use UART1 at 115200 8N1
+  with register/FIFO addresses **0x50/0x51**. Reserve **0x50–0x57** for the bridge;
+  BME680 remains **0x77**. The former 1/1 setting overlaps BME680 and must not be used.
 
 **Ready to continue:** measured rails and polarity agree with the component
 requirements, no component overheats, Ethernet links, and the router gives the

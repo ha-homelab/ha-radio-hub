@@ -37,8 +37,8 @@
 <rect x="580" y="553" width="460" height="175" rx="16" fill="#eaf5f5" stroke="#abd2d2" stroke-width="2"/>
 <text x="600" y="590" class="label">DFR0627 / WK2132</text>
 <text x="600" y="627" class="small">D=SDA · C=SCL · +=3.3 V · −=GND</text>
-<text x="600" y="662" class="small">UART1: 115200 8N1 · IA1=1 IA0=1</text>
-<text x="600" y="697" class="small">I²C register 0x70 · FIFO 0x71</text>
+<text x="600" y="662" class="small">UART1: 115200 8N1 · IA1=1 IA0=0</text>
+<text x="600" y="697" class="small">Register 0x50 · FIFO 0x51 · reserve 0x50–57</text>
 <path d="M498 647 L570 647" fill="none" stroke="#1a7480" stroke-width="3" marker-end="url(#arrow)"/>
 <text x="503" y="626" class="small">I²C</text>
 <rect x="1130" y="553" width="400" height="175" rx="16" fill="#fff1cf" stroke="#ddba61" stroke-width="2"/>

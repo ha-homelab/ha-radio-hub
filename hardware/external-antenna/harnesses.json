@@ -70,7 +70,7 @@
       "ref": "J3",
       "device": "DFRobot DFR0627 / WK2132 UART bridge",
       "source_anchor": "fit-the-uart-bridge-and-verify-the-complete-signal-path",
-      "note": "These six wires reach separate I²C and UART1 contacts, not one six-pin module header. Set IA1 = 1 and IA0 = 1: register 0x70, FIFO 0x71; UART1 115200 8N1. UART2, RST and IRQ remain unused.",
+      "note": "These six wires reach separate I²C and UART1 contacts, not one six-pin module header. Set IA1 = 1 and IA0 = 0: register 0x50, FIFO 0x51; reserve the entire 0x50-0x57 address block; UART1 115200 8N1. BME680 stays at 0x77. The former 1/1 setting conflicts with BME680. UART2, RST and IRQ remain unused.",
       "pins": [
         {
           "carrier_pin": "1",

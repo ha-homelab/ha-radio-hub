@@ -226,7 +226,7 @@
       },
       "notes": [
         "Keep address switches, reset pads, I2C Gravity plug and UART1 header accessible.",
-        "Use IA1=IA0=1 and UART1 (software channel0).",
+        "Use IA1=1, IA0=0 and UART1 (software channel0); register 0x50 / FIFO 0x51, with the full 0x50-0x57 decode window clear of BME680.",
         "Keep straps off headers, address switches and IC packages; verify contact locations on delivered board."
       ],
       "keepouts": [],

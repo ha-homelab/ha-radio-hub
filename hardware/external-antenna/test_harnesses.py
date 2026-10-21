@@ -87,6 +87,32 @@ class HarnessContractTests(unittest.TestCase):
         self.assertEqual((pins[2]['net'], pins[2]['direction']), ('+3V3', 'to_carrier'))
         self.assertIn('VIN', self.harnesses['J7']['pins'][1]['device_contact'])
 
+    def test_bridge_switch_instructions_match_firmware_and_avoid_sensor_block(self):
+        # Cross-check independently maintained assembly surfaces, not merely
+        # copies of the connector ledger. A stale A0 instruction breaks both
+        # devices even when every copper net passes ERC/DRC.
+        root = HERE.parents[1]
+        firmware = (root / 'firmware/external-antenna/hub.yaml').read_text()
+        section = re.search(r'^wk2132_uart:\n(.*?)(?=^\S)', firmware, re.M | re.S).group(1)
+        address = int(re.search(r'address:\s*(0x[0-9a-fA-F]+)', section).group(1), 16)
+        bme = int(re.search(r'bme680_address:\s*"(0x[0-9a-fA-F]+)"', firmware).group(1), 16)
+        native_j3 = next(p for p in self.parts if p['ref'] == 'J3')
+        diagram = ET.fromstring((HERE / 'full-hub-wiring.svg').read_text())
+        texts = [''.join(n.itertext()) for n in diagram.iter() if n.tag.endswith('}text')]
+        switch_label = next(t for t in texts if 'IA1=' in t)
+        address_label = next(t for t in texts if 'FIFO' in t and 'Register' in t)
+        for text in [self.harnesses['J3']['note'], native_j3['notes'], switch_label]:
+            with self.subTest(text=text):
+                ia1 = int(re.search(r'IA1\s*=\s*([01])', text).group(1))
+                ia0 = int(re.search(r'IA0\s*=\s*([01])', text).group(1))
+                self.assertEqual((ia1 << 6) | (ia0 << 5) | 0x10, address)
+        for text in [self.harnesses['J3']['note'], native_j3['notes'], address_label]:
+            with self.subTest(text=text):
+                register = int(re.search(r'register(?: address)?\s+(0x[0-9a-f]+)', text, re.I).group(1), 16)
+                fifo = int(re.search(r'FIFO\s+(0x[0-9a-f]+)', text, re.I).group(1), 16)
+                self.assertEqual((register, fifo), (address, address + 1))
+        self.assertNotIn(bme, range(address, address + 8))
+
     def test_documented_sections_exist(self):
         source = (HERE / self.data['source']).resolve()
         self.assertTrue(source.is_file())
