@@ -28,8 +28,8 @@ CONFIG_SCHEMA = cv.Schema({
 def final_validate(config):
     full = fv.full_config.get()
     framework = full["esp32"]["framework"]
-    if __version__ != "2026.9.1" or framework["type"] != "esp-idf" or framework["version"] != "5.5.5":
-        raise cv.Invalid("Unified OTBR requires ESPHome 2026.9.1 and ESP-IDF 5.5.5; revalidate before upgrading")
+    if __version__ != "2026.10.0" or framework["type"] != "esp-idf" or framework["version"] != "5.5.5":
+        raise cv.Invalid("Unified OTBR requires ESPHome 2026.10.0 and ESP-IDF 5.5.5; revalidate before upgrading")
     if "wifi" in full or "openthread" in full:
         raise cv.Invalid("Unified OTBR owns Thread and requires Ethernet as its only ESPHome network interface")
     if not full.get("network", {}).get("enable_ipv6", False):

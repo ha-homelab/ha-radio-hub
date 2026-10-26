@@ -18,6 +18,7 @@ inline bool rf_tx_active = false, rf_tx_complete = false, rf_tx_error = false, r
 inline bool worker_running = false, waiting = false, cooldown = false, tx_pending = false;
 inline uint64_t wait_deadline = 0, ready_at = 0, tx_due = 0, next_tx_delay = 1000;
 inline unsigned tx_count = 0;
+inline bool immediate_tx_failure = false, immediate_enqueue_failure = false;
 inline std::vector<std::string> trace;
 inline void record(const char *text) { trace.push_back(text); }
 struct Radio {

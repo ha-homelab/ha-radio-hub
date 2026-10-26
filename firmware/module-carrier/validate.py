@@ -65,7 +65,7 @@ def verify(profile: Path):
     source_hashes={}
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
-    result={"compiled":True,"hardware_tested":False,"esphome":"2026.9.1","esp_idf":"5.5.5",
+    result={"compiled":True,"hardware_tested":False,"esphome":"2026.10.0","esp_idf":"5.5.5",
             "rf_tx_startup":startup_checks,"sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "partitions":partitions,"thread_source_sha256":source_hashes,

@@ -69,7 +69,7 @@ The [DFRobot module documentation](https://wiki.dfrobot.com/dfr0627), [official 
 
 ## Reproduce without flashing
 
-Install the pinned ESPHome 2026.9.1 environment first. The preparation script makes a disposable copy, retrieves only the pinned REST server dependency, and generates temporary credentials. It never overwrites deployment secrets or uploads firmware.
+Install the pinned ESPHome 2026.10.0 environment first. The preparation script makes a disposable copy, retrieves only the pinned REST server dependency, and generates temporary credentials. It never overwrites deployment secrets or uploads firmware.
 
 ```sh
 python3 firmware/module-carrier/validate.py /tmp/mc1-build \
@@ -99,3 +99,5 @@ The active firmware and CAD pin manifests both describe RX23/TX24. Preparation a
 ## Qualification gates
 
 The native tests exercise the production transport core and injected device failures; they do not emulate radio timing or prove the physical WK2132 silicon. Verify the actual module clock, I2C address/pull-ups, 115200 baud, logic levels, carrier power, and full-duplex UART with a logic analyzer. Exercise Z-Wave inclusion/exclusion, secure commands, large serial frames, modem reconnect, and error reporting under concurrent radio traffic. Confirm Thread routing/discovery/REST, Zigbee CTS backpressure, all three BLE sessions, RF raw transmit/receive and radar controls on the populated carrier. Measure runtime heap, stack margins, service interval distribution and temperature. Use the retained deployment RF/MQTT settings and provision real secrets separately.
+
+Current source supports the [2026.10 compatibility port](../components/rf_tx_startup/ESPHOME-2026.10.md). Historical build sizes and physical qualification above retain their original versions.

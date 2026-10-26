@@ -10,7 +10,7 @@ substitutions:
 
 esphome:
   name: low-power-hub-proof
-  min_version: 2026.9.1
+  min_version: 2026.10.0
   compile_process_limit: ${build_jobs}
 
 esp32:
