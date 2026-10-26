@@ -48,6 +48,14 @@ FINAL_VALIDATE_SCHEMA = final_validate
 async def to_code(config):
     if esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32S3, esp32.VARIANT_ESP32):
         raise cv.Invalid("This integration supports only the pinned ESP32-S3 and classic ESP32 profiles")
+    # ESPHome 2026.10 trims unused TLS features. This external integration
+    # owns OpenThread directly, so request its crypto and DTLS server needs.
+    esp32.require_mbedtls_tls()
+    esp32.require_mbedtls_tls_server()
+    esp32.require_mbedtls_ecp()
+    esp32.require_mbedtls_tls_extras(
+        ("CONFIG_MBEDTLS_CCM_C", "CONFIG_MBEDTLS_ECDSA_DETERMINISTIC")
+    )
     server = Path(CORE.relative_config_path(config["server_component_path"])).resolve()
     if not (server / "CMakeLists.txt").is_file():
         raise cv.Invalid("Run low-power/prepare.py to prepare the pinned REST component")
