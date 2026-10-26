@@ -69,6 +69,7 @@
     "firmware/external-antenna/c6-build-evidence.json",
     "firmware/external-antenna/c6_identity.py",
     "firmware/external-antenna/health.yaml",
+    "firmware/external-antenna/history/build-evidence-esphome-2026.9.1.json",
     "firmware/external-antenna/hub.yaml",
     "firmware/external-antenna/mc2_contract.py",
     "firmware/external-antenna/pin-plan.json",

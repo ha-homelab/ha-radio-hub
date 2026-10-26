@@ -1,25 +1,107 @@
 {
   "compiled": true,
   "hardware_tested": false,
-  "esphome": "2026.9.1",
+  "esphome": "2026.10.0",
   "esp_idf": "5.5.5",
   "profile": "MC2-D classic ESP32 external antenna",
   "board": "ESP32-DevKitC-VIE",
+  "memory_report": {
+    "version": "1.1",
+    "layout": [
+      {
+        "name": "Flash Code",
+        "total": 0,
+        "used": 1283764,
+        "free": 0,
+        "parts": {
+          ".text": {
+            "size": 1283764
+          }
+        }
+      },
+      {
+        "name": "Flash Data",
+        "total": 0,
+        "used": 302608,
+        "free": 0,
+        "parts": {
+          ".rodata": {
+            "size": 302352
+          },
+          ".appdesc": {
+            "size": 256
+          }
+        }
+      },
+      {
+        "name": "DRAM",
+        "total": 124580,
+        "used": 100432,
+        "free": 24148,
+        "parts": {
+          ".bss": {
+            "size": 80080
+          },
+          ".data": {
+            "size": 20192
+          },
+          ".noinit": {
+            "size": 160
+          }
+        }
+      },
+      {
+        "name": "IRAM",
+        "total": 131072,
+        "used": 88559,
+        "free": 42513,
+        "parts": {
+          ".text": {
+            "size": 87531
+          },
+          ".vectors": {
+            "size": 1028
+          }
+        }
+      },
+      {
+        "name": "RTC SLOW",
+        "total": 8192,
+        "used": 88,
+        "free": 8104,
+        "parts": {
+          ".force_slow": {
+            "size": 32
+          },
+          ".rtc_noinit": {
+            "size": 32
+          },
+          ".rtc_slow_reserved": {
+            "size": 24
+          }
+        }
+      }
+    ]
+  },
   "rf_tx_startup": {
     "protected_gpio": 25,
-    "cc1101_source_sha256": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
-    "handoff_sha256": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
-    "stock_transmitter_sha256": "3925a8f3ba3ace5b9843c068800f6d86fa6b5e57743ea5c64ab4f4f88cf89f82",
+    "cc1101_source_sha256": "ed86211b9450a189f43bcc61d4a1e36ad3e641f02f081b18bfff5aeb1e3c8d83",
+    "handoff_sha256": "ca52811870c4d5dcbf8c1426566c3898e6bba713c8ef2bc25ee282f5221c07df",
+    "stock_transmitter_sha256": "3a82caf436a651d0c94f27aabf6b9544fb9160b7aa94633903314faadcb18e21",
     "sdk_source_sha256": {
       "components/esp_driver_rmt/src/rmt_tx.c": "a8413610fb7f729e50a517980a24925fbfb1a28620999a1ad8f34bb71419e4c6",
       "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291"
     },
     "wrapper_sha256": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
-    "elf_sha256": "6ab32676bf593a898ba605fabd1bcb53bbd4a01ea054126a142718031275252e",
+    "elf_sha256": "c4ec42264d8721739c60dfad9fdd1272e416a5cc9e6883aae0c2a6dd3e583692",
     "linked_call_verified": true,
     "hardware_tested": false
   },
   "sdkconfig_verified": {
+    "CONFIG_MBEDTLS_TLS_SERVER_AND_CLIENT": "y",
+    "CONFIG_MBEDTLS_ECP_C": "y",
+    "CONFIG_MBEDTLS_CCM_C": "y",
+    "CONFIG_MBEDTLS_ECDSA_DETERMINISTIC": "y",
     "CONFIG_OPENTHREAD_FTD": "y",
     "CONFIG_OPENTHREAD_COMMISSIONER": "y",
     "CONFIG_OPENTHREAD_JOINER": "y",
@@ -56,16 +138,16 @@
   },
   "artifacts": {
     "mc2-classic-hub.bin": {
-      "bytes": 1709216,
-      "sha256": "a4c795b0bf5e5d32a86a39d2ff1e0f36f5e74b76951f6cebd837147e9dcb9b9c"
+      "bytes": 1695264,
+      "sha256": "3919816a785de027399d2c6b8fe7044f047e873edd8a8a594f9deff9da3381f8"
     },
     "firmware.factory.bin": {
-      "bytes": 1774752,
-      "sha256": "d6f0c737da43246731f2246c6584a7e1b20a4ea305c37f00548b3e37a943989d"
+      "bytes": 1760800,
+      "sha256": "b87e07af891b1264310dfd446c19ef72c5bc0c14f52b7da255d3a1b2585f3948"
     },
     "firmware.ota.bin": {
-      "bytes": 1709216,
-      "sha256": "a4c795b0bf5e5d32a86a39d2ff1e0f36f5e74b76951f6cebd837147e9dcb9b9c"
+      "bytes": 1695264,
+      "sha256": "3919816a785de027399d2c6b8fe7044f047e873edd8a8a594f9deff9da3381f8"
     }
   },
   "c6_service_gpio": {
@@ -91,18 +173,18 @@
   },
   "shared_spi_source_sha256": {
     "core/component.h": "5455c08357a62ab7851ca00730226251a7587c18a816e898a429f16edc20e354",
-    "core/component.cpp": "1505845475a53b7effce459b7a91058d17c22cd5d0fb5bec3f7c4f23ec0ccb16",
-    "components/ethernet/ethernet_component.h": "0866a3872805ed8756f11a41e4fe1e3fcd8fea6a3387beac360a97ba4740727b",
-    "components/ethernet/ethernet_component_esp32.cpp": "8546fa078109c73bdc8295c3c8846489f3cf04eb17a9c9e0197719a96949ba94",
+    "core/component.cpp": "129b2c7ae98565fe634e2fd36badb8216b88cb20dce5f743e955e638fe7afdbf",
+    "components/ethernet/ethernet_component.h": "542ad3bcc9a583d77751322a4e4b65e848c6f7dfb041156a629be488566eb9e9",
+    "components/ethernet/ethernet_component_esp32.cpp": "b68169390fe336539985799912dc870806e02e253b105b376e406318af7e1c8d",
     "components/spi/spi_esp_idf.cpp": "d6b7ef40fbae80cfbae8b508c034d5e6e399d6c2578bbf5d1b84218e447ff87d",
     "components/spi/spi.h": "2219df88c87051dff6ad59d8a6cff4fea5bcc035efe2cf42bd5942ffac98851d",
-    "components/cc1101/cc1101.cpp": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
-    "components/cc1101/cc1101.h": "34a95c3df32f8782366f4208f4a312f904bdff63d2a20bfeab38633e36f48788"
+    "components/cc1101/cc1101.cpp": "ed86211b9450a189f43bcc61d4a1e36ad3e641f02f081b18bfff5aeb1e3c8d83",
+    "components/cc1101/cc1101.h": "d74a44a9796f46640ec6894900f9f306630594dfc71e9c7625c82f15037f6f67"
   },
   "uart_source_sha256": {
-    "components/logger/logger.h": "8432723c9d6d07cf72b0ea036550b2ad3e2de5f1b228b541ca1b9ef28e9c47d5",
-    "components/logger/logger_esp32.cpp": "5c301b2da21b1848b680c382f8264beb3221f46153c8606af2fac273bc1fe45f",
-    "components/uart/uart_component_esp_idf.cpp": "896ebfdae6958164e5dc15e41b1f6d6477f67812c09d6d1ab0fab06f62aa9242",
+    "components/logger/logger.h": "48319ba77c04d4e7653a6411e8c5d2a74b9ebc972b1f5f2e3e5d1640ee5d0123",
+    "components/logger/logger_esp32.cpp": "49f7d095504eb2d9470a7083a1bfeacb47e5939626cafae333ce626d1a040ffc",
+    "components/uart/uart_component_esp_idf.cpp": "87da3b1d48c858091e23ac8335f5141614b2cf69b01ad79827b91d5992db1fb0",
     "components/zigbee_tcp/zigbee_tcp.cpp": "18b4fb6c9375e2295efeb21ba7f5f156d2ffae0a4531731744e39647477e40d2",
     "components/low_power_otbr/low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
   },
@@ -133,7 +215,7 @@
       "subtype": "ota_0",
       "offset": 65536,
       "bytes": 3932160,
-      "image_margin_bytes": 2222944
+      "image_margin_bytes": 2236896
     },
     {
       "name": "app1",
@@ -141,7 +223,7 @@
       "subtype": "ota_1",
       "offset": 3997696,
       "bytes": 3932160,
-      "image_margin_bytes": 2222944
+      "image_margin_bytes": 2236896
     },
     {
       "name": "nvs",
@@ -160,12 +242,12 @@
     "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
   },
   "linked_memory": {
-    "static_ram_bytes": 101612,
+    "static_ram_bytes": 100432,
     "linker_ram_bytes": 124580,
-    "dram_headroom_bytes": 22968,
-    "iram_used_bytes": 88543,
+    "dram_headroom_bytes": 24148,
+    "iram_used_bytes": 88559,
     "iram_size_bytes": 131072,
-    "iram_headroom_bytes": 42529,
+    "iram_headroom_bytes": 42513,
     "psram_installed_bytes": 8388608,
     "psram_direct_mapping_limit_bytes": 4194304,
     "runtime_measured": false
@@ -181,23 +263,35 @@
   "framework_cache_manually_modified": false,
   "sdk_patches_applied": false,
   "recipe_sha256": {
-    "hub.yaml": "5603db4364c31ab0d16cb7d1fdcd689fca30e9f8681ddc16f2305debbdfecfef",
+    "hub.yaml": "50df45849cf3e78f267853c35bffa066c04fe19cfceb20efc9383b6781410ed3",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
     "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
     "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
     "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
-    "validate.py": "bec1d92002d76a6d106329721a64a421acb73f8977db884eb20cbc0cf76cb8e0",
-    "../packages/rf-airbridge.yaml": "97dbf32441424723b3bebf31f8b053d7f56dfeb3f575cb52b9c629ca1808fd9b",
-    "../include/rf_radio_handoff.h": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
-    "../components/rf_tx_startup/__init__.py": "387de8bd15b2b3fef7316ff92ac0c5a9dc5151b275cf1edfc4c0265715ff56e9",
+    "validate.py": "894202f0a6618f6095b366b4d41645cf69084de5a1a9f285cf91acc74d5d1235",
+    "../low-power/memory_report.py": "a586bc7bfe62ee4e2e1fae1f107ddf42977b8b15f48baa4c4709575d129af393",
+    "../low-power/validate.py": "0b758ca2ea74b7b5d179e0e8d03c0ff5bd0ce99d4ede0c1ae71eae6fb1a6dd55",
+    "../low-power/components/low_power_otbr/__init__.py": "b750a354b9cc1de0bc5054afb33a9655134a174269e1742f6a55fe3660c8ad51",
+    "../packages/rf-airbridge.yaml": "45e089d363b36de2cb52d779a0e831356e62184b1362cb9e00918910a59832da",
+    "../include/rf_radio_handoff.h": "ca52811870c4d5dcbf8c1426566c3898e6bba713c8ef2bc25ee282f5221c07df",
+    "../components/rf_tx_startup/__init__.py": "8b42117f2d0a87beb88e8e43b7e8834b0813c08685aa9ed1758e32ce16b6b3b1",
     "../components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
-    "../components/rf_tx_startup/verify.py": "f52c602f81e7c6e4adce3148b4a459efa0840fb5821c1e1b7aeedd53d8297ea8",
+    "../components/rf_tx_startup/verify.py": "4917810979087e736ebe0253309a8f8fdc0b3ba99e2914a09336853959dd861c",
     "../module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
     "../module-carrier/components/wk2132_uart/address_plan.py": "4b1e9e756cf090dc95704f0d1e4e2155ad13df5b932e7692b19a9e9a66c2d0c8",
     "../module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
     "../module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
     "../module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef"
   },
-  "verified_date_local": "2026-10-20",
-  "build_scope": "Clean host baseline followed by incremental RF startup/runtime handoff guard build; disposable credentials; not flashed"
+  "ci_provenance": {
+    "source_commit": "01a75634e3f2115f0dbbda3ad1cafb5ee26f5a83",
+    "source_tree": "b86339bc8e477ca48787df405b0b789a0655a7bd",
+    "workflow_run": 40318581883,
+    "job": 121557794486,
+    "job_conclusion": "success",
+    "job_url": "https://github.com/ha-homelab/ha-radio-hub/actions/runs/40318581883/job/121557794486",
+    "captured_at": "2026-10-26T12:03:14.349407+00:00",
+    "log_sha256": "2f18efc8c75127ab64a731bb2d59b1c29f9fb49fecaf432aaf5b2a4051fa75cb",
+    "physical_validation": "not_run"
+  }
 }

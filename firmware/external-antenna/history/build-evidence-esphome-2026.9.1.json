@@ -1,0 +1,203 @@
+{
+  "compiled": true,
+  "hardware_tested": false,
+  "esphome": "2026.9.1",
+  "esp_idf": "5.5.5",
+  "profile": "MC2-D classic ESP32 external antenna",
+  "board": "ESP32-DevKitC-VIE",
+  "rf_tx_startup": {
+    "protected_gpio": 25,
+    "cc1101_source_sha256": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+    "handoff_sha256": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+    "stock_transmitter_sha256": "3925a8f3ba3ace5b9843c068800f6d86fa6b5e57743ea5c64ab4f4f88cf89f82",
+    "sdk_source_sha256": {
+      "components/esp_driver_rmt/src/rmt_tx.c": "a8413610fb7f729e50a517980a24925fbfb1a28620999a1ad8f34bb71419e4c6",
+      "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291"
+    },
+    "wrapper_sha256": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+    "elf_sha256": "6ab32676bf593a898ba605fabd1bcb53bbd4a01ea054126a142718031275252e",
+    "linked_call_verified": true,
+    "hardware_tested": false
+  },
+  "sdkconfig_verified": {
+    "CONFIG_OPENTHREAD_FTD": "y",
+    "CONFIG_OPENTHREAD_COMMISSIONER": "y",
+    "CONFIG_OPENTHREAD_JOINER": "y",
+    "CONFIG_VFS_SUPPORT_IO": "y",
+    "CONFIG_VFS_SUPPORT_DIR": "y",
+    "CONFIG_VFS_SUPPORT_SELECT": "y",
+    "CONFIG_OPENTHREAD_RADIO_SPINEL_UART": "y",
+    "CONFIG_OPENTHREAD_BORDER_ROUTER": "y",
+    "CONFIG_OPENTHREAD_BORDER_AGENT_ENABLE": "y",
+    "CONFIG_LWIP_IPV6": "y",
+    "CONFIG_LWIP_IPV6_FORWARD": "y",
+    "CONFIG_LWIP_IPV6_NUM_ADDRESSES": "12",
+    "CONFIG_LWIP_HOOK_IP6_INPUT_CUSTOM": "y",
+    "CONFIG_LWIP_HOOK_IP6_SELECT_SRC_ADDR_CUSTOM": "y",
+    "CONFIG_LWIP_FORCE_ROUTER_FORWARDING": "y",
+    "CONFIG_MDNS_MULTIPLE_INSTANCE": "y",
+    "CONFIG_BT_BLUEDROID_ENABLED": "y",
+    "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
+    "CONFIG_IDF_TARGET": "\"esp32\"",
+    "CONFIG_ESP32_REV_MIN_FULL": "300",
+    "CONFIG_SPIRAM_MODE_QUAD": "y",
+    "CONFIG_SPIRAM_SPEED_40M": "y",
+    "CONFIG_ESP_CONSOLE_NONE": "y",
+    "CONFIG_BTDM_CTRL_MODE_BLE_ONLY": "y",
+    "CONFIG_BTDM_CTRL_BLE_MAX_CONN": "3",
+    "CONFIG_BTDM_CTRL_BLE_MAX_CONN_EFF": "3",
+    "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
+    "CONFIG_FREERTOS_HZ": "1000",
+    "CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE": "y",
+    "CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT": "y",
+    "CONFIG_SPIRAM_USE_CAPS_ALLOC": "y",
+    "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y",
+    "CONFIG_OPENTHREAD_PLATFORM_MSGPOOL_MANAGEMENT": "y"
+  },
+  "artifacts": {
+    "mc2-classic-hub.bin": {
+      "bytes": 1709216,
+      "sha256": "a4c795b0bf5e5d32a86a39d2ff1e0f36f5e74b76951f6cebd837147e9dcb9b9c"
+    },
+    "firmware.factory.bin": {
+      "bytes": 1774752,
+      "sha256": "d6f0c737da43246731f2246c6584a7e1b20a4ea305c37f00548b3e37a943989d"
+    },
+    "firmware.ota.bin": {
+      "bytes": 1709216,
+      "sha256": "a4c795b0bf5e5d32a86a39d2ff1e0f36f5e74b76951f6cebd837147e9dcb9b9c"
+    }
+  },
+  "c6_service_gpio": {
+    "reset_gpio": 27,
+    "boot_gpio": 15,
+    "mode": "open_drain",
+    "idle_level": 1,
+    "reset_low_ms": 10,
+    "c6_firmware_update_supported": true,
+    "source_sha256": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
+  },
+  "generated_pin_checks": {
+    "all_assigned_gpio_verified": true,
+    "unique_gpio": 21,
+    "ble_slots": 3,
+    "native_uart_ownership": {
+      "0": "LD2450",
+      "1": "MG24",
+      "2": "C6"
+    },
+    "shared_spi": true,
+    "runtime_cc1101_reset_absent": true
+  },
+  "shared_spi_source_sha256": {
+    "core/component.h": "5455c08357a62ab7851ca00730226251a7587c18a816e898a429f16edc20e354",
+    "core/component.cpp": "1505845475a53b7effce459b7a91058d17c22cd5d0fb5bec3f7c4f23ec0ccb16",
+    "components/ethernet/ethernet_component.h": "0866a3872805ed8756f11a41e4fe1e3fcd8fea6a3387beac360a97ba4740727b",
+    "components/ethernet/ethernet_component_esp32.cpp": "8546fa078109c73bdc8295c3c8846489f3cf04eb17a9c9e0197719a96949ba94",
+    "components/spi/spi_esp_idf.cpp": "d6b7ef40fbae80cfbae8b508c034d5e6e399d6c2578bbf5d1b84218e447ff87d",
+    "components/spi/spi.h": "2219df88c87051dff6ad59d8a6cff4fea5bcc035efe2cf42bd5942ffac98851d",
+    "components/cc1101/cc1101.cpp": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+    "components/cc1101/cc1101.h": "34a95c3df32f8782366f4208f4a312f904bdff63d2a20bfeab38633e36f48788"
+  },
+  "uart_source_sha256": {
+    "components/logger/logger.h": "8432723c9d6d07cf72b0ea036550b2ad3e2de5f1b228b541ca1b9ef28e9c47d5",
+    "components/logger/logger_esp32.cpp": "5c301b2da21b1848b680c382f8264beb3221f46153c8606af2fac273bc1fe45f",
+    "components/uart/uart_component_esp_idf.cpp": "896ebfdae6958164e5dc15e41b1f6d6477f67812c09d6d1ab0fab06f62aa9242",
+    "components/zigbee_tcp/zigbee_tcp.cpp": "18b4fb6c9375e2295efeb21ba7f5f156d2ffae0a4531731744e39647477e40d2",
+    "components/low_power_otbr/low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
+  },
+  "application_header": {
+    "chip_id": 0,
+    "soc": "ESP32",
+    "minimum_revision_full": 300,
+    "flash_bytes": 8388608
+  },
+  "partitions": [
+    {
+      "name": "otadata",
+      "type": "data",
+      "subtype": "0",
+      "offset": 36864,
+      "bytes": 8192
+    },
+    {
+      "name": "phy_init",
+      "type": "data",
+      "subtype": "1",
+      "offset": 45056,
+      "bytes": 4096
+    },
+    {
+      "name": "app0",
+      "type": "app",
+      "subtype": "ota_0",
+      "offset": 65536,
+      "bytes": 3932160,
+      "image_margin_bytes": 2222944
+    },
+    {
+      "name": "app1",
+      "type": "app",
+      "subtype": "ota_1",
+      "offset": 3997696,
+      "bytes": 3932160,
+      "image_margin_bytes": 2222944
+    },
+    {
+      "name": "nvs",
+      "type": "data",
+      "subtype": "2",
+      "offset": 7929856,
+      "bytes": 458752
+    }
+  ],
+  "thread_source_sha256": {
+    "low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e",
+    "low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
+    "thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+    "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
+    "uart_update.cpp": "0563edba5c1bbeff04eb15d5c9cea270434494a48a2d2f5a4bb02b0e0ce5960b",
+    "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
+  },
+  "linked_memory": {
+    "static_ram_bytes": 101612,
+    "linker_ram_bytes": 124580,
+    "dram_headroom_bytes": 22968,
+    "iram_used_bytes": 88543,
+    "iram_size_bytes": 131072,
+    "iram_headroom_bytes": 42529,
+    "psram_installed_bytes": 8388608,
+    "psram_direct_mapping_limit_bytes": 4194304,
+    "runtime_measured": false
+  },
+  "c6_update": {
+    "transport": "authenticated temporary TCP6639 to ROM UART",
+    "baud": 115200,
+    "requires_durable_maintenance": true,
+    "max_arm_ms": 60000,
+    "max_session_ms": 600000,
+    "hardware_tested": false
+  },
+  "framework_cache_manually_modified": false,
+  "sdk_patches_applied": false,
+  "recipe_sha256": {
+    "hub.yaml": "5603db4364c31ab0d16cb7d1fdcd689fca30e9f8681ddc16f2305debbdfecfef",
+    "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
+    "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
+    "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
+    "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
+    "validate.py": "bec1d92002d76a6d106329721a64a421acb73f8977db884eb20cbc0cf76cb8e0",
+    "../packages/rf-airbridge.yaml": "97dbf32441424723b3bebf31f8b053d7f56dfeb3f575cb52b9c629ca1808fd9b",
+    "../include/rf_radio_handoff.h": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+    "../components/rf_tx_startup/__init__.py": "387de8bd15b2b3fef7316ff92ac0c5a9dc5151b275cf1edfc4c0265715ff56e9",
+    "../components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+    "../components/rf_tx_startup/verify.py": "f52c602f81e7c6e4adce3148b4a459efa0840fb5821c1e1b7aeedd53d8297ea8",
+    "../module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
+    "../module-carrier/components/wk2132_uart/address_plan.py": "4b1e9e756cf090dc95704f0d1e4e2155ad13df5b932e7692b19a9e9a66c2d0c8",
+    "../module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+    "../module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+    "../module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef"
+  },
+  "verified_date_local": "2026-10-20",
+  "build_scope": "Clean host baseline followed by incremental RF startup/runtime handoff guard build; disposable credentials; not flashed"
+}
