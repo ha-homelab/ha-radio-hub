@@ -12,6 +12,8 @@ from mc2_contract import (verify_generated, verify_shared_spi_sources, verify_pa
 
 RECIPE_INPUTS = (
     "hub.yaml", "health.yaml", "pin-plan.json", "mc2_contract.py", "c6_identity.py", "validate.py",
+    "../low-power/memory_report.py", "../low-power/validate.py",
+    "../low-power/components/low_power_otbr/__init__.py",
     "../packages/rf-airbridge.yaml", "../include/rf_radio_handoff.h",
     "../components/rf_tx_startup/__init__.py", "../components/rf_tx_startup/rf_tx_startup.cpp",
     "../components/rf_tx_startup/verify.py",
@@ -100,15 +102,17 @@ def verify(profile: Path):
         artifacts[name]={"bytes":len(data),"sha256":hashlib.sha256(data).hexdigest()}
     partition_binary=root/"build/partition_table/partition-table.bin"
     partitions=verify_partitions(actual_partition_csv(partition_binary),artifacts["firmware.ota.bin"]["bytes"],8388608)
-    sizes=json.loads((root/"build/esp_idf_size.json").read_text())
-    ram=sizes["memory_types"].get("DRAM") or sizes["memory_types"].get("DIRAM")
-    iram=sizes["memory_types"]["IRAM"]
+    memory=load_legacy("memory_report").read_memory_report(
+        root/"build/esp_idf_size.json", require_iram=True)
+    ram=memory["ram"]
+    iram=memory["iram"]
     header=verify_app_header((root/"build/firmware.ota.bin").read_bytes())
     source_hashes={}
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.10.0","esp_idf":"5.5.5",
             "profile":"MC2-D classic ESP32 external antenna", "board":"ESP32-DevKitC-VIE",
+            "memory_report":json.loads((root/"build/esp_idf_size.json").read_text()),
             "rf_tx_startup":startup_checks,"sdkconfig_verified":required,"artifacts":artifacts,"c6_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "uart_source_sha256":uart_checks,"application_header":header,

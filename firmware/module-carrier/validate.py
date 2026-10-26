@@ -60,12 +60,14 @@ def verify(profile: Path):
         artifacts[name]={"bytes":len(data),"sha256":hashlib.sha256(data).hexdigest()}
     partition_binary=root/"build/partition_table/partition-table.bin"
     partitions=verify_partitions(actual_partition_csv(partition_binary),artifacts["firmware.ota.bin"]["bytes"],16777216)
-    sizes=json.loads((root/"build/esp_idf_size.json").read_text())
-    ram=sizes["memory_types"].get("DRAM") or sizes["memory_types"].get("DIRAM")
+    memory=load_legacy("memory_report").read_memory_report(
+        root/"build/esp_idf_size.json")
+    ram=memory["ram"]
     source_hashes={}
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
     result={"compiled":True,"hardware_tested":False,"esphome":"2026.10.0","esp_idf":"5.5.5",
+            "memory_report":json.loads((root/"build/esp_idf_size.json").read_text()),
             "rf_tx_startup":startup_checks,"sdkconfig_verified":required,"artifacts":artifacts,"h2_service_gpio":service,
             "generated_pin_checks":pin_checks,"shared_spi_source_sha256":spi_checks,
             "partitions":partitions,"thread_source_sha256":source_hashes,

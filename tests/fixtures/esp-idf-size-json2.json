@@ -1,0 +1,26 @@
+{
+    "version": "1.1",
+    "layout": [
+        {
+            "name": "Flash Code",
+            "total": 0,
+            "used": 1283764,
+            "free": 0,
+            "parts": {}
+        },
+        {
+            "name": "DRAM",
+            "total": 124580,
+            "used": 100432,
+            "free": 24148,
+            "parts": {}
+        },
+        {
+            "name": "IRAM",
+            "total": 131072,
+            "used": 110000,
+            "free": 21072,
+            "parts": {}
+        }
+    ]
+}
