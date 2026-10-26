@@ -28,8 +28,8 @@ CONFIG_SCHEMA = cv.Schema({
 def final_validate(config):
     full = fv.full_config.get()
     framework = full["esp32"]["framework"]
-    if __version__ != "2026.9.1" or framework["type"] != "esp-idf" or framework["version"] != "5.5.5":
-        raise cv.Invalid("Unified OTBR requires ESPHome 2026.9.1 and ESP-IDF 5.5.5; revalidate before upgrading")
+    if __version__ != "2026.10.0" or framework["type"] != "esp-idf" or framework["version"] != "5.5.5":
+        raise cv.Invalid("Unified OTBR requires ESPHome 2026.10.0 and ESP-IDF 5.5.5; revalidate before upgrading")
     if "wifi" in full or "openthread" in full:
         raise cv.Invalid("Unified OTBR owns Thread and requires Ethernet as its only ESPHome network interface")
     if not full.get("network", {}).get("enable_ipv6", False):
@@ -48,6 +48,14 @@ FINAL_VALIDATE_SCHEMA = final_validate
 async def to_code(config):
     if esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32S3, esp32.VARIANT_ESP32):
         raise cv.Invalid("This integration supports only the pinned ESP32-S3 and classic ESP32 profiles")
+    # ESPHome 2026.10 trims unused TLS features. This external integration
+    # owns OpenThread directly, so request its crypto and DTLS server needs.
+    esp32.require_mbedtls_tls()
+    esp32.require_mbedtls_tls_server()
+    esp32.require_mbedtls_ecp()
+    esp32.require_mbedtls_tls_extras(
+        ("CONFIG_MBEDTLS_CCM_C", "CONFIG_MBEDTLS_ECDSA_DETERMINISTIC")
+    )
     server = Path(CORE.relative_config_path(config["server_component_path"])).resolve()
     if not (server / "CMakeLists.txt").is_file():
         raise cv.Invalid("Run low-power/prepare.py to prepare the pinned REST component")

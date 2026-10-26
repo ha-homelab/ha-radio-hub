@@ -11,3 +11,5 @@ Driver calls to enable/disable stay outside the capture lock; callback publicati
 Native lifecycle tests compile the actual modified C++ against driver doubles. They cannot replace testing ISR timing and RF self-echo on hardware. Keep this local component pinned until an upstream implementation provides equivalent capture ownership; review and rerun those tests before any ESPHome upgrade.
 
 MC2-B adds the classic ESP32 build target with the same non-DMA lifecycle. The real driver source compiles under ESP-IDF 5.5.5; native lifecycle tests are retained. The classic target allocates 192 RX symbols and 64 TX symbols from its 512-symbol RMT memory. No hardware timing qualification is implied by these checks.
+
+The 2026.10.0 compatibility port retains this receiver C++ implementation. Its Python generator now uses `remote_base.add_listener` and `remote_base.add_dumper`, which reserve the required fixed storage slots in ESPHome 2026.10.0. The exact version, target and non-DMA guards remain. Generated-source regressions cover both ESP32 and ESP32-S3 with two triggers, one binary sensor and two dumpers. See [the upgrade review](../rf_tx_startup/ESPHOME-2026.10.md).

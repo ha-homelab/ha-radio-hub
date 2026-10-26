@@ -28,7 +28,7 @@ Choose a new output directory outside the source `firmware/` tree. Omitting `--o
 
 The preparer exports the exact upstream commit, carries its Apache-2.0 license, and applies checked patches to the REST component. It generates **disposable** API, OTA and MQTT credentials; the broker is a documentation address. The result verifies compilation, not household configuration. Do not flash these build credentials as a finished installation.
 
-Pinned host versions are ESPHome **2026.9.1**, ESP-IDF **5.5.5**, and the ESP Thread BR commit above. ESP Thread BR's reference example was based on IDF 5.5.4; this integration uses IDF's 5.5.5 OpenThread stack and compiles the pinned REST implementation against it. Configuration fails on unsupported host versions.
+Pinned host versions are ESPHome **2026.10.0**, ESP-IDF **5.5.5**, and the ESP Thread BR commit above. ESP Thread BR's reference example was based on IDF 5.5.4; this integration uses IDF's 5.5.5 OpenThread stack and compiles the pinned REST implementation against it. Configuration fails on unsupported host versions.
 
 Build products are under:
 
@@ -104,3 +104,5 @@ Flashing is a separate, deliberate step after electrical checks and private conf
 Before moving existing networks, verify H2 Spinel/version handshake, stable NCP flow control, Z-Wave request/response on the external UART, REST dataset persistence across reboot, IPv6 routing/Matter pairing, BLE notifications, RF receive/transmit without self-echo, radar/BME readings, link recovery, and concurrent traffic. Measure power at the same AC/PoE boundary over representative operation; software compilation does not prove the target energy budget.
 
 Primary references: [ESP Thread BR source](https://github.com/espressif/esp-thread-br/tree/29a2345e3f0c61bba9307f3daea5ed0c94388ed3), [ESP-IDF 5.5.5 source](https://github.com/espressif/esp-idf/tree/b774170ff46c393eeb5e495ea37936038d3f4f4f), [W5500 datasheet](https://docs.wiznet.io/img/products/w5500/W5500_ds_v110e.pdf), [ESPHome Ethernet](https://esphome.io/components/ethernet/), [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy/).
+
+Current source supports the [2026.10 compatibility port](../components/rf_tx_startup/ESPHOME-2026.10.md). Historical build sizes and physical qualification above retain their original versions.

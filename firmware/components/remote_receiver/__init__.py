@@ -68,8 +68,8 @@ RemoteReceiverComponent = remote_receiver_ns.class_(
 
 
 def validate_config(config: ConfigType) -> ConfigType:
-    if __version__ != "2026.9.1":
-        raise cv.Invalid("RF Ethernet receiver requires ESPHome 2026.9.1; review/rebase the local patch before upgrading")
+    if __version__ != "2026.10.0":
+        raise cv.Invalid("RF Ethernet receiver requires ESPHome 2026.10.0; review/rebase the local patch before upgrading")
     if not CORE.is_esp32 or esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32S3, esp32.VARIANT_ESP32):
         raise cv.Invalid("RF Ethernet receiver lifecycle is validated only for ESP32 and ESP32-S3")
     if config.get(CONF_USE_DMA, False):
@@ -229,11 +229,11 @@ async def to_code(config: ConfigType) -> None:
 
     dumpers = await remote_base.build_dumpers(config[CONF_DUMP])
     for dumper in dumpers:
-        cg.add(var.register_dumper(dumper))
+        remote_base.add_dumper(var, dumper)
 
     triggers = await remote_base.build_triggers(config)
     for trigger in triggers:
-        cg.add(var.register_listener(trigger))
+        remote_base.add_listener(var, trigger)
     await cg.register_component(var, config)
 
     cg.add(

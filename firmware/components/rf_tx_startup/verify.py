@@ -5,7 +5,7 @@ from pathlib import Path
 import re
 import subprocess
 
-UPSTREAM_RMT_SHA256 = "3925a8f3ba3ace5b9843c068800f6d86fa6b5e57743ea5c64ab4f4f88cf89f82"
+UPSTREAM_RMT_SHA256 = "3a82caf436a651d0c94f27aabf6b9544fb9160b7aa94633903314faadcb18e21"
 SDK_SHA256 = {
     "components/esp_driver_rmt/src/rmt_tx.c": "a8413610fb7f729e50a517980a24925fbfb1a28620999a1ad8f34bb71419e4c6",
     "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291",
@@ -27,7 +27,7 @@ def verify(build_root: Path, pin: int) -> dict:
         if hashlib.sha256((sdk / relative).read_bytes()).hexdigest() != digest:
             raise RuntimeError("RF startup: unreviewed SDK source: " + relative)
     component = build_root / "src/esphome/components"
-    radio_sha = "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f"
+    radio_sha = "ed86211b9450a189f43bcc61d4a1e36ad3e641f02f081b18bfff5aeb1e3c8d83"
     if hashlib.sha256((component / "cc1101/cc1101.cpp").read_bytes()).hexdigest() != radio_sha:
         raise RuntimeError("RF handoff: unreviewed CC1101 source")
     handoff = Path(__file__).resolve().parents[2] / "include/rf_radio_handoff.h"

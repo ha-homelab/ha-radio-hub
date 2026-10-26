@@ -118,7 +118,8 @@ def generate_harness(package):
     header += "Request current;\nvoid start_worker(" + declaration + ");\nvoid pump();\n"
     header += "void on_complete() {\n" + code(package["remote_transmitter"]["on_complete"]["then"]) + "\n}\n"
     header += "void begin_transmit() { assert(!tx_pending); ++tx_count; tx_pending=true; tx_due=now_ms+next_tx_delay;\n"
-    header += code(package["remote_transmitter"].get("on_transmit", {}).get("then", [])) + "\n}\n"
+    header += code(package["remote_transmitter"].get("on_transmit", {}).get("then", [])) + "\n"
+    header += "if (immediate_tx_failure || immediate_enqueue_failure) { tx_pending=false; rf_transmitter.failed=immediate_tx_failure; rf_transmitter.warning=immediate_enqueue_failure; on_complete(); }\n}\n"
     for action in package["api"]["actions"]:
         arguments = ",".join(types[t] + " " + n for n, t in action["variables"].items())
         header += "void " + action["action"] + "(" + arguments + ") {\n" + code(action["then"]) + "\n}\n"
@@ -172,6 +173,16 @@ int main(int argc,char **argv) {
     assert(trace==expected);
     assert(encoded_requests[0]==(first ? "dooya:1193046:1:1:2:3" : "rc:00000001:1:3"));
     assert(encoded_requests[1]==(second ? "dooya:1193046:1:1:2:3" : "rc:00000001:1:3"));
+  } else if (scenario=="immediate_tx_failure" || scenario=="immediate_enqueue_failure") {
+    immediate_tx_failure = scenario=="immediate_tx_failure";
+    immediate_enqueue_failure = scenario=="immediate_enqueue_failure";
+    request(false);
+    assert(now_ms==0 && tx_count==1 && !tx_pending && messages.size()==1);
+    assert(rf_tx_error && rf_tx_fault && rf_tx_active && !rf_receiver.enabled);
+    assert(std::find(trace.begin(), trace.end(), "receiver.resume") == trace.end());
+    if (immediate_tx_failure) assert(trace.back()=="radio.idle");
+    advance(750); request(true);
+    assert(tx_count==1 && messages.size()==2);
   } else if (scenario=="invalid") {
     request(false);
     send_rf_code("101",1,3);
@@ -273,6 +284,16 @@ class TxSchedulerTest(unittest.TestCase):
                     self.assertEqual(messages, [
                         (999, busy), (1000, FIXTURE["tx_examples"][formats[first]]),
                         (1749, busy), (2750, FIXTURE["tx_examples"][formats[second]])])
+
+    def test_immediate_upstream_failure_is_not_reported_as_sent_or_resumed(self):
+        for scenario in ("immediate_tx_failure", "immediate_enqueue_failure"):
+            with self.subTest(scenario=scenario):
+                messages = self.run_scenario(scenario)
+                self.assertEqual([m[0] for m in messages], [0, 750])
+                for _, message in messages:
+                    self.assertEqual(message["status"], "send_failed")
+                    self.assertFalse(message["receiver_resumed"])
+                    self.assertFalse(message["delivery_confirmed"])
 
     def test_invalid_requests_remain_invalid_while_worker_is_busy(self):
         messages = self.run_scenario("invalid")

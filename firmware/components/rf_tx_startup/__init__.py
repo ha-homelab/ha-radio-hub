@@ -10,8 +10,8 @@ from esphome.const import __version__
 from esphome.core import CORE
 
 DEPENDENCIES = ["esp32", "remote_transmitter", "cc1101"]
-SOURCE_SHA256 = "3925a8f3ba3ace5b9843c068800f6d86fa6b5e57743ea5c64ab4f4f88cf89f82"
-CC1101_SHA256 = "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f"
+SOURCE_SHA256 = "3a82caf436a651d0c94f27aabf6b9544fb9160b7aa94633903314faadcb18e21"
+CC1101_SHA256 = "ed86211b9450a189f43bcc61d4a1e36ad3e641f02f081b18bfff5aeb1e3c8d83"
 CONFIG_SCHEMA = cv.Schema({
     cv.Required("transmitter_id"): cv.use_id(remote_transmitter.RemoteTransmitterComponent),
     cv.Required("radio_id"): cv.use_id(cc1101.CC1101Component),
@@ -29,10 +29,10 @@ def transmitter_config(config, full):
 def final_validate(config):
     full = fv.full_config.get()
     framework = full["esp32"]["framework"]
-    if (__version__ != "2026.9.1" or framework["type"] != "esp-idf"
+    if (__version__ != "2026.10.0" or framework["type"] != "esp-idf"
             or framework["version"] != "5.5.5"
             or esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32, esp32.VARIANT_ESP32S3)):
-        raise cv.Invalid("RF startup guard requires ESPHome 2026.9.1 / ESP-IDF 5.5.5 on ESP32 or ESP32-S3")
+        raise cv.Invalid("RF startup guard requires ESPHome 2026.10.0 / ESP-IDF 5.5.5 on ESP32 or ESP32-S3")
     source = Path(remote_transmitter.__file__).with_name("remote_transmitter_rmt.cpp")
     if hashlib.sha256(source.read_bytes()).hexdigest() != SOURCE_SHA256:
         raise cv.Invalid("RF startup guard: upstream RMT transmitter changed; review before building")

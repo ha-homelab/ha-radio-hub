@@ -52,7 +52,7 @@ assert Path(contract.__file__).resolve() == mc2 / "mc2_contract.py"
         full = {'esp32': {'framework': {'type': 'esp-idf', 'version': '5.5.5'}},
                 'network': {'enable_ipv6': True}}
         namespace = {'fv': SimpleNamespace(full_config=SimpleNamespace(get=lambda: full)),
-                     'cv': SimpleNamespace(Invalid=ValueError), '__version__': '2026.9.1'}
+                     'cv': SimpleNamespace(Invalid=ValueError), '__version__': '2026.10.0'}
         exec(compile(module, str(path), 'exec'), namespace)
         validate = namespace['final_validate']
         for tx, rx in ((8, 40), (8, 38), (39, 40), (23, 18)):

@@ -43,7 +43,7 @@ template<typename T> class RemoteReceiverTrigger {};
 class StockRCSwitchTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if importlib.metadata.version("esphome") != "2026.9.1":
+        if importlib.metadata.version("esphome") != "2026.10.0":
             raise RuntimeError("Run with the pinned firmware/requirements.txt environment")
         spec = importlib.util.find_spec("esphome")
         installed = Path(next(iter(spec.submodule_search_locations))) / "components/remote_base"
@@ -63,6 +63,7 @@ class StockRCSwitchTest(unittest.TestCase):
         end = original_source.index("/* RemoteReceiverBinarySensorBase */")
         methods = original_source[start:end]
         prelude = "#pragma once\n#include <cstdint>\n#include <string>\n#include <vector>\n#include <optional>\n"
+        prelude += '#include "esphome/core/hal.h"\n'
         prelude += "namespace esphome { using std::optional; }\nnamespace esphome::remote_base {\n"
         (remote / "remote_base.h").write_text(prelude + declarations + BASE_STUB + "\n}\n")
         (remote / "receive_methods.cpp").write_text(
@@ -73,13 +74,19 @@ class StockRCSwitchTest(unittest.TestCase):
         (core / "log.h").write_text("#define ESP_LOGI(...)\n")
         for name in ("hal.h", "helpers.h"):
             shutil.copyfile(ROOT / "tests/native/esphome/core" / name, core / name)
+        # ESP32/host flash memory is directly addressable. Keep the installed
+        # non-ESP8266 copy implementation verbatim alongside the clock seam.
+        hal = (installed.parents[1] / "core/hal.h").read_text()
+        copy_helper, = [line for line in hal.splitlines() if line.startswith("inline void progmem_memcpy(")]
+        with (core / "hal.h").open("a") as stream:
+            stream.write("\n#include <cstring>\n#define PROGMEM\nnamespace esphome {\n" + copy_helper + "\n}\n")
         cls.binary = temporary / "stock-decoder"
         harness = temporary / "stock_decoder_harness.cpp"
         shutil.copyfile(ROOT / "tests/native/stock_decoder_harness.cpp", harness)
         compiler = shutil.which("c++") or shutil.which("g++")
         if not compiler:
-            raise RuntimeError("C++17 compiler required")
-        flags = ["-std=c++17", "-Wall", "-Wextra", "-Wno-unused-variable"]
+            raise RuntimeError("C++20 compiler required")
+        flags = ["-std=c++20", "-Wall", "-Wextra", "-Wno-unused-variable"]
         if os.environ.get("RF_CPP_SANITIZERS") == "1":
             flags += ["-fsanitize=address,undefined", "-fno-sanitize-recover=all", "-g", "-O1"]
         build = subprocess.run([

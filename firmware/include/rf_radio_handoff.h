@@ -57,6 +57,10 @@ template<typename Radio, typename Transmitter>
 bool finish_radio_tx(Radio &radio, Transmitter &tx, bool resume_rx) {
   radio.set_idle();
   const bool idle = cc1101_state(radio, 0x01);
+  // A synchronous setup/carrier failure may leave no usable RMT channel.
+  // Keep RX suspended and latch the fault without sending through that channel.
+  if (tx.is_failed())
+    return false;
   tx.digital_write(true);
   if (!idle || tx.status_has_warning() || read_cc1101(radio, 0x82) != 0x2E)
     return false;

@@ -28,7 +28,7 @@ The new ESPHome node name is **`mc2-classic-hub`**. Back up Thread credentials, 
 
 ## Reproduce the host build
 
-Use ESPHome **2026.9.1**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
+Use ESPHome **2026.10.0**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
 
 ```sh
 python3 firmware/external-antenna/validate.py /tmp/mc2-classic-build \
@@ -89,3 +89,5 @@ Perform initial C6 factory programming through its native USB **before soldering
 ## Preserved recovery behavior
 
 The host probes the RCP before starting Thread, quarantines incompatible/unresponsive firmware, retains the other protocols, and offers an explicit retry. A fatal post-startup Thread fault can cause one full host restart before quarantine. The Thread dataset stays in host NVS; the C6 RCP is not its owner. Host OTA safe mode and the DevKitC USB-UART bootloader remain available; the classic ESP32 has no native USB console. These software mechanisms and offline checks do not replace power, concurrent-load, restore and whole-house RF qualification.
+
+Current source supports the [2026.10 compatibility port](../components/rf_tx_startup/ESPHOME-2026.10.md). Historical build sizes and physical qualification above retain their original versions.

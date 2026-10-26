@@ -29,7 +29,7 @@ The old NodeMCU used one shared GDO0/GPIO4 line for TX/RX. The new RF board uses
 
 The new ESP32 receiver uses `filter: 150us`: the old 250 µs setting removes short RM433 pulses of about 240 µs during RMT software filtering. The importer preserves a lower explicit threshold, but replaces an old threshold above 170 µs with 150 µs and records this in `report.json`. Recheck noise immunity and normal motion sensors on the bench.
 
-The port uses a minimal local RMT receiver patch for ESPHome 2026.9.1 that stops/resumes capture around TX. This is a separate ESP32 implementation; the old project's ESP8266 interrupt patch is not treated as RMT-compatible. Bench verification of RX→TX→RX, GPIO4 release and absence of self-echo remains mandatory.
+The port uses a minimal local RMT receiver patch for ESPHome 2026.10.0 that stops/resumes capture around TX. This is a separate ESP32 implementation; the old project's ESP8266 interrupt patch is not treated as RMT-compatible. Bench verification of RX→TX→RX, GPIO4 release and absence of self-echo remains mandatory.
 
 ## 1. Private backup
 
@@ -45,7 +45,7 @@ Do not reflash the old board. A second CC1101 is convenient for an independent b
 
 `tools/migrate_rf.py` supports a standard **RF Airbridge device wrapper**: `packages.rf_airbridge`, standard API/OTA/MQTT settings, an inline `binary_sensor` list, ordinary `web_server` settings and a limited set of CC1101/receiver parameters. It works with YAML nodes, preserves `!secret`, `!lambda`, code strings and entity filters, does not execute YAML, does not connect to HA/MQTT and does not read files referenced by `!include`.
 
-Supported `esphome.comment`, `project.name/version`, `min_version` and `compile_process_limit` fields are preserved. `project.on_update` requires manual migration, as do other lifecycle hooks; it is not silently discarded. The purpose of metadata is described in [ESPHome Core](https://esphome.io/components/esphome/). The local RF receiver patch still requires exactly ESPHome 2026.9.1, so an incompatible source `min_version` will be detected when validating the final wrapper.
+Supported `esphome.comment`, `project.name/version`, `min_version` and `compile_process_limit` fields are preserved. `project.on_update` requires manual migration, as do other lifecycle hooks; it is not silently discarded. The purpose of metadata is described in [ESPHome Core](https://esphome.io/components/esphome/). The local RF receiver patch still requires exactly ESPHome 2026.10.0, so an incompatible source `min_version` will be detected when validating the final wrapper.
 
 From the repository root, in an environment with `firmware/requirements.txt` installed:
 

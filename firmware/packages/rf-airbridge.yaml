@@ -122,8 +122,10 @@ remote_transmitter:
   on_complete:
     then:
       - lambda: |-
-          // ESPHome calls this only after rmt_tx_wait_all_done, not after enqueue.
-          id(rf_tx_error) = id(rf_tx_error) || id(rf_transmitter).status_has_warning();
+          // ESPHome also completes synchronously when setup/carrier or enqueue fails.
+          // Completion alone is not proof that a waveform was transmitted.
+          id(rf_tx_error) = id(rf_tx_error) || id(rf_transmitter).is_failed() ||
+              id(rf_transmitter).status_has_warning();
           const bool radio_ready = rf_bridge::finish_radio_tx(
               *id(rf_radio), *id(rf_transmitter), !id(rf_tx_fault));
           id(rf_tx_error) = id(rf_tx_error) || !radio_ready;
