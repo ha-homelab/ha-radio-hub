@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "decision_date": "2026-10-19",
+  "decision_date": "2026-10-20",
   "documentation_review_date": "2026-10-20",
   "active_design": "MC2",
   "active_custom_pcb_count": 1,
   "active_directory": "hardware/external-antenna",
-  "priority": "Keep the classic ESP32 host and all local services, with the available TC6D-01 Thread module, three independent external 2.4 GHz antennas and direct-solder finished modules.",
-  "active_layout_revision": "MC2-C",
+  "priority": "Retain the ordered ESP32-DevKitC-VIE host; use US-stocked XIAO ESP32C6 with factory-soldered headers and three independent external antennas.",
+  "active_layout_revision": "MC2-D",
   "active_host": "ESP32-DevKitC-VIE (ESP32-WROVER-IE)",
   "active_memory": {
     "flash_mb": 8,
@@ -14,25 +14,25 @@
     "psram_heap_mapped_mb": 4,
     "psram_bus": "quad, 40 MHz"
   },
-  "active_thread_rcp": "Unexpected Maker TinyC6[D] / TC6D-01",
+  "active_thread_rcp": "Seeed Studio XIAO ESP32C6 (Pre-Soldered), 102010636",
   "active_pcb": {
     "width_mm": 100,
     "height_mm": 100,
     "copper_layers": 2,
     "nominal_thickness_mm": 1.6,
-    "layout_revision": "MC2-C"
+    "layout_revision": "MC2-D"
   },
   "assembly": {
     "female_module_sockets": 0,
-    "method": "All components face front; male module pins enter plated holes and solder on the back. TinyC6 headers require through-hole assembly first.",
+    "method": "Factory male module headers enter carrier plated holes and are soldered on the back; no female module sockets.",
     "castellated_side_soldering": false,
     "component_sides": 1,
     "usb_cable_service_space": false,
     "initial_programming": "Program each loose controller before mounting; use the revision-specific network updater after assembly.",
-    "thread_preparation": "TinyC6[D] native USB; MC2-C RCP selects external antenna through onboard FXL6408; no battery fitted."
+    "thread_preparation": "4 MB XIAO ESP32C6 RCP selects GPIO3 LOW / GPIO14 HIGH. Two manual underside leads: TP8/EN to J10.1 and TP2/BOOT to J10.2; route above the carrier, with underside access through the service window."
   },
   "active_enclosure": {
-    "revision": "FH1-MC2-C-PWR1",
+    "revision": "FH1-MC2-D-PWR1",
     "status": "full-hub engineering prototype; physical fit, force, thermal and RF qualification outstanding",
     "directory": "mechanical/full-hub",
     "shell_envelope_mm": [
@@ -42,7 +42,7 @@
     ],
     "antenna_bulkhead_pitch_mm": 65,
     "antenna_mount": "Three independent standard-SMA bulkheads in fixed base wall; separate 150 mm U.FL-compatible pigtails. ZAC93 retains its stock antenna; CC1101 has a separate band-matched antenna.",
-    "scope": "MC2-C carrier, isolated Waveshare DC PoE splitter, RECOM R-78K3.3-1.0 buck with input capacitor and perfboard mount, DFR0627 bridge, ZAC93, CC1101, DC adapter, fuse, lid-mounted LD2450 and attached ventilated BME680 pod.",
+    "scope": "MC2-D carrier, isolated Waveshare DC PoE splitter, RECOM R-78K3.3-1.0 buck with input capacitor and perfboard mount, DFR0627 bridge, ZAC93, CC1101, DC adapter, fuse, lid-mounted LD2450 and attached ventilated BME680 pod.",
     "component_inventory": "mechanical/full-hub/components.json",
     "geometry_parameters": "mechanical/full-hub/parameters.json",
     "qualification": "Digital envelopes and print geometry only; check exact delivered hardware and connector variants before assembly."
@@ -120,6 +120,14 @@
       "host": "ESP32-DevKitC-VIE",
       "thread_rcp": "TinyC6-U-01 / TC6-U-01",
       "reason": "Original fixed-U.FL C6 unavailable for US purchase; MC2-C selects TC6D-01 and board-specific antenna firmware."
+    },
+    {
+      "id": "MC2-C",
+      "status": "historical_git_snapshot",
+      "commit": "156c9259f1f372d989bc2c9db8bda63f1efec618",
+      "directory": "hardware/external-antenna",
+      "host": "ESP32-DevKitC-VIE",
+      "reason": "Superseded by MC2-D XIAO ESP32C6 factory-header carrier. TinyC6[D] footprint, antenna driver and 8 MB RCP image are not interchangeable."
     }
   ],
   "release_policy": "One current design does not imply a validated manufacturing release. Hardware operation, physical fit and simultaneous-load acceptance remain separate gates.",

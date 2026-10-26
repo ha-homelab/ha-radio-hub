@@ -1,5 +1,5 @@
 # Frozen routing session
 
-`mc2.ses` was created from MC2-B’s `.build/mc2.dsn` with Freerouting1.9.0 (`-mp 30 -mt 1`). It routes all 33 nets, including R3’s C6-local GPIO8 pull-up and R4/R5 host boot pull-downs. The session is specific to these exact placements. Import with `finalize.py`, then require native ERC, DRC, connectivity and schematic parity to pass with zero findings.
+`mc2.ses` is generated for **MC2-D** from `.build/mc2.dsn` with Freerouting 2.5.0 (`--router.autorouter.max_passes=100 --router.optimizer.max_threads=1 --router.automatic_neckdown=false --router.neck_width_um=0 --router.strict_drc=true -mt 1 -dct 0 -da`). It routes all 31 nets, including J10's mandatory EN/BOOT leads and R4/R5 host boot pull-downs. R3 is absent because XIAO already has a GPIO8 pull-up. The session includes the new U2 14-pin placement and avoids the real rounded access opening.
 
-MC2-C preserves those electrical routes and all hole centers. Only the session label and U2 footprint identifier change to `TinyC6_D`; the current D-series envelope, pin names and RF selection contract are regenerated from `design.py`. Fresh native checks are required after importing this session.
+Import with `finalize.py`; require native ERC, DRC, connectivity and schematic parity all zero. The old TinyC6 session is incompatible. Source generation plus this exact session must reproduce the saved copper topology.

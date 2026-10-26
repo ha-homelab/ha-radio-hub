@@ -3,8 +3,22 @@
   "hardware_tested": false,
   "esphome": "2026.9.1",
   "esp_idf": "5.5.5",
-  "profile": "MC2-C classic ESP32 external antenna",
+  "profile": "MC2-D classic ESP32 external antenna",
   "board": "ESP32-DevKitC-VIE",
+  "rf_tx_startup": {
+    "protected_gpio": 25,
+    "cc1101_source_sha256": "15446e0bff5179238d118446c0cf4beb9dbca4bb2f4d8ddb39692ef91451620f",
+    "handoff_sha256": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+    "stock_transmitter_sha256": "3925a8f3ba3ace5b9843c068800f6d86fa6b5e57743ea5c64ab4f4f88cf89f82",
+    "sdk_source_sha256": {
+      "components/esp_driver_rmt/src/rmt_tx.c": "a8413610fb7f729e50a517980a24925fbfb1a28620999a1ad8f34bb71419e4c6",
+      "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291"
+    },
+    "wrapper_sha256": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+    "elf_sha256": "6ab32676bf593a898ba605fabd1bcb53bbd4a01ea054126a142718031275252e",
+    "linked_call_verified": true,
+    "hardware_tested": false
+  },
   "sdkconfig_verified": {
     "CONFIG_OPENTHREAD_FTD": "y",
     "CONFIG_OPENTHREAD_COMMISSIONER": "y",
@@ -42,16 +56,16 @@
   },
   "artifacts": {
     "mc2-classic-hub.bin": {
-      "bytes": 1708928,
-      "sha256": "a672e41360b7d2b2f313998eaac265141624154863f1b0634da5cd4672349cce"
+      "bytes": 1709216,
+      "sha256": "a4c795b0bf5e5d32a86a39d2ff1e0f36f5e74b76951f6cebd837147e9dcb9b9c"
     },
     "firmware.factory.bin": {
-      "bytes": 1774464,
-      "sha256": "ab1325a8a6f351f4d137e8da700fac48310fafa618d72e84a79b83036a76e772"
+      "bytes": 1774752,
+      "sha256": "d6f0c737da43246731f2246c6584a7e1b20a4ea305c37f00548b3e37a943989d"
     },
     "firmware.ota.bin": {
-      "bytes": 1708928,
-      "sha256": "a672e41360b7d2b2f313998eaac265141624154863f1b0634da5cd4672349cce"
+      "bytes": 1709216,
+      "sha256": "a4c795b0bf5e5d32a86a39d2ff1e0f36f5e74b76951f6cebd837147e9dcb9b9c"
     }
   },
   "c6_service_gpio": {
@@ -119,7 +133,7 @@
       "subtype": "ota_0",
       "offset": 65536,
       "bytes": 3932160,
-      "image_margin_bytes": 2223232
+      "image_margin_bytes": 2222944
     },
     {
       "name": "app1",
@@ -127,7 +141,7 @@
       "subtype": "ota_1",
       "offset": 3997696,
       "bytes": 3932160,
-      "image_margin_bytes": 2223232
+      "image_margin_bytes": 2222944
     },
     {
       "name": "nvs",
@@ -146,9 +160,9 @@
     "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
   },
   "linked_memory": {
-    "static_ram_bytes": 101636,
+    "static_ram_bytes": 101612,
     "linker_ram_bytes": 124580,
-    "dram_headroom_bytes": 22944,
+    "dram_headroom_bytes": 22968,
     "iram_used_bytes": 88543,
     "iram_size_bytes": 131072,
     "iram_headroom_bytes": 42529,
@@ -167,11 +181,23 @@
   "framework_cache_manually_modified": false,
   "sdk_patches_applied": false,
   "recipe_sha256": {
-    "hub.yaml": "f3c1f94d49fdb2ac0e03b78f05f2b00793be5de57228f15e7db86465914a43e8",
+    "hub.yaml": "5603db4364c31ab0d16cb7d1fdcd689fca30e9f8681ddc16f2305debbdfecfef",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
-    "pin-plan.json": "15d73b3387d5c6f7f7321c56096ad687d423ac0c698e6ce062108dea95e20955",
-    "mc2_contract.py": "b209f37138ce7b9387c018b79f5d4a1c8a9596795368bc51728a0934f92d71b9",
-    "c6_identity.py": "1add7655cd1387ff3202af73d914b0d4ff8fba54c53949403f72be6bf1d2db97",
-    "validate.py": "52e7069bbc4614ea6eba29bab5451268942abca80c0bdbaa50fa3c0622f96049"
-  }
+    "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
+    "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
+    "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
+    "validate.py": "bec1d92002d76a6d106329721a64a421acb73f8977db884eb20cbc0cf76cb8e0",
+    "../packages/rf-airbridge.yaml": "97dbf32441424723b3bebf31f8b053d7f56dfeb3f575cb52b9c629ca1808fd9b",
+    "../include/rf_radio_handoff.h": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+    "../components/rf_tx_startup/__init__.py": "387de8bd15b2b3fef7316ff92ac0c5a9dc5151b275cf1edfc4c0265715ff56e9",
+    "../components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+    "../components/rf_tx_startup/verify.py": "f52c602f81e7c6e4adce3148b4a459efa0840fb5821c1e1b7aeedd53d8297ea8",
+    "../module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
+    "../module-carrier/components/wk2132_uart/address_plan.py": "4b1e9e756cf090dc95704f0d1e4e2155ad13df5b932e7692b19a9e9a66c2d0c8",
+    "../module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+    "../module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+    "../module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef"
+  },
+  "verified_date_local": "2026-10-20",
+  "build_scope": "Clean host baseline followed by incremental RF startup/runtime handoff guard build; disposable credentials; not flashed"
 }

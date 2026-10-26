@@ -1,0 +1,13 @@
+(footprint "Wire_Link_P7.62mm"
+ (version 20250108) (generator "pcbnew") (layer "F.Cu")
+ (descr "Insulated 22AWG wire link at legacy D1 position; NO DIODE; preserved pad geometry")
+ (property "Reference" "REF**" (at 3.81 -2.47) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))
+ (property "Value" "WIRE LINK - NO DIODE" (at 3.81 2.47) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+ (attr through_hole)
+ (fp_line (start 1.34 0) (end 6.28 0) (stroke (width 0.3) (type solid)) (layer "F.SilkS"))
+ (fp_line (start 0 0) (end 7.62 0) (stroke (width 0.3) (type solid)) (layer "F.Fab"))
+ (fp_text user "NO DIODE" (at 3.81 2.47) (layer "F.SilkS") (effects (font (size 0.8 0.8) (thickness 0.13))))
+ (fp_rect (start -1.35 -1.6) (end 8.97 1.6) (stroke (width 0.05) (type solid)) (fill none) (layer "F.CrtYd"))
+ (pad "1" thru_hole roundrect (at 0 0) (size 2.2 2.2) (drill 1.1) (layers "*.Cu" "*.Mask") (remove_unused_layers no) (roundrect_rratio 0.113636))
+ (pad "2" thru_hole circle (at 7.62 0) (size 2.2 2.2) (drill 1.1) (layers "*.Cu" "*.Mask") (remove_unused_layers no))
+)

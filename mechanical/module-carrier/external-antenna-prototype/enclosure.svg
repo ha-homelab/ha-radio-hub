@@ -9,8 +9,8 @@
 <text x="187.5" y="368.0" class="s">MC2 carrier 100 × 100 mm · native module XY</text>
 <rect x="215.5" y="424.31" width="97.78999999999999" height="190.155" fill="#223749" stroke="#9ab9cb"/>
 <text x="220.5" y="442.31" class="n">U1</text>
-<rect x="345.0" y="423.687" width="62.230000000000004" height="127.04999999999998" fill="#223749" stroke="#9ab9cb"/>
-<text x="350.0" y="441.687" class="n">U2</text>
+<rect x="344.615" y="422.0" width="62.230000000000004" height="73.3425" fill="#223749" stroke="#9ab9cb"/>
+<text x="349.615" y="440.0" class="n">U2</text>
 <rect x="450.0" y="422.0" width="62.230000000000004" height="73.3425" fill="#223749" stroke="#9ab9cb"/>
 <text x="455.0" y="440.0" class="n">U3</text>
 <rect x="394.0" y="640.05" width="80.5" height="87.50000000000006" fill="#223749" stroke="#9ab9cb"/>
@@ -34,8 +34,8 @@
 <rect x="604.0" y="334.5" width="42.0" height="21.0" fill="#73dfb4"/>
 <path d="M170.0 345.0 Q170.0 397.5 275.0 436.0" stroke="#d8a0ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
 <circle cx="275.0" cy="436.0" r="6" fill="#d8a0ff"/>
-<path d="M397.5 345.0 Q397.5 397.5 356.515 541.8820000000001" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
-<circle cx="356.515" cy="541.8820000000001" r="6" fill="#7ac1ff"/>
+<path d="M397.5 345.0 Q397.5 397.5 360.694 490.41975" stroke="#7ac1ff" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+<circle cx="360.694" cy="490.41975" r="6" fill="#7ac1ff"/>
 <path d="M625.0 345.0 Q625.0 397.5 464.0 488.5" stroke="#73dfb4" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
 <circle cx="464.0" cy="488.5" r="6" fill="#73dfb4"/>
 <text x="790" y="180" class="s">Enclosure</text>

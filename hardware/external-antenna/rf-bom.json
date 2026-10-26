@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "design": "MC2-C",
-  "review_date": "2026-10-19",
+  "design": "MC2-D",
+  "review_date": "2026-10-20",
   "status": "Engineering selection; physical connector fit, installed cable routing and RF performance require validation",
   "antenna": {
     "manufacturer": "TE Connectivity / Linx",
@@ -58,7 +58,7 @@
       "nominal_cable_only_db": 0.465,
       "qualification": "Engineering estimate using published Taoglas 1.13 mm black coax family data; CAB.618.E documentation does not identify the exact internal wire part number. Excludes connectors/mismatch; not a measured or guaranteed assembly loss."
     },
-    "routing_status": "Use FH1-MC2-C-PWR1 and its 3 mm fit coupon. Verify received length, 25 mm service allowance, bend radius, thread engagement and unstrained connector fit physically.",
+    "routing_status": "Use FH1-MC2-D-PWR1 and its 3 mm fit coupon. Verify received length, 25 mm service allowance, bend radius, thread engagement and unstrained connector fit physically.",
     "bend_radius_basis": "6.8 mm engineering routing minimum from Taoglas 1.13 mm black coax family data; confirm with supplied assembly if its requirement is stricter."
   },
   "paths": [
@@ -70,9 +70,9 @@
     },
     {
       "label": "THREAD",
-      "radio": "Unexpected Maker TinyC6[D] / TC6D-01",
-      "path": "TinyC6[D] U.FL -> dedicated pigtail -> THREAD bulkhead -> antenna",
-      "selection": "MC2-C RCP selects and verifies FXL6408 XIO0 HIGH on local C6 SDA6/SCL7, address 0x43, before radio initialization; reset defaults to onboard antenna"
+      "radio": "Seeed Studio XIAO ESP32C6 (Pre-Soldered), 102010636",
+      "path": "XIAO ESP32C6 U.FL -> dedicated pigtail -> THREAD bulkhead -> antenna",
+      "selection": "MC2-D 4 MB RCP drives RF enable GPIO3 LOW and antenna select GPIO14 HIGH before radio initialization; verifies GPIO configuration/readback."
     },
     {
       "label": "ZIGBEE",

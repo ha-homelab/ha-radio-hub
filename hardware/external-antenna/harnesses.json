@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": "MC2-C",
+  "revision": "MC2-D",
   "source": "../../docs/full-hub-assembly.md",
   "orientation": "Carrier component-side view, in the same orientation as the native assembly drawing. The square pad is pin 1. Looking into a cable socket reverses the apparent order; identify contacts by continuity, not by wire colour.",
   "harnesses": [
@@ -30,7 +30,7 @@
       "ref": "J2",
       "device": "RECOM R-78K3.3-1.0 peripheral buck assembly",
       "source_anchor": "power-and-ethernet",
-      "note": "Retain the MC2-C four-wire J2 interface. RECOM SIP pins are 1 VIN, 2 GND, 3 VOUT; identify the pin-1 dot, not a mirrored cable view. Both J2 ground wires join pin 2 on the supported power daughterboard. Fit Panasonic EEU-FS1H270 27 uF input capacitor: positive to pin 1, negative stripe to pin 2. J2.1 uses fused +5V before D1-D3. No EN or PG pins exist. Do not plug the three-pin regulator directly into J2.",
+      "note": "Retain the MC2-D four-wire J2 interface. RECOM SIP pins are 1 VIN, 2 GND, 3 VOUT; identify the pin-1 dot, not a mirrored cable view. Both J2 ground wires join pin 2 on the supported power daughterboard. Fit Panasonic EEU-FS1H270 27 uF input capacitor: positive to pin 1, negative stripe to pin 2. J2.1 uses fused +5V upstream of the controller branches. D1 is a wire link, while D2/D3 remain diodes. No EN or PG pins exist. Do not plug the three-pin regulator directly into J2.",
       "pins": [
         {
           "carrier_pin": "1",
@@ -70,7 +70,7 @@
       "ref": "J3",
       "device": "DFRobot DFR0627 / WK2132 UART bridge",
       "source_anchor": "fit-the-uart-bridge-and-verify-the-complete-signal-path",
-      "note": "These six wires reach separate I²C and UART1 contacts, not one six-pin module header. Set IA1 = 1 and IA0 = 1: register 0x70, FIFO 0x71; UART1 115200 8N1. UART2, RST and IRQ remain unused.",
+      "note": "These six wires reach separate I²C and UART1 contacts, not one six-pin module header. Set IA1 = 1 and IA0 = 0: register 0x50, FIFO 0x51; reserve the entire 0x50-0x57 address block; UART1 115200 8N1. BME680 stays at 0x77. The former 1/1 setting conflicts with BME680. UART2, RST and IRQ remain unused.",
       "pins": [
         {
           "carrier_pin": "1",
@@ -297,6 +297,30 @@
           "device_contact": "SCL / SCK",
           "direction": "to_device",
           "function": "I²C clock, host GPIO22"
+        }
+      ]
+    },
+    {
+      "ref": "J10",
+      "device": "XIAO ESP32C6 underside recovery pads",
+      "source_anchor": "thread-recovery-leads",
+      "note": "Two short insulated 30 AWG flexible leads, soldered to underside test pads and strain-relieved. Factory headers do not include these contacts. Use the carrier access window with the carrier removed from the case; confirm the bottom-view orientation before soldering. Never connect either signal to 5 V.",
+      "pins": [
+        {
+          "carrier_pin": "1",
+          "net": "THREAD_EN",
+          "device_contact": "Underside TP8 — EN / RESET",
+          "device_pin": "TP8",
+          "direction": "to_device",
+          "function": "Host GPIO27 controls C6 reset"
+        },
+        {
+          "carrier_pin": "2",
+          "net": "THREAD_BOOT",
+          "device_contact": "Underside TP2 — BOOT / GPIO9",
+          "device_pin": "TP2",
+          "direction": "to_device",
+          "function": "Host GPIO15 selects C6 ROM recovery"
         }
       ]
     }

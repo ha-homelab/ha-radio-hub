@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "revision": "FH1-MC2-C-PWR1",
+  "revision": "FH1-MC2-D-PWR1",
   "review_date": "2026-10-20",
-  "design": "MC2-C",
+  "design": "MC2-D",
   "status": "engineering prototype; component fit and assembled operation not physically verified",
   "units": "mm",
   "coordinate_convention": "Each local envelope uses lower-left-bottom origin [0,0,0]. design_envelope_mm includes allocated installed pins, socket and body height but not the external cable service space explicitly listed in keepouts. Positions and rotations are defined by the enclosure layout, not this inventory.",
@@ -16,7 +16,7 @@
   "components": [
     {
       "id": "carrier",
-      "model": "MC2-C carrier with ESP32-DevKitC-VIE, TinyC6[D] TC6D-01, XIAO MG24 and WIZ850io",
+      "model": "MC2-D carrier with ESP32-DevKitC-VIE, XIAO ESP32C6 pre-soldered 102010636, XIAO MG24 and WIZ850io",
       "quantity": 1,
       "body_mm": [
         100,
@@ -55,10 +55,11 @@
       },
       "notes": [
         "The 100x100 bare PCB is not the complete populated envelope. WIZ850io jack face is at local y=102.",
-        "All four fitted modules, carrier headers, D1-D3 and R1-R5 are retained; they do not each need independent enclosure screws.",
+        "All four fitted modules, carrier headers, D1 wire link, D2/D3 diodes and R1-R5 are retained; they do not each need independent enclosure screws.",
         "Reserve access above the service headers and component-side reset/boot buttons.",
-        "U2 is TinyC6[D] TC6D-01: use the MC2-C footprint and firmware; solder 1x11 and 1x12 headers, leave the optional battery connector unpopulated, and do not fit a LiPo battery.",
-        "The longer 36.3 x 17.78 mm nominal U2 PCB and its relocated U.FL endpoint are read from the MC2-C CAD source; the enclosing carrier reservation is unchanged."
+        "U2 is Seeed Studio XIAO ESP32C6 pre-soldered SKU 102010636: use the MC2-D footprint and firmware. Factory pin headers do not eliminate the two underside EN/BOOT service leads; follow the electrical assembly instructions before mounting.",
+        "The compact 21 x 17.8 mm nominal U2 PCB and its U.FL endpoint are read from the MC2-D CAD source. Header mating height is an engineering allowance until the delivered pre-soldered board and its mounting are measured. Leave battery pads unconnected.",
+        "U1/U2/U3 radio PCB planes use a 2.54 mm nominal factory-header gap, explicitly unmeasured; each has an 8 mm top-body allowance. Coax approaches at z=32 mm before dropping to the local connector. Verify delivered stack and formed cable length."
       ],
       "keepouts": [
         {
@@ -79,8 +80,7 @@
       "sources": [
         "../../hardware/external-antenna/cad/design.json",
         "../../hardware/external-antenna/cad/connectors.json",
-        "../../hardware/external-antenna/cad/c6d-evidence.json",
-        "https://github.com/UnexpectedMaker/um-series-d/blob/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3/3d%20models/TinyC6D.step"
+        "https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/"
       ],
       "fit_verified": false
     },
@@ -226,7 +226,7 @@
       },
       "notes": [
         "Keep address switches, reset pads, I2C Gravity plug and UART1 header accessible.",
-        "Use IA1=IA0=1 and UART1 (software channel0).",
+        "Use IA1=1, IA0=0 and UART1 (software channel0); register 0x50 / FIFO 0x51, with the full 0x50-0x57 decode window clear of BME680.",
         "Keep straps off headers, address switches and IC packages; verify contact locations on delivered board."
       ],
       "keepouts": [],

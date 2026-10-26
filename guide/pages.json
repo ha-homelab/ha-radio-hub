@@ -15,7 +15,13 @@
     "slug": "pcb-order",
     "source": "docs/pcb-order.md",
     "label": "Order the PCB",
-    "description": "Download the MC2-C prototype fabrication package and check quantities, finish and shipping."
+    "description": "Download the MC2-D prototype fabrication package and check quantities, finish and shipping."
+  },
+  {
+    "slug": "purchase-audit",
+    "source": "docs/pre-fabrication-audit.md",
+    "label": "Purchase audit",
+    "description": "Check the submitted component variants, D1 wire link, ZAC93 adapter and prototype order handoff."
   },
   {
     "slug": "firmware",
@@ -34,6 +40,12 @@
     "source": "docs/full-hub-assembly.md",
     "label": "Wire the hub",
     "description": "Connect power, the UART bridge, ZAC93 and each sensor."
+  },
+  {
+    "slug": "connections",
+    "source": "docs/connection-audit.md",
+    "label": "Connection audit",
+    "description": "Review verified paths, the DFR0627 address correction and remaining bench measurements."
   },
   {
     "slug": "commissioning",
@@ -57,7 +69,7 @@
     "slug": "pigtails",
     "source": "docs/pigtail-selection.md",
     "label": "Choose RF cables",
-    "description": "Check the Taoglas replacement, lower price, length allowance and the retained RF1 cable geometry in PWR1."
+    "description": "Check the Taoglas replacement, lower price, length allowance and the revised MC2-D route in the PWR1 enclosure."
   },
   {
     "slug": "hardware",

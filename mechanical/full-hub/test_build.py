@@ -53,6 +53,37 @@ class FullHubTests(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError,'U2 module exceeds'):
             b.validate(self.p,self.m,bad,self.g)
 
+    def test_all_factory_header_radios_use_the_direct_solder_plane(self):
+        for ref in ['U1','U2','U3']:
+            self.assertAlmostEqual(b.module_base_offset(self.p,ref),4.14)
+            self.assertAlmostEqual(self.checks['native_module_boxes_mm'][ref][2],19.14)
+        self.assertEqual(self.p['rf_harness']['approach_plane_z_mm'],32)
+        zigbee=next(r for r in self.checks['routes'] if r['id']=='zigbee-coax')
+        self.assertLess(zigbee['guide_length_upper_bound_mm']+zigbee['slack_allowance_mm'],143)
+        bad=copy.deepcopy(self.p);bad['rf_harness']['approach_plane_z_mm']=40
+        with self.assertRaisesRegex(AssertionError,'insufficient coax length'):
+            b.validate(bad,self.m,self.s,self.g)
+
+    def test_factory_header_gap_and_fine_service_wire_limits(self):
+        self.assertEqual(self.p['thread_mount']['sku'],'102010636')
+        self.assertAlmostEqual(b.module_base_offset(self.p,'U2'),4.14)
+        routes=[r for r in self.checks['routes'] if r['id'].startswith('c6-')]
+        self.assertEqual(len(routes),2)
+        for route in routes:
+            self.assertLessEqual(2*route['radius_mm'],.8)
+            self.assertGreater(route['points_mm'][0][2]-route['radius_mm'],16.6)
+        bad=copy.deepcopy(self.p)
+        bad['thread_mount']['underside_joint_protrusion_max_mm']=3
+        with self.assertRaisesRegex(AssertionError,'service solder joints'):
+            b.validate(bad,self.m,self.s,self.g)
+
+    def test_c6_access_window_has_no_added_floor_support(self):
+        access=self.checks['thread_radio_nominal_fit']['underside_access_case_mm']
+        bad=copy.copy(self.g);bad['assembled']=dict(self.g['assembled'])
+        bad['assembled']['bad_window_support']=b.c.box(2,2,5).move((access[0]+1,access[1]+1,5))
+        with self.assertRaisesRegex(AssertionError,'service window blocked'):
+            b.validate(self.p,self.m,self.s,bad)
+
     def test_zac93_has_socket_and_underneath_header_clearance(self):
         z=self.checks['detailed_component_solids_mm']['zwave']
         header=self.checks['mated_connector_boxes_mm']['zac93-underside-mating-header']

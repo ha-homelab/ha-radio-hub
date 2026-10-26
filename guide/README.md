@@ -6,7 +6,7 @@ From the repository root, run:
 python3 tools/preview.py
 ```
 
-The command opens the current MC2-B guide in your browser. It uses only Python's
+The command opens the current MC2-D guide in your browser. It uses only Python's
 standard library. Stop it with Ctrl+C. Use `--no-open` to print the URL without
 opening a browser, or `--port 0` to choose a free port if 8780 is occupied.
 You can also open [index.html](index.html) directly: no server or Internet is

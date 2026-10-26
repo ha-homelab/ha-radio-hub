@@ -1,4 +1,4 @@
-# MC2-C external-antenna enclosure prototype
+# MC2-D external-antenna enclosure prototype
 
 **Historical carrier-only option.** For the complete device, including Zooz
 ZAC93, power modules, UART bridge, CC1101, LD2450 and an attached BME680 pod,
@@ -11,20 +11,25 @@ This package implements three independently labeled external antenna connections
 
 The nominal carrier shell is **190 × 160 × 58 mm**, plus a **4 mm ceiling spacing frame**. The carrier is 100 × 100 mm; its actual outline and mounting holes are read from the MC2 native KiCad board. The extra width reserves hand/tool access and initial 65 mm spacing between adjacent antenna connectors. That spacing is a starting mechanical layout, **not a demonstrated RF isolation distance or a promise of coverage over 1,000 ft²**.
 
-MC2-C uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
+MC2-D uses the **ESP32-DevKitC-VIE with ESP32-WROVER-IE** host. The four carrier mounting holes, WIZ850io connector position and shell dimensions are retained from MC2-A. The plan now draws each U1–U4 body reservation directly from the current CAD ledger, identifies the selected host, and records those reservations and the electrical revision in `verification.json`. It does not reuse the S3 host outline. The host's single USB connector and the conservative WROVER module overhang are covered by the native carrier ledger; supplied-board dimensions and installed heights still require measurement.
 
-The Thread board is **Unexpected Maker TinyC6[D], TC6D-01**. Its 36.3 × 17.78 mm
-nominal PCB is aligned by the header centers, and its U.FL socket position is
-read from the revised native CAD. The Series D radio needs the MC2-C RCP
-firmware to select that external antenna. The same 150 mm cable and carrier
-mounts remain applicable; installed header height and formed coax bends still
-require a physical trial.
+The Thread board is **Seeed Studio XIAO ESP32C6, pre-soldered SKU 102010636**.
+Its nominal PCB is 21 × 17.8 mm; header alignment and U.FL position are read
+from the MC2-D native CAD. It needs the MC2-D RCP firmware to select its
+external antenna. The three 150 mm cables and carrier mounts remain applicable;
+installed header height and formed coax bends still require a physical trial.
+All three radio endpoints now use the direct factory-header stack allowance:
+15 mm carrier seat +1.6 mm carrier +2.54 mm nominal header plastic +3 mm
+PCB/plug height =22.14 mm. This is a fit-check allocation, not a measured
+factory connector height.
+Buy modules with factory-soldered headers where offered. Preserve underside
+service-lead clearance and leave battery pads unconnected.
 
 This remains a **carrier-only housing**. The PoE splitter, converter, DFR0627, ZAC93, CC1101, LD2450 and BME680 remain in their separately allocated housings/locations. No free volume in this shell is permission to move them next to the RF cables. The system still receives one PoE cable from the existing network switch. The carrier's downstream WIZ Ethernet connector carries data after the external splitter; do not connect raw PoE to an ordinary WIZ jack.
 
 ## Print files
 
-- [base.stl](base.stl): open tray with three D-shaped bulkhead holes, recessed radio names, four native PCB support positions, three soft-loop cable supports, ventilation and a rear split cable exit.
+- [base.stl](base.stl): open tray with three round 6.8 mm bulkhead holes, recessed radio names, four native PCB support positions, three soft-loop cable supports, ventilation and a rear split cable exit.
 - [cover.stl](cover.stl): flat cover with four closure holes. Print its outside face on the bed.
 - [ceiling-spacing-frame.stl](ceiling-spacing-frame.stl): 4 mm frame to clear base hardware; install it between tray and ceiling.
 - [cable-bar.stl](cable-bar.stl): low-voltage rear harness restraint. Two M3 fasteners attach it to the base and soft ties pass through the two center slots. It does not touch or support an RF connector.
@@ -61,7 +66,7 @@ The external antenna candidate is **TE ANT-2.4-LCW-SMA / L9000082-01**, normal S
 
 ## Assembly and measurements
 
-1. Print the bulkhead coupon. Fit the purchased connector with its supplied nut, washer and O-ring, check thread engagement and that the D flat resists rotation without cracking plastic. Use the connector maker's applicable torque limit; none is invented for this printed wall. Hold the bulkhead with the appropriate tool when fitting/removing an antenna. Never transfer tightening force through the coax to the radio.
+1. Print the bulkhead coupon. Fit the purchased connector with its supplied nut and washer, check thread engagement and restrain the shoulder against rotation without cracking plastic. Use the connector maker's applicable torque limit; none is invented for this printed wall. Hold the bulkhead with the appropriate tool when fitting/removing an antenna. Never transfer tightening force through the coax to the radio.
 2. Check the native carrier dimensions and support holes against the manufactured board. Mount the bare carrier first. The nominal underside seat is **Z15 mm** above the exterior floor, leaving **12 mm** from inside floor to PCB underside. PCB thickness is assumed **1.6 mm**; the cover inside face is **Z55 mm**, leaving **38.4 mm** above the carrier. Check every real module, solder tail, connector and mated harness. All such measurements remain `null` in `parameters.json` until recorded.
 3. Install the M2.5 nylon PCB nuts/retainers and rear M3 cable-bar hardware while the base underside is accessible. Keep all hardware projection below the base within **3 mm**, so the 4 mm spacing frame leaves at least 1 mm clearance. The four PCB screws use only the native holes; no new board holes or sockets are implied. Use suitable case-to-ceiling anchors through the two separate 4.5 mm holes. Select lengths from the printed stack and actual ceiling; no load rating is assigned.
 4. Install and secure all three bulkheads **before** snapping the AMC plugs onto the modules. From the exterior front, the order is **BLE — THREAD — ZIGBEE**. Match the same labels on each cable and radio. Seat each miniature plug squarely, pressing its metal shell; do not press sideways, pull its wire or repeatedly reconnect it for normal servicing.

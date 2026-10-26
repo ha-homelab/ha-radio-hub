@@ -1,5 +1,15 @@
 # One current design, retained engineering history
 
+On 20 October 2026 **MC2-D** replaced MC2-C's TinyC6[D] with the US-distributed
+**Seeed XIAO ESP32C6 (Pre-Soldered), 102010636**. The VIE host already ordered by
+the owner stays. The carrier gets a 14-pin XIAO footprint, underside access window
+and two-wire J10 recovery harness; R3 is removed because XIAO has its own GPIO8
+pull-up. RCP flash is 4 MB and external RF selection uses GPIO3/14, not FXL6408.
+Use matching MC2-D CAD, firmware and **FH1-MC2-D-PWR1** print package. Factory
+headers are preferred throughout; two C6 underside recovery leads still require
+soldering. Earlier releases and price observations remain historical.
+
+
 On 19 October 2026 **MC2-C** replaced the obsolete/unavailable original
 **TinyC6-U-01** with **TinyC6[D] / TC6D-01**, while retaining the classic ESP32
 host and the other services. The new board's external antenna requires an

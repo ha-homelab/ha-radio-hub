@@ -1,6 +1,6 @@
-# MC2-C: three external antennas
+# MC2-D: three external antennas
 
-MC2-C is the current **100 × 100 mm, two-copper-layer** carrier for finished
+MC2-D is the current **100 × 100 mm, two-copper-layer** carrier for finished
 modules. It retains the local Thread Border Router, Ember Zigbee, active Bluetooth
 proxy, Z-Wave transport, CC1101 RX/TX, LD2450 and BME680. Its change is three
 independent external 2.4 GHz radio paths. **This is an engineering prototype**:
@@ -18,17 +18,14 @@ Start with the [visual guide and pin lookup](../hardware/external-antenna/index.
   rows. The application maps 4 MB PSRAM for capability-based allocation at quad 40 MHz.
   It runs Ethernet, the BLE 4.2 proxy and local Thread Border Router. Do not
   substitute WROOM (no PSRAM), VE (onboard antenna), an older WROVER revision,
-  or the former S3 board. **MC2-A and MC2-C footprints and binaries differ.**
-- **U2: Unexpected Maker TinyC6[D] / TC6D-01.** Switched U.FL/onboard antennas, 8 MB flash and native
-  USB. It runs the dedicated Thread RCP. Its ordinary through-hole headers expose
-  RX17, TX16, EN and BOOT9. Fit its supplied **1×12 and 1×11 loose headers** first.
-  The carrier adds a 10 kΩ pull-up from the TinyC6 local 3.3 V pin (header 4)
-  to its GPIO8 strap (header 10), required for reliable ROM download entry.
-  There is no competing USB-UART transmitter and no H2 R7 removal step.
-  The matching RCP firmware selects **FXL6408 XIO0 HIGH**, verifies it, then
-  starts the radio. The expander is on the C6-local SDA6/SCL7 bus at 0x43,
-  separate from the host's BME680/WK2132 bus. Default/reset selection is the
-  onboard antenna; old fixed-U.FL TinyC6 and H2 images are not substitutes.
+  or the former S3 board. **MC2-A and MC2-D footprints and binaries differ.**
+- **U2: Seeed XIAO ESP32C6 (Pre-Soldered), SKU 102010636.** Four MB flash,
+  native USB and factory 2×7 male headers. UART RX17/TX16 are on D7/D6.
+  The factory GPIO8 pull-up replaces the old carrier R3. Recovery uses **two
+  flexible insulated leads**, TP8/EN → J10.1 and TP2/BOOT (GPIO9) → J10.2.
+  Those are underside pads, not header pins; the carrier has an access window.
+  The matching firmware selects external RF with **GPIO3 LOW, GPIO14 HIGH**
+  before Thread starts. Do not flash the old TinyC6 I²C-expander image.
 - **U3: Seeed XIAO MG24.** Retain the same Ember protocol family, with a separately
   built **external-antenna firmware**. PB04=1 and PB05=1 select its U.FL path before
   radio initialization. Its onboard antenna and external path are alternatives,
@@ -37,16 +34,15 @@ Start with the [visual guide and pin lookup](../hardware/external-antenna/index.
   the separate standards-compliant PoE splitter supplies the low-voltage circuit.
 
 Module sources: [Espressif ordering and pin guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html),
-[Unexpected Maker design files](https://github.com/UnexpectedMaker/um-series-d/tree/70a46b4c649ec0f8b1087ffb1bebe6ff5ff450e3),
+[Seeed XIAO ESP32C6 pin map and source files](https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/),
 [Seeed antenna selection](https://wiki.seeedstudio.com/xiao_mg24_getting_started/).
 
-**Procurement update, 19 October 2026:** the old TC6-U-01 is obsolete/restricted
-in Mouser's US listing. MC2-C uses **TC6D-01**, shown at USD $18 with 48 available
-in the [manufacturer's shop](https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851).
-Availability is not a reservation or a delivered-cost quote. The [RF BOM](../hardware/external-antenna/rf-bom.json)
-and [carrier BOM](../hardware/external-antenna/cad/BOM.csv) must be used together
-with the retained off-board equipment below. MC1's old price estimate does not
-price MC2.
+**Procurement update, 20 October 2026:** buy C6 **102010636** and MG24
+**102010690**, both with factory-soldered headers. C6 was $6.38 at DigiKey,
+with 21 in stock; no purchase or reservation is implied. The [shopping list](mc2-shopping.md)
+records US offers, the already-ordered host and remaining assembly materials.
+Use the [RF BOM](../hardware/external-antenna/rf-bom.json) and
+[carrier BOM](../hardware/external-antenna/cad/BOM.csv) together.
 
 ## Three antenna paths
 
@@ -58,7 +54,7 @@ peak gain. These are **not RP-SMA** connectors. Confirm center contacts and the
 exact connector family; MHF III/4 miniature plugs are not interchangeable.
 
 1. WROVER-IE U.FL → its cable → **BLE** bulkhead → antenna.
-2. TinyC6[D] switched U.FL → its cable → **THREAD** bulkhead → antenna.
+2. XIAO ESP32C6 switched U.FL → its cable → **THREAD** bulkhead → antenna.
 3. XIAO MG24 U.FL → its cable → **ZIGBEE** bulkhead → antenna.
 
 No RF combiner is used. Mate miniature connectors squarely with power removed;
@@ -67,7 +63,7 @@ before operating the radios. Inspect the physical cable route before final
 assembly. The enclosure's 65 mm adjacent bulkhead pitch is a starting layout,
 **not a measured isolation rating**. The 150 mm cable selection still needs a
 physical dry fit; do not pull it taut to reach a bulkhead.
-Use the **FH1-MC2-C-PWR1** print package: its round-hole coupon matches the
+Use the **FH1-MC2-D-PWR1** print package: its round-hole coupon matches the
 3 mm wall, and the revised routes reserve a 6 mm cable-length shortfall
 allowance plus 25 mm service slack. That shortfall is an engineering budget,
 not a manufacturer-guaranteed tolerance. See the [pigtail selection](pigtail-selection.md).
@@ -82,9 +78,11 @@ and [schematic](../hardware/external-antenna/cad/schematic.svg), rather than MC1
 pin numbers. Net names such as THREAD_RX and ZB_RX describe the **radio end**:
 therefore the host transmitter connects to that RX net.
 
-- ESP32 GPIO26/TX → C6 GPIO17/RX, header 12; C6 GPIO16/TX, header 13 → ESP32 GPIO36/RX.
-- ESP32 GPIO27 → C6 EN/RST, header 15; ESP32 GPIO15 → C6 BOOT9, header 11.
-  Recovery outputs are open-drain.
+- ESP32 GPIO26/TX → C6 GPIO17/RX, U2 pad 8/D7; C6 GPIO16/TX, U2 pad 7/D6 → ESP32 GPIO36/RX.
+- ESP32 GPIO27 → J10.1 → C6 bottom TP8/EN; ESP32 GPIO15 → J10.2 →
+  C6 bottom TP2/BOOT9. Recovery outputs are open-drain. Use 30 AWG flexible
+  insulated leads; secure a slack loop before the joints. Read the bottom-view
+  drawing before soldering, and inspect through the carrier service window.
 - ESP32 GPIO32/TX → MG24 D7/PC07 RX; MG24 D6/PC06 TX → ESP32 GPIO39/RX.
   ESP32 GPIO33/RTS → MG24 D4/PC04 CTS; MG24 D5/PC05 RTS → ESP32 GPIO14/CTS.
 - LD2450 TX → ESP32 GPIO18/RX; ESP32 GPIO23/TX → LD2450 RX.
@@ -100,25 +98,27 @@ no internal pulls. **Fit the carrier's 10 kΩ pull-downs on GPIO12 and GPIO2**:
 GPIO12 must be low at reset for the selected module's 3.3 V flash supply;
 GPIO2 must be low for UART download mode. They connect only to SPI peripheral
 inputs. Preserve the documented chip-select and C6 boot pull-ups and the C6
-local-3.3-V GPIO8 strap. Never apply an eFuse workaround to an unknown module.
+factory GPIO8 pull-up. R3 is not fitted on MC2-D. Never apply an eFuse workaround to an unknown module.
 
 The UART0 logger is disabled and the IDF application console is off so UART0 can
 serve the radar after boot. Zigbee uses UART1, Thread uses UART2. USB-UART remains
 available for ROM programming on GPIO1/3, but is not a running application log
 port. The firmware locks the supported silicon to ECOv3 or newer.
 
-Program and verify each controller **while loose**, using the MC2-C classic-ESP32 factory
-image, C6 RCP and external MG24 NCP/bootloader. For loose TinyC6 ROM programming,
-fit a temporary 10 kΩ pull-up from GPIO8 (header 10) to its local 3.3 V
-(header 4): carrier R3 is not connected yet. The BOOT button only pulls GPIO9 low.
+Program and verify each controller **while loose**, using the MC2-D classic-ESP32 factory
+image, C6 RCP and external MG24 NCP/bootloader. XIAO has its own GPIO8 pull-up;
+use its BOOT/RESET buttons for initial loose-board USB download. No temporary
+TinyC6 pull-up is needed. Keep USB disconnected during assembled PoE operation.
 Neither an MC1 nor MC2-A S3 OTA image is compatible with this processor.
 Flash the new host over its Micro-B USB-UART connection first, under the new
 `mc2-classic-hub` identity. Do not reuse an S3 factory image or its boot offset.
 Keep physical recovery possible before soldering. All carrier
 components face the same side; solder low axial parts and headers first, then
-modules from the back. Check pad numbers, diode cathodes, continuity, supply
-polarity and clearance before applying power. The C6's loose headers require
-ordinary through-hole soldering; no RF resistor relocation is specified.
+modules from the back. **D1 is an insulated 22 AWG wire link, not a diode;
+D2/D3 are the two 1N5819 diodes.** Check pad numbers, diode cathodes, continuity, supply
+polarity and clearance before applying power. The C6 and MG24 headers arrive
+pre-soldered; their tails still need soldering to the carrier. Fit and inspect
+the two C6 recovery leads before final assembly. No RF resistor relocation is specified.
 
 The [firmware guide](../firmware/external-antenna/README.md) and
 [network update instructions](../firmware/external-antenna/updates/README.md)

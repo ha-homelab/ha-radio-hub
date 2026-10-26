@@ -1,8 +1,10 @@
 """Fault-aware DFR0627 UART1 for the fixed 115200 8N1 ZAC93 link."""
 import esphome.codegen as cg
 import esphome.config_validation as cv
+import esphome.final_validate as fv
 from esphome.components import i2c, uart
 from esphome.const import CONF_ID
+from .address_plan import validate_address_plan
 
 DEPENDENCIES = ["esp32", "i2c"]
 AUTO_LOAD = ["uart"]
@@ -11,12 +13,14 @@ WK2132UART = ns.class_("WK2132UART", cg.Component, uart.UARTComponent, i2c.I2CDe
 
 CONFIG_SCHEMA = cv.All(cv.Schema({
     cv.GenerateID(): cv.declare_id(WK2132UART),
-}).extend(cv.COMPONENT_SCHEMA).extend(i2c.i2c_device_schema(0x70)),
+}).extend(cv.COMPONENT_SCHEMA).extend(i2c.i2c_device_schema(0x50)),
     cv.only_with_framework("esp-idf"))
 
 def final_validate(config):
-    if config["address"] != 0x70:
-        raise cv.Invalid("MC1 requires DFR0627 UART1 with IA1=1, IA0=1, address 0x70")
+    try:
+        validate_address_plan(config, fv.full_config.get())
+    except ValueError as error:
+        raise cv.Invalid(str(error)) from error
     i2c.final_validate_device_schema("wk2132_uart", min_frequency="400kHz", max_frequency="400kHz")(config)
     return config
 

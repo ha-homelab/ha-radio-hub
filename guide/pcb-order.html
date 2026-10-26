@@ -2,21 +2,29 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order the PCB · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-C / FH1 · PROTOTYPE</span>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
-<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html" aria-current="page">Order the PCB</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><a href="commissioning.html">Test coverage</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/pcb-order.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#files-to-send">Files to send</a></li><li><a href="#fabrication-settings">Fabrication settings</a></li><li><a href="#quantity-and-delivery">Quantity and delivery</a></li><li><a href="#what-must-match-the-board">What must match the board</a></li></ul></details><article class="article"><h1 id="order-the-mc2-c-prototype-pcb">Order the MC2-C prototype PCB</h1>
-<p><strong>Order MC2-C with TinyC6[D] / TC6D-01 as U2.</strong> The older MC2-B build used
-TC6-U-01, which is obsolete/restricted in the checked US supplier listing.
-The user has not bought that old board. MC2-C brings the module selection,
-carrier drawing, firmware antenna switch and FH1 enclosure into one revision.</p>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html" aria-current="page">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/pcb-order.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#final-purchase-check">Final purchase check</a></li><li><a href="#files-to-send">Files to send</a></li><li><a href="#fabrication-settings">Fabrication settings</a></li><li><a href="#quantity-and-delivery">Quantity and delivery</a></li><li><a href="#what-must-match-the-board">What must match the board</a></li></ul></details><article class="article"><h1 id="order-the-mc2-d-prototype-pcb">Order the MC2-D prototype PCB</h1>
+<p><strong>Order MC2-D with Seeed XIAO ESP32C6 (Pre-Soldered), 102010636, as U2.</strong>
+The previously selected TinyC6[D] costs $41.95 delivered in the owner's cart.
+The new US-stocked C6 is $6.38 before shipping and tax, with factory male headers.
+MC2-D replaces its footprint, recovery wiring, antenna driver and enclosure model.
+Do not mix MC2-B/MC2-C carrier files or TinyC6 firmware with this build.</p>
 <p>Start with <strong>five bare PCBs and components for one complete hub</strong>. This is a
 prototype fabrication package. Digital checks do not establish physical fit,
 RF coverage, power headroom or long-term reliability; test the first assembly
 before purchasing electronics for a larger batch.</p>
+<h2 id="final-purchase-check">Final purchase check</h2>
+<p>The <a href="purchase-audit.html">21 October purchase audit</a> reconciles the submitted
+DigiKey order, the Mouser host and owner-confirmed modules with MC2-D. Use the
+updated package whose D1 position says <strong>NO DIODE</strong>: fit a short insulated
+22 AWG wire there; D2/D3 remain 1N5819. No purchased module needs replacement.
+The ZAC93 adapter uses soldered, individually insulated wires on the short
+header tails. Read these assembly corrections before fabrication.</p>
 <h2 id="files-to-send">Files to send</h2>
 <p>Upload only
-<a href="../hardware/external-antenna/fabrication/MC2-C-prototype-gerbers.zip">MC2-C-prototype-gerbers.zip</a>
+<a href="../hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip">MC2-D-prototype-gerbers.zip</a>
 to the PCB manufacturer's Gerber uploader. The accompanying
 <a href="../hardware/external-antenna/fabrication/manifest.json">manifest</a> binds its
 contents to the native PCB and verification evidence.</p>
@@ -24,15 +32,15 @@ contents to the native PCB and verification evidence.</p>
 SVG, the repository ZIP or an AI-generated board image.</p>
 <p>The archive contains front/back copper, solder mask and silkscreen, the outline,
 separate plated/non-plated drill files and a Gerber job file. Open both sides in
-the manufacturer's preview and confirm the <strong>MC2-C</strong> board marking and four
-mounting holes before submitting. This is a <strong>bare board</strong> order; it does not
+the manufacturer's preview and confirm the <strong>MC2-D</strong> board marking and four
+mounting holes <strong>plus the rounded service window beneath U2</strong> before submitting. This is a <strong>bare board</strong> order; it does not
 include mounted modules, headers or assembly.</p>
 <h2 id="fabrication-settings">Fabrication settings</h2>
 <ul>
 <li>One design, single boards, <strong>100 × 100 mm</strong>, <strong>two copper layers</strong>.</li>
 <li><strong>FR-4, 1.6 mm</strong>, <strong>1 oz copper</strong>, ordinary green solder mask and white silkscreen.</li>
 <li><strong>Lead-free HASL</strong>, tented vias, no edge plating, no castellations, no impedance control.</li>
-<li>No stencil and no PCBA service. All carrier assembly uses ordinary through-hole soldering.</li>
+<li>No stencil and no PCBA service. Carrier joints use through-hole soldering; two fine wires must also be soldered to XIAO underside test pads.</li>
 <li>Preserve separate <strong>PTH and NPTH</strong> drill files. Do not plate the four 2.7 mm mounting holes.</li>
 <li>The design uses 0.25 mm signal tracks, 0.20 mm clearance and 0.40 mm via drills;
 standard 6/6 mil fabrication capability is sufficient.</li>
@@ -41,13 +49,14 @@ standard 6/6 mil fabrication capability is sufficient.</li>
 may still identify manufacturing-specific requirements; resolve any question
 against the native KiCad source before approving a changed CAM preview.</p>
 <h2 id="quantity-and-delivery">Quantity and delivery</h2>
-<p>The live <a href="https://www.pcbway.com/orderonline.aspx">PCBWay calculator</a>, checked on
-19 October 2026 with the settings above and United States delivery, returned:</p>
+<p>The historical <a href="https://www.pcbway.com/orderonline.aspx">PCBWay calculator</a>, checked on
+19 October 2026 for the previous MC2-C 100 × 100 mm board with these settings and United States delivery, returned:</p>
 <ul>
 <li><strong>5 boards:</strong> $5.00 boards + $8.71 shipping = <strong>$13.71</strong>.</li>
 <li><strong>10 boards:</strong> $18.18 + $12.04 = <strong>$30.22</strong>.</li>
 <li><strong>20 boards:</strong> $51.36 + $17.71 = <strong>$69.07</strong>.</li>
 </ul>
+<p><strong>Re-quote the MC2-D ZIP before payment:</strong> the new service window must pass supplier DFM; these are budget references, not a fresh MC2-D checkout.</p>
 <p>The selected service was <strong>Global Direct Shipping</strong>, quoted at <strong>6–12 business
 days</strong> in addition to manufacturing. These are country-level calculator quotes,
 not a paid order or an address-specific total. Tax, duties and later DFM or
@@ -60,24 +69,19 @@ a demonstrated cheaper delivered alternative. The observed values are stored in
 <h2 id="what-must-match-the-board">What must match the board</h2>
 <ul>
 <li><strong>U1:</strong> ESP32-DevKitC-VIE / WROVER-IE, 38 pins, 8 MB flash and 8 MB physical PSRAM.</li>
-<li><strong>U2:</strong> Unexpected Maker <strong>TinyC6[D] / TC6D-01</strong>, supplied male headers soldered on,
-no battery connector fitted. The manufacturer showed 48 available at $18 each
-on 19 October; <a href="https://unexpectedmaker.com/shop.html#!/TinyC6-D/p/865880851">check the exact SKU</a>
-when purchasing.</li>
+<li><strong>U2:</strong> Seeed <strong>XIAO ESP32C6 (Pre-Soldered), 102010636</strong>, with two factory 1×7 male headers. <a href="https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010636/26553893">DigiKey</a> showed 21 at $6.38 on 20 October. Solder its two underside recovery leads: TP8/EN → J10.1 and TP2/BOOT9 → J10.2. The onboard GPIO8 pull-up replaces carrier R3.</li>
 <li><strong>U3:</strong> XIAO MG24, pre-soldered <strong>102010690</strong>, with the external-antenna NCP image.</li>
 <li><strong>U4:</strong> WIZ850io; data-only Ethernet from the isolated 5 V PoE splitter.</li>
 <li><strong>Power:</strong> RECOM R-78K3.3-1.0 and its 27 µF input capacitor, on the
 off-board PWR1 mount. J2 remains 5 V / GND / 3.3 V / GND; see
 <a href="assembly.html#power-and-ethernet">the exact connection</a>.</li>
-<li><strong>Firmware:</strong> current MC2-C host and TinyC6[D] RCP. The latter verifies the
-FXL6408-controlled external antenna before starting Thread. An old TinyC6
-RCP image lacks this step.</li>
+<li><strong>Firmware:</strong> current MC2-D host and <strong>4 MB XIAO ESP32C6 RCP</strong>, with GPIO3 LOW and GPIO14 HIGH for the external antenna. The updater rejects TinyC6/8 MB images; use the matched build instructions.</li>
 <li><strong>RF accessories:</strong> three <strong>Taoglas CAB.618.E</strong> pigtails and three
 <strong>TE ANT-2.4-LCW-SMA</strong> antennas; see the <a href="pigtails.html">selection record</a>.</li>
-<li><strong>Enclosure:</strong> <a href="../mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip">FH1-MC2-C-PWR1 print package</a>,
+<li><strong>Enclosure:</strong> <a href="../mechanical/full-hub/FH1-MC2-D-PWR1-print-package.zip">FH1-MC2-D-PWR1 print package</a>,
 with round SMA cutouts, a wall-thickness-matched coupon and shorter coax routes.
-PWR1 retains the RF1 cable geometry and adds the RECOM converter/capacitor mount.
-The MC2-C PCB and firmware are unchanged.</li>
+The RECOM power mount remains. MC2-D revises the XIAO height, coax route and
+underside service-wire clearance; check the new assembly detail before fitting.</li>
 </ul>
 <p>The <a href="shopping.html">full shopping list</a>, <a href="../hardware/external-antenna/cad/BOM.csv">carrier BOM</a>
 and <a href="../mechanical/full-hub/components.json">full-hub inventory</a> cover the remaining
@@ -86,5 +90,5 @@ five-wire remapped connection to J4 does not change.</p>
 <p>After fabrication, follow <a href="start-here.html">Start here</a>: verify loose parts and
 program the controllers, dry-fit the case, continuity-check the unpowered carrier,
 then test regulated power and each service before switching Home Assistant.</p>
-</article><footer>MC2-C is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

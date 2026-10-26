@@ -4,7 +4,7 @@ import json,hashlib
 from pathlib import Path
 import pcbnew as p
 R=Path(__file__).resolve().parent
-INPUTS=['c6d-evidence.json','design.py','generate.py','finalize.py','project_rules.py','routing/mc2.ses','pin-plan.json','mc2.kicad_pcb','mc2.kicad_sch','mc2.kicad_pro','design.json','connectors.json','BOM.csv','test_design.py']
+INPUTS=['xiaoc6-evidence.json','design.py','generate.py','finalize.py','project_rules.py','routing/mc2.ses','pin-plan.json','mc2.kicad_pcb','mc2.kicad_sch','mc2.kicad_pro','design.json','connectors.json','BOM.csv','test_design.py']
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def topology(board):
  b=p.LoadBoard(str(board)); tracks=[];pads=[]

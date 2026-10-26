@@ -2,6 +2,11 @@
 
 > **Historical MC1 revision.** The current [MC2 external-antenna build](external-antennas.md) uses different modules, pins, flash layout and housing. Keep this material with MC1 boards only.
 
+> **I²C correction, 20 October 2026:** use DFR0627 **A1=1/A0=0** and the
+> corrected MC1 firmware, UART1 **0x50/0x51**, reserving **0x50–0x57**.
+> Frozen drawings that specify A1=A0=1 overlap BME680 at0x77. This changes
+> the external DIP setting and software, not the carrier traces.
+
 
 The current carrier uses **Waveshare ESP32-S3-Nano-M, ESP32-H2-DevKitM-1-N4S,
 Seeed XIAO MG24 and WIZ850io**. It retains the seven application groups and their

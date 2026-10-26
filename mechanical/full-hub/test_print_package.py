@@ -105,7 +105,7 @@ class PrintPackageTests(unittest.TestCase):
 
     def test_enclosure_checked_against_old_carrier_cannot_be_packaged(self):
         report = dict(self.report); report['native_pcb_revision'] = 'MC2-B'
-        with self.assertRaisesRegex(ValueError, 'current MC2-C native carrier'):
+        with self.assertRaisesRegex(ValueError, 'current MC2-D native carrier'):
             p.make_manifest(self.directory, report)
 
 

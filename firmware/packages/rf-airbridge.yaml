@@ -25,12 +25,13 @@ esphome:
     - ${rf_airbridge_path}/include/rm433_protocol.h
     - ${rf_airbridge_path}/include/rf_receiver.h
     - ${rf_airbridge_path}/include/rf_tx_validation.h
+    - ${rf_airbridge_path}/include/rf_radio_handoff.h
 
 external_components:
   - source:
       type: local
       path: ${rf_airbridge_path}/components
-    components: [remote_receiver]
+    components: [remote_receiver, rf_tx_startup]
 
 mqtt:
   id: rf_mqtt
@@ -101,6 +102,11 @@ switch:
     optimistic: true
     restore_mode: ALWAYS_OFF
 
+# Release GDO0 before IDF first routes RMT, including at power-on.
+rf_tx_startup:
+  transmitter_id: rf_transmitter
+  radio_id: rf_radio
+
 remote_transmitter:
   id: rf_transmitter
   # Released during RX; otherwise GDO0 and an ESP32 push-pull output contend.
@@ -113,22 +119,16 @@ remote_transmitter:
   eot_level: false
   carrier_duty_percent: 100%
   non_blocking: true
-  on_transmit:
-    then:
-      - lambda: |-
-          id(rf_radio).set_idle();
-          id(rf_transmitter).digital_write(false);
-          id(rf_radio).begin_tx();
   on_complete:
     then:
       - lambda: |-
           // ESPHome calls this only after rmt_tx_wait_all_done, not after enqueue.
           id(rf_tx_error) = id(rf_tx_error) || id(rf_transmitter).status_has_warning();
-          id(rf_radio).set_idle();
-          id(rf_transmitter).digital_write(true);
-          id(rf_tx_error) = id(rf_tx_error) || id(rf_transmitter).status_has_warning();
+          const bool radio_ready = rf_bridge::finish_radio_tx(
+              *id(rf_radio), *id(rf_transmitter), !id(rf_tx_fault));
+          id(rf_tx_error) = id(rf_tx_error) || !radio_ready;
+          id(rf_tx_fault) = id(rf_tx_fault) || !radio_ready;
           if (!id(rf_tx_fault)) {
-            id(rf_radio).begin_rx();
             if (id(rf_receiver).resume()) {
               id(rf_tx_active) = false;
             } else {
@@ -258,6 +258,11 @@ script:
           id(rf_tx_active) = true;
           if (id(rf_tx_fault) || id(rf_radio).is_failed() ||
               id(rf_transmitter).is_failed() || !id(rf_receiver).suspend()) {
+            id(rf_tx_error) = true;
+            id(rf_tx_complete) = true;
+            id(rf_tx_fault) = true;
+          }
+          if (!id(rf_tx_error) && !rf_bridge::prepare_radio_tx(*id(rf_radio), *id(rf_transmitter))) {
             id(rf_tx_error) = true;
             id(rf_tx_complete) = true;
             id(rf_tx_fault) = true;

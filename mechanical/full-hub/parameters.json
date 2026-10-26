@@ -1,5 +1,5 @@
 {
-  "revision": "FH1-MC2-C-PWR1",
+  "revision": "FH1-MC2-D-PWR1",
   "status": "digitally_checked_prototype_physical_fit_unverified",
   "units": "mm",
   "case": {
@@ -138,7 +138,9 @@
     "Cradles use insulated edge support and soft nylon straps, never invented holes through a module.",
     "The PoE splitter must be an isolated 802.3af/at PD; battery voltage never enters this enclosure directly.",
     "Ambient pod is screwed to two stand-off arms; no loose external sensor box.",
-    "PWR1 replaces the Pololu tray with a 24 x 24 mm insulated perfboard assembly for RECOM R-78K3.3-1.0 and its 27 uF input capacitor; no mounting holes are assumed in either component."
+    "PWR1 replaces the Pololu tray with a 24 x 24 mm insulated perfboard assembly for RECOM R-78K3.3-1.0 and its 27 uF input capacitor; no mounting holes are assumed in either component.",
+    "MC2-D replaces TinyC6[D] with pre-soldered XIAO ESP32C6. Its factory header plastic gives a nominal 2.54 mm gap above the carrier; EN/BOOT underside fine-wire joints use the native carrier access window. No female sockets are added.",
+    "U1 and U3 use explicit 2.54 mm nominal factory-header gaps, not the former generic 9 mm module plane. The 32 mm coax approach plane keeps the 150 mm harness budget valid; all socket heights remain fit-check allocations."
   ],
   "printer_profiles": {
     "owned": {
@@ -177,6 +179,40 @@
     "bulkhead_straight_reservation_mm": 27,
     "heatshrink_reference_length_mm": 17,
     "source_evidence": "rf-evidence.json",
-    "unbent_connector_allowance_mm": 21
+    "unbent_connector_allowance_mm": 21,
+    "approach_plane_z_mm": 32,
+    "connector_above_radio_pcb_underside_mm": 3
+  },
+  "thread_mount": {
+    "model": "Seeed Studio XIAO ESP32C6",
+    "sku": "102010636",
+    "header_assembly": "factory-soldered male headers; direct solder into carrier",
+    "carrier_thickness_mm": 1.6,
+    "header_plastic_standoff_mm": 2.54,
+    "pcb_underside_above_carrier_underside_mm": 4.14,
+    "stack_basis": "2.54 mm nominal header plastic; engineering allocation, delivered header height unmeasured",
+    "underside_wire_diameter_max_mm": 0.8,
+    "underside_joint_protrusion_max_mm": 1.5,
+    "physical_fit_verified": false
+  },
+  "radio_mounts": {
+    "U1": {
+      "model": "ESP32-DevKitC-VIE",
+      "header_assembly": "Factory male headers solder directly to carrier; no female sockets",
+      "header_plastic_standoff_nominal_mm": 2.54,
+      "pcb_underside_above_carrier_underside_mm": 4.14,
+      "board_and_top_components_allowance_mm": 8,
+      "physical_fit_verified": false,
+      "basis": "Engineering direct-header allocation; exact factory spacer and component height require delivered-board measurement"
+    },
+    "U3": {
+      "model": "XIAO MG24 pre-soldered 102010690",
+      "header_assembly": "Factory male headers solder directly to carrier; no female sockets",
+      "header_plastic_standoff_nominal_mm": 2.54,
+      "pcb_underside_above_carrier_underside_mm": 4.14,
+      "board_and_top_components_allowance_mm": 8,
+      "physical_fit_verified": false,
+      "basis": "Engineering direct-header allocation; exact factory spacer and component height require delivered-board measurement"
+    }
   }
 }

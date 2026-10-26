@@ -32,3 +32,5 @@ J7,1,GND,Adafruit BME680 breakout 3660,GND,Common ground,Common ground return
 J7,2,+3V3,Adafruit BME680 breakout 3660,VIN / STEMMA QT power input,Carrier to device,Peripheral 3.3 V supply
 J7,3,I2C_SDA,Adafruit BME680 breakout 3660,SDA / SDI,Bidirectional,"I²C data, host GPIO21"
 J7,4,I2C_SCL,Adafruit BME680 breakout 3660,SCL / SCK,Carrier to device,"I²C clock, host GPIO22"
+J10,1,THREAD_EN,XIAO ESP32C6 underside recovery pads,Underside TP8 — EN / RESET,Carrier to device,Host GPIO27 controls C6 reset
+J10,2,THREAD_BOOT,XIAO ESP32C6 underside recovery pads,Underside TP2 — BOOT / GPIO9,Carrier to device,Host GPIO15 selects C6 ROM recovery

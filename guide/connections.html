@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connection audit · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/connection-audit.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#required-correction-dfr0627-switch-a0">Required correction: DFR0627 switch A0</a></li><li><a href="#rf-startup-and-handoff-corrections">RF startup and handoff corrections</a></li><li><a href="#verified-signal-paths">Verified signal paths</a></li><li><a href="#verified-power-paths">Verified power paths</a></li><li><a href="#evidence-and-remaining-measurements">Evidence and remaining measurements</a></li></ul></details><article class="article"><h1 id="mc2-d-connection-audit">MC2-D connection audit</h1>
+<p>Review date: <strong>20 October 2026</strong>. Scope: the active MC2-D carrier, factory-header
+modules, PWR1 supply, external harnesses and matching firmware. Three independent
+reviews covered power/boot behavior, firmware/protocols and connector/mechanical
+orientation. The initial revision was <code>f3ad9fe</code>; the corrections below are included
+in the current files.</p>
+<p><strong>Two problem areas were found and corrected:</strong> the DFR0627 UART bridge's
+I²C address block overlapped BME680, and the RF shared data line could suffer
+output contention during initialization or a failed radio-mode transition.
+No swapped carrier pins, reversed supply
+diodes or missing routed connections were found. Physical operation remains
+unmeasured; this is a design review, not a test of an assembled hub.</p>
+<h2 id="required-correction-dfr0627-switch-a0">Required correction: DFR0627 switch A0</h2>
+<p>With power disconnected, set <strong>A1=1, A0=0</strong> on DFR0627. Use the current firmware
+with UART1 register address <strong>0x50</strong> and FIFO address <strong>0x51</strong>. Keep BME680 at
+<strong>0x77</strong>. Reserve the entire <strong>0x50–0x57</strong> block for the bridge.</p>
+<p>The previous A1=1/A0=1 setting selected 0x70–0x77. WK2132 uses address bits for
+channel and FIFO selection and acknowledges the matching eight-address block;
+checking only 0x70 and 0x71 missed the collision. Both BME680 choices, 0x76 and
+0x77, were inside that old block. Disabling the second UART does not free its
+addresses. This follows the <a href="https://wiki.dfrobot.com/dfr0627/docs/20907">DFRobot protocol reference</a>
+and <a href="https://github.com/DFRobot/DFRobot_IICSerial">manufacturer driver</a>.</p>
+<p>The fix updates both MC2 and the maintained MC1 firmware profile. Configuration
+validation now rejects a second I²C device within the bridge's decoded block
+on the same bus. Frozen historical MC1 drawings retain their old annotations;
+their reference pages explicitly override those annotations. No PCB traces,
+connector pin order, printed mounts or additional purchased parts are needed.</p>
+<p>This was independently tested through the actual pinned ESPHome 2026.9.1
+configuration validator: <strong>0x50 + BME680 0x77/0x76 passes</strong> and
+<strong>0x70 + BME680 0x77/0x76 is rejected</strong>. A separate regression compares the
+switch positions and addresses in the public wiring diagram, harness lookup
+and CAD ledger with the firmware setting.</p>
+<h2 id="rf-startup-and-handoff-corrections">RF startup and handoff corrections</h2>
+<p>The CC1101 GDO0 line is shared with the host's open-drain transmitter, GPIO25
+on MC2-D. The radio can drive GDO0 during reception. Merely configuring the
+host pin as open-drain does not make every LOW safe: it must remain released
+until the radio changes to transmit mode.</p>
+<p>In the pinned ESPHome/ESP-IDF combination, RMT channel creation used a default
+LOW idle level and connected its output before enabling open-drain mode.
+ESPHome released the line later in setup. Independent source reviews confirmed
+that this leaves a startup contention window; it is not hidden by the channel
+being disabled for transmission.</p>
+<p>The shared RF package now includes a small local initialization guard. It
+prepares the configured RF pin in its released state and supplies HIGH as the
+RMT channel's initial level before the driver connects the output. Other
+transmitter pins retain their normal behavior. The guard wraps the allocation
+call without changing the cached SDK or copying the upstream transmitter.
+The RF protocols, carrier resistors and connector assignments remain unchanged.</p>
+<p>The transmit sequence also needs an explicit handoff. The upstream CC1101
+driver does not propagate a failed IDLE wait to its caller, so calling
+<code>set_idle()</code> alone did not prove it was safe for the host to drive LOW. The
+shared RF helper now releases the host, configures and reads back GDO0 as
+high-impedance (<code>IOCFG0=0x2E</code>), and confirms IDLE. Only then may the host pull
+LOW and request TX; it confirms TX before sending the waveform. A failed
+check releases the host and skips the waveform. This sequence also avoids
+asserting an unintended OOK carrier while entering TX with a pulled-up input.
+GDO0 becomes the asynchronous serial input in TX regardless of its output
+selection; GDO2 continues to provide RX data. Completion releases the host
+before restoring and checking RX.</p>
+<p>Native regression tests cover the original startup behavior, the corrected
+ordering, GPIO/allocator failures, rejected mode changes and failed RX
+restoration. The build verifier also checks that the actual linked transmitter
+calls the startup wrapper. These checks guard the software assumptions; they
+do not measure the electrical waveform.</p>
+<p>Use a current rebuilt host image to receive this correction. On the bench,
+scope GDO0 through power-up, host reset and RX→TX→RX transitions, including
+failed mode changes. Source review
+and compilation do not replace that waveform check.</p>
+<p>Sources: <a href="https://github.com/esphome/esphome/blob/2026.9.1/esphome/components/remote_transmitter/remote_transmitter_rmt.cpp">ESPHome 2026.9.1 RMT transmitter</a>,
+<a href="https://github.com/espressif/esp-idf/blob/v5.5.5/components/esp_driver_rmt/src/rmt_tx.c">ESP-IDF 5.5.5 RMT driver</a>,
+and <a href="https://www.ti.com/lit/ds/symlink/cc1101.pdf">TI CC1101 datasheet</a>.</p>
+<h2 id="verified-signal-paths">Verified signal paths</h2>
+<p>Directions below are electrical directions, not matching text labels. For
+example, <code>THREAD_RX</code> names the radio's receiver and therefore connects to the
+host transmitter. Carrier pin numbers refer to the component-side drawing.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Verified path and setup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thread UART</td>
+<td>Host GPIO26 TX → U2 pad8 / D7 / C6 GPIO17 RX. U2 pad7 / D6 / GPIO16 TX → host GPIO36 RX. 460800 baud, no flow-control wires.</td>
+</tr>
+<tr>
+<td>C6 recovery</td>
+<td>Host GPIO27 → J10.1 → underside TP8 / EN; host GPIO15 → J10.2 → TP2 / GPIO9 BOOT. Both host outputs are open-drain. C6-local GPIO8 has its factory pull-up.</td>
+</tr>
+<tr>
+<td>Zigbee UART</td>
+<td>Host GPIO32 TX → U3 pad8 / PC07 RX; U3 pad7 / PC06 TX → host GPIO39 RX. Host GPIO33 RTS → U3 pad5 / PC04 CTS; U3 pad6 / PC05 RTS → host GPIO14 CTS. 115200 baud.</td>
+</tr>
+<tr>
+<td>Shared SPI</td>
+<td>Host GPIO12 SCK → U4.J1.4 and J5.3. GPIO2 MOSI → U4.J1.3 and J5.4. U4.J2.6 and J5.5 MISO → GPIO19. Each slave has its own chip select.</td>
+</tr>
+<tr>
+<td>Ethernet control</td>
+<td>GPIO5 CS → U4.J1.5; U4.J1.6 IRQ → GPIO34; GPIO4 RESET → U4.J2.5. WIZ850io provides pull-ups on CS/IRQ/RESET, not on SCK/MOSI.</td>
+</tr>
+<tr>
+<td>CC1101</td>
+<td>GPIO13 → J5.6 CSn; GPIO25 open-drain → J5.7 GDO0 transmit; J5.8 GDO2 receive → GPIO35. R1 pulls GDO0 up; R2 keeps CSn inactive. Module-end pins must be identified by signal name on the retained board.</td>
+</tr>
+<tr>
+<td>Shared I²C</td>
+<td>GPIO21 SDA → J3.3 / DFR D and J7.3 / BME SDA. GPIO22 SCL → J3.4 / DFR C and J7.4 / BME SCL. 400 kHz, 3.3 V pull-ups. DFR block 0x50–0x57; BME 0x77.</td>
+</tr>
+<tr>
+<td>Z-Wave transmit</td>
+<td>DFR UART1 T/TX1 → J3.5 → J4.4 → ZAC93 physical pin8 RX.</td>
+</tr>
+<tr>
+<td>Z-Wave receive</td>
+<td>ZAC93 physical pin10 TX → J4.5 → J3.6 → DFR UART1 R/RX1. 115200 8N1.</td>
+</tr>
+<tr>
+<td>Radar</td>
+<td>GPIO23 TX → J6.3 → LD2450 RX; LD2450 TX → J6.4 → GPIO18 RX. 256000 baud, 3.3 V logic despite the radar's 5 V supply.</td>
+</tr>
+<tr>
+<td>Service pads</td>
+<td>J8 temporarily shorts MG24 D0/PC00 to GND. J9 temporarily shorts host GPIO0 to GND. Both remain open in operation.</td>
+</tr>
+<tr>
+<td>RF</td>
+<td>U1 BLE, U2 Thread and U3 Zigbee each use their own U.FL/MHF I cable to a standard SMA female bulkhead and standard SMA male antenna. C6 GPIO3 LOW/GPIO14 HIGH and MG24 PB04/PB05 HIGH select the external paths.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Primary pin sources: <a href="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html">Espressif DevKitC</a>,
+<a href="https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH&amp;PCB_260114.zip">Seeed C6 native design</a>,
+<a href="https://files.seeedstudio.com/wiki/XIAO_MG24/Getting_Start/XIAO_MG24_v1.0_KiCad_260114.zip">Seeed MG24 native design</a>,
+<a href="https://docs.wiznet.io/assets/files/wiz850io_sch_v110-3fcc19fc2acaf16f15c5f08f9c8330cb.pdf">WIZ850io schematic</a>,
+<a href="https://wiki.dfrobot.com/dfr0627">DFRobot</a>,
+<a href="https://www.support.getzooz.com/kb/article/1215-zac93-800-gpio-module-installation-guide/">Zooz installation guide</a>,
+<a href="https://github.com/adafruit/Adafruit-BME680-PCB">Adafruit native PCB</a>.
+The current Zooz pinout image could not be freshly retrieved; verify the received
+board's labels before mating its socket. Existing CC1101 and radar cable pin
+orders are likewise not inferred from wire colors or generic listing photos.</p>
+<h2 id="verified-power-paths">Verified power paths</h2>
+<ul>
+<li>The battery-fed switch supplies the isolated active PoE splitter. Only its
+regulated 5 V output reaches the fuse and J1.1; J1.2 is the return. The
+splitter's data-only RJ45 tail plugs into WIZ850io.</li>
+<li>J2.1 → RECOM pin1 VIN; J2.2 and J2.4 → pin2 GND; pin3 VOUT → J2.3.
+The input capacitor is positive to VIN and negative to GND. This input is
+before the controller diodes. <a href="https://recom-power.com/pdf/Innoline/R-78K-1.0.pdf">RECOM pinout</a>.</li>
+<li><strong>D1 is a 22 AWG wire link, not a diode</strong>: pad 2 fused 5 V → pad 1 host
+EXT_5V. This removes the extra Schottky drop ahead of the host AMS1117.
+D2/D3 anodes connect to fused 5 V; their banded cathodes feed U2/U3.
+Controller-local 3.3 V outputs U1.J2.1, U2.12 and U3.12 remain
+unconnected to carrier power. Host USB can now energize the entire 5 V
+bus: assembled operation is PoE/OTA only, and USB flashing is for loose boards. <a href="https://www.vishay.com/docs/88525/1n5817.pdf">Diode polarity</a>.</li>
+<li>Peripheral 3.3 V feeds both WIZ850io supply pins, DFR0627, CC1101, BME680's
+input and ZAC93 pin1. ZAC93 pins6 and9 are returns; pins2/3/4/5/7 remain NC.
+LD2450 alone uses direct fused 5 V on J6.1.</li>
+<li>R4/R5 hold host GPIO12/GPIO2 low at reset. Flash/PSRAM and USB-UART pins are
+not borrowed. Firmware disables the application serial console and remaps
+UART0 to the radar; UART1 and UART2 serve Zigbee and Thread.</li>
+</ul>
+<h2 id="evidence-and-remaining-measurements">Evidence and remaining measurements</h2>
+<p>The reviewers compared manufacturer native designs and pinouts with the actual
+KiCad schematic/PCB, not only generated JSON. All <strong>131 component pad/net
+assignments</strong> agreed between native schematic and board; <strong>31 connected nets</strong>
+and <strong>30 intentionally unconnected pads</strong> were accounted for. Fresh KiCad
+10.0.6 checks reported <strong>0 ERC violations, 0 DRC violations, 0 unrouted items
+and 0 schematic-parity errors</strong>. The I²C correction changes external switch
+setup and firmware; the native PCB, schematic and routed copper are unchanged.</p>
+<p>The C6 underside TP8/TP2 coordinates and both 14-pin module rows were checked
+against Seeed's design. Adafruit's native PCB confirms the QT connector order
+GND / power input / SDA / SCL. Factory header height, actual cable bends and
+ZAC93 socket seating still require a dry fit. The C6 service leads need the
+specified clearance and strain relief; the window is accessed with the carrier
+removed from the case.</p>
+<p>Copy the <a href="../hardware/external-antenna/power-measurements.csv">blank power worksheet</a>
+for the physical build. It covers RECOM input/output, ZAC93 supply, each local
+controller rail, the host's input after the D1 wire link, and reset-time GPIO12/GPIO2 levels.
+U1's regulator needs its own dropout/headroom check; RECOM's 4.5 V minimum is
+not a pass threshold for U1. All worksheet measurements are still <code>not_run</code>.</p>
+<p>Before calling the assembled connections qualified, verify:</p>
+<ol>
+<li>Actual J1/J2 wire gauge, contact current rating and loaded voltage drop;
+these are not established by an unspecified generic jumper lead.</li>
+<li>Continuity and polarity of all <strong>35 external wires</strong>, especially the
+remapped ZAC93 socket and C6's two small underside pads.</li>
+<li>Shared I²C rise time/reliability with the real BME pod cable and the corrected
+DFR switch setting; shared SPI with the actual CC1101 harness.</li>
+<li>Cold starts, all services active together, local rail transients, closed-case
+temperature, RF coverage and recovery after PoE loss. Scope CC1101 GDO0 at
+startup/reset and during RX→TX→RX transitions to verify the released state.</li>
+</ol>
+<p>Use the <a href="assembly.html">pin-by-pin assembly instructions</a>,
+<a href="../hardware/external-antenna/index.html#harness">searchable connector lookup</a>
+and <a href="commissioning.html">commissioning procedure</a> for those physical tests.</p>
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

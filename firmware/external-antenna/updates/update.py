@@ -15,7 +15,7 @@ import sys
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
-from c6_identity import ANTENNA, BOARD, SKU, verify_c6_image
+from c6_identity import ANTENNA, BOARD, SKU, DOWNLOAD_STRAP, RECOVERY_HARNESS, verify_c6_image
 
 
 def normalized_mac(value):
@@ -30,19 +30,20 @@ def checked_image(kind, image, report):
     data = image.read_bytes()
     metadata = json.loads(report.read_text())
     if kind == "c6":
-        if metadata.get("board") != BOARD or metadata.get("board_sku") != SKU or metadata.get("hardware_revision") != "MC2-C":
-            raise ValueError("C6 requires the MC2-C TinyC6[D] TC6D-01 build report")
+        if metadata.get("board") != BOARD or metadata.get("board_sku") != SKU or metadata.get("hardware_revision") != "MC2-D":
+            raise ValueError("C6 requires the MC2-D XIAO ESP32C6 102010636 build report")
         if metadata.get("antenna") != ANTENNA:
-            raise ValueError("C6 requires verified FXL6408 XIO0 external antenna selection")
+            raise ValueError("C6 requires verified XIAO GPIO3/GPIO14 external antenna selection")
         config = metadata.get("sdkconfig_verified", {})
-        if metadata.get("rom_uart_connected") is not True or config.get("CONFIG_IDF_TARGET") != '"esp32c6"' or config.get("CONFIG_ESPTOOLPY_FLASHSIZE_8MB") != "y" or (
+        if metadata.get("rom_uart_connected") is not True or config.get("CONFIG_IDF_TARGET") != '"esp32c6"' or config.get("CONFIG_ESPTOOLPY_FLASHSIZE_4MB") != "y" or (
                 config.get("CONFIG_OPENTHREAD_UART_RX_PIN"), config.get("CONFIG_OPENTHREAD_UART_TX_PIN")) != ("17", "16"):
             raise ValueError("C6 requires a freshly verified ROM-UART17/16 MC2 build")
         if metadata.get("application_flash_offset") != 65536:
             raise ValueError("Only the fixed C6 application partition at0x10000 is supported")
-        if metadata.get("required_download_strap") != {"gpio": 8, "level": 1, "pullup_ohms": 10000,
-                                                      "rail": "C6_LOCAL_3V3", "header_pin": "10"}:
-            raise ValueError("C6 report must record the required local-3.3V GPIO8 pull-up")
+        if metadata.get("required_download_strap") != DOWNLOAD_STRAP:
+            raise ValueError("C6 report must record the XIAO onboard GPIO8 pull-up")
+        if metadata.get("required_recovery_harness") != RECOVERY_HARNESS:
+            raise ValueError("C6 report must record both bottom-pad EN/BOOT service leads to J10")
         expected = metadata["artifacts"]["esp_ot_rcp.bin"]
         if metadata.get("application_header") != verify_c6_image(data):
             raise ValueError("C6 report and application identity differ")

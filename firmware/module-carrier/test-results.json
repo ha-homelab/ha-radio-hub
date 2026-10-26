@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
-  "tested_date_local": "2026-10-18",
+  "tested_date_local": "2026-10-20",
   "command": "RF_CPP_SANITIZERS=1 python3 -m unittest discover -s firmware/module-carrier/tests -v",
   "passed": true,
-  "tests": 61,
-  "duration_seconds": 2.527,
+  "tests": 70,
+  "duration_seconds": 18.656,
   "sanitizers": [
     "address",
     "undefined"
@@ -15,23 +15,23 @@
     "-Wextra",
     "-Werror"
   ],
-  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation. Active firmware/CAD pin-manifest parity and rejection of obsolete/swapped H2 UART assignments. Host connection retries reject zero/negative attempts, preserve errors and close failed clients. Historical Nano/Mini entrypoints retain their fail-closed baseline guard after import-cycle removal.",
+  "test_scope": "Production guard state/durable transitions, Spinel/HDLC parser, WK2132 transport, updater token/maintenance/deadline helpers, image/hash/pin/offset validation and actual localhost binary tunnel including fragmented and rejected handshakes. No physical flash/RTC/UART or FreeRTOS scheduling emulation. Active firmware/CAD pin-manifest parity and rejection of obsolete/swapped H2 UART assignments. Host connection retries reject zero/negative attempts, preserve errors and close failed clients. Historical Nano/Mini entrypoints retain their fail-closed baseline guard after import-cycle removal. DFR0627 decoded eight-address block is checked across all DIP combinations; overlapping BME680 addresses and devices on the same bus are rejected by the production configuration validator.",
   "source_sha256": {
-    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "601aa7d45a126a6fda7d7e3063cf8a9ce61289741f1cb3dd93247b5df167c60b",
+    "firmware/low-power/components/low_power_otbr/low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e",
     "firmware/low-power/components/low_power_otbr/low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
     "firmware/low-power/components/low_power_otbr/rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
     "firmware/low-power/components/low_power_otbr/thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
-    "firmware/low-power/components/low_power_otbr/uart_update.cpp": "8e4bf766409fde571222cc8f3aa8edbf95f5e38949f6106df0674fb08df51408",
+    "firmware/low-power/components/low_power_otbr/uart_update.cpp": "0563edba5c1bbeff04eb15d5c9cea270434494a48a2d2f5a4bb02b0e0ce5960b",
     "firmware/low-power/components/low_power_otbr/update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3",
     "firmware/module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
     "firmware/module-carrier/tests/test_thread_guard.py": "908dedd5bc55be9cd11e9903fc3f7e8d2ff0cf73152d8b5e5b82162ee7338f56",
-    "firmware/module-carrier/tests/test_updates.py": "0fdc65064878278a31aed0eb2f6319a37f865c737015aee17cf7ed816fe765d9",
+    "firmware/module-carrier/tests/test_updates.py": "26e4ba79393351b4941f6e1f164bd5de7cc4e4de63db311dfaf9c734e955eaed",
     "firmware/module-carrier/tests/thread_guard_test.cpp": "7e1a6d6c71b6dd4b06489119d505d2546871f65017730b9184ff61ce4cce51da",
     "firmware/module-carrier/tests/transport_test.cpp": "6b53dc0dd1dc3f7a8007a76705f3354e532e7d825a4f554c37f8e0687e595547",
     "firmware/module-carrier/tests/update_session_test.cpp": "92943782fa5e4b0b0329a0b145fe211a04c7cd5ab8ba330490ac6a0318781ff9",
     "firmware/module-carrier/updates/requirements.txt": "395d28581bb88cbc2dd5ffdf5e2fcbef768a030d1eb33dfd7340ed1c66be9166",
-    "firmware/module-carrier/updates/update.py": "87c4cacc1e01d59d4ce6703c48760eb60432906ae0fe092daa976f760fbce5bf",
-    "firmware/module-carrier/contract.py": "7cc229d36d3872f501f060f1d9cdf0bde97505e7726f378dffe29dcfafa83cd0",
+    "firmware/module-carrier/updates/update.py": "288f3c930346dd7d701e68862a0207a94ca311bb25db9c5e3785f53b5ca0013a",
+    "firmware/module-carrier/contract.py": "7dfd9e828b84b69b99276d092b1ea236994dba056e7619c3eb40c6623bd1fefd",
     "firmware/module-carrier/pin-plan.json": "99bb2b0413a07b0f47dbda59e0f1aae675c8ed236f0313006ca308ebe811dfae",
     "firmware/module-carrier/tests/test_pin_contract.py": "a48d7a33315f4384059fde6b6723d845402db857889dfc7da7b7986b858ab8fc",
     "hardware/module-carrier/cad/nano-pin-plan.json": "9110335d6b2865fc78964b3719e6f68022f7cf2a58079dfb8fa3fd84dba34740",
@@ -39,13 +39,30 @@
     "firmware/module-carrier/tests/test_study_preparation.py": "8149e5ebfa2feb4670817e083427c84a21acbed588111316321202e3146d733e",
     "hardware/module-carrier/studies/compact-s3/firmware/prepare.py": "f077253182bf55d021401f52cf8332a69f480a13e51434720375a7b1250c51de",
     "hardware/module-carrier/studies/compact-s3/firmware/prepare_nano.py": "0ffe7e0ff65838f8ca6f82dd75b90499f629a9dc7487b7f51decb1c5cfe1655e",
-    "hardware/module-carrier/studies/compact-s3/firmware/prepare_common.py": "8c24392b41aac827af34cdb921e5106943aaf8264344f8abef9ba9628caab266"
+    "hardware/module-carrier/studies/compact-s3/firmware/prepare_common.py": "8c24392b41aac827af34cdb921e5106943aaf8264344f8abef9ba9628caab266",
+    "firmware/module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
+    "firmware/module-carrier/components/wk2132_uart/address_plan.py": "4b1e9e756cf090dc95704f0d1e4e2155ad13df5b932e7692b19a9e9a66c2d0c8",
+    "firmware/module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef",
+    "firmware/module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+    "firmware/module-carrier/tests/test_i2c_addresses.py": "555a2d3372873a746a6123b6c8702fa9bd399e00c08462548f8a3259b3473096",
+    "firmware/module-carrier/hub.yaml": "0ef80fe0334958639dcd17407e71e7ee754677359507b7124a861430e0c25c4e",
+    "firmware/components/rf_tx_startup/__init__.py": "387de8bd15b2b3fef7316ff92ac0c5a9dc5151b275cf1edfc4c0265715ff56e9",
+    "firmware/components/rf_tx_startup/README.md": "b9aacefc2882cc3741c40ad785fd938d312d7c335ab01d1f8d2cd7e8c54e052d",
+    "firmware/components/rf_tx_startup/verify.py": "f52c602f81e7c6e4adce3148b4a459efa0840fb5821c1e1b7aeedd53d8297ea8",
+    "firmware/components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+    "firmware/include/rf_radio_handoff.h": "6164972620dfbba1154ac2bf40b313da4a401ae9119cbe93af76e86d344c9182",
+    "tests/test_rf_tx_startup.py": "4158f60d71f1075b942d4955005481f8d8101c39d82b0b2b4351a0527f873f32",
+    "tests/test_tx_scheduler.py": "e3c8b1f62e0bce79343f0a4828cdf6505d2e74e53d75ac72345cf61bb9366637",
+    "tests/native/rf_tx_startup_stubs.h": "06dd0a6cc7e47434bb793aebf846b2754c080a20b7f66c38ac0d6ab62991195f",
+    "tests/native/rf_tx_startup_harness.cpp": "4006b6907e1a40157e03ecbe5fad81e9ed3079884b2311af8f6e178e1b59f1af",
+    "tests/native/tx_scheduler_stubs.h": "fd919a8636578b09777d2a5d58fc8554fa71596ad94cb36ee1cf079133bf08d2"
   },
   "additional_contract_guards": {
     "compiled_open_drain_source_verified": true,
     "push_pull_mutation_rejected": true,
     "reset_timing_mutation_rejected": true,
-    "original_tested_date_local": "2026-10-17"
+    "original_tested_date_local": "2026-10-17",
+    "actual_esphome_bme_0x76_0x77_collision_rejected": true
   },
   "additional_update_checks": {
     "pinned_host_dependencies_install": "pass",
@@ -56,5 +73,16 @@
     "physical_flashes_executed": 0,
     "original_tested_date_local": "2026-10-17",
     "rest_contract_retested_date_local": "2026-10-18"
+  },
+  "rf_startup_regression": {
+    "root_tests_passed": 103,
+    "native_startup_scenarios": 11,
+    "configuration_guard_tests": 7,
+    "sanitizers": true,
+    "legacy_rf_config_validated": true,
+    "legacy_15_sensor_migration_validated": true,
+    "runtime_scheduler_tests": 7,
+    "focused_startup_tests_after_header_fix": 18,
+    "focused_scheduler_tests_after_pointer_id_fix": 7
   }
 }

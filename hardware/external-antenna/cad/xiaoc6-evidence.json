@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "board": "Seeed Studio XIAO ESP32C6",
+  "sku": "102010636",
+  "manufacturer_hardware_revision": "v1.0, KiCad conversion 2026-01-14",
+  "sources": {
+    "source.zip": {
+      "url": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH&PCB_260114.zip",
+      "sha256": "cea2ed66da575e4a1dd6c7a9acd60583ed4a9adbf6b1d2952851c1e4199c05fc"
+    },
+    "schematic.pdf": {
+      "url": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32C6/XIAO_ESP32_C6_v1.0_SCH_260114.pdf",
+      "sha256": "510f3f917bcded1201ca5c63374409183457c1ef83a836988517d6802180dad7"
+    }
+  },
+  "licensing": "Manufacturer CC BY-SA4.0 reference files remain upstream; this evidence contains interface facts and independent carrier geometry.",
+  "header": {
+    "pitch_mm": 2.54,
+    "row_spacing_mm": 15.24,
+    "counts": [
+      7,
+      7
+    ],
+    "factory_fitted": true,
+    "pad_map": {
+      "1": {
+        "name": "GPIO0",
+        "local_mm": [
+          0,
+          0.0
+        ]
+      },
+      "2": {
+        "name": "GPIO1",
+        "local_mm": [
+          0,
+          2.54
+        ]
+      },
+      "3": {
+        "name": "GPIO2",
+        "local_mm": [
+          0,
+          5.08
+        ]
+      },
+      "4": {
+        "name": "GPIO21",
+        "local_mm": [
+          0,
+          7.62
+        ]
+      },
+      "5": {
+        "name": "GPIO22",
+        "local_mm": [
+          0,
+          10.16
+        ]
+      },
+      "6": {
+        "name": "GPIO23",
+        "local_mm": [
+          0,
+          12.7
+        ]
+      },
+      "7": {
+        "name": "GPIO16",
+        "local_mm": [
+          0,
+          15.24
+        ]
+      },
+      "8": {
+        "name": "GPIO17",
+        "local_mm": [
+          15.24,
+          15.24
+        ]
+      },
+      "9": {
+        "name": "GPIO19",
+        "local_mm": [
+          15.24,
+          12.7
+        ]
+      },
+      "10": {
+        "name": "GPIO20",
+        "local_mm": [
+          15.24,
+          10.16
+        ]
+      },
+      "11": {
+        "name": "GPIO18",
+        "local_mm": [
+          15.24,
+          7.62
+        ]
+      },
+      "12": {
+        "name": "3V3",
+        "local_mm": [
+          15.24,
+          5.08
+        ]
+      },
+      "13": {
+        "name": "GND",
+        "local_mm": [
+          15.24,
+          2.54
+        ]
+      },
+      "14": {
+        "name": "5V",
+        "local_mm": [
+          15.24,
+          0.0
+        ]
+      }
+    }
+  },
+  "mechanics": {
+    "pcb_bounds_local_mm": [
+      -1.27,
+      -2.921,
+      16.51,
+      18.034
+    ],
+    "usb_bounds_local_mm": [
+      3.1282,
+      -4.4543,
+      12.1198,
+      2.8863
+    ],
+    "rf_center_local_mm": [
+      3.324,
+      16.6275
+    ],
+    "coordinate_transform": "Carrier local X = native Y - 65.256; local Y = 116.0177 - native X. Origin inner header pad1; USB up, component view.",
+    "coordinate_status": "manufacturer_native_KiCad_nominal_not_sample_measured",
+    "factory_header_spacer_nominal_mm": 2.54,
+    "factory_header_spacer_verified": false,
+    "service_pads": {
+      "TP8": {
+        "net": "EN",
+        "local_mm": [
+          6.3466,
+          1.5145
+        ],
+        "pad_diameter_mm": 1.143,
+        "side": "bottom"
+      },
+      "TP2": {
+        "net": "BOOT/GPIO9",
+        "local_mm": [
+          6.3466,
+          6.5945
+        ],
+        "pad_diameter_mm": 1.143,
+        "side": "bottom"
+      }
+    }
+  },
+  "electrical": {
+    "carrier_unused_pads": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "boot_gpio8_pullup_ohms": 5100,
+    "boot_gpio9_pullup_ohms": 10000,
+    "enable_pullup_ohms": 10000,
+    "enable_capacitance_uf": 1,
+    "external_antenna": {
+      "enable_gpio": 3,
+      "enable_level": 0,
+      "select_gpio": 14,
+      "select_level": 1
+    },
+    "recovery_harness": {
+      "J10.1": "TP8 EN",
+      "J10.2": "TP2 BOOT/GPIO9"
+    },
+    "no_battery_fitted": true
+  }
+}
