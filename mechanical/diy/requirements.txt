@@ -1,4 +1,4 @@
 # KiCad 10.0.x CLI is also required for native copper/assembly plots.
 cairosvg==2.9.1
 reportlab==5.0.1
-pypdf==6.21.1
+pypdf==6.21.2
