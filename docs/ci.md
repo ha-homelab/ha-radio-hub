@@ -69,7 +69,17 @@ to the pinned toolkit's metadata-only automated approval. It checks the actual
 reviewer identity and current PR/base commits; it does not perform code review or
 replace validation. The branch rules continue requiring a successful `check`, an
 independent current approval and resolved review conversations. New commits dismiss
-stale approvals. There is no protection bypass or automatic merge workflow here.
+stale approvals. This automated approval path never bypasses protection, and
+there is no automatic merge workflow here.
+
+Designated organization owners have a separate **pull-request-only emergency
+merge** policy managed by
+[Terraform](https://github.com/4alvit/terraform-github-ha-homelab/blob/main/docs/public-security.md#emergency-owner-merges).
+An exceptional merge must record its reason, reviewed commit and available check
+evidence in the PR. It does not authorize direct pushes, grant the review bot a
+bypass, or turn missing or failed checks into successful checks. Ordinary merges
+continue to require the checks and reviews above; read back the active rulesets
+to verify the deployed policy.
 
 After modifying a PR, wait for its new checks, then rerun its **Auto Approve PRs**
 workflow (or add the label if it has not been opted in). Once this workflow exists
