@@ -18,6 +18,7 @@
     "THIRD_PARTY_NOTICES.md",
     "docs/README.md",
     "docs/acceptance.md",
+    "docs/browser-flashing.md",
     "docs/ci.md",
     "docs/classic-esp32-migration.md",
     "docs/connection-audit.md",
