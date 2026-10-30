@@ -146,6 +146,7 @@ versus $26.95 for the previous converter; see the dated [shopping record](docs/m
 
 - [Native CAD, schematic and connector map](hardware/external-antenna/README.md).
 - [Firmware builds and initial programming](firmware/external-antenna/README.md).
+- [Browser USB installation for a privately built host image](docs/browser-flashing.md).
 - [Verified-target network update workflow](firmware/external-antenna/updates/README.md).
 - [Full-hub printable parts, component mounts and connector fit coupon](mechanical/full-hub/README.md).
 - [Digital verification and remaining physical checks](hardware/external-antenna/validation.md).
