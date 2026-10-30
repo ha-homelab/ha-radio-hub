@@ -10,7 +10,7 @@ Confirm the installed radio is the XIAO ESP32C6 on the MC2-D carrier before upda
 
 Save the output of `firmware/external-antenna/verify_c6.py` as `c6-report.json`. The updater requires a matching hash, **esp32c6**, **4 MB flash**, **RX17/TX16**, and the verified application offset **0x10000**. It rejects H2 reports. Commands without `--execute` only validate local files and print a plan; they do not contact the hub.
 
-The assembled carrier must include the **10 kΩ C6 GPIO8 pull-up to the C6's own 3.3 V output** (headers 10 and 4). ROM download needs GPIO8 high and GPIO9 low at reset. A compiled image cannot compensate for this missing resistor; verify the strap voltage during commissioning before relying on network recovery.
+The supported **XIAO ESP32C6 already includes R13, a 5.1 kΩ GPIO8 pull-up to its local 3.3 V rail**. No external GPIO8 pull-up is required; MC2-D intentionally omits carrier R3. ROM download needs GPIO8 HIGH and GPIO9 LOW at reset. During commissioning, confirm the fitted module matches the supported XIAO revision, verify the strap voltage and check both EN/BOOT service wires to J10 before relying on network recovery.
 
 ```sh
 python3 firmware/external-antenna/updates/update.py c6 \
