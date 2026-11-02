@@ -13,3 +13,5 @@ Native lifecycle tests compile the actual modified C++ against driver doubles. T
 MC2-B adds the classic ESP32 build target with the same non-DMA lifecycle. The real driver source compiles under ESP-IDF 5.5.5; native lifecycle tests are retained. The classic target allocates 192 RX symbols and 64 TX symbols from its 512-symbol RMT memory. No hardware timing qualification is implied by these checks.
 
 The 2026.10.0 compatibility port retains this receiver C++ implementation. Its Python generator now uses `remote_base.add_listener` and `remote_base.add_dumper`, which reserve the required fixed storage slots in ESPHome 2026.10.0. The exact version, target and non-DMA guards remain. Generated-source regressions cover both ESP32 and ESP32-S3 with two triggers, one binary sensor and two dumpers. See [the upgrade review](../rf_tx_startup/ESPHOME-2026.10.md).
+
+The 2026.10.1 patch qualification changes only the exact host-version guard: upstream receiver and remote-base files are unchanged, and the local receiver C++ files retain their earlier bytes. See the patch qualification section in the [upgrade review](../rf_tx_startup/ESPHOME-2026.10.md).

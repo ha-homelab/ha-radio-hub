@@ -28,7 +28,7 @@ The new ESPHome node name is **`mc2-classic-hub`**. Back up Thread credentials, 
 
 ## Reproduce the host build
 
-Use ESPHome **2026.10.0**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
+Use ESPHome **2026.10.1**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
 
 ```sh
 python3 firmware/external-antenna/validate.py /tmp/mc2-classic-build \

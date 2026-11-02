@@ -29,10 +29,10 @@ def transmitter_config(config, full):
 def final_validate(config):
     full = fv.full_config.get()
     framework = full["esp32"]["framework"]
-    if (__version__ != "2026.10.0" or framework["type"] != "esp-idf"
+    if (__version__ != "2026.10.1" or framework["type"] != "esp-idf"
             or framework["version"] != "5.5.5"
             or esp32.get_esp32_variant() not in (esp32.VARIANT_ESP32, esp32.VARIANT_ESP32S3)):
-        raise cv.Invalid("RF startup guard requires ESPHome 2026.10.0 / ESP-IDF 5.5.5 on ESP32 or ESP32-S3")
+        raise cv.Invalid("RF startup guard requires ESPHome 2026.10.1 / ESP-IDF 5.5.5 on ESP32 or ESP32-S3")
     source = Path(remote_transmitter.__file__).with_name("remote_transmitter_rmt.cpp")
     if hashlib.sha256(source.read_bytes()).hexdigest() != SOURCE_SHA256:
         raise cv.Invalid("RF startup guard: upstream RMT transmitter changed; review before building")
