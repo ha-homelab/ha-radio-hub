@@ -5,6 +5,8 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import json
 
+from bom_rows import HERE, ROOT, read_rows
+
 
 def require(condition, message):
     if not condition:
@@ -18,7 +20,6 @@ def web_url(value):
 
 
 def validate(config, data, root=None):
-    from build import ROOT, HERE, read_rows
     root=root or ROOT
     sources=config['sources']
     require(len({s['id'] for s in sources})==len(sources),'Duplicate source id')

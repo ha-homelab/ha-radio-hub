@@ -2,8 +2,11 @@ import copy
 import json
 import html
 import unittest
-from build import HERE, ROOT, inventory, outputs, read_rows, image_for, dimensions, purchase_link, family
+import subprocess
+import sys
+from build import HERE, ROOT, inventory, outputs, read_rows, image_for, purchase_link, family
 from validate import validate
+from bom_rows import dimensions
 
 
 class CatalogTest(unittest.TestCase):
@@ -11,6 +14,15 @@ class CatalogTest(unittest.TestCase):
     def setUpClass(cls):
         cls.config=json.loads((HERE/'catalog.json').read_text())
         cls.data=inventory(cls.config)
+
+    def test_standalone_validator_does_not_import_generator(self):
+        code = (
+            "import json,sys; from pathlib import Path; from validate import validate; "
+            "validate(json.loads(Path('catalog.json').read_text()), "
+            "json.loads(Path('inventory.json').read_text())); "
+            "assert 'build' not in sys.modules"
+        )
+        subprocess.run([sys.executable, '-c', code], cwd=HERE, check=True)
 
     def test_full_canonical_coverage(self):
         self.assertTrue(validate(self.config,self.data))
