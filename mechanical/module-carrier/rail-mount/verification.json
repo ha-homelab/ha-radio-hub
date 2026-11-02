@@ -12,7 +12,7 @@
   "unit_test_source_sha256": "973b2becd95961a6e53e089c761d0ee942918972e25ba175df98e2fbdbf1c0af",
   "cad_reader_sha256": "4e6eec953cac85eaaff6bb28a646ba118b4f6f7feae55643a28f0e0a45b76b46",
   "csg_helper_sha256": "b76e5b11da6b80a6dc48b12d20c854758338b5507b50163d0bc72d0d15b929f7",
-  "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
+  "dependency_pins_sha256": "5f4a477def7bec1a14c3091fb636c582facb4eac3261ffdfaff7b466fe286771",
   "historical_native_sha256": "b33c3ff2b299e826cb11e783f835361635d544eda4c71ba62e85cb6318bb2857",
   "native_checks": {
     "only_pcb_retainer": "H3",
