@@ -885,6 +885,7 @@
     "hardware/module-carrier/verification-summary.json",
     "hardware/module-carrier/visual-migration.json",
     "hardware/module-carrier/wiring.json",
+    "hardware/parts/bom_rows.py",
     "hardware/parts/build.py",
     "hardware/parts/catalog.json",
     "hardware/parts/illustrations/antenna.svg",
