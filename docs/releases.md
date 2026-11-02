@@ -1,17 +1,17 @@
 # Downloadable engineering build package
 
-**Current source design: MC2-D / XIAO ESP32C6, 4 MB, factory headers.** The
-previous `v0.3.0-beta.2` release below remains MC2-C/TinyC6[D]; it is not the new
-purchase or fabrication package. Until an MC2-D release is explicitly published,
-use the reviewed MC2-D source commit and its matching Gerber/print archives.
-See [the current ordering guide](pcb-order.md).
+**Current source design: MC2-D / XIAO ESP32C6, 4 MB, factory headers.**
+The first published package for this design is **v0.3.0-beta.3**. Its source
+commit is `3240b3fdd7cee81bd0a664759e6fc56a23cc38ce`; later engineering
+prereleases may update the sources and dependencies. Use the exact release
+manifest and matching CAD, firmware recipes and print files together. See
+[the current ordering guide](pcb-order.md).
 
-The **v0.3.0-beta.2** package targets the historical **MC2-C + FH1-MC2-C-PWR1**
-prototype with the RECOM PWR1 power assembly: a classic ESP32 host, TinyC6[D] Thread radio, external-antenna MG24
-Zigbee radio and three independent 2.4 GHz antenna paths. Download the ZIP and
-its checksum from [GitHub Releases](https://github.com/ha-homelab/ha-radio-hub/releases).
+Download the ZIP and its checksum from
+[GitHub Releases](https://github.com/ha-homelab/ha-radio-hub/releases).
 This is a source, CAD and assembly package; no installation or physical
-acceptance is claimed.
+acceptance is claimed. Older MC2-C/TinyC6[D] packages are described below and
+must not be mixed with the MC2-D/XIAO design.
 
 For new purchases, start with [the ordered build guide](start-here.md), [current hardware](external-antennas.md),
 [the full-hub assembly instructions](full-hub-assembly.md) and
@@ -19,7 +19,7 @@ For new purchases, start with [the ordered build guide](start-here.md), [current
 The archive includes the committed sources, tests, documentation and historical
 reference designs. The [design registry](../hardware/designs.json) identifies
 MC2 as the one active design; do not mix earlier pin maps, images or enclosures
-with MC2-C.
+with MC2-D.
 
 ## Verify and use the package
 
@@ -28,23 +28,27 @@ size and SHA-256. The adjacent checksum verifies the complete archive:
 
 ```sh
 # Run in the directory containing both downloaded files.
-shasum -a 256 -c ha-radio-hub-v0.3.0-beta.2-build-pack.zip.sha256
-unzip ha-radio-hub-v0.3.0-beta.2-build-pack.zip
-cd ha-radio-hub-v0.3.0-beta.2
-python3 tools/check.py
+shasum -a 256 -c ha-radio-hub-v0.3.0-beta.3-build-pack.zip.sha256
+unzip ha-radio-hub-v0.3.0-beta.3-build-pack.zip
+cd ha-radio-hub-v0.3.0-beta.3
 python3 tools/preview.py
 ```
 
-For that historical assembly, use these files from the same extracted archive:
+The example selects the first MC2-D package. For a newer engineering release,
+substitute its exact version in all three filenames. The unpacked ZIP has no
+Git database: run Git-index-based source checks in a checkout of the manifest's
+commit, not in the extracted archive.
 
-- `hardware/external-antenna/fabrication/MC2-C-prototype-gerbers.zip` and its
+For MC2-D, use these files from the same extracted archive:
+
+- `hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip` and its
   manifest: the native PCB fabrication export, with [ordering instructions](pcb-order.md).
-- `mechanical/full-hub/FH1-MC2-C-PWR1-print-package.zip`: the enclosure parts,
+- `mechanical/full-hub/FH1-MC2-D-PWR1-print-package.zip`: the enclosure parts,
   quantities and fit coupon. Follow the [print instructions](../mechanical/full-hub/README.md).
 - `hardware/external-antenna/harness.csv`: the current pin-to-pin harness;
   use it with the [full assembly inventory](../mechanical/full-hub/components.json).
 - `firmware/external-antenna/`: the exact-target build and programming recipes,
-  including the TinyC6[D] external-antenna selection and classic-ESP32 host.
+  including the XIAO ESP32C6 external-antenna selection and classic-ESP32 host.
 
 Previously committed fabrication and print assets keep their original evidence
 and hashes. Packaging does not imply a new native CAD export or new hardware
@@ -60,6 +64,10 @@ private. The source licenses and third-party notices are included.
 
 ## Earlier packages
 
+`v0.3.0-beta.2` targets the historical **MC2-C + FH1-MC2-C-PWR1** design:
+classic ESP32 host, TinyC6[D] Thread radio, external-antenna MG24 Zigbee radio,
+and the RECOM PWR1 power assembly. It is not an MC2-D fabrication package.
+
 `v0.3.0-beta.1` retains the previous Pololu converter and FH1-MC2-C-RF1
 enclosure. Its files and hashes remain historical. Beta.2 added the RECOM converter, capacitor, wiring and mount to MC2-C.
 It predates MC2-D and its XIAO footprint and firmware.
@@ -74,8 +82,11 @@ substitutes.
 ## Rebuild from a reviewed commit
 
 ```sh
-python3 tools/package_release.py --ref HEAD --version v0.3.0-beta.2 --output .build/releases
+python3 tools/package_release.py --ref v0.3.0-beta.3 --version v0.3.0-beta.3 --output .build/rebuilt-beta3
 ```
+
+This example rebuilds the existing beta. For a new release, choose an unused
+version and the exact reviewed commit.
 
 The packager reads Git objects at the selected commit, not the working directory.
 Uncommitted edits and ignored installation files cannot enter the archive.

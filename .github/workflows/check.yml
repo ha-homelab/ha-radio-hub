@@ -316,4 +316,21 @@ jobs:
           source "$IDF_PATH/export.sh"
           python "$GITHUB_WORKSPACE/firmware/external-antenna/prepare_c6.py" "$GITHUB_WORKSPACE/.build/mc2-c6" --idf "$IDF_PATH"
           idf.py -C "$GITHUB_WORKSPACE/.build/mc2-c6" -DIDF_TARGET=esp32c6 build
-          python "$GITHUB_WORKSPACE/firmware/external-antenna/verify_c6.py" "$GITHUB_WORKSPACE/.build/mc2-c6"
+          python "$GITHUB_WORKSPACE/firmware/external-antenna/verify_c6.py" "$GITHUB_WORKSPACE/.build/mc2-c6" > "$GITHUB_WORKSPACE/.build/mc2-c6/build-result.json"
+          cat "$GITHUB_WORKSPACE/.build/mc2-c6/build-result.json"
+      - name: Bind complete compilation receipts to the checked-out source
+        run: |
+          test -s .build/mc2/firmware/external-antenna/build-result.json
+          test -s .build/mc2-c6/build-result.json
+          mkdir .build/mc2-evidence
+          cp .build/mc2/firmware/external-antenna/build-result.json .build/mc2-evidence/build-evidence.json
+          cp .build/mc2-c6/build-result.json .build/mc2-evidence/c6-build-evidence.json
+          git rev-parse HEAD > .build/mc2-evidence/source-sha.txt
+      - name: Preserve source-bound MC2 compilation evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mc2-compilation-evidence
+          path: .build/mc2-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

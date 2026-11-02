@@ -1,7 +1,7 @@
 {
   "compiled": true,
   "hardware_tested": false,
-  "esphome": "2026.10.0",
+  "esphome": "2026.10.1",
   "esp_idf": "5.5.5",
   "profile": "MC2-D classic ESP32 external antenna",
   "board": "ESP32-DevKitC-VIE",
@@ -11,11 +11,11 @@
       {
         "name": "Flash Code",
         "total": 0,
-        "used": 1283764,
+        "used": 1283772,
         "free": 0,
         "parts": {
           ".text": {
-            "size": 1283764
+            "size": 1283772
           }
         }
       },
@@ -93,7 +93,7 @@
       "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291"
     },
     "wrapper_sha256": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
-    "elf_sha256": "c4ec42264d8721739c60dfad9fdd1272e416a5cc9e6883aae0c2a6dd3e583692",
+    "elf_sha256": "b94f97510c655f391c229d72aea99026eddc02a0575e440893055faba515344d",
     "linked_call_verified": true,
     "hardware_tested": false
   },
@@ -138,16 +138,16 @@
   },
   "artifacts": {
     "mc2-classic-hub.bin": {
-      "bytes": 1695264,
-      "sha256": "3919816a785de027399d2c6b8fe7044f047e873edd8a8a594f9deff9da3381f8"
+      "bytes": 1695280,
+      "sha256": "958f03db6ef6eac31869e2c666b0f5fb637944f42bf011442ada7e4fb9f92d41"
     },
     "firmware.factory.bin": {
-      "bytes": 1760800,
-      "sha256": "b87e07af891b1264310dfd446c19ef72c5bc0c14f52b7da255d3a1b2585f3948"
+      "bytes": 1760816,
+      "sha256": "4992c80960c66a20bdde8281518f7f6f46d469431c70043ed2451c48b8f51ece"
     },
     "firmware.ota.bin": {
-      "bytes": 1695264,
-      "sha256": "3919816a785de027399d2c6b8fe7044f047e873edd8a8a594f9deff9da3381f8"
+      "bytes": 1695280,
+      "sha256": "958f03db6ef6eac31869e2c666b0f5fb637944f42bf011442ada7e4fb9f92d41"
     }
   },
   "c6_service_gpio": {
@@ -215,7 +215,7 @@
       "subtype": "ota_0",
       "offset": 65536,
       "bytes": 3932160,
-      "image_margin_bytes": 2236896
+      "image_margin_bytes": 2236880
     },
     {
       "name": "app1",
@@ -223,7 +223,7 @@
       "subtype": "ota_1",
       "offset": 3997696,
       "bytes": 3932160,
-      "image_margin_bytes": 2236896
+      "image_margin_bytes": 2236880
     },
     {
       "name": "nvs",
@@ -263,18 +263,18 @@
   "framework_cache_manually_modified": false,
   "sdk_patches_applied": false,
   "recipe_sha256": {
-    "hub.yaml": "50df45849cf3e78f267853c35bffa066c04fe19cfceb20efc9383b6781410ed3",
+    "hub.yaml": "8c2ccaa4a8b0442b447bbd0040bfd8b0b3abd71519f357b43763d2b05aed0268",
     "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
     "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
     "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
     "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
-    "validate.py": "894202f0a6618f6095b366b4d41645cf69084de5a1a9f285cf91acc74d5d1235",
+    "validate.py": "6922e859ab894689762f33748a201053170fc449defece9df3cb256ba616cdb5",
     "../low-power/memory_report.py": "a586bc7bfe62ee4e2e1fae1f107ddf42977b8b15f48baa4c4709575d129af393",
     "../low-power/validate.py": "0b758ca2ea74b7b5d179e0e8d03c0ff5bd0ce99d4ede0c1ae71eae6fb1a6dd55",
-    "../low-power/components/low_power_otbr/__init__.py": "b750a354b9cc1de0bc5054afb33a9655134a174269e1742f6a55fe3660c8ad51",
+    "../low-power/components/low_power_otbr/__init__.py": "dc9988a63538e9b8c47517747b97c74732e00f4a3ba75e92876c79363f59e6fd",
     "../packages/rf-airbridge.yaml": "45e089d363b36de2cb52d779a0e831356e62184b1362cb9e00918910a59832da",
     "../include/rf_radio_handoff.h": "ca52811870c4d5dcbf8c1426566c3898e6bba713c8ef2bc25ee282f5221c07df",
-    "../components/rf_tx_startup/__init__.py": "8b42117f2d0a87beb88e8e43b7e8834b0813c08685aa9ed1758e32ce16b6b3b1",
+    "../components/rf_tx_startup/__init__.py": "ab7b35073ab81103fcc5c8ae82b0cc196e1c3907699346de0d32fd38d8628c60",
     "../components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
     "../components/rf_tx_startup/verify.py": "4917810979087e736ebe0253309a8f8fdc0b3ba99e2914a09336853959dd861c",
     "../module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
@@ -284,14 +284,15 @@
     "../module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef"
   },
   "ci_provenance": {
-    "source_commit": "01a75634e3f2115f0dbbda3ad1cafb5ee26f5a83",
-    "source_tree": "b86339bc8e477ca48787df405b0b789a0655a7bd",
-    "workflow_run": 40318581883,
-    "job": 121557794486,
+    "source_commit": "8b84f851fc91fe423555b1f5252e2ac329d6bf06",
+    "source_tree": "2911f13ad65c7e0858a52ec3ed989e24d9075a4d",
+    "pull_request_head": "9e91ff268c43eb96f17da2ef1c6a034efd8ccac1",
+    "workflow_run": 41429368976,
+    "job": 125224449959,
     "job_conclusion": "success",
-    "job_url": "https://github.com/ha-homelab/ha-radio-hub/actions/runs/40318581883/job/121557794486",
-    "captured_at": "2026-10-26T12:03:14.349407+00:00",
-    "log_sha256": "2f18efc8c75127ab64a731bb2d59b1c29f9fb49fecaf432aaf5b2a4051fa75cb",
+    "job_url": "https://github.com/ha-homelab/ha-radio-hub/actions/runs/41429368976/job/125224449959",
+    "captured_at": "2026-11-02T10:39:49.669723+00:00",
+    "log_sha256": "6b17454a1a304ba4d3c81c57198c9070fbd7d6668204c0cdc2e43236fef347cd",
     "physical_validation": "not_run"
   }
 }
