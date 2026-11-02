@@ -8,7 +8,7 @@
   "portable_checker_sha256": "5395628e909d3daca4e68ea00ab9bf5f16ee506fdd00176831864f4de2ac0c10",
   "generator_sha256": "94a3cf8f9af7ad79857fee07747a8c713d210348301d1c20c8f132124e2326dd",
   "test_source_sha256": "a5c2100d5c56af3785764be6d514ed1f8dd1fd85759edbbe9c0e2af66feea2cb",
-  "dependency_pins_sha256": "607f57b5eb87ec36e8073cc9f2c76ff2900b1c4726b4c20796c1d75f9f0f8138",
+  "dependency_pins_sha256": "5f4a477def7bec1a14c3091fb636c582facb4eac3261ffdfaff7b466fe286771",
   "parameters_sha256": "51e32289168813f8fa6a73c0c8af7a1a1020445143e4137c0e8a8915b1dea9b5",
   "outer_dimensions_mm": [
     84.3,
