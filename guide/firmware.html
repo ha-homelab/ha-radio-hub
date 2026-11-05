@@ -26,6 +26,12 @@
 </ul>
 <p>The new ESPHome node name is <strong><code>mc2-classic-hub</code></strong>. Back up Thread credentials, Zigbee/Z-Wave network data and deployment secrets before moving radios. Perform the initial full factory flash through the DevKitC's USB-UART connection, with the matching MC2-D partition table. Never send this ESP32 image to an S3. An app-only OTA cannot replace a factory partition table. Later OTA is permitted only for the same confirmed MC2-D host and layout. Build tools never flash hardware or change Home Assistant.</p>
 <h2 id="reproduce-the-host-build">Reproduce the host build</h2>
+<p>For remote ESP-NOW sensors, use the additive
+<a href="espnow-firmware.html">ESP-NOW host profile</a> instead of this baseline build.
+It retains the MC2-D pin map, memory layout and existing services, and enables
+the main ESP32's Wi-Fi radio alongside Bluetooth without associating with an
+access point. No carrier modification is needed. See the
+<a href="espnow.html">sensor and commissioning guide</a> for its limits.</p>
 <p>Use ESPHome <strong>2026.10.1</strong>, ESP-IDF <strong>5.5.5</strong>, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.</p>
 <pre><code class="language-sh">python3 firmware/external-antenna/validate.py /tmp/mc2-classic-build \
   --esphome /path/to/pinned/esphome --compile

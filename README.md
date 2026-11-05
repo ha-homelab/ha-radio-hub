@@ -153,6 +153,25 @@ versus $26.95 for the previous converter; see the dated [shopping record](docs/m
 - [RF commissioning procedure](docs/rf-commissioning.md) and
   [results sheet](hardware/external-antenna/coverage-results.csv).
 
+## Optional ESP-NOW sensors
+
+The [ESP-NOW profile](docs/espnow.md) adds remote sensor readings to the existing
+MC2-D host without changing the carrier, wiring or enclosure. It reuses the
+WROVER-IE's Bluetooth/Wi-Fi antenna; Ethernet carries the readings to Home
+Assistant. The separate Thread and Zigbee radios keep their existing roles.
+
+Included ESP32-C3 examples cover **BME280 temperature/humidity/pressure**, a
+**DS18B20 temperature probe**, and a **door/window contact**. They use private
+per-satellite keys, periodic state reports and hub freshness diagnostics. The
+examples are continuously powered and updated over USB. This opt-in firmware
+still needs physical coverage, power and simultaneous BLE/hub-load testing;
+it does not establish battery life or motor-control safety.
+
+![ESP-NOW satellites and the existing Ethernet hub](docs/assets/espnow-topology.svg)
+
+[Build and configure ESP-NOW](firmware/espnow/README.md) ·
+[Sensor wiring, use cases and commissioning](docs/espnow.md)
+
 The largest print is 215 × 215 mm, within the selected TRONXY XY-3's nominal
 310 × 310 × 330 mm print volume. The 65 mm adjacent antenna pitch and 150 mm
 coax routes still require physical fit and coexistence tests. Module heights,

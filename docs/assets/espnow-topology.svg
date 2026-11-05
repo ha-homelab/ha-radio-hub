@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="700" viewBox="0 0 1180 700" role="img" aria-labelledby="title desc">
+  <title id="title">ESP-NOW sensor satellites and the MC2-D hub</title>
+  <desc id="desc">Three ESP32 sensor satellites communicate on one fixed 2.4 GHz channel with the hub's existing WROVER-IE and antenna. The hub sends sensor values over Ethernet to Home Assistant. Its Bluetooth proxy shares WROVER airtime, while its Thread and Zigbee radios remain dedicated. No carrier or enclosure change is needed.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#087f8c"/></marker>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#12253b}
+      .title{font-size:28px;font-weight:700}.heading{font-size:20px;font-weight:700}.body{font-size:17px}.small{font-size:15px;fill:#40566c}.label{font-size:16px;font-weight:700;fill:#087f8c}
+      .panel{fill:#fff;stroke:#b8c7d4;stroke-width:2}.radio{fill:#e9f7f7;stroke:#087f8c;stroke-width:2}.wire{fill:none;stroke:#087f8c;stroke-width:3}.link{fill:none;stroke:#087f8c;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1180" height="700" rx="16" fill="#f3f6fa"/>
+  <text x="40" y="48" class="title">ESP-NOW: remote sensors, existing hub hardware</text>
+  <text x="40" y="77" class="body">Optional MC2-D firmware • no new hub antenna • Ethernet remains the Home Assistant uplink</text>
+  <rect x="40" y="119" width="278" height="115" rx="14" class="panel"/>
+  <text x="59" y="152" class="heading">Room satellite</text>
+  <text x="59" y="180" class="body">ESP32-C3 + BME280</text>
+  <text x="59" y="208" class="small">Temperature · humidity · pressure</text>
+  <rect x="40" y="267" width="278" height="115" rx="14" class="panel"/>
+  <text x="59" y="300" class="heading">Contact satellite</text>
+  <text x="59" y="328" class="body">ESP32-C3 + reed switch</text>
+  <text x="59" y="356" class="small">Open/closed state + refresh</text>
+  <rect x="40" y="415" width="278" height="115" rx="14" class="panel"/>
+  <text x="59" y="448" class="heading">Temperature probe</text>
+  <text x="59" y="476" class="body">ESP32-C3 + DS18B20</text>
+  <text x="59" y="504" class="small">Freezer · pipe · tank</text>
+  <rect x="380" y="119" width="454" height="438" rx="18" class="panel"/>
+  <text x="403" y="151" class="heading">MC2-D hub</text>
+  <text x="403" y="178" class="small">Existing carrier, wiring and FH1 enclosure</text>
+  <rect x="429" y="208" width="357" height="193" rx="14" class="radio"/>
+  <path d="M318 177H348V473H318M318 325H348" class="wire"/>
+  <path d="M348 306H429" class="link"/>
+  <text x="449" y="241" class="heading">ESP32-DevKitC-VIE</text>
+  <text x="449" y="268" class="body">WROVER-IE · existing 2.4 GHz antenna</text>
+  <text x="449" y="306" class="label">ESP-NOW receiver</text>
+  <text x="449" y="334" class="body">↕ shared radio airtime</text>
+  <text x="449" y="362" class="label">Bluetooth proxy</text>
+  <rect x="403" y="422" width="194" height="104" rx="12" fill="#edf0fc"/>
+  <text x="418" y="451" class="heading">XIAO ESP32C6</text>
+  <text x="418" y="478" class="body">Dedicated Thread</text>
+  <text x="418" y="503" class="small">Own antenna</text>
+  <rect x="617" y="422" width="194" height="104" rx="12" fill="#edf0fc"/>
+  <text x="632" y="451" class="heading">XIAO MG24</text>
+  <text x="632" y="478" class="body">Dedicated Zigbee</text>
+  <text x="632" y="503" class="small">Own antenna</text>
+  <path d="M786 302H901" class="link"/>
+  <text x="841" y="270" text-anchor="middle" class="label">Ethernet</text>
+  <rect x="906" y="226" width="234" height="165" rx="14" class="panel"/>
+  <text x="923" y="262" class="heading">Home Assistant</text>
+  <text x="923" y="294" class="body">Sensor entities on the</text>
+  <text x="923" y="321" class="body">hub's ESPHome device</text>
+  <text x="923" y="356" class="small">Check freshness + value</text>
+  <rect x="40" y="584" width="1100" height="82" rx="12" fill="#e5edf4"/>
+  <text x="59" y="613" class="body">One fixed channel · explicit peers · encrypted packet transport · periodic state refresh</text>
+  <text x="59" y="641" class="small">Sensor examples stay awake. ESP-NOW is not a mesh, an IP tunnel, or automatic satellite OTA.</text>
+</svg>

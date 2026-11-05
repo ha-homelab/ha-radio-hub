@@ -1,0 +1,35 @@
+# Example: USB-powered ESP32-C3-DevKitM-1 + 3.3V BME280 breakout.
+# GPIO4 -> SDA, GPIO5 -> SCL, 3V3 -> VCC, GND -> GND. Address 0x76.
+esphome:
+  name: espnow-climate
+
+packages:
+  satellite: !include satellite-base.yaml
+
+i2c:
+  sda: GPIO4
+  scl: GPIO5
+  scan: false
+  frequency: 100kHz
+
+sensor:
+  - platform: bme280_i2c
+    address: 0x76
+    update_interval: 30s
+    temperature:
+      id: satellite_temperature
+    humidity:
+      id: satellite_humidity
+    pressure:
+      id: satellite_pressure
+
+packet_transport:
+  - id: !extend satellite_transport
+    encryption: !secret espnow_climate_key
+    sensors:
+      - id: satellite_temperature
+        broadcast_id: temperature
+      - id: satellite_humidity
+        broadcast_id: humidity
+      - id: satellite_pressure
+        broadcast_id: pressure

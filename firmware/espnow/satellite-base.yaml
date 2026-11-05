@@ -1,0 +1,49 @@
+# Shared powered ESP32-C3 satellite base. No AP, IP stack client, API, or OTA.
+# USB serial remains available for logs and subsequent firmware updates.
+substitutions:
+  espnow_channel: "6"
+  build_jobs: "4"
+
+esphome:
+  min_version: 2026.10.1
+  compile_process_limit: ${build_jobs}
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+    version: 5.5.5
+
+logger:
+  level: INFO
+  hardware_uart: UART0
+  baud_rate: 115200
+
+espnow:
+  id: espnow_radio
+  channel: ${espnow_channel}
+  enable_on_boot: true
+  auto_add_peer: false
+  max_payload_size: 250
+  peers:
+    - !secret espnow_hub_mac
+
+packet_transport:
+  - platform: espnow
+    id: satellite_transport
+    espnow_id: espnow_radio
+    peer_address: !secret espnow_hub_mac
+    update_interval: 30s
+    rolling_code_enable: true
+    # Hub challenges are answered automatically in encrypted outgoing packets.
+    # The satellite does not consume remote values and need not send challenges.
+    ping_pong_enable: false
+    sensors:
+      - id: satellite_uptime
+        broadcast_id: node_uptime
+
+sensor:
+  - platform: uptime
+    id: satellite_uptime
+    internal: true
+    update_interval: 30s

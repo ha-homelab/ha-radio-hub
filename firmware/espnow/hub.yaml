@@ -1,0 +1,6 @@
+# Opt-in MC2-D build. Keeps the full Ethernet/BLE/Thread/Zigbee/Z-Wave/RF hub.
+# Prepare a disposable build before use; see README.md. Never flash example keys.
+packages:
+  mc2d: !include ../external-antenna/hub.yaml
+  espnow_radio: !include hub-radio.yaml
+  espnow_sensors: !include hub-sensors.yaml

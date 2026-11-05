@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ESP-NOW firmware · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/firmware/espnow/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#files">Files</a></li><li><a href="#build-and-enroll">Build and enroll</a></li><li><a href="#sensor-behavior-and-limits">Sensor behavior and limits</a></li><li><a href="#protocol-and-security-boundary">Protocol and security boundary</a></li></ul></details><article class="article"><h1 id="esp-now-sensor-extension-for-mc2-d">ESP-NOW sensor extension for MC2-D</h1>
+<p>This opt-in firmware adds three example sensor satellites to the <strong>existing full
+MC2-D hub</strong>. It uses the ESP32-DevKitC-VIE's existing 2.4 GHz antenna and changes no
+carrier pins, wiring, parts, or enclosure. The C6 remains the Thread RCP and the
+MG24 remains the Zigbee radio. Ethernet remains the hub's IP connection.</p>
+<p><strong>Acceptance status:</strong> configuration/build validation is separate from hardware
+acceptance. Simultaneous BLE, Thread, Zigbee, RF, Z-Wave, and ESP-NOW operation
+still needs the bench procedure in <a href="espnow.html">the ESP-NOW guide</a>.</p>
+<p>The <a href="../firmware/espnow/build-evidence.json">compilation evidence</a> records the pinned toolchain,
+recipe hashes and generated images. The complete host application is
+<strong>2,010,624 bytes</strong>, within both 3,932,160-byte OTA slots. Its linker reports
+<strong>5,256 bytes of static DRAM headroom</strong> and <strong>36,005 bytes of IRAM headroom</strong>.
+Static DRAM headroom is not the available runtime heap; it is a small margin
+for adding more static data. Measure minimum internal heap, largest free block
+and free PSRAM under simultaneous load before deploying this extension.</p>
+<h2 id="files">Files</h2>
+<ul>
+<li><code>hub.yaml</code>: complete MC2-D profile with the extension enabled.</li>
+<li><code>hub-radio.yaml</code>: ESP-NOW radio, fixed channel, explicit Wi-Fi/BLE coexistence
+SDK settings, enrolled station MACs, and radio diagnostics.</li>
+<li><code>hub-sensors.yaml</code>: named remote sensors, provider keys, and freshness diagnostics.</li>
+<li><code>satellite-base.yaml</code>: shared ESP32-C3-DevKitM-1 settings; USB power and serial
+service, ESP-NOW without a Wi-Fi association, API, or OTA server.</li>
+<li><code>sensor-bme280.yaml</code>: temperature, humidity, and pressure on GPIO4/5 I²C.</li>
+<li><code>sensor-ds18b20.yaml</code>: one powered temperature probe on GPIO4.</li>
+<li><code>sensor-contact.yaml</code>: persistent dry-contact state on GPIO4.</li>
+<li><code>secrets.example.yaml</code>: <strong>nonfunctional placeholders</strong>, not deployable credentials.</li>
+<li><code>prepare.py</code>: isolated copy of the pinned hub dependencies and disposable
+validation credentials. Does not connect to or flash any device.</li>
+</ul>
+<p>The satellite pin examples are for <strong>separate ESP32-C3-DevKitM-1 boards</strong>. Do not
+attach these sensors to those pin numbers on the MC2-D carrier: the hub pins are
+already assigned. Existing ESP32/S2/S3/C6 boards can be adapted after checking their
+board definition and actual free pins. ESP32-H2 has no Wi-Fi radio for ESP-NOW.</p>
+<h2 id="build-and-enroll">Build and enroll</h2>
+<p>Use the repository's pinned <a href="../firmware/requirements.txt">requirements</a>, currently
+ESPHome 2026.10.1 / ESP-IDF 5.5.5. Prepare outside the checkout:</p>
+<pre><code class="language-sh">python3 firmware/espnow/prepare.py ~/.codex/artifacts/ha-radio-hub-espnow/build
+esphome config ~/.codex/artifacts/ha-radio-hub-espnow/build/firmware/espnow/hub.yaml
+esphome compile ~/.codex/artifacts/ha-radio-hub-espnow/build/firmware/espnow/hub.yaml
+esphome compile ~/.codex/artifacts/ha-radio-hub-espnow/build/firmware/espnow/sensor-bme280.yaml
+</code></pre>
+<p>The output directory must not already exist. <code>--upstream /path/to/esp-thread-br</code>
+can reuse a local clone containing the exact dependency commit. See
+<code>python3 firmware/espnow/validate.py --help</code> for automated checks.</p>
+<p>To compile and verify <strong>all four profiles</strong> with disposable credentials in a
+new directory:</p>
+<pre><code class="language-sh">python3 firmware/espnow/validate.py /tmp/mc2-espnow-check \
+  --esphome /path/to/pinned/esphome --compile
+RF_CPP_SANITIZERS=1 /path/to/pinned/python -m unittest discover \
+  -s tests -p 'test_espnow.py'
+</code></pre>
+<p>The validator checks the complete hub's original pin and memory contracts,
+both OTA partitions, the final Wi-Fi/coexistence SDK settings, and each sensor
+build. Its JSON receipts explicitly leave hardware acceptance unverified.
+The same compilation and tests run in the required <code>ESP-NOW complete hub and sensor examples</code> CI job. Validation images contain disposable credentials and
+must not be installed as deployment images.</p>
+<p>Before installing, replace the <strong>prepared</strong> <code>firmware/espnow/secrets.yaml</code> with
+real hub API/OTA/MQTT values, the four actual <strong>Wi-Fi station MAC addresses</strong>, and
+three different random provider keys. Generate each provider key with
+<code>python3 -c 'import secrets; print(secrets.token_hex(32))'</code>. The hub and its matching
+satellite must have identical provider keys. Do not publish this file or compiled
+firmware containing the keys.</p>
+<p>Also restore the installation's RF topic/source substitutions and learned-button
+code overrides in the prepared <code>firmware/external-antenna/hub.yaml</code>, as described
+in <a href="firmware.html#initial-host-programming-with-private-configuration">private host programming</a>.
+Preparation deliberately uses <code>build-only/rf/*</code> topics and disabled learned
+codes. Supplying a real MQTT broker alone does not restore existing RF
+automations. Keep the base node name, pins, memory settings and partition layout.</p>
+<p>The ESP-NOW <code>Own address</code> startup log gives each satellite's station MAC. The hub
+exposes <code>ESP-NOW Station MAC</code> through its existing encrypted HA API. A Bluetooth,
+Ethernet, or Wi-Fi AP address is not interchangeable with the station address.
+For initial serial identification, keep the documented placeholder peers; no
+unknown peer is automatically enrolled. Attach the correct antenna before
+powering any external-antenna board.</p>
+<p>All four profiles default to <strong>channel 6</strong>. To change it, set <code>espnow_channel</code> in
+both hub and every satellite and rebuild. The ESP-NOW radios do not join the home
+Wi-Fi AP and do not follow its automatic channel changes. Select a channel after
+checking the installed Wi-Fi, Zigbee, and Thread plan; do not assume 6 is optimum.</p>
+<p>Build and flash one actual satellite configuration per board via its serial USB
+port. The hub continues to use the existing MC2-D installation/update procedure.
+No physical device was flashed by preparing or compiling these profiles.</p>
+<h2 id="sensor-behavior-and-limits">Sensor behavior and limits</h2>
+<p>Sensor states and heartbeat uptime are resent every 30 seconds; state changes
+also trigger an outgoing update. The hub sends a challenge on startup, when
+resynchronization is needed, and periodically. Leave both sides powered during
+enrollment and allow at least one full heartbeat interval for the online state.</p>
+<p><code>ESP-NOW ... Online</code> starts false and becomes true only after the hub decodes a
+finite uptime value with the provider's key and current challenge. It becomes
+false at 90 seconds without another accepted heartbeat. <code>Last Seen Age</code> measures
+that same heartbeat, not raw radio activity or validity of a physical measurement.
+Numeric measurements time out to unavailable after 90 seconds without an update;
+the native transport also invalidates remote states after its 120-second
+challenge timeout, observed on the next 15-second poll.</p>
+<p><strong>Gate contact-based automations on <code>ESP-NOW Contact Online</code>.</strong> A stale contact
+must not be interpreted as a newly open/closed door. The native binary sensor
+becomes unknown after the challenge timeout; it is not forced to a fabricated
+safe state. Reed contacts are persistent state, not guaranteed event delivery:
+a brief button press may be lost. This profile is not a fire, security, emergency,
+or motor safety controller.</p>
+<p>These examples deliberately stay awake. Deep sleep requires a separate tested
+wake/receive/challenge/retry strategy. Sending once and immediately sleeping is
+not reliable after a hub restart, and producer rolling-code state is written to
+flash on each boot. A dev-board USB bridge, regulator, or LED may dominate battery
+consumption. See the guide for battery-node design and other sensor uses.</p>
+<p>Preserve satellite NVS during ordinary firmware updates. If a deliberate full
+erase resets its rolling-code counter, a running hub can reject the lower counter.
+Verify the satellite's key and station MAC, then restart the hub to begin a new
+challenge/session; do not disable the replay checks to recover communication.</p>
+<h2 id="protocol-and-security-boundary">Protocol and security boundary</h2>
+<p>This uses ESPHome's <strong>native <code>packet_transport</code> protocol over ESP-NOW</strong>, including
+per-provider XXTEA payload encryption, producer rolling codes, and receiver
+ping/pong challenges. It is not arbitrary ESP-NOW packet auto-discovery, Matter,
+Thread, Zigbee, Wi-Fi provisioning, or a transparent ESPHome API/OTA tunnel.</p>
+<p>The native <code>espnow</code> peer list limits accepted senders operationally; MAC addresses
+can be spoofed. Packet transport identifies a provider by its node name and key,
+not a cryptographically bound MAC. Its payload encryption is not native ESP-NOW
+PMK/LMK link encryption and not an authenticated-encryption construction. Keep it
+to low-consequence telemetry; the extension intentionally defines no remote
+relay, curtain, or motor commands.</p>
+<p>The explicit SDK options in <code>hub-radio.yaml</code> are required for this pinned build:
+ESPHome's Ethernet-only final configuration would otherwise disable the Wi-Fi
+driver and coexistence. No <code>wifi:</code> block is added, so the existing Ethernet-only
+OTBR guard remains in force. The classic ESP32 shares one 2.4 GHz radio between
+BLE and ESP-NOW; using both is supported in STA mode but is not a promise of full
+radio capacity or house-wide coverage under every load.</p>
+<p>Primary implementation references:</p>
+<ul>
+<li><a href="https://esphome.io/components/espnow/">ESPHome ESP-NOW</a></li>
+<li><a href="https://esphome.io/components/packet_transport/">ESPHome packet transport</a></li>
+<li><a href="https://github.com/esphome/esphome/blob/2026.10.1/esphome/components/espnow/espnow_component.cpp">Pinned ESP-NOW implementation</a></li>
+<li><a href="https://github.com/esphome/esphome/blob/2026.10.1/esphome/components/packet_transport/packet_transport.cpp">Pinned packet transport implementation</a></li>
+<li><a href="https://docs.espressif.com/projects/esp-idf/en/v5.5.5/esp32/api-guides/coexist.html">ESP-IDF 5.5.5 radio coexistence</a></li>
+</ul>
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>
