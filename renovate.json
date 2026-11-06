@@ -1,0 +1,68 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>victron-venus/venus-os-ci-toolkit:renovate-fleet"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "custom.regex",
+    "custom.jsonata",
+    "docker-compose",
+    "dockerfile",
+    "pip_requirements"
+  ],
+  "ignorePaths": [
+    "**/vendor/**",
+    "**/node_modules/**",
+    "**/fixtures/**",
+    "**/tools/browser-compatibility/**",
+    ".github/cosign/**"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchFileNames": [
+        "/^firmware/[^/]+$/"
+      ],
+      "schedule": [
+        "* * * * 1"
+      ],
+      "timezone": "Etc/UTC"
+    },
+    {
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchFileNames": [
+        "/^mechanical/[^/]+$/"
+      ],
+      "schedule": [
+        "* * * * 1"
+      ],
+      "timezone": "Etc/UTC"
+    },
+    {
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchFileNames": [
+        "/^mechanical/[^/]+$/"
+      ],
+      "matchPackageNames": [
+        "*"
+      ],
+      "groupName": "cad-patch-updates",
+      "groupSlug": "cad-patch-updates",
+      "matchUpdateTypes": [
+        "patch"
+      ]
+    }
+  ],
+  "pip_requirements": {
+    "managerFilePatterns": [
+      "/(^|/)([^/]*[-_])?requirements[^/]*\\.(txt|pip)$/"
+    ]
+  }
+}

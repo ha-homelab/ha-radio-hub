@@ -2,7 +2,6 @@
   "schema_version": 1,
   "files": [
     ".gitattributes",
-    ".github/dependabot.yml",
     ".github/dependency-review-config.yml",
     ".github/workflows/auto-approve.yml",
     ".github/workflows/check.yml",
@@ -1077,6 +1076,7 @@
     "mechanical/parameters.json",
     "mechanical/requirements.txt",
     "mechanical/test_build.py",
+    "renovate.json",
     "software/compose.yaml",
     "software/render_config.py",
     "software/ser2net/Dockerfile",
