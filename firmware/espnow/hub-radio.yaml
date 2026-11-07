@@ -1,0 +1,47 @@
+# Native ESP-NOW uses the main ESP32's existing Wi-Fi/BLE antenna in STA mode.
+# It does not associate with an AP. Ethernet remains the only IP backbone.
+substitutions:
+  espnow_channel: "6"
+
+esp32:
+  framework:
+    sdkconfig_options:
+      # ESPHome's Ethernet-only final reconciliation otherwise disables these.
+      # Keep both the ESPHome compatibility name and IDF 5.5 canonical name.
+      CONFIG_ESP_WIFI_ENABLED: y
+      CONFIG_SW_COEXIST_ENABLE: y
+      CONFIG_ESP_COEX_SW_COEXIST_ENABLE: y
+
+espnow:
+  id: espnow_radio
+  channel: ${espnow_channel}
+  enable_on_boot: true
+  auto_add_peer: false
+  max_payload_size: 250
+  peers:
+    - !secret espnow_climate_mac
+    - !secret espnow_probe_mac
+    - !secret espnow_contact_mac
+
+text_sensor:
+  - platform: template
+    name: ESP-NOW Station MAC
+    entity_category: diagnostic
+    update_interval: 60s
+    lambda: |-
+      uint8_t mac[6];
+      if (esp_read_mac(mac, ESP_MAC_WIFI_STA) != ESP_OK) return {};
+      char text[18];
+      snprintf(text, sizeof(text), "%02X:%02X:%02X:%02X:%02X:%02X",
+               mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+      return {text};
+
+sensor:
+  - platform: template
+    name: ESP-NOW Channel
+    entity_category: diagnostic
+    accuracy_decimals: 0
+    update_interval: 60s
+    lambda: |-
+      if (id(espnow_radio).is_failed() || id(espnow_radio).is_disabled()) return NAN;
+      return id(espnow_radio).get_wifi_channel();

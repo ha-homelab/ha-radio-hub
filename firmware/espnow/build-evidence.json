@@ -1,0 +1,461 @@
+{
+  "verified_date": "2026-11-05",
+  "hardware_tested": false,
+  "runtime_measured": false,
+  "profiles": {
+    "hub": {
+      "compiled": true,
+      "hardware_tested": false,
+      "esphome": "2026.10.1",
+      "esp_idf": "5.5.5",
+      "profile": "MC2-D with ESP-NOW sensor transport",
+      "board": "ESP32-DevKitC-VIE",
+      "memory_report": {
+        "version": "1.1",
+        "layout": [
+          {
+            "name": "Flash Code",
+            "total": 0,
+            "used": 1569048,
+            "free": 0,
+            "parts": {
+              ".text": {
+                "size": 1569048
+              }
+            }
+          },
+          {
+            "name": "Flash Data",
+            "total": 0,
+            "used": 321404,
+            "free": 0,
+            "parts": {
+              ".rodata": {
+                "size": 321148
+              },
+              ".appdesc": {
+                "size": 256
+              }
+            }
+          },
+          {
+            "name": "DRAM",
+            "total": 124580,
+            "used": 119324,
+            "free": 5256,
+            "parts": {
+              ".bss": {
+                "size": 94200
+              },
+              ".data": {
+                "size": 24964
+              },
+              ".noinit": {
+                "size": 160
+              }
+            }
+          },
+          {
+            "name": "IRAM",
+            "total": 131072,
+            "used": 95067,
+            "free": 36005,
+            "parts": {
+              ".text": {
+                "size": 94039
+              },
+              ".vectors": {
+                "size": 1028
+              }
+            }
+          },
+          {
+            "name": "RTC SLOW",
+            "total": 8192,
+            "used": 88,
+            "free": 8104,
+            "parts": {
+              ".force_slow": {
+                "size": 32
+              },
+              ".rtc_noinit": {
+                "size": 32
+              },
+              ".rtc_slow_reserved": {
+                "size": 24
+              }
+            }
+          }
+        ]
+      },
+      "rf_tx_startup": {
+        "protected_gpio": 25,
+        "cc1101_source_sha256": "ed86211b9450a189f43bcc61d4a1e36ad3e641f02f081b18bfff5aeb1e3c8d83",
+        "handoff_sha256": "ca52811870c4d5dcbf8c1426566c3898e6bba713c8ef2bc25ee282f5221c07df",
+        "stock_transmitter_sha256": "3a82caf436a651d0c94f27aabf6b9544fb9160b7aa94633903314faadcb18e21",
+        "sdk_source_sha256": {
+          "components/esp_driver_rmt/src/rmt_tx.c": "a8413610fb7f729e50a517980a24925fbfb1a28620999a1ad8f34bb71419e4c6",
+          "components/esp_driver_gpio/src/gpio.c": "5533690740837025221a4ab64a9cf1557aeb2d7754f0ded630884e658464f291"
+        },
+        "wrapper_sha256": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+        "elf_sha256": "d9d1646c75033999d11ce755c7bbfee07689babc085742b585abff7732cb1986",
+        "linked_call_verified": true,
+        "hardware_tested": false
+      },
+      "sdkconfig_verified": {
+        "CONFIG_MBEDTLS_TLS_SERVER_AND_CLIENT": "y",
+        "CONFIG_MBEDTLS_ECP_C": "y",
+        "CONFIG_MBEDTLS_CCM_C": "y",
+        "CONFIG_MBEDTLS_ECDSA_DETERMINISTIC": "y",
+        "CONFIG_OPENTHREAD_FTD": "y",
+        "CONFIG_OPENTHREAD_COMMISSIONER": "y",
+        "CONFIG_OPENTHREAD_JOINER": "y",
+        "CONFIG_VFS_SUPPORT_IO": "y",
+        "CONFIG_VFS_SUPPORT_DIR": "y",
+        "CONFIG_VFS_SUPPORT_SELECT": "y",
+        "CONFIG_OPENTHREAD_RADIO_SPINEL_UART": "y",
+        "CONFIG_OPENTHREAD_BORDER_ROUTER": "y",
+        "CONFIG_OPENTHREAD_BORDER_AGENT_ENABLE": "y",
+        "CONFIG_LWIP_IPV6": "y",
+        "CONFIG_LWIP_IPV6_FORWARD": "y",
+        "CONFIG_LWIP_IPV6_NUM_ADDRESSES": "12",
+        "CONFIG_LWIP_HOOK_IP6_INPUT_CUSTOM": "y",
+        "CONFIG_LWIP_HOOK_IP6_SELECT_SRC_ADDR_CUSTOM": "y",
+        "CONFIG_LWIP_FORCE_ROUTER_FORWARDING": "y",
+        "CONFIG_MDNS_MULTIPLE_INSTANCE": "y",
+        "CONFIG_BT_BLUEDROID_ENABLED": "y",
+        "CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ": "160",
+        "CONFIG_IDF_TARGET": "\"esp32\"",
+        "CONFIG_ESP32_REV_MIN_FULL": "300",
+        "CONFIG_SPIRAM_MODE_QUAD": "y",
+        "CONFIG_SPIRAM_SPEED_40M": "y",
+        "CONFIG_ESP_CONSOLE_NONE": "y",
+        "CONFIG_BTDM_CTRL_MODE_BLE_ONLY": "y",
+        "CONFIG_BTDM_CTRL_BLE_MAX_CONN": "3",
+        "CONFIG_BTDM_CTRL_BLE_MAX_CONN_EFF": "3",
+        "CONFIG_ESPTOOLPY_FLASHSIZE_8MB": "y",
+        "CONFIG_FREERTOS_HZ": "1000",
+        "CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE": "y",
+        "CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT": "y",
+        "CONFIG_SPIRAM_USE_CAPS_ALLOC": "y",
+        "CONFIG_OPENTHREAD_PLATFORM_MALLOC_CAP_SPIRAM": "y",
+        "CONFIG_OPENTHREAD_PLATFORM_MSGPOOL_MANAGEMENT": "y",
+        "CONFIG_ESP_WIFI_ENABLED": "y",
+        "CONFIG_ESP_COEX_SW_COEXIST_ENABLE": "y"
+      },
+      "artifacts": {
+        "mc2-classic-hub.bin": {
+          "bytes": 2010624,
+          "sha256": "db1cc980c7b9635fdaad897439a599b41e4701d3935d2dcc806ccc8c0fdee9a1"
+        },
+        "firmware.factory.bin": {
+          "bytes": 2076160,
+          "sha256": "abb0ee5928b3dae0e9646bc6fded4ba31d7412c58a997af99d12d552a8c67ae0"
+        },
+        "firmware.ota.bin": {
+          "bytes": 2010624,
+          "sha256": "db1cc980c7b9635fdaad897439a599b41e4701d3935d2dcc806ccc8c0fdee9a1"
+        }
+      },
+      "c6_service_gpio": {
+        "reset_gpio": 27,
+        "boot_gpio": 15,
+        "mode": "open_drain",
+        "idle_level": 1,
+        "reset_low_ms": 10,
+        "c6_firmware_update_supported": true,
+        "source_sha256": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
+      },
+      "generated_pin_checks": {
+        "all_assigned_gpio_verified": true,
+        "unique_gpio": 21,
+        "ble_slots": 3,
+        "native_uart_ownership": {
+          "0": "LD2450",
+          "1": "MG24",
+          "2": "C6"
+        },
+        "shared_spi": true,
+        "runtime_cc1101_reset_absent": true
+      },
+      "shared_spi_source_sha256": {
+        "core/component.h": "5455c08357a62ab7851ca00730226251a7587c18a816e898a429f16edc20e354",
+        "core/component.cpp": "129b2c7ae98565fe634e2fd36badb8216b88cb20dce5f743e955e638fe7afdbf",
+        "components/ethernet/ethernet_component.h": "542ad3bcc9a583d77751322a4e4b65e848c6f7dfb041156a629be488566eb9e9",
+        "components/ethernet/ethernet_component_esp32.cpp": "b68169390fe336539985799912dc870806e02e253b105b376e406318af7e1c8d",
+        "components/spi/spi_esp_idf.cpp": "d6b7ef40fbae80cfbae8b508c034d5e6e399d6c2578bbf5d1b84218e447ff87d",
+        "components/spi/spi.h": "2219df88c87051dff6ad59d8a6cff4fea5bcc035efe2cf42bd5942ffac98851d",
+        "components/cc1101/cc1101.cpp": "ed86211b9450a189f43bcc61d4a1e36ad3e641f02f081b18bfff5aeb1e3c8d83",
+        "components/cc1101/cc1101.h": "d74a44a9796f46640ec6894900f9f306630594dfc71e9c7625c82f15037f6f67"
+      },
+      "uart_source_sha256": {
+        "components/logger/logger.h": "48319ba77c04d4e7653a6411e8c5d2a74b9ebc972b1f5f2e3e5d1640ee5d0123",
+        "components/logger/logger_esp32.cpp": "49f7d095504eb2d9470a7083a1bfeacb47e5939626cafae333ce626d1a040ffc",
+        "components/uart/uart_component_esp_idf.cpp": "87da3b1d48c858091e23ac8335f5141614b2cf69b01ad79827b91d5992db1fb0",
+        "components/zigbee_tcp/zigbee_tcp.cpp": "18b4fb6c9375e2295efeb21ba7f5f156d2ffae0a4531731744e39647477e40d2",
+        "components/low_power_otbr/low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e"
+      },
+      "application_header": {
+        "chip_id": 0,
+        "soc": "ESP32",
+        "minimum_revision_full": 300,
+        "flash_bytes": 8388608
+      },
+      "partitions": [
+        {
+          "name": "otadata",
+          "type": "data",
+          "subtype": "0",
+          "offset": 36864,
+          "bytes": 8192
+        },
+        {
+          "name": "phy_init",
+          "type": "data",
+          "subtype": "1",
+          "offset": 45056,
+          "bytes": 4096
+        },
+        {
+          "name": "app0",
+          "type": "app",
+          "subtype": "ota_0",
+          "offset": 65536,
+          "bytes": 3932160,
+          "image_margin_bytes": 1921536
+        },
+        {
+          "name": "app1",
+          "type": "app",
+          "subtype": "ota_1",
+          "offset": 3997696,
+          "bytes": 3932160,
+          "image_margin_bytes": 1921536
+        },
+        {
+          "name": "nvs",
+          "type": "data",
+          "subtype": "2",
+          "offset": 7929856,
+          "bytes": 458752
+        }
+      ],
+      "thread_source_sha256": {
+        "low_power_otbr.cpp": "334d2ddbd253f94778fdbc802244ad5b0ac656894dd3f044233b807d2d75e63e",
+        "low_power_otbr.h": "3e440ded4e4df18b0420b2c5f9a214e393bb330f845139f0ffe357196e1e177d",
+        "thread_guard.h": "bdf3a3ea668d796fd8e5c5cbb22a105a8547a1f1b473c4ad71f7f818badfb169",
+        "rcp_probe.h": "1997c1a511581ea2d8060db7ac9f5c1a5934538ccc1f8ffac5693a192f01a1aa",
+        "uart_update.cpp": "0563edba5c1bbeff04eb15d5c9cea270434494a48a2d2f5a4bb02b0e0ce5960b",
+        "update_session.h": "2944ff372fe6e12249ec45405e8b892ab0be991858a2a92cb3bea6853bb9efb3"
+      },
+      "linked_memory": {
+        "static_ram_bytes": 119324,
+        "linker_ram_bytes": 124580,
+        "dram_headroom_bytes": 5256,
+        "iram_used_bytes": 95067,
+        "iram_size_bytes": 131072,
+        "iram_headroom_bytes": 36005,
+        "psram_installed_bytes": 8388608,
+        "psram_direct_mapping_limit_bytes": 4194304,
+        "runtime_measured": false
+      },
+      "c6_update": {
+        "transport": "authenticated temporary TCP6639 to ROM UART",
+        "baud": 115200,
+        "requires_durable_maintenance": true,
+        "max_arm_ms": 60000,
+        "max_session_ms": 600000,
+        "hardware_tested": false
+      },
+      "framework_cache_manually_modified": false,
+      "sdk_patches_applied": false,
+      "recipe_sha256": {
+        "hub.yaml": "8c2ccaa4a8b0442b447bbd0040bfd8b0b3abd71519f357b43763d2b05aed0268",
+        "health.yaml": "2c13d2885e82b4784acde9d92ea01a3fab6e43d46d66b92f97e40f6098aca874",
+        "pin-plan.json": "fb90275e6af240fec3e4654872853f46f37292fcc5e73b172dcafd85ddd06c5c",
+        "mc2_contract.py": "247dc57bff5283f39075dfdcbda3ec3469fce95208ae46fdfc1b49416450ec0d",
+        "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
+        "validate.py": "2f5350382acf9934b68b6fb1841f4d193fa67bb11f929acb6bf83f8185d6840e",
+        "../low-power/memory_report.py": "a586bc7bfe62ee4e2e1fae1f107ddf42977b8b15f48baa4c4709575d129af393",
+        "../low-power/validate.py": "0b758ca2ea74b7b5d179e0e8d03c0ff5bd0ce99d4ede0c1ae71eae6fb1a6dd55",
+        "../low-power/components/low_power_otbr/__init__.py": "dc9988a63538e9b8c47517747b97c74732e00f4a3ba75e92876c79363f59e6fd",
+        "../packages/rf-airbridge.yaml": "45e089d363b36de2cb52d779a0e831356e62184b1362cb9e00918910a59832da",
+        "../include/rf_radio_handoff.h": "ca52811870c4d5dcbf8c1426566c3898e6bba713c8ef2bc25ee282f5221c07df",
+        "../components/rf_tx_startup/__init__.py": "ab7b35073ab81103fcc5c8ae82b0cc196e1c3907699346de0d32fd38d8628c60",
+        "../components/rf_tx_startup/rf_tx_startup.cpp": "c7e793bd20ceba726a3b4cb42c35ed79df9955a49c9f36a516bea17c582230dc",
+        "../components/rf_tx_startup/verify.py": "4917810979087e736ebe0253309a8f8fdc0b3ba99e2914a09336853959dd861c",
+        "../module-carrier/components/wk2132_uart/__init__.py": "bf5d0c08b73b64469b9477b8e3bd35ed46e3ed3ffdf8a5615630d474bf39d748",
+        "../module-carrier/components/wk2132_uart/address_plan.py": "4b1e9e756cf090dc95704f0d1e4e2155ad13df5b932e7692b19a9e9a66c2d0c8",
+        "../module-carrier/components/wk2132_uart/transport.h": "ff53cd92d15d5ac27274353aa863a6f93873e57a748920b23153aac4d018789f",
+        "../module-carrier/components/wk2132_uart/wk2132_uart.h": "5132ad1bec8228745450d418c3c962488b09aaa8cf3298a6ed380adc4123d3cc",
+        "../module-carrier/components/wk2132_uart/wk2132_uart.cpp": "f48130abe5fd74c8cf0bec815682f06ddd5ce170bc4dfacf80fd7878580be0ef"
+      },
+      "espnow_recipe_sha256": {
+        "hub-radio.yaml": "ea2a9adc53bf9c90ced03a0323f26aecd3e805f98788cd12588026cd4622f714",
+        "hub-sensors.yaml": "d37d0f789ef8026913aca39e24a65c384846b09b535d6066b8f3fb7cadf42714",
+        "hub.yaml": "38019b092533b9a31796e79e51e772fbf6ff2f95ea14fb07f828673b8a6aa6ed",
+        "prepare.py": "9853d6c5a39408315a0392bb46160bd939d513e02f6ea1388c30e0bd521ae5e6",
+        "satellite-base.yaml": "898f7e71641cabb8f7a0fba80b00b25e306c435e3d3b7898adeafa6082941e4a",
+        "secrets.example.yaml": "d881ab02857c51577c2f3b6fee7dc60ad095b36f62ac53ee554f56eb82d72cda",
+        "sensor-bme280.yaml": "db2bbea300bea0eb8bc2755e4463d733cdb32c2741a97298e95f84f39febfbab",
+        "sensor-contact.yaml": "922e56bf0404d4cd171d2001cb40107b9df98901f3f5bf4b674baf2fac6ae1f1",
+        "sensor-ds18b20.yaml": "8f6fad64d4735d8168131d00a8c7a055e5be28e2b86fb2d37c6e9fa56d6ee5f6",
+        "validate.py": "c895a46e83c9957788319e1ed0995406f717046e862f1e300d2aafa762d35c3c"
+      },
+      "espnow_source_sha256": {
+        "components/espnow/automation.h": "cdbc63fa58015bd8ee25378863da62acb24a602afb74324112d6cf1424d7ddbe",
+        "components/espnow/espnow_component.cpp": "1652fd169d6ea55e44fea748cd0f7e757bb0135f8d9c0bf57b174de89e19182f",
+        "components/espnow/espnow_component.h": "fb298ac0c86bb87529d158a292b2cb36fe0ca0c2ccaf1a2f87dfe871910c2db9",
+        "components/espnow/espnow_err.h": "5e972f889ebf11d4cf749edffc35f7a5670ab26f4555f2ed7333be25e18ca118",
+        "components/espnow/espnow_packet.h": "ea341a7059312dc45979e21d35430702fc6363b644e03d49a3e71fb13ccf6cb2",
+        "components/espnow/packet_transport/espnow_transport.cpp": "89ca5fe7ee611d6b643ca52f11317a366129d9aa944a60907d2ed23454497c91",
+        "components/espnow/packet_transport/espnow_transport.h": "186e42d1b435579f092eaf18c99bcb61b34961ec78d77d415e1cc93a1a59bf6e",
+        "components/packet_transport/packet_transport.cpp": "823d532a62e5617134ecffc91f461b1e6f9552c51b51ecaa117d5032a1228888",
+        "components/packet_transport/packet_transport.h": "b80f122681f43ccacb9bf7593f76f134874e73d24e0256421e0dc830654c6337",
+        "components/xxtea/xxtea.cpp": "a63206b7045b76428b91962741173524bd65cb3cad2cf2da196713f09beb8de8",
+        "components/xxtea/xxtea.h": "4ddd3bda5f17c93d579e1cfc6b1d59f0ce0cd603bc24a4e7a29f837d58ab4f04"
+      }
+    },
+    "climate": {
+      "generated": true,
+      "compiled": true,
+      "hardware_tested": false,
+      "profile": "climate",
+      "esphome": "2026.10.1",
+      "esp_idf": "5.5.5",
+      "artifacts": {
+        "espnow-climate.bin": {
+          "bytes": 751584,
+          "sha256": "5b7c87c8c6640038f4a37e35ccc7974ccb991d8a948a2f14f3ae90c488878d4b"
+        },
+        "firmware.factory.bin": {
+          "bytes": 817120,
+          "sha256": "20c488b63d693210443aa8590a4c8b1cca10a1fdb778463acd3ca81b1bf9a306"
+        },
+        "firmware.ota.bin": {
+          "bytes": 751584,
+          "sha256": "5b7c87c8c6640038f4a37e35ccc7974ccb991d8a948a2f14f3ae90c488878d4b"
+        }
+      },
+      "espnow_recipe_sha256": {
+        "hub-radio.yaml": "ea2a9adc53bf9c90ced03a0323f26aecd3e805f98788cd12588026cd4622f714",
+        "hub-sensors.yaml": "d37d0f789ef8026913aca39e24a65c384846b09b535d6066b8f3fb7cadf42714",
+        "hub.yaml": "38019b092533b9a31796e79e51e772fbf6ff2f95ea14fb07f828673b8a6aa6ed",
+        "prepare.py": "9853d6c5a39408315a0392bb46160bd939d513e02f6ea1388c30e0bd521ae5e6",
+        "satellite-base.yaml": "898f7e71641cabb8f7a0fba80b00b25e306c435e3d3b7898adeafa6082941e4a",
+        "secrets.example.yaml": "d881ab02857c51577c2f3b6fee7dc60ad095b36f62ac53ee554f56eb82d72cda",
+        "sensor-bme280.yaml": "db2bbea300bea0eb8bc2755e4463d733cdb32c2741a97298e95f84f39febfbab",
+        "sensor-contact.yaml": "922e56bf0404d4cd171d2001cb40107b9df98901f3f5bf4b674baf2fac6ae1f1",
+        "sensor-ds18b20.yaml": "8f6fad64d4735d8168131d00a8c7a055e5be28e2b86fb2d37c6e9fa56d6ee5f6",
+        "validate.py": "c895a46e83c9957788319e1ed0995406f717046e862f1e300d2aafa762d35c3c"
+      },
+      "espnow_source_sha256": {
+        "components/espnow/automation.h": "cdbc63fa58015bd8ee25378863da62acb24a602afb74324112d6cf1424d7ddbe",
+        "components/espnow/espnow_component.cpp": "1652fd169d6ea55e44fea748cd0f7e757bb0135f8d9c0bf57b174de89e19182f",
+        "components/espnow/espnow_component.h": "fb298ac0c86bb87529d158a292b2cb36fe0ca0c2ccaf1a2f87dfe871910c2db9",
+        "components/espnow/espnow_err.h": "5e972f889ebf11d4cf749edffc35f7a5670ab26f4555f2ed7333be25e18ca118",
+        "components/espnow/espnow_packet.h": "ea341a7059312dc45979e21d35430702fc6363b644e03d49a3e71fb13ccf6cb2",
+        "components/espnow/packet_transport/espnow_transport.cpp": "89ca5fe7ee611d6b643ca52f11317a366129d9aa944a60907d2ed23454497c91",
+        "components/espnow/packet_transport/espnow_transport.h": "186e42d1b435579f092eaf18c99bcb61b34961ec78d77d415e1cc93a1a59bf6e",
+        "components/packet_transport/packet_transport.cpp": "823d532a62e5617134ecffc91f461b1e6f9552c51b51ecaa117d5032a1228888",
+        "components/packet_transport/packet_transport.h": "b80f122681f43ccacb9bf7593f76f134874e73d24e0256421e0dc830654c6337",
+        "components/xxtea/xxtea.cpp": "a63206b7045b76428b91962741173524bd65cb3cad2cf2da196713f09beb8de8",
+        "components/xxtea/xxtea.h": "4ddd3bda5f17c93d579e1cfc6b1d59f0ce0cd603bc24a4e7a29f837d58ab4f04"
+      }
+    },
+    "probe": {
+      "generated": true,
+      "compiled": true,
+      "hardware_tested": false,
+      "profile": "probe",
+      "esphome": "2026.10.1",
+      "esp_idf": "5.5.5",
+      "artifacts": {
+        "espnow-probe.bin": {
+          "bytes": 738576,
+          "sha256": "0211cabef7da8c4d2c743101427103b46c53e306e63b5a298ff67867f1572ce4"
+        },
+        "firmware.factory.bin": {
+          "bytes": 804112,
+          "sha256": "ba4b7fc6c5d87dd6931ff53f1053c1924d9130d10dc81882b5d5e3dd0297c864"
+        },
+        "firmware.ota.bin": {
+          "bytes": 738576,
+          "sha256": "0211cabef7da8c4d2c743101427103b46c53e306e63b5a298ff67867f1572ce4"
+        }
+      },
+      "espnow_recipe_sha256": {
+        "hub-radio.yaml": "ea2a9adc53bf9c90ced03a0323f26aecd3e805f98788cd12588026cd4622f714",
+        "hub-sensors.yaml": "d37d0f789ef8026913aca39e24a65c384846b09b535d6066b8f3fb7cadf42714",
+        "hub.yaml": "38019b092533b9a31796e79e51e772fbf6ff2f95ea14fb07f828673b8a6aa6ed",
+        "prepare.py": "9853d6c5a39408315a0392bb46160bd939d513e02f6ea1388c30e0bd521ae5e6",
+        "satellite-base.yaml": "898f7e71641cabb8f7a0fba80b00b25e306c435e3d3b7898adeafa6082941e4a",
+        "secrets.example.yaml": "d881ab02857c51577c2f3b6fee7dc60ad095b36f62ac53ee554f56eb82d72cda",
+        "sensor-bme280.yaml": "db2bbea300bea0eb8bc2755e4463d733cdb32c2741a97298e95f84f39febfbab",
+        "sensor-contact.yaml": "922e56bf0404d4cd171d2001cb40107b9df98901f3f5bf4b674baf2fac6ae1f1",
+        "sensor-ds18b20.yaml": "8f6fad64d4735d8168131d00a8c7a055e5be28e2b86fb2d37c6e9fa56d6ee5f6",
+        "validate.py": "c895a46e83c9957788319e1ed0995406f717046e862f1e300d2aafa762d35c3c"
+      },
+      "espnow_source_sha256": {
+        "components/espnow/automation.h": "cdbc63fa58015bd8ee25378863da62acb24a602afb74324112d6cf1424d7ddbe",
+        "components/espnow/espnow_component.cpp": "1652fd169d6ea55e44fea748cd0f7e757bb0135f8d9c0bf57b174de89e19182f",
+        "components/espnow/espnow_component.h": "fb298ac0c86bb87529d158a292b2cb36fe0ca0c2ccaf1a2f87dfe871910c2db9",
+        "components/espnow/espnow_err.h": "5e972f889ebf11d4cf749edffc35f7a5670ab26f4555f2ed7333be25e18ca118",
+        "components/espnow/espnow_packet.h": "ea341a7059312dc45979e21d35430702fc6363b644e03d49a3e71fb13ccf6cb2",
+        "components/espnow/packet_transport/espnow_transport.cpp": "89ca5fe7ee611d6b643ca52f11317a366129d9aa944a60907d2ed23454497c91",
+        "components/espnow/packet_transport/espnow_transport.h": "186e42d1b435579f092eaf18c99bcb61b34961ec78d77d415e1cc93a1a59bf6e",
+        "components/packet_transport/packet_transport.cpp": "823d532a62e5617134ecffc91f461b1e6f9552c51b51ecaa117d5032a1228888",
+        "components/packet_transport/packet_transport.h": "b80f122681f43ccacb9bf7593f76f134874e73d24e0256421e0dc830654c6337",
+        "components/xxtea/xxtea.cpp": "a63206b7045b76428b91962741173524bd65cb3cad2cf2da196713f09beb8de8",
+        "components/xxtea/xxtea.h": "4ddd3bda5f17c93d579e1cfc6b1d59f0ce0cd603bc24a4e7a29f837d58ab4f04"
+      }
+    },
+    "contact": {
+      "generated": true,
+      "compiled": true,
+      "hardware_tested": false,
+      "profile": "contact",
+      "esphome": "2026.10.1",
+      "esp_idf": "5.5.5",
+      "artifacts": {
+        "espnow-contact.bin": {
+          "bytes": 735776,
+          "sha256": "ae106099a7edc60396b840bfa064feabc413e2b471823d1e22ee8e0ddfd4d2ec"
+        },
+        "firmware.factory.bin": {
+          "bytes": 801312,
+          "sha256": "e6da21d30b84b697b532077468407b0a31956215293a9d925922ea075e3cbd65"
+        },
+        "firmware.ota.bin": {
+          "bytes": 735776,
+          "sha256": "ae106099a7edc60396b840bfa064feabc413e2b471823d1e22ee8e0ddfd4d2ec"
+        }
+      },
+      "espnow_recipe_sha256": {
+        "hub-radio.yaml": "ea2a9adc53bf9c90ced03a0323f26aecd3e805f98788cd12588026cd4622f714",
+        "hub-sensors.yaml": "d37d0f789ef8026913aca39e24a65c384846b09b535d6066b8f3fb7cadf42714",
+        "hub.yaml": "38019b092533b9a31796e79e51e772fbf6ff2f95ea14fb07f828673b8a6aa6ed",
+        "prepare.py": "9853d6c5a39408315a0392bb46160bd939d513e02f6ea1388c30e0bd521ae5e6",
+        "satellite-base.yaml": "898f7e71641cabb8f7a0fba80b00b25e306c435e3d3b7898adeafa6082941e4a",
+        "secrets.example.yaml": "d881ab02857c51577c2f3b6fee7dc60ad095b36f62ac53ee554f56eb82d72cda",
+        "sensor-bme280.yaml": "db2bbea300bea0eb8bc2755e4463d733cdb32c2741a97298e95f84f39febfbab",
+        "sensor-contact.yaml": "922e56bf0404d4cd171d2001cb40107b9df98901f3f5bf4b674baf2fac6ae1f1",
+        "sensor-ds18b20.yaml": "8f6fad64d4735d8168131d00a8c7a055e5be28e2b86fb2d37c6e9fa56d6ee5f6",
+        "validate.py": "c895a46e83c9957788319e1ed0995406f717046e862f1e300d2aafa762d35c3c"
+      },
+      "espnow_source_sha256": {
+        "components/espnow/automation.h": "cdbc63fa58015bd8ee25378863da62acb24a602afb74324112d6cf1424d7ddbe",
+        "components/espnow/espnow_component.cpp": "1652fd169d6ea55e44fea748cd0f7e757bb0135f8d9c0bf57b174de89e19182f",
+        "components/espnow/espnow_component.h": "fb298ac0c86bb87529d158a292b2cb36fe0ca0c2ccaf1a2f87dfe871910c2db9",
+        "components/espnow/espnow_err.h": "5e972f889ebf11d4cf749edffc35f7a5670ab26f4555f2ed7333be25e18ca118",
+        "components/espnow/espnow_packet.h": "ea341a7059312dc45979e21d35430702fc6363b644e03d49a3e71fb13ccf6cb2",
+        "components/espnow/packet_transport/espnow_transport.cpp": "89ca5fe7ee611d6b643ca52f11317a366129d9aa944a60907d2ed23454497c91",
+        "components/espnow/packet_transport/espnow_transport.h": "186e42d1b435579f092eaf18c99bcb61b34961ec78d77d415e1cc93a1a59bf6e",
+        "components/packet_transport/packet_transport.cpp": "823d532a62e5617134ecffc91f461b1e6f9552c51b51ecaa117d5032a1228888",
+        "components/packet_transport/packet_transport.h": "b80f122681f43ccacb9bf7593f76f134874e73d24e0256421e0dc830654c6337",
+        "components/xxtea/xxtea.cpp": "a63206b7045b76428b91962741173524bd65cb3cad2cf2da196713f09beb8de8",
+        "components/xxtea/xxtea.h": "4ddd3bda5f17c93d579e1cfc6b1d59f0ce0cd603bc24a4e7a29f837d58ab4f04"
+      }
+    }
+  }
+}

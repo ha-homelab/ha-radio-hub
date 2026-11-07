@@ -96,6 +96,18 @@
     "description": "Understand the move from S3 to the classic ESP32-WROVER-IE."
   },
   {
+    "slug": "espnow",
+    "source": "docs/espnow.md",
+    "label": "ESP-NOW sensors",
+    "description": "Add remote climate, probe and contact sensors without changing the carrier; configure keys, freshness and shared-radio tests."
+  },
+  {
+    "slug": "espnow-firmware",
+    "source": "firmware/espnow/README.md",
+    "label": "ESP-NOW firmware",
+    "description": "Build the optional complete hub profile and three ESP32-C3 sensor examples with private MACs and keys."
+  },
+  {
     "slug": "history",
     "source": "docs/design-history.md",
     "label": "Design history",

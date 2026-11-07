@@ -1,0 +1,25 @@
+# Example: USB-powered ESP32-C3-DevKitM-1 + one externally powered DS18B20.
+# GPIO4 -> DQ, 3V3 -> VDD, GND -> GND; 4.7k resistor DQ -> 3V3.
+# Do not use parasite power. Set a specific address before attaching more probes.
+esphome:
+  name: espnow-probe
+
+packages:
+  satellite: !include satellite-base.yaml
+
+one_wire:
+  - platform: gpio
+    pin: GPIO4
+
+sensor:
+  - platform: dallas_temp
+    id: satellite_temperature
+    update_interval: 30s
+    resolution: 12
+
+packet_transport:
+  - id: !extend satellite_transport
+    encryption: !secret espnow_probe_key
+    sensors:
+      - id: satellite_temperature
+        broadcast_id: temperature

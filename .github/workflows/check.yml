@@ -174,7 +174,7 @@ jobs:
   check:
     name: check
     if: ${{ always() }}
-    needs: ["baseline", "external-antenna", "low-power", "mg24", "module-carrier", "pcb", "scope"]
+    needs: ["baseline", "espnow", "external-antenna", "low-power", "mg24", "module-carrier", "pcb", "scope"]
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 2
     steps:
@@ -185,7 +185,7 @@ jobs:
         run: |
           import json, os
           results = json.loads(os.environ['RESULTS'])
-          expected = ['baseline', 'external-antenna', 'low-power', 'mg24', 'module-carrier', 'pcb', 'scope']
+          expected = ['baseline', 'espnow', 'external-antenna', 'low-power', 'mg24', 'module-carrier', 'pcb', 'scope']
           always = ['baseline', 'scope']
           if set(results) != set(expected):
               raise SystemExit('Validation job inventory differs')
@@ -367,6 +367,48 @@ jobs:
         with:
           name: mc2-compilation-evidence
           path: .build/mc2-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+  espnow:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
+    name: ESP-NOW complete hub and sensor examples
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
+    timeout-minutes: 45
+    steps:
+      - name: Audit runner network access
+        uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned firmware dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install -r firmware/requirements.txt
+      - name: Check enrollment, freshness and full-hub configuration
+        env:
+          RF_CPP_SANITIZERS: "1"
+        run: .venv/bin/python -m unittest discover -s tests -p 'test_espnow.py'
+      - name: Compile full MC2-D ESP-NOW hub and three sensors
+        run: .venv/bin/python firmware/espnow/validate.py .build/espnow --esphome .venv/bin/esphome --compile
+      - name: Bind compilation receipt to the checked-out source
+        run: |
+          test -s .build/espnow/firmware/espnow/build-result.json
+          mkdir .build/espnow-evidence
+          cp .build/espnow/firmware/espnow/build-result.json .build/espnow-evidence/build-result.json
+          for profile in climate probe contact; do
+            cp ".build/espnow/firmware/espnow/$profile-build-result.json" .build/espnow-evidence/
+          done
+          git rev-parse HEAD > .build/espnow-evidence/source-sha.txt
+      - name: Preserve ESP-NOW compilation evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: espnow-compilation-evidence
+          path: .build/espnow-evidence/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 7

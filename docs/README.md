@@ -27,6 +27,8 @@ troubleshooting. To view the guide locally as rendered HTML, run
 - [ESP32/C6/MG24 build and programming instructions](../firmware/external-antenna/README.md)
   and [network updating](../firmware/external-antenna/updates/README.md).
 - [MC2-D MG24 external-antenna image: build, program and recover](mc2-zigbee.md).
+- [Optional ESP-NOW sensor satellites, wiring and use cases](espnow.md)
+  and [firmware configuration](../firmware/espnow/README.md).
 - [Full-hub enclosure, exploded layout and printable mounts](../mechanical/full-hub/README.md).
 - [Complete assembly, ZAC93 placement and pin-to-pin wiring](full-hub-assembly.md).
 - [Full-hub graphical wiring](../hardware/external-antenna/full-hub-wiring.svg).

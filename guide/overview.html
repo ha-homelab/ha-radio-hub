@@ -5,7 +5,7 @@
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#start-building">Start building</a></li><li><a href="#selected-hardware">Selected hardware</a></li><li><a href="#where-the-z-wave-board-and-other-parts-go">Where the Z-Wave board and other parts go</a></li><li><a href="#the-smaller-power-assembly">The smaller power assembly</a></li><li><a href="#build-and-inspect">Build and inspect</a></li><li><a href="#project-information">Project information</a></li></ul></details><article class="article"><h1 id="ha-radio-hub--mc2-d">HA Radio Hub — MC2-D</h1>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#start-building">Start building</a></li><li><a href="#selected-hardware">Selected hardware</a></li><li><a href="#where-the-z-wave-board-and-other-parts-go">Where the Z-Wave board and other parts go</a></li><li><a href="#the-smaller-power-assembly">The smaller power assembly</a></li><li><a href="#build-and-inspect">Build and inspect</a></li><li><a href="#optional-esp-now-sensors">Optional ESP-NOW sensors</a></li><li><a href="#project-information">Project information</a></li></ul></details><article class="article"><h1 id="ha-radio-hub--mc2-d">HA Radio Hub — MC2-D</h1>
 <p><strong>Three independent external antennas: Zigbee, Thread and Bluetooth.</strong> MC2 keeps
 a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE proxy,
 Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
@@ -129,6 +129,20 @@ versus $26.95 for the previous converter; see the dated <a href="shopping.html">
 <li><a href="commissioning.html">RF commissioning procedure</a> and
 <a href="../hardware/external-antenna/coverage-results.csv">results sheet</a>.</li>
 </ul>
+<h2 id="optional-esp-now-sensors">Optional ESP-NOW sensors</h2>
+<p>The <a href="espnow.html">ESP-NOW profile</a> adds remote sensor readings to the existing
+MC2-D host without changing the carrier, wiring or enclosure. It reuses the
+WROVER-IE's Bluetooth/Wi-Fi antenna; Ethernet carries the readings to Home
+Assistant. The separate Thread and Zigbee radios keep their existing roles.</p>
+<p>Included ESP32-C3 examples cover <strong>BME280 temperature/humidity/pressure</strong>, a
+<strong>DS18B20 temperature probe</strong>, and a <strong>door/window contact</strong>. They use private
+per-satellite keys, periodic state reports and hub freshness diagnostics. The
+examples are continuously powered and updated over USB. This opt-in firmware
+still needs physical coverage, power and simultaneous BLE/hub-load testing;
+it does not establish battery life or motor-control safety.</p>
+<p><img src="../docs/assets/espnow-topology.svg" alt="ESP-NOW satellites and the existing Ethernet hub" /></p>
+<p><a href="espnow-firmware.html">Build and configure ESP-NOW</a> ·
+<a href="espnow.html">Sensor wiring, use cases and commissioning</a></p>
 <p>The largest print is 215 × 215 mm, within the selected TRONXY XY-3's nominal
 310 × 310 × 330 mm print volume. The 65 mm adjacent antenna pitch and 150 mm
 coax routes still require physical fit and coexistence tests. Module heights,

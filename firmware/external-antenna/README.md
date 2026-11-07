@@ -28,6 +28,13 @@ The new ESPHome node name is **`mc2-classic-hub`**. Back up Thread credentials, 
 
 ## Reproduce the host build
 
+For remote ESP-NOW sensors, use the additive
+[ESP-NOW host profile](../espnow/README.md) instead of this baseline build.
+It retains the MC2-D pin map, memory layout and existing services, and enables
+the main ESP32's Wi-Fi radio alongside Bluetooth without associating with an
+access point. No carrier modification is needed. See the
+[sensor and commissioning guide](../../docs/espnow.md) for its limits.
+
 Use ESPHome **2026.10.1**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
 
 ```sh

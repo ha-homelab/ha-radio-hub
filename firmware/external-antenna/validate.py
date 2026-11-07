@@ -65,7 +65,7 @@ def verify_service_gpio(source: str):
             "idle_level":1,"reset_low_ms":10,"c6_firmware_update_supported":True,
             "source_sha256":hashlib.sha256(source.encode()).hexdigest()}
 
-def verify(profile: Path):
+def verify(profile: Path, *, recipe_directory: Path | None = None):
     name="mc2-classic-hub"
     root=profile.parent/".esphome/build"/name
     config=dict(line.split("=",1) for line in (root/("sdkconfig."+name)).read_text().splitlines()
@@ -127,7 +127,7 @@ def verify(profile: Path):
                          "requires_durable_maintenance":True,"max_arm_ms":60000,"max_session_ms":600000,
                          "hardware_tested":False},
             "framework_cache_manually_modified":False,"sdk_patches_applied":False}
-    result["recipe_sha256"] = verify_recipe_inputs(profile.parent, root)
+    result["recipe_sha256"] = verify_recipe_inputs(recipe_directory or profile.parent, root)
     (profile.parent/"build-result.json").write_text(json.dumps(result,indent=2)+"\n")
     return result
 

@@ -1,0 +1,197 @@
+# Receive only: per-provider keys decrypt native packet_transport payloads.
+# Radio peers also need to be registered in hub-radio.yaml.
+packet_transport:
+  - platform: espnow
+    id: espnow_sensors
+    espnow_id: espnow_radio
+    # Challenge requests reach all registered satellites; telemetry is unicast.
+    peer_address: FF:FF:FF:FF:FF:FF
+    update_interval: 15s
+    ping_pong_enable: true
+    ping_pong_recycle_time: 60s
+    providers:
+      - name: espnow-climate
+        encryption: !secret espnow_climate_key
+      - name: espnow-probe
+        encryption: !secret espnow_probe_key
+      - name: espnow-contact
+        encryption: !secret espnow_contact_key
+
+globals:
+  # These timestamps are updated only by decoded, challenge-checked telemetry.
+  # Raw radio reception is deliberately not treated as a successful sensor update.
+  - id: espnow_climate_seen
+    type: bool
+    initial_value: "false"
+    restore_value: false
+  - id: espnow_climate_last_ms
+    type: uint64_t
+    initial_value: "0"
+    restore_value: false
+  - id: espnow_probe_seen
+    type: bool
+    initial_value: "false"
+    restore_value: false
+  - id: espnow_probe_last_ms
+    type: uint64_t
+    initial_value: "0"
+    restore_value: false
+  - id: espnow_contact_seen
+    type: bool
+    initial_value: "false"
+    restore_value: false
+  - id: espnow_contact_last_ms
+    type: uint64_t
+    initial_value: "0"
+    restore_value: false
+
+sensor:
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-climate
+    remote_id: temperature
+    name: ESP-NOW Climate Temperature
+    internal: false
+    device_class: temperature
+    state_class: measurement
+    unit_of_measurement: "°C"
+    accuracy_decimals: 1
+    filters:
+      - timeout: 90s
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-climate
+    remote_id: humidity
+    name: ESP-NOW Climate Humidity
+    internal: false
+    device_class: humidity
+    state_class: measurement
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    filters:
+      - timeout: 90s
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-climate
+    remote_id: pressure
+    name: ESP-NOW Climate Pressure
+    internal: false
+    device_class: atmospheric_pressure
+    state_class: measurement
+    unit_of_measurement: hPa
+    accuracy_decimals: 1
+    filters:
+      - timeout: 90s
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-probe
+    remote_id: temperature
+    name: ESP-NOW Probe Temperature
+    internal: false
+    device_class: temperature
+    state_class: measurement
+    unit_of_measurement: "°C"
+    accuracy_decimals: 1
+    filters:
+      - timeout: 90s
+
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-climate
+    remote_id: node_uptime
+    id: espnow_climate_uptime
+    internal: true
+    on_value:
+      then:
+        - lambda: |-
+            if (std::isfinite(x)) {
+              id(espnow_climate_seen) = true;
+              id(espnow_climate_last_ms) = millis_64();
+            }
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-probe
+    remote_id: node_uptime
+    id: espnow_probe_uptime
+    internal: true
+    on_value:
+      then:
+        - lambda: |-
+            if (std::isfinite(x)) {
+              id(espnow_probe_seen) = true;
+              id(espnow_probe_last_ms) = millis_64();
+            }
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-contact
+    remote_id: node_uptime
+    id: espnow_contact_uptime
+    internal: true
+    on_value:
+      then:
+        - lambda: |-
+            if (std::isfinite(x)) {
+              id(espnow_contact_seen) = true;
+              id(espnow_contact_last_ms) = millis_64();
+            }
+
+  - platform: template
+    name: ESP-NOW Climate Last Seen Age
+    entity_category: diagnostic
+    unit_of_measurement: s
+    accuracy_decimals: 0
+    update_interval: 5s
+    lambda: |-
+      if (!id(espnow_climate_seen)) return NAN;
+      return (millis_64() - id(espnow_climate_last_ms)) / 1000.0f;
+  - platform: template
+    name: ESP-NOW Probe Last Seen Age
+    entity_category: diagnostic
+    unit_of_measurement: s
+    accuracy_decimals: 0
+    update_interval: 5s
+    lambda: |-
+      if (!id(espnow_probe_seen)) return NAN;
+      return (millis_64() - id(espnow_probe_last_ms)) / 1000.0f;
+  - platform: template
+    name: ESP-NOW Contact Last Seen Age
+    entity_category: diagnostic
+    unit_of_measurement: s
+    accuracy_decimals: 0
+    update_interval: 5s
+    lambda: |-
+      if (!id(espnow_contact_seen)) return NAN;
+      return (millis_64() - id(espnow_contact_last_ms)) / 1000.0f;
+
+binary_sensor:
+  - platform: packet_transport
+    transport_id: espnow_sensors
+    provider: espnow-contact
+    remote_id: contact
+    name: ESP-NOW Contact
+    internal: false
+    device_class: opening
+
+  # Native packet_transport status can start true before the first reply.
+  # Explicit seen flags ensure these entities start offline and age out at 90s.
+  - platform: template
+    name: ESP-NOW Climate Online
+    device_class: connectivity
+    entity_category: diagnostic
+    lambda: |-
+      return id(espnow_climate_seen) &&
+             (millis_64() - id(espnow_climate_last_ms)) < 90000;
+  - platform: template
+    name: ESP-NOW Probe Online
+    device_class: connectivity
+    entity_category: diagnostic
+    lambda: |-
+      return id(espnow_probe_seen) &&
+             (millis_64() - id(espnow_probe_last_ms)) < 90000;
+  - platform: template
+    name: ESP-NOW Contact Online
+    device_class: connectivity
+    entity_category: diagnostic
+    lambda: |-
+      return id(espnow_contact_seen) &&
+             (millis_64() - id(espnow_contact_last_ms)) < 90000;

@@ -12,6 +12,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 EXPECTED = [
     "baseline",
+    "espnow",
     "external-antenna",
     "low-power",
     "mg24",
@@ -52,6 +53,15 @@ class WorkflowScopeTests(unittest.TestCase):
             text=True,
             timeout=10,
         ).returncode
+
+    def test_espnow_compilation_uses_the_shared_scope(self):
+        workflow = (ROOT / ".github/workflows/check.yml").read_text()
+        job = workflow.split("\n  espnow:\n", 1)[1]
+        self.assertTrue(job.startswith(
+            "    if: ${{ needs.scope.outputs.run == 'true' }}\n"
+            '    needs: ["scope"]\n'
+        ))
+        self.assertIn("firmware/espnow/validate.py .build/espnow --esphome .venv/bin/esphome --compile", job)
 
     def test_complete_full_and_documentation_paths(self):
         self.assertEqual(self.run_gate(self.results()), 0)

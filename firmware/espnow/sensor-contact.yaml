@@ -1,0 +1,24 @@
+# Example: USB-powered ESP32-C3-DevKitM-1 + dry reed contact GPIO4 <-> GND.
+# A closed electrical contact = closed door (OFF); open circuit = open (ON).
+# This is persistent state telemetry, not an exactly-once button/event channel.
+esphome:
+  name: espnow-contact
+
+packages:
+  satellite: !include satellite-base.yaml
+
+binary_sensor:
+  - platform: gpio
+    id: satellite_contact
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+    filters:
+      - delayed_on_off: 25ms
+
+packet_transport:
+  - id: !extend satellite_transport
+    encryption: !secret espnow_contact_key
+    binary_sensors:
+      - id: satellite_contact
+        broadcast_id: contact

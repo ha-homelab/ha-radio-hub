@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ESP-NOW sensors · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/espnow.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#what-changes-and-what-stays-on-its-own-radio">What changes, and what stays on its own radio</a></li><li><a href="#compatible-satellites">Compatible satellites</a></li><li><a href="#build-and-commission">Build and commission</a></li><li><a href="#useful-sensors">Useful sensors</a></li><li><a href="#adding-another-satellite">Adding another satellite</a></li><li><a href="#freshness-replay-protection-and-reboot-behavior">Freshness, replay protection and reboot behavior</a></li><li><a href="#example-remind-me-when-the-door-stays-open">Example: remind me when the door stays open</a></li><li><a href="#powered-first-battery-sleep-is-a-separate-qualification">Powered first; battery sleep is a separate qualification</a></li><li><a href="#coverage-and-concurrent-load-check">Coverage and concurrent-load check</a></li></ul></details><article class="article"><h1 id="esp-now-sensor-satellites">ESP-NOW sensor satellites</h1>
+<p>MC2-D can receive nearby sensor readings over <strong>ESP-NOW</strong> and publish them to
+Home Assistant through its existing Ethernet connection. This is an optional
+firmware profile for the <strong>ESP32-DevKitC-VIE / WROVER-IE</strong> already on the carrier.
+It does not require another hub module, a new antenna, or a change to the carrier
+or FH1 enclosure.</p>
+<p>The implementation and examples live in <a href="espnow-firmware.html">firmware/espnow</a>.
+They target the repository's pinned <strong>ESPHome 2026.10.1 / ESP-IDF 5.5.5</strong>.
+Compilation checks are not a range test: delivery rate, BLE coexistence,
+concurrent hub load and power consumption still need measurements on the
+assembled hardware before this becomes a dependable installation.</p>
+<p><img src="../docs/assets/espnow-topology.svg" alt="ESP-NOW sensor satellites use the main ESP32 and its existing antenna; Ethernet carries their readings to Home Assistant." /></p>
+<h2 id="what-changes-and-what-stays-on-its-own-radio">What changes, and what stays on its own radio</h2>
+<ul>
+<li><strong>Main WROVER-IE:</strong> receives ESP-NOW on its existing 2.4 GHz antenna while
+retaining the Bluetooth proxy and the hub's other functions. Ethernet remains
+the IP connection for Home Assistant, management and hub OTA updates.</li>
+<li><strong>XIAO ESP32C6:</strong> remains the dedicated Thread radio. It is not repurposed as
+an ESP-NOW receiver.</li>
+<li><strong>XIAO MG24:</strong> remains the Zigbee coordinator radio.</li>
+<li><strong>CC1101 and ZAC93:</strong> keep their RF and Z-Wave roles. An ESP-NOW message does
+not automatically become a compatible RF curtain command.</li>
+</ul>
+<p>The optional profile starts the ESP32 Wi-Fi radio in station mode for ESP-NOW,
+without joining an access point or adding a Wi-Fi IP connection. It enables
+software coexistence with Bluetooth. Both share radio airtime; they are not
+two independent receivers. This station-mode choice follows Espressif's
+<a href="https://docs.espressif.com/projects/esp-idf/en/v5.5.5/esp32/api-guides/coexist.html">ESP32 coexistence requirements</a>.</p>
+<h2 id="compatible-satellites">Compatible satellites</h2>
+<p>Use a separate <strong>ESP32-family board with Wi-Fi</strong> and firmware implementing the
+same ESPHome packet transport. The provided examples target the
+<strong>Espressif ESP32-C3-DevKitM-1</strong>, powered through USB;
+classic ESP32, ESP32-S2/S3 and ESP32-C6 can be alternative satellite platforms
+after changing the board, pin assignments and build configuration. This is not
+permission to reuse the hub's occupied pins or its dedicated C6.</p>
+<p>ESP32-H2 has no Wi-Fi radio and is not an ESP-NOW target. ESP8266 firmware,
+vendor ESP-NOW sensors and other projects can use different packet formats;
+sharing the name ESP-NOW does not make them compatible with these examples.
+Tuya WBR3/RTL8710 modules and RF-only curtain motors are not ESP32 satellites.
+See the <a href="https://esphome.io/components/espnow/">ESPHome ESP-NOW component</a>.</p>
+<p>Every node needs its own appropriate power supply and antenna. For boards with
+an external antenna connector, connect the correct antenna before powering
+the radio. Do not buy more hub antennas for this feature: satellites have their
+own radio hardware, while the hub reuses its WROVER-IE antenna.</p>
+<h2 id="build-and-commission">Build and commission</h2>
+<p>Start with <strong>one powered satellite next to the hub</strong>, then test it at its final
+location. Keep the existing private hub configuration and a known-working
+firmware image before changing the hub profile.</p>
+<ol>
+<li>Use the preparation and validation commands in the
+<a href="espnow-firmware.html">ESP-NOW firmware instructions</a>. They create a
+private build directory; generated test credentials and example addresses
+are not your deployment configuration.</li>
+<li>Record the hub's <strong>Wi-Fi station MAC</strong> and each satellite's station MAC.
+The hub's WIZ850io Ethernet MAC, Bluetooth address and C6 Thread address are
+different identities and cannot replace these values. Before the first
+flash, use a USB chip-information readout of the factory station MAC. Once
+running, the ESP-NOW <code>Own address</code> startup log and the hub's <strong>ESP-NOW
+Station MAC</strong> diagnostic entity provide it; <strong>ESP-NOW Channel</strong> shows the
+channel. The examples do not override the factory station MAC.</li>
+<li>Set the <strong>same fixed 2.4 GHz channel</strong> on the hub and every satellite. Choose
+the channel using the local Wi-Fi/Thread/Zigbee plan; do not copy a channel
+just because an example uses it. In the US use channels 1–11. The devices
+do not need to associate with the household Wi-Fi access point.</li>
+<li>Set the hub as each satellite's peer, allow the intended satellite MACs on
+the hub, and set the matching provider name, remote sensor ID and private
+encryption key. A provider name is its exact <code>esphome.name</code> value, not its
+friendly display name. Use a different random key for each satellite.</li>
+<li>Compile with the pinned toolchain. Flash the satellite over USB. Install the
+optional hub profile using the existing
+<a href="firmware.html">MC2-D flashing procedure</a>; preserve
+the correct partition layout, private network credentials and radio pins.</li>
+<li>Confirm the satellite's connection status and readings in the hub's
+Home Assistant ESPHome device. These readings are hub entities; the satellite
+is not automatically a separate native-API device in Home Assistant.</li>
+<li>Disconnect the satellite's power. Confirm that its connection/freshness
+indication expires and that any automation treats stale data as unknown.
+Restore power and confirm that state recovers. Repeat with a hub reboot.</li>
+</ol>
+<p>The example identities are deliberately explicit:</p>
+<ul>
+<li><code>espnow-climate</code>: <code>temperature</code>, <code>humidity</code>, <code>pressure</code>, <code>node_uptime</code>;
+secret <code>espnow_climate_key</code> and peer secret <code>espnow_climate_mac</code>.</li>
+<li><code>espnow-probe</code>: <code>temperature</code>, <code>node_uptime</code>; secret <code>espnow_probe_key</code> and
+peer secret <code>espnow_probe_mac</code>.</li>
+<li><code>espnow-contact</code>: <code>contact</code>, <code>node_uptime</code>; secret <code>espnow_contact_key</code> and
+peer secret <code>espnow_contact_mac</code>.</li>
+</ul>
+<p>Each satellite uses <code>espnow_hub_mac</code> as its destination. Their names must be
+unique: a second room sensor needs a new <code>esphome.name</code>, key, peer entry and
+matching hub entities. Copying a satellite image unchanged to several boards
+would make their readings indistinguishable. Sensor state is sent to the hub
+by unicast; the hub broadcasts its synchronization challenges.</p>
+<p>ESP-NOW is not an IP tunnel. These examples do not provide satellite OTA,
+ESPHome native API, web UI, or remote serial logs through the hub. Update and
+diagnose satellites over USB. Adding ordinary Wi-Fi and OTA to a satellite is
+a separate design: association can move its radio to the access point's channel
+and break a fixed-channel link.</p>
+<h2 id="useful-sensors">Useful sensors</h2>
+<p>These are sensors on <strong>remote satellite boards</strong>, not additional wires on the
+MC2-D carrier. Wire only to pins specified by the selected satellite example;
+board names such as D4 are not universal GPIO numbers. ESP32 GPIOs use 3.3 V
+logic. Confirm a breakout's actual supply, output voltage and pull-ups before
+connecting it.</p>
+<h3 id="room-temperature-humidity-and-pressure">Room temperature, humidity and pressure</h3>
+<p>Use the <a href="../firmware/espnow/sensor-bme280.yaml">BME280 example</a> for a room,
+greenhouse or shed. A BME280 provides all three readings; a BMP280 does not
+measure humidity. Keep the sensor away from the regulator and ESP32 so that
+board heating does not dominate room-temperature readings. A ventilated pod
+is preferable to placing it inside a warm sealed box.</p>
+<p>For the <strong>C3-DevKitM-1 example only</strong>: <code>3V3 → VCC</code>, <code>GND → GND</code>,
+<code>GPIO4 → SDA</code>, <code>GPIO5 → SCL</code>, using a 3.3 V-compatible breakout. The example
+uses address <code>0x76</code> and a 30-second measurement interval.</p>
+<p>I²C can share the satellite's SDA/SCL wires with other compatible 3.3 V sensors,
+provided their addresses do not conflict and the combined pull-ups are
+appropriate. Keep that bus local to the sensor assembly; ESP-NOW carries the
+readings across the room. Use the actual 0x76/0x77 address reported by a scan.
+The <a href="https://esphome.io/components/sensor/bme280/">BME280 component reference</a>
+explains supported configuration.</p>
+<p>BME680 can be a later satellite variant, using its own ESPHome sensor component.
+The hub's existing BME680 remains connected as before. Its gas heater and sensor
+warm-up must be included in the power budget; do not treat gas resistance as a
+calibrated CO₂ measurement.</p>
+<h3 id="door-window-dry-contact-and-motion">Door, window, dry contact and motion</h3>
+<p>Use the <a href="../firmware/espnow/sensor-contact.yaml">contact example</a> for a reed
+switch and magnet. It reports a stable open/closed state, with debounce, and
+periodically refreshes that state. Match the physical contact's polarity during
+commissioning: closing the door must produce the intended Home Assistant state.</p>
+<p>Connect the dry contact between <strong>C3-DevKitM-1 GPIO4 and GND</strong>. The example uses
+an internal pull-up and 25 ms debounce: a closed electrical contact reports
+<code>OFF/closed</code>, and an open circuit reports <code>ON/open</code>. Do not apply a voltage to
+this input from another controller.</p>
+<p>A powered PIR can use the same binary-sensor transport with its own suitable
+GPIO configuration. Check its supply and output level, warm-up period and
+retrigger behavior. Motion pulses can happen between successful packets; this
+transport is not an event recorder. A short-lived event needs a latched state
+or counter and a deliberate clearing/acknowledgement scheme.</p>
+<p>Possible uses include a shed-door reminder, a cabinet light trigger, a mailbox
+flag, or occupancy information alongside the hub's LD2450. They are convenience
+signals, not a substitute for a supervised alarm system.</p>
+<h3 id="freezer-pipe-or-water-tank-temperature">Freezer, pipe or water-tank temperature</h3>
+<p>Use the <a href="../firmware/espnow/sensor-ds18b20.yaml">DS18B20 example</a> with a
+three-wire powered probe and the specified data pull-up. Verify the actual
+probe wire functions; colours alone do not establish the pinout. Discover and
+bind the sensor's 1-Wire address before adding more probes to the bus. See the
+<a href="https://esphome.io/components/sensor/dallas_temp/">Dallas temperature component</a>.</p>
+<p>For the <strong>C3-DevKitM-1 example only</strong>: <code>GPIO4 → DQ</code>, <code>3V3 → VDD</code>,
+<code>GND → GND</code>, and a <strong>4.7 kΩ resistor between DQ and 3V3</strong>. This example is not
+configured for parasite power; it samples one probe every 30 seconds.</p>
+<p>For a freezer, keep the ESP32 and its antenna outside the metal cabinet and run
+only a suitable probe inside without damaging the door seal. For pipe surface
+temperature, secure and insulate the probe against the pipe; a loose probe
+mainly measures air. Use a probe rated for the intended temperature and liquid
+contact. Treat a missing or stale reading as a fault, never as a safe temperature.</p>
+<h3 id="plant-and-soil-moisture">Plant and soil moisture</h3>
+<p>A capacitive probe is a useful future ADC satellite variant. Prefer a coated,
+corrosion-resistant capacitive design over continuously powered exposed
+resistive forks. For example, the manufacturer's
+<a href="https://wiki.dfrobot.com/sen0193">SEN0193 documentation</a> specifies its supply
+requirements and calibration method. Keep the electronics and connector dry;
+“capacitive” does not mean the entire module is waterproof.</p>
+<p>Measure the probe's maximum analog output and use an appropriate ADC input
+range or divider. Calibrate against the intended soil and installation depth;
+a percentage obtained by mapping two voltages is relative moisture, not a
+laboratory volumetric-water measurement. First use it for a watering reminder.
+Automatic irrigation needs separate valve control, acknowledgement and
+fail-safe timeout logic; it is not implemented by the sensor examples.</p>
+<h2 id="adding-another-satellite">Adding another satellite</h2>
+<p>The three examples are explicit enrollments, not automatic discovery. To add a
+second climate node, copy <code>sensor-bme280.yaml</code> in the private build directory,
+give it a unique <code>esphome.name</code> such as <code>espnow-greenhouse</code>, and assign a new
+private key. Add its station MAC to <code>hub-radio.yaml</code>, then add the matching
+provider name/key and remote entities to <code>hub-sensors.yaml</code>. Reuse the transmitted
+IDs (<code>temperature</code>, <code>humidity</code>, <code>pressure</code>, <code>node_uptime</code>), but give the hub's
+entities, heartbeat globals and lambda references unique names/IDs.</p>
+<p>Copy the freshness diagnostics along with the measurements. Rebuild both the
+new satellite and hub, then repeat the power-loss test. Keep the existing
+satellites' names and keys unchanged. Every extra node consumes peer capacity,
+memory and airtime; grow the installation gradually and repeat concurrent-load
+checks rather than assuming an unlimited sensor count.</p>
+<h2 id="freshness-replay-protection-and-reboot-behavior">Freshness, replay protection and reboot behavior</h2>
+<p>There are two layers to configure:</p>
+<ul>
+<li>ESP-NOW peers and a common channel establish the radio path.</li>
+<li>ESPHome packet transport identifies providers and carries sensor values.
+Its per-provider encryption keys, transmitter rolling codes and receiver
+ping/pong challenge protect that application traffic. MAC allowlisting alone
+is not authentication.</li>
+</ul>
+<p>The packet transport encryption is <strong>application-layer XXTEA</strong>, not native
+ESP-NOW CCMP with PMK/LMK keys. Sender names and initial challenges remain
+visible. Keep keys in the private configuration and rotate both ends together.
+It is not an authenticated-encryption construction, and a provider's identity
+is not cryptographically bound to its MAC. Keep this extension to ordinary
+sensor telemetry, rather than using it as a motor or safety-command protocol.
+The upstream <a href="https://esphome.io/components/packet_transport/#security">packet transport security description</a>
+documents its replay protections and limitations.</p>
+<p>After a reboot or challenge change, allow the peers to resynchronize. A
+temporary rejected old challenge does not justify disabling encryption. The
+rolling-code implementation writes its boot counter to flash; frequent wake
+and reboot cycles matter for a future battery design.
+Preserve the satellite's NVS during routine firmware updates. Intentionally
+erasing it can roll the counter back, so an already-running hub can reject the
+new stream. After an intentional erase, verify the enrolled identity and key,
+restart the receiver, and repeat the online/freshness tests.</p>
+<p>A retained last temperature or last <code>closed</code> state does <strong>not</strong> prove that the
+satellite is alive. Use its connection/freshness indication with the value in
+Home Assistant. Loss of contact must not be interpreted as <code>false</code>, <code>closed</code>,
+<code>dry</code>, or zero degrees. Connection status also does not prove that a sensor is
+healthy: a powered satellite can have a broken probe. Test both radio loss and
+sensor failure before relying on an alert.</p>
+<p>The supplied receiver makes those distinctions visible:</p>
+<ul>
+<li><strong>ESP-NOW Climate/Probe/Contact Online</strong> starts <code>OFF</code> at hub boot. It becomes
+<code>ON</code> only after decoded, challenge-checked telemetry supplies a finite uptime,
+and becomes <code>OFF</code> when that heartbeat is at least <strong>90 seconds</strong> old.</li>
+<li><strong>ESP-NOW Climate/Probe/Contact Last Seen Age</strong> is unknown before the first
+accepted heartbeat, then reports its age in seconds at five-second intervals.</li>
+<li>Numeric readings have a <strong>90-second timeout</strong> and become unknown when their
+updates stop. A recently heard node can still have an unknown temperature.</li>
+<li><strong>ESP-NOW Contact</strong> may retain its previous state until packet transport
+invalidates it, approximately <strong>120–135 seconds</strong> after the last accepted
+packet. Gate any contact automation on <strong>ESP-NOW Contact Online = ON</strong> as
+well as the desired contact state. Never wait for <code>closed</code> as a proxy for
+disconnection.</li>
+</ul>
+<p>Use the actual entity IDs shown by your Home Assistant installation; display
+names alone do not establish an entity ID. A useful first automation is a
+notification when an Online entity remains <code>OFF</code>, separate from an alert for
+an open door or out-of-range temperature. These timeouts are for the supplied
+powered examples, not future multi-minute sleeping nodes.</p>
+<h2 id="example-remind-me-when-the-door-stays-open">Example: remind me when the door stays open</h2>
+<p>After checking the reed-switch polarity and disconnect test, create a Home
+Assistant automation and use its <strong>Edit in YAML</strong> view. Replace the two example
+entity IDs below with the IDs of <strong>ESP-NOW Contact</strong> and <strong>ESP-NOW Contact
+Online</strong> in your installation. The friendly display names are not the IDs.</p>
+<pre><code class="language-yaml">alias: ESP-NOW door left open
+description: Notify after two minutes open, only while the satellite is online.
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.esp_now_contact  # Replace with your contact ID.
+    to: &quot;on&quot;
+    for: &quot;00:02:00&quot;
+conditions:
+  - condition: state
+    entity_id: binary_sensor.esp_now_contact_online  # Replace with your Online ID.
+    state: &quot;on&quot;
+  - condition: state
+    entity_id: binary_sensor.esp_now_contact  # Same contact ID as above.
+    state: &quot;on&quot;
+actions:
+  - action: persistent_notification.create
+    data:
+      notification_id: espnow_door_left_open
+      title: Door left open
+      message: The ESP-NOW contact has reported an open door for two minutes.
+mode: single
+</code></pre>
+<p>This creates a notification inside Home Assistant; it does not automatically
+send a phone push or operate a motor. It reacts to a new two-minute open period,
+not every minute while a door stays open. Home Assistant reloads/restarts reset
+the <code>for</code> timer, and a suppressed notification is not automatically retried
+when an offline satellite returns. See
+<a href="https://www.home-assistant.io/docs/automation/trigger/">state triggers</a> and
+<a href="https://www.home-assistant.io/integrations/persistent_notification/">persistent notifications</a>.</p>
+<p>Make a separate <strong>sensor offline</strong> notification triggered when the corresponding
+Online entity remains <code>off</code>, for example for two minutes. It reports missing
+telemetry, not a closed door. Also consider the hub becoming <code>unavailable</code> as a
+separate fault; that is not the same state as a reachable hub reporting an
+offline satellite. Never substitute a motor-close action for the notification:
+the examples do not provide command acknowledgement, travel limits or safe
+motor interlocking.</p>
+<h2 id="powered-first-battery-sleep-is-a-separate-qualification">Powered first; battery sleep is a separate qualification</h2>
+<p>The supplied satellite examples stay awake. That makes them reachable for the
+receiver's challenge and periodic state refresh, and makes initial fault-finding
+repeatable. It also means they are not promised to run for years on a battery.</p>
+<p>A sleeping satellite cannot receive while asleep. A useful low-power design
+must wake, obtain a valid sensor sample, synchronize the transport, transmit,
+and only then sleep. A MAC-level send result does not prove that Home Assistant
+received a valid application value. A brief fixed delay followed by deep sleep
+is not a reliable delivery protocol.</p>
+<p>For periodic environmental readings, the receiver's freshness window must
+cover the planned sleep interval and reasonable retries. For door or PIR wake,
+check the selected ESP32 variant's wake-capable pins and active level; an
+already-active input can cause immediate repeated wakeups. See
+<a href="https://esphome.io/components/deep_sleep/">ESPHome deep sleep</a>.</p>
+<p>Measure the <strong>whole satellite</strong>: regulator, USB-UART bridge, LEDs, sensor and
+radio startup can dominate consumption. Verify operation at the battery's
+lowest voltage, include battery protection/charging where needed, and keep a
+physical USB recovery route. No deep-sleep battery-life claim or battery
+charging circuit is part of this release.</p>
+<h2 id="coverage-and-concurrent-load-check">Coverage and concurrent-load check</h2>
+<ol>
+<li>Begin a log with the firmware versions, channel, satellite location and
+antenna orientation. Check timestamps and intervals of received readings.</li>
+<li>Test ordinary and closed-door locations, including the furthest room. Do
+not infer whole-house coverage from floor area or antenna gain alone.</li>
+<li>Repeat while the Bluetooth proxy has its expected connections and the
+Zigbee, Thread, RF and Z-Wave paths are active. Watch hub free internal heap,
+largest free block, restarts and delayed or missing updates.</li>
+<li>Remove satellite power, disconnect its sensor, restart the hub and restore
+Ethernet independently. Verify the intended alert and recovery for each.</li>
+<li>If the link is unreliable, improve placement, channel planning and report
+intervals before increasing transmit power or adding more sensors.</li>
+</ol>
+<p>ESP-NOW does not automatically form a mesh or relay through other satellites.
+The current code is for sensor state delivery. Motors, locks, heaters and valves
+need a separately reviewed command protocol with sequence numbers,
+acknowledgements, bounded retries, local limits and a safe state on link loss.
+Do not connect a received boolean directly to a curtain motor relay and assume
+transport encryption provides those control guarantees.</p>
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>
