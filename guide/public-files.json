@@ -5,6 +5,7 @@
     ".github/dependency-review-config.yml",
     ".github/workflow-tests/test_docs_scope.py",
     ".github/workflows/auto-approve.yml",
+    ".github/workflows/auto-merge.yml",
     ".github/workflows/check.yml",
     ".github/workflows/codeql.yml",
     ".github/workflows/coderabbit-review.yml",
