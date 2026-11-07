@@ -10,7 +10,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
+  scope:
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@04d1a895fac608e5c972e49b127a1a792d7ad725 # main
+    with:
+      force-full: false
   baseline:
+    needs: ["scope"]
     name: Modular prototype
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 30
@@ -30,6 +35,7 @@ jobs:
           python3 -m unittest discover -s hardware/parts -p 'test_*.py'
           python3 -m unittest discover -s software -p 'test_*.py'
       - name: Install pinned prototype build dependencies
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: |
           python3 -m venv .venv
           .venv/bin/pip install -r firmware/requirements.txt -r mechanical/requirements.txt -r mechanical/diy/requirements.txt
@@ -42,28 +48,39 @@ jobs:
           python3 -m unittest discover -s hardware/external-antenna -p 'test_*.py'
           python3 hardware/external-antenna/power_design.py
       - name: Check DIY print scale, orientation and source freshness
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: |
           .venv/bin/python -m unittest discover -s mechanical/diy -p 'test_*.py'
           .venv/bin/python mechanical/diy/build.py --check
       - name: RF contract and migration regressions
+        if: ${{ needs.scope.outputs.run == 'true' }}
         env:
           RF_CPP_SANITIZERS: "1"
         run: .venv/bin/python -m unittest discover -s tests -p 'test_*.py'
       - name: Validate and compile the combined Ethernet sensor firmware
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --compile
       - name: Validate and compile RF Airbridge over Ethernet
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: |
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml
           .venv/bin/python firmware/validate.py --esphome .venv/bin/esphome --config rf-ethernet.yaml --migration-fixture --compile
       - name: Check committed CAD against its source and validate meshes
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: |
           .venv/bin/python -m unittest discover -s mechanical -p 'test_*.py'
           .venv/bin/python mechanical/build.py --check
       - name: Build the public release package from committed sources
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: python3 tools/package_release.py --version v0.0.0-ci --output .build/ci-release
       - name: Build the Linux serial service image
+        if: ${{ needs.scope.outputs.run == 'true' }}
         run: docker build -t ha-radio-hub/ser2net:ci software/ser2net
+      - name: Test documentation-scope gate contracts
+        run: python3 .github/workflow-tests/test_docs_scope.py
   low-power:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     name: Single-host low-power prototype
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
@@ -108,6 +125,8 @@ jobs:
           .venv/bin/python -m unittest discover -s mechanical/low-power -p 'test_*.py'
           .venv/bin/python mechanical/low-power/build.py --check
   pcb:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     name: Carrier, integrated and DIY PCB validation
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 15
@@ -154,29 +173,40 @@ jobs:
             '
   check:
     name: check
-    if: always()
-    needs: [baseline, low-power, mg24, pcb, module-carrier, external-antenna, espnow]
+    if: ${{ always() }}
+    needs: ["baseline", "espnow", "external-antenna", "low-power", "mg24", "module-carrier", "pcb", "scope"]
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 2
     steps:
-      - name: Require all prototype validations
+      - name: Require the exact selected validation path
         env:
-          BASELINE_RESULT: ${{ needs.baseline.result }}
-          LOW_POWER_RESULT: ${{ needs.low-power.result }}
-          MG24_RESULT: ${{ needs.mg24.result }}
-          PCB_RESULT: ${{ needs.pcb.result }}
-          MC1_RESULT: ${{ needs.module-carrier.result }}
-          MC2_RESULT: ${{ needs.external-antenna.result }}
-          ESPNOW_RESULT: ${{ needs.espnow.result }}
+          RESULTS: ${{ toJSON(needs) }}
+        shell: python3 {0}
         run: |
-          test "$BASELINE_RESULT" = success
-          test "$LOW_POWER_RESULT" = success
-          test "$MG24_RESULT" = success
-          test "$PCB_RESULT" = success
-          test "$MC1_RESULT" = success
-          test "$MC2_RESULT" = success
-          test "$ESPNOW_RESULT" = success
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          expected = ['baseline', 'espnow', 'external-antenna', 'low-power', 'mg24', 'module-carrier', 'pcb', 'scope']
+          always = ['baseline', 'scope']
+          if set(results) != set(expected):
+              raise SystemExit('Validation job inventory differs')
+          scope = results['scope']
+          outputs = scope.get('outputs', {})
+          run = outputs.get('run')
+          if scope['result'] != 'success' or run not in {'true', 'false'}:
+              raise SystemExit('Change scope did not succeed')
+          if run == 'false' and outputs.get('reason') != 'documentation-only':
+              raise SystemExit('Unproven documentation-only scope')
+          failed = {}
+          for name, value in results.items():
+              wanted = 'success' if run == 'true' or name in always else 'skipped'
+              if value['result'] != wanted:
+                  failed[name] = {'actual': value['result'], 'expected': wanted}
+          if failed:
+              raise SystemExit(f'Validation did not pass: {failed}')
+
   mg24:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     name: MG24 Zigbee NCP and bootloader
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
@@ -232,6 +262,8 @@ jobs:
           done
 
   module-carrier:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     name: MC1 historical regression
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
@@ -278,6 +310,8 @@ jobs:
           python "$GITHUB_WORKSPACE/firmware/module-carrier/verify_h2.py" "$GITHUB_WORKSPACE/.build/mc1-h2"
 
   external-antenna:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     name: MC2-D classic ESP32 and C6 RCP
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
@@ -338,6 +372,8 @@ jobs:
           retention-days: 7
 
   espnow:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     name: ESP-NOW complete hub and sensor examples
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
