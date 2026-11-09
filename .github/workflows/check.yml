@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   scope:
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@ecb29d724aee35aba541f7a0a379dfef424c088e # main
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@d4b21d156067ce58f89f89149bfad545e1889ae7 # main
     with:
       force-full: false
   baseline:
