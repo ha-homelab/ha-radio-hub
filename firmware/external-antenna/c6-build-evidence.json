@@ -68,11 +68,11 @@
   "artifacts": {
     "esp_ot_rcp.bin": {
       "bytes": 248560,
-      "sha256": "5c8f8689f8abc1ac4ccc779bf23e9b86912837ef72f781a37b99a343db4e32bd"
+      "sha256": "53825e55f49edada941aece1c1da1a8e1653295994fe30a2ebf10d8a581057f2"
     },
     "bootloader/bootloader.bin": {
       "bytes": 17168,
-      "sha256": "7e3b08a4af730ddde37d4eedbf173a5d801121285c01ecdae792737cecbb75f3"
+      "sha256": "7686305193dc33dbd44cf8dc1aa56fb5ca9c6a7b1b312be14a6429b724879ccc"
     },
     "partition_table/partition-table.bin": {
       "bytes": 3072,
@@ -87,17 +87,5 @@
     "c6_identity.py": "d25b4971350ba9591a32b586aaee71bc02c66fa78c9aa1c1384d9fac5c49a689",
     "xiaoc6_antenna.c": "0efa74fe67470637ad9717c061a96d07ef12e9a01681d76d915ed70630f95e29",
     "xiaoc6_antenna.h": "68608efdb7d0730b398464e75366c1df8663664463c4925912d9ebb60f9bc655"
-  },
-  "ci_provenance": {
-    "source_commit": "8b84f851fc91fe423555b1f5252e2ac329d6bf06",
-    "source_tree": "2911f13ad65c7e0858a52ec3ed989e24d9075a4d",
-    "pull_request_head": "9e91ff268c43eb96f17da2ef1c6a034efd8ccac1",
-    "workflow_run": 41429368976,
-    "job": 125224449959,
-    "job_conclusion": "success",
-    "job_url": "https://github.com/ha-homelab/ha-radio-hub/actions/runs/41429368976/job/125224449959",
-    "captured_at": "2026-11-02T10:39:49.669723+00:00",
-    "log_sha256": "6b17454a1a304ba4d3c81c57198c9070fbd7d6668204c0cdc2e43236fef347cd",
-    "physical_validation": "not_run"
   }
 }
