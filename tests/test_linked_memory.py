@@ -26,6 +26,28 @@ class LinkedMemoryTests(unittest.TestCase):
         self.assertEqual(result["ram"], {"used": 100432, "size": 124580})
         self.assertEqual(result["iram"], {"used": 110000, "size": 131072})
 
+    def test_json2_12_image_size_does_not_change_memory_measurements(self):
+        # Upstream v1.8.0 / esp_idf_size/ng/format_json.py adds only
+        # total_size and version 1.2 to the 1.1 summary layout.
+        data = copy.deepcopy(FIXTURE)
+        data.update(version="1.2", total_size=1494196)
+        self.assertEqual(self.read(data, require_iram=True),
+                         self.read(FIXTURE, require_iram=True))
+        data["layout"][1]["name"] = "DIRAM"
+        data["layout"].pop()
+        self.assertEqual(self.read(data)["ram"],
+                         {"used": 100432, "size": 124580})
+        with self.assertRaisesRegex(ValueError, "Missing.*IRAM"):
+            self.read(data, require_iram=True)
+
+    def test_unknown_json2_versions_fail_with_valid_layout(self):
+        for version in (None, "1.0", "1.3", "2.0", 1.2, ["1.2"]):
+            data = copy.deepcopy(FIXTURE)
+            data["version"] = version
+            with self.subTest(version=version), self.assertRaisesRegex(
+                    ValueError, "Unknown esp-idf-size json2 schema"):
+                self.read(data, require_iram=True)
+
     def test_old_raw_report_retains_same_measurements(self):
         raw = {"memory_types": {region["name"]: {
             "used": region["used"], "size": region["total"]}
@@ -54,13 +76,16 @@ class LinkedMemoryTests(unittest.TestCase):
                 self.read(data)
 
     def test_invalid_or_inconsistent_totals_fail(self):
-        for key, value in (("used", -1), ("used", 124581), ("used", True),
-                           ("used", float("inf")), ("used", float("nan")),
-                           ("total", 0), ("total", "124580"), ("free", 24149)):
-            data = copy.deepcopy(FIXTURE)
-            data["layout"][1][key] = value
-            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
-                self.read(data)
+        for version in ("1.1", "1.2"):
+            for key, value in (("used", -1), ("used", 124581), ("used", True),
+                               ("used", float("inf")), ("used", float("nan")),
+                               ("total", 0), ("total", "124580"), ("free", 24149)):
+                data = copy.deepcopy(FIXTURE)
+                data["version"] = version
+                data["layout"][1][key] = value
+                with self.subTest(version=version, key=key, value=value), self.assertRaises(
+                        ValueError):
+                    self.read(data)
 
 
 if __name__ == "__main__":

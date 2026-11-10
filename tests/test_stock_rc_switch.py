@@ -43,7 +43,7 @@ template<typename T> class RemoteReceiverTrigger {};
 class StockRCSwitchTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if importlib.metadata.version("esphome") != "2026.10.1":
+        if importlib.metadata.version("esphome") != "2026.10.2":
             raise RuntimeError("Run with the pinned firmware/requirements.txt environment")
         spec = importlib.util.find_spec("esphome")
         installed = Path(next(iter(spec.submodule_search_locations))) / "components/remote_base"

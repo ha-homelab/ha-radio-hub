@@ -15,3 +15,5 @@ MC2-B adds the classic ESP32 build target with the same non-DMA lifecycle. The r
 The 2026.10.0 compatibility port retains this receiver C++ implementation. Its Python generator now uses `remote_base.add_listener` and `remote_base.add_dumper`, which reserve the required fixed storage slots in ESPHome 2026.10.0. The exact version, target and non-DMA guards remain. Generated-source regressions cover both ESP32 and ESP32-S3 with two triggers, one binary sensor and two dumpers. See [the upgrade review](../rf_tx_startup/ESPHOME-2026.10.md).
 
 The 2026.10.1 patch qualification changes only the exact host-version guard: upstream receiver and remote-base files are unchanged, and the local receiver C++ files retain their earlier bytes. See the patch qualification section in the [upgrade review](../rf_tx_startup/ESPHOME-2026.10.md).
+
+The 2026.10.2 qualification again advances only the exact host-version guard; the official `.1...2` comparison leaves all receiver and remote-base sources unchanged. The local C++ lifecycle patch is unchanged. See the 2026.10.2 section in the [upgrade review](../rf_tx_startup/ESPHOME-2026.10.md).

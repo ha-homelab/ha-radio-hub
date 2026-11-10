@@ -1,5 +1,5 @@
-aioesphomeapi==46.3.0
-esptool==5.3.1
-universal-silabs-flasher==1.1.0
-bellows==1.1.0
-zigpy==2.3.0
+aioesphomeapi==46.28.0
+esptool==5.6.0
+universal-silabs-flasher==1.3.0
+bellows==1.2.1
+zigpy==2.4.1

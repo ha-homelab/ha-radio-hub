@@ -69,7 +69,7 @@ The [DFRobot module documentation](https://wiki.dfrobot.com/dfr0627), [official 
 
 ## Reproduce without flashing
 
-Install the pinned ESPHome 2026.10.1 environment first. The preparation script makes a disposable copy, retrieves only the pinned REST server dependency, and generates temporary credentials. It never overwrites deployment secrets or uploads firmware.
+Install the pinned ESPHome 2026.10.2 environment first. The preparation script makes a disposable copy, retrieves only the pinned REST server dependency, and generates temporary credentials. It never overwrites deployment secrets or uploads firmware.
 
 ```sh
 python3 firmware/module-carrier/validate.py /tmp/mc1-build \

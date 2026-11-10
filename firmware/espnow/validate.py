@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 HERE = Path(__file__).resolve().parent
-ESPHOME_VERSION = "2026.10.1"
+ESPHOME_VERSION = "2026.10.2"
 PROFILES = {
     "hub": ("hub.yaml", "mc2-classic-hub"),
     "climate": ("sensor-bme280.yaml", "espnow-climate"),

@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   scope:
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@ecb29d724aee35aba541f7a0a379dfef424c088e # main
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@d4b21d156067ce58f89f89149bfad545e1889ae7 # main
     with:
       force-full: false
   baseline:
@@ -315,6 +315,8 @@ jobs:
     name: MC2-D classic ESP32 and C6 RCP
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
+    env:
+      KICAD_IMAGE: kicad/kicad:10.0.6@sha256:18693567392b80da435f9fa952ce3a3e534c66eb5a6033f5b9c80aa3b19dd3ec
     steps:
       - name: Audit runner network access
         uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
@@ -368,6 +370,38 @@ jobs:
           name: mc2-compilation-evidence
           path: .build/mc2-evidence/
           include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Fetch pinned official KiCad image for MC2 fabrication export
+        run: docker pull "$KICAD_IMAGE"
+      - name: Export MC2 fabrication package with current compilation evidence
+        run: |
+          MC2_FAB_SOURCE=$(mktemp -d "$RUNNER_TEMP/mc2-fabrication.XXXXXX")
+          trap 'rm -rf "$MC2_FAB_SOURCE"' EXIT
+          git archive HEAD | tar -x -C "$MC2_FAB_SOURCE"
+          cp .build/mc2-evidence/build-evidence.json "$MC2_FAB_SOURCE/firmware/external-antenna/"
+          cp .build/mc2-evidence/c6-build-evidence.json "$MC2_FAB_SOURCE/firmware/external-antenna/"
+          mkdir .build/mc2-fabrication-evidence
+          cp .build/mc2-evidence/build-evidence.json .build/mc2-fabrication-evidence/
+          cp .build/mc2-evidence/c6-build-evidence.json .build/mc2-fabrication-evidence/
+          cp .build/mc2-evidence/source-sha.txt .build/mc2-fabrication-evidence/
+          docker run --rm --network none --user "$(id -u):$(id -g)" \
+            --env HOME=/tmp --env QT_QPA_PLATFORM=offscreen \
+            --mount "type=bind,source=$MC2_FAB_SOURCE,target=/source,readonly" \
+            --mount "type=bind,source=$GITHUB_WORKSPACE/.build/mc2-fabrication-evidence,target=/output" \
+            --workdir /tmp "$KICAD_IMAGE" bash -euc '
+              cp -R /source /tmp/mc2-source
+              cd /tmp/mc2-source
+              python3 hardware/external-antenna/fabrication/package.py --cli kicad-cli
+              cp hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip /output/
+              cp hardware/external-antenna/fabrication/manifest.json /output/
+            '
+      - name: Preserve source-bound MC2 fabrication export
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mc2-fabrication-evidence
+          path: .build/mc2-fabrication-evidence/
           if-no-files-found: error
           retention-days: 7
 

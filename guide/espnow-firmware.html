@@ -41,7 +41,7 @@ already assigned. Existing ESP32/S2/S3/C6 boards can be adapted after checking t
 board definition and actual free pins. ESP32-H2 has no Wi-Fi radio for ESP-NOW.</p>
 <h2 id="build-and-enroll">Build and enroll</h2>
 <p>Use the repository's pinned <a href="../firmware/requirements.txt">requirements</a>, currently
-ESPHome 2026.10.1 / ESP-IDF 5.5.5. Prepare outside the checkout:</p>
+ESPHome 2026.10.2 / ESP-IDF 5.5.5. Prepare outside the checkout:</p>
 <pre><code class="language-sh">python3 firmware/espnow/prepare.py ~/.codex/artifacts/ha-radio-hub-espnow/build
 esphome config ~/.codex/artifacts/ha-radio-hub-espnow/build/firmware/espnow/hub.yaml
 esphome compile ~/.codex/artifacts/ha-radio-hub-espnow/build/firmware/espnow/hub.yaml
@@ -135,8 +135,8 @@ radio capacity or house-wide coverage under every load.</p>
 <ul>
 <li><a href="https://esphome.io/components/espnow/">ESPHome ESP-NOW</a></li>
 <li><a href="https://esphome.io/components/packet_transport/">ESPHome packet transport</a></li>
-<li><a href="https://github.com/esphome/esphome/blob/2026.10.1/esphome/components/espnow/espnow_component.cpp">Pinned ESP-NOW implementation</a></li>
-<li><a href="https://github.com/esphome/esphome/blob/2026.10.1/esphome/components/packet_transport/packet_transport.cpp">Pinned packet transport implementation</a></li>
+<li><a href="https://github.com/esphome/esphome/blob/2026.10.2/esphome/components/espnow/espnow_component.cpp">Pinned ESP-NOW implementation</a></li>
+<li><a href="https://github.com/esphome/esphome/blob/2026.10.2/esphome/components/packet_transport/packet_transport.cpp">Pinned packet transport implementation</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/v5.5.5/esp32/api-guides/coexist.html">ESP-IDF 5.5.5 radio coexistence</a></li>
 </ul>
 </article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.

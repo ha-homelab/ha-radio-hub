@@ -67,7 +67,7 @@ class RFStartupConfigTest(unittest.TestCase):
         self.context = {"cv": types.SimpleNamespace(Invalid=ValueError),
                         "fv": types.SimpleNamespace(full_config=types.SimpleNamespace(get=lambda: self.full)),
                         "esp32": types.SimpleNamespace(get_esp32_variant=lambda: "ESP32", VARIANT_ESP32="ESP32", VARIANT_ESP32S3="ESP32S3"),
-                        "__version__": "2026.10.1", "SOURCE_SHA256": "reviewed-source", "CC1101_SHA256": "reviewed-source",
+                        "__version__": "2026.10.2", "SOURCE_SHA256": "reviewed-source", "CC1101_SHA256": "reviewed-source",
                         "Path": Mock(), "remote_transmitter": types.SimpleNamespace(__file__="unused"),
                         "cc1101": types.SimpleNamespace(__file__="unused"),
                         "hashlib": types.SimpleNamespace(sha256=lambda _: self.digest)}

@@ -9,7 +9,10 @@ def read_memory_report(path: Path, *, require_iram: bool = False) -> dict:
         raise ValueError("Expected a linker memory report object")
     regions = {}
     if "layout" in data and "memory_types" not in data:
-        if data.get("version") != "1.1" or not isinstance(data["layout"], list):
+        # esp-idf-size 1.8.0 adds total_size in json2 1.2; the regional
+        # measurements retain the 1.1 layout and must pass the same checks.
+        if (data.get("version") not in ("1.1", "1.2")
+                or not isinstance(data["layout"], list)):
             raise ValueError("Unknown esp-idf-size json2 schema")
         for region in data["layout"]:
             if not isinstance(region, dict) or not isinstance(region.get("name"), str):

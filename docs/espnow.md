@@ -7,7 +7,7 @@ It does not require another hub module, a new antenna, or a change to the carrie
 or FH1 enclosure.
 
 The implementation and examples live in [firmware/espnow](../firmware/espnow/).
-They target the repository's pinned **ESPHome 2026.10.1 / ESP-IDF 5.5.5**.
+They target the repository's pinned **ESPHome 2026.10.2 / ESP-IDF 5.5.5**.
 Compilation checks are not a range test: delivery rate, BLE coexistence,
 concurrent hub load and power consumption still need measurements on the
 assembled hardware before this becomes a dependable installation.
