@@ -33,7 +33,7 @@ board, memory size, antenna routing, carrier wiring or partition compatibility.
 
 Use a reviewed checkout or complete source package on the **build computer**.
 Follow [the host build prerequisites](../firmware/external-antenna/README.md#reproduce-the-host-build)
-with **ESPHome 2026.10.1 and ESP-IDF 5.5.5**. These requirements apply to the
+with **ESPHome 2026.10.2 and ESP-IDF 5.5.5**. These requirements apply to the
 builder; they do not need to be installed on the USB laptop.
 
 1. From the repository root, prepare a new private directory:
