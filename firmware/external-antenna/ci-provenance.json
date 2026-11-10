@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source_commit": "ffe5c2b7f90d4a138392a0d8f4693e26e62ca3da",
+  "source_tree": "7a7704335eab89cb0e2140d15336def45441b519",
+  "pull_request_head": "28b125af5c179ec4401e7bf9afabc49c22fe860a",
+  "workflow_run": 42899915881,
+  "job": 130122989914,
+  "job_conclusion": "success",
+  "job_url": "https://github.com/ha-homelab/ha-radio-hub/actions/runs/42899915881/job/130122989914",
+  "artifact_id": 13803101444,
+  "artifact_name": "mc2-fabrication-evidence",
+  "artifact_archive_digest": "sha256:4850bf76297e4cd76e89440ad1cffd21d398c1012985b8faa2eaf2e6409cdacb",
+  "receipts_sha256": {
+    "build-evidence.json": "f234c48ed3d374a8fe73c19e9019c94cc845d1b34fb1e755f62616b5a20e84e6",
+    "c6-build-evidence.json": "934300157bf865119687e9c7f1dda204d69f64afe7a070ccf0f376c1b6120e59",
+    "manifest.json": "81a146f53c32e4357d3fe5d8586c0bb47649319549a6d3595926cd79eb8e0dbf",
+    "MC2-D-prototype-gerbers.zip": "6feac869d4a6fd322fd71dfba9047df67f42d6d87ae580380c15609cb2d1257a"
+  },
+  "physical_validation": "not_run",
+  "note": "Raw compilation receipts and native export were copied byte-for-byte from this GitHub artifact after API archive digest, source tree and all recipe/source hashes were verified. Artifact download has limited retention; the committed receipt hashes preserve its binding."
+}
