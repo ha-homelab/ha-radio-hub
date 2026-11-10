@@ -35,7 +35,7 @@ the main ESP32's Wi-Fi radio alongside Bluetooth without associating with an
 access point. No carrier modification is needed. See the
 [sensor and commissioning guide](../../docs/espnow.md) for its limits.
 
-Use ESPHome **2026.10.1**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
+Use ESPHome **2026.10.2**, ESP-IDF **5.5.5**, and an empty output directory. Preparation copies sources, creates disposable credentials and retrieves only the pinned REST component.
 
 ```sh
 python3 firmware/external-antenna/validate.py /tmp/mc2-classic-build \

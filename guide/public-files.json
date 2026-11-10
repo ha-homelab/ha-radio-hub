@@ -1099,6 +1099,7 @@
     "software/render_config.py",
     "software/ser2net/Dockerfile",
     "software/test_render_config.py",
+    "software/test_versions.py",
     "software/versions.json",
     "tests/README.md",
     "tests/fixtures/esp-idf-size-json2.json",

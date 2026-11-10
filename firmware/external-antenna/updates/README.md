@@ -18,7 +18,7 @@ python3 firmware/external-antenna/updates/update.py c6 \
   --report /path/to/c6-report.json
 ```
 
-For the authorized update, set `MC1_API_KEY` to the deployed encrypted ESPHome API key (the environment variable name is retained for the existing tooling) and add `--mac <expected-base-mac> --execute`. Do not place the key in command arguments. The tool persists C6 maintenance, restarts the hub once, opens a token-authenticated UART session, invokes esptool for **C6 app 0x10000 only**, closes the tunnel and retries Thread. Bootloader, partitions, eFuses and existing host datasets are not written. An interrupted update leaves Thread in maintenance; restore a matching C6 application and retry. DevKitC USB-UART recovery and local C6 BOOT/RESET are the fallback when host service is unavailable.
+For the authorized update, set `MC2_API_KEY` to the deployed encrypted ESPHome API key and add `--mac <expected-base-mac> --execute`. Do not place the key in command arguments. The tool persists C6 maintenance, restarts the hub once, opens a token-authenticated UART session, invokes esptool for **C6 app 0x10000 only**, closes the tunnel and retries Thread. Bootloader, partitions, eFuses and existing host datasets are not written. An interrupted update leaves Thread in maintenance; restore a matching C6 application and retry. DevKitC USB-UART recovery and local C6 BOOT/RESET are the fallback when host service is unavailable.
 
 ## Zigbee application
 

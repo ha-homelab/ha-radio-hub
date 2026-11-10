@@ -28,7 +28,7 @@ Choose a new output directory outside the source `firmware/` tree. Omitting `--o
 
 The preparer exports the exact upstream commit, carries its Apache-2.0 license, and applies checked patches to the REST component. It generates **disposable** API, OTA and MQTT credentials; the broker is a documentation address. The result verifies compilation, not household configuration. Do not flash these build credentials as a finished installation.
 
-Pinned host versions are ESPHome **2026.10.1**, ESP-IDF **5.5.5**, and the ESP Thread BR commit above. ESP Thread BR's reference example was based on IDF 5.5.4; this integration uses IDF's 5.5.5 OpenThread stack and compiles the pinned REST implementation against it. Configuration fails on unsupported host versions.
+Pinned host versions are ESPHome **2026.10.2**, ESP-IDF **5.5.5**, and the ESP Thread BR commit above. ESP Thread BR's reference example was based on IDF 5.5.4; this integration uses IDF's 5.5.5 OpenThread stack and compiles the pinned REST implementation against it. Configuration fails on unsupported host versions.
 
 Build products are under:
 

@@ -110,7 +110,7 @@ def verify(profile: Path, *, recipe_directory: Path | None = None):
     source_hashes={}
     for filename in ("low_power_otbr.cpp","low_power_otbr.h","thread_guard.h","rcp_probe.h","uart_update.cpp","update_session.h"):
         source_hashes[filename]=hashlib.sha256((root/"src/esphome/components/low_power_otbr"/filename).read_bytes()).hexdigest()
-    result={"compiled":True,"hardware_tested":False,"esphome":"2026.10.1","esp_idf":"5.5.5",
+    result={"compiled":True,"hardware_tested":False,"esphome":"2026.10.2","esp_idf":"5.5.5",
             "profile":"MC2-D classic ESP32 external antenna", "board":"ESP32-DevKitC-VIE",
             "memory_report":json.loads((root/"build/esp_idf_size.json").read_text()),
             "rf_tx_startup":startup_checks,"sdkconfig_verified":required,"artifacts":artifacts,"c6_service_gpio":service,

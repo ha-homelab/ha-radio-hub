@@ -20,6 +20,28 @@ update = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(update)
 from c6_identity import APP_VERSION
 
+class UpdateDependencyTests(unittest.TestCase):
+    def test_requirements_environment_passes_each_execution_gate(self):
+        # Read the install contract independently so a requirements-only bump
+        # cannot silently leave both supported radio updates unusable.
+        pins = dict(line.split("==", 1) for line in
+                    (ROOT / "updates/requirements.txt").read_text().splitlines()
+                    if line and not line.startswith("#"))
+        for kind, packages in (("c6", {"aioesphomeapi", "esptool"}),
+                               ("mg24", {"universal-silabs-flasher", "bellows", "zigpy"})):
+            with self.subTest(kind=kind), patch.object(
+                    update.importlib.metadata, "version", side_effect=pins.__getitem__) as version:
+                update.check_versions(kind)
+                self.assertEqual({call.args[0] for call in version.call_args_list}, packages)
+
+    def test_unpinned_toolchain_is_rejected(self):
+        for kind in ("c6", "mg24"):
+            with self.subTest(kind=kind), patch.object(
+                    update.importlib.metadata, "version", return_value="0.0.0"):
+                with self.assertRaisesRegex(ValueError, "updates/requirements.txt"):
+                    update.check_versions(kind)
+
+
 class UpdatePolicyTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

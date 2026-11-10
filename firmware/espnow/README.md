@@ -40,7 +40,7 @@ board definition and actual free pins. ESP32-H2 has no Wi-Fi radio for ESP-NOW.
 ## Build and enroll
 
 Use the repository's pinned [requirements](../requirements.txt), currently
-ESPHome 2026.10.1 / ESP-IDF 5.5.5. Prepare outside the checkout:
+ESPHome 2026.10.2 / ESP-IDF 5.5.5. Prepare outside the checkout:
 
 ```sh
 python3 firmware/espnow/prepare.py ~/.codex/artifacts/ha-radio-hub-espnow/build
@@ -158,6 +158,6 @@ Primary implementation references:
 
 - [ESPHome ESP-NOW](https://esphome.io/components/espnow/)
 - [ESPHome packet transport](https://esphome.io/components/packet_transport/)
-- [Pinned ESP-NOW implementation](https://github.com/esphome/esphome/blob/2026.10.1/esphome/components/espnow/espnow_component.cpp)
-- [Pinned packet transport implementation](https://github.com/esphome/esphome/blob/2026.10.1/esphome/components/packet_transport/packet_transport.cpp)
+- [Pinned ESP-NOW implementation](https://github.com/esphome/esphome/blob/2026.10.2/esphome/components/espnow/espnow_component.cpp)
+- [Pinned packet transport implementation](https://github.com/esphome/esphome/blob/2026.10.2/esphome/components/packet_transport/packet_transport.cpp)
 - [ESP-IDF 5.5.5 radio coexistence](https://docs.espressif.com/projects/esp-idf/en/v5.5.5/esp32/api-guides/coexist.html)
