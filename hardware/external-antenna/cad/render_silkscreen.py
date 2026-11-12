@@ -22,7 +22,9 @@ ET.register_namespace('', NS)
 
 
 def render(cli):
-    assert subprocess.check_output([cli, 'version'], text=True).strip() == '10.0.6'
+    version = subprocess.check_output([cli, 'version'], text=True).strip()
+    if version != '10.0.6':
+        raise ValueError('Rendering requires pinned KiCad 10.0.6')
     qr = json.loads((ROOT / 'silkscreen-qr.json').read_text())
     design = json.loads((ROOT / 'design.json').read_text())
     x1, y1, x2, y2 = design['mechanics']['service_cutout']['bounds_mm']

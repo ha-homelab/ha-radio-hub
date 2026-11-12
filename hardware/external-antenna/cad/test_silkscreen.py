@@ -1,5 +1,4 @@
 """Artwork-only guard must catch electrical/mechanical changes, not just traces."""
-import json
 from pathlib import Path
 import tempfile
 import unittest
