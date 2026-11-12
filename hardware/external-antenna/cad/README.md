@@ -1,5 +1,11 @@
 # MC2-D classic ESP32 external-antenna carrier
 
+**S1 assembly silkscreen:** [front/back previews and reproduction](../../../docs/pcb-silkscreen.md).
+`silkscreen.py` adds ordinary white legends and the public-guide QR during
+`finalize.py`. The electrical revision remains MC2-D. Run
+`python3 silkscreen_check.py` to require exact non-silkscreen native equality
+with the preceding board; clean reproduction also compares the artwork.
+
 MC2 is a **100 × 100 mm, two-layer, all-through-hole engineering prototype**. All 19 fitted components face the room; two additional recovery footprints are unpopulated. There are no controller bodies above another component's solder tails and no carrier RF traces. Three independent factory RF connectors feed three external 2.4 GHz antennas through 50 Ω coax. This is a prototype fabrication candidate, not a production-qualified design or a claim of measured coverage.
 
 **Power assembly:** J2 connects the offboard **RECOM R-78K3.3-1.0** plus its **27 µF input capacitor**. J2 remains a generic four-wire harness, not a regulator footprint. The native model now names RECOM; do not order the superseded Pololu. [Power design](../power-design.json) and [assembly guide](../../../docs/full-hub-assembly.md#power-and-ethernet).

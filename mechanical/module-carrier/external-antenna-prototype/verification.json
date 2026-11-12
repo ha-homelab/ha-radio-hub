@@ -3,7 +3,7 @@
   "status": "printable_engineering_prototype_not_fit_qualified",
   "units": "mm",
   "native_source_sha256": {
-    "mc2.kicad_pcb": "4694d861ea868139afd5458115d5256baef9127a0fc1f72c28d6959b10868bbf",
+    "mc2.kicad_pcb": "ae2e295a9fc489e4b865d4b6e51db03ca9e0acea5d049c7bbe75066bda4097f0",
     "design.json": "c10324f97bf40f935b147475a2b01e770f177dd5f43912efb53dfbabe115cba5"
   },
   "generator_sha256": "8edca6d978e738b6ae65843072641e9aed2245b49cef8e18197b0b49bb902c97",

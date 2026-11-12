@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PCB markings · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="pcb-silkscreen.html" aria-current="page">PCB markings</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/pcb-silkscreen.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#reading-the-compact-labels">Reading the compact labels</a></li><li><a href="#qr-and-public-website">QR and public website</a></li><li><a href="#ordering-and-cost">Ordering and cost</a></li><li><a href="#reproduce-or-edit-the-artwork">Reproduce or edit the artwork</a></li></ul></details><article class="article"><h1 id="mc2-d-s1-an-assembly-guide-printed-on-the-pcb">MC2-D S1: an assembly guide printed on the PCB</h1>
+<p><strong>S1 changes the white silkscreen on both sides of MC2-D.</strong> The circuit,
+module positions, copper, solder mask, holes, C6 access opening and 100 × 100 mm
+outline are unchanged. The purchased modules and FH1 enclosure remain the same.
+Already manufactured MC2-D boards remain usable; this artwork is for the next batch.</p>
+<p><img src="../hardware/external-antenna/cad/silkscreen-front.png" alt="MC2-D S1 front, exported from native CAD" /></p>
+<p>The front identifies all four module positions and their roles: the
+ESP32-DevKitC-VIE host/BLE/ESP-NOW, XIAO ESP32C6 Thread radio, XIAO MG24 Zigbee
+radio and WIZ850io Ethernet module. Complete body outlines help placement;
+role labels outside the outlines remain visible after fitting modules.</p>
+<p>Harness labels identify the <strong>external</strong> RECOM supply, DFR0627 UART expander,
+ZAC93 Z-Wave board, CC1101 RF board, LD2450 radar and BME680 sensor. These
+peripherals retain their separate enclosure mounts; their names on the carrier
+identify connectors, not new module footprints. The C6 EN/BOOT lead header is
+also marked. Each harness has a pin-1 indicator and individual supply/signal labels.</p>
+<p>The same layout explicitly marks resistor values, diode cathodes and destinations,
+<strong>D1 WIRE LINK / NO DIODE</strong>, and the normally open service connections.</p>
+<p><img src="../hardware/external-antenna/cad/silkscreen-back.png" alt="MC2-D S1 bottom, viewed from the solder side" /></p>
+<p>The bottom repeats the connector legends in the correct orientation for soldering
+and carries an assembly checklist, C6 TP8/TP2 reminder, R3 omission and
+<strong>NO POWERED USB ON ASSEMBLED HUB</strong> warning. The drawings are native CAD exports
+with illustrative substrate/pad colours, not photographs of a manufactured S1 board.</p>
+<h2 id="reading-the-compact-labels">Reading the compact labels</h2>
+<ul>
+<li><strong>3V3</strong> is the peripheral 3.3 V rail; it is not a controller's local 3.3 V output.</li>
+<li><strong>ZRX/ZTX</strong> abbreviate the existing <code>ZWAVE_RX</code> / <code>ZWAVE_TX</code> net names.</li>
+<li><strong>GD0/GD2</strong> mean CC1101 GDO0/GDO2. MOSI, MISO, SCK and CS retain their normal names.</li>
+<li><strong>RX/TX at J6</strong> mean the existing <code>RADAR_RX</code> / <code>RADAR_TX</code> nets. Follow the
+<a href="../hardware/external-antenna/index.html#harness">connector lookup</a> for the
+opposite end of each cable; do not infer direction from which side you view.</li>
+<li><strong>K</strong> means the diode cathode: put the banded end at pad 1.</li>
+<li>Pin 1 is the square pad. The silkscreen does not change the pin numbering.</li>
+</ul>
+<h2 id="qr-and-public-website">QR and public website</h2>
+<p>The front QR points to <strong><a href="https://ha-homelab.github.io/ha-radio-hub/">the public build guide</a></strong>.
+It is a normal QR with error correction M, 0.45 mm modules and an uninterrupted
+four-module light quiet zone on every side. Its outer size is <strong>16.65 × 16.65 mm</strong>.
+White ink prints the light cells; the dark cells are unprinted green solder mask.
+No copper QR, exposed-metal QR or full-colour printing is involved.</p>
+<p>The URL stays independent of release names. The current guide retains the
+MC2-D/S1 identity and links to source and historical packages. The generated
+front image was decoded independently at 1600 px and 800 px board width;
+<a href="../hardware/external-antenna/cad/silkscreen-preview-verification.json">the receipt</a>
+records the URL and exact image/source hashes. A scan test on an actual S1 board
+remains part of first-batch acceptance. Keep supplier production markings away
+from the QR and its quiet zone.</p>
+<h2 id="ordering-and-cost">Ordering and cost</h2>
+<p>Use <strong><a href="../hardware/external-antenna/fabrication/MC2-D-S1-prototype-gerbers.zip">MC2-D-S1-prototype-gerbers.zip</a></strong>
+with ordinary <strong>white silkscreen on both sides</strong>, green mask, two copper layers,
+1.6 mm FR-4, 1 oz copper and lead-free HASL. Do not select UV/full-colour printing,
+special artwork processing, extra layers or a new board outline.</p>
+<p><strong>Expected additional charge for this artwork: $0.</strong> PCBWay lists white and
+black silkscreen as having no extra charge in its
+<a href="https://www.pcbway.com/capabilities.html">standard capabilities</a>, checked
+11 November 2026. Its minimum legend stroke is 0.15 mm and minimum character
+height is 0.8 mm; S1 uses at least those dimensions. This is an incremental
+artwork estimate, not a supplier quote or a promise that shipping, tax, coupons
+or the total repeat-order price stay unchanged. No new order has been placed.
+Keep the normal production identifier rather than paying for its removal.</p>
+<p>The <a href="../hardware/external-antenna/cad/silkscreen-baseline.json">native comparison</a>
+guards every non-silkscreen object. The
+<a href="../hardware/external-antenna/fabrication/silkscreen-comparison.json">fabrication comparison</a>
+compares the new Gerbers/drills with the original package: only the two
+silkscreen members may differ after creation timestamps are removed.
+The <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/hardware/external-antenna/fabrication/history/README.md">original package</a>
+is preserved separately and is not silently relabelled S1.</p>
+<h2 id="reproduce-or-edit-the-artwork">Reproduce or edit the artwork</h2>
+<p>Edit <a href="../hardware/external-antenna/cad/silkscreen.py">silkscreen.py</a>, not the
+exported PNG. It is applied during the normal native CAD regeneration.
+<a href="../hardware/external-antenna/cad/silkscreen-qr.json">The QR matrix</a> is checked in
+so native generation needs no network or QR library. It was generated with
+python-qrcode 8.2; do not edit matrix cells by hand.</p>
+<p>Follow the <a href="cad.html#checks-and-reproduction">native regeneration instructions</a>,
+then run <code>silkscreen_check.py</code> and regenerate the mechanical evidence and
+fabrication package. <code>reproduce_check.py</code> compares the regenerated artwork as
+well as copper topology. Native ERC, DRC, unconnected items and schematic parity
+must all be zero; artwork gets no clearance waivers.</p>
+<p>For the previews, install <code>hardware/external-antenna/cad/artwork-requirements.txt</code>
+in a separate environment with Cairo available, then run:</p>
+<pre><code class="language-sh">python hardware/external-antenna/cad/render_silkscreen.py --cli /path/to/kicad-cli
+</code></pre>
+<p>Use the native <strong>KiCad 10.0.6</strong> exporter. Do not mirror or modify Gerbers manually;
+the back preview is mirrored only to show the physical bottom view.</p>
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

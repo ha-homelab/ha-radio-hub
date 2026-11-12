@@ -1,0 +1,8 @@
+{
+  "electrical_revision": "MC2-D",
+  "artwork_revision": "S1",
+  "baseline_source_commit": "7c7251cabe5aea0f03e39f925e076078e5688135",
+  "baseline_board_sha256": "4694d861ea868139afd5458115d5256baef9127a0fc1f72c28d6959b10868bbf",
+  "non_silk_native_sha256": "59e766f6f3faba465af06b335af8f1fe0593b93d7b24aab180da8ad708760481",
+  "scope": "All native objects except F.SilkS/B.SilkS and generated UUIDs; includes copper, fills, masks, drills, outline, pad and module geometry, net assignments, setup and fabrication annotations."
+}

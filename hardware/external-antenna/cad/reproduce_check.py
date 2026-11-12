@@ -2,6 +2,7 @@
 """Regenerate MC2 in a clean directory and require exact ledger/copper equality."""
 import argparse,json,subprocess,sys,tempfile,shutil
 from pathlib import Path
+from silkscreen_check import artwork_fingerprint
 R=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser();ap.add_argument('--python',required=True);ap.add_argument('--cli',required=True);ap.add_argument('--libraries',required=True);a=ap.parse_args()
 def run(cmd,cwd):subprocess.run(cmd,cwd=cwd,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
@@ -17,6 +18,7 @@ with tempfile.TemporaryDirectory(prefix='mc2-reproduce-') as tmp:
  run([a.python,'record_verification.py'],dest)
  baseline=json.loads((R/'verification.json').read_text());new=json.loads((dest/'verification.json').read_text())
  assert baseline['topology_sha256']==new['topology_sha256'],'Native copper/pad topology differs'
+ assert artwork_fingerprint(R/'mc2.kicad_pcb')==artwork_fingerprint(dest/'mc2.kicad_pcb'),'Generated silkscreen differs'
  for n in ['design.json','connectors.json','BOM.csv']:
   assert (R/n).read_bytes()==(dest/n).read_bytes(),f'{n} differs'
  result={'status':'pass','method':'Clean generate + frozen session; exact ledger and copper/pad topology; fresh native ERC/DRC/parity','native_checks':new['checks'],'topology_sha256':new['topology_sha256'],'source_sha256':baseline['source_sha256'],'byte_identical_pcb_required':False,'reason':'KiCad creates new object UUIDs; exact electrical/geometric topology is compared instead'}

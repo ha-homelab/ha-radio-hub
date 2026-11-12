@@ -1,5 +1,12 @@
 # Order the MC2-D prototype PCB
 
+**Current artwork: S1, ordinary white silkscreen on both sides.** Download the
+S1-named archive below. It adds module outlines, connector/pin legends, assembly
+notes and a QR to the public build guide, with no electrical or mechanical
+changes. [Preview both sides and read the cost assumptions](pcb-silkscreen.md).
+Expected extra charge for the artwork itself is **$0**; obtain the current
+total quote for quantity, shipping and taxes. Existing MC2-D boards remain usable.
+
 **Order MC2-D with Seeed XIAO ESP32C6 (Pre-Soldered), 102010636, as U2.**
 The previously selected TinyC6[D] costs $41.95 delivered in the owner's cart.
 The new US-stocked C6 is $6.38 before shipping and tax, with factory male headers.
@@ -23,7 +30,7 @@ header tails. Read these assembly corrections before fabrication.
 ## Files to send
 
 Upload only
-[MC2-D-prototype-gerbers.zip](../hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip)
+[MC2-D-S1-prototype-gerbers.zip](../hardware/external-antenna/fabrication/MC2-D-S1-prototype-gerbers.zip)
 to the PCB manufacturer's Gerber uploader. The accompanying
 [manifest](../hardware/external-antenna/fabrication/manifest.json) binds its
 contents to the native PCB and verification evidence.

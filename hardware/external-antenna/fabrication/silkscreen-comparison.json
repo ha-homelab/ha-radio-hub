@@ -1,0 +1,20 @@
+{
+  "artwork_revision": "S1",
+  "baseline_archive_sha256": "5898031673d14b154e9d25f597b3b8dc522e52fdb28e6391236c0a5b4490a7fe",
+  "current_archive_sha256": "36abecfd93e6b8be2c6da8ef225461fdf18a9e96610c876cb8dd095722d15b9b",
+  "comparison": "Exact native export contents with creation timestamps removed; job JSON keys sorted. No geometric normalization.",
+  "unchanged_members": [
+    "mc2-B_Cu.gbl",
+    "mc2-B_Mask.gbs",
+    "mc2-Edge_Cuts.gm1",
+    "mc2-F_Cu.gtl",
+    "mc2-F_Mask.gts",
+    "mc2-NPTH.drl",
+    "mc2-PTH.drl",
+    "mc2-job.gbrjob"
+  ],
+  "changed_members": [
+    "mc2-B_Silkscreen.gbo",
+    "mc2-F_Silkscreen.gto"
+  ]
+}

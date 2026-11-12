@@ -93,7 +93,7 @@ The independent initial comparison of all 131 numbered PCB pads to the design
 contract found no pad/net discrepancies. The D1 correction preserves connected
 copper topology; the generated package must pass its source/evidence hash guard.
 
-Use only [MC2-D-prototype-gerbers.zip](../hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip)
+Use only [MC2-D-S1-prototype-gerbers.zip](../hardware/external-antenna/fabrication/MC2-D-S1-prototype-gerbers.zip)
 with its accompanying [manifest](../hardware/external-antenna/fabrication/manifest.json).
 Follow the [PCB ordering settings](pcb-order.md): five pieces, 100×100 mm,
 two layers, 1.6 mm FR-4, 1 oz copper, green mask, white legend, lead-free HASL,

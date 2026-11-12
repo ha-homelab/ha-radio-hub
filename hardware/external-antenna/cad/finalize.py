@@ -34,7 +34,10 @@ for layer in [pcb.F_Cu,pcb.B_Cu]:
     po=z.Outline();po.NewOutline()
     for x,y in [(1,1.8),(BOARD_W-1,1.8),(BOARD_W-1,BOARD_H-1),(1,BOARD_H-1)]:po.Append(pcb.FromMM(x),pcb.FromMM(y))
     board.Add(z)
-board.BuildListOfNets();board.BuildConnectivity();pcb.ZONE_FILLER(board).Fill(board.Zones());pcb.SaveBoard(str(ROOT/'mc2.kicad_pcb'),board)
+board.BuildListOfNets();board.BuildConnectivity();pcb.ZONE_FILLER(board).Fill(board.Zones())
+from silkscreen import apply as apply_silkscreen
+apply_silkscreen(board)
+pcb.SaveBoard(str(ROOT/'mc2.kicad_pcb'),board)
 # KiCad 10's Python wrapper does not expose BOARD_STACKUP setters. Record the
 # nominal order stackup in the native file, then require native parsing and DRC.
 # 1.51 mm dielectric + 2*35 um copper + 2*10 um mask = nominal 1.60 mm.

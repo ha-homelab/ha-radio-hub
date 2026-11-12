@@ -13,7 +13,7 @@ import zipfile
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 CAD = ROOT / "hardware/external-antenna/cad"
-ARCHIVE = "MC2-D-prototype-gerbers.zip"
+ARCHIVE = "MC2-D-S1-prototype-gerbers.zip"
 EXPECTED = {
     "mc2-F_Cu.gtl", "mc2-B_Cu.gbl",
     "mc2-F_Mask.gts", "mc2-B_Mask.gbs",
@@ -139,6 +139,8 @@ def check_archive(manifest: dict) -> None:
 
 def check() -> None:
     manifest = json.loads((HERE / "manifest.json").read_text())
+    if manifest.get('artwork_revision') != 'S1' or manifest.get('archive') != ARCHIVE:
+        raise ValueError('Expected the named MC2-D S1 artwork package')
     if manifest["source_sha256"] != current_sources():
         raise ValueError("Fabrication package is stale; regenerate after the design/evidence changes")
     check_archive(manifest)
@@ -227,7 +229,7 @@ def export(cli: str) -> None:
                 info.external_attr = 0o644 << 16
                 archive.writestr(info, data)
     manifest = {
-        "schema_version": 1, "revision": "MC2-D",
+        "schema_version": 1, "revision": "MC2-D", "artwork_revision": "S1",
         "status": "digital_checks_passed_small_prototype_batch",
         "physical_qualification": "not_run",
         "kicad_version": version, "archive": ARCHIVE,
