@@ -20,10 +20,12 @@
     "mc2.kicad_pcb": "ae2e295a9fc489e4b865d4b6e51db03ca9e0acea5d049c7bbe75066bda4097f0",
     "silkscreen.py": "be10963d27c28727904157901a2882b29e7e72997ac8873bf03f64fc6fa0de35",
     "silkscreen-qr.json": "4bd32864b3b5a53abd2653edc6ef2a190ad49b5baadd5a4b51d3295fff91af3c",
-    "render_silkscreen.py": "41c9aa8d96f7d7c058d5fe288525d2a41539ccac52971721b887fcd55f4e9e79",
+    "render_silkscreen.py": "9226cff071e5b904d33e6ac7e90f0d6dde31a259d8524276bcf919aeecbd18a4",
     "silkscreen-front.svg": "90735336b7a75b9af6e5a7e4b52de7e4392439d712d4a6f12f6c6bd33113fafa",
     "silkscreen-back.svg": "512a3a01dbc85f309b5d2bd62459c90051f16c8e6ffc35354a878dfbb395c669",
     "silkscreen-front.png": "f18151a925248793e6e2eeb38f35348decb798ca1f6e66ab53da71cd7fa24ed1",
-    "silkscreen-back.png": "a85b38c852ea96458258e38cdc8e97f33c2df69169198f79de03dfc3b552c592"
+    "silkscreen-back.png": "a85b38c852ea96458258e38cdc8e97f33c2df69169198f79de03dfc3b552c592",
+    "board-top.svg": "c997fb1f15a32349383835a243f250b40611b9bf28847348bf76987069054de5",
+    "board-bottom.svg": "ae8180be1847d3ac19724f740b022396c2cae72682bf7c3c0ff4e1272a7ee548"
   }
 }

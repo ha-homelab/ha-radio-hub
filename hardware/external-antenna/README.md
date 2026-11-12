@@ -13,6 +13,7 @@ The current engineering prototype uses an ESP32-DevKitC-VIE (WROVER-IE, 8 MB fla
 - [Historical MC2-A appearance concepts and provenance](images/README.md)
 - [Editable carrier, exact pinout, assembly and checks](cad/README.md)
 - [Front assembly drawing](cad/assembly-top.svg)
+- [S1 white assembly legend, QR, both board faces and cost assumptions](../../docs/pcb-silkscreen.md)
 - [Schematic](cad/schematic.svg), [PDF](cad/schematic.pdf)
 - [PCB copper front](cad/board-top.svg), [back](cad/board-bottom.svg)
 - [Controller/peripheral BOM](cad/BOM.csv), [RF parts](rf-bom.json)

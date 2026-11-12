@@ -36,6 +36,14 @@ def render(cli):
             if side == 'back':
                 cmd.insert(4, '--mirror')
             subprocess.run(cmd, check=True)
+            copper = ROOT / ('board-top.svg' if side == 'front' else 'board-bottom.svg')
+            copper_cmd = [cli, 'pcb', 'export', 'svg', '--layers',
+                          f'{layer}.Cu,{layer}.Silkscreen,Edge.Cuts', '--mode-single',
+                          '--page-size-mode', '2', '--exclude-drawing-sheet',
+                          '--output', str(copper), str(ROOT / 'mc2.kicad_pcb')]
+            if side == 'back':
+                copper_cmd.insert(4, '--mirror')
+            subprocess.run(copper_cmd, check=True)
             raw = native.read_text().replace('#D864FF', '#d4bc75').replace('#F2EDA1', '#faf8ed').replace('#D0D2CD', '#9ac6a7').replace('#02FFEE', '#d4bc75').replace('#E8B2A7', '#faf8ed').replace('#FFFFFF', '#0b1420')
             tree = ET.fromstring(raw)
             tree.find(f'{{{NS}}}title').text = f'MC2-D S1 {side}: native silk and mask, illustrative colours'
@@ -56,7 +64,7 @@ def render(cli):
         decodes.append({'image_width_px': size, 'decoded_url': scanned[0].text})
     files = ['mc2.kicad_pcb', 'silkscreen.py', 'silkscreen-qr.json',
              'render_silkscreen.py', 'silkscreen-front.svg', 'silkscreen-back.svg',
-             'silkscreen-front.png', 'silkscreen-back.png']
+             'silkscreen-front.png', 'silkscreen-back.png', 'board-top.svg', 'board-bottom.svg']
     report = {'artwork_revision': 'S1', 'native_exporter': 'KiCad 10.0.6',
               'qr_decoder': 'zxing-cpp 2.3.0', 'qr_decodes': decodes,
               'qr_module_mm': qr['module_mm'], 'qr_outer_size_mm': len(qr['matrix'])*qr['module_mm'],
