@@ -18,12 +18,6 @@
     "description": "Download the MC2-D prototype fabrication package and check quantities, finish and shipping."
   },
   {
-    "slug": "pcb-silkscreen",
-    "source": "docs/pcb-silkscreen.md",
-    "label": "PCB markings",
-    "description": "Read the S1 module outlines, connector signals, polarity and build-guide QR; compare both board faces."
-  },
-  {
     "slug": "purchase-audit",
     "source": "docs/pre-fabrication-audit.md",
     "label": "Purchase audit",
@@ -46,6 +40,12 @@
     "source": "docs/full-hub-assembly.md",
     "label": "Wire the hub",
     "description": "Connect power, the UART bridge, ZAC93 and each sensor."
+  },
+  {
+    "slug": "pcb-silkscreen",
+    "source": "docs/pcb-silkscreen.md",
+    "label": "PCB markings",
+    "description": "Read the S1 module outlines, connector signals, polarity and build-guide QR; compare both board faces."
   },
   {
     "slug": "connections",
