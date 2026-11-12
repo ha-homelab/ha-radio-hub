@@ -5,6 +5,17 @@ a local classic-ESP32 Thread Border Router, Ember Zigbee coordinator, active BLE
 Z-Wave, 433 MHz RF, LD2450 and BME680 behind one Ethernet uplink. Its
 100 × 100 mm carrier holds finished modules with direct-solder male headers.
 
+**[Open the public build guide](https://ha-homelab.github.io/ha-radio-hub/)** —
+wiring lookup, assembly instructions and print/fabrication downloads.
+
+![MC2-D S1 assembly silkscreen: actual native CAD export](hardware/external-antenna/cad/silkscreen-front.png)
+
+**S1 prints the assembly guide on the board:** module outlines and roles,
+connector signals, polarity, component values and a QR to the public guide.
+The back carries a soldering checklist. [See both sides and the $0 incremental
+artwork estimate](docs/pcb-silkscreen.md). Copper, holes, outline and component
+compatibility are unchanged; the original fabrication archive is preserved.
+
 ![Current MC2-D and FH1 exploded CAD view with ZAC93](mechanical/full-hub/exploded-preview.png)
 
 *Generated from the current enclosure geometry with simplified electronic

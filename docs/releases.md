@@ -41,7 +41,7 @@ commit, not in the extracted archive.
 
 For MC2-D, use these files from the same extracted archive:
 
-- `hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip` and its
+- `hardware/external-antenna/fabrication/MC2-D-S1-prototype-gerbers.zip` and its
   manifest: the native PCB fabrication export, with [ordering instructions](pcb-order.md).
 - `mechanical/full-hub/FH1-MC2-D-PWR1-print-package.zip`: the enclosure parts,
   quantities and fit coupon. Follow the [print instructions](../mechanical/full-hub/README.md).

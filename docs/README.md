@@ -14,6 +14,7 @@ troubleshooting. To view the guide locally as rendered HTML, run
 
 ## Active build references
 
+- [S1 printed assembly legend, QR, native previews and cost assumptions](pcb-silkscreen.md).
 - [Prototype PCB order, quantity and matched revision](pcb-order.md).
 - [Exact parts, availability and priced subtotal](mc2-shopping.md).
 - [Lower-cost pigtails, connector fit and RF evidence](pigtail-selection.md).

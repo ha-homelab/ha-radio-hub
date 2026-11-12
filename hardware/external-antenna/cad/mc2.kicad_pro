@@ -357,8 +357,8 @@
     "legacy_lib_list": [],
     "top_level_sheets": [
       {
-        "filename": "mc2-unrouted.kicad_sch",
-        "name": "mc2-unrouted",
+        "filename": "mc2.kicad_sch",
+        "name": "mc2",
         "uuid": "00000000-0000-0000-0000-000000000000"
       }
     ]

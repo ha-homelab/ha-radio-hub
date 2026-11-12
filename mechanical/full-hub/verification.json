@@ -11,7 +11,7 @@
     "components.json": "9806b76fd29b5a21a6726119fcbb10ac97976e9ff282cfd745d512ed725996e2",
     "rf-evidence.json": "d76f121e48383e4bddb2ba2fef8f3fca221d395d379387428c813fb7355dd21c",
     "../module-carrier/external-antenna-prototype/build.py": "8edca6d978e738b6ae65843072641e9aed2245b49cef8e18197b0b49bb902c97",
-    "mc2.kicad_pcb": "4694d861ea868139afd5458115d5256baef9127a0fc1f72c28d6959b10868bbf",
+    "mc2.kicad_pcb": "ae2e295a9fc489e4b865d4b6e51db03ca9e0acea5d049c7bbe75066bda4097f0",
     "design.json": "c10324f97bf40f935b147475a2b01e770f177dd5f43912efb53dfbabe115cba5"
   },
   "units": "mm",

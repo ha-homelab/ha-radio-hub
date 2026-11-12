@@ -167,6 +167,9 @@ jobs:
               kicad-cli sch erc --exit-code-violations --severity-all --format json --output hardware/external-antenna/cad/checks/erc.json hardware/external-antenna/cad/mc2.kicad_sch
               kicad-cli pcb drc --exit-code-violations --severity-all --schematic-parity --format json --output hardware/external-antenna/cad/checks/drc.json hardware/external-antenna/cad/mc2.kicad_pcb
               python3 hardware/external-antenna/cad/test_design.py
+              python3 hardware/external-antenna/cad/silkscreen_check.py
+              python3 -m unittest discover -s hardware/external-antenna/cad -p "test_silkscreen.py"
+              python3 hardware/external-antenna/fabrication/compare_silkscreen.py --check
               python3 hardware/external-antenna/fabrication/package.py --check
               python3 -m unittest discover -s hardware/external-antenna/fabrication -p "test_*.py"
               python3 hardware/external-antenna/cad/reproduce_check.py --python python3 --cli kicad-cli --libraries /usr/share/kicad
@@ -394,7 +397,7 @@ jobs:
               cp -R /source /tmp/mc2-source
               cd /tmp/mc2-source
               python3 hardware/external-antenna/fabrication/package.py --cli kicad-cli
-              cp hardware/external-antenna/fabrication/MC2-D-prototype-gerbers.zip /output/
+              cp hardware/external-antenna/fabrication/MC2-D-S1-prototype-gerbers.zip /output/
               cp hardware/external-antenna/fabrication/manifest.json /output/
             '
       - name: Preserve source-bound MC2 fabrication export

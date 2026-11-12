@@ -42,6 +42,12 @@
     "description": "Connect power, the UART bridge, ZAC93 and each sensor."
   },
   {
+    "slug": "pcb-silkscreen",
+    "source": "docs/pcb-silkscreen.md",
+    "label": "PCB markings",
+    "description": "Read the S1 module outlines, connector signals, polarity and build-guide QR; compare both board faces."
+  },
+  {
     "slug": "connections",
     "source": "docs/connection-audit.md",
     "label": "Connection audit",

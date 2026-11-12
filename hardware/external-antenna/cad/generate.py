@@ -17,7 +17,7 @@ def module_fp(name,pads,rect,description):
     for layer,d in [('F.Fab',0),('F.CrtYd',0.5)]:
         lines.append(f'(fp_rect (start {x1-d} {y1-d}) (end {x2+d} {y2+d}) (stroke (width 0.05) (type solid)) (fill none) (layer "{layer}"))')
     # Two thin longitudinal silkscreen guides do not cross any plated header holes.
-    for xx in [x1,x2]:
+    for xx in ([x1,x2] if name in ('XIAO_MG24', 'XIAO_ESP32C6') else []):
         lines.append(f'(fp_line (start {xx} {max(1,y1)}) (end {xx} {y2-1}) (stroke (width 0.12) (type solid)) (layer "F.SilkS"))')
     for num,x,y in pads:
         shape='rect' if num in ['J1.1','J2.1','JP1.1','1'] else 'circle'

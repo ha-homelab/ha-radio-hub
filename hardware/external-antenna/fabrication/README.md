@@ -1,6 +1,12 @@
 # MC2-D prototype fabrication package
 
-Upload **MC2-D-prototype-gerbers.zip** for a bare-board prototype order.
+**Current artwork revision: S1.** Standard white front/back silkscreen adds
+module outlines/roles, connector signals, polarity, assembly notes and a QR.
+[Preview and cost assumptions](../../../docs/pcb-silkscreen.md).
+[The comparison receipt](silkscreen-comparison.json) verifies that copper,
+mask, drills and outline match the [preserved original](history/README.md).
+
+Upload **MC2-D-S1-prototype-gerbers.zip** for a bare-board prototype order.
 This revision adds a **6 × 10.9 mm internal routed opening with R1.5 mm corners** for XIAO recovery-pad access. The old TinyC6 MC2-C archive is incompatible and is retained only in its historical release. Obtain the manufacturer's DFM acceptance and a new checkout quote including this opening; the previous five-board price is a reference, not a binding quote for this revision.
 Use the [ordering instructions](../../../docs/pcb-order.md) for finish,
 dimensions and the five-board recommendation. `manifest.json` records the
