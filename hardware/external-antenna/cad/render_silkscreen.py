@@ -6,6 +6,7 @@ pad colours are illustrative; shapes and glyph strokes come from KiCad export.
 """
 import argparse
 import hashlib
+from importlib.metadata import version as package_version
 import json
 from pathlib import Path
 import subprocess
@@ -65,10 +66,11 @@ def render(cli):
         assert [b.text for b in scanned] == [qr['url']], f'QR decode failed at {size}px'
         decodes.append({'image_width_px': size, 'decoded_url': scanned[0].text})
     files = ['mc2.kicad_pcb', 'silkscreen.py', 'silkscreen-qr.json',
-             'render_silkscreen.py', 'silkscreen-front.svg', 'silkscreen-back.svg',
+             'render_silkscreen.py', 'artwork-requirements.txt', 'silkscreen-front.svg', 'silkscreen-back.svg',
              'silkscreen-front.png', 'silkscreen-back.png', 'board-top.svg', 'board-bottom.svg']
     report = {'artwork_revision': 'S1', 'native_exporter': 'KiCad 10.0.6',
-              'qr_decoder': 'zxing-cpp 2.3.0', 'qr_decodes': decodes,
+              'qr_decoder': 'zxing-cpp ' + package_version('zxing-cpp'), 'qr_decodes': decodes,
+              'render_dependencies': {name: package_version(name) for name in ('CairoSVG', 'Pillow', 'zxing-cpp')},
               'qr_module_mm': qr['module_mm'], 'qr_outer_size_mm': len(qr['matrix'])*qr['module_mm'],
               'quiet_zone_modules': 4, 'physical_print_scan_tested': False,
               'source_sha256': {f: hashlib.sha256((ROOT / f).read_bytes()).hexdigest() for f in files}}
