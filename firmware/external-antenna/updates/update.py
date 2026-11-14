@@ -76,7 +76,7 @@ def checked_image(kind, image, report):
 
 
 def check_versions(kind):
-    packages = {"aioesphomeapi": "46.28.0", "esptool": "5.6.0"} if kind == "c6" else {
+    packages = {"aioesphomeapi": "46.30.0", "esptool": "5.6.0"} if kind == "c6" else {
         "universal-silabs-flasher": "1.3.0", "bellows": "1.2.1", "zigpy": "2.4.1"}
     for name, expected in packages.items():
         if importlib.metadata.version(name) != expected:

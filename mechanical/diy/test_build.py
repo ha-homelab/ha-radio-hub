@@ -77,6 +77,29 @@ class TestPrint(unittest.TestCase):
                         if abs(abs(dx)+abs(dy)-100)<.001: lengths.append((round(dx),round(dy)))
                 self.assertIn((100,0),lengths); self.assertIn((0,100),lengths)
 
+    def test_native_vectors_merge_into_owned_page_at_exact_scale_and_orientation(self):
+        from pypdf import PdfReader
+        from pypdf.generic import ContentStream
+        svg = b'<svg xmlns="http://www.w3.org/2000/svg" width="10mm" height="20mm" viewBox="0 0 10 20"><path d="M 1 2 L 8 17" stroke="black" fill="none"/></svg>'
+        geometry = {'width_mm': 10, 'height_mm': 20}
+        base = build.calibration('a4')
+        for mirror in (False, True):
+            with self.subTest(mirror=mirror):
+                result = build.add_vector(base, svg, 30, 40, geometry, mirror=mirror)
+                reader = PdfReader(io.BytesIO(result))
+                self.assertEqual(len(reader.pages), 1)
+                page = reader.pages[0]
+                self.assertAlmostEqual(float(page.mediabox.width)/build.MM, 210, places=3)
+                self.assertAlmostEqual(float(page.mediabox.height)/build.MM, 297, places=3)
+                expected = (-1, 0, 0, 1, 40*build.MM, 40*build.MM) if mirror else (1, 0, 0, 1, 30*build.MM, 40*build.MM)
+                operations = ContentStream(page.get_contents(), reader).operations
+                self.assertTrue(any(op == b'cm' and len(args) == 6 and
+                                    all(abs(float(actual)-wanted) < .001 for actual, wanted in zip(args, expected))
+                                    for args, op in operations))
+                preferences = reader.trailer['/Root']['/ViewerPreferences']
+                self.assertEqual(preferences['/PrintScaling'], '/None')
+                self.assertEqual(preferences['/Duplex'], '/Simplex')
+
     def test_wire_schedule_must_match_native_terminal_positions(self):
         from pypdf import PdfReader
         geometry={'holes':[{'ref':'T1','id':'T1.1','x_mm':10,'y_mm':20},
