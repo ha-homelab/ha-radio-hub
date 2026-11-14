@@ -2,7 +2,7 @@ name: ha-radio-hub
 services:
   otbr:
     # OCI index verified on 2026-11-10; source f878579877aa25f76f2e09f8bc99f610920b357c.
-    image: openthread/border-router@sha256:e2131139496a70cdb0c181037738904dae9daf5660d4749883bdc93dc477fe8a
+    image: openthread/border-router@sha256:fd55a81192844ebac421bbc21c7563c0d2ce8bbe1277608ec606840d3a57ff76
     network_mode: host
     restart: unless-stopped
     cap_add:
