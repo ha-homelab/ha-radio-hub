@@ -182,11 +182,11 @@ def add_vector(base, svg, x, y, geometry, mirror=False):
         raise ValueError('SVG-to-PDF conversion changed physical width')
     if abs(float(source.mediabox.height)-geometry['height_mm']*MM) > .01:
         raise ValueError('SVG-to-PDF conversion changed physical height')
-    target = PdfReader(io.BytesIO(base)).pages[0]
+    writer = PdfWriter()
+    target = writer.add_page(PdfReader(io.BytesIO(base)).pages[0])
     transform=(Transformation().scale(-1,1).translate((x+geometry['width_mm'])*MM,y*MM)
                if mirror else Transformation().translate(x*MM,y*MM))
     target.merge_transformed_page(source, transform)
-    writer=PdfWriter(); writer.add_page(target)
     writer.add_metadata({'/Title': 'LP-D0 DIY print package', '/Author': 'HA Radio Hub contributors'})
     writer.set_page_layout('/SinglePage')
     from pypdf.generic import DictionaryObject, NameObject
