@@ -1,9 +1,9 @@
 {
   "checked_on": "2026-11-10",
   "esphome": "2026.10.2",
-  "otbr_source": "f878579877aa25f76f2e09f8bc99f610920b357c",
-  "otbr_image": "openthread/border-router@sha256:fd55a81192844ebac421bbc21c7563c0d2ce8bbe1277608ec606840d3a57ff76",
-  "otbr_linux_arm64_manifest": "sha256:4e06b57d36fcab68739bb73def1b379a88cd3e0104ac3be55c3539c7986fef14",
+  "otbr_source": "285bcb549edcfe6823269b4df2f0982298bc1e56",
+  "otbr_image": "openthread/border-router@sha256:e2131139496a70cdb0c181037738904dae9daf5660d4749883bdc93dc477fe8a",
+  "otbr_linux_arm64_manifest": "sha256:31fef1a73697b51faaccf9e9c2629e8f343951e7c862992ced4d9406c0e1ef0b",
   "nrf52840_rcp_source": "1ff0a4905e436eb79605582f36b689063b1282ef",
   "ser2net_debian_package": "4.3.11-1",
   "ser2net_base": "debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc"

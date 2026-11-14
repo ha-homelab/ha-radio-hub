@@ -1,4 +1,4 @@
-"""Prevent dependency updates from leaving deployed image provenance stale."""
+"""Keep intended source and image pins consistent with repository inputs."""
 import json
 from pathlib import Path
 import re
@@ -7,7 +7,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 
 class VersionMetadataTests(unittest.TestCase):
-    def test_metadata_matches_installed_firmware_and_deployed_images(self):
+    def test_metadata_matches_intended_firmware_and_image_inputs(self):
         metadata = json.loads((ROOT / "software/versions.json").read_text())
         firmware = (ROOT / "firmware/requirements.txt").read_text().strip()
         self.assertEqual(firmware, "esphome==" + metadata["esphome"])
