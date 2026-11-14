@@ -1,7 +1,7 @@
 {
   "artwork_revision": "S1",
   "native_exporter": "KiCad 10.0.6",
-  "qr_decoder": "zxing-cpp 2.3.0",
+  "qr_decoder": "zxing-cpp 3.1.1",
   "qr_decodes": [
     {
       "image_width_px": 1600,
@@ -15,7 +15,7 @@
   "render_dependencies": {
     "CairoSVG": "2.9.1",
     "Pillow": "13.0.0",
-    "zxing-cpp": "2.3.0"
+    "zxing-cpp": "3.1.1"
   },
   "qr_module_mm": 0.45,
   "qr_outer_size_mm": 16.650000000000002,
@@ -26,12 +26,12 @@
     "silkscreen.py": "be10963d27c28727904157901a2882b29e7e72997ac8873bf03f64fc6fa0de35",
     "silkscreen-qr.json": "4bd32864b3b5a53abd2653edc6ef2a190ad49b5baadd5a4b51d3295fff91af3c",
     "render_silkscreen.py": "09e8bb28949e481c1abcef3600c6ceb83d8e2e5ba0fd55b5d079fb86ca32c1ed",
-    "artwork-requirements.txt": "6622acf789daa6f02b466c75e2ff0678a93c8ff38f293701241fd4dc2241c2ad",
+    "artwork-requirements.txt": "37042890eb7db70686396c13cb16b0849d8da2452f653048ae85e5e073144a0f",
     "silkscreen-front.svg": "90735336b7a75b9af6e5a7e4b52de7e4392439d712d4a6f12f6c6bd33113fafa",
     "silkscreen-back.svg": "512a3a01dbc85f309b5d2bd62459c90051f16c8e6ffc35354a878dfbb395c669",
     "silkscreen-front.png": "f18151a925248793e6e2eeb38f35348decb798ca1f6e66ab53da71cd7fa24ed1",
     "silkscreen-back.png": "a85b38c852ea96458258e38cdc8e97f33c2df69169198f79de03dfc3b552c592",
-    "board-top.svg": "38acbc5884f1afdb2e84cb9ce3d50cba67949b0e6a4f23c253bcedf865adc623",
-    "board-bottom.svg": "5d50a78ef903ae38819d8f07c3e2331638b9cfd5e5e72bb959cd577d1355687c"
+    "board-top.svg": "9f7840b263dfaaca237f0afff2d153181eaadae674d426e5b864c29327961599",
+    "board-bottom.svg": "5579a778f3d1bd1134307c10c4a380e7f7b600535966436622959dbe2e01fd65"
   }
 }
