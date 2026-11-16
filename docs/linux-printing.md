@@ -2,7 +2,10 @@
 
 This is the current end-to-end operator guide for the **original TRONXY XY-3**
 and the FH1 enclosure. Reviewed **16 November 2026**. It supersedes the older
-*d1* deployment instructions for the current printer host.
+*previous-printer-host.example.invalid* deployment instructions for the current printer host.
+
+Site-specific hostnames, LAN addresses and SSH logins below are examples. Use your
+private inventory for actual values; the dated commissioning record is not a live check.
 
 ## Contents
 
@@ -17,13 +20,13 @@ and the FH1 enclosure. Reviewed **16 November 2026**. It supersedes the older
 
 ## Current installation and acceptance limits
 
-The printer is connected by USB to **debian2**, a Debian 12 Intel Atom x5-Z8350
+The printer is connected by USB to **printer-host.example.invalid**, a Debian 12 Intel Atom x5-Z8350
 host with approximately 4 GiB RAM. Ethernet reaches the home network through
-an eero mesh node. The earlier d1 installation is separate; do not run two
+an eero mesh node. The earlier previous-printer-host.example.invalid installation is separate; do not run two
 serial clients against the same printer.
 
-- Browser on the home LAN: **http://192.168.160.52:5000/**.
-- SSH: `ssh alvit@192.168.160.52` using the operator's existing credentials.
+- Browser on the home LAN: **http://printer-host.example.invalid:5000/**.
+- SSH: `ssh your-login@printer-host.example.invalid` using the operator's existing credentials.
 - OctoPrint **1.11.8**, Python virtual environment `/opt/octoprint/venv`.
 - Persistent configuration, accounts, uploads and logs: `/var/lib/octoprint`.
 - systemd service: `octoprint`; unprivileged account: `octoprint`.
@@ -83,7 +86,7 @@ Python compatibility before choosing another version.
 
 Use this self-contained unit on a new host. It listens on loopback initially,
 so the first-run wizard is accessible through an SSH tunnel only. Do not copy
-the older d1 environment-file unit without adapting its environment file.
+the older previous-printer-host.example.invalid environment-file unit without adapting its environment file.
 
 ```sh
 sudo tee /etc/systemd/system/octoprint.service > /dev/null <<'UNIT'
