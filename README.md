@@ -30,6 +30,9 @@ coverage, power consumption, mechanical fit or radio certification. The
 
 ## Start building
 
+**Printing the enclosure?** Follow the [Linux installation and print operator guide](docs/linux-printing.md)
+for OctoPrint setup, USB connection, slicing, attended starts, monitoring and recovery.
+
 Follow [Start here](docs/start-here.md) for the ordered build, success checks,
 Home Assistant connections and troubleshooting. Program the loose boards before
 permanent assembly. The current hardware is **MC2-D + FH1**; older revisions are
