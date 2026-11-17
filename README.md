@@ -210,3 +210,5 @@ are distributed. See [infrastructure](docs/infrastructure.md),
 
 Run `python3 tools/check.py` for offline document/source checks. Hardware,
 firmware and mechanical guides list their reproducible validation commands.
+
+Docs index: [docs/README.md](docs/README.md).

@@ -51,3 +51,75 @@ the [prototype ordering record](pcb-order.md) and matching MC2-D firmware.
 MC1 remains a [historical build](module-carrier.md). Its software checks continue
 for regression coverage, but its Nano/H2 pin map, 16 MB flash layout, compact
 housing and cost estimate must not be combined with MC2.
+
+## Documentation index
+
+This page is the topic index for `docs/`. The sections below group the build
+references by the task they support instead of by the order they were written.
+
+### Get started
+
+- [Start here — the complete MC2-D / FH1 build journey](start-here.md): the
+  ordered route with a checkpoint at each stage.
+- [Project overview](overview.md) and the [Russian overview](overview.ru.md).
+- [Prototype acceptance record](acceptance.md): what passed and what is still
+  outstanding.
+- [Current validation status](validation.md).
+
+### Install and wire
+
+- [Complete assembly, ZAC93 placement and pin-to-pin wiring](full-hub-assembly.md).
+- [Assembly, exact parts and antenna connections](external-antennas.md).
+- [Parts catalog and visual assembly reference](parts-catalog.md) and the
+  [historical assembly parts gallery](parts-gallery.md).
+- [MC2-D pre-fabrication purchase audit — 21 October 2026](pre-fabrication-audit.md).
+- [MC2-D MG24 external-antenna image: build, program and recover](mc2-zigbee.md).
+- [ESP32/C6/MG24 build and programming instructions](../firmware/external-antenna/README.md)
+  and [network updating](../firmware/external-antenna/updates/README.md).
+
+### Configure Home Assistant
+
+- [Connecting to Home Assistant](home-assistant.md): the association and entity
+  setup for the hub.
+- [Matter-over-Thread devices for the first bench test](thread-devices.md): candidate
+  devices, checked against official pages rather than tested here.
+
+### Operate and commission
+
+- [Coverage acceptance procedure](rf-commissioning.md) with the
+  [unmeasured results sheet](../hardware/external-antenna/coverage-results.csv).
+- [Blank power and boot-strap measurement worksheet](../hardware/external-antenna/power-measurements.csv).
+- [Independent connection audit and I²C address correction](connection-audit.md).
+- [Continuous integration and automated approval](ci.md) and
+  [Terraform ownership](infrastructure.md).
+
+### Manufacturing and enclosure
+
+- [Full-hub enclosure, exploded layout and printable mounts](../mechanical/full-hub/README.md).
+- [HA Radio Hub enclosure — historical DRAFT V0](enclosure.md).
+- [Low-power enclosure: layout mock-up](low-power-enclosure.md) and the
+  [compact minimum-energy hub](low-power.md).
+- [Make the low-voltage DIY carrier with toner transfer](diy-pcb.md).
+- [Draft RFQ: prototype PCBs and assembly](manufacturing-rfq.md) and
+  [manufacturing and selling small batches](manufacturing.md).
+- [Versioned engineering build package](releases.md): downloadable design archives.
+
+### Reference
+
+- [Firmware and software](firmware.md): the historical Pi design.
+- [Historical build record for MC1](module-carrier.md).
+- [Design registry](../hardware/designs.json) and
+  [engineering history](design-history.md).
+- [Exact parts, availability and priced subtotal](mc2-shopping.md) and
+  [lower-cost pigtails, connector fit and RF evidence](pigtail-selection.md).
+- [Classic ESP32 migration, cost and compatibility](classic-esp32-migration.md).
+
+### Design review and results
+
+- [Single-carrier and H2 Quartet function audit](h2-quartet-function-audit.md),
+  [independent consolidation review](h2-quartet-review.md) and
+  [H2 Quartet simplification](h2-simplification.md): the October 17 decision
+  trail that led back to the single MC2-D carrier.
+
+The historical MC1 drafts above are kept for provenance. Their pin maps, flash
+layouts and cost estimates must not be combined with MC2-D.
