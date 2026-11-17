@@ -13,7 +13,7 @@ existing server.
 **This is a separate engineering prototype.** Its enclosure is a layout mock-up,
 not evidence that the PCB is ready for manufacture. Startup, simultaneous radio
 operation and power consumption have not yet been tested on physical hardware.
-The baseline [modular version](../README.md#what-is-inside) remains available for
+The baseline [modular version](../README.md) remains available for
 comparison.
 
 ## Selected architecture
