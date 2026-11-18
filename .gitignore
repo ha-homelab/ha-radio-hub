@@ -27,3 +27,4 @@ node_modules/
 *-backups/
 fp-info-cache
 ~*.lck
+A*S.md
