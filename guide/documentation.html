@@ -5,7 +5,7 @@
 <header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
 <nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
 <div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
-<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#active-build-references">Active build references</a></li></ul></details><article class="article"><h1 id="current-mc2-documentation">Current MC2 documentation</h1>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/README.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#active-build-references">Active build references</a></li><li><a href="#documentation-index">Documentation index</a></li></ul></details><article class="article"><h1 id="current-mc2-documentation">Current MC2 documentation</h1>
 <p>Updated 20 October 2026. <strong>MC2-D</strong> is the active 100 × 100 mm carrier with separate
 external Zigbee, Thread and BLE antennas. The selected ESP32-DevKitC-VIE has 8 MB flash and 8 MB physical
 PSRAM (4 MB directly addressable); its Thread radio is XIAO ESP32C6 pre-soldered / 102010636. All components face the same side.
@@ -54,5 +54,74 @@ the <a href="pcb-order.html">prototype ordering record</a> and matching MC2-D fi
 <p>MC1 remains a <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/module-carrier.md">historical build</a>. Its software checks continue
 for regression coverage, but its Nano/H2 pin map, 16 MB flash layout, compact
 housing and cost estimate must not be combined with MC2.</p>
+<h2 id="documentation-index">Documentation index</h2>
+<p>This page is the topic index for <code>docs/</code>. The sections below group the build
+references by the task they support instead of by the order they were written.</p>
+<h3 id="get-started">Get started</h3>
+<ul>
+<li><a href="start-here.html">Start here — the complete MC2-D / FH1 build journey</a>: the
+ordered route with a checkpoint at each stage.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/overview.md">Project overview</a> and the <a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/overview.ru.md">Russian overview</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/acceptance.md">Prototype acceptance record</a>: what passed and what is still
+outstanding.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/validation.md">Current validation status</a>.</li>
+</ul>
+<h3 id="install-and-wire">Install and wire</h3>
+<ul>
+<li><a href="assembly.html">Complete assembly, ZAC93 placement and pin-to-pin wiring</a>.</li>
+<li><a href="antennas.html">Assembly, exact parts and antenna connections</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/parts-catalog.md">Parts catalog and visual assembly reference</a> and the
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/parts-gallery.md">historical assembly parts gallery</a>.</li>
+<li><a href="purchase-audit.html">MC2-D pre-fabrication purchase audit — 21 October 2026</a>.</li>
+<li><a href="zigbee-firmware.html">MC2-D MG24 external-antenna image: build, program and recover</a>.</li>
+<li><a href="firmware.html">ESP32/C6/MG24 build and programming instructions</a>
+and <a href="updates.html">network updating</a>.</li>
+</ul>
+<h3 id="configure-home-assistant">Configure Home Assistant</h3>
+<ul>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/home-assistant.md">Connecting to Home Assistant</a>: the association and entity
+setup for the hub.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/thread-devices.md">Matter-over-Thread devices for the first bench test</a>: candidate
+devices, checked against official pages rather than tested here.</li>
+</ul>
+<h3 id="operate-and-commission">Operate and commission</h3>
+<ul>
+<li><a href="commissioning.html">Coverage acceptance procedure</a> with the
+<a href="../hardware/external-antenna/coverage-results.csv">unmeasured results sheet</a>.</li>
+<li><a href="../hardware/external-antenna/power-measurements.csv">Blank power and boot-strap measurement worksheet</a>.</li>
+<li><a href="connections.html">Independent connection audit and I²C address correction</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/ci.md">Continuous integration and automated approval</a> and
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/infrastructure.md">Terraform ownership</a>.</li>
+</ul>
+<h3 id="manufacturing-and-enclosure">Manufacturing and enclosure</h3>
+<ul>
+<li><a href="print.html">Full-hub enclosure, exploded layout and printable mounts</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/enclosure.md">HA Radio Hub enclosure — historical DRAFT V0</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/low-power-enclosure.md">Low-power enclosure: layout mock-up</a> and the
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/low-power.md">compact minimum-energy hub</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/diy-pcb.md">Make the low-voltage DIY carrier with toner transfer</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/manufacturing-rfq.md">Draft RFQ: prototype PCBs and assembly</a> and
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/manufacturing.md">manufacturing and selling small batches</a>.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/releases.md">Versioned engineering build package</a>: downloadable design archives.</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/firmware.md">Firmware and software</a>: the historical Pi design.</li>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/module-carrier.md">Historical build record for MC1</a>.</li>
+<li><a href="../hardware/designs.json">Design registry</a> and
+<a href="history.html">engineering history</a>.</li>
+<li><a href="shopping.html">Exact parts, availability and priced subtotal</a> and
+<a href="pigtails.html">lower-cost pigtails, connector fit and RF evidence</a>.</li>
+<li><a href="host-migration.html">Classic ESP32 migration, cost and compatibility</a>.</li>
+</ul>
+<h3 id="design-review-and-results">Design review and results</h3>
+<ul>
+<li><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/h2-quartet-function-audit.md">Single-carrier and H2 Quartet function audit</a>,
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/h2-quartet-review.md">independent consolidation review</a> and
+<a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/h2-simplification.md">H2 Quartet simplification</a>: the October 17 decision
+trail that led back to the single MC2-D carrier.</li>
+</ul>
+<p>The historical MC1 drafts above are kept for provenance. Their pin maps, flash
+layouts and cost estimates must not be combined with MC2-D.</p>
 </article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
 <br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>
