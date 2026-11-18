@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Run OctoPrint on Linux · HA Radio Hub</title><link rel="stylesheet" href="style.css"><script src="guide.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="index.html">HA Radio Hub</a><span class="badge">MC2-D / FH1 · PROTOTYPE</span>
+<nav aria-label="Quick tools"><a href="../hardware/external-antenna/index.html#harness">Find a wire</a><a href="../mechanical/full-hub/index.html">Print files</a><a href="https://github.com/ha-homelab/ha-radio-hub">GitHub</a></nav></header>
+<div class="shell"><aside class="side"><nav aria-label="Build guide"><a href="start-here.html">Start here</a><a href="shopping.html">Choose parts</a><a href="pcb-order.html">Order the PCB</a><a href="purchase-audit.html">Purchase audit</a><a href="firmware.html">Flash firmware</a><a href="print.html">Print and fit</a><a href="assembly.html">Wire the hub</a><span class="small">Reference</span><a href="documentation.html">All references</a><a href="history.html">Design history</a></nav></aside>
+<main id="main"><div class="page-meta"><a href="index.html">Guide home</a><a href="https://github.com/ha-homelab/ha-radio-hub/blob/main/docs/linux-printing.md">View Markdown source on GitHub</a><button type="button" data-print>Print this guide</button></div><details class="toc"><summary>On this page</summary><ul><li><a href="#contents">Contents</a></li><li><a href="#current-installation-and-acceptance-limits">Current installation and acceptance limits</a></li><li><a href="#install-a-new-linux-host">Install a new Linux host</a></li><li><a href="#connect-and-identify-the-printer">Connect and identify the printer</a></li><li><a href="#prepare-enclosure-g-code">Prepare enclosure G-code</a></li><li><a href="#start-an-attended-print">Start an attended print</a></li><li><a href="#monitor-and-stop">Monitor and stop</a></li><li><a href="#diagnose-filament-delivery">Diagnose filament delivery</a></li><li><a href="#maintenance-and-recovery">Maintenance and recovery</a></li><li><a href="#primary-references">Primary references</a></li></ul></details><article class="article"><h1 id="linux-usb-printing-installation-operation-and-monitoring">Linux USB printing: installation, operation and monitoring</h1>
+<p>This guide covers the <strong>original TRONXY XY-3</strong>, an OctoPrint host on Debian
+and the FH1 enclosure. Hostnames and SSH logins are placeholders. Use the
+values from your private inventory.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#current-installation-and-acceptance-limits">Current installation and acceptance limits</a></li>
+<li><a href="#install-a-new-linux-host">Install a new Linux host</a></li>
+<li><a href="#connect-and-identify-the-printer">Connect and identify the printer</a></li>
+<li><a href="#prepare-enclosure-g-code">Prepare enclosure G-code</a></li>
+<li><a href="#start-an-attended-print">Start an attended print</a></li>
+<li><a href="#monitor-and-stop">Monitor and stop</a></li>
+<li><a href="#diagnose-filament-delivery">Diagnose filament delivery</a></li>
+<li><a href="#maintenance-and-recovery">Maintenance and recovery</a></li>
+</ul>
+<h2 id="current-installation-and-acceptance-limits">Current installation and acceptance limits</h2>
+<p>The printer is connected by USB to <strong>printer-host.example.invalid</strong>, a Debian 12 Intel Atom x5-Z8350
+host with approximately 4 GiB RAM. Ethernet reaches the home network through
+an eero mesh node. Give one OctoPrint host exclusive use of the printer’s USB
+serial port.</p>
+<ul>
+<li>Browser on the home LAN: <strong>http://printer-host.example.invalid:5000/</strong>.</li>
+<li>SSH: <code>ssh your-login@printer-host.example.invalid</code> using the operator's existing credentials.</li>
+<li>OctoPrint <strong>1.11.8</strong>, Python virtual environment <code>/opt/octoprint/venv</code>.</li>
+<li>Persistent configuration, accounts, uploads and logs: <code>/var/lib/octoprint</code>.</li>
+<li>systemd service: <code>octoprint</code>; unprivileged account: <code>octoprint</code>.</li>
+<li>Printer: original XY-3, nominal <strong>310 × 310 × 330 mm</strong>, heated bed,
+one <strong>0.4 mm</strong> nozzle, <strong>1.75 mm PLA</strong>, serial <strong>115200 baud</strong>.</li>
+<li>Observed USB bridge: CH340 <code>1a86:7523</code>, previously <code>/dev/ttyUSB0</code>.</li>
+<li>Observed persistent path:
+<code>/dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0</code>.</li>
+<li>Actual firmware identification: <code>CBD make it</code>, dated Dec 10 2018 15:12:35.
+Official <strong>Fix CBD Firmware 0.4.0</strong> plugin installed; firmware not flashed.</li>
+</ul>
+<p>The button finished from the printer's SD card. On 17 November 2026, the
+same <code>Button.gcode</code> also finished through OctoPrint over USB. The operator observed normal PLA
+deposition on the USB run, which finished in about 9½ minutes. This checks the
+USB path and the button's footprint. A separate 5 mm extrusion test produced
+silver PLA and pulled the marked filament forward by the expected distance.</p>
+<p>The ZAC93 cradle covers a larger area. An earlier cradle attempt scored the
+build sheet even though both files commanded a 0.35 mm first layer. After the
+nozzle lifted, molten PLA emerged. Before another hot start, check the physical
+clearance across the cradle's own footprint using the procedure below.
+Cradle adhesion, dimensional fit and the large enclosure prints still need a
+physical test. The operator supervises the first layer at the printer.</p>
+<h2 id="install-a-new-linux-host">Install a new Linux host</h2>
+<p>Skip this section on an already configured host. These commands target a
+<strong>fresh Debian 12 host with systemd and Python 3.11</strong>, with administrative SSH
+access. Other distributions need their own package names and compatibility
+checks. Do not apply a Raspberry Pi OctoPi image to an x86 PC or Orange Pi.</p>
+<h3 id="1-prepare-the-operating-system-and-service-account">1. Prepare the operating system and service account</h3>
+<p>On the Linux host, while no printer job is running:</p>
+<pre><code class="language-sh">sudo apt-get update
+sudo apt-get install --yes python3 python3-venv python3-dev gcc libc6-dev usbutils ca-certificates
+sudo useradd --system --user-group --create-home --home-dir /var/lib/octoprint --shell /usr/sbin/nologin octoprint
+sudo usermod --append --groups dialout octoprint
+sudo install -d -o octoprint -g octoprint -m 0750 /opt/octoprint /var/lib/octoprint
+sudo -u octoprint python3 -m venv /opt/octoprint/venv
+sudo -u octoprint /opt/octoprint/venv/bin/python -m pip install 'OctoPrint==1.11.8'
+sudo -u octoprint /opt/octoprint/venv/bin/python -m pip check
+sudo -u octoprint /opt/octoprint/venv/bin/octoprint --version
+</code></pre>
+<p>The account-creation command is for first installation only. If the account or
+paths already exist, inspect the existing deployment instead of overwriting it.
+The version pin reproduces this installation; it is not a claim that 1.11.8
+will remain the latest or suitable indefinitely. Review upstream security and
+Python compatibility before choosing another version.</p>
+<h3 id="2-add-a-restricted-system-service">2. Add a restricted system service</h3>
+<p>Use this self-contained unit on a new host. It listens on loopback initially,
+so the first-run wizard is accessible through an SSH tunnel only.</p>
+<pre><code class="language-sh">sudo tee /etc/systemd/system/octoprint.service &gt; /dev/null &lt;&lt;'UNIT'
+[Unit]
+Description=OctoPrint USB print host
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=octoprint
+Group=octoprint
+SupplementaryGroups=dialout
+WorkingDirectory=/var/lib/octoprint
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/octoprint/venv/bin/octoprint --basedir /var/lib/octoprint serve --host 127.0.0.1 --port 5000
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+sudo systemctl daemon-reload
+sudo systemctl enable --now octoprint
+systemctl status octoprint --no-pager
+</code></pre>
+<p>On the workstation, replace <code>USER</code> and <code>LINUX_HOST</code> with the actual SSH login
+and host. This command stays running while the browser is in use:</p>
+<pre><code class="language-sh">ssh -N -L 15000:127.0.0.1:5000 USER@LINUX_HOST
+</code></pre>
+<p>Open <strong>http://127.0.0.1:15000/</strong> on the workstation. Complete the first-run wizard,
+create a unique administrator login, retain access control and firmware checks,
+and leave automatic printer connection disabled. Store passwords and API keys
+outside Git. Do not seed an existing server with another host's config.yaml.</p>
+<p>In <strong>Settings → Printer Profiles</strong>, create/select the original XY-3 profile:
+rectangular bed, lower-left origin, 310 mm width, 310 mm depth, 330 mm height,
+heated bed, one extruder and 0.4 mm nozzle. The slicer's separate filament
+setting must be 1.75 mm. Confirm real machine travel before homing.</p>
+<p>The tunnel is sufficient for normal use. For direct trusted-LAN access after
+account setup, use <code>sudo systemctl edit octoprint</code>, clear <code>ExecStart=</code> and add
+the same command with <code>--host</code> set to the host's <strong>actual reserved LAN IPv4</strong>.
+Then reload systemd and restart only while idle. Restrict port 5000 to the
+trusted LAN with the site's existing firewall policy; do not forward it on the
+Internet router. Recheck browser login protection. Do not replace unrelated
+firewall rules or assume LAN HTTP encrypts credentials.</p>
+<h3 id="3-prevent-the-host-from-sleeping">3. Prevent the host from sleeping</h3>
+<p>On a dedicated print host:</p>
+<pre><code class="language-sh">sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+</code></pre>
+<p>This affects the whole Linux machine. Keep host power, USB and networking
+stable; do not reboot, upgrade packages or restart OctoPrint during printing.
+A closed workstation browser does not stop the Linux host from streaming a job.</p>
+<h2 id="connect-and-identify-the-printer">Connect and identify the printer</h2>
+<ol>
+<li>
+<p>Finish any SD print first. Leave heaters off. Power the printer normally;
+USB is the data connection, not a replacement for its power supply.</p>
+</li>
+<li>
+<p>Attach a USB data cable matching the actual printer socket. Compare devices
+before and after attachment on Linux:</p>
+<pre><code class="language-sh">lsusb
+ls -l /dev/serial/by-id/ /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null
+id octoprint
+</code></pre>
+</li>
+<li>
+<p>Choose the actual printer port in OctoPrint and <strong>115200</strong> baud. Prefer the
+observed by-id path when available in the port list. If it is absent, add
+that exact path under additional serial ports in settings, then reconnect
+while idle. <code>/dev/ttyUSB0</code> can change or identify another device later.
+Identical CH340 adapters may not have unique serial numbers; inspect them
+rather than assuming the by-id name is globally unique.</p>
+</li>
+<li>
+<p>Use only OctoPrint to own the port. Do not simultaneously open minicom,
+screen, a slicer serial monitor or another print server.</p>
+</li>
+<li>
+<p>In the Terminal tab, inspect <code>M115</code> and <code>M105</code> responses. Confirm plausible
+ambient temperatures before heating. Opening a serial port may reset a
+controller, so connection experiments belong between jobs.</p>
+</li>
+</ol>
+<h3 id="required-cbd-compatibility-step">Required CBD compatibility step</h3>
+<p>If <code>M115</code> identifies <strong>CBD make it</strong>, install <strong>Fix CBD Firmware</strong> using
+<strong>Settings → Plugin Manager → Get More</strong>, then restart the idle OctoPrint
+service and reconnect. The qualified local version is 0.4.0. An administrator
+can alternatively install the exact reviewed source while the service is
+stopped:</p>
+<pre><code class="language-sh">sudo systemctl stop octoprint
+sudo -u octoprint /opt/octoprint/venv/bin/python -m pip install 'https://github.com/OctoPrint/OctoPrint-FixCBDFirmware/archive/153f46889c8aea2b33262310a6f79b6a8a3159fa.zip'
+sudo -u octoprint /opt/octoprint/venv/bin/python -m pip check
+sudo systemctl start octoprint
+</code></pre>
+<p>Do not issue <strong>M27 while idle</strong> on this controller: it previously returned
+<code>It's not printing now!</code> and triggered OctoPrint's emergency-stop/disconnect
+handling. Use the web interface and HTTP API for job status instead. Do not
+silence firmware errors or disable thermal protections to force a connection.
+A firmware replacement requires the actual controller-board revision and a
+separate recovery plan; the printer model alone is insufficient.</p>
+<h2 id="prepare-enclosure-g-code">Prepare enclosure G-code</h2>
+<h3 id="first-trial-on-the-original-xy-3">First trial on the original XY-3</h3>
+<p>Prepare the <strong>ZAC93 cradle by itself</strong> on the workstation. The public
+commissioning package includes a PrusaSlicer profile and instructions for
+slicing the current <code>zwave-tray.stl</code>. Open the
+<a href="zac93-first-print.html">cradle slicing procedure</a>.</p>
+<ol>
+<li>Use the original XY-3's actual nozzle and spool. The profile is for a
+0.4 mm nozzle and 1.75 mm unfilled PLA. Keep the cradle floor on the bed
+at 100% scale. Follow the spool and sheet specifications for temperature.</li>
+<li>Preview the first material-depositing move and the full first-layer
+footprint, including the skirt and brim if enabled. Compare their XY
+bounds with the usable sheet, clip positions and any damaged area.</li>
+<li>With the machine cold, follow its established leveling procedure. Check
+clearance at the start of the first line and across that footprint. Lift
+before moving XY between check points. Use a gauge of known thickness
+under the stationary nozzle. Record the XY, commanded Z and measured
+clearance, then remove the gauge before moving. If a 0.2 mm ruler fits
+and a 1.75 mm filament does not, the gap is still too uncertain to set
+a 0.35 mm first layer. A controller position report (<code>M114</code>) cannot
+measure the nozzle-to-sheet gap.</li>
+<li>If the physical clearance disagrees with the expected layer height, check
+the seated sheet, bed level and Z home reference. Repeat the check after
+adjustment. A single measurement at one point cannot justify a global
+Z compensation. If the next move in a paused file would put the nozzle
+into the sheet, cancel the file and correct the cause before restarting.</li>
+<li>Export <strong>plain text G-code</strong> under a distinct filename. Check the start
+sequence in the exported file. Heating should begin with the nozzle raised
+clear of the sheet. For the button control, use the same known-good file
+on SD and USB. Its older slicer metadata describes a different nozzle and
+filament diameter, so use the cradle's own profile for the project part.</li>
+</ol>
+<p>The full <a href="print.html#print-package">FH1 print archive</a>
+contains the STLs for the other jobs. Slice the fastener/SMA coupon separately,
+dry-fit the delivered hardware, then progress to the other small trays, radar
+holder and pod. Reserve the base and lid for after those checks. Older local
+six-plate projects and prior trial G-code are optional operator files.</p>
+<h2 id="start-an-attended-print">Start an attended print</h2>
+<p>Before each start, the operator at the printer checks:</p>
+<ul>
+<li>Old parts and loose plastic removed; build sheet secured, flat and clean;
+no raised damaged edges or clips in the intended path.</li>
+<li>Correct sheet face up according to its manufacturer. A rough print face
+above a magnetic underside is plausible, but a description alone does not
+identify a replacement sheet. Never use hot nozzle contact to test it.</li>
+<li>Nozzle visibly clear of the surface before stationary heating; current
+bed level/Z offset checked using the machine's known-good procedure.</li>
+<li>PLA reaches continuously from spool through feeder and Bowden tube, without
+breaks or gaps; spool can unwind. Remove all tape markers before printing.</li>
+<li>Correct G-code, material, nozzle and usable filament quantity confirmed.</li>
+<li>Operator can watch the start and reach the printer's physical power switch.</li>
+</ul>
+<p>In OctoPrint:</p>
+<ol>
+<li>Log in, select the correct printer profile and connect to the identified
+port at 115200. Check that no SD or USB job is already active.</li>
+<li>Use <strong>Upload</strong> to local storage. Avoid <strong>Upload and Print</strong> during initial
+commissioning: inspect the filename and loaded preview before starting.</li>
+<li>Load/select the intended file. Check the Temperature and GCode Viewer tabs.
+A preview is not physical proof of bed clearance or safe homing.</li>
+<li>Press <strong>Print once</strong>. If the request times out, inspect job state before
+retrying; never assume that a missing browser response means no start.</li>
+<li>Watch homing, the raised position during warm-up, the first extruded
+line and the entire first layer. Stop for surface contact, no extrusion, backward-only feed,
+loose loops, dragged parts or repeated feeder clicking.</li>
+<li>Confirm lines adhere evenly and subsequent layers actually grow. An
+advancing percentage and normal temperature cannot prove deposited plastic.</li>
+</ol>
+<h2 id="monitor-and-stop">Monitor and stop</h2>
+<p>Use <strong>Temperature</strong> for actual versus target nozzle/bed readings, the job panel
+for filename/state/progress and <strong>Terminal</strong> for errors. GCode Viewer reports
+commanded paths, not measured nozzle position or actual plastic flow. A target
+of 0 °C means heating is off, not that the nozzle is cool.</p>
+<p>A camera helps only if a real stream is configured and inspected. For an
+optional UVC camera, identify it with <code>lsusb</code> and <code>/dev/video*</code>, install a camera
+server appropriate to that host, then configure and verify stream/snapshot URLs
+in OctoPrint's webcam settings. No camera-server package is installed by this
+guide. Check image freshness and first-layer visibility under real lighting;
+start with modest resolution/frame rate. A stale image can look healthy.</p>
+<p>Optional <a href="https://www.home-assistant.io/integrations/octoprint/">Home Assistant integration</a>
+can expose supported state, temperatures and controls after USB operation is
+stable. Neither HA, telemetry nor a configured camera creates continuous human
+supervision or proven automatic failure detection. Any automatic vision/stop
+system requires separate qualification.</p>
+<h3 id="pause-cancel-and-an-urgent-stop">Pause, cancel and an urgent stop</h3>
+<ul>
+<li><strong>Pause</strong> is temporary and may leave heaters on or the nozzle near the part.
+Do not assume a safe park/retraction script is installed. Qualify resume on
+a small attended job. OctoPrint interprets a file's <code>@pause</code> when streaming
+it from host storage. Do not rely on that directive to stop a print from
+the printer's SD card.</li>
+<li><strong>Cancel</strong> ends the streamed job. Wait for an idle state, set tool and bed
+targets to <strong>0</strong>, and verify their readback. Commands already buffered in
+the printer can still execute briefly; cancel is not a physical stop switch.</li>
+<li>For imminent collision, smoke or uncontrolled heating, use the printer's
+physical power switch if safe to do so. Do not wait for a web response.</li>
+<li>A blocking heat command or broken connection can delay queued heater-off
+commands. If the printer does not respond, use local physical control/power;
+a disconnected browser or stopped Linux service does not guarantee heaters
+are off. Reconnect only after the machine is safe and inspect state before
+sending anything else.</li>
+<li>After cancelling or losing power/USB, do not resume an arbitrary file offset.
+Inspect/remove the failed part when cool and plan a new start from zero.</li>
+</ul>
+<p>For a normal finish, verify idle status and both heater targets zero. Let the
+hotend cooling fan run while the hotend cools, then switch off the printer as
+appropriate. Remove the part only after the bed has cooled. Leave the Linux
+host running if it serves other purposes.</p>
+<h3 id="optional-read-only-api-checks">Optional read-only API checks</h3>
+<p>The following targets the installed <strong>OctoPrint 1.11.x API</strong>. Create a scoped
+application key in OctoPrint with the permissions needed for status; store the
+header locally, outside the repository, with mode 0600. Its file content is
+<code>X-Api-Key: YOUR_APPLICATION_KEY</code>. Do not paste a real key into documentation,
+command history, screenshots or Git.</p>
+<pre><code class="language-sh"># Use your actual trusted-LAN URL, or the local SSH tunnel URL.
+OCTOPRINT_URL=http://127.0.0.1:15000
+OCTOPRINT_HEADER_FILE=&quot;$HOME/.config/octoprint/status.header&quot;
+curl --fail --silent --show-error --max-time 10 --header &quot;@$OCTOPRINT_HEADER_FILE&quot; &quot;$OCTOPRINT_URL/api/job&quot;
+curl --fail --silent --show-error --max-time 10 --header &quot;@$OCTOPRINT_HEADER_FILE&quot; &quot;$OCTOPRINT_URL/api/printer&quot;
+</code></pre>
+<p>Read <code>state</code>, current file, progress and <code>temperature.tool0</code> / <code>temperature.bed</code>
+actual/target. A disconnected printer can return an error instead of temperature
+state; do not reinterpret that as zero temperature. HTTP acceptance of a motion
+command would not prove that motion happened. This guide deliberately uses
+attended UI controls for starting and moving the printer.</p>
+<h2 id="diagnose-filament-delivery">Diagnose filament delivery</h2>
+<p>A thin strand can ooze from residual pressure while the feeder is stopped.
+Observe the filament itself, not only sound or nozzle output.</p>
+<ol>
+<li>Cancel any job. Confirm idle status and physically raised nozzle clearance
+<strong>now</strong>, not from yesterday's position. Never home or lower onto an existing
+part during diagnosis.</li>
+<li>Check the cold feed path for a brittle break, gap in the Bowden tube,
+spool snag or a released feeder lever. Do not force cold filament through
+the hotend. Do not unplug motor wiring while powered.</li>
+<li>Place a pen mark on the incoming filament far enough from the feeder to
+remain visible through the test. Keep tape and debris out of the mechanism.</li>
+<li>Heat to the confirmed PLA setting (205 °C was used here). Wait for the
+actual temperature to reach it, with the nozzle visibly above the bed.</li>
+<li>Issue <strong>one</strong> small positive feed, approximately 5 mm at 1 mm/s. The local
+observed terminal sequence was <code>M82</code>, <code>G92 E0</code>, <code>G1 E5 F60</code>, <code>M400</code>, then
+<code>M104 S0</code>, <strong>only while idle and already hot</strong>. It changes the E coordinate
+and is not a macro to inject into a running or paused print. Do not queue
+repeated feeds behind a heating command. Verify the heater-off target.</li>
+<li>Compare the physical mark with the requested distance. If the gear turns
+but filament barely advances, investigate grip/slipping or resistance. If
+neither moves, investigate command execution and drive operation. If feed
+reverses, stop and compare modes with known-good SD G-code before changing
+motor settings. These are diagnostic leads, not a confirmed cause.</li>
+<li>Stop for repeated clicking, grinding, a jam, smoke or no forward movement.
+Do not compensate with large feed commands, higher pressure, disabling cold
+extrusion protection or unreviewed temperature increases.</li>
+</ol>
+<p>Black output while silver PLA is loaded can have several causes; color alone
+cannot prove bed material entered the hotend. Do not perform unlimited purges.
+On this machine, a final short test restored silver output and the expected
+5 mm advance. That justifies a subsequent attended coupon check, not immediate
+acceptance of every long print. Follow a procedure appropriate to the actual
+hotend before attempting disassembly or a cold pull.</p>
+<h2 id="maintenance-and-recovery">Maintenance and recovery</h2>
+<p>On Linux, read-only service checks:</p>
+<pre><code class="language-sh">systemctl status octoprint --no-pager
+sudo journalctl -u octoprint -n 60 --no-pager
+sudo -u octoprint /opt/octoprint/venv/bin/python -m pip check
+sudo -u octoprint /opt/octoprint/venv/bin/python -m pip show OctoPrint OctoPrint-FixCBDFirmware
+ss -ltn | rg ':5000'  # use grep if ripgrep is not installed
+</code></pre>
+<p>Never share raw logs/configuration without checking for session data, API keys,
+private addresses and account details. For serial permissions, inspect the
+actual device group and <code>id octoprint</code>; do not use <code>chmod 777</code> on USB devices.</p>
+<p>Before updating, ensure the printer is idle, heater targets are zero and the
+machine is locally safe. Stop the service and make a <strong>private</strong> backup of
+<code>/var/lib/octoprint</code>, the effective systemd unit/drop-ins/environment files and
+<code>pip freeze</code> output. Keep secrets out of this repository. Install only reviewed
+versions in the virtual environment, run <code>pip check</code>, start the service and
+verify login, plugins, profile, connection and temperatures. Keep the previous
+version set and backup for rollback; test with a coupon after a change.</p>
+<pre><code class="language-sh"># Idle-only service operation, not a printer emergency-stop command.
+sudo systemctl restart octoprint
+# To retire the service without deleting its state:
+# sudo systemctl disable --now octoprint
+# To restore sleep availability when retiring a dedicated print host:
+# sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+</code></pre>
+<p>If unreachable, check host/printer power, Ethernet/mesh connectivity, the router's
+reservation, SSH and service status in that order. Do not assign a guessed
+static address that may conflict. A host/network failure during USB streaming
+requires local inspection before restarting a job.</p>
+<h2 id="primary-references">Primary references</h2>
+<ul>
+<li><a href="https://octoprint.org/download/">OctoPrint installation options</a>.</li>
+<li><a href="https://plugins.octoprint.org/plugins/fixcbdfirmware/">Official Fix CBD Firmware plugin and installation</a>.</li>
+<li><a href="https://github.com/OctoPrint/OctoPrint-FixCBDFirmware/tree/153f46889c8aea2b33262310a6f79b6a8a3159fa">Pinned plugin source</a>.</li>
+<li><a href="https://github.com/OctoPrint/OctoPrint/tree/1.11.8">OctoPrint 1.11.8 source</a>.</li>
+<li><a href="https://docs.octoprint.org/en/main/api/printer.html">Printer API</a>,
+<a href="https://docs.octoprint.org/en/main/api/job.html">job API</a> and
+<a href="https://docs.octoprint.org/en/main/api/files.html">file API</a>.
+The rolling documentation may describe newer API versions; examples above
+deliberately use the installed 1.11.x routes.</li>
+<li><a href="print.html">FH1 enclosure and print sequence</a>.</li>
+</ul>
+</article><footer>MC2-D is the active classic ESP32 design. Physical fit, concurrent operation and coverage still require your measurements.
+<br>This guide reads the repository documentation. Source links open GitHub; diagrams and downloads stay in this copy.</footer></main></div></body></html>

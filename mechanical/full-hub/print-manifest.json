@@ -5,7 +5,7 @@
   "units": "mm",
   "scale_percent": 100,
   "physical_fit_verified": false,
-  "source_report_sha256": "c82ffb53bbe634e4b28c9a6e0db8f83afe684a005cb5f874820de2fb2c9f9e87",
+  "source_report_sha256": "517de407f1690d9ec6801822306f34297ca3e57753f6ab48b0e74a2e7eaa147f",
   "unique_stl_files": 14,
   "installed_pieces": 13,
   "trial_only_pieces": 1,
@@ -29,7 +29,7 @@
       "label": "Zooz ZAC93 cradle",
       "quantity": 1,
       "role": "installed",
-      "sha256": "a2f9540e30726bb0926cdb9cadcf89442f91772095560a48098213a02e9c752c",
+      "sha256": "d3f85293cd9fe11a14cd307c0038b790c748dd6f5d910e40673da15d41c7fdd8",
       "note": "Trial fit the delivered ZAC93, underside socket and mating header first; reuse this cradle if it fits."
     },
     {
