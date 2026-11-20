@@ -57,10 +57,25 @@ def cradle(size, raised=False):
     # Small stop walls restrain translation; open ends admit the harness.
     rails=[c.box(2,d-8,16).move((0,4,0)),c.box(2,d-8,16).move((w-2,4,0))]
     if raised:
+        # Screw axes are 2 mm from the sides. R0.5 keeps all of the plate
+        # beneath a 5 mm OD washer while removing the four pointed corners.
+        r=0.5
+        plate=c.union(c.box(w-2*r,d,2.4).move((r,0,0)),
+                      c.box(w,d-2*r,2.4).move((0,r,0)),
+                      *[c.cylinder(2*r,2.4).move((cx,cy,0))
+                        for cx in (r,w-r) for cy in (r,d-r)])
         # ZAC93's socket occupies the centre below the PCB. Two narrow ledges
         # support its PCB edges at the trial PCB plane, with no central post.
         rails=[c.box(2,d-8,20.4).move((1,4,0)),c.box(2,d-8,20.4).move((w-3,4,0))]
         rails += [c.box(4,d-8,1.2).move((1,4,19.2)),c.box(4,d-8,1.2).move((w-5,4,19.2))]
+        # Build each 2 mm lip outwards over a 45-degree underside. The
+        # triangle ends at the old lip's underside and leaves its seat flat.
+        section=[[0,0],[2,2],[0,2]]
+        wedge=c.Node(c.mf.CrossSection([section]).extrude(d-8),
+                     f'linear_extrude(height={d-8}) polygon(points={section});')
+        left=wedge.rotate((90,0,0))
+        rails += [left.move((3,d-4,17.2)),
+                  left.rotate((0,0,180)).move((w-3,4,17.2))]
     plate=c.union(plate,*rails)
     cuts=[c.cylinder(2.2,2.6).move((a,b,-.1)) for a,b in [(2,2),(w-2,2),(2,d-2),(w-2,d-2)]]
     # One strap location stays on the connector half of the ZAC93. Real PCB

@@ -93,6 +93,31 @@ class FullHubTests(unittest.TestCase):
         self.assertLess(header[2],header[5])
         self.assertEqual(self.g['mounting']['zwave']['socket_envelope_mm'],z[1])
 
+    def test_zac93_rounded_base_keeps_original_m2_washer_seats(self):
+        tray=self.g['nodes']['zwave-tray'].solid
+        footprint=b.c.box(36.5,36.5,2.4).solid
+        self.assertEqual(tuple(round(n,4) for n in tray.bounding_box()),(0,0,0,36.5,36.5,20.4))
+        for x in (2,34.5):
+            for y in (2,34.5):
+                bore=b.c.cylinder(2.2,2.4).move((x,y,0)).solid
+                washer=b.c.cylinder(5,2.4).move((x,y,0)).solid
+                self.assertAlmostEqual(((washer ^ footprint) - bore - tray).volume(),0,places=5)
+                self.assertAlmostEqual((tray ^ bore).volume(),0,places=5)
+        for x in (.02,36.38):
+            for y in (.02,36.38):
+                tip=b.c.box(.10,.10,2.4).move((x,y,0)).solid
+                self.assertAlmostEqual((tray ^ tip).volume(),0,places=5)
+
+    def test_zac93_ledges_have_symmetric_printable_undersides(self):
+        tray=self.g['nodes']['zwave-tray'].solid
+        for reach in (.25,1,1.75):
+            for x in (3+reach,33.5-reach):
+                # Sample the entire span immediately above/below the 45° face.
+                for dz,filled in ((.15,True),(-.15,False)):
+                    sample=b.c.box(.04,28.4,.04).move((x-.02,4.05,17.2+reach+dz)).solid
+                    expected=sample.volume() if filled else 0
+                    self.assertAlmostEqual((tray ^ sample).volume(),expected,places=5)
+
     def test_filling_zac93_socket_bay_is_rejected(self):
         bad=copy.copy(self.g);bad['assembled']=dict(self.g['assembled'])
         x,y,z=self.p['placements']['zwave']
