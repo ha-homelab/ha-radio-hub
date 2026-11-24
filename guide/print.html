@@ -67,9 +67,14 @@ restrains the J2 cable. Do not tighten a strap over the capacitor top or use
 its leads as a cable anchor. The tray screws to the base with four M2 screws;
 neither the regulator nor capacitor has mounting holes. The new tray and
 base must be printed together because their mounting pattern changed. The
-outer shell, lid, RF holes and the other trays retain their RF1 geometry.
+outer shell, lid and RF holes retain their RF1 geometry.
 Fit and temperature under simultaneous load still need physical verification.</p>
 <h2 id="zac93-location-and-attachment">ZAC93 location and attachment</h2>
+<p><img src="../mechanical/full-hub/commissioning/cradle-changes.png" alt="ZAC93 cradle and cross sections showing the sloped underside of a board support and the rounded base corner" /></p>
+<p>The four base corners have a 0.5 mm radius. Each board support has a 45° slope
+under its lip so successive layers build out gradually. The cradle fits the
+same four M2 screw positions and leaves the original bearing area for 5 mm OD
+washers. The board rests 20.4 mm above the underside of the cradle.</p>
 <p><strong>The ZAC93 is beside the carrier in its own removable cradle.</strong> Its factory
 2×5 socket faces downward into the opening, leaving space for a wired mating
 header. The five-wire cable goes to carrier <strong>J4</strong>, not directly to the ESP32.
@@ -91,8 +96,13 @@ two copies of <code>pod-arm.stl</code>.</strong> A single STL is intentionally s
 identical pair. Reuse the ZAC93 trial cradle if it fits; do not print a second
 cradle just for final assembly.</p>
 <ol>
-<li><strong>First:</strong> the fit coupon and ZAC93 cradle. Check the actual socket, mating
-header, fasteners and SMA bulkhead with power disconnected.</li>
+<li>On the original TRONXY XY-3, print the <strong>ZAC93 cradle by itself</strong>.
+The <a href="zac93-first-print.html">standalone cradle profile and slicing instructions</a>
+use the supplied STL. For USB setup and first-layer clearance checks, see the
+<a href="linux-printing.html#prepare-enclosure-g-code">Linux printing guide</a>.
+Print the fit coupon separately. With power disconnected, check the ZAC93
+socket and mating header in the cradle, then test fasteners and the SMA
+bulkhead on the coupon.</li>
 <li><strong>Next:</strong> measure each delivered module and trial-fit the remaining small
 trays, radar holder and pod pieces. Resolve the unknown CC1101, adapter and
 fuse dimensions before printing the main shell.</li>
@@ -117,8 +127,8 @@ window. Retention must not cross the active antenna face.</li>
 <li><a href="../mechanical/full-hub/bme680-pod.stl">BME680 pod</a>, <a href="../mechanical/full-hub/bme680-pod-lid.stl">pod lid</a> and <strong>two</strong>
 <a href="../mechanical/full-hub/pod-arm.stl">pod arms</a>: an attached ventilated compartment outside the warm
 main shell.</li>
-<li><a href="../mechanical/full-hub/fit-coupon.stl">Fit coupon</a>: print first to check fastener pilots and the
-selected SMA bulkhead against actual hardware.</li>
+<li><a href="../mechanical/full-hub/fit-coupon.stl">Fit coupon</a>: checks fastener pilots and the selected SMA
+bulkhead against actual hardware before larger prints.</li>
 <li><a href="../mechanical/full-hub/cc1101-port-blank.stl">CC1101 port blank</a>: optional closure for an unused
 trial feed opening. It is not an RF connector or antenna adapter.</li>
 <li><a href="../mechanical/full-hub/assembly.scad">Assembled SCAD</a> and <a href="../mechanical/full-hub/exploded.scad">exploded SCAD</a>.</li>
