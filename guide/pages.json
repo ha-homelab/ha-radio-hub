@@ -42,6 +42,18 @@
     "description": "Connect power, the UART bridge, ZAC93 and each sensor."
   },
   {
+    "slug": "zac93-first-print",
+    "source": "mechanical/full-hub/commissioning/README.md",
+    "label": "Print the ZAC93 cradle",
+    "description": "Open the one-part TRONXY XY-3 project and check its first layer."
+  },
+  {
+    "slug": "linux-printing",
+    "source": "docs/linux-printing.md",
+    "label": "Run OctoPrint on Linux",
+    "description": "Connect the USB printer, start a local job and recover after a failed first layer."
+  },
+  {
     "slug": "pcb-silkscreen",
     "source": "docs/pcb-silkscreen.md",
     "label": "PCB markings",

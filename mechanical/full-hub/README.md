@@ -76,10 +76,17 @@ restrains the J2 cable. Do not tighten a strap over the capacitor top or use
 its leads as a cable anchor. The tray screws to the base with four M2 screws;
 neither the regulator nor capacitor has mounting holes. The new tray and
 base must be printed together because their mounting pattern changed. The
-outer shell, lid, RF holes and the other trays retain their RF1 geometry.
+outer shell, lid and RF holes retain their RF1 geometry.
 Fit and temperature under simultaneous load still need physical verification.
 
 ## ZAC93 location and attachment
+
+![ZAC93 cradle and cross sections showing the sloped underside of a board support and the rounded base corner](commissioning/cradle-changes.png)
+
+The four base corners have a 0.5 mm radius. Each board support has a 45° slope
+under its lip so successive layers build out gradually. The cradle fits the
+same four M2 screw positions and leaves the original bearing area for 5 mm OD
+washers. The board rests 20.4 mm above the underside of the cradle.
 
 **The ZAC93 is beside the carrier in its own removable cradle.** Its factory
 2×5 socket faces downward into the opening, leaving space for a wired mating
@@ -105,8 +112,13 @@ two copies of `pod-arm.stl`.** A single STL is intentionally supplied for that
 identical pair. Reuse the ZAC93 trial cradle if it fits; do not print a second
 cradle just for final assembly.
 
-1. **First:** the fit coupon and ZAC93 cradle. Check the actual socket, mating
-   header, fasteners and SMA bulkhead with power disconnected.
+1. On the original TRONXY XY-3, print the **ZAC93 cradle by itself**.
+   The [standalone cradle profile and slicing instructions](commissioning/README.md)
+   use the supplied STL. For USB setup and first-layer clearance checks, see the
+   [Linux printing guide](../../docs/linux-printing.md#prepare-enclosure-g-code).
+   Print the fit coupon separately. With power disconnected, check the ZAC93
+   socket and mating header in the cradle, then test fasteners and the SMA
+   bulkhead on the coupon.
 2. **Next:** measure each delivered module and trial-fit the remaining small
    trays, radar holder and pod pieces. Resolve the unknown CC1101, adapter and
    fuse dimensions before printing the main shell.
@@ -132,8 +144,8 @@ as a single solid.
 - [BME680 pod](bme680-pod.stl), [pod lid](bme680-pod-lid.stl) and **two**
   [pod arms](pod-arm.stl): an attached ventilated compartment outside the warm
   main shell.
-- [Fit coupon](fit-coupon.stl): print first to check fastener pilots and the
-  selected SMA bulkhead against actual hardware.
+- [Fit coupon](fit-coupon.stl): checks fastener pilots and the selected SMA
+  bulkhead against actual hardware before larger prints.
 - [CC1101 port blank](cc1101-port-blank.stl): optional closure for an unused
   trial feed opening. It is not an RF connector or antenna adapter.
 - [Assembled SCAD](assembly.scad) and [exploded SCAD](exploded.scad).

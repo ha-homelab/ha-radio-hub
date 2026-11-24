@@ -1,11 +1,8 @@
 # Linux USB printing: installation, operation and monitoring
 
-This is the current end-to-end operator guide for the **original TRONXY XY-3**
-and the FH1 enclosure. Reviewed **16 November 2026**. It supersedes the older
-*previous-printer-host.example.invalid* deployment instructions for the current printer host.
-
-Site-specific hostnames, LAN addresses and SSH logins below are examples. Use your
-private inventory for actual values; the dated commissioning record is not a live check.
+This guide covers the **original TRONXY XY-3**, an OctoPrint host on Debian
+and the FH1 enclosure. Hostnames and SSH logins are placeholders. Use the
+values from your private inventory.
 
 ## Contents
 
@@ -22,8 +19,8 @@ private inventory for actual values; the dated commissioning record is not a liv
 
 The printer is connected by USB to **printer-host.example.invalid**, a Debian 12 Intel Atom x5-Z8350
 host with approximately 4 GiB RAM. Ethernet reaches the home network through
-an eero mesh node. The earlier previous-printer-host.example.invalid installation is separate; do not run two
-serial clients against the same printer.
+an eero mesh node. Give one OctoPrint host exclusive use of the printer’s USB
+serial port.
 
 - Browser on the home LAN: **http://printer-host.example.invalid:5000/**.
 - SSH: `ssh your-login@printer-host.example.invalid` using the operator's existing credentials.
@@ -38,20 +35,18 @@ serial clients against the same printer.
 - Actual firmware identification: `CBD make it`, dated Dec 10 2018 15:12:35.
   Official **Fix CBD Firmware 0.4.0** plugin installed; firmware not flashed.
 
-These are the last verified commissioning facts, not a live availability check.
-An SSH attempt on 16 November timed out; check host power and network before
-assuming the address is currently reachable.
+The button finished from the printer's SD card. On 17 November 2026, the
+same `Button.gcode` also finished through OctoPrint over USB. The operator observed normal PLA
+deposition on the USB run, which finished in about 9½ minutes. This checks the
+USB path and the button's footprint. A separate 5 mm extrusion test produced
+silver PLA and pulled the marked filament forward by the expected distance.
 
-**What passed:** the operator observed normal silver PLA color and the expected
-physical filament advance during a repeated, bounded 5 mm feed at 205 °C.
-**What remains:** a successful USB coupon print, dimensional acceptance and
-qualification of the long enclosure jobs. Earlier continuous backward feed
-while printing has not been explained. A communication plugin and a successful
-short extrusion test do not establish full print compatibility.
-
-No camera stream or automatic visual supervision was commissioned in this
-session. The printer was left idle with both heater targets at zero on
-15 November. Printing requires a new attended start, not an overnight timer.
+The ZAC93 cradle covers a larger area. An earlier cradle attempt scored the
+build sheet even though both files commanded a 0.35 mm first layer. After the
+nozzle lifted, molten PLA emerged. Before another hot start, check the physical
+clearance across the cradle's own footprint using the procedure below.
+Cradle adhesion, dimensional fit and the large enclosure prints still need a
+physical test. The operator supervises the first layer at the printer.
 
 ## Install a new Linux host
 
@@ -85,8 +80,7 @@ Python compatibility before choosing another version.
 ### 2. Add a restricted system service
 
 Use this self-contained unit on a new host. It listens on loopback initially,
-so the first-run wizard is accessible through an SSH tunnel only. Do not copy
-the older previous-printer-host.example.invalid environment-file unit without adapting its environment file.
+so the first-run wizard is accessible through an SSH tunnel only.
 
 ```sh
 sudo tee /etc/systemd/system/octoprint.service > /dev/null <<'UNIT'
@@ -206,48 +200,43 @@ separate recovery plan; the printer model alone is insufficient.
 
 ## Prepare enclosure G-code
 
-Slice on a capable workstation; OctoPrint receives finished text `.gcode`,
-not STL or 3MF files. The current operator checkout also contains a local
-`mechanical/full-hub/slicer/` package with editable projects. That package is
-not yet present on public main at this review; do not assume a fresh clone
-contains it. The public [enclosure files](../mechanical/full-hub/README.md)
-remain available. If the local projects are unavailable, import the fit coupon
-and ZAC93 cradle STLs from that package into a new custom XY-3 project: use
-the dimensions below, 0.20 mm layers, four perimeters, five top/bottom layers,
-20% gyroid infill and a 5 mm brim. Start with 15 mm/s first-layer speed,
-25 mm/s outer walls, 35 mm/s other walls and 40 mm/s infill. Inspect support
-requirements for each part. Save this as an editable project before slicing.
+### First trial on the original XY-3
 
-1. Open `mechanical/full-hub/slicer/PLA/01-fit-first.3mf` as a complete project
-   in **PrusaSlicer 2.9.6**. Keep the supplied orientation and **100% scale**.
-2. Confirm original XY-3 geometry, 0.4 mm nozzle, **1.75 mm PLA**, 0.20 mm
-   layers and the actual spool's permitted temperatures. The starting project
-   uses 205 °C nozzle / 60 °C bed. Do not select PETG for a PLA spool.
-3. Inspect supports, brim, model footprint, layer preview and all start/end
-   motions. Export plain `.gcode`, not binary `.bgcode`.
-4. Validate the start sequence against the actual machine. For this unit,
-   home with a cold nozzle, establish and **physically confirm clearance**,
-   then move to a clear heating position before applying heat. Do not heat
-   with the nozzle resting on the build surface.
-5. The supplied older slicer profiles include a front-edge prime line around
-   X10/Y10..100. That does **not** include the later local restart adjustment.
-   The local restart used Z10 and X60/Y60 before heating, and prime lines at
-   X60..60.5/Y60..150. These coordinates are a machine-specific candidate,
-   not a universal safe macro: check clips, the front-center damaged area,
-   current homing/Z calibration and all part/brim footprints. Do not blindly
-   paste a new prefix onto an already complete start sequence.
-6. Preserve the extrusion mode expected by the sliced body. These projects
-   use absolute extrusion (`M82`); a purge's E coordinate must be reset before
-   the model body as intended by the slicer. Do not invert the motor or change
-   steps/mm to compensate for an unexplained file/mode problem.
-7. Save under a distinct name identifying the reviewed revision. Optionally
-   record `sha256sum YOUR_FILE.gcode` on Linux for later comparison.
+Prepare the **ZAC93 cradle by itself** on the workstation. The public
+commissioning package includes a PrusaSlicer profile and instructions for
+slicing the current `zwave-tray.stl`. Open the
+[cradle slicing procedure](../mechanical/full-hub/commissioning/README.md).
 
-Start with **01-fit-first**, approximately 2 h 4 min and 14 g in the slicer.
-Then qualify module trays, radar/pod, base and lid in that order. The base's
-approximately 49-hour estimate is **not** a suitable first USB test. Estimates
-are not elapsed-time guarantees. Check the fit coupon and the real components
-before spending filament on the large enclosure.
+1. Use the original XY-3's actual nozzle and spool. The profile is for a
+   0.4 mm nozzle and 1.75 mm unfilled PLA. Keep the cradle floor on the bed
+   at 100% scale. Follow the spool and sheet specifications for temperature.
+2. Preview the first material-depositing move and the full first-layer
+   footprint, including the skirt and brim if enabled. Compare their XY
+   bounds with the usable sheet, clip positions and any damaged area.
+3. With the machine cold, follow its established leveling procedure. Check
+   clearance at the start of the first line and across that footprint. Lift
+   before moving XY between check points. Use a gauge of known thickness
+   under the stationary nozzle. Record the XY, commanded Z and measured
+   clearance, then remove the gauge before moving. If a 0.2 mm ruler fits
+   and a 1.75 mm filament does not, the gap is still too uncertain to set
+   a 0.35 mm first layer. A controller position report (`M114`) cannot
+   measure the nozzle-to-sheet gap.
+4. If the physical clearance disagrees with the expected layer height, check
+   the seated sheet, bed level and Z home reference. Repeat the check after
+   adjustment. A single measurement at one point cannot justify a global
+   Z compensation. If the next move in a paused file would put the nozzle
+   into the sheet, cancel the file and correct the cause before restarting.
+5. Export **plain text G-code** under a distinct filename. Check the start
+   sequence in the exported file. Heating should begin with the nozzle raised
+   clear of the sheet. For the button control, use the same known-good file
+   on SD and USB. Its older slicer metadata describes a different nozzle and
+   filament diameter, so use the cradle's own profile for the project part.
+
+The full [FH1 print archive](../mechanical/full-hub/README.md#print-package)
+contains the STLs for the other jobs. Slice the fastener/SMA coupon separately,
+dry-fit the delivered hardware, then progress to the other small trays, radar
+holder and pod. Reserve the base and lid for after those checks. Older local
+six-plate projects and prior trial G-code are optional operator files.
 
 ## Start an attended print
 
@@ -275,8 +264,8 @@ In OctoPrint:
    A preview is not physical proof of bed clearance or safe homing.
 4. Press **Print once**. If the request times out, inspect job state before
    retrying; never assume that a missing browser response means no start.
-5. Watch homing and clearance first, then warm-up, prime line and the entire
-   first layer. Stop for surface contact, no extrusion, backward-only feed,
+5. Watch homing, the raised position during warm-up, the first extruded
+   line and the entire first layer. Stop for surface contact, no extrusion, backward-only feed,
    loose loops, dragged parts or repeated feeder clicking.
 6. Confirm lines adhere evenly and subsequent layers actually grow. An
    advancing percentage and normal temperature cannot prove deposited plastic.
@@ -305,7 +294,9 @@ system requires separate qualification.
 
 - **Pause** is temporary and may leave heaters on or the nozzle near the part.
   Do not assume a safe park/retraction script is installed. Qualify resume on
-  a small attended job; do not casually move axes or change extrusion modes.
+  a small attended job. OctoPrint interprets a file's `@pause` when streaming
+  it from host storage. Do not rely on that directive to stop a print from
+  the printer's SD card.
 - **Cancel** ends the streamed job. Wait for an idle state, set tool and bed
   targets to **0**, and verify their readback. Commands already buffered in
   the printer can still execute briefly; cancel is not a physical stop switch.
