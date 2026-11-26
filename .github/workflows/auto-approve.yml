@@ -40,7 +40,7 @@ jobs:
        (contains(github.event.pull_request.labels.*.name, 'auto-approve') ||
        (github.event.pull_request.head.repo.full_name == github.repository &&
         contains(fromJSON('["californiantiramisu","renovate[bot]"]'), github.event.pull_request.user.login))))
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/auto-approve-reusable.yml@26a650884a170f410af54d11baef1a583aa47c8a # main
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/auto-approve-reusable.yml@4b041db3d7ce951732c102e2195c7d0178c401bb # main
     with:
       pull-request-number: ${{ inputs.pull-request-number || '' }}
       expected-head: ${{ inputs.expected-head || '' }}
