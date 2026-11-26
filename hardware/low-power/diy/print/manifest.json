@@ -11,8 +11,8 @@
   "board": "hardware/low-power/diy/diy.kicad_pcb",
   "board_sha256": "5503f4687406a5d5ea4a093d6161ff96db4e3d024f6c2653ddb8169400ac37d9",
   "generator_sha256": "4f2950f069dbfe11a20d767d7feddaf2ab26326e849c5a842b4d0d53bad972dd",
-  "requirements_sha256": "bcb41c3f8f92fccec9fd00226bb775ac8a14f3e256a5a7577c0c1905521d1adf",
-  "kicad_version": "10.0.6",
+  "requirements_sha256": "e5774c6c92d2d0b3a2c04dcd1520ea9603ba75f2755c2ba9fe6b4c4dbfcfd6b9",
+  "kicad_version": "10.0.8",
   "outline_mm": [
     190.0,
     145.0
